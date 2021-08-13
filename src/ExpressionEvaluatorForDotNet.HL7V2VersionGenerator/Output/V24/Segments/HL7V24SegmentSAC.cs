@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentSAC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _externalAccessionIdentifier;
+
+public HL7V24Field ExternalAccessionIdentifier
+{
+    get
+    {
+        if (_externalAccessionIdentifier != null)
+        {
+            return _externalAccessionIdentifier;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.1",
+            Type = @"Field",
+            Position = @"SAC.1",
+            Name = @"External Accession Identifier",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the laboratory accession (see section Glossary). This identifier is assigned by the external laboratory information system.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"SAC.1",
-                            Type = @"Field",
-                            Position = @"SAC.1",
-                            Name = @"External Accession Identifier",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the laboratory accession (see section Glossary). This identifier is assigned by the external laboratory information system.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SAC.1.1",
                             Type = @"Component",
@@ -120,25 +132,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _externalAccessionIdentifier = new HL7V24Field
+        {
+            field = message[@"SAC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_externalAccessionIdentifier.field.FieldRepetitions != null && _externalAccessionIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _externalAccessionIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_externalAccessionIdentifier, fieldData);
+        }
+
+        return _externalAccessionIdentifier;
+    } 
+}
+
+internal HL7V24Field _accessionIdentifier;
+
+public HL7V24Field AccessionIdentifier
+{
+    get
+    {
+        if (_accessionIdentifier != null)
+        {
+            return _accessionIdentifier;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.2",
+            Type = @"Field",
+            Position = @"SAC.2",
+            Name = @"Accession Identifier",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the laboratory accession (see section Glossary). This identifier is assigned by the information system of the laboratory performing the tests",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.2",
-                            Type = @"Field",
-                            Position = @"SAC.2",
-                            Name = @"Accession Identifier",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the laboratory accession (see section Glossary). This identifier is assigned by the information system of the laboratory performing the tests",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.2.1",
                             Type = @"Component",
@@ -208,25 +250,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _accessionIdentifier = new HL7V24Field
+        {
+            field = message[@"SAC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accessionIdentifier.field.FieldRepetitions != null && _accessionIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _accessionIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_accessionIdentifier, fieldData);
+        }
+
+        return _accessionIdentifier;
+    } 
+}
+
+internal HL7V24Field _containerIdentifier;
+
+public HL7V24Field ContainerIdentifier
+{
+    get
+    {
+        if (_containerIdentifier != null)
+        {
+            return _containerIdentifier;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.3",
+            Type = @"Field",
+            Position = @"SAC.3",
+            Name = @"Container Identifier",
+            Length = 80,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the container. This field is the container’s unique identifier assigned by the corresponding equipment. A container may contain the primary (original) specimen or an aliquot (secondary sample) of that specimen. For primary sample this field contains Primary Container ID; for barcoded aliquot samples this field contains Aliquot Container ID; for non-bar-coded aliquot samples (e.g., microtiter plate) this field is empty",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.3",
-                            Type = @"Field",
-                            Position = @"SAC.3",
-                            Name = @"Container Identifier",
-                            Length = 80,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the container. This field is the container’s unique identifier assigned by the corresponding equipment. A container may contain the primary (original) specimen or an aliquot (secondary sample) of that specimen. For primary sample this field contains Primary Container ID; for barcoded aliquot samples this field contains Aliquot Container ID; for non-bar-coded aliquot samples (e.g., microtiter plate) this field is empty",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.3.1",
                             Type = @"Component",
@@ -296,25 +368,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _containerIdentifier = new HL7V24Field
+        {
+            field = message[@"SAC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerIdentifier.field.FieldRepetitions != null && _containerIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _containerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_containerIdentifier, fieldData);
+        }
+
+        return _containerIdentifier;
+    } 
+}
+
+internal HL7V24Field _primary;
+
+public HL7V24Field Primary
+{
+    get
+    {
+        if (_primary != null)
+        {
+            return _primary;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.4",
+            Type = @"Field",
+            Position = @"SAC.4",
+            Name = @"Primary",
+            Length = 80,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"If this field is filled in, it identifies the primary container from which this specimen came. For primary samples this field is empty; for aliquot samples this field should contain the identifier of primary container.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.4",
-                            Type = @"Field",
-                            Position = @"SAC.4",
-                            Name = @"Primary",
-                            Length = 80,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"If this field is filled in, it identifies the primary container from which this specimen came. For primary samples this field is empty; for aliquot samples this field should contain the identifier of primary container.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.4.1",
                             Type = @"Component",
@@ -384,25 +486,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primary = new HL7V24Field
+        {
+            field = message[@"SAC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primary.field.FieldRepetitions != null && _primary.field.FieldRepetitions.Count > 0)
+        {
+            _primary.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_primary, fieldData);
+        }
+
+        return _primary;
+    } 
+}
+
+internal HL7V24Field _equipmentContainerIdentifier;
+
+public HL7V24Field EquipmentContainerIdentifier
+{
+    get
+    {
+        if (_equipmentContainerIdentifier != null)
+        {
+            return _equipmentContainerIdentifier;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.5",
+            Type = @"Field",
+            Position = @"SAC.5",
+            Name = @"Equipment Container Identifier",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the container in a particular device (e.g., one container in a carousel or rack of containers within an analyzer, analyzer specific bar code mapping, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.5",
-                            Type = @"Field",
-                            Position = @"SAC.5",
-                            Name = @"Equipment Container Identifier",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the container in a particular device (e.g., one container in a carousel or rack of containers within an analyzer, analyzer specific bar code mapping, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.5.1",
                             Type = @"Component",
@@ -472,25 +604,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _equipmentContainerIdentifier = new HL7V24Field
+        {
+            field = message[@"SAC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_equipmentContainerIdentifier.field.FieldRepetitions != null && _equipmentContainerIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _equipmentContainerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_equipmentContainerIdentifier, fieldData);
+        }
+
+        return _equipmentContainerIdentifier;
+    } 
+}
+
+internal HL7V24Field _specimenSource;
+
+public HL7V24Field SpecimenSource
+{
+    get
+    {
+        if (_specimenSource != null)
+        {
+            return _specimenSource;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.6",
+            Type = @"Field",
+            Position = @"SAC.6",
+            Name = @"Specimen Source",
+            Length = 300,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SPS",
+            DataTypeName = @"Specimen Source",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the site where the specimen should be obtained or where the service should be performed",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.6",
-                            Type = @"Field",
-                            Position = @"SAC.6",
-                            Name = @"Specimen Source",
-                            Length = 300,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SPS",
-                            DataTypeName = @"Specimen Source",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the site where the specimen should be obtained or where the service should be performed",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.6.1",
                             Type = @"Component",
@@ -1164,25 +1326,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specimenSource = new HL7V24Field
+        {
+            field = message[@"SAC"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenSource.field.FieldRepetitions != null && _specimenSource.field.FieldRepetitions.Count > 0)
+        {
+            _specimenSource.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_specimenSource, fieldData);
+        }
+
+        return _specimenSource;
+    } 
+}
+
+internal HL7V24Field _registrationDateTime;
+
+public HL7V24Field RegistrationDateTime
+{
+    get
+    {
+        if (_registrationDateTime != null)
+        {
+            return _registrationDateTime;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.7",
+            Type = @"Field",
+            Position = @"SAC.7",
+            Name = @"Registration Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the date/time that the container was last registered with the “automated system.”, e.g., reading of a container bar code by a device",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.7",
-                            Type = @"Field",
-                            Position = @"SAC.7",
-                            Name = @"Registration Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the date/time that the container was last registered with the “automated system.”, e.g., reading of a container bar code by a device",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.7.1",
                             Type = @"Component",
@@ -1216,25 +1408,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _registrationDateTime = new HL7V24Field
+        {
+            field = message[@"SAC"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_registrationDateTime.field.FieldRepetitions != null && _registrationDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _registrationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_registrationDateTime, fieldData);
+        }
+
+        return _registrationDateTime;
+    } 
+}
+
+internal HL7V24Field _containerStatus;
+
+public HL7V24Field ContainerStatus
+{
+    get
+    {
+        if (_containerStatus != null)
+        {
+            return _containerStatus;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.8",
+            Type = @"Field",
+            Position = @"SAC.8",
+            Name = @"Container Status",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0370",
+            TableName = @"Container status",
+            Description = @"This field identifies the status of the unique container in which the specimen resides at the time that the transaction was initiated.  Refer to HL7 Table 0370 - Container status for valid values. The equipment specific container status should be sent as <alternate identifier> as needed",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.8",
-                            Type = @"Field",
-                            Position = @"SAC.8",
-                            Name = @"Container Status",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0370",
-                            TableName = @"Container status",
-                            Description = @"This field identifies the status of the unique container in which the specimen resides at the time that the transaction was initiated.  Refer to HL7 Table 0370 - Container status for valid values. The equipment specific container status should be sent as <alternate identifier> as needed",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.8.1",
                             Type = @"Component",
@@ -1344,25 +1566,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _containerStatus = new HL7V24Field
+        {
+            field = message[@"SAC"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerStatus.field.FieldRepetitions != null && _containerStatus.field.FieldRepetitions.Count > 0)
+        {
+            _containerStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_containerStatus, fieldData);
+        }
+
+        return _containerStatus;
+    } 
+}
+
+internal HL7V24Field _carrierType;
+
+public HL7V24Field CarrierType
+{
+    get
+    {
+        if (_carrierType != null)
+        {
+            return _carrierType;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.9",
+            Type = @"Field",
+            Position = @"SAC.9",
+            Name = @"Carrier Type",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0378",
+            TableName = @"Carrier type",
+            Description = @"This field identifies the type of the carrier (see section Glossary). Refer to User-defined Table 0378 – Carrier type for suggested values.   Because the geometry can be different, the carrier type should, if possible, express the number of positions in the carrier",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.9",
-                            Type = @"Field",
-                            Position = @"SAC.9",
-                            Name = @"Carrier Type",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0378",
-                            TableName = @"Carrier type",
-                            Description = @"This field identifies the type of the carrier (see section Glossary). Refer to User-defined Table 0378 – Carrier type for suggested values.   Because the geometry can be different, the carrier type should, if possible, express the number of positions in the carrier",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.9.1",
                             Type = @"Component",
@@ -1472,25 +1724,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _carrierType = new HL7V24Field
+        {
+            field = message[@"SAC"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_carrierType.field.FieldRepetitions != null && _carrierType.field.FieldRepetitions.Count > 0)
+        {
+            _carrierType.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_carrierType, fieldData);
+        }
+
+        return _carrierType;
+    } 
+}
+
+internal HL7V24Field _carrierIdentifier;
+
+public HL7V24Field CarrierIdentifier
+{
+    get
+    {
+        if (_carrierIdentifier != null)
+        {
+            return _carrierIdentifier;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.10",
+            Type = @"Field",
+            Position = @"SAC.10",
+            Name = @"Carrier Identifier",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the carrier. It is the ID (e.g., number or bar code) of the carrier where the container (e.g., tube) is located",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.10",
-                            Type = @"Field",
-                            Position = @"SAC.10",
-                            Name = @"Carrier Identifier",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the carrier. It is the ID (e.g., number or bar code) of the carrier where the container (e.g., tube) is located",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.10.1",
                             Type = @"Component",
@@ -1560,25 +1842,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"This component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _carrierIdentifier = new HL7V24Field
+        {
+            field = message[@"SAC"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_carrierIdentifier.field.FieldRepetitions != null && _carrierIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _carrierIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_carrierIdentifier, fieldData);
+        }
+
+        return _carrierIdentifier;
+    } 
+}
+
+internal HL7V24Field _positioninCarrier;
+
+public HL7V24Field PositioninCarrier
+{
+    get
+    {
+        if (_positioninCarrier != null)
+        {
+            return _positioninCarrier;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.11",
+            Type = @"Field",
+            Position = @"SAC.11",
+            Name = @"Position in Carrier",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NA",
+            DataTypeName = @"Numeric Array",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the position of the container in the carrier (e.g., 1…3…). The subcomponents allow, if necessary, to transfer multiple axis information, e.g., 2-dimensional carrier (X^Y).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.11",
-                            Type = @"Field",
-                            Position = @"SAC.11",
-                            Name = @"Position in Carrier",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NA",
-                            DataTypeName = @"Numeric Array",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the position of the container in the carrier (e.g., 1…3…). The subcomponents allow, if necessary, to transfer multiple axis information, e.g., 2-dimensional carrier (X^Y).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.11.1",
                             Type = @"Component",
@@ -1648,25 +1960,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _positioninCarrier = new HL7V24Field
+        {
+            field = message[@"SAC"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_positioninCarrier.field.FieldRepetitions != null && _positioninCarrier.field.FieldRepetitions.Count > 0)
+        {
+            _positioninCarrier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_positioninCarrier, fieldData);
+        }
+
+        return _positioninCarrier;
+    } 
+}
+
+internal HL7V24Field _trayTypeSAC;
+
+public HL7V24Field TrayTypeSAC
+{
+    get
+    {
+        if (_trayTypeSAC != null)
+        {
+            return _trayTypeSAC;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.12",
+            Type = @"Field",
+            Position = @"SAC.12",
+            Name = @"Tray Type - SAC",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0379",
+            TableName = @"Tray type",
+            Description = @"This field identifies the type of the tray (see section Glossary). Refer to User-defined Table 0379 – Tray type for suggested values.  Because the geometry can be different, the tray type should if possible express the number of positions in the tray",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.12",
-                            Type = @"Field",
-                            Position = @"SAC.12",
-                            Name = @"Tray Type - SAC",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0379",
-                            TableName = @"Tray type",
-                            Description = @"This field identifies the type of the tray (see section Glossary). Refer to User-defined Table 0379 – Tray type for suggested values.  Because the geometry can be different, the tray type should if possible express the number of positions in the tray",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.12.1",
                             Type = @"Component",
@@ -1776,25 +2118,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _trayTypeSAC = new HL7V24Field
+        {
+            field = message[@"SAC"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_trayTypeSAC.field.FieldRepetitions != null && _trayTypeSAC.field.FieldRepetitions.Count > 0)
+        {
+            _trayTypeSAC.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_trayTypeSAC, fieldData);
+        }
+
+        return _trayTypeSAC;
+    } 
+}
+
+internal HL7V24Field _trayIdentifier;
+
+public HL7V24Field TrayIdentifier
+{
+    get
+    {
+        if (_trayIdentifier != null)
+        {
+            return _trayIdentifier;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.13",
+            Type = @"Field",
+            Position = @"SAC.13",
+            Name = @"Tray Identifier",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the tray identifier (e.g., a number of a tray or a bar code on the tray), where the container carrier is located",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.13",
-                            Type = @"Field",
-                            Position = @"SAC.13",
-                            Name = @"Tray Identifier",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the tray identifier (e.g., a number of a tray or a bar code on the tray), where the container carrier is located",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.13.1",
                             Type = @"Component",
@@ -1864,25 +2236,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"This component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _trayIdentifier = new HL7V24Field
+        {
+            field = message[@"SAC"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_trayIdentifier.field.FieldRepetitions != null && _trayIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _trayIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_trayIdentifier, fieldData);
+        }
+
+        return _trayIdentifier;
+    } 
+}
+
+internal HL7V24Field _positioninTray;
+
+public HL7V24Field PositioninTray
+{
+    get
+    {
+        if (_positioninTray != null)
+        {
+            return _positioninTray;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.14",
+            Type = @"Field",
+            Position = @"SAC.14",
+            Name = @"Position in Tray",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NA",
+            DataTypeName = @"Numeric Array",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the position of the carrier in the tray. The sub-components allow, if necessary, to transfer multiple axis information, e.g., 2-dimensional tray (X^Y).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.14",
-                            Type = @"Field",
-                            Position = @"SAC.14",
-                            Name = @"Position in Tray",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NA",
-                            DataTypeName = @"Numeric Array",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the position of the carrier in the tray. The sub-components allow, if necessary, to transfer multiple axis information, e.g., 2-dimensional tray (X^Y).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.14.1",
                             Type = @"Component",
@@ -1952,25 +2354,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _positioninTray = new HL7V24Field
+        {
+            field = message[@"SAC"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_positioninTray.field.FieldRepetitions != null && _positioninTray.field.FieldRepetitions.Count > 0)
+        {
+            _positioninTray.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_positioninTray, fieldData);
+        }
+
+        return _positioninTray;
+    } 
+}
+
+internal HL7V24Field _location;
+
+public HL7V24Field Location
+{
+    get
+    {
+        if (_location != null)
+        {
+            return _location;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.15",
+            Type = @"Field",
+            Position = @"SAC.15",
+            Name = @"Location",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the physical location that the specimen was at the time that the transaction was initiated. The location description can vary with the LAS. For example, it can be an X,Y,Z coordinate in  a storage system; a refrigerator number and drawer number where the container-carrier-tray is located; or it can be the name of the institution and the laboratory which owns the container currently. The repeating of this field allows for hierarchical representation of location (lowest level first), e.g., shelf number, refrigerator storage id, lab name, institution name, etc",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.15",
-                            Type = @"Field",
-                            Position = @"SAC.15",
-                            Name = @"Location",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the physical location that the specimen was at the time that the transaction was initiated. The location description can vary with the LAS. For example, it can be an X,Y,Z coordinate in  a storage system; a refrigerator number and drawer number where the container-carrier-tray is located; or it can be the name of the institution and the laboratory which owns the container currently. The repeating of this field allows for hierarchical representation of location (lowest level first), e.g., shelf number, refrigerator storage id, lab name, institution name, etc",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.15.1",
                             Type = @"Component",
@@ -2080,97 +2512,235 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _location = new HL7V24Field
+        {
+            field = message[@"SAC"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_location.field.FieldRepetitions != null && _location.field.FieldRepetitions.Count > 0)
+        {
+            _location.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_location, fieldData);
+        }
+
+        return _location;
+    } 
+}
+
+internal HL7V24Field _containerHeight;
+
+public HL7V24Field ContainerHeight
+{
+    get
+    {
+        if (_containerHeight != null)
+        {
+            return _containerHeight;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.16",
+            Type = @"Field",
+            Position = @"SAC.16",
+            Name = @"Container Height",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the height of the container in units specified below",
+            Sample = @"",
+            Fields = null
+        }
+
+        _containerHeight = new HL7V24Field
+        {
+            field = message[@"SAC"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerHeight.field.FieldRepetitions != null && _containerHeight.field.FieldRepetitions.Count > 0)
+        {
+            _containerHeight.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_containerHeight, fieldData);
+        }
+
+        return _containerHeight;
+    } 
+}
+
+internal HL7V24Field _containerDiameter;
+
+public HL7V24Field ContainerDiameter
+{
+    get
+    {
+        if (_containerDiameter != null)
+        {
+            return _containerDiameter;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.17",
+            Type = @"Field",
+            Position = @"SAC.17",
+            Name = @"Container Diameter",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the outside diameter of the container in units specified below",
+            Sample = @"",
+            Fields = null
+        }
+
+        _containerDiameter = new HL7V24Field
+        {
+            field = message[@"SAC"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerDiameter.field.FieldRepetitions != null && _containerDiameter.field.FieldRepetitions.Count > 0)
+        {
+            _containerDiameter.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_containerDiameter, fieldData);
+        }
+
+        return _containerDiameter;
+    } 
+}
+
+internal HL7V24Field _barrierDelta;
+
+public HL7V24Field BarrierDelta
+{
+    get
+    {
+        if (_barrierDelta != null)
+        {
+            return _barrierDelta;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.18",
+            Type = @"Field",
+            Position = @"SAC.18",
+            Name = @"Barrier Delta",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the distance from the Point of Reference to the separator material (barrier) within the container in units specified below. This distance may be provided by the LAS to the instrument and/or specimen processing/handling device to facilitate the insertion of a sampling probe into the specimen without touching the separator. Refer to Point Of Reference definition in section Glossary or in NCCLS standard AUTO5 Laboratory Automation: Electromechanical Interfaces",
+            Sample = @"",
+            Fields = null
+        }
+
+        _barrierDelta = new HL7V24Field
+        {
+            field = message[@"SAC"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_barrierDelta.field.FieldRepetitions != null && _barrierDelta.field.FieldRepetitions.Count > 0)
+        {
+            _barrierDelta.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_barrierDelta, fieldData);
+        }
+
+        return _barrierDelta;
+    } 
+}
+
+internal HL7V24Field _bottomDelta;
+
+public HL7V24Field BottomDelta
+{
+    get
+    {
+        if (_bottomDelta != null)
+        {
+            return _bottomDelta;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.19",
+            Type = @"Field",
+            Position = @"SAC.19",
+            Name = @"Bottom Delta",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the distance from the Point of Reference to the outside bottom of the container in units specified below. Refer to Point Of Reference definition in section Glossary or in NCCLS standard AUTO5 Laboratory Automation: Electromechanical Interfaces",
+            Sample = @"",
+            Fields = null
+        }
+
+        _bottomDelta = new HL7V24Field
+        {
+            field = message[@"SAC"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bottomDelta.field.FieldRepetitions != null && _bottomDelta.field.FieldRepetitions.Count > 0)
+        {
+            _bottomDelta.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_bottomDelta, fieldData);
+        }
+
+        return _bottomDelta;
+    } 
+}
+
+internal HL7V24Field _containerHeightDiameterDeltaUnits;
+
+public HL7V24Field ContainerHeightDiameterDeltaUnits
+{
+    get
+    {
+        if (_containerHeightDiameterDeltaUnits != null)
+        {
+            return _containerHeightDiameterDeltaUnits;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.20",
+            Type = @"Field",
+            Position = @"SAC.20",
+            Name = @"Container Height/Diameter/Delta Units",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the unit identifier that is being used to describe the diameter, height and deltas of the container. If the units are ISO+ units, they should be recorded as single case abbreviations. If the units are ANS+ or L (local), the units and the source code table must be recorded, except that in this case, component delimiters should be replaced by subcomponent delimiters. The default unit is millimeters (mm), which should be assumed if no units are reported.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.16",
-                            Type = @"Field",
-                            Position = @"SAC.16",
-                            Name = @"Container Height",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the height of the container in units specified below",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SAC.17",
-                            Type = @"Field",
-                            Position = @"SAC.17",
-                            Name = @"Container Diameter",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the outside diameter of the container in units specified below",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SAC.18",
-                            Type = @"Field",
-                            Position = @"SAC.18",
-                            Name = @"Barrier Delta",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the distance from the Point of Reference to the separator material (barrier) within the container in units specified below. This distance may be provided by the LAS to the instrument and/or specimen processing/handling device to facilitate the insertion of a sampling probe into the specimen without touching the separator. Refer to Point Of Reference definition in section Glossary or in NCCLS standard AUTO5 Laboratory Automation: Electromechanical Interfaces",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SAC.19",
-                            Type = @"Field",
-                            Position = @"SAC.19",
-                            Name = @"Bottom Delta",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the distance from the Point of Reference to the outside bottom of the container in units specified below. Refer to Point Of Reference definition in section Glossary or in NCCLS standard AUTO5 Laboratory Automation: Electromechanical Interfaces",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SAC.20",
-                            Type = @"Field",
-                            Position = @"SAC.20",
-                            Name = @"Container Height/Diameter/Delta Units",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the unit identifier that is being used to describe the diameter, height and deltas of the container. If the units are ISO+ units, they should be recorded as single case abbreviations. If the units are ANS+ or L (local), the units and the source code table must be recorded, except that in this case, component delimiters should be replaced by subcomponent delimiters. The default unit is millimeters (mm), which should be assumed if no units are reported.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.20.1",
                             Type = @"Component",
@@ -2280,79 +2850,190 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _containerHeightDiameterDeltaUnits = new HL7V24Field
+        {
+            field = message[@"SAC"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerHeightDiameterDeltaUnits.field.FieldRepetitions != null && _containerHeightDiameterDeltaUnits.field.FieldRepetitions.Count > 0)
+        {
+            _containerHeightDiameterDeltaUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_containerHeightDiameterDeltaUnits, fieldData);
+        }
+
+        return _containerHeightDiameterDeltaUnits;
+    } 
+}
+
+internal HL7V24Field _containerVolume;
+
+public HL7V24Field ContainerVolume
+{
+    get
+    {
+        if (_containerVolume != null)
+        {
+            return _containerVolume;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.21",
+            Type = @"Field",
+            Position = @"SAC.21",
+            Name = @"Container Volume",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the capacity of the container in the units specified below",
+            Sample = @"",
+            Fields = null
+        }
+
+        _containerVolume = new HL7V24Field
+        {
+            field = message[@"SAC"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerVolume.field.FieldRepetitions != null && _containerVolume.field.FieldRepetitions.Count > 0)
+        {
+            _containerVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_containerVolume, fieldData);
+        }
+
+        return _containerVolume;
+    } 
+}
+
+internal HL7V24Field _availableVolume;
+
+public HL7V24Field AvailableVolume
+{
+    get
+    {
+        if (_availableVolume != null)
+        {
+            return _availableVolume;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.22",
+            Type = @"Field",
+            Position = @"SAC.22",
+            Name = @"Available Volume",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the current volume available for use in the container in the units specified below.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _availableVolume = new HL7V24Field
+        {
+            field = message[@"SAC"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_availableVolume.field.FieldRepetitions != null && _availableVolume.field.FieldRepetitions.Count > 0)
+        {
+            _availableVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_availableVolume, fieldData);
+        }
+
+        return _availableVolume;
+    } 
+}
+
+internal HL7V24Field _initialSpecimenVolume;
+
+public HL7V24Field InitialSpecimenVolume
+{
+    get
+    {
+        if (_initialSpecimenVolume != null)
+        {
+            return _initialSpecimenVolume;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.23",
+            Type = @"Field",
+            Position = @"SAC.23",
+            Name = @"Initial Specimen Volume",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the draw volume of the container in the units specified below",
+            Sample = @"",
+            Fields = null
+        }
+
+        _initialSpecimenVolume = new HL7V24Field
+        {
+            field = message[@"SAC"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_initialSpecimenVolume.field.FieldRepetitions != null && _initialSpecimenVolume.field.FieldRepetitions.Count > 0)
+        {
+            _initialSpecimenVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_initialSpecimenVolume, fieldData);
+        }
+
+        return _initialSpecimenVolume;
+    } 
+}
+
+internal HL7V24Field _volumeUnits;
+
+public HL7V24Field VolumeUnits
+{
+    get
+    {
+        if (_volumeUnits != null)
+        {
+            return _volumeUnits;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.24",
+            Type = @"Field",
+            Position = @"SAC.24",
+            Name = @"Volume  Units",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the unit identifier that is being used to describe the volume of the container. If the units are ISO+ units, they should be recorded as single case abbreviations. The default unit is milliliters (ml), which should be assumed if no units are reported.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.21",
-                            Type = @"Field",
-                            Position = @"SAC.21",
-                            Name = @"Container Volume",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the capacity of the container in the units specified below",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SAC.22",
-                            Type = @"Field",
-                            Position = @"SAC.22",
-                            Name = @"Available Volume",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the current volume available for use in the container in the units specified below.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SAC.23",
-                            Type = @"Field",
-                            Position = @"SAC.23",
-                            Name = @"Initial Specimen Volume",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the draw volume of the container in the units specified below",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SAC.24",
-                            Type = @"Field",
-                            Position = @"SAC.24",
-                            Name = @"Volume  Units",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the unit identifier that is being used to describe the volume of the container. If the units are ISO+ units, they should be recorded as single case abbreviations. The default unit is milliliters (ml), which should be assumed if no units are reported.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.24.1",
                             Type = @"Component",
@@ -2462,25 +3143,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _volumeUnits = new HL7V24Field
+        {
+            field = message[@"SAC"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_volumeUnits.field.FieldRepetitions != null && _volumeUnits.field.FieldRepetitions.Count > 0)
+        {
+            _volumeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_volumeUnits, fieldData);
+        }
+
+        return _volumeUnits;
+    } 
+}
+
+internal HL7V24Field _separatorType;
+
+public HL7V24Field SeparatorType
+{
+    get
+    {
+        if (_separatorType != null)
+        {
+            return _separatorType;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.25",
+            Type = @"Field",
+            Position = @"SAC.25",
+            Name = @"Separator Type",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0380",
+            TableName = @"Separator type",
+            Description = @"This field identifies the type of the separator that is being used (e.g., gel separator in the container – not to be confused with the communication separators).  Refer to User-defined Table 0380 – Separator type for suggested values.  It is recommended that the first table entry be “NO” meaning “No Separator”.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.25",
-                            Type = @"Field",
-                            Position = @"SAC.25",
-                            Name = @"Separator Type",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0380",
-                            TableName = @"Separator type",
-                            Description = @"This field identifies the type of the separator that is being used (e.g., gel separator in the container – not to be confused with the communication separators).  Refer to User-defined Table 0380 – Separator type for suggested values.  It is recommended that the first table entry be “NO” meaning “No Separator”.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.25.1",
                             Type = @"Component",
@@ -2590,25 +3301,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _separatorType = new HL7V24Field
+        {
+            field = message[@"SAC"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_separatorType.field.FieldRepetitions != null && _separatorType.field.FieldRepetitions.Count > 0)
+        {
+            _separatorType.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_separatorType, fieldData);
+        }
+
+        return _separatorType;
+    } 
+}
+
+internal HL7V24Field _capType;
+
+public HL7V24Field CapType
+{
+    get
+    {
+        if (_capType != null)
+        {
+            return _capType;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.26",
+            Type = @"Field",
+            Position = @"SAC.26",
+            Name = @"Cap Type",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0381",
+            TableName = @"Cap type",
+            Description = @"This field indicates the type of cap that is to be used with this container for decapping, piercing or other mechanisms.  Refer to User-defined Table 0381 – Cap type for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.26",
-                            Type = @"Field",
-                            Position = @"SAC.26",
-                            Name = @"Cap Type",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0381",
-                            TableName = @"Cap type",
-                            Description = @"This field indicates the type of cap that is to be used with this container for decapping, piercing or other mechanisms.  Refer to User-defined Table 0381 – Cap type for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.26.1",
                             Type = @"Component",
@@ -2718,25 +3459,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _capType = new HL7V24Field
+        {
+            field = message[@"SAC"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_capType.field.FieldRepetitions != null && _capType.field.FieldRepetitions.Count > 0)
+        {
+            _capType.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_capType, fieldData);
+        }
+
+        return _capType;
+    } 
+}
+
+internal HL7V24Field _additive;
+
+public HL7V24Field Additive
+{
+    get
+    {
+        if (_additive != null)
+        {
+            return _additive;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.27",
+            Type = @"Field",
+            Position = @"SAC.27",
+            Name = @"Additive",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0371",
+            TableName = @"Additive",
+            Description = @"This field identifies any additives introduced to the specimen before or at the time of collection. It is a repetitive field. Refer to HL7 Table 0371 – Additive for valid values.  The table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.27",
-                            Type = @"Field",
-                            Position = @"SAC.27",
-                            Name = @"Additive",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0371",
-                            TableName = @"Additive",
-                            Description = @"This field identifies any additives introduced to the specimen before or at the time of collection. It is a repetitive field. Refer to HL7 Table 0371 – Additive for valid values.  The table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.27.1",
                             Type = @"Component",
@@ -2846,25 +3617,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _additive = new HL7V24Field
+        {
+            field = message[@"SAC"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_additive.field.FieldRepetitions != null && _additive.field.FieldRepetitions.Count > 0)
+        {
+            _additive.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_additive, fieldData);
+        }
+
+        return _additive;
+    } 
+}
+
+internal HL7V24Field _specimenComponent;
+
+public HL7V24Field SpecimenComponent
+{
+    get
+    {
+        if (_specimenComponent != null)
+        {
+            return _specimenComponent;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.28",
+            Type = @"Field",
+            Position = @"SAC.28",
+            Name = @"Specimen Component",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the specimen component, e.g., supernatant, sediment, etc. Refer to Userdefined Table 0372 – Specimen component for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.28",
-                            Type = @"Field",
-                            Position = @"SAC.28",
-                            Name = @"Specimen Component",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the specimen component, e.g., supernatant, sediment, etc. Refer to Userdefined Table 0372 – Specimen component for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.28.1",
                             Type = @"Component",
@@ -2974,25 +3775,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specimenComponent = new HL7V24Field
+        {
+            field = message[@"SAC"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenComponent.field.FieldRepetitions != null && _specimenComponent.field.FieldRepetitions.Count > 0)
+        {
+            _specimenComponent.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_specimenComponent, fieldData);
+        }
+
+        return _specimenComponent;
+    } 
+}
+
+internal HL7V24Field _dilutionFactor;
+
+public HL7V24Field DilutionFactor
+{
+    get
+    {
+        if (_dilutionFactor != null)
+        {
+            return _dilutionFactor;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.29",
+            Type = @"Field",
+            Position = @"SAC.29",
+            Name = @"Dilution Factor",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SN",
+            DataTypeName = @"Structured Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the factor of dilution already performed on the specimen. The equipment entity that changes the dilution is responsible for sending this information to other equipment. If the endogenous content of the test (analyte) in the diluent is required for the calculation of the test (analyte) concentration, then the test (analyte) specific values should be exchanged between the systems via Master Files or other means",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.29",
-                            Type = @"Field",
-                            Position = @"SAC.29",
-                            Name = @"Dilution Factor",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SN",
-                            DataTypeName = @"Structured Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the factor of dilution already performed on the specimen. The equipment entity that changes the dilution is responsible for sending this information to other equipment. If the endogenous content of the test (analyte) in the diluent is required for the calculation of the test (analyte) concentration, then the test (analyte) specific values should be exchanged between the systems via Master Files or other means",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.29.1",
                             Type = @"Component",
@@ -3062,25 +3893,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dilutionFactor = new HL7V24Field
+        {
+            field = message[@"SAC"][29],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dilutionFactor.field.FieldRepetitions != null && _dilutionFactor.field.FieldRepetitions.Count > 0)
+        {
+            _dilutionFactor.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_dilutionFactor, fieldData);
+        }
+
+        return _dilutionFactor;
+    } 
+}
+
+internal HL7V24Field _treatment;
+
+public HL7V24Field Treatment
+{
+    get
+    {
+        if (_treatment != null)
+        {
+            return _treatment;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.30",
+            Type = @"Field",
+            Position = @"SAC.30",
+            Name = @"Treatment",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0373",
+            TableName = @"Treatment",
+            Description = @"This field identifies the specimen collection treatment. Refer to User-defined Table 0373 – Treatment for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.30",
-                            Type = @"Field",
-                            Position = @"SAC.30",
-                            Name = @"Treatment",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0373",
-                            TableName = @"Treatment",
-                            Description = @"This field identifies the specimen collection treatment. Refer to User-defined Table 0373 – Treatment for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.30.1",
                             Type = @"Component",
@@ -3190,25 +4051,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _treatment = new HL7V24Field
+        {
+            field = message[@"SAC"][30],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_treatment.field.FieldRepetitions != null && _treatment.field.FieldRepetitions.Count > 0)
+        {
+            _treatment.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_treatment, fieldData);
+        }
+
+        return _treatment;
+    } 
+}
+
+internal HL7V24Field _temperature;
+
+public HL7V24Field Temperature
+{
+    get
+    {
+        if (_temperature != null)
+        {
+            return _temperature;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.31",
+            Type = @"Field",
+            Position = @"SAC.31",
+            Name = @"Temperature",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SN",
+            DataTypeName = @"Structured Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the specimen temperature in degrees Celsius [°C] at the time of the transaction specified in the EQU segment",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.31",
-                            Type = @"Field",
-                            Position = @"SAC.31",
-                            Name = @"Temperature",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SN",
-                            DataTypeName = @"Structured Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the specimen temperature in degrees Celsius [°C] at the time of the transaction specified in the EQU segment",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.31.1",
                             Type = @"Component",
@@ -3278,43 +4169,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _temperature = new HL7V24Field
+        {
+            field = message[@"SAC"][31],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_temperature.field.FieldRepetitions != null && _temperature.field.FieldRepetitions.Count > 0)
+        {
+            _temperature.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_temperature, fieldData);
+        }
+
+        return _temperature;
+    } 
+}
+
+internal HL7V24Field _hemolysisIndex;
+
+public HL7V24Field HemolysisIndex
+{
+    get
+    {
+        if (_hemolysisIndex != null)
+        {
+            return _hemolysisIndex;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.32",
+            Type = @"Field",
+            Position = @"SAC.32",
+            Name = @"Hemolysis Index",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the index identifier that is being used to describe the Hemolysis Index of the specimen",
+            Sample = @"",
+            Fields = null
+        }
+
+        _hemolysisIndex = new HL7V24Field
+        {
+            field = message[@"SAC"][32],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_hemolysisIndex.field.FieldRepetitions != null && _hemolysisIndex.field.FieldRepetitions.Count > 0)
+        {
+            _hemolysisIndex.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_hemolysisIndex, fieldData);
+        }
+
+        return _hemolysisIndex;
+    } 
+}
+
+internal HL7V24Field _hemolysisIndexUnits;
+
+public HL7V24Field HemolysisIndexUnits
+{
+    get
+    {
+        if (_hemolysisIndexUnits != null)
+        {
+            return _hemolysisIndexUnits;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.33",
+            Type = @"Field",
+            Position = @"SAC.33",
+            Name = @"Hemolysis Index Units",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the unit’s identifier that is being used to describe the Hemolysis Index of the specimen. It is recommended to use g/L. (The transmission of the index values is added here instead of the original use of the OBX segments, because the frequency of the transfer of the specimen details justifies use of more efficient mechanism.)",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.32",
-                            Type = @"Field",
-                            Position = @"SAC.32",
-                            Name = @"Hemolysis Index",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the index identifier that is being used to describe the Hemolysis Index of the specimen",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SAC.33",
-                            Type = @"Field",
-                            Position = @"SAC.33",
-                            Name = @"Hemolysis Index Units",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the unit’s identifier that is being used to describe the Hemolysis Index of the specimen. It is recommended to use g/L. (The transmission of the index values is added here instead of the original use of the OBX segments, because the frequency of the transfer of the specimen details justifies use of more efficient mechanism.)",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.33.1",
                             Type = @"Component",
@@ -3424,43 +4372,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _hemolysisIndexUnits = new HL7V24Field
+        {
+            field = message[@"SAC"][33],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_hemolysisIndexUnits.field.FieldRepetitions != null && _hemolysisIndexUnits.field.FieldRepetitions.Count > 0)
+        {
+            _hemolysisIndexUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_hemolysisIndexUnits, fieldData);
+        }
+
+        return _hemolysisIndexUnits;
+    } 
+}
+
+internal HL7V24Field _lipemiaIndex;
+
+public HL7V24Field LipemiaIndex
+{
+    get
+    {
+        if (_lipemiaIndex != null)
+        {
+            return _lipemiaIndex;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.34",
+            Type = @"Field",
+            Position = @"SAC.34",
+            Name = @"Lipemia Index",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the index identifier that is being used to describe the Lipemia Index of the specimen. It is recommended to use the optical turbidity at 600 nm (in absorbance units).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _lipemiaIndex = new HL7V24Field
+        {
+            field = message[@"SAC"][34],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_lipemiaIndex.field.FieldRepetitions != null && _lipemiaIndex.field.FieldRepetitions.Count > 0)
+        {
+            _lipemiaIndex.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_lipemiaIndex, fieldData);
+        }
+
+        return _lipemiaIndex;
+    } 
+}
+
+internal HL7V24Field _lipemiaIndexUnits;
+
+public HL7V24Field LipemiaIndexUnits
+{
+    get
+    {
+        if (_lipemiaIndexUnits != null)
+        {
+            return _lipemiaIndexUnits;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.35",
+            Type = @"Field",
+            Position = @"SAC.35",
+            Name = @"Lipemia Index Units",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the unit’s identifier that is being used to describe the Lipemia Index of the specimen.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.34",
-                            Type = @"Field",
-                            Position = @"SAC.34",
-                            Name = @"Lipemia Index",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the index identifier that is being used to describe the Lipemia Index of the specimen. It is recommended to use the optical turbidity at 600 nm (in absorbance units).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SAC.35",
-                            Type = @"Field",
-                            Position = @"SAC.35",
-                            Name = @"Lipemia Index Units",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the unit’s identifier that is being used to describe the Lipemia Index of the specimen.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.35.1",
                             Type = @"Component",
@@ -3570,43 +4575,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _lipemiaIndexUnits = new HL7V24Field
+        {
+            field = message[@"SAC"][35],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_lipemiaIndexUnits.field.FieldRepetitions != null && _lipemiaIndexUnits.field.FieldRepetitions.Count > 0)
+        {
+            _lipemiaIndexUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_lipemiaIndexUnits, fieldData);
+        }
+
+        return _lipemiaIndexUnits;
+    } 
+}
+
+internal HL7V24Field _icterusIndex;
+
+public HL7V24Field IcterusIndex
+{
+    get
+    {
+        if (_icterusIndex != null)
+        {
+            return _icterusIndex;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.36",
+            Type = @"Field",
+            Position = @"SAC.36",
+            Name = @"Icterus Index",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the index identifier that is being used to describe the Icterus Index of the specimen",
+            Sample = @"",
+            Fields = null
+        }
+
+        _icterusIndex = new HL7V24Field
+        {
+            field = message[@"SAC"][36],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_icterusIndex.field.FieldRepetitions != null && _icterusIndex.field.FieldRepetitions.Count > 0)
+        {
+            _icterusIndex.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_icterusIndex, fieldData);
+        }
+
+        return _icterusIndex;
+    } 
+}
+
+internal HL7V24Field _icterusIndexUnits;
+
+public HL7V24Field IcterusIndexUnits
+{
+    get
+    {
+        if (_icterusIndexUnits != null)
+        {
+            return _icterusIndexUnits;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.37",
+            Type = @"Field",
+            Position = @"SAC.37",
+            Name = @"Icterus Index Units",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the unit’s identifier that is being used to describe the Icterus Index of the specimen. It is recommended to use mMol/L of bilirubin",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.36",
-                            Type = @"Field",
-                            Position = @"SAC.36",
-                            Name = @"Icterus Index",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the index identifier that is being used to describe the Icterus Index of the specimen",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SAC.37",
-                            Type = @"Field",
-                            Position = @"SAC.37",
-                            Name = @"Icterus Index Units",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the unit’s identifier that is being used to describe the Icterus Index of the specimen. It is recommended to use mMol/L of bilirubin",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.37.1",
                             Type = @"Component",
@@ -3716,43 +4778,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _icterusIndexUnits = new HL7V24Field
+        {
+            field = message[@"SAC"][37],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_icterusIndexUnits.field.FieldRepetitions != null && _icterusIndexUnits.field.FieldRepetitions.Count > 0)
+        {
+            _icterusIndexUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_icterusIndexUnits, fieldData);
+        }
+
+        return _icterusIndexUnits;
+    } 
+}
+
+internal HL7V24Field _fibrinIndex;
+
+public HL7V24Field FibrinIndex
+{
+    get
+    {
+        if (_fibrinIndex != null)
+        {
+            return _fibrinIndex;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.38",
+            Type = @"Field",
+            Position = @"SAC.38",
+            Name = @"Fibrin Index",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the index identifier that is being used to describe the Fibrin Index of the specimen. In the case of only differentiating between Absent and Present, we recommend using 0 and 1 respectively and send the field Fibrin Index Units null",
+            Sample = @"",
+            Fields = null
+        }
+
+        _fibrinIndex = new HL7V24Field
+        {
+            field = message[@"SAC"][38],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fibrinIndex.field.FieldRepetitions != null && _fibrinIndex.field.FieldRepetitions.Count > 0)
+        {
+            _fibrinIndex.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_fibrinIndex, fieldData);
+        }
+
+        return _fibrinIndex;
+    } 
+}
+
+internal HL7V24Field _fibrinIndexUnits;
+
+public HL7V24Field FibrinIndexUnits
+{
+    get
+    {
+        if (_fibrinIndexUnits != null)
+        {
+            return _fibrinIndexUnits;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.39",
+            Type = @"Field",
+            Position = @"SAC.39",
+            Name = @"Fibrin Index Units",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the unit’s identifier that is being used to describe the Fibrin Index of the specimen",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.38",
-                            Type = @"Field",
-                            Position = @"SAC.38",
-                            Name = @"Fibrin Index",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the index identifier that is being used to describe the Fibrin Index of the specimen. In the case of only differentiating between Absent and Present, we recommend using 0 and 1 respectively and send the field Fibrin Index Units null",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SAC.39",
-                            Type = @"Field",
-                            Position = @"SAC.39",
-                            Name = @"Fibrin Index Units",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the unit’s identifier that is being used to describe the Fibrin Index of the specimen",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.39.1",
                             Type = @"Component",
@@ -3862,25 +4981,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _fibrinIndexUnits = new HL7V24Field
+        {
+            field = message[@"SAC"][39],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fibrinIndexUnits.field.FieldRepetitions != null && _fibrinIndexUnits.field.FieldRepetitions.Count > 0)
+        {
+            _fibrinIndexUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_fibrinIndexUnits, fieldData);
+        }
+
+        return _fibrinIndexUnits;
+    } 
+}
+
+internal HL7V24Field _systemInducedContaminants;
+
+public HL7V24Field SystemInducedContaminants
+{
+    get
+    {
+        if (_systemInducedContaminants != null)
+        {
+            return _systemInducedContaminants;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.40",
+            Type = @"Field",
+            Position = @"SAC.40",
+            Name = @"System Induced Contaminants",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0374",
+            TableName = @"System induced contaminants",
+            Description = @"This field describes the specimen contaminant identifier that is associated with the specimen. Refer to User-defined Table 0374 – System induced contaminants for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.40",
-                            Type = @"Field",
-                            Position = @"SAC.40",
-                            Name = @"System Induced Contaminants",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0374",
-                            TableName = @"System induced contaminants",
-                            Description = @"This field describes the specimen contaminant identifier that is associated with the specimen. Refer to User-defined Table 0374 – System induced contaminants for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.40.1",
                             Type = @"Component",
@@ -3990,25 +5139,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _systemInducedContaminants = new HL7V24Field
+        {
+            field = message[@"SAC"][40],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_systemInducedContaminants.field.FieldRepetitions != null && _systemInducedContaminants.field.FieldRepetitions.Count > 0)
+        {
+            _systemInducedContaminants.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_systemInducedContaminants, fieldData);
+        }
+
+        return _systemInducedContaminants;
+    } 
+}
+
+internal HL7V24Field _drugInterference;
+
+public HL7V24Field DrugInterference
+{
+    get
+    {
+        if (_drugInterference != null)
+        {
+            return _drugInterference;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.41",
+            Type = @"Field",
+            Position = @"SAC.41",
+            Name = @"Drug Interference",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0382",
+            TableName = @"Drug interference",
+            Description = @"This field describes the drug interference identifier that is associated with the specimen. Refer to User-defined Table 0382 – Drug interference for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.41",
-                            Type = @"Field",
-                            Position = @"SAC.41",
-                            Name = @"Drug Interference",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0382",
-                            TableName = @"Drug interference",
-                            Description = @"This field describes the drug interference identifier that is associated with the specimen. Refer to User-defined Table 0382 – Drug interference for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.41.1",
                             Type = @"Component",
@@ -4118,25 +5297,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _drugInterference = new HL7V24Field
+        {
+            field = message[@"SAC"][41],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_drugInterference.field.FieldRepetitions != null && _drugInterference.field.FieldRepetitions.Count > 0)
+        {
+            _drugInterference.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_drugInterference, fieldData);
+        }
+
+        return _drugInterference;
+    } 
+}
+
+internal HL7V24Field _artificialBlood;
+
+public HL7V24Field ArtificialBlood
+{
+    get
+    {
+        if (_artificialBlood != null)
+        {
+            return _artificialBlood;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.42",
+            Type = @"Field",
+            Position = @"SAC.42",
+            Name = @"Artificial Blood",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0375",
+            TableName = @"Artificial blood",
+            Description = @"This field describes the artificial blood identifier that is associated with the specimen. Refer to User-defined Table 0375 – Artificial blood for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.42",
-                            Type = @"Field",
-                            Position = @"SAC.42",
-                            Name = @"Artificial Blood",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0375",
-                            TableName = @"Artificial blood",
-                            Description = @"This field describes the artificial blood identifier that is associated with the specimen. Refer to User-defined Table 0375 – Artificial blood for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.42.1",
                             Type = @"Component",
@@ -4246,25 +5455,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _artificialBlood = new HL7V24Field
+        {
+            field = message[@"SAC"][42],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_artificialBlood.field.FieldRepetitions != null && _artificialBlood.field.FieldRepetitions.Count > 0)
+        {
+            _artificialBlood.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_artificialBlood, fieldData);
+        }
+
+        return _artificialBlood;
+    } 
+}
+
+internal HL7V24Field _specialHandlingConsiderations;
+
+public HL7V24Field SpecialHandlingConsiderations
+{
+    get
+    {
+        if (_specialHandlingConsiderations != null)
+        {
+            return _specialHandlingConsiderations;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.43",
+            Type = @"Field",
+            Position = @"SAC.43",
+            Name = @"Special Handling Considerations",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0376",
+            TableName = @"Special handling considerations",
+            Description = @"This field describes any special handling considerations that are associated with the specimen. (E.g. centrifugation). Refer to User-defined Table 0376 – Special handling considerations for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.43",
-                            Type = @"Field",
-                            Position = @"SAC.43",
-                            Name = @"Special Handling Considerations",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0376",
-                            TableName = @"Special handling considerations",
-                            Description = @"This field describes any special handling considerations that are associated with the specimen. (E.g. centrifugation). Refer to User-defined Table 0376 – Special handling considerations for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.43.1",
                             Type = @"Component",
@@ -4374,25 +5613,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specialHandlingConsiderations = new HL7V24Field
+        {
+            field = message[@"SAC"][43],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specialHandlingConsiderations.field.FieldRepetitions != null && _specialHandlingConsiderations.field.FieldRepetitions.Count > 0)
+        {
+            _specialHandlingConsiderations.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_specialHandlingConsiderations, fieldData);
+        }
+
+        return _specialHandlingConsiderations;
+    } 
+}
+
+internal HL7V24Field _otherEnvironmentalFactors;
+
+public HL7V24Field OtherEnvironmentalFactors
+{
+    get
+    {
+        if (_otherEnvironmentalFactors != null)
+        {
+            return _otherEnvironmentalFactors;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"SAC.44",
+            Type = @"Field",
+            Position = @"SAC.44",
+            Name = @"Other Environmental Factors",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0377",
+            TableName = @"Other environmental factors",
+            Description = @"This field describes other environmental factors that are associated with the specimen, e.g., atmospheric exposure. Refer to User-defined Table 0377 – Other environmental factors for valid values. This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SAC.44",
-                            Type = @"Field",
-                            Position = @"SAC.44",
-                            Name = @"Other Environmental Factors",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0377",
-                            TableName = @"Other environmental factors",
-                            Description = @"This field describes other environmental factors that are associated with the specimen, e.g., atmospheric exposure. Refer to User-defined Table 0377 – Other environmental factors for valid values. This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SAC.44.1",
                             Type = @"Component",
@@ -4502,1818 +5771,23 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentSAC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field externalAccessionIdentifier;
-
-public HL7V24Field ExternalAccessionIdentifier
-{
-    get
-    {
-        if (externalAccessionIdentifier != null)
-        {
-            return externalAccessionIdentifier;
-        }
-
-        externalAccessionIdentifier = new HL7V24Field
-        {
-            field = message[@"SAC"][1],
-            Id = @"SAC.1",
-            Type = @"Field",
-            Position = @"SAC.1",
-            Name = @"External Accession Identifier",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the laboratory accession (see section Glossary). This identifier is assigned by the external laboratory information system.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (externalAccessionIdentifier.field.FieldRepetitions != null && externalAccessionIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(externalAccessionIdentifier.Id));
-            externalAccessionIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(externalAccessionIdentifier, fieldData);
-        }
-
-        return externalAccessionIdentifier;
-    } 
-}
-
-internal HL7V24Field accessionIdentifier;
-
-public HL7V24Field AccessionIdentifier
-{
-    get
-    {
-        if (accessionIdentifier != null)
-        {
-            return accessionIdentifier;
-        }
-
-        accessionIdentifier = new HL7V24Field
-        {
-            field = message[@"SAC"][2],
-            Id = @"SAC.2",
-            Type = @"Field",
-            Position = @"SAC.2",
-            Name = @"Accession Identifier",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the laboratory accession (see section Glossary). This identifier is assigned by the information system of the laboratory performing the tests",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accessionIdentifier.field.FieldRepetitions != null && accessionIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accessionIdentifier.Id));
-            accessionIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(accessionIdentifier, fieldData);
-        }
-
-        return accessionIdentifier;
-    } 
-}
-
-internal HL7V24Field containerIdentifier;
-
-public HL7V24Field ContainerIdentifier
-{
-    get
-    {
-        if (containerIdentifier != null)
-        {
-            return containerIdentifier;
-        }
-
-        containerIdentifier = new HL7V24Field
-        {
-            field = message[@"SAC"][3],
-            Id = @"SAC.3",
-            Type = @"Field",
-            Position = @"SAC.3",
-            Name = @"Container Identifier",
-            Length = 80,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the container. This field is the container’s unique identifier assigned by the corresponding equipment. A container may contain the primary (original) specimen or an aliquot (secondary sample) of that specimen. For primary sample this field contains Primary Container ID; for barcoded aliquot samples this field contains Aliquot Container ID; for non-bar-coded aliquot samples (e.g., microtiter plate) this field is empty",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerIdentifier.field.FieldRepetitions != null && containerIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerIdentifier.Id));
-            containerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(containerIdentifier, fieldData);
-        }
-
-        return containerIdentifier;
-    } 
-}
-
-internal HL7V24Field primary;
-
-public HL7V24Field Primary
-{
-    get
-    {
-        if (primary != null)
-        {
-            return primary;
-        }
-
-        primary = new HL7V24Field
-        {
-            field = message[@"SAC"][4],
-            Id = @"SAC.4",
-            Type = @"Field",
-            Position = @"SAC.4",
-            Name = @"Primary",
-            Length = 80,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"If this field is filled in, it identifies the primary container from which this specimen came. For primary samples this field is empty; for aliquot samples this field should contain the identifier of primary container.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primary.field.FieldRepetitions != null && primary.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primary.Id));
-            primary.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(primary, fieldData);
-        }
-
-        return primary;
-    } 
-}
-
-internal HL7V24Field equipmentContainerIdentifier;
-
-public HL7V24Field EquipmentContainerIdentifier
-{
-    get
-    {
-        if (equipmentContainerIdentifier != null)
-        {
-            return equipmentContainerIdentifier;
-        }
-
-        equipmentContainerIdentifier = new HL7V24Field
-        {
-            field = message[@"SAC"][5],
-            Id = @"SAC.5",
-            Type = @"Field",
-            Position = @"SAC.5",
-            Name = @"Equipment Container Identifier",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the container in a particular device (e.g., one container in a carousel or rack of containers within an analyzer, analyzer specific bar code mapping, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (equipmentContainerIdentifier.field.FieldRepetitions != null && equipmentContainerIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(equipmentContainerIdentifier.Id));
-            equipmentContainerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(equipmentContainerIdentifier, fieldData);
-        }
-
-        return equipmentContainerIdentifier;
-    } 
-}
-
-internal HL7V24Field specimenSource;
-
-public HL7V24Field SpecimenSource
-{
-    get
-    {
-        if (specimenSource != null)
-        {
-            return specimenSource;
-        }
-
-        specimenSource = new HL7V24Field
-        {
-            field = message[@"SAC"][6],
-            Id = @"SAC.6",
-            Type = @"Field",
-            Position = @"SAC.6",
-            Name = @"Specimen Source",
-            Length = 300,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SPS",
-            DataTypeName = @"Specimen Source",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the site where the specimen should be obtained or where the service should be performed",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenSource.field.FieldRepetitions != null && specimenSource.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenSource.Id));
-            specimenSource.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(specimenSource, fieldData);
-        }
-
-        return specimenSource;
-    } 
-}
-
-internal HL7V24Field registrationDateTime;
-
-public HL7V24Field RegistrationDateTime
-{
-    get
-    {
-        if (registrationDateTime != null)
-        {
-            return registrationDateTime;
-        }
-
-        registrationDateTime = new HL7V24Field
-        {
-            field = message[@"SAC"][7],
-            Id = @"SAC.7",
-            Type = @"Field",
-            Position = @"SAC.7",
-            Name = @"Registration Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the date/time that the container was last registered with the “automated system.”, e.g., reading of a container bar code by a device",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (registrationDateTime.field.FieldRepetitions != null && registrationDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(registrationDateTime.Id));
-            registrationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(registrationDateTime, fieldData);
-        }
-
-        return registrationDateTime;
-    } 
-}
-
-internal HL7V24Field containerStatus;
-
-public HL7V24Field ContainerStatus
-{
-    get
-    {
-        if (containerStatus != null)
-        {
-            return containerStatus;
-        }
-
-        containerStatus = new HL7V24Field
-        {
-            field = message[@"SAC"][8],
-            Id = @"SAC.8",
-            Type = @"Field",
-            Position = @"SAC.8",
-            Name = @"Container Status",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0370",
-            TableName = @"Container status",
-            Description = @"This field identifies the status of the unique container in which the specimen resides at the time that the transaction was initiated.  Refer to HL7 Table 0370 - Container status for valid values. The equipment specific container status should be sent as <alternate identifier> as needed",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerStatus.field.FieldRepetitions != null && containerStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerStatus.Id));
-            containerStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(containerStatus, fieldData);
-        }
-
-        return containerStatus;
-    } 
-}
-
-internal HL7V24Field carrierType;
-
-public HL7V24Field CarrierType
-{
-    get
-    {
-        if (carrierType != null)
-        {
-            return carrierType;
-        }
-
-        carrierType = new HL7V24Field
-        {
-            field = message[@"SAC"][9],
-            Id = @"SAC.9",
-            Type = @"Field",
-            Position = @"SAC.9",
-            Name = @"Carrier Type",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0378",
-            TableName = @"Carrier type",
-            Description = @"This field identifies the type of the carrier (see section Glossary). Refer to User-defined Table 0378 – Carrier type for suggested values.   Because the geometry can be different, the carrier type should, if possible, express the number of positions in the carrier",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (carrierType.field.FieldRepetitions != null && carrierType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(carrierType.Id));
-            carrierType.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(carrierType, fieldData);
-        }
-
-        return carrierType;
-    } 
-}
-
-internal HL7V24Field carrierIdentifier;
-
-public HL7V24Field CarrierIdentifier
-{
-    get
-    {
-        if (carrierIdentifier != null)
-        {
-            return carrierIdentifier;
-        }
-
-        carrierIdentifier = new HL7V24Field
-        {
-            field = message[@"SAC"][10],
-            Id = @"SAC.10",
-            Type = @"Field",
-            Position = @"SAC.10",
-            Name = @"Carrier Identifier",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the carrier. It is the ID (e.g., number or bar code) of the carrier where the container (e.g., tube) is located",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (carrierIdentifier.field.FieldRepetitions != null && carrierIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(carrierIdentifier.Id));
-            carrierIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(carrierIdentifier, fieldData);
-        }
-
-        return carrierIdentifier;
-    } 
-}
-
-internal HL7V24Field positioninCarrier;
-
-public HL7V24Field PositioninCarrier
-{
-    get
-    {
-        if (positioninCarrier != null)
-        {
-            return positioninCarrier;
-        }
-
-        positioninCarrier = new HL7V24Field
-        {
-            field = message[@"SAC"][11],
-            Id = @"SAC.11",
-            Type = @"Field",
-            Position = @"SAC.11",
-            Name = @"Position in Carrier",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NA",
-            DataTypeName = @"Numeric Array",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the position of the container in the carrier (e.g., 1…3…). The subcomponents allow, if necessary, to transfer multiple axis information, e.g., 2-dimensional carrier (X^Y).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (positioninCarrier.field.FieldRepetitions != null && positioninCarrier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(positioninCarrier.Id));
-            positioninCarrier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(positioninCarrier, fieldData);
-        }
-
-        return positioninCarrier;
-    } 
-}
-
-internal HL7V24Field trayTypeSAC;
-
-public HL7V24Field TrayTypeSAC
-{
-    get
-    {
-        if (trayTypeSAC != null)
-        {
-            return trayTypeSAC;
-        }
-
-        trayTypeSAC = new HL7V24Field
-        {
-            field = message[@"SAC"][12],
-            Id = @"SAC.12",
-            Type = @"Field",
-            Position = @"SAC.12",
-            Name = @"Tray Type - SAC",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0379",
-            TableName = @"Tray type",
-            Description = @"This field identifies the type of the tray (see section Glossary). Refer to User-defined Table 0379 – Tray type for suggested values.  Because the geometry can be different, the tray type should if possible express the number of positions in the tray",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (trayTypeSAC.field.FieldRepetitions != null && trayTypeSAC.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(trayTypeSAC.Id));
-            trayTypeSAC.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(trayTypeSAC, fieldData);
-        }
-
-        return trayTypeSAC;
-    } 
-}
-
-internal HL7V24Field trayIdentifier;
-
-public HL7V24Field TrayIdentifier
-{
-    get
-    {
-        if (trayIdentifier != null)
-        {
-            return trayIdentifier;
-        }
-
-        trayIdentifier = new HL7V24Field
-        {
-            field = message[@"SAC"][13],
-            Id = @"SAC.13",
-            Type = @"Field",
-            Position = @"SAC.13",
-            Name = @"Tray Identifier",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the tray identifier (e.g., a number of a tray or a bar code on the tray), where the container carrier is located",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (trayIdentifier.field.FieldRepetitions != null && trayIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(trayIdentifier.Id));
-            trayIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(trayIdentifier, fieldData);
-        }
-
-        return trayIdentifier;
-    } 
-}
-
-internal HL7V24Field positioninTray;
-
-public HL7V24Field PositioninTray
-{
-    get
-    {
-        if (positioninTray != null)
-        {
-            return positioninTray;
-        }
-
-        positioninTray = new HL7V24Field
-        {
-            field = message[@"SAC"][14],
-            Id = @"SAC.14",
-            Type = @"Field",
-            Position = @"SAC.14",
-            Name = @"Position in Tray",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NA",
-            DataTypeName = @"Numeric Array",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the position of the carrier in the tray. The sub-components allow, if necessary, to transfer multiple axis information, e.g., 2-dimensional tray (X^Y).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (positioninTray.field.FieldRepetitions != null && positioninTray.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(positioninTray.Id));
-            positioninTray.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(positioninTray, fieldData);
-        }
-
-        return positioninTray;
-    } 
-}
-
-internal HL7V24Field location;
-
-public HL7V24Field Location
-{
-    get
-    {
-        if (location != null)
-        {
-            return location;
-        }
-
-        location = new HL7V24Field
-        {
-            field = message[@"SAC"][15],
-            Id = @"SAC.15",
-            Type = @"Field",
-            Position = @"SAC.15",
-            Name = @"Location",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the physical location that the specimen was at the time that the transaction was initiated. The location description can vary with the LAS. For example, it can be an X,Y,Z coordinate in  a storage system; a refrigerator number and drawer number where the container-carrier-tray is located; or it can be the name of the institution and the laboratory which owns the container currently. The repeating of this field allows for hierarchical representation of location (lowest level first), e.g., shelf number, refrigerator storage id, lab name, institution name, etc",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (location.field.FieldRepetitions != null && location.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(location.Id));
-            location.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(location, fieldData);
-        }
-
-        return location;
-    } 
-}
-
-internal HL7V24Field containerHeight;
-
-public HL7V24Field ContainerHeight
-{
-    get
-    {
-        if (containerHeight != null)
-        {
-            return containerHeight;
-        }
-
-        containerHeight = new HL7V24Field
-        {
-            field = message[@"SAC"][16],
-            Id = @"SAC.16",
-            Type = @"Field",
-            Position = @"SAC.16",
-            Name = @"Container Height",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the height of the container in units specified below",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerHeight.field.FieldRepetitions != null && containerHeight.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerHeight.Id));
-            containerHeight.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(containerHeight, fieldData);
-        }
-
-        return containerHeight;
-    } 
-}
-
-internal HL7V24Field containerDiameter;
-
-public HL7V24Field ContainerDiameter
-{
-    get
-    {
-        if (containerDiameter != null)
-        {
-            return containerDiameter;
-        }
-
-        containerDiameter = new HL7V24Field
-        {
-            field = message[@"SAC"][17],
-            Id = @"SAC.17",
-            Type = @"Field",
-            Position = @"SAC.17",
-            Name = @"Container Diameter",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the outside diameter of the container in units specified below",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerDiameter.field.FieldRepetitions != null && containerDiameter.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerDiameter.Id));
-            containerDiameter.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(containerDiameter, fieldData);
-        }
-
-        return containerDiameter;
-    } 
-}
-
-internal HL7V24Field barrierDelta;
-
-public HL7V24Field BarrierDelta
-{
-    get
-    {
-        if (barrierDelta != null)
-        {
-            return barrierDelta;
-        }
-
-        barrierDelta = new HL7V24Field
-        {
-            field = message[@"SAC"][18],
-            Id = @"SAC.18",
-            Type = @"Field",
-            Position = @"SAC.18",
-            Name = @"Barrier Delta",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the distance from the Point of Reference to the separator material (barrier) within the container in units specified below. This distance may be provided by the LAS to the instrument and/or specimen processing/handling device to facilitate the insertion of a sampling probe into the specimen without touching the separator. Refer to Point Of Reference definition in section Glossary or in NCCLS standard AUTO5 Laboratory Automation: Electromechanical Interfaces",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (barrierDelta.field.FieldRepetitions != null && barrierDelta.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(barrierDelta.Id));
-            barrierDelta.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(barrierDelta, fieldData);
-        }
-
-        return barrierDelta;
-    } 
-}
-
-internal HL7V24Field bottomDelta;
-
-public HL7V24Field BottomDelta
-{
-    get
-    {
-        if (bottomDelta != null)
-        {
-            return bottomDelta;
-        }
-
-        bottomDelta = new HL7V24Field
-        {
-            field = message[@"SAC"][19],
-            Id = @"SAC.19",
-            Type = @"Field",
-            Position = @"SAC.19",
-            Name = @"Bottom Delta",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the distance from the Point of Reference to the outside bottom of the container in units specified below. Refer to Point Of Reference definition in section Glossary or in NCCLS standard AUTO5 Laboratory Automation: Electromechanical Interfaces",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bottomDelta.field.FieldRepetitions != null && bottomDelta.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bottomDelta.Id));
-            bottomDelta.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(bottomDelta, fieldData);
-        }
-
-        return bottomDelta;
-    } 
-}
-
-internal HL7V24Field containerHeightDiameterDeltaUnits;
-
-public HL7V24Field ContainerHeightDiameterDeltaUnits
-{
-    get
-    {
-        if (containerHeightDiameterDeltaUnits != null)
-        {
-            return containerHeightDiameterDeltaUnits;
-        }
-
-        containerHeightDiameterDeltaUnits = new HL7V24Field
-        {
-            field = message[@"SAC"][20],
-            Id = @"SAC.20",
-            Type = @"Field",
-            Position = @"SAC.20",
-            Name = @"Container Height/Diameter/Delta Units",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the unit identifier that is being used to describe the diameter, height and deltas of the container. If the units are ISO+ units, they should be recorded as single case abbreviations. If the units are ANS+ or L (local), the units and the source code table must be recorded, except that in this case, component delimiters should be replaced by subcomponent delimiters. The default unit is millimeters (mm), which should be assumed if no units are reported.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerHeightDiameterDeltaUnits.field.FieldRepetitions != null && containerHeightDiameterDeltaUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerHeightDiameterDeltaUnits.Id));
-            containerHeightDiameterDeltaUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(containerHeightDiameterDeltaUnits, fieldData);
-        }
-
-        return containerHeightDiameterDeltaUnits;
-    } 
-}
-
-internal HL7V24Field containerVolume;
-
-public HL7V24Field ContainerVolume
-{
-    get
-    {
-        if (containerVolume != null)
-        {
-            return containerVolume;
-        }
-
-        containerVolume = new HL7V24Field
-        {
-            field = message[@"SAC"][21],
-            Id = @"SAC.21",
-            Type = @"Field",
-            Position = @"SAC.21",
-            Name = @"Container Volume",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the capacity of the container in the units specified below",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerVolume.field.FieldRepetitions != null && containerVolume.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerVolume.Id));
-            containerVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(containerVolume, fieldData);
-        }
-
-        return containerVolume;
-    } 
-}
-
-internal HL7V24Field availableVolume;
-
-public HL7V24Field AvailableVolume
-{
-    get
-    {
-        if (availableVolume != null)
-        {
-            return availableVolume;
-        }
-
-        availableVolume = new HL7V24Field
-        {
-            field = message[@"SAC"][22],
-            Id = @"SAC.22",
-            Type = @"Field",
-            Position = @"SAC.22",
-            Name = @"Available Volume",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the current volume available for use in the container in the units specified below.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (availableVolume.field.FieldRepetitions != null && availableVolume.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(availableVolume.Id));
-            availableVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(availableVolume, fieldData);
-        }
-
-        return availableVolume;
-    } 
-}
-
-internal HL7V24Field initialSpecimenVolume;
-
-public HL7V24Field InitialSpecimenVolume
-{
-    get
-    {
-        if (initialSpecimenVolume != null)
-        {
-            return initialSpecimenVolume;
-        }
-
-        initialSpecimenVolume = new HL7V24Field
-        {
-            field = message[@"SAC"][23],
-            Id = @"SAC.23",
-            Type = @"Field",
-            Position = @"SAC.23",
-            Name = @"Initial Specimen Volume",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the draw volume of the container in the units specified below",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (initialSpecimenVolume.field.FieldRepetitions != null && initialSpecimenVolume.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(initialSpecimenVolume.Id));
-            initialSpecimenVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(initialSpecimenVolume, fieldData);
-        }
-
-        return initialSpecimenVolume;
-    } 
-}
-
-internal HL7V24Field volumeUnits;
-
-public HL7V24Field VolumeUnits
-{
-    get
-    {
-        if (volumeUnits != null)
-        {
-            return volumeUnits;
-        }
-
-        volumeUnits = new HL7V24Field
-        {
-            field = message[@"SAC"][24],
-            Id = @"SAC.24",
-            Type = @"Field",
-            Position = @"SAC.24",
-            Name = @"Volume  Units",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the unit identifier that is being used to describe the volume of the container. If the units are ISO+ units, they should be recorded as single case abbreviations. The default unit is milliliters (ml), which should be assumed if no units are reported.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (volumeUnits.field.FieldRepetitions != null && volumeUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(volumeUnits.Id));
-            volumeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(volumeUnits, fieldData);
-        }
-
-        return volumeUnits;
-    } 
-}
-
-internal HL7V24Field separatorType;
-
-public HL7V24Field SeparatorType
-{
-    get
-    {
-        if (separatorType != null)
-        {
-            return separatorType;
-        }
-
-        separatorType = new HL7V24Field
-        {
-            field = message[@"SAC"][25],
-            Id = @"SAC.25",
-            Type = @"Field",
-            Position = @"SAC.25",
-            Name = @"Separator Type",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0380",
-            TableName = @"Separator type",
-            Description = @"This field identifies the type of the separator that is being used (e.g., gel separator in the container – not to be confused with the communication separators).  Refer to User-defined Table 0380 – Separator type for suggested values.  It is recommended that the first table entry be “NO” meaning “No Separator”.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (separatorType.field.FieldRepetitions != null && separatorType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(separatorType.Id));
-            separatorType.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(separatorType, fieldData);
-        }
-
-        return separatorType;
-    } 
-}
-
-internal HL7V24Field capType;
-
-public HL7V24Field CapType
-{
-    get
-    {
-        if (capType != null)
-        {
-            return capType;
-        }
-
-        capType = new HL7V24Field
-        {
-            field = message[@"SAC"][26],
-            Id = @"SAC.26",
-            Type = @"Field",
-            Position = @"SAC.26",
-            Name = @"Cap Type",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0381",
-            TableName = @"Cap type",
-            Description = @"This field indicates the type of cap that is to be used with this container for decapping, piercing or other mechanisms.  Refer to User-defined Table 0381 – Cap type for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (capType.field.FieldRepetitions != null && capType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(capType.Id));
-            capType.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(capType, fieldData);
-        }
-
-        return capType;
-    } 
-}
-
-internal HL7V24Field additive;
-
-public HL7V24Field Additive
-{
-    get
-    {
-        if (additive != null)
-        {
-            return additive;
-        }
-
-        additive = new HL7V24Field
-        {
-            field = message[@"SAC"][27],
-            Id = @"SAC.27",
-            Type = @"Field",
-            Position = @"SAC.27",
-            Name = @"Additive",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0371",
-            TableName = @"Additive",
-            Description = @"This field identifies any additives introduced to the specimen before or at the time of collection. It is a repetitive field. Refer to HL7 Table 0371 – Additive for valid values.  The table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (additive.field.FieldRepetitions != null && additive.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(additive.Id));
-            additive.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(additive, fieldData);
-        }
-
-        return additive;
-    } 
-}
-
-internal HL7V24Field specimenComponent;
-
-public HL7V24Field SpecimenComponent
-{
-    get
-    {
-        if (specimenComponent != null)
-        {
-            return specimenComponent;
-        }
-
-        specimenComponent = new HL7V24Field
-        {
-            field = message[@"SAC"][28],
-            Id = @"SAC.28",
-            Type = @"Field",
-            Position = @"SAC.28",
-            Name = @"Specimen Component",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the specimen component, e.g., supernatant, sediment, etc. Refer to Userdefined Table 0372 – Specimen component for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenComponent.field.FieldRepetitions != null && specimenComponent.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenComponent.Id));
-            specimenComponent.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(specimenComponent, fieldData);
-        }
-
-        return specimenComponent;
-    } 
-}
-
-internal HL7V24Field dilutionFactor;
-
-public HL7V24Field DilutionFactor
-{
-    get
-    {
-        if (dilutionFactor != null)
-        {
-            return dilutionFactor;
-        }
-
-        dilutionFactor = new HL7V24Field
-        {
-            field = message[@"SAC"][29],
-            Id = @"SAC.29",
-            Type = @"Field",
-            Position = @"SAC.29",
-            Name = @"Dilution Factor",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SN",
-            DataTypeName = @"Structured Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the factor of dilution already performed on the specimen. The equipment entity that changes the dilution is responsible for sending this information to other equipment. If the endogenous content of the test (analyte) in the diluent is required for the calculation of the test (analyte) concentration, then the test (analyte) specific values should be exchanged between the systems via Master Files or other means",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dilutionFactor.field.FieldRepetitions != null && dilutionFactor.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dilutionFactor.Id));
-            dilutionFactor.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(dilutionFactor, fieldData);
-        }
-
-        return dilutionFactor;
-    } 
-}
-
-internal HL7V24Field treatment;
-
-public HL7V24Field Treatment
-{
-    get
-    {
-        if (treatment != null)
-        {
-            return treatment;
-        }
-
-        treatment = new HL7V24Field
-        {
-            field = message[@"SAC"][30],
-            Id = @"SAC.30",
-            Type = @"Field",
-            Position = @"SAC.30",
-            Name = @"Treatment",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0373",
-            TableName = @"Treatment",
-            Description = @"This field identifies the specimen collection treatment. Refer to User-defined Table 0373 – Treatment for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (treatment.field.FieldRepetitions != null && treatment.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(treatment.Id));
-            treatment.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(treatment, fieldData);
-        }
-
-        return treatment;
-    } 
-}
-
-internal HL7V24Field temperature;
-
-public HL7V24Field Temperature
-{
-    get
-    {
-        if (temperature != null)
-        {
-            return temperature;
-        }
-
-        temperature = new HL7V24Field
-        {
-            field = message[@"SAC"][31],
-            Id = @"SAC.31",
-            Type = @"Field",
-            Position = @"SAC.31",
-            Name = @"Temperature",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SN",
-            DataTypeName = @"Structured Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the specimen temperature in degrees Celsius [°C] at the time of the transaction specified in the EQU segment",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (temperature.field.FieldRepetitions != null && temperature.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(temperature.Id));
-            temperature.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(temperature, fieldData);
-        }
-
-        return temperature;
-    } 
-}
-
-internal HL7V24Field hemolysisIndex;
-
-public HL7V24Field HemolysisIndex
-{
-    get
-    {
-        if (hemolysisIndex != null)
-        {
-            return hemolysisIndex;
-        }
-
-        hemolysisIndex = new HL7V24Field
-        {
-            field = message[@"SAC"][32],
-            Id = @"SAC.32",
-            Type = @"Field",
-            Position = @"SAC.32",
-            Name = @"Hemolysis Index",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the index identifier that is being used to describe the Hemolysis Index of the specimen",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (hemolysisIndex.field.FieldRepetitions != null && hemolysisIndex.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(hemolysisIndex.Id));
-            hemolysisIndex.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(hemolysisIndex, fieldData);
-        }
-
-        return hemolysisIndex;
-    } 
-}
-
-internal HL7V24Field hemolysisIndexUnits;
-
-public HL7V24Field HemolysisIndexUnits
-{
-    get
-    {
-        if (hemolysisIndexUnits != null)
-        {
-            return hemolysisIndexUnits;
-        }
-
-        hemolysisIndexUnits = new HL7V24Field
-        {
-            field = message[@"SAC"][33],
-            Id = @"SAC.33",
-            Type = @"Field",
-            Position = @"SAC.33",
-            Name = @"Hemolysis Index Units",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the unit’s identifier that is being used to describe the Hemolysis Index of the specimen. It is recommended to use g/L. (The transmission of the index values is added here instead of the original use of the OBX segments, because the frequency of the transfer of the specimen details justifies use of more efficient mechanism.)",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (hemolysisIndexUnits.field.FieldRepetitions != null && hemolysisIndexUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(hemolysisIndexUnits.Id));
-            hemolysisIndexUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(hemolysisIndexUnits, fieldData);
-        }
-
-        return hemolysisIndexUnits;
-    } 
-}
-
-internal HL7V24Field lipemiaIndex;
-
-public HL7V24Field LipemiaIndex
-{
-    get
-    {
-        if (lipemiaIndex != null)
-        {
-            return lipemiaIndex;
-        }
-
-        lipemiaIndex = new HL7V24Field
-        {
-            field = message[@"SAC"][34],
-            Id = @"SAC.34",
-            Type = @"Field",
-            Position = @"SAC.34",
-            Name = @"Lipemia Index",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the index identifier that is being used to describe the Lipemia Index of the specimen. It is recommended to use the optical turbidity at 600 nm (in absorbance units).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (lipemiaIndex.field.FieldRepetitions != null && lipemiaIndex.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(lipemiaIndex.Id));
-            lipemiaIndex.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(lipemiaIndex, fieldData);
-        }
-
-        return lipemiaIndex;
-    } 
-}
-
-internal HL7V24Field lipemiaIndexUnits;
-
-public HL7V24Field LipemiaIndexUnits
-{
-    get
-    {
-        if (lipemiaIndexUnits != null)
-        {
-            return lipemiaIndexUnits;
-        }
-
-        lipemiaIndexUnits = new HL7V24Field
-        {
-            field = message[@"SAC"][35],
-            Id = @"SAC.35",
-            Type = @"Field",
-            Position = @"SAC.35",
-            Name = @"Lipemia Index Units",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the unit’s identifier that is being used to describe the Lipemia Index of the specimen.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (lipemiaIndexUnits.field.FieldRepetitions != null && lipemiaIndexUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(lipemiaIndexUnits.Id));
-            lipemiaIndexUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(lipemiaIndexUnits, fieldData);
-        }
-
-        return lipemiaIndexUnits;
-    } 
-}
-
-internal HL7V24Field icterusIndex;
-
-public HL7V24Field IcterusIndex
-{
-    get
-    {
-        if (icterusIndex != null)
-        {
-            return icterusIndex;
-        }
-
-        icterusIndex = new HL7V24Field
-        {
-            field = message[@"SAC"][36],
-            Id = @"SAC.36",
-            Type = @"Field",
-            Position = @"SAC.36",
-            Name = @"Icterus Index",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the index identifier that is being used to describe the Icterus Index of the specimen",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (icterusIndex.field.FieldRepetitions != null && icterusIndex.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(icterusIndex.Id));
-            icterusIndex.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(icterusIndex, fieldData);
-        }
-
-        return icterusIndex;
-    } 
-}
-
-internal HL7V24Field icterusIndexUnits;
-
-public HL7V24Field IcterusIndexUnits
-{
-    get
-    {
-        if (icterusIndexUnits != null)
-        {
-            return icterusIndexUnits;
-        }
-
-        icterusIndexUnits = new HL7V24Field
-        {
-            field = message[@"SAC"][37],
-            Id = @"SAC.37",
-            Type = @"Field",
-            Position = @"SAC.37",
-            Name = @"Icterus Index Units",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the unit’s identifier that is being used to describe the Icterus Index of the specimen. It is recommended to use mMol/L of bilirubin",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (icterusIndexUnits.field.FieldRepetitions != null && icterusIndexUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(icterusIndexUnits.Id));
-            icterusIndexUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(icterusIndexUnits, fieldData);
-        }
-
-        return icterusIndexUnits;
-    } 
-}
-
-internal HL7V24Field fibrinIndex;
-
-public HL7V24Field FibrinIndex
-{
-    get
-    {
-        if (fibrinIndex != null)
-        {
-            return fibrinIndex;
-        }
-
-        fibrinIndex = new HL7V24Field
-        {
-            field = message[@"SAC"][38],
-            Id = @"SAC.38",
-            Type = @"Field",
-            Position = @"SAC.38",
-            Name = @"Fibrin Index",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the index identifier that is being used to describe the Fibrin Index of the specimen. In the case of only differentiating between Absent and Present, we recommend using 0 and 1 respectively and send the field Fibrin Index Units null",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fibrinIndex.field.FieldRepetitions != null && fibrinIndex.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fibrinIndex.Id));
-            fibrinIndex.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(fibrinIndex, fieldData);
-        }
-
-        return fibrinIndex;
-    } 
-}
-
-internal HL7V24Field fibrinIndexUnits;
-
-public HL7V24Field FibrinIndexUnits
-{
-    get
-    {
-        if (fibrinIndexUnits != null)
-        {
-            return fibrinIndexUnits;
-        }
-
-        fibrinIndexUnits = new HL7V24Field
-        {
-            field = message[@"SAC"][39],
-            Id = @"SAC.39",
-            Type = @"Field",
-            Position = @"SAC.39",
-            Name = @"Fibrin Index Units",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the unit’s identifier that is being used to describe the Fibrin Index of the specimen",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fibrinIndexUnits.field.FieldRepetitions != null && fibrinIndexUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fibrinIndexUnits.Id));
-            fibrinIndexUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(fibrinIndexUnits, fieldData);
-        }
-
-        return fibrinIndexUnits;
-    } 
-}
-
-internal HL7V24Field systemInducedContaminants;
-
-public HL7V24Field SystemInducedContaminants
-{
-    get
-    {
-        if (systemInducedContaminants != null)
-        {
-            return systemInducedContaminants;
-        }
-
-        systemInducedContaminants = new HL7V24Field
-        {
-            field = message[@"SAC"][40],
-            Id = @"SAC.40",
-            Type = @"Field",
-            Position = @"SAC.40",
-            Name = @"System Induced Contaminants",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0374",
-            TableName = @"System induced contaminants",
-            Description = @"This field describes the specimen contaminant identifier that is associated with the specimen. Refer to User-defined Table 0374 – System induced contaminants for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (systemInducedContaminants.field.FieldRepetitions != null && systemInducedContaminants.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(systemInducedContaminants.Id));
-            systemInducedContaminants.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(systemInducedContaminants, fieldData);
-        }
-
-        return systemInducedContaminants;
-    } 
-}
-
-internal HL7V24Field drugInterference;
-
-public HL7V24Field DrugInterference
-{
-    get
-    {
-        if (drugInterference != null)
-        {
-            return drugInterference;
-        }
-
-        drugInterference = new HL7V24Field
-        {
-            field = message[@"SAC"][41],
-            Id = @"SAC.41",
-            Type = @"Field",
-            Position = @"SAC.41",
-            Name = @"Drug Interference",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0382",
-            TableName = @"Drug interference",
-            Description = @"This field describes the drug interference identifier that is associated with the specimen. Refer to User-defined Table 0382 – Drug interference for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (drugInterference.field.FieldRepetitions != null && drugInterference.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(drugInterference.Id));
-            drugInterference.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(drugInterference, fieldData);
-        }
-
-        return drugInterference;
-    } 
-}
-
-internal HL7V24Field artificialBlood;
-
-public HL7V24Field ArtificialBlood
-{
-    get
-    {
-        if (artificialBlood != null)
-        {
-            return artificialBlood;
-        }
-
-        artificialBlood = new HL7V24Field
-        {
-            field = message[@"SAC"][42],
-            Id = @"SAC.42",
-            Type = @"Field",
-            Position = @"SAC.42",
-            Name = @"Artificial Blood",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0375",
-            TableName = @"Artificial blood",
-            Description = @"This field describes the artificial blood identifier that is associated with the specimen. Refer to User-defined Table 0375 – Artificial blood for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (artificialBlood.field.FieldRepetitions != null && artificialBlood.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(artificialBlood.Id));
-            artificialBlood.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(artificialBlood, fieldData);
-        }
-
-        return artificialBlood;
-    } 
-}
-
-internal HL7V24Field specialHandlingConsiderations;
-
-public HL7V24Field SpecialHandlingConsiderations
-{
-    get
-    {
-        if (specialHandlingConsiderations != null)
-        {
-            return specialHandlingConsiderations;
-        }
-
-        specialHandlingConsiderations = new HL7V24Field
-        {
-            field = message[@"SAC"][43],
-            Id = @"SAC.43",
-            Type = @"Field",
-            Position = @"SAC.43",
-            Name = @"Special Handling Considerations",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0376",
-            TableName = @"Special handling considerations",
-            Description = @"This field describes any special handling considerations that are associated with the specimen. (E.g. centrifugation). Refer to User-defined Table 0376 – Special handling considerations for valid values.  This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specialHandlingConsiderations.field.FieldRepetitions != null && specialHandlingConsiderations.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specialHandlingConsiderations.Id));
-            specialHandlingConsiderations.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(specialHandlingConsiderations, fieldData);
-        }
-
-        return specialHandlingConsiderations;
-    } 
-}
-
-internal HL7V24Field otherEnvironmentalFactors;
-
-public HL7V24Field OtherEnvironmentalFactors
-{
-    get
-    {
-        if (otherEnvironmentalFactors != null)
-        {
-            return otherEnvironmentalFactors;
-        }
-
-        otherEnvironmentalFactors = new HL7V24Field
+        _otherEnvironmentalFactors = new HL7V24Field
         {
             field = message[@"SAC"][44],
-            Id = @"SAC.44",
-            Type = @"Field",
-            Position = @"SAC.44",
-            Name = @"Other Environmental Factors",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0377",
-            TableName = @"Other environmental factors",
-            Description = @"This field describes other environmental factors that are associated with the specimen, e.g., atmospheric exposure. Refer to User-defined Table 0377 – Other environmental factors for valid values. This table’s values are taken from NCCLS AUTO4. The value set can be extended with user specific values",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (otherEnvironmentalFactors.field.FieldRepetitions != null && otherEnvironmentalFactors.field.FieldRepetitions.Count > 0)
+        if (_otherEnvironmentalFactors.field.FieldRepetitions != null && _otherEnvironmentalFactors.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(otherEnvironmentalFactors.Id));
-            otherEnvironmentalFactors.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(otherEnvironmentalFactors, fieldData);
+            _otherEnvironmentalFactors.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_otherEnvironmentalFactors, fieldData);
         }
 
-        return otherEnvironmentalFactors;
+        return _otherEnvironmentalFactors;
     } 
 }
     }

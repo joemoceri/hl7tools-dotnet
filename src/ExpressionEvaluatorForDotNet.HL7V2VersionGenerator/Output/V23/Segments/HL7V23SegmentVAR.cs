@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V23SegmentVAR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field _varianceInstanceID;
+
+public HL7V23Field VarianceInstanceID
+{
+    get
+    {
+        if (_varianceInstanceID != null)
+        {
+            return _varianceInstanceID;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"VAR.1",
+            Type = @"Field",
+            Position = @"VAR.1",
+            Name = @"Variance Instance ID",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the unique identifier of the specific variance record",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"VAR.1",
-                            Type = @"Field",
-                            Position = @"VAR.1",
-                            Name = @"Variance Instance ID",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the unique identifier of the specific variance record",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"VAR.1.1",
                             Type = @"Component",
@@ -120,25 +132,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _varianceInstanceID = new HL7V23Field
+        {
+            field = message[@"VAR"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_varianceInstanceID.field.FieldRepetitions != null && _varianceInstanceID.field.FieldRepetitions.Count > 0)
+        {
+            _varianceInstanceID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_varianceInstanceID, fieldData);
+        }
+
+        return _varianceInstanceID;
+    } 
+}
+
+internal HL7V23Field _documentedDateTime;
+
+public HL7V23Field DocumentedDateTime
+{
+    get
+    {
+        if (_documentedDateTime != null)
+        {
+            return _documentedDateTime;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"VAR.2",
+            Type = @"Field",
+            Position = @"VAR.2",
+            Name = @"Documented Date/Time",
+            Length = 26,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the time stamp that identifies the timed occurrence of the variance documentation",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"VAR.2",
-                            Type = @"Field",
-                            Position = @"VAR.2",
-                            Name = @"Documented Date/Time",
-                            Length = 26,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the time stamp that identifies the timed occurrence of the variance documentation",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"VAR.2.1",
                             Type = @"Component",
@@ -154,25 +196,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _documentedDateTime = new HL7V23Field
+        {
+            field = message[@"VAR"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_documentedDateTime.field.FieldRepetitions != null && _documentedDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _documentedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_documentedDateTime, fieldData);
+        }
+
+        return _documentedDateTime;
+    } 
+}
+
+internal HL7V23Field _statedVarianceDateTime;
+
+public HL7V23Field StatedVarianceDateTime
+{
+    get
+    {
+        if (_statedVarianceDateTime != null)
+        {
+            return _statedVarianceDateTime;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"VAR.3",
+            Type = @"Field",
+            Position = @"VAR.3",
+            Name = @"Stated Variance Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the time stamp that identifies a stated time of the variance which may be different than the time it was documented",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"VAR.3",
-                            Type = @"Field",
-                            Position = @"VAR.3",
-                            Name = @"Stated Variance Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the time stamp that identifies a stated time of the variance which may be different than the time it was documented",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"VAR.3.1",
                             Type = @"Component",
@@ -188,25 +260,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _statedVarianceDateTime = new HL7V23Field
+        {
+            field = message[@"VAR"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_statedVarianceDateTime.field.FieldRepetitions != null && _statedVarianceDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _statedVarianceDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_statedVarianceDateTime, fieldData);
+        }
+
+        return _statedVarianceDateTime;
+    } 
+}
+
+internal HL7V23Field _varianceOriginator;
+
+public HL7V23Field VarianceOriginator
+{
+    get
+    {
+        if (_varianceOriginator != null)
+        {
+            return _varianceOriginator;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"VAR.4",
+            Type = @"Field",
+            Position = @"VAR.4",
+            Name = @"Variance Originator",
+            Length = 860,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the originator (person or system) documenting the variance",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"VAR.4",
-                            Type = @"Field",
-                            Position = @"VAR.4",
-                            Name = @"Variance Originator",
-                            Length = 860,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the originator (person or system) documenting the variance",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"VAR.4.1",
                             Type = @"Component",
@@ -560,25 +662,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _varianceOriginator = new HL7V23Field
+        {
+            field = message[@"VAR"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_varianceOriginator.field.FieldRepetitions != null && _varianceOriginator.field.FieldRepetitions.Count > 0)
+        {
+            _varianceOriginator.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_varianceOriginator, fieldData);
+        }
+
+        return _varianceOriginator;
+    } 
+}
+
+internal HL7V23Field _varianceClassification;
+
+public HL7V23Field VarianceClassification
+{
+    get
+    {
+        if (_varianceClassification != null)
+        {
+            return _varianceClassification;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"VAR.5",
+            Type = @"Field",
+            Position = @"VAR.5",
+            Name = @"Variance Classification",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies a categorical set of variances.  Classification may be used by applications for presentation and processing functions",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"VAR.5",
-                            Type = @"Field",
-                            Position = @"VAR.5",
-                            Name = @"Variance Classification",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies a categorical set of variances.  Classification may be used by applications for presentation and processing functions",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"VAR.5.1",
                             Type = @"Component",
@@ -684,254 +816,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"VAR.6",
-                            Type = @"Field",
-                            Position = @"VAR.6",
-                            Name = @"Variance Description",
-                            Length = 512,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the details of a variance.  The content of the field is a string with optional formatting",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V23SegmentVAR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V23Field varianceInstanceID;
-
-public HL7V23Field VarianceInstanceID
-{
-    get
-    {
-        if (varianceInstanceID != null)
-        {
-            return varianceInstanceID;
-        }
-
-        varianceInstanceID = new HL7V23Field
-        {
-            field = message[@"VAR"][1],
-            Id = @"VAR.1",
-            Type = @"Field",
-            Position = @"VAR.1",
-            Name = @"Variance Instance ID",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the unique identifier of the specific variance record",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (varianceInstanceID.field.FieldRepetitions != null && varianceInstanceID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(varianceInstanceID.Id));
-            varianceInstanceID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(varianceInstanceID, fieldData);
-        }
-
-        return varianceInstanceID;
-    } 
-}
-
-internal HL7V23Field documentedDateTime;
-
-public HL7V23Field DocumentedDateTime
-{
-    get
-    {
-        if (documentedDateTime != null)
-        {
-            return documentedDateTime;
-        }
-
-        documentedDateTime = new HL7V23Field
-        {
-            field = message[@"VAR"][2],
-            Id = @"VAR.2",
-            Type = @"Field",
-            Position = @"VAR.2",
-            Name = @"Documented Date/Time",
-            Length = 26,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the time stamp that identifies the timed occurrence of the variance documentation",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (documentedDateTime.field.FieldRepetitions != null && documentedDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(documentedDateTime.Id));
-            documentedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(documentedDateTime, fieldData);
-        }
-
-        return documentedDateTime;
-    } 
-}
-
-internal HL7V23Field statedVarianceDateTime;
-
-public HL7V23Field StatedVarianceDateTime
-{
-    get
-    {
-        if (statedVarianceDateTime != null)
-        {
-            return statedVarianceDateTime;
-        }
-
-        statedVarianceDateTime = new HL7V23Field
-        {
-            field = message[@"VAR"][3],
-            Id = @"VAR.3",
-            Type = @"Field",
-            Position = @"VAR.3",
-            Name = @"Stated Variance Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the time stamp that identifies a stated time of the variance which may be different than the time it was documented",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (statedVarianceDateTime.field.FieldRepetitions != null && statedVarianceDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(statedVarianceDateTime.Id));
-            statedVarianceDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(statedVarianceDateTime, fieldData);
-        }
-
-        return statedVarianceDateTime;
-    } 
-}
-
-internal HL7V23Field varianceOriginator;
-
-public HL7V23Field VarianceOriginator
-{
-    get
-    {
-        if (varianceOriginator != null)
-        {
-            return varianceOriginator;
-        }
-
-        varianceOriginator = new HL7V23Field
-        {
-            field = message[@"VAR"][4],
-            Id = @"VAR.4",
-            Type = @"Field",
-            Position = @"VAR.4",
-            Name = @"Variance Originator",
-            Length = 860,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the originator (person or system) documenting the variance",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (varianceOriginator.field.FieldRepetitions != null && varianceOriginator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(varianceOriginator.Id));
-            varianceOriginator.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(varianceOriginator, fieldData);
-        }
-
-        return varianceOriginator;
-    } 
-}
-
-internal HL7V23Field varianceClassification;
-
-public HL7V23Field VarianceClassification
-{
-    get
-    {
-        if (varianceClassification != null)
-        {
-            return varianceClassification;
-        }
-
-        varianceClassification = new HL7V23Field
+        _varianceClassification = new HL7V23Field
         {
             field = message[@"VAR"][5],
-            Id = @"VAR.5",
-            Type = @"Field",
-            Position = @"VAR.5",
-            Name = @"Variance Classification",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies a categorical set of variances.  Classification may be used by applications for presentation and processing functions",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (varianceClassification.field.FieldRepetitions != null && varianceClassification.field.FieldRepetitions.Count > 0)
+        if (_varianceClassification.field.FieldRepetitions != null && _varianceClassification.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(varianceClassification.Id));
-            varianceClassification.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(varianceClassification, fieldData);
+            _varianceClassification.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_varianceClassification, fieldData);
         }
 
-        return varianceClassification;
+        return _varianceClassification;
     } 
 }
 
-internal HL7V23Field varianceDescription;
+internal HL7V23Field _varianceDescription;
 
 public HL7V23Field VarianceDescription
 {
     get
     {
-        if (varianceDescription != null)
+        if (_varianceDescription != null)
         {
-            return varianceDescription;
+            return _varianceDescription;
         }
 
-        varianceDescription = new HL7V23Field
+        var fieldData = new HL7V23FieldData
         {
-            field = message[@"VAR"][6],
             Id = @"VAR.6",
             Type = @"Field",
             Position = @"VAR.6",
@@ -945,17 +862,22 @@ public HL7V23Field VarianceDescription
             TableName = null,
             Description = @"This field specifies the details of a variance.  The content of the field is a string with optional formatting",
             Sample = @"",
+            Fields = null
+        }
+
+        _varianceDescription = new HL7V23Field
+        {
+            field = message[@"VAR"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (varianceDescription.field.FieldRepetitions != null && varianceDescription.field.FieldRepetitions.Count > 0)
+        if (_varianceDescription.field.FieldRepetitions != null && _varianceDescription.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(varianceDescription.Id));
-            varianceDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(varianceDescription, fieldData);
+            _varianceDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_varianceDescription, fieldData);
         }
 
-        return varianceDescription;
+        return _varianceDescription;
     } 
 }
     }

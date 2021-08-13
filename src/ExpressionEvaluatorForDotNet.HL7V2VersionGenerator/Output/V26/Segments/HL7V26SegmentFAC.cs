@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentFAC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _facilityIDFAC;
+
+public HL7V26Field FacilityIDFAC
+{
+    get
+    {
+        if (_facilityIDFAC != null)
+        {
+            return _facilityIDFAC;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"FAC.1",
+            Type = @"Field",
+            Position = @"FAC.1",
+            Name = @"Facility ID-FAC",
+            Length = 427,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the facility identifier.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"FAC.1",
-                            Type = @"Field",
-                            Position = @"FAC.1",
-                            Name = @"Facility ID-FAC",
-                            Length = 427,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the facility identifier.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"FAC.1.1",
                             Type = @"Component",
@@ -120,43 +132,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _facilityIDFAC = new HL7V26Field
+        {
+            field = message[@"FAC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_facilityIDFAC.field.FieldRepetitions != null && _facilityIDFAC.field.FieldRepetitions.Count > 0)
+        {
+            _facilityIDFAC.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_facilityIDFAC, fieldData);
+        }
+
+        return _facilityIDFAC;
+    } 
+}
+
+internal HL7V26Field _facilityType;
+
+public HL7V26Field FacilityType
+{
+    get
+    {
+        if (_facilityType != null)
+        {
+            return _facilityType;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"FAC.2",
+            Type = @"Field",
+            Position = @"FAC.2",
+            Name = @"Facility Type",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0331",
+            TableName = @"Facility type",
+            Description = @"This field contains the type of facility. Refer to HL7 Table 0331 - Facility type for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _facilityType = new HL7V26Field
+        {
+            field = message[@"FAC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_facilityType.field.FieldRepetitions != null && _facilityType.field.FieldRepetitions.Count > 0)
+        {
+            _facilityType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_facilityType, fieldData);
+        }
+
+        return _facilityType;
+    } 
+}
+
+internal HL7V26Field _facilityAddress;
+
+public HL7V26Field FacilityAddress
+{
+    get
+    {
+        if (_facilityAddress != null)
+        {
+            return _facilityAddress;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"FAC.3",
+            Type = @"Field",
+            Position = @"FAC.3",
+            Name = @"Facility Address",
+            Length = 2915,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the facilitys address.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FAC.2",
-                            Type = @"Field",
-                            Position = @"FAC.2",
-                            Name = @"Facility Type",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0331",
-                            TableName = @"Facility type",
-                            Description = @"This field contains the type of facility. Refer to HL7 Table 0331 - Facility type for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FAC.3",
-                            Type = @"Field",
-                            Position = @"FAC.3",
-                            Name = @"Facility Address",
-                            Length = 2915,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the facilitys address.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FAC.3.1",
                             Type = @"Component",
@@ -1044,25 +1113,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _facilityAddress = new HL7V26Field
+        {
+            field = message[@"FAC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_facilityAddress.field.FieldRepetitions != null && _facilityAddress.field.FieldRepetitions.Count > 0)
+        {
+            _facilityAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_facilityAddress, fieldData);
+        }
+
+        return _facilityAddress;
+    } 
+}
+
+internal HL7V26Field _facilityTelecommunication;
+
+public HL7V26Field FacilityTelecommunication
+{
+    get
+    {
+        if (_facilityTelecommunication != null)
+        {
+            return _facilityTelecommunication;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"FAC.4",
+            Type = @"Field",
+            Position = @"FAC.4",
+            Name = @"Facility Telecommunication",
+            Length = 2743,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the facilitys telecommunication information.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FAC.4",
-                            Type = @"Field",
-                            Position = @"FAC.4",
-                            Name = @"Facility Telecommunication",
-                            Length = 2743,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the facilitys telecommunication information.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FAC.4.1",
                             Type = @"Component",
@@ -1774,25 +1873,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"For an entity having multiple telecommunication addresses, indicates which is the ""most preferred"" (lowest number) to ""least preferred"" (highest number).",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _facilityTelecommunication = new HL7V26Field
+        {
+            field = message[@"FAC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_facilityTelecommunication.field.FieldRepetitions != null && _facilityTelecommunication.field.FieldRepetitions.Count > 0)
+        {
+            _facilityTelecommunication.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_facilityTelecommunication, fieldData);
+        }
+
+        return _facilityTelecommunication;
+    } 
+}
+
+internal HL7V26Field _contactPerson;
+
+public HL7V26Field ContactPerson
+{
+    get
+    {
+        if (_contactPerson != null)
+        {
+            return _contactPerson;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"FAC.5",
+            Type = @"Field",
+            Position = @"FAC.5",
+            Name = @"Contact Person",
+            Length = 3220,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the primary contact persons name.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FAC.5",
-                            Type = @"Field",
-                            Position = @"FAC.5",
-                            Name = @"Contact Person",
-                            Length = 3220,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the primary contact persons name.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FAC.5.1",
                             Type = @"Component",
@@ -2912,43 +3041,100 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactPerson = new HL7V26Field
+        {
+            field = message[@"FAC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactPerson.field.FieldRepetitions != null && _contactPerson.field.FieldRepetitions.Count > 0)
+        {
+            _contactPerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_contactPerson, fieldData);
+        }
+
+        return _contactPerson;
+    } 
+}
+
+internal HL7V26Field _contactTitle;
+
+public HL7V26Field ContactTitle
+{
+    get
+    {
+        if (_contactTitle != null)
+        {
+            return _contactTitle;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"FAC.6",
+            Type = @"Field",
+            Position = @"FAC.6",
+            Name = @"Contact Title",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the primary contact persons title.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _contactTitle = new HL7V26Field
+        {
+            field = message[@"FAC"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactTitle.field.FieldRepetitions != null && _contactTitle.field.FieldRepetitions.Count > 0)
+        {
+            _contactTitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_contactTitle, fieldData);
+        }
+
+        return _contactTitle;
+    } 
+}
+
+internal HL7V26Field _contactAddress;
+
+public HL7V26Field ContactAddress
+{
+    get
+    {
+        if (_contactAddress != null)
+        {
+            return _contactAddress;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"FAC.7",
+            Type = @"Field",
+            Position = @"FAC.7",
+            Name = @"Contact Address",
+            Length = 2915,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the primary contact persons address.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FAC.6",
-                            Type = @"Field",
-                            Position = @"FAC.6",
-                            Name = @"Contact Title",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the primary contact persons title.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FAC.7",
-                            Type = @"Field",
-                            Position = @"FAC.7",
-                            Name = @"Contact Address",
-                            Length = 2915,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the primary contact persons address.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FAC.7.1",
                             Type = @"Component",
@@ -3836,25 +4022,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactAddress = new HL7V26Field
+        {
+            field = message[@"FAC"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactAddress.field.FieldRepetitions != null && _contactAddress.field.FieldRepetitions.Count > 0)
+        {
+            _contactAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_contactAddress, fieldData);
+        }
+
+        return _contactAddress;
+    } 
+}
+
+internal HL7V26Field _contactTelecommunication;
+
+public HL7V26Field ContactTelecommunication
+{
+    get
+    {
+        if (_contactTelecommunication != null)
+        {
+            return _contactTelecommunication;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"FAC.8",
+            Type = @"Field",
+            Position = @"FAC.8",
+            Name = @"Contact Telecommunication",
+            Length = 2743,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the primary contact persons telecommunication information.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FAC.8",
-                            Type = @"Field",
-                            Position = @"FAC.8",
-                            Name = @"Contact Telecommunication",
-                            Length = 2743,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the primary contact persons telecommunication information.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FAC.8.1",
                             Type = @"Component",
@@ -4566,25 +4782,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"For an entity having multiple telecommunication addresses, indicates which is the ""most preferred"" (lowest number) to ""least preferred"" (highest number).",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactTelecommunication = new HL7V26Field
+        {
+            field = message[@"FAC"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactTelecommunication.field.FieldRepetitions != null && _contactTelecommunication.field.FieldRepetitions.Count > 0)
+        {
+            _contactTelecommunication.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_contactTelecommunication, fieldData);
+        }
+
+        return _contactTelecommunication;
+    } 
+}
+
+internal HL7V26Field _signatureAuthority;
+
+public HL7V26Field SignatureAuthority
+{
+    get
+    {
+        if (_signatureAuthority != null)
+        {
+            return _signatureAuthority;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"FAC.9",
+            Type = @"Field",
+            Position = @"FAC.9",
+            Name = @"Signature Authority",
+            Length = 3220,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the individual with signature authority or who is responsible for the report.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FAC.9",
-                            Type = @"Field",
-                            Position = @"FAC.9",
-                            Name = @"Signature Authority",
-                            Length = 3220,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the individual with signature authority or who is responsible for the report.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FAC.9.1",
                             Type = @"Component",
@@ -5704,43 +5950,100 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _signatureAuthority = new HL7V26Field
+        {
+            field = message[@"FAC"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_signatureAuthority.field.FieldRepetitions != null && _signatureAuthority.field.FieldRepetitions.Count > 0)
+        {
+            _signatureAuthority.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_signatureAuthority, fieldData);
+        }
+
+        return _signatureAuthority;
+    } 
+}
+
+internal HL7V26Field _signatureAuthorityTitle;
+
+public HL7V26Field SignatureAuthorityTitle
+{
+    get
+    {
+        if (_signatureAuthorityTitle != null)
+        {
+            return _signatureAuthorityTitle;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"FAC.10",
+            Type = @"Field",
+            Position = @"FAC.10",
+            Name = @"Signature Authority Title",
+            Length = 199,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the title of the individual with signature authority or who is responsible for this report.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _signatureAuthorityTitle = new HL7V26Field
+        {
+            field = message[@"FAC"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_signatureAuthorityTitle.field.FieldRepetitions != null && _signatureAuthorityTitle.field.FieldRepetitions.Count > 0)
+        {
+            _signatureAuthorityTitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_signatureAuthorityTitle, fieldData);
+        }
+
+        return _signatureAuthorityTitle;
+    } 
+}
+
+internal HL7V26Field _signatureAuthorityAddress;
+
+public HL7V26Field SignatureAuthorityAddress
+{
+    get
+    {
+        if (_signatureAuthorityAddress != null)
+        {
+            return _signatureAuthorityAddress;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"FAC.11",
+            Type = @"Field",
+            Position = @"FAC.11",
+            Name = @"Signature Authority Address",
+            Length = 2915,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the address of the individual with signature authority or who is responsible for this report.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FAC.10",
-                            Type = @"Field",
-                            Position = @"FAC.10",
-                            Name = @"Signature Authority Title",
-                            Length = 199,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the title of the individual with signature authority or who is responsible for this report.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FAC.11",
-                            Type = @"Field",
-                            Position = @"FAC.11",
-                            Name = @"Signature Authority Address",
-                            Length = 2915,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the address of the individual with signature authority or who is responsible for this report.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FAC.11.1",
                             Type = @"Component",
@@ -6628,25 +6931,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _signatureAuthorityAddress = new HL7V26Field
+        {
+            field = message[@"FAC"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_signatureAuthorityAddress.field.FieldRepetitions != null && _signatureAuthorityAddress.field.FieldRepetitions.Count > 0)
+        {
+            _signatureAuthorityAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_signatureAuthorityAddress, fieldData);
+        }
+
+        return _signatureAuthorityAddress;
+    } 
+}
+
+internal HL7V26Field _signatureAuthorityTelecommunication;
+
+public HL7V26Field SignatureAuthorityTelecommunication
+{
+    get
+    {
+        if (_signatureAuthorityTelecommunication != null)
+        {
+            return _signatureAuthorityTelecommunication;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"FAC.12",
+            Type = @"Field",
+            Position = @"FAC.12",
+            Name = @"Signature Authority Telecommunication",
+            Length = 2743,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the telecommunication information of the individual with signature authority of who is responsible for this report.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FAC.12",
-                            Type = @"Field",
-                            Position = @"FAC.12",
-                            Name = @"Signature Authority Telecommunication",
-                            Length = 2743,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the telecommunication information of the individual with signature authority of who is responsible for this report.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FAC.12.1",
                             Type = @"Component",
@@ -7358,506 +7691,23 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"For an entity having multiple telecommunication addresses, indicates which is the ""most preferred"" (lowest number) to ""least preferred"" (highest number).",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentFAC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field facilityIDFAC;
-
-public HL7V26Field FacilityIDFAC
-{
-    get
-    {
-        if (facilityIDFAC != null)
-        {
-            return facilityIDFAC;
-        }
-
-        facilityIDFAC = new HL7V26Field
-        {
-            field = message[@"FAC"][1],
-            Id = @"FAC.1",
-            Type = @"Field",
-            Position = @"FAC.1",
-            Name = @"Facility ID-FAC",
-            Length = 427,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the facility identifier.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (facilityIDFAC.field.FieldRepetitions != null && facilityIDFAC.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(facilityIDFAC.Id));
-            facilityIDFAC.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(facilityIDFAC, fieldData);
-        }
-
-        return facilityIDFAC;
-    } 
-}
-
-internal HL7V26Field facilityType;
-
-public HL7V26Field FacilityType
-{
-    get
-    {
-        if (facilityType != null)
-        {
-            return facilityType;
-        }
-
-        facilityType = new HL7V26Field
-        {
-            field = message[@"FAC"][2],
-            Id = @"FAC.2",
-            Type = @"Field",
-            Position = @"FAC.2",
-            Name = @"Facility Type",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0331",
-            TableName = @"Facility type",
-            Description = @"This field contains the type of facility. Refer to HL7 Table 0331 - Facility type for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (facilityType.field.FieldRepetitions != null && facilityType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(facilityType.Id));
-            facilityType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(facilityType, fieldData);
-        }
-
-        return facilityType;
-    } 
-}
-
-internal HL7V26Field facilityAddress;
-
-public HL7V26Field FacilityAddress
-{
-    get
-    {
-        if (facilityAddress != null)
-        {
-            return facilityAddress;
-        }
-
-        facilityAddress = new HL7V26Field
-        {
-            field = message[@"FAC"][3],
-            Id = @"FAC.3",
-            Type = @"Field",
-            Position = @"FAC.3",
-            Name = @"Facility Address",
-            Length = 2915,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the facilitys address.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (facilityAddress.field.FieldRepetitions != null && facilityAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(facilityAddress.Id));
-            facilityAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(facilityAddress, fieldData);
-        }
-
-        return facilityAddress;
-    } 
-}
-
-internal HL7V26Field facilityTelecommunication;
-
-public HL7V26Field FacilityTelecommunication
-{
-    get
-    {
-        if (facilityTelecommunication != null)
-        {
-            return facilityTelecommunication;
-        }
-
-        facilityTelecommunication = new HL7V26Field
-        {
-            field = message[@"FAC"][4],
-            Id = @"FAC.4",
-            Type = @"Field",
-            Position = @"FAC.4",
-            Name = @"Facility Telecommunication",
-            Length = 2743,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the facilitys telecommunication information.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (facilityTelecommunication.field.FieldRepetitions != null && facilityTelecommunication.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(facilityTelecommunication.Id));
-            facilityTelecommunication.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(facilityTelecommunication, fieldData);
-        }
-
-        return facilityTelecommunication;
-    } 
-}
-
-internal HL7V26Field contactPerson;
-
-public HL7V26Field ContactPerson
-{
-    get
-    {
-        if (contactPerson != null)
-        {
-            return contactPerson;
-        }
-
-        contactPerson = new HL7V26Field
-        {
-            field = message[@"FAC"][5],
-            Id = @"FAC.5",
-            Type = @"Field",
-            Position = @"FAC.5",
-            Name = @"Contact Person",
-            Length = 3220,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the primary contact persons name.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactPerson.field.FieldRepetitions != null && contactPerson.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactPerson.Id));
-            contactPerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(contactPerson, fieldData);
-        }
-
-        return contactPerson;
-    } 
-}
-
-internal HL7V26Field contactTitle;
-
-public HL7V26Field ContactTitle
-{
-    get
-    {
-        if (contactTitle != null)
-        {
-            return contactTitle;
-        }
-
-        contactTitle = new HL7V26Field
-        {
-            field = message[@"FAC"][6],
-            Id = @"FAC.6",
-            Type = @"Field",
-            Position = @"FAC.6",
-            Name = @"Contact Title",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the primary contact persons title.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactTitle.field.FieldRepetitions != null && contactTitle.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactTitle.Id));
-            contactTitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(contactTitle, fieldData);
-        }
-
-        return contactTitle;
-    } 
-}
-
-internal HL7V26Field contactAddress;
-
-public HL7V26Field ContactAddress
-{
-    get
-    {
-        if (contactAddress != null)
-        {
-            return contactAddress;
-        }
-
-        contactAddress = new HL7V26Field
-        {
-            field = message[@"FAC"][7],
-            Id = @"FAC.7",
-            Type = @"Field",
-            Position = @"FAC.7",
-            Name = @"Contact Address",
-            Length = 2915,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the primary contact persons address.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactAddress.field.FieldRepetitions != null && contactAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactAddress.Id));
-            contactAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(contactAddress, fieldData);
-        }
-
-        return contactAddress;
-    } 
-}
-
-internal HL7V26Field contactTelecommunication;
-
-public HL7V26Field ContactTelecommunication
-{
-    get
-    {
-        if (contactTelecommunication != null)
-        {
-            return contactTelecommunication;
-        }
-
-        contactTelecommunication = new HL7V26Field
-        {
-            field = message[@"FAC"][8],
-            Id = @"FAC.8",
-            Type = @"Field",
-            Position = @"FAC.8",
-            Name = @"Contact Telecommunication",
-            Length = 2743,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the primary contact persons telecommunication information.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactTelecommunication.field.FieldRepetitions != null && contactTelecommunication.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactTelecommunication.Id));
-            contactTelecommunication.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(contactTelecommunication, fieldData);
-        }
-
-        return contactTelecommunication;
-    } 
-}
-
-internal HL7V26Field signatureAuthority;
-
-public HL7V26Field SignatureAuthority
-{
-    get
-    {
-        if (signatureAuthority != null)
-        {
-            return signatureAuthority;
-        }
-
-        signatureAuthority = new HL7V26Field
-        {
-            field = message[@"FAC"][9],
-            Id = @"FAC.9",
-            Type = @"Field",
-            Position = @"FAC.9",
-            Name = @"Signature Authority",
-            Length = 3220,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the individual with signature authority or who is responsible for the report.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (signatureAuthority.field.FieldRepetitions != null && signatureAuthority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(signatureAuthority.Id));
-            signatureAuthority.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(signatureAuthority, fieldData);
-        }
-
-        return signatureAuthority;
-    } 
-}
-
-internal HL7V26Field signatureAuthorityTitle;
-
-public HL7V26Field SignatureAuthorityTitle
-{
-    get
-    {
-        if (signatureAuthorityTitle != null)
-        {
-            return signatureAuthorityTitle;
-        }
-
-        signatureAuthorityTitle = new HL7V26Field
-        {
-            field = message[@"FAC"][10],
-            Id = @"FAC.10",
-            Type = @"Field",
-            Position = @"FAC.10",
-            Name = @"Signature Authority Title",
-            Length = 199,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the title of the individual with signature authority or who is responsible for this report.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (signatureAuthorityTitle.field.FieldRepetitions != null && signatureAuthorityTitle.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(signatureAuthorityTitle.Id));
-            signatureAuthorityTitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(signatureAuthorityTitle, fieldData);
-        }
-
-        return signatureAuthorityTitle;
-    } 
-}
-
-internal HL7V26Field signatureAuthorityAddress;
-
-public HL7V26Field SignatureAuthorityAddress
-{
-    get
-    {
-        if (signatureAuthorityAddress != null)
-        {
-            return signatureAuthorityAddress;
-        }
-
-        signatureAuthorityAddress = new HL7V26Field
-        {
-            field = message[@"FAC"][11],
-            Id = @"FAC.11",
-            Type = @"Field",
-            Position = @"FAC.11",
-            Name = @"Signature Authority Address",
-            Length = 2915,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the address of the individual with signature authority or who is responsible for this report.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (signatureAuthorityAddress.field.FieldRepetitions != null && signatureAuthorityAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(signatureAuthorityAddress.Id));
-            signatureAuthorityAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(signatureAuthorityAddress, fieldData);
-        }
-
-        return signatureAuthorityAddress;
-    } 
-}
-
-internal HL7V26Field signatureAuthorityTelecommunication;
-
-public HL7V26Field SignatureAuthorityTelecommunication
-{
-    get
-    {
-        if (signatureAuthorityTelecommunication != null)
-        {
-            return signatureAuthorityTelecommunication;
-        }
-
-        signatureAuthorityTelecommunication = new HL7V26Field
+        _signatureAuthorityTelecommunication = new HL7V26Field
         {
             field = message[@"FAC"][12],
-            Id = @"FAC.12",
-            Type = @"Field",
-            Position = @"FAC.12",
-            Name = @"Signature Authority Telecommunication",
-            Length = 2743,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the telecommunication information of the individual with signature authority of who is responsible for this report.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (signatureAuthorityTelecommunication.field.FieldRepetitions != null && signatureAuthorityTelecommunication.field.FieldRepetitions.Count > 0)
+        if (_signatureAuthorityTelecommunication.field.FieldRepetitions != null && _signatureAuthorityTelecommunication.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(signatureAuthorityTelecommunication.Id));
-            signatureAuthorityTelecommunication.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(signatureAuthorityTelecommunication, fieldData);
+            _signatureAuthorityTelecommunication.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_signatureAuthorityTelecommunication, fieldData);
         }
 
-        return signatureAuthorityTelecommunication;
+        return _signatureAuthorityTelecommunication;
     } 
 }
     }

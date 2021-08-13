@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentBUI(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _setIDBUI;
+
+public HL7V28Field SetIDBUI
+{
+    get
+    {
+        if (_setIDBUI != null)
+        {
+            return _setIDBUI;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"BUI.1",
+            Type = @"Field",
+            Position = @"BUI.1",
+            Name = @"Set ID – BUI",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDBUI = new HL7V28Field
+        {
+            field = message[@"BUI"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDBUI.field.FieldRepetitions != null && _setIDBUI.field.FieldRepetitions.Count > 0)
+        {
+            _setIDBUI.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_setIDBUI, fieldData);
+        }
+
+        return _setIDBUI;
+    } 
+}
+
+internal HL7V28Field _bloodUnitIdentifier;
+
+public HL7V28Field BloodUnitIdentifier
+{
+    get
+    {
+        if (_bloodUnitIdentifier != null)
+        {
+            return _bloodUnitIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"BUI.2",
+            Type = @"Field",
+            Position = @"BUI.2",
+            Name = @"Blood Unit Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"BUI.1",
-                            Type = @"Field",
-                            Position = @"BUI.1",
-                            Name = @"Set ID – BUI",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BUI.2",
-                            Type = @"Field",
-                            Position = @"BUI.2",
-                            Name = @"Blood Unit Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"BUI.2.1",
                             Type = @"Component",
@@ -144,25 +183,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bloodUnitIdentifier = new HL7V28Field
+        {
+            field = message[@"BUI"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bloodUnitIdentifier.field.FieldRepetitions != null && _bloodUnitIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _bloodUnitIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_bloodUnitIdentifier, fieldData);
+        }
+
+        return _bloodUnitIdentifier;
+    } 
+}
+
+internal HL7V28Field _bloodUnitType;
+
+public HL7V28Field BloodUnitType
+{
+    get
+    {
+        if (_bloodUnitType != null)
+        {
+            return _bloodUnitType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"BUI.3",
+            Type = @"Field",
+            Position = @"BUI.3",
+            Name = @"Blood Unit Type",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0566",
+            TableName = @"Blood Unit Type",
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BUI.3",
-                            Type = @"Field",
-                            Position = @"BUI.3",
-                            Name = @"Blood Unit Type",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0566",
-                            TableName = @"Blood Unit Type",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BUI.3.1",
                             Type = @"Component",
@@ -590,43 +659,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bloodUnitType = new HL7V28Field
+        {
+            field = message[@"BUI"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bloodUnitType.field.FieldRepetitions != null && _bloodUnitType.field.FieldRepetitions.Count > 0)
+        {
+            _bloodUnitType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_bloodUnitType, fieldData);
+        }
+
+        return _bloodUnitType;
+    } 
+}
+
+internal HL7V28Field _bloodUnitWeight;
+
+public HL7V28Field BloodUnitWeight
+{
+    get
+    {
+        if (_bloodUnitWeight != null)
+        {
+            return _bloodUnitWeight;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"BUI.4",
+            Type = @"Field",
+            Position = @"BUI.4",
+            Name = @"Blood Unit Weight",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _bloodUnitWeight = new HL7V28Field
+        {
+            field = message[@"BUI"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bloodUnitWeight.field.FieldRepetitions != null && _bloodUnitWeight.field.FieldRepetitions.Count > 0)
+        {
+            _bloodUnitWeight.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_bloodUnitWeight, fieldData);
+        }
+
+        return _bloodUnitWeight;
+    } 
+}
+
+internal HL7V28Field _weightUnits;
+
+public HL7V28Field WeightUnits
+{
+    get
+    {
+        if (_weightUnits != null)
+        {
+            return _weightUnits;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"BUI.5",
+            Type = @"Field",
+            Position = @"BUI.5",
+            Name = @"Weight Units",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0929",
+            TableName = @"Weight Units",
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BUI.4",
-                            Type = @"Field",
-                            Position = @"BUI.4",
-                            Name = @"Blood Unit Weight",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BUI.5",
-                            Type = @"Field",
-                            Position = @"BUI.5",
-                            Name = @"Weight Units",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0929",
-                            TableName = @"Weight Units",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BUI.5.1",
                             Type = @"Component",
@@ -1063,43 +1189,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _weightUnits = new HL7V28Field
+        {
+            field = message[@"BUI"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_weightUnits.field.FieldRepetitions != null && _weightUnits.field.FieldRepetitions.Count > 0)
+        {
+            _weightUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_weightUnits, fieldData);
+        }
+
+        return _weightUnits;
+    } 
+}
+
+internal HL7V28Field _bloodUnitVolume;
+
+public HL7V28Field BloodUnitVolume
+{
+    get
+    {
+        if (_bloodUnitVolume != null)
+        {
+            return _bloodUnitVolume;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"BUI.6",
+            Type = @"Field",
+            Position = @"BUI.6",
+            Name = @"Blood Unit Volume",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _bloodUnitVolume = new HL7V28Field
+        {
+            field = message[@"BUI"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bloodUnitVolume.field.FieldRepetitions != null && _bloodUnitVolume.field.FieldRepetitions.Count > 0)
+        {
+            _bloodUnitVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_bloodUnitVolume, fieldData);
+        }
+
+        return _bloodUnitVolume;
+    } 
+}
+
+internal HL7V28Field _volumeUnits;
+
+public HL7V28Field VolumeUnits
+{
+    get
+    {
+        if (_volumeUnits != null)
+        {
+            return _volumeUnits;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"BUI.7",
+            Type = @"Field",
+            Position = @"BUI.7",
+            Name = @"Volume Units",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0930",
+            TableName = @"Volume Units",
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BUI.6",
-                            Type = @"Field",
-                            Position = @"BUI.6",
-                            Name = @"Blood Unit Volume",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BUI.7",
-                            Type = @"Field",
-                            Position = @"BUI.7",
-                            Name = @"Volume Units",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0930",
-                            TableName = @"Volume Units",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BUI.7.1",
                             Type = @"Component",
@@ -1536,61 +1719,145 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _volumeUnits = new HL7V28Field
+        {
+            field = message[@"BUI"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_volumeUnits.field.FieldRepetitions != null && _volumeUnits.field.FieldRepetitions.Count > 0)
+        {
+            _volumeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_volumeUnits, fieldData);
+        }
+
+        return _volumeUnits;
+    } 
+}
+
+internal HL7V28Field _containerCatalogNumber;
+
+public HL7V28Field ContainerCatalogNumber
+{
+    get
+    {
+        if (_containerCatalogNumber != null)
+        {
+            return _containerCatalogNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"BUI.8",
+            Type = @"Field",
+            Position = @"BUI.8",
+            Name = @"Container Catalog Number",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _containerCatalogNumber = new HL7V28Field
+        {
+            field = message[@"BUI"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerCatalogNumber.field.FieldRepetitions != null && _containerCatalogNumber.field.FieldRepetitions.Count > 0)
+        {
+            _containerCatalogNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_containerCatalogNumber, fieldData);
+        }
+
+        return _containerCatalogNumber;
+    } 
+}
+
+internal HL7V28Field _containerLotNumber;
+
+public HL7V28Field ContainerLotNumber
+{
+    get
+    {
+        if (_containerLotNumber != null)
+        {
+            return _containerLotNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"BUI.9",
+            Type = @"Field",
+            Position = @"BUI.9",
+            Name = @"Container Lot Number",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _containerLotNumber = new HL7V28Field
+        {
+            field = message[@"BUI"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerLotNumber.field.FieldRepetitions != null && _containerLotNumber.field.FieldRepetitions.Count > 0)
+        {
+            _containerLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_containerLotNumber, fieldData);
+        }
+
+        return _containerLotNumber;
+    } 
+}
+
+internal HL7V28Field _containerManufacturer;
+
+public HL7V28Field ContainerManufacturer
+{
+    get
+    {
+        if (_containerManufacturer != null)
+        {
+            return _containerManufacturer;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"BUI.10",
+            Type = @"Field",
+            Position = @"BUI.10",
+            Name = @"Container Manufacturer",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BUI.8",
-                            Type = @"Field",
-                            Position = @"BUI.8",
-                            Name = @"Container Catalog Number",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BUI.9",
-                            Type = @"Field",
-                            Position = @"BUI.9",
-                            Name = @"Container Lot Number",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BUI.10",
-                            Type = @"Field",
-                            Position = @"BUI.10",
-                            Name = @"Container Manufacturer",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BUI.10.1",
                             Type = @"Component",
@@ -2322,25 +2589,55 @@ In general this component provides an indication of the representation provided 
 Note: The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _containerManufacturer = new HL7V28Field
+        {
+            field = message[@"BUI"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerManufacturer.field.FieldRepetitions != null && _containerManufacturer.field.FieldRepetitions.Count > 0)
+        {
+            _containerManufacturer.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_containerManufacturer, fieldData);
+        }
+
+        return _containerManufacturer;
+    } 
+}
+
+internal HL7V28Field _transportTemperature;
+
+public HL7V28Field TransportTemperature
+{
+    get
+    {
+        if (_transportTemperature != null)
+        {
+            return _transportTemperature;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"BUI.11",
+            Type = @"Field",
+            Position = @"BUI.11",
+            Name = @"Transport Temperature",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NR",
+            DataTypeName = @"Numeric Range",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BUI.11",
-                            Type = @"Field",
-                            Position = @"BUI.11",
-                            Name = @"Transport Temperature",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NR",
-                            DataTypeName = @"Numeric Range",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BUI.11.1",
                             Type = @"Component",
@@ -2374,25 +2671,55 @@ Note: The check digit and code identifying check digit scheme are null if Organi
                             Description = @"The number specifying the high limit or boundary of the range.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transportTemperature = new HL7V28Field
+        {
+            field = message[@"BUI"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transportTemperature.field.FieldRepetitions != null && _transportTemperature.field.FieldRepetitions.Count > 0)
+        {
+            _transportTemperature.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_transportTemperature, fieldData);
+        }
+
+        return _transportTemperature;
+    } 
+}
+
+internal HL7V28Field _transportTemperatureUnits;
+
+public HL7V28Field TransportTemperatureUnits
+{
+    get
+    {
+        if (_transportTemperatureUnits != null)
+        {
+            return _transportTemperatureUnits;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"BUI.12",
+            Type = @"Field",
+            Position = @"BUI.12",
+            Name = @"Transport Temperature Units",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0931",
+            TableName = @"Temperature Units",
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BUI.12",
-                            Type = @"Field",
-                            Position = @"BUI.12",
-                            Name = @"Transport Temperature Units",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0931",
-                            TableName = @"Temperature Units",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BUI.12.1",
                             Type = @"Component",
@@ -2829,506 +3156,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentBUI(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field setIDBUI;
-
-public HL7V28Field SetIDBUI
-{
-    get
-    {
-        if (setIDBUI != null)
-        {
-            return setIDBUI;
-        }
-
-        setIDBUI = new HL7V28Field
-        {
-            field = message[@"BUI"][1],
-            Id = @"BUI.1",
-            Type = @"Field",
-            Position = @"BUI.1",
-            Name = @"Set ID – BUI",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDBUI.field.FieldRepetitions != null && setIDBUI.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDBUI.Id));
-            setIDBUI.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(setIDBUI, fieldData);
-        }
-
-        return setIDBUI;
-    } 
-}
-
-internal HL7V28Field bloodUnitIdentifier;
-
-public HL7V28Field BloodUnitIdentifier
-{
-    get
-    {
-        if (bloodUnitIdentifier != null)
-        {
-            return bloodUnitIdentifier;
-        }
-
-        bloodUnitIdentifier = new HL7V28Field
-        {
-            field = message[@"BUI"][2],
-            Id = @"BUI.2",
-            Type = @"Field",
-            Position = @"BUI.2",
-            Name = @"Blood Unit Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bloodUnitIdentifier.field.FieldRepetitions != null && bloodUnitIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bloodUnitIdentifier.Id));
-            bloodUnitIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(bloodUnitIdentifier, fieldData);
-        }
-
-        return bloodUnitIdentifier;
-    } 
-}
-
-internal HL7V28Field bloodUnitType;
-
-public HL7V28Field BloodUnitType
-{
-    get
-    {
-        if (bloodUnitType != null)
-        {
-            return bloodUnitType;
-        }
-
-        bloodUnitType = new HL7V28Field
-        {
-            field = message[@"BUI"][3],
-            Id = @"BUI.3",
-            Type = @"Field",
-            Position = @"BUI.3",
-            Name = @"Blood Unit Type",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0566",
-            TableName = @"Blood Unit Type",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bloodUnitType.field.FieldRepetitions != null && bloodUnitType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bloodUnitType.Id));
-            bloodUnitType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(bloodUnitType, fieldData);
-        }
-
-        return bloodUnitType;
-    } 
-}
-
-internal HL7V28Field bloodUnitWeight;
-
-public HL7V28Field BloodUnitWeight
-{
-    get
-    {
-        if (bloodUnitWeight != null)
-        {
-            return bloodUnitWeight;
-        }
-
-        bloodUnitWeight = new HL7V28Field
-        {
-            field = message[@"BUI"][4],
-            Id = @"BUI.4",
-            Type = @"Field",
-            Position = @"BUI.4",
-            Name = @"Blood Unit Weight",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bloodUnitWeight.field.FieldRepetitions != null && bloodUnitWeight.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bloodUnitWeight.Id));
-            bloodUnitWeight.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(bloodUnitWeight, fieldData);
-        }
-
-        return bloodUnitWeight;
-    } 
-}
-
-internal HL7V28Field weightUnits;
-
-public HL7V28Field WeightUnits
-{
-    get
-    {
-        if (weightUnits != null)
-        {
-            return weightUnits;
-        }
-
-        weightUnits = new HL7V28Field
-        {
-            field = message[@"BUI"][5],
-            Id = @"BUI.5",
-            Type = @"Field",
-            Position = @"BUI.5",
-            Name = @"Weight Units",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0929",
-            TableName = @"Weight Units",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (weightUnits.field.FieldRepetitions != null && weightUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(weightUnits.Id));
-            weightUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(weightUnits, fieldData);
-        }
-
-        return weightUnits;
-    } 
-}
-
-internal HL7V28Field bloodUnitVolume;
-
-public HL7V28Field BloodUnitVolume
-{
-    get
-    {
-        if (bloodUnitVolume != null)
-        {
-            return bloodUnitVolume;
-        }
-
-        bloodUnitVolume = new HL7V28Field
-        {
-            field = message[@"BUI"][6],
-            Id = @"BUI.6",
-            Type = @"Field",
-            Position = @"BUI.6",
-            Name = @"Blood Unit Volume",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bloodUnitVolume.field.FieldRepetitions != null && bloodUnitVolume.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bloodUnitVolume.Id));
-            bloodUnitVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(bloodUnitVolume, fieldData);
-        }
-
-        return bloodUnitVolume;
-    } 
-}
-
-internal HL7V28Field volumeUnits;
-
-public HL7V28Field VolumeUnits
-{
-    get
-    {
-        if (volumeUnits != null)
-        {
-            return volumeUnits;
-        }
-
-        volumeUnits = new HL7V28Field
-        {
-            field = message[@"BUI"][7],
-            Id = @"BUI.7",
-            Type = @"Field",
-            Position = @"BUI.7",
-            Name = @"Volume Units",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0930",
-            TableName = @"Volume Units",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (volumeUnits.field.FieldRepetitions != null && volumeUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(volumeUnits.Id));
-            volumeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(volumeUnits, fieldData);
-        }
-
-        return volumeUnits;
-    } 
-}
-
-internal HL7V28Field containerCatalogNumber;
-
-public HL7V28Field ContainerCatalogNumber
-{
-    get
-    {
-        if (containerCatalogNumber != null)
-        {
-            return containerCatalogNumber;
-        }
-
-        containerCatalogNumber = new HL7V28Field
-        {
-            field = message[@"BUI"][8],
-            Id = @"BUI.8",
-            Type = @"Field",
-            Position = @"BUI.8",
-            Name = @"Container Catalog Number",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerCatalogNumber.field.FieldRepetitions != null && containerCatalogNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerCatalogNumber.Id));
-            containerCatalogNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(containerCatalogNumber, fieldData);
-        }
-
-        return containerCatalogNumber;
-    } 
-}
-
-internal HL7V28Field containerLotNumber;
-
-public HL7V28Field ContainerLotNumber
-{
-    get
-    {
-        if (containerLotNumber != null)
-        {
-            return containerLotNumber;
-        }
-
-        containerLotNumber = new HL7V28Field
-        {
-            field = message[@"BUI"][9],
-            Id = @"BUI.9",
-            Type = @"Field",
-            Position = @"BUI.9",
-            Name = @"Container Lot Number",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerLotNumber.field.FieldRepetitions != null && containerLotNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerLotNumber.Id));
-            containerLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(containerLotNumber, fieldData);
-        }
-
-        return containerLotNumber;
-    } 
-}
-
-internal HL7V28Field containerManufacturer;
-
-public HL7V28Field ContainerManufacturer
-{
-    get
-    {
-        if (containerManufacturer != null)
-        {
-            return containerManufacturer;
-        }
-
-        containerManufacturer = new HL7V28Field
-        {
-            field = message[@"BUI"][10],
-            Id = @"BUI.10",
-            Type = @"Field",
-            Position = @"BUI.10",
-            Name = @"Container Manufacturer",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerManufacturer.field.FieldRepetitions != null && containerManufacturer.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerManufacturer.Id));
-            containerManufacturer.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(containerManufacturer, fieldData);
-        }
-
-        return containerManufacturer;
-    } 
-}
-
-internal HL7V28Field transportTemperature;
-
-public HL7V28Field TransportTemperature
-{
-    get
-    {
-        if (transportTemperature != null)
-        {
-            return transportTemperature;
-        }
-
-        transportTemperature = new HL7V28Field
-        {
-            field = message[@"BUI"][11],
-            Id = @"BUI.11",
-            Type = @"Field",
-            Position = @"BUI.11",
-            Name = @"Transport Temperature",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"NR",
-            DataTypeName = @"Numeric Range",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transportTemperature.field.FieldRepetitions != null && transportTemperature.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transportTemperature.Id));
-            transportTemperature.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(transportTemperature, fieldData);
-        }
-
-        return transportTemperature;
-    } 
-}
-
-internal HL7V28Field transportTemperatureUnits;
-
-public HL7V28Field TransportTemperatureUnits
-{
-    get
-    {
-        if (transportTemperatureUnits != null)
-        {
-            return transportTemperatureUnits;
-        }
-
-        transportTemperatureUnits = new HL7V28Field
+        _transportTemperatureUnits = new HL7V28Field
         {
             field = message[@"BUI"][12],
-            Id = @"BUI.12",
-            Type = @"Field",
-            Position = @"BUI.12",
-            Name = @"Transport Temperature Units",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0931",
-            TableName = @"Temperature Units",
-            Description = null,
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transportTemperatureUnits.field.FieldRepetitions != null && transportTemperatureUnits.field.FieldRepetitions.Count > 0)
+        if (_transportTemperatureUnits.field.FieldRepetitions != null && _transportTemperatureUnits.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transportTemperatureUnits.Id));
-            transportTemperatureUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(transportTemperatureUnits, fieldData);
+            _transportTemperatureUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_transportTemperatureUnits, fieldData);
         }
 
-        return transportTemperatureUnits;
+        return _transportTemperatureUnits;
     } 
 }
     }

@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -107,6 +108,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"after dinner (from lat. post cibus vespertinus)",
                             Comment = null
                         },
+                        
                     };
             } 
         }

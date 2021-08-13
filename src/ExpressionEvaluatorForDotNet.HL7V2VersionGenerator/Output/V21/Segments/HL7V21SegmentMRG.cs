@@ -25,88 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"MRG.1",
-                            Type = @"Field",
-                            Position = @"MRG.1",
-                            Name = @"Prior Patient Id - Internal",
-                            Length = 16,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CK",
-                            DataTypeName = @"Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MRG.2",
-                            Type = @"Field",
-                            Position = @"MRG.2",
-                            Name = @"Prior Alternate Patient Id",
-                            Length = 16,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CK",
-                            DataTypeName = @"Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MRG.3",
-                            Type = @"Field",
-                            Position = @"MRG.3",
-                            Name = @"Prior Patient Account Number",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CK",
-                            DataTypeName = @"Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentMRG(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field priorPatientIdInternal;
+        internal HL7V21Field _priorPatientIdInternal;
 
 public HL7V21Field PriorPatientIdInternal
 {
     get
     {
-        if (priorPatientIdInternal != null)
+        if (_priorPatientIdInternal != null)
         {
-            return priorPatientIdInternal;
+            return _priorPatientIdInternal;
         }
 
-        priorPatientIdInternal = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MRG"][1],
             Id = @"MRG.1",
             Type = @"Field",
             Position = @"MRG.1",
@@ -120,34 +56,38 @@ public HL7V21Field PriorPatientIdInternal
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _priorPatientIdInternal = new HL7V21Field
+        {
+            field = message[@"MRG"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (priorPatientIdInternal.field.FieldRepetitions != null && priorPatientIdInternal.field.FieldRepetitions.Count > 0)
+        if (_priorPatientIdInternal.field.FieldRepetitions != null && _priorPatientIdInternal.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientIdInternal.Id));
-            priorPatientIdInternal.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(priorPatientIdInternal, fieldData);
+            _priorPatientIdInternal.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_priorPatientIdInternal, fieldData);
         }
 
-        return priorPatientIdInternal;
+        return _priorPatientIdInternal;
     } 
 }
 
-internal HL7V21Field priorAlternatePatientId;
+internal HL7V21Field _priorAlternatePatientId;
 
 public HL7V21Field PriorAlternatePatientId
 {
     get
     {
-        if (priorAlternatePatientId != null)
+        if (_priorAlternatePatientId != null)
         {
-            return priorAlternatePatientId;
+            return _priorAlternatePatientId;
         }
 
-        priorAlternatePatientId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MRG"][2],
             Id = @"MRG.2",
             Type = @"Field",
             Position = @"MRG.2",
@@ -161,34 +101,38 @@ public HL7V21Field PriorAlternatePatientId
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _priorAlternatePatientId = new HL7V21Field
+        {
+            field = message[@"MRG"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (priorAlternatePatientId.field.FieldRepetitions != null && priorAlternatePatientId.field.FieldRepetitions.Count > 0)
+        if (_priorAlternatePatientId.field.FieldRepetitions != null && _priorAlternatePatientId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorAlternatePatientId.Id));
-            priorAlternatePatientId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(priorAlternatePatientId, fieldData);
+            _priorAlternatePatientId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_priorAlternatePatientId, fieldData);
         }
 
-        return priorAlternatePatientId;
+        return _priorAlternatePatientId;
     } 
 }
 
-internal HL7V21Field priorPatientAccountNumber;
+internal HL7V21Field _priorPatientAccountNumber;
 
 public HL7V21Field PriorPatientAccountNumber
 {
     get
     {
-        if (priorPatientAccountNumber != null)
+        if (_priorPatientAccountNumber != null)
         {
-            return priorPatientAccountNumber;
+            return _priorPatientAccountNumber;
         }
 
-        priorPatientAccountNumber = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MRG"][3],
             Id = @"MRG.3",
             Type = @"Field",
             Position = @"MRG.3",
@@ -202,17 +146,22 @@ public HL7V21Field PriorPatientAccountNumber
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _priorPatientAccountNumber = new HL7V21Field
+        {
+            field = message[@"MRG"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (priorPatientAccountNumber.field.FieldRepetitions != null && priorPatientAccountNumber.field.FieldRepetitions.Count > 0)
+        if (_priorPatientAccountNumber.field.FieldRepetitions != null && _priorPatientAccountNumber.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientAccountNumber.Id));
-            priorPatientAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(priorPatientAccountNumber, fieldData);
+            _priorPatientAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_priorPatientAccountNumber, fieldData);
         }
 
-        return priorPatientAccountNumber;
+        return _priorPatientAccountNumber;
     } 
 }
     }

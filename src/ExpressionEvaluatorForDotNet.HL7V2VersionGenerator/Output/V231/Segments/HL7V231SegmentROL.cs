@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V231SegmentROL(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V231Field _roleInstanceID;
+
+public HL7V231Field RoleInstanceID
+{
+    get
+    {
+        if (_roleInstanceID != null)
+        {
+            return _roleInstanceID;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"ROL.1",
+            Type = @"Field",
+            Position = @"ROL.1",
+            Name = @"Role Instance ID",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a unique identifier of the specific role record.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ROL.1",
-                            Type = @"Field",
-                            Position = @"ROL.1",
-                            Name = @"Role Instance ID",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a unique identifier of the specific role record.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ROL.1.1",
                             Type = @"Component",
@@ -120,43 +132,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values. See Section 2.8.20.2 Universal ID (ST), for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _roleInstanceID = new HL7V231Field
+        {
+            field = message[@"ROL"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_roleInstanceID.field.FieldRepetitions != null && _roleInstanceID.field.FieldRepetitions.Count > 0)
+        {
+            _roleInstanceID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_roleInstanceID, fieldData);
+        }
+
+        return _roleInstanceID;
+    } 
+}
+
+internal HL7V231Field _actionCode;
+
+public HL7V231Field ActionCode
+{
+    get
+    {
+        if (_actionCode != null)
+        {
+            return _actionCode;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"ROL.2",
+            Type = @"Field",
+            Position = @"ROL.2",
+            Name = @"Action Code",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0287",
+            TableName = @"Problem/goal action code",
+            Description = @"This field reveals the intent of the message. Refer to HL7 table 0287 - Problem/goal action code for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _actionCode = new HL7V231Field
+        {
+            field = message[@"ROL"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_actionCode.field.FieldRepetitions != null && _actionCode.field.FieldRepetitions.Count > 0)
+        {
+            _actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_actionCode, fieldData);
+        }
+
+        return _actionCode;
+    } 
+}
+
+internal HL7V231Field _roleROL;
+
+public HL7V231Field RoleROL
+{
+    get
+    {
+        if (_roleROL != null)
+        {
+            return _roleROL;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"ROL.3",
+            Type = @"Field",
+            Position = @"ROL.3",
+            Name = @"Role-ROL",
+            Length = 80,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the functional involvement with the activity being transmitted (e.g., Case Manager, Evaluator, Transcriber, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.2",
-                            Type = @"Field",
-                            Position = @"ROL.2",
-                            Name = @"Action Code",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0287",
-                            TableName = @"Problem/goal action code",
-                            Description = @"This field reveals the intent of the message. Refer to HL7 table 0287 - Problem/goal action code for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ROL.3",
-                            Type = @"Field",
-                            Position = @"ROL.3",
-                            Name = @"Role-ROL",
-                            Length = 80,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the functional involvement with the activity being transmitted (e.g., Case Manager, Evaluator, Transcriber, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.3.1",
                             Type = @"Component",
@@ -262,25 +331,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _roleROL = new HL7V231Field
+        {
+            field = message[@"ROL"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_roleROL.field.FieldRepetitions != null && _roleROL.field.FieldRepetitions.Count > 0)
+        {
+            _roleROL.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_roleROL, fieldData);
+        }
+
+        return _roleROL;
+    } 
+}
+
+internal HL7V231Field _rolePerson;
+
+public HL7V231Field RolePerson
+{
+    get
+    {
+        if (_rolePerson != null)
+        {
+            return _rolePerson;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"ROL.4",
+            Type = @"Field",
+            Position = @"ROL.4",
+            Name = @"Role Person",
+            Length = 80,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identity of the person who is assuming the role that is being transmitted.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.4",
-                            Type = @"Field",
-                            Position = @"ROL.4",
-                            Name = @"Role Person",
-                            Length = 80,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the identity of the person who is assuming the role that is being transmitted.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.4.1",
                             Type = @"Component",
@@ -686,25 +785,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Different <name/address types> and representations of the same <name/address> should be described by repeating of this field, with different values of the <name/address type> and/or <name/address representation> component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _rolePerson = new HL7V231Field
+        {
+            field = message[@"ROL"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rolePerson.field.FieldRepetitions != null && _rolePerson.field.FieldRepetitions.Count > 0)
+        {
+            _rolePerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_rolePerson, fieldData);
+        }
+
+        return _rolePerson;
+    } 
+}
+
+internal HL7V231Field _roleBeginDateTime;
+
+public HL7V231Field RoleBeginDateTime
+{
+    get
+    {
+        if (_roleBeginDateTime != null)
+        {
+            return _roleBeginDateTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"ROL.5",
+            Type = @"Field",
+            Position = @"ROL.5",
+            Name = @"Role Begin Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the role began.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.5",
-                            Type = @"Field",
-                            Position = @"ROL.5",
-                            Name = @"Role Begin Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when the role began.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.5.1",
                             Type = @"Component",
@@ -720,25 +849,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _roleBeginDateTime = new HL7V231Field
+        {
+            field = message[@"ROL"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_roleBeginDateTime.field.FieldRepetitions != null && _roleBeginDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _roleBeginDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_roleBeginDateTime, fieldData);
+        }
+
+        return _roleBeginDateTime;
+    } 
+}
+
+internal HL7V231Field _roleEndDateTime;
+
+public HL7V231Field RoleEndDateTime
+{
+    get
+    {
+        if (_roleEndDateTime != null)
+        {
+            return _roleEndDateTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"ROL.6",
+            Type = @"Field",
+            Position = @"ROL.6",
+            Name = @"Role End Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the role ended.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.6",
-                            Type = @"Field",
-                            Position = @"ROL.6",
-                            Name = @"Role End Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when the role ended.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.6.1",
                             Type = @"Component",
@@ -754,25 +913,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _roleEndDateTime = new HL7V231Field
+        {
+            field = message[@"ROL"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_roleEndDateTime.field.FieldRepetitions != null && _roleEndDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _roleEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_roleEndDateTime, fieldData);
+        }
+
+        return _roleEndDateTime;
+    } 
+}
+
+internal HL7V231Field _roleDuration;
+
+public HL7V231Field RoleDuration
+{
+    get
+    {
+        if (_roleDuration != null)
+        {
+            return _roleDuration;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"ROL.7",
+            Type = @"Field",
+            Position = @"ROL.7",
+            Name = @"Role Duration",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the qualitative length of time for performance of a role (e.g., until the next assessment, four days, until discharge, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.7",
-                            Type = @"Field",
-                            Position = @"ROL.7",
-                            Name = @"Role Duration",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the qualitative length of time for performance of a role (e.g., until the next assessment, four days, until discharge, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.7.1",
                             Type = @"Component",
@@ -878,25 +1067,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _roleDuration = new HL7V231Field
+        {
+            field = message[@"ROL"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_roleDuration.field.FieldRepetitions != null && _roleDuration.field.FieldRepetitions.Count > 0)
+        {
+            _roleDuration.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_roleDuration, fieldData);
+        }
+
+        return _roleDuration;
+    } 
+}
+
+internal HL7V231Field _roleActionReason;
+
+public HL7V231Field RoleActionReason
+{
+    get
+    {
+        if (_roleActionReason != null)
+        {
+            return _roleActionReason;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"ROL.8",
+            Type = @"Field",
+            Position = @"ROL.8",
+            Name = @"Role Action Reason",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the reason why the person is assuming (or changing) the role (e.g., shift change, new primary nurse, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.8",
-                            Type = @"Field",
-                            Position = @"ROL.8",
-                            Name = @"Role Action Reason",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the reason why the person is assuming (or changing) the role (e.g., shift change, new primary nurse, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.8.1",
                             Type = @"Component",
@@ -1002,342 +1221,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V231SegmentROL(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V231Field roleInstanceID;
-
-public HL7V231Field RoleInstanceID
-{
-    get
-    {
-        if (roleInstanceID != null)
-        {
-            return roleInstanceID;
-        }
-
-        roleInstanceID = new HL7V231Field
-        {
-            field = message[@"ROL"][1],
-            Id = @"ROL.1",
-            Type = @"Field",
-            Position = @"ROL.1",
-            Name = @"Role Instance ID",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a unique identifier of the specific role record.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (roleInstanceID.field.FieldRepetitions != null && roleInstanceID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(roleInstanceID.Id));
-            roleInstanceID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(roleInstanceID, fieldData);
-        }
-
-        return roleInstanceID;
-    } 
-}
-
-internal HL7V231Field actionCode;
-
-public HL7V231Field ActionCode
-{
-    get
-    {
-        if (actionCode != null)
-        {
-            return actionCode;
-        }
-
-        actionCode = new HL7V231Field
-        {
-            field = message[@"ROL"][2],
-            Id = @"ROL.2",
-            Type = @"Field",
-            Position = @"ROL.2",
-            Name = @"Action Code",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0287",
-            TableName = @"Problem/goal action code",
-            Description = @"This field reveals the intent of the message. Refer to HL7 table 0287 - Problem/goal action code for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (actionCode.field.FieldRepetitions != null && actionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actionCode.Id));
-            actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(actionCode, fieldData);
-        }
-
-        return actionCode;
-    } 
-}
-
-internal HL7V231Field roleROL;
-
-public HL7V231Field RoleROL
-{
-    get
-    {
-        if (roleROL != null)
-        {
-            return roleROL;
-        }
-
-        roleROL = new HL7V231Field
-        {
-            field = message[@"ROL"][3],
-            Id = @"ROL.3",
-            Type = @"Field",
-            Position = @"ROL.3",
-            Name = @"Role-ROL",
-            Length = 80,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the functional involvement with the activity being transmitted (e.g., Case Manager, Evaluator, Transcriber, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (roleROL.field.FieldRepetitions != null && roleROL.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(roleROL.Id));
-            roleROL.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(roleROL, fieldData);
-        }
-
-        return roleROL;
-    } 
-}
-
-internal HL7V231Field rolePerson;
-
-public HL7V231Field RolePerson
-{
-    get
-    {
-        if (rolePerson != null)
-        {
-            return rolePerson;
-        }
-
-        rolePerson = new HL7V231Field
-        {
-            field = message[@"ROL"][4],
-            Id = @"ROL.4",
-            Type = @"Field",
-            Position = @"ROL.4",
-            Name = @"Role Person",
-            Length = 80,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the identity of the person who is assuming the role that is being transmitted.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rolePerson.field.FieldRepetitions != null && rolePerson.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rolePerson.Id));
-            rolePerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(rolePerson, fieldData);
-        }
-
-        return rolePerson;
-    } 
-}
-
-internal HL7V231Field roleBeginDateTime;
-
-public HL7V231Field RoleBeginDateTime
-{
-    get
-    {
-        if (roleBeginDateTime != null)
-        {
-            return roleBeginDateTime;
-        }
-
-        roleBeginDateTime = new HL7V231Field
-        {
-            field = message[@"ROL"][5],
-            Id = @"ROL.5",
-            Type = @"Field",
-            Position = @"ROL.5",
-            Name = @"Role Begin Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when the role began.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (roleBeginDateTime.field.FieldRepetitions != null && roleBeginDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(roleBeginDateTime.Id));
-            roleBeginDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(roleBeginDateTime, fieldData);
-        }
-
-        return roleBeginDateTime;
-    } 
-}
-
-internal HL7V231Field roleEndDateTime;
-
-public HL7V231Field RoleEndDateTime
-{
-    get
-    {
-        if (roleEndDateTime != null)
-        {
-            return roleEndDateTime;
-        }
-
-        roleEndDateTime = new HL7V231Field
-        {
-            field = message[@"ROL"][6],
-            Id = @"ROL.6",
-            Type = @"Field",
-            Position = @"ROL.6",
-            Name = @"Role End Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when the role ended.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (roleEndDateTime.field.FieldRepetitions != null && roleEndDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(roleEndDateTime.Id));
-            roleEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(roleEndDateTime, fieldData);
-        }
-
-        return roleEndDateTime;
-    } 
-}
-
-internal HL7V231Field roleDuration;
-
-public HL7V231Field RoleDuration
-{
-    get
-    {
-        if (roleDuration != null)
-        {
-            return roleDuration;
-        }
-
-        roleDuration = new HL7V231Field
-        {
-            field = message[@"ROL"][7],
-            Id = @"ROL.7",
-            Type = @"Field",
-            Position = @"ROL.7",
-            Name = @"Role Duration",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the qualitative length of time for performance of a role (e.g., until the next assessment, four days, until discharge, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (roleDuration.field.FieldRepetitions != null && roleDuration.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(roleDuration.Id));
-            roleDuration.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(roleDuration, fieldData);
-        }
-
-        return roleDuration;
-    } 
-}
-
-internal HL7V231Field roleActionReason;
-
-public HL7V231Field RoleActionReason
-{
-    get
-    {
-        if (roleActionReason != null)
-        {
-            return roleActionReason;
-        }
-
-        roleActionReason = new HL7V231Field
+        _roleActionReason = new HL7V231Field
         {
             field = message[@"ROL"][8],
-            Id = @"ROL.8",
-            Type = @"Field",
-            Position = @"ROL.8",
-            Name = @"Role Action Reason",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the reason why the person is assuming (or changing) the role (e.g., shift change, new primary nurse, etc.).",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (roleActionReason.field.FieldRepetitions != null && roleActionReason.field.FieldRepetitions.Count > 0)
+        if (_roleActionReason.field.FieldRepetitions != null && _roleActionReason.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(roleActionReason.Id));
-            roleActionReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(roleActionReason, fieldData);
+            _roleActionReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_roleActionReason, fieldData);
         }
 
-        return roleActionReason;
+        return _roleActionReason;
     } 
 }
     }

@@ -44,6 +44,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Training",
                             Comment = null
                         },
+                        
                     };
             } 
         }

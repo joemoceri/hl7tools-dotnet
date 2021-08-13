@@ -31,28 +31,40 @@ X12 REF: Similar to CAS segment, with a few new fields."; } }
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentADJ(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _providerAdjustmentNumber;
+
+public HL7V28Field ProviderAdjustmentNumber
+{
+    get
+    {
+        if (_providerAdjustmentNumber != null)
+        {
+            return _providerAdjustmentNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.1",
+            Type = @"Field",
+            Position = @"ADJ.1",
+            Name = @"Provider Adjustment Number",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique Adjustment Number assigned by the Provider Application.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ADJ.1",
-                            Type = @"Field",
-                            Position = @"ADJ.1",
-                            Name = @"Provider Adjustment Number",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique Adjustment Number assigned by the Provider Application.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ADJ.1.1",
                             Type = @"Component",
@@ -128,25 +140,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerAdjustmentNumber = new HL7V28Field
+        {
+            field = message[@"ADJ"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerAdjustmentNumber.field.FieldRepetitions != null && _providerAdjustmentNumber.field.FieldRepetitions.Count > 0)
+        {
+            _providerAdjustmentNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_providerAdjustmentNumber, fieldData);
+        }
+
+        return _providerAdjustmentNumber;
+    } 
+}
+
+internal HL7V28Field _payerAdjustmentNumber;
+
+public HL7V28Field PayerAdjustmentNumber
+{
+    get
+    {
+        if (_payerAdjustmentNumber != null)
+        {
+            return _payerAdjustmentNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.2",
+            Type = @"Field",
+            Position = @"ADJ.2",
+            Name = @"Payer Adjustment Number",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique Adjustment Number assigned by the Payer Application.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ADJ.2",
-                            Type = @"Field",
-                            Position = @"ADJ.2",
-                            Name = @"Payer Adjustment Number",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique Adjustment Number assigned by the Payer Application.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ADJ.2.1",
                             Type = @"Component",
@@ -222,43 +264,100 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _payerAdjustmentNumber = new HL7V28Field
+        {
+            field = message[@"ADJ"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payerAdjustmentNumber.field.FieldRepetitions != null && _payerAdjustmentNumber.field.FieldRepetitions.Count > 0)
+        {
+            _payerAdjustmentNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_payerAdjustmentNumber, fieldData);
+        }
+
+        return _payerAdjustmentNumber;
+    } 
+}
+
+internal HL7V28Field _adjustmentSequenceNumber;
+
+public HL7V28Field AdjustmentSequenceNumber
+{
+    get
+    {
+        if (_adjustmentSequenceNumber != null)
+        {
+            return _adjustmentSequenceNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.3",
+            Type = @"Field",
+            Position = @"ADJ.3",
+            Name = @"Adjustment Sequence Number",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique sequence number for this adjustment – starts with 1, then 2, etc., for each unique adjustment for the Product/Service Line Item.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _adjustmentSequenceNumber = new HL7V28Field
+        {
+            field = message[@"ADJ"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_adjustmentSequenceNumber.field.FieldRepetitions != null && _adjustmentSequenceNumber.field.FieldRepetitions.Count > 0)
+        {
+            _adjustmentSequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_adjustmentSequenceNumber, fieldData);
+        }
+
+        return _adjustmentSequenceNumber;
+    } 
+}
+
+internal HL7V28Field _adjustmentCategory;
+
+public HL7V28Field AdjustmentCategory
+{
+    get
+    {
+        if (_adjustmentCategory != null)
+        {
+            return _adjustmentCategory;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.4",
+            Type = @"Field",
+            Position = @"ADJ.4",
+            Name = @"Adjustment Category",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0564",
+            TableName = @"Adjustment Category Code",
+            Description = @"Indicates the category of adjustment and is used to assist in determining which table is used for Adjustment Reason. Refer to User-defined Table 0564 – Adjustment Category Code in Chapter 2C, Code Tables, for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ADJ.3",
-                            Type = @"Field",
-                            Position = @"ADJ.3",
-                            Name = @"Adjustment Sequence Number",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique sequence number for this adjustment – starts with 1, then 2, etc., for each unique adjustment for the Product/Service Line Item.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ADJ.4",
-                            Type = @"Field",
-                            Position = @"ADJ.4",
-                            Name = @"Adjustment Category",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0564",
-                            TableName = @"Adjustment Category Code",
-                            Description = @"Indicates the category of adjustment and is used to assist in determining which table is used for Adjustment Reason. Refer to User-defined Table 0564 – Adjustment Category Code in Chapter 2C, Code Tables, for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ADJ.4.1",
                             Type = @"Component",
@@ -686,25 +785,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _adjustmentCategory = new HL7V28Field
+        {
+            field = message[@"ADJ"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_adjustmentCategory.field.FieldRepetitions != null && _adjustmentCategory.field.FieldRepetitions.Count > 0)
+        {
+            _adjustmentCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_adjustmentCategory, fieldData);
+        }
+
+        return _adjustmentCategory;
+    } 
+}
+
+internal HL7V28Field _adjustmentAmount;
+
+public HL7V28Field AdjustmentAmount
+{
+    get
+    {
+        if (_adjustmentAmount != null)
+        {
+            return _adjustmentAmount;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.5",
+            Type = @"Field",
+            Position = @"ADJ.5",
+            Name = @"Adjustment Amount",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Adjustment amount, such as taxes, deductibles, previously paid amount.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ADJ.5",
-                            Type = @"Field",
-                            Position = @"ADJ.5",
-                            Name = @"Adjustment Amount",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Adjustment amount, such as taxes, deductibles, previously paid amount.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ADJ.5.1",
                             Type = @"Component",
@@ -1281,26 +1410,56 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ADJ.6",
-                            Type = @"Field",
-                            Position = @"ADJ.6",
-                            Name = @"Adjustment Quantity",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Adjustment quantity.
+                        }
+        }
+
+        _adjustmentAmount = new HL7V28Field
+        {
+            field = message[@"ADJ"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_adjustmentAmount.field.FieldRepetitions != null && _adjustmentAmount.field.FieldRepetitions.Count > 0)
+        {
+            _adjustmentAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_adjustmentAmount, fieldData);
+        }
+
+        return _adjustmentAmount;
+    } 
+}
+
+internal HL7V28Field _adjustmentQuantity;
+
+public HL7V28Field AdjustmentQuantity
+{
+    get
+    {
+        if (_adjustmentQuantity != null)
+        {
+            return _adjustmentQuantity;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.6",
+            Type = @"Field",
+            Position = @"ADJ.6",
+            Name = @"Adjustment Quantity",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"Adjustment quantity.
 X12 REF: table 673 Quantity Qualifier.  New values from X12 673 can be added as required.  Refer to User-defined Table 0560 – Quantity Units in Chapter 2C, Code Tables, for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"ADJ.6.1",
                             Type = @"Component",
@@ -1762,25 +1921,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _adjustmentQuantity = new HL7V28Field
+        {
+            field = message[@"ADJ"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_adjustmentQuantity.field.FieldRepetitions != null && _adjustmentQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _adjustmentQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_adjustmentQuantity, fieldData);
+        }
+
+        return _adjustmentQuantity;
+    } 
+}
+
+internal HL7V28Field _adjustmentReasonPa;
+
+public HL7V28Field AdjustmentReasonPa
+{
+    get
+    {
+        if (_adjustmentReasonPa != null)
+        {
+            return _adjustmentReasonPa;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.7",
+            Type = @"Field",
+            Position = @"ADJ.7",
+            Name = @"Adjustment Reason Pa",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0565",
+            TableName = @"Provider Adjustment Reason Code",
+            Description = @"Reason for this adjustment. Codes used to explain a Provider adjustment to a Product/Service Group or Product/Service Line Item by a Provider.  Refer to User-defined Table 0565 – Provider Adjustment Reason Code in Chapter 2C, Code Tables, for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ADJ.7",
-                            Type = @"Field",
-                            Position = @"ADJ.7",
-                            Name = @"Adjustment Reason Pa",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0565",
-                            TableName = @"Provider Adjustment Reason Code",
-                            Description = @"Reason for this adjustment. Codes used to explain a Provider adjustment to a Product/Service Group or Product/Service Line Item by a Provider.  Refer to User-defined Table 0565 – Provider Adjustment Reason Code in Chapter 2C, Code Tables, for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ADJ.7.1",
                             Type = @"Component",
@@ -2208,79 +2397,190 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _adjustmentReasonPa = new HL7V28Field
+        {
+            field = message[@"ADJ"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_adjustmentReasonPa.field.FieldRepetitions != null && _adjustmentReasonPa.field.FieldRepetitions.Count > 0)
+        {
+            _adjustmentReasonPa.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_adjustmentReasonPa, fieldData);
+        }
+
+        return _adjustmentReasonPa;
+    } 
+}
+
+internal HL7V28Field _adjustmentDescription;
+
+public HL7V28Field AdjustmentDescription
+{
+    get
+    {
+        if (_adjustmentDescription != null)
+        {
+            return _adjustmentDescription;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.8",
+            Type = @"Field",
+            Position = @"ADJ.8",
+            Name = @"Adjustment Description",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Description of adjustment, such as client instructions.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _adjustmentDescription = new HL7V28Field
+        {
+            field = message[@"ADJ"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_adjustmentDescription.field.FieldRepetitions != null && _adjustmentDescription.field.FieldRepetitions.Count > 0)
+        {
+            _adjustmentDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_adjustmentDescription, fieldData);
+        }
+
+        return _adjustmentDescription;
+    } 
+}
+
+internal HL7V28Field _originalValue;
+
+public HL7V28Field OriginalValue
+{
+    get
+    {
+        if (_originalValue != null)
+        {
+            return _originalValue;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.9",
+            Type = @"Field",
+            Position = @"ADJ.9",
+            Name = @"Original Value",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Original value of data item noted in this adjustment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _originalValue = new HL7V28Field
+        {
+            field = message[@"ADJ"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_originalValue.field.FieldRepetitions != null && _originalValue.field.FieldRepetitions.Count > 0)
+        {
+            _originalValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_originalValue, fieldData);
+        }
+
+        return _originalValue;
+    } 
+}
+
+internal HL7V28Field _substituteValue;
+
+public HL7V28Field SubstituteValue
+{
+    get
+    {
+        if (_substituteValue != null)
+        {
+            return _substituteValue;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.10",
+            Type = @"Field",
+            Position = @"ADJ.10",
+            Name = @"Substitute Value",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Substituted value of data item noted in this adjustment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _substituteValue = new HL7V28Field
+        {
+            field = message[@"ADJ"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_substituteValue.field.FieldRepetitions != null && _substituteValue.field.FieldRepetitions.Count > 0)
+        {
+            _substituteValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_substituteValue, fieldData);
+        }
+
+        return _substituteValue;
+    } 
+}
+
+internal HL7V28Field _adjustmentAction;
+
+public HL7V28Field AdjustmentAction
+{
+    get
+    {
+        if (_adjustmentAction != null)
+        {
+            return _adjustmentAction;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.11",
+            Type = @"Field",
+            Position = @"ADJ.11",
+            Name = @"Adjustment Action",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0569",
+            TableName = @"Adjustment Action",
+            Description = @"Action requested of party that receives this adjustment. Refer to User-defined Table 0569 – Adjustment Action in Chapter 2C, Code Tables, for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ADJ.8",
-                            Type = @"Field",
-                            Position = @"ADJ.8",
-                            Name = @"Adjustment Description",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Description of adjustment, such as client instructions.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ADJ.9",
-                            Type = @"Field",
-                            Position = @"ADJ.9",
-                            Name = @"Original Value",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Original value of data item noted in this adjustment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ADJ.10",
-                            Type = @"Field",
-                            Position = @"ADJ.10",
-                            Name = @"Substitute Value",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Substituted value of data item noted in this adjustment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ADJ.11",
-                            Type = @"Field",
-                            Position = @"ADJ.11",
-                            Name = @"Adjustment Action",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0569",
-                            TableName = @"Adjustment Action",
-                            Description = @"Action requested of party that receives this adjustment. Refer to User-defined Table 0569 – Adjustment Action in Chapter 2C, Code Tables, for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ADJ.11.1",
                             Type = @"Component",
@@ -2708,25 +3008,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _adjustmentAction = new HL7V28Field
+        {
+            field = message[@"ADJ"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_adjustmentAction.field.FieldRepetitions != null && _adjustmentAction.field.FieldRepetitions.Count > 0)
+        {
+            _adjustmentAction.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_adjustmentAction, fieldData);
+        }
+
+        return _adjustmentAction;
+    } 
+}
+
+internal HL7V28Field _providerAdjustmentNumberCrossReference;
+
+public HL7V28Field ProviderAdjustmentNumberCrossReference
+{
+    get
+    {
+        if (_providerAdjustmentNumberCrossReference != null)
+        {
+            return _providerAdjustmentNumberCrossReference;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.12",
+            Type = @"Field",
+            Position = @"ADJ.12",
+            Name = @"Provider Adjustment Number Cross Reference",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique Provider Adjustment Number assigned by the Provider Application that is referenced by this Payer Adjustment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ADJ.12",
-                            Type = @"Field",
-                            Position = @"ADJ.12",
-                            Name = @"Provider Adjustment Number Cross Reference",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique Provider Adjustment Number assigned by the Provider Application that is referenced by this Payer Adjustment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ADJ.12.1",
                             Type = @"Component",
@@ -2802,25 +3132,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerAdjustmentNumberCrossReference = new HL7V28Field
+        {
+            field = message[@"ADJ"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerAdjustmentNumberCrossReference.field.FieldRepetitions != null && _providerAdjustmentNumberCrossReference.field.FieldRepetitions.Count > 0)
+        {
+            _providerAdjustmentNumberCrossReference.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_providerAdjustmentNumberCrossReference, fieldData);
+        }
+
+        return _providerAdjustmentNumberCrossReference;
+    } 
+}
+
+internal HL7V28Field _providerProductServiceLineItemNumberCrossReference;
+
+public HL7V28Field ProviderProductServiceLineItemNumberCrossReference
+{
+    get
+    {
+        if (_providerProductServiceLineItemNumberCrossReference != null)
+        {
+            return _providerProductServiceLineItemNumberCrossReference;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.13",
+            Type = @"Field",
+            Position = @"ADJ.13",
+            Name = @"Provider Product/Service Line Item Number Cross Reference",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique Provider Product/Service Line Item Number assigned by the Provider Application that is referenced by this Payer Adjustment; used for groups with multiple line items that need to be singled out by a Payer Adjustment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ADJ.13",
-                            Type = @"Field",
-                            Position = @"ADJ.13",
-                            Name = @"Provider Product/Service Line Item Number Cross Reference",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique Provider Product/Service Line Item Number assigned by the Provider Application that is referenced by this Payer Adjustment; used for groups with multiple line items that need to be singled out by a Payer Adjustment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ADJ.13.1",
                             Type = @"Component",
@@ -2896,43 +3256,100 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerProductServiceLineItemNumberCrossReference = new HL7V28Field
+        {
+            field = message[@"ADJ"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerProductServiceLineItemNumberCrossReference.field.FieldRepetitions != null && _providerProductServiceLineItemNumberCrossReference.field.FieldRepetitions.Count > 0)
+        {
+            _providerProductServiceLineItemNumberCrossReference.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_providerProductServiceLineItemNumberCrossReference, fieldData);
+        }
+
+        return _providerProductServiceLineItemNumberCrossReference;
+    } 
+}
+
+internal HL7V28Field _adjustmentDate;
+
+public HL7V28Field AdjustmentDate
+{
+    get
+    {
+        if (_adjustmentDate != null)
+        {
+            return _adjustmentDate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.14",
+            Type = @"Field",
+            Position = @"ADJ.14",
+            Name = @"Adjustment Date",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"Date/Time adjustment was made. May also be synonymous with Adjudication Date.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _adjustmentDate = new HL7V28Field
+        {
+            field = message[@"ADJ"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_adjustmentDate.field.FieldRepetitions != null && _adjustmentDate.field.FieldRepetitions.Count > 0)
+        {
+            _adjustmentDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_adjustmentDate, fieldData);
+        }
+
+        return _adjustmentDate;
+    } 
+}
+
+internal HL7V28Field _responsibleOrganization;
+
+public HL7V28Field ResponsibleOrganization
+{
+    get
+    {
+        if (_responsibleOrganization != null)
+        {
+            return _responsibleOrganization;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ADJ.15",
+            Type = @"Field",
+            Position = @"ADJ.15",
+            Name = @"Responsible Organization",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"Business organization that is responsible for the adjustment (e.g., Payer organization); can be used for a Payment/Remittance Advice for 1 Payee from multiple Payers.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ADJ.14",
-                            Type = @"Field",
-                            Position = @"ADJ.14",
-                            Name = @"Adjustment Date",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Date/Time adjustment was made. May also be synonymous with Adjudication Date.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ADJ.15",
-                            Type = @"Field",
-                            Position = @"ADJ.15",
-                            Name = @"Responsible Organization",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Business organization that is responsible for the adjustment (e.g., Payer organization); can be used for a Payment/Remittance Advice for 1 Payee from multiple Payers.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ADJ.15.1",
                             Type = @"Component",
@@ -3664,630 +4081,23 @@ In general this component provides an indication of the representation provided 
 Note: The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentADJ(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field providerAdjustmentNumber;
-
-public HL7V28Field ProviderAdjustmentNumber
-{
-    get
-    {
-        if (providerAdjustmentNumber != null)
-        {
-            return providerAdjustmentNumber;
-        }
-
-        providerAdjustmentNumber = new HL7V28Field
-        {
-            field = message[@"ADJ"][1],
-            Id = @"ADJ.1",
-            Type = @"Field",
-            Position = @"ADJ.1",
-            Name = @"Provider Adjustment Number",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique Adjustment Number assigned by the Provider Application.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerAdjustmentNumber.field.FieldRepetitions != null && providerAdjustmentNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerAdjustmentNumber.Id));
-            providerAdjustmentNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(providerAdjustmentNumber, fieldData);
-        }
-
-        return providerAdjustmentNumber;
-    } 
-}
-
-internal HL7V28Field payerAdjustmentNumber;
-
-public HL7V28Field PayerAdjustmentNumber
-{
-    get
-    {
-        if (payerAdjustmentNumber != null)
-        {
-            return payerAdjustmentNumber;
-        }
-
-        payerAdjustmentNumber = new HL7V28Field
-        {
-            field = message[@"ADJ"][2],
-            Id = @"ADJ.2",
-            Type = @"Field",
-            Position = @"ADJ.2",
-            Name = @"Payer Adjustment Number",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique Adjustment Number assigned by the Payer Application.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payerAdjustmentNumber.field.FieldRepetitions != null && payerAdjustmentNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payerAdjustmentNumber.Id));
-            payerAdjustmentNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(payerAdjustmentNumber, fieldData);
-        }
-
-        return payerAdjustmentNumber;
-    } 
-}
-
-internal HL7V28Field adjustmentSequenceNumber;
-
-public HL7V28Field AdjustmentSequenceNumber
-{
-    get
-    {
-        if (adjustmentSequenceNumber != null)
-        {
-            return adjustmentSequenceNumber;
-        }
-
-        adjustmentSequenceNumber = new HL7V28Field
-        {
-            field = message[@"ADJ"][3],
-            Id = @"ADJ.3",
-            Type = @"Field",
-            Position = @"ADJ.3",
-            Name = @"Adjustment Sequence Number",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique sequence number for this adjustment – starts with 1, then 2, etc., for each unique adjustment for the Product/Service Line Item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (adjustmentSequenceNumber.field.FieldRepetitions != null && adjustmentSequenceNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(adjustmentSequenceNumber.Id));
-            adjustmentSequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(adjustmentSequenceNumber, fieldData);
-        }
-
-        return adjustmentSequenceNumber;
-    } 
-}
-
-internal HL7V28Field adjustmentCategory;
-
-public HL7V28Field AdjustmentCategory
-{
-    get
-    {
-        if (adjustmentCategory != null)
-        {
-            return adjustmentCategory;
-        }
-
-        adjustmentCategory = new HL7V28Field
-        {
-            field = message[@"ADJ"][4],
-            Id = @"ADJ.4",
-            Type = @"Field",
-            Position = @"ADJ.4",
-            Name = @"Adjustment Category",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0564",
-            TableName = @"Adjustment Category Code",
-            Description = @"Indicates the category of adjustment and is used to assist in determining which table is used for Adjustment Reason. Refer to User-defined Table 0564 – Adjustment Category Code in Chapter 2C, Code Tables, for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (adjustmentCategory.field.FieldRepetitions != null && adjustmentCategory.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(adjustmentCategory.Id));
-            adjustmentCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(adjustmentCategory, fieldData);
-        }
-
-        return adjustmentCategory;
-    } 
-}
-
-internal HL7V28Field adjustmentAmount;
-
-public HL7V28Field AdjustmentAmount
-{
-    get
-    {
-        if (adjustmentAmount != null)
-        {
-            return adjustmentAmount;
-        }
-
-        adjustmentAmount = new HL7V28Field
-        {
-            field = message[@"ADJ"][5],
-            Id = @"ADJ.5",
-            Type = @"Field",
-            Position = @"ADJ.5",
-            Name = @"Adjustment Amount",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Adjustment amount, such as taxes, deductibles, previously paid amount.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (adjustmentAmount.field.FieldRepetitions != null && adjustmentAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(adjustmentAmount.Id));
-            adjustmentAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(adjustmentAmount, fieldData);
-        }
-
-        return adjustmentAmount;
-    } 
-}
-
-internal HL7V28Field adjustmentQuantity;
-
-public HL7V28Field AdjustmentQuantity
-{
-    get
-    {
-        if (adjustmentQuantity != null)
-        {
-            return adjustmentQuantity;
-        }
-
-        adjustmentQuantity = new HL7V28Field
-        {
-            field = message[@"ADJ"][6],
-            Id = @"ADJ.6",
-            Type = @"Field",
-            Position = @"ADJ.6",
-            Name = @"Adjustment Quantity",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"Adjustment quantity.
-X12 REF: table 673 Quantity Qualifier.  New values from X12 673 can be added as required.  Refer to User-defined Table 0560 – Quantity Units in Chapter 2C, Code Tables, for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (adjustmentQuantity.field.FieldRepetitions != null && adjustmentQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(adjustmentQuantity.Id));
-            adjustmentQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(adjustmentQuantity, fieldData);
-        }
-
-        return adjustmentQuantity;
-    } 
-}
-
-internal HL7V28Field adjustmentReasonPa;
-
-public HL7V28Field AdjustmentReasonPa
-{
-    get
-    {
-        if (adjustmentReasonPa != null)
-        {
-            return adjustmentReasonPa;
-        }
-
-        adjustmentReasonPa = new HL7V28Field
-        {
-            field = message[@"ADJ"][7],
-            Id = @"ADJ.7",
-            Type = @"Field",
-            Position = @"ADJ.7",
-            Name = @"Adjustment Reason Pa",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0565",
-            TableName = @"Provider Adjustment Reason Code",
-            Description = @"Reason for this adjustment. Codes used to explain a Provider adjustment to a Product/Service Group or Product/Service Line Item by a Provider.  Refer to User-defined Table 0565 – Provider Adjustment Reason Code in Chapter 2C, Code Tables, for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (adjustmentReasonPa.field.FieldRepetitions != null && adjustmentReasonPa.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(adjustmentReasonPa.Id));
-            adjustmentReasonPa.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(adjustmentReasonPa, fieldData);
-        }
-
-        return adjustmentReasonPa;
-    } 
-}
-
-internal HL7V28Field adjustmentDescription;
-
-public HL7V28Field AdjustmentDescription
-{
-    get
-    {
-        if (adjustmentDescription != null)
-        {
-            return adjustmentDescription;
-        }
-
-        adjustmentDescription = new HL7V28Field
-        {
-            field = message[@"ADJ"][8],
-            Id = @"ADJ.8",
-            Type = @"Field",
-            Position = @"ADJ.8",
-            Name = @"Adjustment Description",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Description of adjustment, such as client instructions.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (adjustmentDescription.field.FieldRepetitions != null && adjustmentDescription.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(adjustmentDescription.Id));
-            adjustmentDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(adjustmentDescription, fieldData);
-        }
-
-        return adjustmentDescription;
-    } 
-}
-
-internal HL7V28Field originalValue;
-
-public HL7V28Field OriginalValue
-{
-    get
-    {
-        if (originalValue != null)
-        {
-            return originalValue;
-        }
-
-        originalValue = new HL7V28Field
-        {
-            field = message[@"ADJ"][9],
-            Id = @"ADJ.9",
-            Type = @"Field",
-            Position = @"ADJ.9",
-            Name = @"Original Value",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Original value of data item noted in this adjustment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (originalValue.field.FieldRepetitions != null && originalValue.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(originalValue.Id));
-            originalValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(originalValue, fieldData);
-        }
-
-        return originalValue;
-    } 
-}
-
-internal HL7V28Field substituteValue;
-
-public HL7V28Field SubstituteValue
-{
-    get
-    {
-        if (substituteValue != null)
-        {
-            return substituteValue;
-        }
-
-        substituteValue = new HL7V28Field
-        {
-            field = message[@"ADJ"][10],
-            Id = @"ADJ.10",
-            Type = @"Field",
-            Position = @"ADJ.10",
-            Name = @"Substitute Value",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Substituted value of data item noted in this adjustment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (substituteValue.field.FieldRepetitions != null && substituteValue.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substituteValue.Id));
-            substituteValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(substituteValue, fieldData);
-        }
-
-        return substituteValue;
-    } 
-}
-
-internal HL7V28Field adjustmentAction;
-
-public HL7V28Field AdjustmentAction
-{
-    get
-    {
-        if (adjustmentAction != null)
-        {
-            return adjustmentAction;
-        }
-
-        adjustmentAction = new HL7V28Field
-        {
-            field = message[@"ADJ"][11],
-            Id = @"ADJ.11",
-            Type = @"Field",
-            Position = @"ADJ.11",
-            Name = @"Adjustment Action",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0569",
-            TableName = @"Adjustment Action",
-            Description = @"Action requested of party that receives this adjustment. Refer to User-defined Table 0569 – Adjustment Action in Chapter 2C, Code Tables, for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (adjustmentAction.field.FieldRepetitions != null && adjustmentAction.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(adjustmentAction.Id));
-            adjustmentAction.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(adjustmentAction, fieldData);
-        }
-
-        return adjustmentAction;
-    } 
-}
-
-internal HL7V28Field providerAdjustmentNumberCrossReference;
-
-public HL7V28Field ProviderAdjustmentNumberCrossReference
-{
-    get
-    {
-        if (providerAdjustmentNumberCrossReference != null)
-        {
-            return providerAdjustmentNumberCrossReference;
-        }
-
-        providerAdjustmentNumberCrossReference = new HL7V28Field
-        {
-            field = message[@"ADJ"][12],
-            Id = @"ADJ.12",
-            Type = @"Field",
-            Position = @"ADJ.12",
-            Name = @"Provider Adjustment Number Cross Reference",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique Provider Adjustment Number assigned by the Provider Application that is referenced by this Payer Adjustment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerAdjustmentNumberCrossReference.field.FieldRepetitions != null && providerAdjustmentNumberCrossReference.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerAdjustmentNumberCrossReference.Id));
-            providerAdjustmentNumberCrossReference.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(providerAdjustmentNumberCrossReference, fieldData);
-        }
-
-        return providerAdjustmentNumberCrossReference;
-    } 
-}
-
-internal HL7V28Field providerProductServiceLineItemNumberCrossReference;
-
-public HL7V28Field ProviderProductServiceLineItemNumberCrossReference
-{
-    get
-    {
-        if (providerProductServiceLineItemNumberCrossReference != null)
-        {
-            return providerProductServiceLineItemNumberCrossReference;
-        }
-
-        providerProductServiceLineItemNumberCrossReference = new HL7V28Field
-        {
-            field = message[@"ADJ"][13],
-            Id = @"ADJ.13",
-            Type = @"Field",
-            Position = @"ADJ.13",
-            Name = @"Provider Product/Service Line Item Number Cross Reference",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique Provider Product/Service Line Item Number assigned by the Provider Application that is referenced by this Payer Adjustment; used for groups with multiple line items that need to be singled out by a Payer Adjustment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerProductServiceLineItemNumberCrossReference.field.FieldRepetitions != null && providerProductServiceLineItemNumberCrossReference.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerProductServiceLineItemNumberCrossReference.Id));
-            providerProductServiceLineItemNumberCrossReference.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(providerProductServiceLineItemNumberCrossReference, fieldData);
-        }
-
-        return providerProductServiceLineItemNumberCrossReference;
-    } 
-}
-
-internal HL7V28Field adjustmentDate;
-
-public HL7V28Field AdjustmentDate
-{
-    get
-    {
-        if (adjustmentDate != null)
-        {
-            return adjustmentDate;
-        }
-
-        adjustmentDate = new HL7V28Field
-        {
-            field = message[@"ADJ"][14],
-            Id = @"ADJ.14",
-            Type = @"Field",
-            Position = @"ADJ.14",
-            Name = @"Adjustment Date",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"Date/Time adjustment was made. May also be synonymous with Adjudication Date.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (adjustmentDate.field.FieldRepetitions != null && adjustmentDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(adjustmentDate.Id));
-            adjustmentDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(adjustmentDate, fieldData);
-        }
-
-        return adjustmentDate;
-    } 
-}
-
-internal HL7V28Field responsibleOrganization;
-
-public HL7V28Field ResponsibleOrganization
-{
-    get
-    {
-        if (responsibleOrganization != null)
-        {
-            return responsibleOrganization;
-        }
-
-        responsibleOrganization = new HL7V28Field
+        _responsibleOrganization = new HL7V28Field
         {
             field = message[@"ADJ"][15],
-            Id = @"ADJ.15",
-            Type = @"Field",
-            Position = @"ADJ.15",
-            Name = @"Responsible Organization",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"Business organization that is responsible for the adjustment (e.g., Payer organization); can be used for a Payment/Remittance Advice for 1 Payee from multiple Payers.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (responsibleOrganization.field.FieldRepetitions != null && responsibleOrganization.field.FieldRepetitions.Count > 0)
+        if (_responsibleOrganization.field.FieldRepetitions != null && _responsibleOrganization.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(responsibleOrganization.Id));
-            responsibleOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(responsibleOrganization, fieldData);
+            _responsibleOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_responsibleOrganization, fieldData);
         }
 
-        return responsibleOrganization;
+        return _responsibleOrganization;
     } 
 }
     }

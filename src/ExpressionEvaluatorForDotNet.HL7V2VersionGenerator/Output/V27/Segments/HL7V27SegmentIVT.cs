@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentIVT(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _setIdIvt;
+
+public HL7V27Field SetIdIvt
+{
+    get
+    {
+        if (_setIdIvt != null)
+        {
+            return _setIdIvt;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.1",
+            Type = @"Field",
+            Position = @"IVT.1",
+            Name = @"Set Id - Ivt",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a sequential number that identifies this segment within a given Material Location segment group. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdIvt = new HL7V27Field
+        {
+            field = message[@"IVT"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdIvt.field.FieldRepetitions != null && _setIdIvt.field.FieldRepetitions.Count > 0)
+        {
+            _setIdIvt.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_setIdIvt, fieldData);
+        }
+
+        return _setIdIvt;
+    } 
+}
+
+internal HL7V27Field _inventoryLocationIdentifier;
+
+public HL7V27Field InventoryLocationIdentifier
+{
+    get
+    {
+        if (_inventoryLocationIdentifier != null)
+        {
+            return _inventoryLocationIdentifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.2",
+            Type = @"Field",
+            Position = @"IVT.2",
+            Name = @"Inventory Location Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the code identifying an inventory supply location that stocks or purchases this item.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"IVT.1",
-                            Type = @"Field",
-                            Position = @"IVT.1",
-                            Name = @"Set Id - Ivt",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a sequential number that identifies this segment within a given Material Location segment group. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVT.2",
-                            Type = @"Field",
-                            Position = @"IVT.2",
-                            Name = @"Inventory Location Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the code identifying an inventory supply location that stocks or purchases this item.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVT.2.1",
                             Type = @"Component",
@@ -146,43 +185,100 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inventoryLocationIdentifier = new HL7V27Field
+        {
+            field = message[@"IVT"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryLocationIdentifier.field.FieldRepetitions != null && _inventoryLocationIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryLocationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_inventoryLocationIdentifier, fieldData);
+        }
+
+        return _inventoryLocationIdentifier;
+    } 
+}
+
+internal HL7V27Field _inventoryLocationName;
+
+public HL7V27Field InventoryLocationName
+{
+    get
+    {
+        if (_inventoryLocationName != null)
+        {
+            return _inventoryLocationName;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.3",
+            Type = @"Field",
+            Position = @"IVT.3",
+            Name = @"Inventory Location Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the inventory supply location identified in IVT-2.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _inventoryLocationName = new HL7V27Field
+        {
+            field = message[@"IVT"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryLocationName.field.FieldRepetitions != null && _inventoryLocationName.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryLocationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_inventoryLocationName, fieldData);
+        }
+
+        return _inventoryLocationName;
+    } 
+}
+
+internal HL7V27Field _sourceLocationIdentifier;
+
+public HL7V27Field SourceLocationIdentifier
+{
+    get
+    {
+        if (_sourceLocationIdentifier != null)
+        {
+            return _sourceLocationIdentifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.4",
+            Type = @"Field",
+            Position = @"IVT.4",
+            Name = @"Source Location Identifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the code identifying the source location that purchases and stocks items in addition to filling supply requests for the location specified in IVT-2.  For example, IVT-2 may be considered Central Supply, an inventory location that issues to departments.  IVT-3 may be considered General Stores, a supply location that most items are received into when delivered to the healthcare facility.  General Stores would then replenish the Central Supply inventory.  Central Supply would then issue supplies to departments based on requests for supplies.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.3",
-                            Type = @"Field",
-                            Position = @"IVT.3",
-                            Name = @"Inventory Location Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the inventory supply location identified in IVT-2.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVT.4",
-                            Type = @"Field",
-                            Position = @"IVT.4",
-                            Name = @"Source Location Identifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the code identifying the source location that purchases and stocks items in addition to filling supply requests for the location specified in IVT-2.  For example, IVT-2 may be considered Central Supply, an inventory location that issues to departments.  IVT-3 may be considered General Stores, a supply location that most items are received into when delivered to the healthcare facility.  General Stores would then replenish the Central Supply inventory.  Central Supply would then issue supplies to departments based on requests for supplies.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.4.1",
                             Type = @"Component",
@@ -260,43 +356,100 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _sourceLocationIdentifier = new HL7V27Field
+        {
+            field = message[@"IVT"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sourceLocationIdentifier.field.FieldRepetitions != null && _sourceLocationIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _sourceLocationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_sourceLocationIdentifier, fieldData);
+        }
+
+        return _sourceLocationIdentifier;
+    } 
+}
+
+internal HL7V27Field _sourceLocationName;
+
+public HL7V27Field SourceLocationName
+{
+    get
+    {
+        if (_sourceLocationName != null)
+        {
+            return _sourceLocationName;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.5",
+            Type = @"Field",
+            Position = @"IVT.5",
+            Name = @"Source Location Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the source supply location identified in IVT-4.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sourceLocationName = new HL7V27Field
+        {
+            field = message[@"IVT"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sourceLocationName.field.FieldRepetitions != null && _sourceLocationName.field.FieldRepetitions.Count > 0)
+        {
+            _sourceLocationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_sourceLocationName, fieldData);
+        }
+
+        return _sourceLocationName;
+    } 
+}
+
+internal HL7V27Field _itemStatus;
+
+public HL7V27Field ItemStatus
+{
+    get
+    {
+        if (_itemStatus != null)
+        {
+            return _itemStatus;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.6",
+            Type = @"Field",
+            Position = @"IVT.6",
+            Name = @"Item Status",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0625",
+            TableName = @"Item Status Codes",
+            Description = @"This field contains the status that applies to the inventory supply item for the inventory location specified in IVT-2.  Refer to User-defined Table 0625 – Item Status Codes for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.5",
-                            Type = @"Field",
-                            Position = @"IVT.5",
-                            Name = @"Source Location Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the source supply location identified in IVT-4.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVT.6",
-                            Type = @"Field",
-                            Position = @"IVT.6",
-                            Name = @"Item Status",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0625",
-                            TableName = @"Item Status Codes",
-                            Description = @"This field contains the status that applies to the inventory supply item for the inventory location specified in IVT-2.  Refer to User-defined Table 0625 – Item Status Codes for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.6.1",
                             Type = @"Component",
@@ -722,25 +875,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _itemStatus = new HL7V27Field
+        {
+            field = message[@"IVT"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_itemStatus.field.FieldRepetitions != null && _itemStatus.field.FieldRepetitions.Count > 0)
+        {
+            _itemStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_itemStatus, fieldData);
+        }
+
+        return _itemStatus;
+    } 
+}
+
+internal HL7V27Field _binLocationIdentifier;
+
+public HL7V27Field BinLocationIdentifier
+{
+    get
+    {
+        if (_binLocationIdentifier != null)
+        {
+            return _binLocationIdentifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.7",
+            Type = @"Field",
+            Position = @"IVT.7",
+            Name = @"Bin Location Identifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"A unique code assigned to a bin location located within the inventory location in IVT-2, where the inventory supply item may be stored.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.7",
-                            Type = @"Field",
-                            Position = @"IVT.7",
-                            Name = @"Bin Location Identifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A unique code assigned to a bin location located within the inventory location in IVT-2, where the inventory supply item may be stored.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.7.1",
                             Type = @"Component",
@@ -818,25 +1001,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _binLocationIdentifier = new HL7V27Field
+        {
+            field = message[@"IVT"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_binLocationIdentifier.field.FieldRepetitions != null && _binLocationIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _binLocationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_binLocationIdentifier, fieldData);
+        }
+
+        return _binLocationIdentifier;
+    } 
+}
+
+internal HL7V27Field _orderPackaging;
+
+public HL7V27Field OrderPackaging
+{
+    get
+    {
+        if (_orderPackaging != null)
+        {
+            return _orderPackaging;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.8",
+            Type = @"Field",
+            Position = @"IVT.8",
+            Name = @"Order Packaging",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0818",
+            TableName = @"Package",
+            Description = @"This field contains the primary packaging unit by which the item can be requisitioned or ordered to replenish the inventory supply item for the corresponding inventory location specified in IVT-2.  See User-defined Table 0818 – Package in PKG-2 Packaging Units for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.8",
-                            Type = @"Field",
-                            Position = @"IVT.8",
-                            Name = @"Order Packaging",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0818",
-                            TableName = @"Package",
-                            Description = @"This field contains the primary packaging unit by which the item can be requisitioned or ordered to replenish the inventory supply item for the corresponding inventory location specified in IVT-2.  See User-defined Table 0818 – Package in PKG-2 Packaging Units for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.8.1",
                             Type = @"Component",
@@ -1262,25 +1475,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _orderPackaging = new HL7V27Field
+        {
+            field = message[@"IVT"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_orderPackaging.field.FieldRepetitions != null && _orderPackaging.field.FieldRepetitions.Count > 0)
+        {
+            _orderPackaging.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_orderPackaging, fieldData);
+        }
+
+        return _orderPackaging;
+    } 
+}
+
+internal HL7V27Field _issuePackaging;
+
+public HL7V27Field IssuePackaging
+{
+    get
+    {
+        if (_issuePackaging != null)
+        {
+            return _issuePackaging;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.9",
+            Type = @"Field",
+            Position = @"IVT.9",
+            Name = @"Issue Packaging",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the primary issue packaging unit by which the inventory supply item can be issued to departments or other locations by the corresponding inventory location specified in IVT-2.  See User-defined Table 0818 – Package in PKG-2 Packaging Units for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.9",
-                            Type = @"Field",
-                            Position = @"IVT.9",
-                            Name = @"Issue Packaging",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the primary issue packaging unit by which the inventory supply item can be issued to departments or other locations by the corresponding inventory location specified in IVT-2.  See User-defined Table 0818 – Package in PKG-2 Packaging Units for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.9.1",
                             Type = @"Component",
@@ -1706,25 +1949,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _issuePackaging = new HL7V27Field
+        {
+            field = message[@"IVT"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_issuePackaging.field.FieldRepetitions != null && _issuePackaging.field.FieldRepetitions.Count > 0)
+        {
+            _issuePackaging.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_issuePackaging, fieldData);
+        }
+
+        return _issuePackaging;
+    } 
+}
+
+internal HL7V27Field _defaultInventoryAssetAccount;
+
+public HL7V27Field DefaultInventoryAssetAccount
+{
+    get
+    {
+        if (_defaultInventoryAssetAccount != null)
+        {
+            return _defaultInventoryAssetAccount;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.10",
+            Type = @"Field",
+            Position = @"IVT.10",
+            Name = @"Default Inventory Asset Account",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the general ledger number for the default inventory asset account used in journal transactions associated with items stored in this inventory location.  The account includes all elements of a general ledger account (a fully qualified general ledger account number).  All elements may include a corporation, department/cost center account, and expense account.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.10",
-                            Type = @"Field",
-                            Position = @"IVT.10",
-                            Name = @"Default Inventory Asset Account",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the general ledger number for the default inventory asset account used in journal transactions associated with items stored in this inventory location.  The account includes all elements of a general ledger account (a fully qualified general ledger account number).  All elements may include a corporation, department/cost center account, and expense account.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.10.1",
                             Type = @"Component",
@@ -1802,25 +2075,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _defaultInventoryAssetAccount = new HL7V27Field
+        {
+            field = message[@"IVT"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_defaultInventoryAssetAccount.field.FieldRepetitions != null && _defaultInventoryAssetAccount.field.FieldRepetitions.Count > 0)
+        {
+            _defaultInventoryAssetAccount.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_defaultInventoryAssetAccount, fieldData);
+        }
+
+        return _defaultInventoryAssetAccount;
+    } 
+}
+
+internal HL7V27Field _patientChargeableIndicator;
+
+public HL7V27Field PatientChargeableIndicator
+{
+    get
+    {
+        if (_patientChargeableIndicator != null)
+        {
+            return _patientChargeableIndicator;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.11",
+            Type = @"Field",
+            Position = @"IVT.11",
+            Name = @"Patient Chargeable Indicator",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"This field indicates whether the item is patient chargeable at this inventory location.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.  ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.11",
-                            Type = @"Field",
-                            Position = @"IVT.11",
-                            Name = @"Patient Chargeable Indicator",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"This field indicates whether the item is patient chargeable at this inventory location.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.  ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.11.1",
                             Type = @"Component",
@@ -2257,25 +2560,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _patientChargeableIndicator = new HL7V27Field
+        {
+            field = message[@"IVT"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientChargeableIndicator.field.FieldRepetitions != null && _patientChargeableIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _patientChargeableIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_patientChargeableIndicator, fieldData);
+        }
+
+        return _patientChargeableIndicator;
+    } 
+}
+
+internal HL7V27Field _transactionCode;
+
+public HL7V27Field TransactionCode
+{
+    get
+    {
+        if (_transactionCode != null)
+        {
+            return _transactionCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.12",
+            Type = @"Field",
+            Position = @"IVT.12",
+            Name = @"Transaction Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0132",
+            TableName = @"Transaction Code",
+            Description = @"This field contains a code that is used by a billing system to charge for the inventory supply item, the descriptive name of the patient charge for that system (as it may appear on a patient's bill or charge labels) and the name of the coding system that assigned the charge code.  Refer to User-defined Table 0132 – Transaction Codes in Chapter 6, Financial Management, for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.12",
-                            Type = @"Field",
-                            Position = @"IVT.12",
-                            Name = @"Transaction Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0132",
-                            TableName = @"Transaction Code",
-                            Description = @"This field contains a code that is used by a billing system to charge for the inventory supply item, the descriptive name of the patient charge for that system (as it may appear on a patient's bill or charge labels) and the name of the coding system that assigned the charge code.  Refer to User-defined Table 0132 – Transaction Codes in Chapter 6, Financial Management, for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.12.1",
                             Type = @"Component",
@@ -2701,25 +3034,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transactionCode = new HL7V27Field
+        {
+            field = message[@"IVT"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionCode.field.FieldRepetitions != null && _transactionCode.field.FieldRepetitions.Count > 0)
+        {
+            _transactionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_transactionCode, fieldData);
+        }
+
+        return _transactionCode;
+    } 
+}
+
+internal HL7V27Field _transactionAmountUnit;
+
+public HL7V27Field TransactionAmountUnit
+{
+    get
+    {
+        if (_transactionAmountUnit != null)
+        {
+            return _transactionAmountUnit;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.13",
+            Type = @"Field",
+            Position = @"IVT.13",
+            Name = @"Transaction Amount - Unit",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the dollar amount charged to patients for this single inventory supply item.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.13",
-                            Type = @"Field",
-                            Position = @"IVT.13",
-                            Name = @"Transaction Amount - Unit",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the dollar amount charged to patients for this single inventory supply item.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.13.1",
                             Type = @"Component",
@@ -3294,25 +3657,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transactionAmountUnit = new HL7V27Field
+        {
+            field = message[@"IVT"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionAmountUnit.field.FieldRepetitions != null && _transactionAmountUnit.field.FieldRepetitions.Count > 0)
+        {
+            _transactionAmountUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_transactionAmountUnit, fieldData);
+        }
+
+        return _transactionAmountUnit;
+    } 
+}
+
+internal HL7V27Field _itemImportanceCode;
+
+public HL7V27Field ItemImportanceCode
+{
+    get
+    {
+        if (_itemImportanceCode != null)
+        {
+            return _itemImportanceCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.14",
+            Type = @"Field",
+            Position = @"IVT.14",
+            Name = @"Item Importance Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0634",
+            TableName = @"Item Importance Codes",
+            Description = @"This field contains an indicator of the level of importance of an item considered for this inventory location, such as an indicator signifying whether the item is considered critical for this inventory location.  Refer to User-defined Table 0634 – Item Importance Codes for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.14",
-                            Type = @"Field",
-                            Position = @"IVT.14",
-                            Name = @"Item Importance Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0634",
-                            TableName = @"Item Importance Codes",
-                            Description = @"This field contains an indicator of the level of importance of an item considered for this inventory location, such as an indicator signifying whether the item is considered critical for this inventory location.  Refer to User-defined Table 0634 – Item Importance Codes for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.14.1",
                             Type = @"Component",
@@ -3738,25 +4131,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _itemImportanceCode = new HL7V27Field
+        {
+            field = message[@"IVT"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_itemImportanceCode.field.FieldRepetitions != null && _itemImportanceCode.field.FieldRepetitions.Count > 0)
+        {
+            _itemImportanceCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_itemImportanceCode, fieldData);
+        }
+
+        return _itemImportanceCode;
+    } 
+}
+
+internal HL7V27Field _stockedItemIndicator;
+
+public HL7V27Field StockedItemIndicator
+{
+    get
+    {
+        if (_stockedItemIndicator != null)
+        {
+            return _stockedItemIndicator;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.15",
+            Type = @"Field",
+            Position = @"IVT.15",
+            Name = @"Stocked Item Indicator",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"This field contains an indicator that identifies whether the item is regularly stocked in this inventory location.  Stock items are ordered regularly as part of the healthcare organization's inventory replenishment cycle.  If the item is not regularly stocked in this inventory location (non-stock item), the item is available to be ordered from this inventory location if requested by a department.   Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.  ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.15",
-                            Type = @"Field",
-                            Position = @"IVT.15",
-                            Name = @"Stocked Item Indicator",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"This field contains an indicator that identifies whether the item is regularly stocked in this inventory location.  Stock items are ordered regularly as part of the healthcare organization's inventory replenishment cycle.  If the item is not regularly stocked in this inventory location (non-stock item), the item is available to be ordered from this inventory location if requested by a department.   Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.  ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.15.1",
                             Type = @"Component",
@@ -4193,25 +4616,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _stockedItemIndicator = new HL7V27Field
+        {
+            field = message[@"IVT"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_stockedItemIndicator.field.FieldRepetitions != null && _stockedItemIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _stockedItemIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_stockedItemIndicator, fieldData);
+        }
+
+        return _stockedItemIndicator;
+    } 
+}
+
+internal HL7V27Field _consignmentItemIndicator;
+
+public HL7V27Field ConsignmentItemIndicator
+{
+    get
+    {
+        if (_consignmentItemIndicator != null)
+        {
+            return _consignmentItemIndicator;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.16",
+            Type = @"Field",
+            Position = @"IVT.16",
+            Name = @"Consignment Item Indicator",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"This field contains an indicator signifying whether the inventory supply item is purchased on consignment. If the item is purchased on consignment, the healthcare organization does not pay for the inventory supply item until it is used.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.16",
-                            Type = @"Field",
-                            Position = @"IVT.16",
-                            Name = @"Consignment Item Indicator",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"This field contains an indicator signifying whether the inventory supply item is purchased on consignment. If the item is purchased on consignment, the healthcare organization does not pay for the inventory supply item until it is used.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.16.1",
                             Type = @"Component",
@@ -4648,25 +5101,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _consignmentItemIndicator = new HL7V27Field
+        {
+            field = message[@"IVT"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consignmentItemIndicator.field.FieldRepetitions != null && _consignmentItemIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _consignmentItemIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_consignmentItemIndicator, fieldData);
+        }
+
+        return _consignmentItemIndicator;
+    } 
+}
+
+internal HL7V27Field _reusableItemIndicator;
+
+public HL7V27Field ReusableItemIndicator
+{
+    get
+    {
+        if (_reusableItemIndicator != null)
+        {
+            return _reusableItemIndicator;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.17",
+            Type = @"Field",
+            Position = @"IVT.17",
+            Name = @"Reusable Item Indicator",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"This field contains an indicator signifying that the inventory supply item is reusable, for example, after sterilization.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.  ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.17",
-                            Type = @"Field",
-                            Position = @"IVT.17",
-                            Name = @"Reusable Item Indicator",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"This field contains an indicator signifying that the inventory supply item is reusable, for example, after sterilization.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.  ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.17.1",
                             Type = @"Component",
@@ -5103,25 +5586,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _reusableItemIndicator = new HL7V27Field
+        {
+            field = message[@"IVT"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reusableItemIndicator.field.FieldRepetitions != null && _reusableItemIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _reusableItemIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_reusableItemIndicator, fieldData);
+        }
+
+        return _reusableItemIndicator;
+    } 
+}
+
+internal HL7V27Field _reusableCost;
+
+public HL7V27Field ReusableCost
+{
+    get
+    {
+        if (_reusableCost != null)
+        {
+            return _reusableCost;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.18",
+            Type = @"Field",
+            Position = @"IVT.18",
+            Name = @"Reusable Cost",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the issue cost charged to a department or patient for a reusable item.  This cost is calculated based on the cost of reprocessing the item.  Examples of reusable items are linens, restraints, and procedure packs (custom for specific procedures).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.18",
-                            Type = @"Field",
-                            Position = @"IVT.18",
-                            Name = @"Reusable Cost",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the issue cost charged to a department or patient for a reusable item.  This cost is calculated based on the cost of reprocessing the item.  Examples of reusable items are linens, restraints, and procedure packs (custom for specific procedures).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.18.1",
                             Type = @"Component",
@@ -5696,25 +6209,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _reusableCost = new HL7V27Field
+        {
+            field = message[@"IVT"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reusableCost.field.FieldRepetitions != null && _reusableCost.field.FieldRepetitions.Count > 0)
+        {
+            _reusableCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_reusableCost, fieldData);
+        }
+
+        return _reusableCost;
+    } 
+}
+
+internal HL7V27Field _substituteItemIdentifier;
+
+public HL7V27Field SubstituteItemIdentifier
+{
+    get
+    {
+        if (_substituteItemIdentifier != null)
+        {
+            return _substituteItemIdentifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.19",
+            Type = @"Field",
+            Position = @"IVT.19",
+            Name = @"Substitute Item Identifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The substitute item is an item that is recommended as a substitute for the corresponding item in ITM-1.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.19",
-                            Type = @"Field",
-                            Position = @"IVT.19",
-                            Name = @"Substitute Item Identifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The substitute item is an item that is recommended as a substitute for the corresponding item in ITM-1.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.19.1",
                             Type = @"Component",
@@ -5792,25 +6335,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _substituteItemIdentifier = new HL7V27Field
+        {
+            field = message[@"IVT"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_substituteItemIdentifier.field.FieldRepetitions != null && _substituteItemIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _substituteItemIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_substituteItemIdentifier, fieldData);
+        }
+
+        return _substituteItemIdentifier;
+    } 
+}
+
+internal HL7V27Field _latexfreeSubstituteItemIdentifier;
+
+public HL7V27Field LatexfreeSubstituteItemIdentifier
+{
+    get
+    {
+        if (_latexfreeSubstituteItemIdentifier != null)
+        {
+            return _latexfreeSubstituteItemIdentifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.20",
+            Type = @"Field",
+            Position = @"IVT.20",
+            Name = @"Latex-free Substitute Item Identifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The latex-free substitute item is an item that is latex-free, recommended as a substitute for the corresponding item in the ITM-1 segment when a latex-free item is needed.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.20",
-                            Type = @"Field",
-                            Position = @"IVT.20",
-                            Name = @"Latex-free Substitute Item Identifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The latex-free substitute item is an item that is latex-free, recommended as a substitute for the corresponding item in the ITM-1 segment when a latex-free item is needed.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.20.1",
                             Type = @"Component",
@@ -5888,25 +6461,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _latexfreeSubstituteItemIdentifier = new HL7V27Field
+        {
+            field = message[@"IVT"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_latexfreeSubstituteItemIdentifier.field.FieldRepetitions != null && _latexfreeSubstituteItemIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _latexfreeSubstituteItemIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_latexfreeSubstituteItemIdentifier, fieldData);
+        }
+
+        return _latexfreeSubstituteItemIdentifier;
+    } 
+}
+
+internal HL7V27Field _recommendedReorderTheory;
+
+public HL7V27Field RecommendedReorderTheory
+{
+    get
+    {
+        if (_recommendedReorderTheory != null)
+        {
+            return _recommendedReorderTheory;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.21",
+            Type = @"Field",
+            Position = @"IVT.21",
+            Name = @"Recommended Reorder Theory",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0642",
+            TableName = @"Reorder Theory Codes",
+            Description = @"This field contains the method used to calculate a recommendation for when and how much of an inventory supply item to reorder.  Refer to User-defined Table 0642 – Reorder Theory Codes for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVT.21",
-                            Type = @"Field",
-                            Position = @"IVT.21",
-                            Name = @"Recommended Reorder Theory",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0642",
-                            TableName = @"Reorder Theory Codes",
-                            Description = @"This field contains the method used to calculate a recommendation for when and how much of an inventory supply item to reorder.  Refer to User-defined Table 0642 – Reorder Theory Codes for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.21.1",
                             Type = @"Component",
@@ -6332,99 +6935,237 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVT.22",
-                            Type = @"Field",
-                            Position = @"IVT.22",
-                            Name = @"Recommended Safety Stock Days",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number of days for stock to be kept on-hand to cushion against a stock-out for this item.  ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVT.23",
-                            Type = @"Field",
-                            Position = @"IVT.23",
-                            Name = @"Recommended Maximum Days Inventory",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the maximum number of days of inventory to have on-hand at any one point in time.  This value is used in calculations of recommended order quantities",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVT.24",
-                            Type = @"Field",
-                            Position = @"IVT.24",
-                            Name = @"Recommended Order Point",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the on-hand quantity referencing the recommended level of inventory at which the item should be re-ordered.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVT.25",
-                            Type = @"Field",
-                            Position = @"IVT.25",
-                            Name = @"Recommended Order Amount",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the quantity that the system should recommend to order when the on-hand quantity is equal to or less than the reorder point.  The quantity should be set at the Order Unit of Measure.  ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVT.26",
-                            Type = @"Field",
-                            Position = @"IVT.26",
-                            Name = @"Operating Room Par Level Indicator",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"This field contains an indicator that determines whether on-hands inventory will be decremented when performing Preference List Issues. Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.
+                        }
+        }
+
+        _recommendedReorderTheory = new HL7V27Field
+        {
+            field = message[@"IVT"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_recommendedReorderTheory.field.FieldRepetitions != null && _recommendedReorderTheory.field.FieldRepetitions.Count > 0)
+        {
+            _recommendedReorderTheory.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_recommendedReorderTheory, fieldData);
+        }
+
+        return _recommendedReorderTheory;
+    } 
+}
+
+internal HL7V27Field _recommendedSafetyStockDays;
+
+public HL7V27Field RecommendedSafetyStockDays
+{
+    get
+    {
+        if (_recommendedSafetyStockDays != null)
+        {
+            return _recommendedSafetyStockDays;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.22",
+            Type = @"Field",
+            Position = @"IVT.22",
+            Name = @"Recommended Safety Stock Days",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number of days for stock to be kept on-hand to cushion against a stock-out for this item.  ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _recommendedSafetyStockDays = new HL7V27Field
+        {
+            field = message[@"IVT"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_recommendedSafetyStockDays.field.FieldRepetitions != null && _recommendedSafetyStockDays.field.FieldRepetitions.Count > 0)
+        {
+            _recommendedSafetyStockDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_recommendedSafetyStockDays, fieldData);
+        }
+
+        return _recommendedSafetyStockDays;
+    } 
+}
+
+internal HL7V27Field _recommendedMaximumDaysInventory;
+
+public HL7V27Field RecommendedMaximumDaysInventory
+{
+    get
+    {
+        if (_recommendedMaximumDaysInventory != null)
+        {
+            return _recommendedMaximumDaysInventory;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.23",
+            Type = @"Field",
+            Position = @"IVT.23",
+            Name = @"Recommended Maximum Days Inventory",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the maximum number of days of inventory to have on-hand at any one point in time.  This value is used in calculations of recommended order quantities",
+            Sample = @"",
+            Fields = null
+        }
+
+        _recommendedMaximumDaysInventory = new HL7V27Field
+        {
+            field = message[@"IVT"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_recommendedMaximumDaysInventory.field.FieldRepetitions != null && _recommendedMaximumDaysInventory.field.FieldRepetitions.Count > 0)
+        {
+            _recommendedMaximumDaysInventory.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_recommendedMaximumDaysInventory, fieldData);
+        }
+
+        return _recommendedMaximumDaysInventory;
+    } 
+}
+
+internal HL7V27Field _recommendedOrderPoint;
+
+public HL7V27Field RecommendedOrderPoint
+{
+    get
+    {
+        if (_recommendedOrderPoint != null)
+        {
+            return _recommendedOrderPoint;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.24",
+            Type = @"Field",
+            Position = @"IVT.24",
+            Name = @"Recommended Order Point",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the on-hand quantity referencing the recommended level of inventory at which the item should be re-ordered.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _recommendedOrderPoint = new HL7V27Field
+        {
+            field = message[@"IVT"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_recommendedOrderPoint.field.FieldRepetitions != null && _recommendedOrderPoint.field.FieldRepetitions.Count > 0)
+        {
+            _recommendedOrderPoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_recommendedOrderPoint, fieldData);
+        }
+
+        return _recommendedOrderPoint;
+    } 
+}
+
+internal HL7V27Field _recommendedOrderAmount;
+
+public HL7V27Field RecommendedOrderAmount
+{
+    get
+    {
+        if (_recommendedOrderAmount != null)
+        {
+            return _recommendedOrderAmount;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.25",
+            Type = @"Field",
+            Position = @"IVT.25",
+            Name = @"Recommended Order Amount",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the quantity that the system should recommend to order when the on-hand quantity is equal to or less than the reorder point.  The quantity should be set at the Order Unit of Measure.  ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _recommendedOrderAmount = new HL7V27Field
+        {
+            field = message[@"IVT"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_recommendedOrderAmount.field.FieldRepetitions != null && _recommendedOrderAmount.field.FieldRepetitions.Count > 0)
+        {
+            _recommendedOrderAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_recommendedOrderAmount, fieldData);
+        }
+
+        return _recommendedOrderAmount;
+    } 
+}
+
+internal HL7V27Field _operatingRoomParLevelIndicator;
+
+public HL7V27Field OperatingRoomParLevelIndicator
+{
+    get
+    {
+        if (_operatingRoomParLevelIndicator != null)
+        {
+            return _operatingRoomParLevelIndicator;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"IVT.26",
+            Type = @"Field",
+            Position = @"IVT.26",
+            Name = @"Operating Room Par Level Indicator",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"This field contains an indicator that determines whether on-hands inventory will be decremented when performing Preference List Issues. Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.
 
 If valued with a 'Y', this indicates to the system that the item to be issued is contained in an OR Par Level area (in an actual Operating Room) and not an Operating Room inventory area; therefore, on-hands of the Operation Room inventory area will not be decremented. If valued with a 'N', the item is contained in an Operating Room inventory location and on-hands will be decremented when performing Preference List Issues.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"IVT.26.1",
                             Type = @"Component",
@@ -6861,1082 +7602,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentIVT(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field setIdIvt;
-
-public HL7V27Field SetIdIvt
-{
-    get
-    {
-        if (setIdIvt != null)
-        {
-            return setIdIvt;
-        }
-
-        setIdIvt = new HL7V27Field
-        {
-            field = message[@"IVT"][1],
-            Id = @"IVT.1",
-            Type = @"Field",
-            Position = @"IVT.1",
-            Name = @"Set Id - Ivt",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a sequential number that identifies this segment within a given Material Location segment group. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdIvt.field.FieldRepetitions != null && setIdIvt.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdIvt.Id));
-            setIdIvt.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(setIdIvt, fieldData);
-        }
-
-        return setIdIvt;
-    } 
-}
-
-internal HL7V27Field inventoryLocationIdentifier;
-
-public HL7V27Field InventoryLocationIdentifier
-{
-    get
-    {
-        if (inventoryLocationIdentifier != null)
-        {
-            return inventoryLocationIdentifier;
-        }
-
-        inventoryLocationIdentifier = new HL7V27Field
-        {
-            field = message[@"IVT"][2],
-            Id = @"IVT.2",
-            Type = @"Field",
-            Position = @"IVT.2",
-            Name = @"Inventory Location Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the code identifying an inventory supply location that stocks or purchases this item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryLocationIdentifier.field.FieldRepetitions != null && inventoryLocationIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryLocationIdentifier.Id));
-            inventoryLocationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(inventoryLocationIdentifier, fieldData);
-        }
-
-        return inventoryLocationIdentifier;
-    } 
-}
-
-internal HL7V27Field inventoryLocationName;
-
-public HL7V27Field InventoryLocationName
-{
-    get
-    {
-        if (inventoryLocationName != null)
-        {
-            return inventoryLocationName;
-        }
-
-        inventoryLocationName = new HL7V27Field
-        {
-            field = message[@"IVT"][3],
-            Id = @"IVT.3",
-            Type = @"Field",
-            Position = @"IVT.3",
-            Name = @"Inventory Location Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the inventory supply location identified in IVT-2.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryLocationName.field.FieldRepetitions != null && inventoryLocationName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryLocationName.Id));
-            inventoryLocationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(inventoryLocationName, fieldData);
-        }
-
-        return inventoryLocationName;
-    } 
-}
-
-internal HL7V27Field sourceLocationIdentifier;
-
-public HL7V27Field SourceLocationIdentifier
-{
-    get
-    {
-        if (sourceLocationIdentifier != null)
-        {
-            return sourceLocationIdentifier;
-        }
-
-        sourceLocationIdentifier = new HL7V27Field
-        {
-            field = message[@"IVT"][4],
-            Id = @"IVT.4",
-            Type = @"Field",
-            Position = @"IVT.4",
-            Name = @"Source Location Identifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the code identifying the source location that purchases and stocks items in addition to filling supply requests for the location specified in IVT-2.  For example, IVT-2 may be considered Central Supply, an inventory location that issues to departments.  IVT-3 may be considered General Stores, a supply location that most items are received into when delivered to the healthcare facility.  General Stores would then replenish the Central Supply inventory.  Central Supply would then issue supplies to departments based on requests for supplies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sourceLocationIdentifier.field.FieldRepetitions != null && sourceLocationIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sourceLocationIdentifier.Id));
-            sourceLocationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(sourceLocationIdentifier, fieldData);
-        }
-
-        return sourceLocationIdentifier;
-    } 
-}
-
-internal HL7V27Field sourceLocationName;
-
-public HL7V27Field SourceLocationName
-{
-    get
-    {
-        if (sourceLocationName != null)
-        {
-            return sourceLocationName;
-        }
-
-        sourceLocationName = new HL7V27Field
-        {
-            field = message[@"IVT"][5],
-            Id = @"IVT.5",
-            Type = @"Field",
-            Position = @"IVT.5",
-            Name = @"Source Location Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the source supply location identified in IVT-4.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sourceLocationName.field.FieldRepetitions != null && sourceLocationName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sourceLocationName.Id));
-            sourceLocationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(sourceLocationName, fieldData);
-        }
-
-        return sourceLocationName;
-    } 
-}
-
-internal HL7V27Field itemStatus;
-
-public HL7V27Field ItemStatus
-{
-    get
-    {
-        if (itemStatus != null)
-        {
-            return itemStatus;
-        }
-
-        itemStatus = new HL7V27Field
-        {
-            field = message[@"IVT"][6],
-            Id = @"IVT.6",
-            Type = @"Field",
-            Position = @"IVT.6",
-            Name = @"Item Status",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0625",
-            TableName = @"Item Status Codes",
-            Description = @"This field contains the status that applies to the inventory supply item for the inventory location specified in IVT-2.  Refer to User-defined Table 0625 – Item Status Codes for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (itemStatus.field.FieldRepetitions != null && itemStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(itemStatus.Id));
-            itemStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(itemStatus, fieldData);
-        }
-
-        return itemStatus;
-    } 
-}
-
-internal HL7V27Field binLocationIdentifier;
-
-public HL7V27Field BinLocationIdentifier
-{
-    get
-    {
-        if (binLocationIdentifier != null)
-        {
-            return binLocationIdentifier;
-        }
-
-        binLocationIdentifier = new HL7V27Field
-        {
-            field = message[@"IVT"][7],
-            Id = @"IVT.7",
-            Type = @"Field",
-            Position = @"IVT.7",
-            Name = @"Bin Location Identifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"A unique code assigned to a bin location located within the inventory location in IVT-2, where the inventory supply item may be stored.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (binLocationIdentifier.field.FieldRepetitions != null && binLocationIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(binLocationIdentifier.Id));
-            binLocationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(binLocationIdentifier, fieldData);
-        }
-
-        return binLocationIdentifier;
-    } 
-}
-
-internal HL7V27Field orderPackaging;
-
-public HL7V27Field OrderPackaging
-{
-    get
-    {
-        if (orderPackaging != null)
-        {
-            return orderPackaging;
-        }
-
-        orderPackaging = new HL7V27Field
-        {
-            field = message[@"IVT"][8],
-            Id = @"IVT.8",
-            Type = @"Field",
-            Position = @"IVT.8",
-            Name = @"Order Packaging",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0818",
-            TableName = @"Package",
-            Description = @"This field contains the primary packaging unit by which the item can be requisitioned or ordered to replenish the inventory supply item for the corresponding inventory location specified in IVT-2.  See User-defined Table 0818 – Package in PKG-2 Packaging Units for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (orderPackaging.field.FieldRepetitions != null && orderPackaging.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderPackaging.Id));
-            orderPackaging.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(orderPackaging, fieldData);
-        }
-
-        return orderPackaging;
-    } 
-}
-
-internal HL7V27Field issuePackaging;
-
-public HL7V27Field IssuePackaging
-{
-    get
-    {
-        if (issuePackaging != null)
-        {
-            return issuePackaging;
-        }
-
-        issuePackaging = new HL7V27Field
-        {
-            field = message[@"IVT"][9],
-            Id = @"IVT.9",
-            Type = @"Field",
-            Position = @"IVT.9",
-            Name = @"Issue Packaging",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the primary issue packaging unit by which the inventory supply item can be issued to departments or other locations by the corresponding inventory location specified in IVT-2.  See User-defined Table 0818 – Package in PKG-2 Packaging Units for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (issuePackaging.field.FieldRepetitions != null && issuePackaging.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(issuePackaging.Id));
-            issuePackaging.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(issuePackaging, fieldData);
-        }
-
-        return issuePackaging;
-    } 
-}
-
-internal HL7V27Field defaultInventoryAssetAccount;
-
-public HL7V27Field DefaultInventoryAssetAccount
-{
-    get
-    {
-        if (defaultInventoryAssetAccount != null)
-        {
-            return defaultInventoryAssetAccount;
-        }
-
-        defaultInventoryAssetAccount = new HL7V27Field
-        {
-            field = message[@"IVT"][10],
-            Id = @"IVT.10",
-            Type = @"Field",
-            Position = @"IVT.10",
-            Name = @"Default Inventory Asset Account",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the general ledger number for the default inventory asset account used in journal transactions associated with items stored in this inventory location.  The account includes all elements of a general ledger account (a fully qualified general ledger account number).  All elements may include a corporation, department/cost center account, and expense account.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (defaultInventoryAssetAccount.field.FieldRepetitions != null && defaultInventoryAssetAccount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(defaultInventoryAssetAccount.Id));
-            defaultInventoryAssetAccount.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(defaultInventoryAssetAccount, fieldData);
-        }
-
-        return defaultInventoryAssetAccount;
-    } 
-}
-
-internal HL7V27Field patientChargeableIndicator;
-
-public HL7V27Field PatientChargeableIndicator
-{
-    get
-    {
-        if (patientChargeableIndicator != null)
-        {
-            return patientChargeableIndicator;
-        }
-
-        patientChargeableIndicator = new HL7V27Field
-        {
-            field = message[@"IVT"][11],
-            Id = @"IVT.11",
-            Type = @"Field",
-            Position = @"IVT.11",
-            Name = @"Patient Chargeable Indicator",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"This field indicates whether the item is patient chargeable at this inventory location.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientChargeableIndicator.field.FieldRepetitions != null && patientChargeableIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientChargeableIndicator.Id));
-            patientChargeableIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(patientChargeableIndicator, fieldData);
-        }
-
-        return patientChargeableIndicator;
-    } 
-}
-
-internal HL7V27Field transactionCode;
-
-public HL7V27Field TransactionCode
-{
-    get
-    {
-        if (transactionCode != null)
-        {
-            return transactionCode;
-        }
-
-        transactionCode = new HL7V27Field
-        {
-            field = message[@"IVT"][12],
-            Id = @"IVT.12",
-            Type = @"Field",
-            Position = @"IVT.12",
-            Name = @"Transaction Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0132",
-            TableName = @"Transaction Code",
-            Description = @"This field contains a code that is used by a billing system to charge for the inventory supply item, the descriptive name of the patient charge for that system (as it may appear on a patient's bill or charge labels) and the name of the coding system that assigned the charge code.  Refer to User-defined Table 0132 – Transaction Codes in Chapter 6, Financial Management, for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionCode.field.FieldRepetitions != null && transactionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionCode.Id));
-            transactionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(transactionCode, fieldData);
-        }
-
-        return transactionCode;
-    } 
-}
-
-internal HL7V27Field transactionAmountUnit;
-
-public HL7V27Field TransactionAmountUnit
-{
-    get
-    {
-        if (transactionAmountUnit != null)
-        {
-            return transactionAmountUnit;
-        }
-
-        transactionAmountUnit = new HL7V27Field
-        {
-            field = message[@"IVT"][13],
-            Id = @"IVT.13",
-            Type = @"Field",
-            Position = @"IVT.13",
-            Name = @"Transaction Amount - Unit",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the dollar amount charged to patients for this single inventory supply item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionAmountUnit.field.FieldRepetitions != null && transactionAmountUnit.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionAmountUnit.Id));
-            transactionAmountUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(transactionAmountUnit, fieldData);
-        }
-
-        return transactionAmountUnit;
-    } 
-}
-
-internal HL7V27Field itemImportanceCode;
-
-public HL7V27Field ItemImportanceCode
-{
-    get
-    {
-        if (itemImportanceCode != null)
-        {
-            return itemImportanceCode;
-        }
-
-        itemImportanceCode = new HL7V27Field
-        {
-            field = message[@"IVT"][14],
-            Id = @"IVT.14",
-            Type = @"Field",
-            Position = @"IVT.14",
-            Name = @"Item Importance Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0634",
-            TableName = @"Item Importance Codes",
-            Description = @"This field contains an indicator of the level of importance of an item considered for this inventory location, such as an indicator signifying whether the item is considered critical for this inventory location.  Refer to User-defined Table 0634 – Item Importance Codes for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (itemImportanceCode.field.FieldRepetitions != null && itemImportanceCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(itemImportanceCode.Id));
-            itemImportanceCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(itemImportanceCode, fieldData);
-        }
-
-        return itemImportanceCode;
-    } 
-}
-
-internal HL7V27Field stockedItemIndicator;
-
-public HL7V27Field StockedItemIndicator
-{
-    get
-    {
-        if (stockedItemIndicator != null)
-        {
-            return stockedItemIndicator;
-        }
-
-        stockedItemIndicator = new HL7V27Field
-        {
-            field = message[@"IVT"][15],
-            Id = @"IVT.15",
-            Type = @"Field",
-            Position = @"IVT.15",
-            Name = @"Stocked Item Indicator",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"This field contains an indicator that identifies whether the item is regularly stocked in this inventory location.  Stock items are ordered regularly as part of the healthcare organization's inventory replenishment cycle.  If the item is not regularly stocked in this inventory location (non-stock item), the item is available to be ordered from this inventory location if requested by a department.   Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (stockedItemIndicator.field.FieldRepetitions != null && stockedItemIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(stockedItemIndicator.Id));
-            stockedItemIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(stockedItemIndicator, fieldData);
-        }
-
-        return stockedItemIndicator;
-    } 
-}
-
-internal HL7V27Field consignmentItemIndicator;
-
-public HL7V27Field ConsignmentItemIndicator
-{
-    get
-    {
-        if (consignmentItemIndicator != null)
-        {
-            return consignmentItemIndicator;
-        }
-
-        consignmentItemIndicator = new HL7V27Field
-        {
-            field = message[@"IVT"][16],
-            Id = @"IVT.16",
-            Type = @"Field",
-            Position = @"IVT.16",
-            Name = @"Consignment Item Indicator",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"This field contains an indicator signifying whether the inventory supply item is purchased on consignment. If the item is purchased on consignment, the healthcare organization does not pay for the inventory supply item until it is used.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consignmentItemIndicator.field.FieldRepetitions != null && consignmentItemIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consignmentItemIndicator.Id));
-            consignmentItemIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(consignmentItemIndicator, fieldData);
-        }
-
-        return consignmentItemIndicator;
-    } 
-}
-
-internal HL7V27Field reusableItemIndicator;
-
-public HL7V27Field ReusableItemIndicator
-{
-    get
-    {
-        if (reusableItemIndicator != null)
-        {
-            return reusableItemIndicator;
-        }
-
-        reusableItemIndicator = new HL7V27Field
-        {
-            field = message[@"IVT"][17],
-            Id = @"IVT.17",
-            Type = @"Field",
-            Position = @"IVT.17",
-            Name = @"Reusable Item Indicator",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"This field contains an indicator signifying that the inventory supply item is reusable, for example, after sterilization.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reusableItemIndicator.field.FieldRepetitions != null && reusableItemIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reusableItemIndicator.Id));
-            reusableItemIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(reusableItemIndicator, fieldData);
-        }
-
-        return reusableItemIndicator;
-    } 
-}
-
-internal HL7V27Field reusableCost;
-
-public HL7V27Field ReusableCost
-{
-    get
-    {
-        if (reusableCost != null)
-        {
-            return reusableCost;
-        }
-
-        reusableCost = new HL7V27Field
-        {
-            field = message[@"IVT"][18],
-            Id = @"IVT.18",
-            Type = @"Field",
-            Position = @"IVT.18",
-            Name = @"Reusable Cost",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the issue cost charged to a department or patient for a reusable item.  This cost is calculated based on the cost of reprocessing the item.  Examples of reusable items are linens, restraints, and procedure packs (custom for specific procedures).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reusableCost.field.FieldRepetitions != null && reusableCost.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reusableCost.Id));
-            reusableCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(reusableCost, fieldData);
-        }
-
-        return reusableCost;
-    } 
-}
-
-internal HL7V27Field substituteItemIdentifier;
-
-public HL7V27Field SubstituteItemIdentifier
-{
-    get
-    {
-        if (substituteItemIdentifier != null)
-        {
-            return substituteItemIdentifier;
-        }
-
-        substituteItemIdentifier = new HL7V27Field
-        {
-            field = message[@"IVT"][19],
-            Id = @"IVT.19",
-            Type = @"Field",
-            Position = @"IVT.19",
-            Name = @"Substitute Item Identifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The substitute item is an item that is recommended as a substitute for the corresponding item in ITM-1.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (substituteItemIdentifier.field.FieldRepetitions != null && substituteItemIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substituteItemIdentifier.Id));
-            substituteItemIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(substituteItemIdentifier, fieldData);
-        }
-
-        return substituteItemIdentifier;
-    } 
-}
-
-internal HL7V27Field latexfreeSubstituteItemIdentifier;
-
-public HL7V27Field LatexfreeSubstituteItemIdentifier
-{
-    get
-    {
-        if (latexfreeSubstituteItemIdentifier != null)
-        {
-            return latexfreeSubstituteItemIdentifier;
-        }
-
-        latexfreeSubstituteItemIdentifier = new HL7V27Field
-        {
-            field = message[@"IVT"][20],
-            Id = @"IVT.20",
-            Type = @"Field",
-            Position = @"IVT.20",
-            Name = @"Latex-free Substitute Item Identifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The latex-free substitute item is an item that is latex-free, recommended as a substitute for the corresponding item in the ITM-1 segment when a latex-free item is needed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (latexfreeSubstituteItemIdentifier.field.FieldRepetitions != null && latexfreeSubstituteItemIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(latexfreeSubstituteItemIdentifier.Id));
-            latexfreeSubstituteItemIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(latexfreeSubstituteItemIdentifier, fieldData);
-        }
-
-        return latexfreeSubstituteItemIdentifier;
-    } 
-}
-
-internal HL7V27Field recommendedReorderTheory;
-
-public HL7V27Field RecommendedReorderTheory
-{
-    get
-    {
-        if (recommendedReorderTheory != null)
-        {
-            return recommendedReorderTheory;
-        }
-
-        recommendedReorderTheory = new HL7V27Field
-        {
-            field = message[@"IVT"][21],
-            Id = @"IVT.21",
-            Type = @"Field",
-            Position = @"IVT.21",
-            Name = @"Recommended Reorder Theory",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0642",
-            TableName = @"Reorder Theory Codes",
-            Description = @"This field contains the method used to calculate a recommendation for when and how much of an inventory supply item to reorder.  Refer to User-defined Table 0642 – Reorder Theory Codes for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (recommendedReorderTheory.field.FieldRepetitions != null && recommendedReorderTheory.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(recommendedReorderTheory.Id));
-            recommendedReorderTheory.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(recommendedReorderTheory, fieldData);
-        }
-
-        return recommendedReorderTheory;
-    } 
-}
-
-internal HL7V27Field recommendedSafetyStockDays;
-
-public HL7V27Field RecommendedSafetyStockDays
-{
-    get
-    {
-        if (recommendedSafetyStockDays != null)
-        {
-            return recommendedSafetyStockDays;
-        }
-
-        recommendedSafetyStockDays = new HL7V27Field
-        {
-            field = message[@"IVT"][22],
-            Id = @"IVT.22",
-            Type = @"Field",
-            Position = @"IVT.22",
-            Name = @"Recommended Safety Stock Days",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number of days for stock to be kept on-hand to cushion against a stock-out for this item.  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (recommendedSafetyStockDays.field.FieldRepetitions != null && recommendedSafetyStockDays.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(recommendedSafetyStockDays.Id));
-            recommendedSafetyStockDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(recommendedSafetyStockDays, fieldData);
-        }
-
-        return recommendedSafetyStockDays;
-    } 
-}
-
-internal HL7V27Field recommendedMaximumDaysInventory;
-
-public HL7V27Field RecommendedMaximumDaysInventory
-{
-    get
-    {
-        if (recommendedMaximumDaysInventory != null)
-        {
-            return recommendedMaximumDaysInventory;
-        }
-
-        recommendedMaximumDaysInventory = new HL7V27Field
-        {
-            field = message[@"IVT"][23],
-            Id = @"IVT.23",
-            Type = @"Field",
-            Position = @"IVT.23",
-            Name = @"Recommended Maximum Days Inventory",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the maximum number of days of inventory to have on-hand at any one point in time.  This value is used in calculations of recommended order quantities",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (recommendedMaximumDaysInventory.field.FieldRepetitions != null && recommendedMaximumDaysInventory.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(recommendedMaximumDaysInventory.Id));
-            recommendedMaximumDaysInventory.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(recommendedMaximumDaysInventory, fieldData);
-        }
-
-        return recommendedMaximumDaysInventory;
-    } 
-}
-
-internal HL7V27Field recommendedOrderPoint;
-
-public HL7V27Field RecommendedOrderPoint
-{
-    get
-    {
-        if (recommendedOrderPoint != null)
-        {
-            return recommendedOrderPoint;
-        }
-
-        recommendedOrderPoint = new HL7V27Field
-        {
-            field = message[@"IVT"][24],
-            Id = @"IVT.24",
-            Type = @"Field",
-            Position = @"IVT.24",
-            Name = @"Recommended Order Point",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the on-hand quantity referencing the recommended level of inventory at which the item should be re-ordered.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (recommendedOrderPoint.field.FieldRepetitions != null && recommendedOrderPoint.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(recommendedOrderPoint.Id));
-            recommendedOrderPoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(recommendedOrderPoint, fieldData);
-        }
-
-        return recommendedOrderPoint;
-    } 
-}
-
-internal HL7V27Field recommendedOrderAmount;
-
-public HL7V27Field RecommendedOrderAmount
-{
-    get
-    {
-        if (recommendedOrderAmount != null)
-        {
-            return recommendedOrderAmount;
-        }
-
-        recommendedOrderAmount = new HL7V27Field
-        {
-            field = message[@"IVT"][25],
-            Id = @"IVT.25",
-            Type = @"Field",
-            Position = @"IVT.25",
-            Name = @"Recommended Order Amount",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the quantity that the system should recommend to order when the on-hand quantity is equal to or less than the reorder point.  The quantity should be set at the Order Unit of Measure.  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (recommendedOrderAmount.field.FieldRepetitions != null && recommendedOrderAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(recommendedOrderAmount.Id));
-            recommendedOrderAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(recommendedOrderAmount, fieldData);
-        }
-
-        return recommendedOrderAmount;
-    } 
-}
-
-internal HL7V27Field operatingRoomParLevelIndicator;
-
-public HL7V27Field OperatingRoomParLevelIndicator
-{
-    get
-    {
-        if (operatingRoomParLevelIndicator != null)
-        {
-            return operatingRoomParLevelIndicator;
-        }
-
-        operatingRoomParLevelIndicator = new HL7V27Field
+        _operatingRoomParLevelIndicator = new HL7V27Field
         {
             field = message[@"IVT"][26],
-            Id = @"IVT.26",
-            Type = @"Field",
-            Position = @"IVT.26",
-            Name = @"Operating Room Par Level Indicator",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"This field contains an indicator that determines whether on-hands inventory will be decremented when performing Preference List Issues. Refer to HL7 Table 0532 - Expanded Yes/no Indicator Table in Chapter 2C, Code Tables, for valid values.
-
-If valued with a 'Y', this indicates to the system that the item to be issued is contained in an OR Par Level area (in an actual Operating Room) and not an Operating Room inventory area; therefore, on-hands of the Operation Room inventory area will not be decremented. If valued with a 'N', the item is contained in an Operating Room inventory location and on-hands will be decremented when performing Preference List Issues.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (operatingRoomParLevelIndicator.field.FieldRepetitions != null && operatingRoomParLevelIndicator.field.FieldRepetitions.Count > 0)
+        if (_operatingRoomParLevelIndicator.field.FieldRepetitions != null && _operatingRoomParLevelIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(operatingRoomParLevelIndicator.Id));
-            operatingRoomParLevelIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(operatingRoomParLevelIndicator, fieldData);
+            _operatingRoomParLevelIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_operatingRoomParLevelIndicator, fieldData);
         }
 
-        return operatingRoomParLevelIndicator;
+        return _operatingRoomParLevelIndicator;
     } 
 }
     }

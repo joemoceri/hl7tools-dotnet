@@ -25,52 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"PD1.1",
-                            Type = @"Field",
-                            Position = @"PD1.1",
-                            Name = @"PD1.1",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentPD1(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field pD11;
+        internal HL7V21Field _pD11;
 
 public HL7V21Field PD11
 {
     get
     {
-        if (pD11 != null)
+        if (_pD11 != null)
         {
-            return pD11;
+            return _pD11;
         }
 
-        pD11 = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PD1"][1],
             Id = @"PD1.1",
             Type = @"Field",
             Position = @"PD1.1",
@@ -84,17 +56,22 @@ public HL7V21Field PD11
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _pD11 = new HL7V21Field
+        {
+            field = message[@"PD1"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (pD11.field.FieldRepetitions != null && pD11.field.FieldRepetitions.Count > 0)
+        if (_pD11.field.FieldRepetitions != null && _pD11.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pD11.Id));
-            pD11.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(pD11, fieldData);
+            _pD11.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_pD11, fieldData);
         }
 
-        return pD11;
+        return _pD11;
     } 
 }
     }

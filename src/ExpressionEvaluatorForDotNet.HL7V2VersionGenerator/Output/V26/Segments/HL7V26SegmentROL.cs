@@ -29,30 +29,42 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"ROL.1",
-                            Type = @"Field",
-                            Position = @"ROL.1",
-                            Name = @"Role Instance ID",
-                            Length = 60,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a unique identifier of the specific role record.
+        public HL7V26SegmentROL(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _roleInstanceID;
+
+public HL7V26Field RoleInstanceID
+{
+    get
+    {
+        if (_roleInstanceID != null)
+        {
+            return _roleInstanceID;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ROL.1",
+            Type = @"Field",
+            Position = @"ROL.1",
+            Name = @"Role Instance ID",
+            Length = 60,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a unique identifier of the specific role record.
 
 This field is required when used in Patient Care and Personnel Management messages.  The field is optional when used in ADT and Finance messages.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.1.1",
                             Type = @"Component",
@@ -122,43 +134,100 @@ This field is required when used in Patient Care and Personnel Management messag
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _roleInstanceID = new HL7V26Field
+        {
+            field = message[@"ROL"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_roleInstanceID.field.FieldRepetitions != null && _roleInstanceID.field.FieldRepetitions.Count > 0)
+        {
+            _roleInstanceID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_roleInstanceID, fieldData);
+        }
+
+        return _roleInstanceID;
+    } 
+}
+
+internal HL7V26Field _actionCode;
+
+public HL7V26Field ActionCode
+{
+    get
+    {
+        if (_actionCode != null)
+        {
+            return _actionCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ROL.2",
+            Type = @"Field",
+            Position = @"ROL.2",
+            Name = @"Action Code",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0287",
+            TableName = @"Problem/goal action code",
+            Description = @"This field reveals the intent of the message. Refer to HL7 table 0287 - Problem/goal action code for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _actionCode = new HL7V26Field
+        {
+            field = message[@"ROL"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_actionCode.field.FieldRepetitions != null && _actionCode.field.FieldRepetitions.Count > 0)
+        {
+            _actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_actionCode, fieldData);
+        }
+
+        return _actionCode;
+    } 
+}
+
+internal HL7V26Field _roleROL;
+
+public HL7V26Field RoleROL
+{
+    get
+    {
+        if (_roleROL != null)
+        {
+            return _roleROL;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ROL.3",
+            Type = @"Field",
+            Position = @"ROL.3",
+            Name = @"Role-ROL",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0443",
+            TableName = @"Provider role",
+            Description = @"This field indicates the functional involvement with the activity being transmitted (e.g., Case Manager, Evaluator, Transcriber, Nurse Care Practitioner, Midwife, Physician Assistant, etc.). Refer to User-defined table 0443 - Provider role for valid values. When the ROL segment is used in conjunction with the Attending, Referring, or Admitting physician in the PV1 segment, the HL7 specified table values must be used. Additional site negotiated values are allowed.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.2",
-                            Type = @"Field",
-                            Position = @"ROL.2",
-                            Name = @"Action Code",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0287",
-                            TableName = @"Problem/goal action code",
-                            Description = @"This field reveals the intent of the message. Refer to HL7 table 0287 - Problem/goal action code for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ROL.3",
-                            Type = @"Field",
-                            Position = @"ROL.3",
-                            Name = @"Role-ROL",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0443",
-                            TableName = @"Provider role",
-                            Description = @"This field indicates the functional involvement with the activity being transmitted (e.g., Case Manager, Evaluator, Transcriber, Nurse Care Practitioner, Midwife, Physician Assistant, etc.). Refer to User-defined table 0443 - Provider role for valid values. When the ROL segment is used in conjunction with the Attending, Referring, or Admitting physician in the PV1 segment, the HL7 specified table values must be used. Additional site negotiated values are allowed.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.3.1",
                             Type = @"Component",
@@ -318,25 +387,55 @@ This field is required when used in Patient Care and Personnel Management messag
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _roleROL = new HL7V26Field
+        {
+            field = message[@"ROL"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_roleROL.field.FieldRepetitions != null && _roleROL.field.FieldRepetitions.Count > 0)
+        {
+            _roleROL.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_roleROL, fieldData);
+        }
+
+        return _roleROL;
+    } 
+}
+
+internal HL7V26Field _rolePerson;
+
+public HL7V26Field RolePerson
+{
+    get
+    {
+        if (_rolePerson != null)
+        {
+            return _rolePerson;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ROL.4",
+            Type = @"Field",
+            Position = @"ROL.4",
+            Name = @"Role Person",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identity of the person who is assuming the role that is being transmitted. This field correlates to STF-2 Staff ID Code and STF-3 Staff Name. If both STF and ROL are present in the same message, populating this field is optional. If this field is populated, then it must be populated with the same values as the correlated field.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.4",
-                            Type = @"Field",
-                            Position = @"ROL.4",
-                            Name = @"Role Person",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the identity of the person who is assuming the role that is being transmitted. This field correlates to STF-2 Staff ID Code and STF-3 Staff Name. If both STF and ROL are present in the same message, populating this field is optional. If this field is populated, then it must be populated with the same values as the correlated field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.4.1",
                             Type = @"Component",
@@ -1456,61 +1555,145 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _rolePerson = new HL7V26Field
+        {
+            field = message[@"ROL"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rolePerson.field.FieldRepetitions != null && _rolePerson.field.FieldRepetitions.Count > 0)
+        {
+            _rolePerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_rolePerson, fieldData);
+        }
+
+        return _rolePerson;
+    } 
+}
+
+internal HL7V26Field _roleBeginDateTime;
+
+public HL7V26Field RoleBeginDateTime
+{
+    get
+    {
+        if (_roleBeginDateTime != null)
+        {
+            return _roleBeginDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ROL.5",
+            Type = @"Field",
+            Position = @"ROL.5",
+            Name = @"Role Begin Date/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the role began.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _roleBeginDateTime = new HL7V26Field
+        {
+            field = message[@"ROL"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_roleBeginDateTime.field.FieldRepetitions != null && _roleBeginDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _roleBeginDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_roleBeginDateTime, fieldData);
+        }
+
+        return _roleBeginDateTime;
+    } 
+}
+
+internal HL7V26Field _roleEndDateTime;
+
+public HL7V26Field RoleEndDateTime
+{
+    get
+    {
+        if (_roleEndDateTime != null)
+        {
+            return _roleEndDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ROL.6",
+            Type = @"Field",
+            Position = @"ROL.6",
+            Name = @"Role End Date/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the role ended.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _roleEndDateTime = new HL7V26Field
+        {
+            field = message[@"ROL"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_roleEndDateTime.field.FieldRepetitions != null && _roleEndDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _roleEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_roleEndDateTime, fieldData);
+        }
+
+        return _roleEndDateTime;
+    } 
+}
+
+internal HL7V26Field _roleDuration;
+
+public HL7V26Field RoleDuration
+{
+    get
+    {
+        if (_roleDuration != null)
+        {
+            return _roleDuration;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ROL.7",
+            Type = @"Field",
+            Position = @"ROL.7",
+            Name = @"Role Duration",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the qualitative length of time for performance of a role (e.g., until the next assessment, four days, until discharge, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.5",
-                            Type = @"Field",
-                            Position = @"ROL.5",
-                            Name = @"Role Begin Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when the role began.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ROL.6",
-                            Type = @"Field",
-                            Position = @"ROL.6",
-                            Name = @"Role End Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when the role ended.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ROL.7",
-                            Type = @"Field",
-                            Position = @"ROL.7",
-                            Name = @"Role Duration",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the qualitative length of time for performance of a role (e.g., until the next assessment, four days, until discharge, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.7.1",
                             Type = @"Component",
@@ -1670,25 +1853,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _roleDuration = new HL7V26Field
+        {
+            field = message[@"ROL"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_roleDuration.field.FieldRepetitions != null && _roleDuration.field.FieldRepetitions.Count > 0)
+        {
+            _roleDuration.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_roleDuration, fieldData);
+        }
+
+        return _roleDuration;
+    } 
+}
+
+internal HL7V26Field _roleActionReason;
+
+public HL7V26Field RoleActionReason
+{
+    get
+    {
+        if (_roleActionReason != null)
+        {
+            return _roleActionReason;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ROL.8",
+            Type = @"Field",
+            Position = @"ROL.8",
+            Name = @"Role Action Reason",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the reason why the person is assuming (or changing) the role (e.g., shift change, new primary nurse, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.8",
-                            Type = @"Field",
-                            Position = @"ROL.8",
-                            Name = @"Role Action Reason",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the reason why the person is assuming (or changing) the role (e.g., shift change, new primary nurse, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.8.1",
                             Type = @"Component",
@@ -1848,25 +2061,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _roleActionReason = new HL7V26Field
+        {
+            field = message[@"ROL"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_roleActionReason.field.FieldRepetitions != null && _roleActionReason.field.FieldRepetitions.Count > 0)
+        {
+            _roleActionReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_roleActionReason, fieldData);
+        }
+
+        return _roleActionReason;
+    } 
+}
+
+internal HL7V26Field _providerType;
+
+public HL7V26Field ProviderType
+{
+    get
+    {
+        if (_providerType != null)
+        {
+            return _providerType;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ROL.9",
+            Type = @"Field",
+            Position = @"ROL.9",
+            Name = @"Provider Type",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a code identifying the provider type. This attribute correlates to the following master file attribute: STF-4 Staff Type. Coded values from the correlated master file table are used; the user defined master file table is used as the coding system for this attribute. For example, if you are using values from STF-2 Staff Type, the coding system would be HL70182 which is the table number for the user defined Staff Type table. This field is included in this segment to support international requirements. When ROL is used in an encounter message, it is not intended as a master file update.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.9",
-                            Type = @"Field",
-                            Position = @"ROL.9",
-                            Name = @"Provider Type",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a code identifying the provider type. This attribute correlates to the following master file attribute: STF-4 Staff Type. Coded values from the correlated master file table are used; the user defined master file table is used as the coding system for this attribute. For example, if you are using values from STF-2 Staff Type, the coding system would be HL70182 which is the table number for the user defined Staff Type table. This field is included in this segment to support international requirements. When ROL is used in an encounter message, it is not intended as a master file update.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.9.1",
                             Type = @"Component",
@@ -2026,25 +2269,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerType = new HL7V26Field
+        {
+            field = message[@"ROL"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerType.field.FieldRepetitions != null && _providerType.field.FieldRepetitions.Count > 0)
+        {
+            _providerType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_providerType, fieldData);
+        }
+
+        return _providerType;
+    } 
+}
+
+internal HL7V26Field _organizationUnitType;
+
+public HL7V26Field OrganizationUnitType
+{
+    get
+    {
+        if (_organizationUnitType != null)
+        {
+            return _organizationUnitType;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ROL.10",
+            Type = @"Field",
+            Position = @"ROL.10",
+            Name = @"Organization Unit Type",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0406",
+            TableName = @"Organization unit type",
+            Description = @"This field identifies the environment in which the provider acts in the role specified in ROL-3. The provider environment is not the specialty for the provider. The specialty information for the provider is defined in the PRA segment. This attribute is included in the ROL segment to allow communication of this data when the provider information may not have been communicated previously in a master file. Refer to User-defined table 0406 - Organization unit type . This field is included in this segment to support international requirements, and is not intended as a master file update.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.10",
-                            Type = @"Field",
-                            Position = @"ROL.10",
-                            Name = @"Organization Unit Type",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0406",
-                            TableName = @"Organization unit type",
-                            Description = @"This field identifies the environment in which the provider acts in the role specified in ROL-3. The provider environment is not the specialty for the provider. The specialty information for the provider is defined in the PRA segment. This attribute is included in the ROL segment to allow communication of this data when the provider information may not have been communicated previously in a master file. Refer to User-defined table 0406 - Organization unit type . This field is included in this segment to support international requirements, and is not intended as a master file update.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.10.1",
                             Type = @"Component",
@@ -2204,25 +2477,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _organizationUnitType = new HL7V26Field
+        {
+            field = message[@"ROL"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_organizationUnitType.field.FieldRepetitions != null && _organizationUnitType.field.FieldRepetitions.Count > 0)
+        {
+            _organizationUnitType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_organizationUnitType, fieldData);
+        }
+
+        return _organizationUnitType;
+    } 
+}
+
+internal HL7V26Field _officeHomeAddressBirthplace;
+
+public HL7V26Field OfficeHomeAddressBirthplace
+{
+    get
+    {
+        if (_officeHomeAddressBirthplace != null)
+        {
+            return _officeHomeAddressBirthplace;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ROL.11",
+            Type = @"Field",
+            Position = @"ROL.11",
+            Name = @"Office/Home Address/Birthplace",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains addresses associated with the role.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.11",
-                            Type = @"Field",
-                            Position = @"ROL.11",
-                            Name = @"Office/Home Address/Birthplace",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains addresses associated with the role.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.11.1",
                             Type = @"Component",
@@ -3110,25 +3413,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _officeHomeAddressBirthplace = new HL7V26Field
+        {
+            field = message[@"ROL"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_officeHomeAddressBirthplace.field.FieldRepetitions != null && _officeHomeAddressBirthplace.field.FieldRepetitions.Count > 0)
+        {
+            _officeHomeAddressBirthplace.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_officeHomeAddressBirthplace, fieldData);
+        }
+
+        return _officeHomeAddressBirthplace;
+    } 
+}
+
+internal HL7V26Field _phone;
+
+public HL7V26Field Phone
+{
+    get
+    {
+        if (_phone != null)
+        {
+            return _phone;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ROL.12",
+            Type = @"Field",
+            Position = @"ROL.12",
+            Name = @"Phone",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains telecommunication numbers associated with the role.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.12",
-                            Type = @"Field",
-                            Position = @"ROL.12",
-                            Name = @"Phone",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains telecommunication numbers associated with the role.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.12.1",
                             Type = @"Component",
@@ -3840,25 +4173,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"For an entity having multiple telecommunication addresses, indicates which is the ""most preferred"" (lowest number) to ""least preferred"" (highest number).",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _phone = new HL7V26Field
+        {
+            field = message[@"ROL"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_phone.field.FieldRepetitions != null && _phone.field.FieldRepetitions.Count > 0)
+        {
+            _phone.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_phone, fieldData);
+        }
+
+        return _phone;
+    } 
+}
+
+internal HL7V26Field _personsLocation;
+
+public HL7V26Field PersonsLocation
+{
+    get
+    {
+        if (_personsLocation != null)
+        {
+            return _personsLocation;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ROL.13",
+            Type = @"Field",
+            Position = @"ROL.13",
+            Name = @"Person's Location",
+            Length = 1230,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the physical location (e.g., nurse station, ancillary service location, clinic, or floor) of the person in the role, as identified in ROL-4-role person .",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ROL.13",
-                            Type = @"Field",
-                            Position = @"ROL.13",
-                            Name = @"Person's Location",
-                            Length = 1230,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the physical location (e.g., nurse station, ancillary service location, clinic, or floor) of the person in the role, as identified in ROL-4-role person .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ROL.13.1",
                             Type = @"Component",
@@ -4228,549 +4591,23 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentROL(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field roleInstanceID;
-
-public HL7V26Field RoleInstanceID
-{
-    get
-    {
-        if (roleInstanceID != null)
-        {
-            return roleInstanceID;
-        }
-
-        roleInstanceID = new HL7V26Field
-        {
-            field = message[@"ROL"][1],
-            Id = @"ROL.1",
-            Type = @"Field",
-            Position = @"ROL.1",
-            Name = @"Role Instance ID",
-            Length = 60,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a unique identifier of the specific role record.
-
-This field is required when used in Patient Care and Personnel Management messages.  The field is optional when used in ADT and Finance messages.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (roleInstanceID.field.FieldRepetitions != null && roleInstanceID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(roleInstanceID.Id));
-            roleInstanceID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(roleInstanceID, fieldData);
-        }
-
-        return roleInstanceID;
-    } 
-}
-
-internal HL7V26Field actionCode;
-
-public HL7V26Field ActionCode
-{
-    get
-    {
-        if (actionCode != null)
-        {
-            return actionCode;
-        }
-
-        actionCode = new HL7V26Field
-        {
-            field = message[@"ROL"][2],
-            Id = @"ROL.2",
-            Type = @"Field",
-            Position = @"ROL.2",
-            Name = @"Action Code",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0287",
-            TableName = @"Problem/goal action code",
-            Description = @"This field reveals the intent of the message. Refer to HL7 table 0287 - Problem/goal action code for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (actionCode.field.FieldRepetitions != null && actionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actionCode.Id));
-            actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(actionCode, fieldData);
-        }
-
-        return actionCode;
-    } 
-}
-
-internal HL7V26Field roleROL;
-
-public HL7V26Field RoleROL
-{
-    get
-    {
-        if (roleROL != null)
-        {
-            return roleROL;
-        }
-
-        roleROL = new HL7V26Field
-        {
-            field = message[@"ROL"][3],
-            Id = @"ROL.3",
-            Type = @"Field",
-            Position = @"ROL.3",
-            Name = @"Role-ROL",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0443",
-            TableName = @"Provider role",
-            Description = @"This field indicates the functional involvement with the activity being transmitted (e.g., Case Manager, Evaluator, Transcriber, Nurse Care Practitioner, Midwife, Physician Assistant, etc.). Refer to User-defined table 0443 - Provider role for valid values. When the ROL segment is used in conjunction with the Attending, Referring, or Admitting physician in the PV1 segment, the HL7 specified table values must be used. Additional site negotiated values are allowed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (roleROL.field.FieldRepetitions != null && roleROL.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(roleROL.Id));
-            roleROL.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(roleROL, fieldData);
-        }
-
-        return roleROL;
-    } 
-}
-
-internal HL7V26Field rolePerson;
-
-public HL7V26Field RolePerson
-{
-    get
-    {
-        if (rolePerson != null)
-        {
-            return rolePerson;
-        }
-
-        rolePerson = new HL7V26Field
-        {
-            field = message[@"ROL"][4],
-            Id = @"ROL.4",
-            Type = @"Field",
-            Position = @"ROL.4",
-            Name = @"Role Person",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the identity of the person who is assuming the role that is being transmitted. This field correlates to STF-2 Staff ID Code and STF-3 Staff Name. If both STF and ROL are present in the same message, populating this field is optional. If this field is populated, then it must be populated with the same values as the correlated field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rolePerson.field.FieldRepetitions != null && rolePerson.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rolePerson.Id));
-            rolePerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(rolePerson, fieldData);
-        }
-
-        return rolePerson;
-    } 
-}
-
-internal HL7V26Field roleBeginDateTime;
-
-public HL7V26Field RoleBeginDateTime
-{
-    get
-    {
-        if (roleBeginDateTime != null)
-        {
-            return roleBeginDateTime;
-        }
-
-        roleBeginDateTime = new HL7V26Field
-        {
-            field = message[@"ROL"][5],
-            Id = @"ROL.5",
-            Type = @"Field",
-            Position = @"ROL.5",
-            Name = @"Role Begin Date/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when the role began.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (roleBeginDateTime.field.FieldRepetitions != null && roleBeginDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(roleBeginDateTime.Id));
-            roleBeginDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(roleBeginDateTime, fieldData);
-        }
-
-        return roleBeginDateTime;
-    } 
-}
-
-internal HL7V26Field roleEndDateTime;
-
-public HL7V26Field RoleEndDateTime
-{
-    get
-    {
-        if (roleEndDateTime != null)
-        {
-            return roleEndDateTime;
-        }
-
-        roleEndDateTime = new HL7V26Field
-        {
-            field = message[@"ROL"][6],
-            Id = @"ROL.6",
-            Type = @"Field",
-            Position = @"ROL.6",
-            Name = @"Role End Date/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when the role ended.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (roleEndDateTime.field.FieldRepetitions != null && roleEndDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(roleEndDateTime.Id));
-            roleEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(roleEndDateTime, fieldData);
-        }
-
-        return roleEndDateTime;
-    } 
-}
-
-internal HL7V26Field roleDuration;
-
-public HL7V26Field RoleDuration
-{
-    get
-    {
-        if (roleDuration != null)
-        {
-            return roleDuration;
-        }
-
-        roleDuration = new HL7V26Field
-        {
-            field = message[@"ROL"][7],
-            Id = @"ROL.7",
-            Type = @"Field",
-            Position = @"ROL.7",
-            Name = @"Role Duration",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the qualitative length of time for performance of a role (e.g., until the next assessment, four days, until discharge, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (roleDuration.field.FieldRepetitions != null && roleDuration.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(roleDuration.Id));
-            roleDuration.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(roleDuration, fieldData);
-        }
-
-        return roleDuration;
-    } 
-}
-
-internal HL7V26Field roleActionReason;
-
-public HL7V26Field RoleActionReason
-{
-    get
-    {
-        if (roleActionReason != null)
-        {
-            return roleActionReason;
-        }
-
-        roleActionReason = new HL7V26Field
-        {
-            field = message[@"ROL"][8],
-            Id = @"ROL.8",
-            Type = @"Field",
-            Position = @"ROL.8",
-            Name = @"Role Action Reason",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the reason why the person is assuming (or changing) the role (e.g., shift change, new primary nurse, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (roleActionReason.field.FieldRepetitions != null && roleActionReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(roleActionReason.Id));
-            roleActionReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(roleActionReason, fieldData);
-        }
-
-        return roleActionReason;
-    } 
-}
-
-internal HL7V26Field providerType;
-
-public HL7V26Field ProviderType
-{
-    get
-    {
-        if (providerType != null)
-        {
-            return providerType;
-        }
-
-        providerType = new HL7V26Field
-        {
-            field = message[@"ROL"][9],
-            Id = @"ROL.9",
-            Type = @"Field",
-            Position = @"ROL.9",
-            Name = @"Provider Type",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a code identifying the provider type. This attribute correlates to the following master file attribute: STF-4 Staff Type. Coded values from the correlated master file table are used; the user defined master file table is used as the coding system for this attribute. For example, if you are using values from STF-2 Staff Type, the coding system would be HL70182 which is the table number for the user defined Staff Type table. This field is included in this segment to support international requirements. When ROL is used in an encounter message, it is not intended as a master file update.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerType.field.FieldRepetitions != null && providerType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerType.Id));
-            providerType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(providerType, fieldData);
-        }
-
-        return providerType;
-    } 
-}
-
-internal HL7V26Field organizationUnitType;
-
-public HL7V26Field OrganizationUnitType
-{
-    get
-    {
-        if (organizationUnitType != null)
-        {
-            return organizationUnitType;
-        }
-
-        organizationUnitType = new HL7V26Field
-        {
-            field = message[@"ROL"][10],
-            Id = @"ROL.10",
-            Type = @"Field",
-            Position = @"ROL.10",
-            Name = @"Organization Unit Type",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0406",
-            TableName = @"Organization unit type",
-            Description = @"This field identifies the environment in which the provider acts in the role specified in ROL-3. The provider environment is not the specialty for the provider. The specialty information for the provider is defined in the PRA segment. This attribute is included in the ROL segment to allow communication of this data when the provider information may not have been communicated previously in a master file. Refer to User-defined table 0406 - Organization unit type . This field is included in this segment to support international requirements, and is not intended as a master file update.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (organizationUnitType.field.FieldRepetitions != null && organizationUnitType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(organizationUnitType.Id));
-            organizationUnitType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(organizationUnitType, fieldData);
-        }
-
-        return organizationUnitType;
-    } 
-}
-
-internal HL7V26Field officeHomeAddressBirthplace;
-
-public HL7V26Field OfficeHomeAddressBirthplace
-{
-    get
-    {
-        if (officeHomeAddressBirthplace != null)
-        {
-            return officeHomeAddressBirthplace;
-        }
-
-        officeHomeAddressBirthplace = new HL7V26Field
-        {
-            field = message[@"ROL"][11],
-            Id = @"ROL.11",
-            Type = @"Field",
-            Position = @"ROL.11",
-            Name = @"Office/Home Address/Birthplace",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains addresses associated with the role.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (officeHomeAddressBirthplace.field.FieldRepetitions != null && officeHomeAddressBirthplace.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(officeHomeAddressBirthplace.Id));
-            officeHomeAddressBirthplace.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(officeHomeAddressBirthplace, fieldData);
-        }
-
-        return officeHomeAddressBirthplace;
-    } 
-}
-
-internal HL7V26Field phone;
-
-public HL7V26Field Phone
-{
-    get
-    {
-        if (phone != null)
-        {
-            return phone;
-        }
-
-        phone = new HL7V26Field
-        {
-            field = message[@"ROL"][12],
-            Id = @"ROL.12",
-            Type = @"Field",
-            Position = @"ROL.12",
-            Name = @"Phone",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains telecommunication numbers associated with the role.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phone.field.FieldRepetitions != null && phone.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phone.Id));
-            phone.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(phone, fieldData);
-        }
-
-        return phone;
-    } 
-}
-
-internal HL7V26Field personsLocation;
-
-public HL7V26Field PersonsLocation
-{
-    get
-    {
-        if (personsLocation != null)
-        {
-            return personsLocation;
-        }
-
-        personsLocation = new HL7V26Field
+        _personsLocation = new HL7V26Field
         {
             field = message[@"ROL"][13],
-            Id = @"ROL.13",
-            Type = @"Field",
-            Position = @"ROL.13",
-            Name = @"Person's Location",
-            Length = 1230,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the physical location (e.g., nurse station, ancillary service location, clinic, or floor) of the person in the role, as identified in ROL-4-role person .",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (personsLocation.field.FieldRepetitions != null && personsLocation.field.FieldRepetitions.Count > 0)
+        if (_personsLocation.field.FieldRepetitions != null && _personsLocation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(personsLocation.Id));
-            personsLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(personsLocation, fieldData);
+            _personsLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_personsLocation, fieldData);
         }
 
-        return personsLocation;
+        return _personsLocation;
     } 
 }
     }

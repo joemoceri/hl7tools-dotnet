@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             } 
         }
@@ -59,6 +60,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Tapering",
                             Comment = @"A tapering order is one in which the same drug is used, but it has a declining dosage over a number of days. For example, Decadron 0.5 mg is often ordered this way.  The order would look like this: Decadron 0.5 mg qid (four times a day) for 2 days, then Decadron 0.5 mg tid (three times a day) for 2 days, then Decadron 0.5 mg bid (twice a day) for 2 days, then Decadron 0.5 mg qd (daily) for 2 days, then stop."
                         },
+                        
                     };
             } 
         }

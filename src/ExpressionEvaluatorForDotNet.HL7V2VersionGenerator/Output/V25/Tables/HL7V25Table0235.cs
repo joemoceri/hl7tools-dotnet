@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_07",
+
                     };
             } 
         }
@@ -89,6 +90,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Regulatory agency",
                             Comment = null
                         },
+                        
                     };
             } 
         }

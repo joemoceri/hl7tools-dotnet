@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentTCC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _universalServiceIdentifier;
+
+public HL7V28Field UniversalServiceIdentifier
+{
+    get
+    {
+        if (_universalServiceIdentifier != null)
+        {
+            return _universalServiceIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.1",
+            Type = @"Field",
+            Position = @"TCC.1",
+            Name = @"Universal Service Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the test code that information is being transmitted about.  The alternate elements represent the test code identifier that has been assigned by the manufacturer to this particular test code.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"TCC.1",
-                            Type = @"Field",
-                            Position = @"TCC.1",
-                            Name = @"Universal Service Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the test code that information is being transmitted about.  The alternate elements represent the test code identifier that has been assigned by the manufacturer to this particular test code.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCC.1.1",
                             Type = @"Component",
@@ -478,25 +490,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _universalServiceIdentifier = new HL7V28Field
+        {
+            field = message[@"TCC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_universalServiceIdentifier.field.FieldRepetitions != null && _universalServiceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _universalServiceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_universalServiceIdentifier, fieldData);
+        }
+
+        return _universalServiceIdentifier;
+    } 
+}
+
+internal HL7V28Field _equipmentTestApplicationIdentifier;
+
+public HL7V28Field EquipmentTestApplicationIdentifier
+{
+    get
+    {
+        if (_equipmentTestApplicationIdentifier != null)
+        {
+            return _equipmentTestApplicationIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.2",
+            Type = @"Field",
+            Position = @"TCC.2",
+            Name = @"Equipment Test Application Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the test application code assigned by the manufacturer of the equipment or reagents and associated with performing of the particular test specified by the Universal Test Identifier.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TCC.2",
-                            Type = @"Field",
-                            Position = @"TCC.2",
-                            Name = @"Equipment Test Application Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the test application code assigned by the manufacturer of the equipment or reagents and associated with performing of the particular test specified by the Universal Test Identifier.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TCC.2.1",
                             Type = @"Component",
@@ -572,43 +614,100 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _equipmentTestApplicationIdentifier = new HL7V28Field
+        {
+            field = message[@"TCC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_equipmentTestApplicationIdentifier.field.FieldRepetitions != null && _equipmentTestApplicationIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _equipmentTestApplicationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_equipmentTestApplicationIdentifier, fieldData);
+        }
+
+        return _equipmentTestApplicationIdentifier;
+    } 
+}
+
+internal HL7V28Field _specimenSource;
+
+public HL7V28Field SpecimenSource
+{
+    get
+    {
+        if (_specimenSource != null)
+        {
+            return _specimenSource;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.3",
+            Type = @"Field",
+            Position = @"TCC.3",
+            Name = @"Specimen Source",
+            Length = 0,
+            Usage = @"W",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Attention: As of version 2.5 this field was deprecated and retained for backward compatibility only and withdrawn as of v2.7.  This field is conditional, meaning that, in case where the SPM segment is used in a message together with the SAC, this field should be ignored. The reader is referred to the SPM Specimen segment in chapter 7.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _specimenSource = new HL7V28Field
+        {
+            field = message[@"TCC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenSource.field.FieldRepetitions != null && _specimenSource.field.FieldRepetitions.Count > 0)
+        {
+            _specimenSource.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_specimenSource, fieldData);
+        }
+
+        return _specimenSource;
+    } 
+}
+
+internal HL7V28Field _autodilutionFactorDefault;
+
+public HL7V28Field AutodilutionFactorDefault
+{
+    get
+    {
+        if (_autodilutionFactorDefault != null)
+        {
+            return _autodilutionFactorDefault;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.4",
+            Type = @"Field",
+            Position = @"TCC.4",
+            Name = @"Auto-dilution Factor Default",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SN",
+            DataTypeName = @"Structured Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the value that is to be used as the default factor for automatically diluting a specimen by an instrument for this particular test code.  (See examples in definition of 13.4.3.29, ""SAC-29   Dilution Factor   (SN)   01356"" in, ""Specimen Container Detail Segment."")",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TCC.3",
-                            Type = @"Field",
-                            Position = @"TCC.3",
-                            Name = @"Specimen Source",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: As of version 2.5 this field was deprecated and retained for backward compatibility only and withdrawn as of v2.7.  This field is conditional, meaning that, in case where the SPM segment is used in a message together with the SAC, this field should be ignored. The reader is referred to the SPM Specimen segment in chapter 7.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TCC.4",
-                            Type = @"Field",
-                            Position = @"TCC.4",
-                            Name = @"Auto-dilution Factor Default",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SN",
-                            DataTypeName = @"Structured Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the value that is to be used as the default factor for automatically diluting a specimen by an instrument for this particular test code.  (See examples in definition of 13.4.3.29, ""SAC-29   Dilution Factor   (SN)   01356"" in, ""Specimen Container Detail Segment."")",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TCC.4.1",
                             Type = @"Component",
@@ -686,25 +785,55 @@ Examples:
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _autodilutionFactorDefault = new HL7V28Field
+        {
+            field = message[@"TCC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_autodilutionFactorDefault.field.FieldRepetitions != null && _autodilutionFactorDefault.field.FieldRepetitions.Count > 0)
+        {
+            _autodilutionFactorDefault.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_autodilutionFactorDefault, fieldData);
+        }
+
+        return _autodilutionFactorDefault;
+    } 
+}
+
+internal HL7V28Field _rerunDilutionFactorDefault;
+
+public HL7V28Field RerunDilutionFactorDefault
+{
+    get
+    {
+        if (_rerunDilutionFactorDefault != null)
+        {
+            return _rerunDilutionFactorDefault;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.5",
+            Type = @"Field",
+            Position = @"TCC.5",
+            Name = @"Rerun Dilution Factor Default",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SN",
+            DataTypeName = @"Structured Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the value that is to be used as the default factor for automatically diluting a specimen in case of rerun for this particular test code.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TCC.5",
-                            Type = @"Field",
-                            Position = @"TCC.5",
-                            Name = @"Rerun Dilution Factor Default",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SN",
-                            DataTypeName = @"Structured Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the value that is to be used as the default factor for automatically diluting a specimen in case of rerun for this particular test code.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TCC.5.1",
                             Type = @"Component",
@@ -782,25 +911,55 @@ Examples:
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _rerunDilutionFactorDefault = new HL7V28Field
+        {
+            field = message[@"TCC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rerunDilutionFactorDefault.field.FieldRepetitions != null && _rerunDilutionFactorDefault.field.FieldRepetitions.Count > 0)
+        {
+            _rerunDilutionFactorDefault.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_rerunDilutionFactorDefault, fieldData);
+        }
+
+        return _rerunDilutionFactorDefault;
+    } 
+}
+
+internal HL7V28Field _predilutionFactorDefault;
+
+public HL7V28Field PredilutionFactorDefault
+{
+    get
+    {
+        if (_predilutionFactorDefault != null)
+        {
+            return _predilutionFactorDefault;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.6",
+            Type = @"Field",
+            Position = @"TCC.6",
+            Name = @"Pre-dilution Factor Default",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SN",
+            DataTypeName = @"Structured Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the value that is to be used as the default factor for a specimen that is delivered to the laboratory automation system as pre-diluted for this particular test code.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TCC.6",
-                            Type = @"Field",
-                            Position = @"TCC.6",
-                            Name = @"Pre-dilution Factor Default",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SN",
-                            DataTypeName = @"Structured Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the value that is to be used as the default factor for a specimen that is delivered to the laboratory automation system as pre-diluted for this particular test code.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TCC.6.1",
                             Type = @"Component",
@@ -878,25 +1037,55 @@ Examples:
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _predilutionFactorDefault = new HL7V28Field
+        {
+            field = message[@"TCC"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_predilutionFactorDefault.field.FieldRepetitions != null && _predilutionFactorDefault.field.FieldRepetitions.Count > 0)
+        {
+            _predilutionFactorDefault.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_predilutionFactorDefault, fieldData);
+        }
+
+        return _predilutionFactorDefault;
+    } 
+}
+
+internal HL7V28Field _endogenousContentOfPredilutionDiluent;
+
+public HL7V28Field EndogenousContentOfPredilutionDiluent
+{
+    get
+    {
+        if (_endogenousContentOfPredilutionDiluent != null)
+        {
+            return _endogenousContentOfPredilutionDiluent;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.7",
+            Type = @"Field",
+            Position = @"TCC.7",
+            Name = @"Endogenous Content Of Pre-dilution Diluent",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SN",
+            DataTypeName = @"Structured Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field represents a baseline value for the measured test that is inherently contained in the diluent.  In the calculation of the actual result for the measured test, this baseline value is normally considered.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TCC.7",
-                            Type = @"Field",
-                            Position = @"TCC.7",
-                            Name = @"Endogenous Content Of Pre-dilution Diluent",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SN",
-                            DataTypeName = @"Structured Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field represents a baseline value for the measured test that is inherently contained in the diluent.  In the calculation of the actual result for the measured test, this baseline value is normally considered.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TCC.7.1",
                             Type = @"Component",
@@ -974,97 +1163,235 @@ Examples:
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _endogenousContentOfPredilutionDiluent = new HL7V28Field
+        {
+            field = message[@"TCC"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_endogenousContentOfPredilutionDiluent.field.FieldRepetitions != null && _endogenousContentOfPredilutionDiluent.field.FieldRepetitions.Count > 0)
+        {
+            _endogenousContentOfPredilutionDiluent.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_endogenousContentOfPredilutionDiluent, fieldData);
+        }
+
+        return _endogenousContentOfPredilutionDiluent;
+    } 
+}
+
+internal HL7V28Field _inventoryLimitsWarningLevel;
+
+public HL7V28Field InventoryLimitsWarningLevel
+{
+    get
+    {
+        if (_inventoryLimitsWarningLevel != null)
+        {
+            return _inventoryLimitsWarningLevel;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.8",
+            Type = @"Field",
+            Position = @"TCC.8",
+            Name = @"Inventory Limits Warning Level",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the value that is to be used as the threshold for initiating inventory warning-level messages.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _inventoryLimitsWarningLevel = new HL7V28Field
+        {
+            field = message[@"TCC"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryLimitsWarningLevel.field.FieldRepetitions != null && _inventoryLimitsWarningLevel.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryLimitsWarningLevel.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_inventoryLimitsWarningLevel, fieldData);
+        }
+
+        return _inventoryLimitsWarningLevel;
+    } 
+}
+
+internal HL7V28Field _automaticRerunAllowed;
+
+public HL7V28Field AutomaticRerunAllowed
+{
+    get
+    {
+        if (_automaticRerunAllowed != null)
+        {
+            return _automaticRerunAllowed;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.9",
+            Type = @"Field",
+            Position = @"TCC.9",
+            Name = @"Automatic Rerun Allowed",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"This field identifies whether or not automatic reruns are to be initiated on specimens for this particular test code.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _automaticRerunAllowed = new HL7V28Field
+        {
+            field = message[@"TCC"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_automaticRerunAllowed.field.FieldRepetitions != null && _automaticRerunAllowed.field.FieldRepetitions.Count > 0)
+        {
+            _automaticRerunAllowed.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_automaticRerunAllowed, fieldData);
+        }
+
+        return _automaticRerunAllowed;
+    } 
+}
+
+internal HL7V28Field _automaticRepeatAllowed;
+
+public HL7V28Field AutomaticRepeatAllowed
+{
+    get
+    {
+        if (_automaticRepeatAllowed != null)
+        {
+            return _automaticRepeatAllowed;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.10",
+            Type = @"Field",
+            Position = @"TCC.10",
+            Name = @"Automatic Repeat Allowed",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"This field identifies whether or not automatic repeat testing is to be initiated on specimens for this particular test code.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _automaticRepeatAllowed = new HL7V28Field
+        {
+            field = message[@"TCC"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_automaticRepeatAllowed.field.FieldRepetitions != null && _automaticRepeatAllowed.field.FieldRepetitions.Count > 0)
+        {
+            _automaticRepeatAllowed.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_automaticRepeatAllowed, fieldData);
+        }
+
+        return _automaticRepeatAllowed;
+    } 
+}
+
+internal HL7V28Field _automaticReflexAllowed;
+
+public HL7V28Field AutomaticReflexAllowed
+{
+    get
+    {
+        if (_automaticReflexAllowed != null)
+        {
+            return _automaticReflexAllowed;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.11",
+            Type = @"Field",
+            Position = @"TCC.11",
+            Name = @"Automatic Reflex Allowed",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"This field identifies whether or not automatic or manual reflex testing is to be initiated on specimens for this particular test code.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _automaticReflexAllowed = new HL7V28Field
+        {
+            field = message[@"TCC"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_automaticReflexAllowed.field.FieldRepetitions != null && _automaticReflexAllowed.field.FieldRepetitions.Count > 0)
+        {
+            _automaticReflexAllowed.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_automaticReflexAllowed, fieldData);
+        }
+
+        return _automaticReflexAllowed;
+    } 
+}
+
+internal HL7V28Field _equipmentDynamicRange;
+
+public HL7V28Field EquipmentDynamicRange
+{
+    get
+    {
+        if (_equipmentDynamicRange != null)
+        {
+            return _equipmentDynamicRange;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.12",
+            Type = @"Field",
+            Position = @"TCC.12",
+            Name = @"Equipment Dynamic Range",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SN",
+            DataTypeName = @"Structured Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This is the range over which the equipment can produce results. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TCC.8",
-                            Type = @"Field",
-                            Position = @"TCC.8",
-                            Name = @"Inventory Limits Warning Level",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the value that is to be used as the threshold for initiating inventory warning-level messages.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TCC.9",
-                            Type = @"Field",
-                            Position = @"TCC.9",
-                            Name = @"Automatic Rerun Allowed",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This field identifies whether or not automatic reruns are to be initiated on specimens for this particular test code.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TCC.10",
-                            Type = @"Field",
-                            Position = @"TCC.10",
-                            Name = @"Automatic Repeat Allowed",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This field identifies whether or not automatic repeat testing is to be initiated on specimens for this particular test code.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TCC.11",
-                            Type = @"Field",
-                            Position = @"TCC.11",
-                            Name = @"Automatic Reflex Allowed",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This field identifies whether or not automatic or manual reflex testing is to be initiated on specimens for this particular test code.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TCC.12",
-                            Type = @"Field",
-                            Position = @"TCC.12",
-                            Name = @"Equipment Dynamic Range",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SN",
-                            DataTypeName = @"Structured Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This is the range over which the equipment can produce results. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TCC.12.1",
                             Type = @"Component",
@@ -1142,27 +1469,57 @@ Examples:
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TCC.13",
-                            Type = @"Field",
-                            Position = @"TCC.13",
-                            Name = @"Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field is the units that have a data type of CWE.  The default coding system for the units codes consists of the ISO+ abbreviation for a single case unit (ISO 2955 83) plus extensions, that do not collide with ISO abbreviations (see Chapter 7, section 7.4.2.6).  We designate this coding system as ISO+.  Both the ISO unit's abbreviations and the extensions are defined in Chapter 7, section 7.4.2.6.2 and listed in Figure 7-9.  The ISO+ abbreviations are the codes for the default coding system.  Consequently, when ISO+ units are being used, only ISO+ abbreviations need be sent, and the contents of the units field will be backward compatible to HL7 Version 2.1. For more information on this field see reference Chapter 7, section 7.4.2.6.
+                        }
+        }
+
+        _equipmentDynamicRange = new HL7V28Field
+        {
+            field = message[@"TCC"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_equipmentDynamicRange.field.FieldRepetitions != null && _equipmentDynamicRange.field.FieldRepetitions.Count > 0)
+        {
+            _equipmentDynamicRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_equipmentDynamicRange, fieldData);
+        }
+
+        return _equipmentDynamicRange;
+    } 
+}
+
+internal HL7V28Field _units;
+
+public HL7V28Field Units
+{
+    get
+    {
+        if (_units != null)
+        {
+            return _units;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.13",
+            Type = @"Field",
+            Position = @"TCC.13",
+            Name = @"Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field is the units that have a data type of CWE.  The default coding system for the units codes consists of the ISO+ abbreviation for a single case unit (ISO 2955 83) plus extensions, that do not collide with ISO abbreviations (see Chapter 7, section 7.4.2.6).  We designate this coding system as ISO+.  Both the ISO unit's abbreviations and the extensions are defined in Chapter 7, section 7.4.2.6.2 and listed in Figure 7-9.  The ISO+ abbreviations are the codes for the default coding system.  Consequently, when ISO+ units are being used, only ISO+ abbreviations need be sent, and the contents of the units field will be backward compatible to HL7 Version 2.1. For more information on this field see reference Chapter 7, section 7.4.2.6.
 
 These units apply to fields ""Endogenous content of pre-dilution diluent"" and ""Equipment dynamic range"".",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"TCC.13.1",
                             Type = @"Component",
@@ -1590,25 +1947,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _units = new HL7V28Field
+        {
+            field = message[@"TCC"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_units.field.FieldRepetitions != null && _units.field.FieldRepetitions.Count > 0)
+        {
+            _units.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_units, fieldData);
+        }
+
+        return _units;
+    } 
+}
+
+internal HL7V28Field _processingType;
+
+public HL7V28Field ProcessingType
+{
+    get
+    {
+        if (_processingType != null)
+        {
+            return _processingType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.14",
+            Type = @"Field",
+            Position = @"TCC.14",
+            Name = @"Processing Type",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0388",
+            TableName = @"Processing Type",
+            Description = @"This field identifies the processing type that applies to this test code. If this attribute is omitted, then regular production is the default.  Refer to HL7 Table 0388 – Processing Type in Chapter 2C, Code Tables, for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TCC.14",
-                            Type = @"Field",
-                            Position = @"TCC.14",
-                            Name = @"Processing Type",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0388",
-                            TableName = @"Processing Type",
-                            Description = @"This field identifies the processing type that applies to this test code. If this attribute is omitted, then regular production is the default.  Refer to HL7 Table 0388 – Processing Type in Chapter 2C, Code Tables, for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TCC.14.1",
                             Type = @"Component",
@@ -2036,29 +2423,59 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TCC.15",
-                            Type = @"Field",
-                            Position = @"TCC.15",
-                            Name = @"Test Criticality",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the test the Test Criticality. The values in this field are used for decisions, which tests should be performed, in case of, e.g., insufficient specimen volume. 
+                        }
+        }
+
+        _processingType = new HL7V28Field
+        {
+            field = message[@"TCC"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_processingType.field.FieldRepetitions != null && _processingType.field.FieldRepetitions.Count > 0)
+        {
+            _processingType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_processingType, fieldData);
+        }
+
+        return _processingType;
+    } 
+}
+
+internal HL7V28Field _testCriticality;
+
+public HL7V28Field TestCriticality
+{
+    get
+    {
+        if (_testCriticality != null)
+        {
+            return _testCriticality;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TCC.15",
+            Type = @"Field",
+            Position = @"TCC.15",
+            Name = @"Test Criticality",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the test the Test Criticality. The values in this field are used for decisions, which tests should be performed, in case of, e.g., insufficient specimen volume. 
 
 The data type is CWE because its meaning is a coded value. However, in order to make the processing decisions easy the content can be a sequential number of the test sorted according to the criticality assigned by the lab. The lower numbers are more critical than higher numbers. 
 
 The element definition for TCC-15 Test Criticality in section 13.4.9.15 proposes an ambigous use of the CWE data type in.  Currently the element definition indicates that a CWE data type is used; however, the definition also advises that the element can be populated with ""a sequential number of the test sorted according to the criticality assigned by the lab"".  In general practice, the CWE data type references a table of assigned values, recognizing that those values are often assigned by the user.   It is expected that the definition for this element will be reviewed and revised with the next release.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"TCC.15.1",
                             Type = @"Component",
@@ -2486,635 +2903,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentTCC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field universalServiceIdentifier;
-
-public HL7V28Field UniversalServiceIdentifier
-{
-    get
-    {
-        if (universalServiceIdentifier != null)
-        {
-            return universalServiceIdentifier;
-        }
-
-        universalServiceIdentifier = new HL7V28Field
-        {
-            field = message[@"TCC"][1],
-            Id = @"TCC.1",
-            Type = @"Field",
-            Position = @"TCC.1",
-            Name = @"Universal Service Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the test code that information is being transmitted about.  The alternate elements represent the test code identifier that has been assigned by the manufacturer to this particular test code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (universalServiceIdentifier.field.FieldRepetitions != null && universalServiceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(universalServiceIdentifier.Id));
-            universalServiceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(universalServiceIdentifier, fieldData);
-        }
-
-        return universalServiceIdentifier;
-    } 
-}
-
-internal HL7V28Field equipmentTestApplicationIdentifier;
-
-public HL7V28Field EquipmentTestApplicationIdentifier
-{
-    get
-    {
-        if (equipmentTestApplicationIdentifier != null)
-        {
-            return equipmentTestApplicationIdentifier;
-        }
-
-        equipmentTestApplicationIdentifier = new HL7V28Field
-        {
-            field = message[@"TCC"][2],
-            Id = @"TCC.2",
-            Type = @"Field",
-            Position = @"TCC.2",
-            Name = @"Equipment Test Application Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the test application code assigned by the manufacturer of the equipment or reagents and associated with performing of the particular test specified by the Universal Test Identifier.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (equipmentTestApplicationIdentifier.field.FieldRepetitions != null && equipmentTestApplicationIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(equipmentTestApplicationIdentifier.Id));
-            equipmentTestApplicationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(equipmentTestApplicationIdentifier, fieldData);
-        }
-
-        return equipmentTestApplicationIdentifier;
-    } 
-}
-
-internal HL7V28Field specimenSource;
-
-public HL7V28Field SpecimenSource
-{
-    get
-    {
-        if (specimenSource != null)
-        {
-            return specimenSource;
-        }
-
-        specimenSource = new HL7V28Field
-        {
-            field = message[@"TCC"][3],
-            Id = @"TCC.3",
-            Type = @"Field",
-            Position = @"TCC.3",
-            Name = @"Specimen Source",
-            Length = 0,
-            Usage = @"W",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Attention: As of version 2.5 this field was deprecated and retained for backward compatibility only and withdrawn as of v2.7.  This field is conditional, meaning that, in case where the SPM segment is used in a message together with the SAC, this field should be ignored. The reader is referred to the SPM Specimen segment in chapter 7.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenSource.field.FieldRepetitions != null && specimenSource.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenSource.Id));
-            specimenSource.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(specimenSource, fieldData);
-        }
-
-        return specimenSource;
-    } 
-}
-
-internal HL7V28Field autodilutionFactorDefault;
-
-public HL7V28Field AutodilutionFactorDefault
-{
-    get
-    {
-        if (autodilutionFactorDefault != null)
-        {
-            return autodilutionFactorDefault;
-        }
-
-        autodilutionFactorDefault = new HL7V28Field
-        {
-            field = message[@"TCC"][4],
-            Id = @"TCC.4",
-            Type = @"Field",
-            Position = @"TCC.4",
-            Name = @"Auto-dilution Factor Default",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SN",
-            DataTypeName = @"Structured Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the value that is to be used as the default factor for automatically diluting a specimen by an instrument for this particular test code.  (See examples in definition of 13.4.3.29, ""SAC-29   Dilution Factor   (SN)   01356"" in, ""Specimen Container Detail Segment."")",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (autodilutionFactorDefault.field.FieldRepetitions != null && autodilutionFactorDefault.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(autodilutionFactorDefault.Id));
-            autodilutionFactorDefault.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(autodilutionFactorDefault, fieldData);
-        }
-
-        return autodilutionFactorDefault;
-    } 
-}
-
-internal HL7V28Field rerunDilutionFactorDefault;
-
-public HL7V28Field RerunDilutionFactorDefault
-{
-    get
-    {
-        if (rerunDilutionFactorDefault != null)
-        {
-            return rerunDilutionFactorDefault;
-        }
-
-        rerunDilutionFactorDefault = new HL7V28Field
-        {
-            field = message[@"TCC"][5],
-            Id = @"TCC.5",
-            Type = @"Field",
-            Position = @"TCC.5",
-            Name = @"Rerun Dilution Factor Default",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SN",
-            DataTypeName = @"Structured Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the value that is to be used as the default factor for automatically diluting a specimen in case of rerun for this particular test code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rerunDilutionFactorDefault.field.FieldRepetitions != null && rerunDilutionFactorDefault.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rerunDilutionFactorDefault.Id));
-            rerunDilutionFactorDefault.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(rerunDilutionFactorDefault, fieldData);
-        }
-
-        return rerunDilutionFactorDefault;
-    } 
-}
-
-internal HL7V28Field predilutionFactorDefault;
-
-public HL7V28Field PredilutionFactorDefault
-{
-    get
-    {
-        if (predilutionFactorDefault != null)
-        {
-            return predilutionFactorDefault;
-        }
-
-        predilutionFactorDefault = new HL7V28Field
-        {
-            field = message[@"TCC"][6],
-            Id = @"TCC.6",
-            Type = @"Field",
-            Position = @"TCC.6",
-            Name = @"Pre-dilution Factor Default",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SN",
-            DataTypeName = @"Structured Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the value that is to be used as the default factor for a specimen that is delivered to the laboratory automation system as pre-diluted for this particular test code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (predilutionFactorDefault.field.FieldRepetitions != null && predilutionFactorDefault.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(predilutionFactorDefault.Id));
-            predilutionFactorDefault.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(predilutionFactorDefault, fieldData);
-        }
-
-        return predilutionFactorDefault;
-    } 
-}
-
-internal HL7V28Field endogenousContentOfPredilutionDiluent;
-
-public HL7V28Field EndogenousContentOfPredilutionDiluent
-{
-    get
-    {
-        if (endogenousContentOfPredilutionDiluent != null)
-        {
-            return endogenousContentOfPredilutionDiluent;
-        }
-
-        endogenousContentOfPredilutionDiluent = new HL7V28Field
-        {
-            field = message[@"TCC"][7],
-            Id = @"TCC.7",
-            Type = @"Field",
-            Position = @"TCC.7",
-            Name = @"Endogenous Content Of Pre-dilution Diluent",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SN",
-            DataTypeName = @"Structured Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field represents a baseline value for the measured test that is inherently contained in the diluent.  In the calculation of the actual result for the measured test, this baseline value is normally considered.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (endogenousContentOfPredilutionDiluent.field.FieldRepetitions != null && endogenousContentOfPredilutionDiluent.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(endogenousContentOfPredilutionDiluent.Id));
-            endogenousContentOfPredilutionDiluent.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(endogenousContentOfPredilutionDiluent, fieldData);
-        }
-
-        return endogenousContentOfPredilutionDiluent;
-    } 
-}
-
-internal HL7V28Field inventoryLimitsWarningLevel;
-
-public HL7V28Field InventoryLimitsWarningLevel
-{
-    get
-    {
-        if (inventoryLimitsWarningLevel != null)
-        {
-            return inventoryLimitsWarningLevel;
-        }
-
-        inventoryLimitsWarningLevel = new HL7V28Field
-        {
-            field = message[@"TCC"][8],
-            Id = @"TCC.8",
-            Type = @"Field",
-            Position = @"TCC.8",
-            Name = @"Inventory Limits Warning Level",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the value that is to be used as the threshold for initiating inventory warning-level messages.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryLimitsWarningLevel.field.FieldRepetitions != null && inventoryLimitsWarningLevel.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryLimitsWarningLevel.Id));
-            inventoryLimitsWarningLevel.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(inventoryLimitsWarningLevel, fieldData);
-        }
-
-        return inventoryLimitsWarningLevel;
-    } 
-}
-
-internal HL7V28Field automaticRerunAllowed;
-
-public HL7V28Field AutomaticRerunAllowed
-{
-    get
-    {
-        if (automaticRerunAllowed != null)
-        {
-            return automaticRerunAllowed;
-        }
-
-        automaticRerunAllowed = new HL7V28Field
-        {
-            field = message[@"TCC"][9],
-            Id = @"TCC.9",
-            Type = @"Field",
-            Position = @"TCC.9",
-            Name = @"Automatic Rerun Allowed",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"This field identifies whether or not automatic reruns are to be initiated on specimens for this particular test code.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (automaticRerunAllowed.field.FieldRepetitions != null && automaticRerunAllowed.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(automaticRerunAllowed.Id));
-            automaticRerunAllowed.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(automaticRerunAllowed, fieldData);
-        }
-
-        return automaticRerunAllowed;
-    } 
-}
-
-internal HL7V28Field automaticRepeatAllowed;
-
-public HL7V28Field AutomaticRepeatAllowed
-{
-    get
-    {
-        if (automaticRepeatAllowed != null)
-        {
-            return automaticRepeatAllowed;
-        }
-
-        automaticRepeatAllowed = new HL7V28Field
-        {
-            field = message[@"TCC"][10],
-            Id = @"TCC.10",
-            Type = @"Field",
-            Position = @"TCC.10",
-            Name = @"Automatic Repeat Allowed",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"This field identifies whether or not automatic repeat testing is to be initiated on specimens for this particular test code.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (automaticRepeatAllowed.field.FieldRepetitions != null && automaticRepeatAllowed.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(automaticRepeatAllowed.Id));
-            automaticRepeatAllowed.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(automaticRepeatAllowed, fieldData);
-        }
-
-        return automaticRepeatAllowed;
-    } 
-}
-
-internal HL7V28Field automaticReflexAllowed;
-
-public HL7V28Field AutomaticReflexAllowed
-{
-    get
-    {
-        if (automaticReflexAllowed != null)
-        {
-            return automaticReflexAllowed;
-        }
-
-        automaticReflexAllowed = new HL7V28Field
-        {
-            field = message[@"TCC"][11],
-            Id = @"TCC.11",
-            Type = @"Field",
-            Position = @"TCC.11",
-            Name = @"Automatic Reflex Allowed",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"This field identifies whether or not automatic or manual reflex testing is to be initiated on specimens for this particular test code.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (automaticReflexAllowed.field.FieldRepetitions != null && automaticReflexAllowed.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(automaticReflexAllowed.Id));
-            automaticReflexAllowed.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(automaticReflexAllowed, fieldData);
-        }
-
-        return automaticReflexAllowed;
-    } 
-}
-
-internal HL7V28Field equipmentDynamicRange;
-
-public HL7V28Field EquipmentDynamicRange
-{
-    get
-    {
-        if (equipmentDynamicRange != null)
-        {
-            return equipmentDynamicRange;
-        }
-
-        equipmentDynamicRange = new HL7V28Field
-        {
-            field = message[@"TCC"][12],
-            Id = @"TCC.12",
-            Type = @"Field",
-            Position = @"TCC.12",
-            Name = @"Equipment Dynamic Range",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SN",
-            DataTypeName = @"Structured Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This is the range over which the equipment can produce results. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (equipmentDynamicRange.field.FieldRepetitions != null && equipmentDynamicRange.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(equipmentDynamicRange.Id));
-            equipmentDynamicRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(equipmentDynamicRange, fieldData);
-        }
-
-        return equipmentDynamicRange;
-    } 
-}
-
-internal HL7V28Field units;
-
-public HL7V28Field Units
-{
-    get
-    {
-        if (units != null)
-        {
-            return units;
-        }
-
-        units = new HL7V28Field
-        {
-            field = message[@"TCC"][13],
-            Id = @"TCC.13",
-            Type = @"Field",
-            Position = @"TCC.13",
-            Name = @"Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field is the units that have a data type of CWE.  The default coding system for the units codes consists of the ISO+ abbreviation for a single case unit (ISO 2955 83) plus extensions, that do not collide with ISO abbreviations (see Chapter 7, section 7.4.2.6).  We designate this coding system as ISO+.  Both the ISO unit's abbreviations and the extensions are defined in Chapter 7, section 7.4.2.6.2 and listed in Figure 7-9.  The ISO+ abbreviations are the codes for the default coding system.  Consequently, when ISO+ units are being used, only ISO+ abbreviations need be sent, and the contents of the units field will be backward compatible to HL7 Version 2.1. For more information on this field see reference Chapter 7, section 7.4.2.6.
-
-These units apply to fields ""Endogenous content of pre-dilution diluent"" and ""Equipment dynamic range"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (units.field.FieldRepetitions != null && units.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(units.Id));
-            units.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(units, fieldData);
-        }
-
-        return units;
-    } 
-}
-
-internal HL7V28Field processingType;
-
-public HL7V28Field ProcessingType
-{
-    get
-    {
-        if (processingType != null)
-        {
-            return processingType;
-        }
-
-        processingType = new HL7V28Field
-        {
-            field = message[@"TCC"][14],
-            Id = @"TCC.14",
-            Type = @"Field",
-            Position = @"TCC.14",
-            Name = @"Processing Type",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0388",
-            TableName = @"Processing Type",
-            Description = @"This field identifies the processing type that applies to this test code. If this attribute is omitted, then regular production is the default.  Refer to HL7 Table 0388 – Processing Type in Chapter 2C, Code Tables, for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (processingType.field.FieldRepetitions != null && processingType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(processingType.Id));
-            processingType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(processingType, fieldData);
-        }
-
-        return processingType;
-    } 
-}
-
-internal HL7V28Field testCriticality;
-
-public HL7V28Field TestCriticality
-{
-    get
-    {
-        if (testCriticality != null)
-        {
-            return testCriticality;
-        }
-
-        testCriticality = new HL7V28Field
+        _testCriticality = new HL7V28Field
         {
             field = message[@"TCC"][15],
-            Id = @"TCC.15",
-            Type = @"Field",
-            Position = @"TCC.15",
-            Name = @"Test Criticality",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the test the Test Criticality. The values in this field are used for decisions, which tests should be performed, in case of, e.g., insufficient specimen volume. 
-
-The data type is CWE because its meaning is a coded value. However, in order to make the processing decisions easy the content can be a sequential number of the test sorted according to the criticality assigned by the lab. The lower numbers are more critical than higher numbers. 
-
-The element definition for TCC-15 Test Criticality in section 13.4.9.15 proposes an ambigous use of the CWE data type in.  Currently the element definition indicates that a CWE data type is used; however, the definition also advises that the element can be populated with ""a sequential number of the test sorted according to the criticality assigned by the lab"".  In general practice, the CWE data type references a table of assigned values, recognizing that those values are often assigned by the user.   It is expected that the definition for this element will be reviewed and revised with the next release.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (testCriticality.field.FieldRepetitions != null && testCriticality.field.FieldRepetitions.Count > 0)
+        if (_testCriticality.field.FieldRepetitions != null && _testCriticality.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(testCriticality.Id));
-            testCriticality.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(testCriticality, fieldData);
+            _testCriticality.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_testCriticality, fieldData);
         }
 
-        return testCriticality;
+        return _testCriticality;
     } 
 }
     }

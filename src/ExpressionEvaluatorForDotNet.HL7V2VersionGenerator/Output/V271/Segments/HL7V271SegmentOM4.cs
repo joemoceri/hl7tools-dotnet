@@ -29,100 +29,220 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentOM4(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _sequenceNumberTestObservationMasterFile;
+
+public HL7V271Field SequenceNumberTestObservationMasterFile
+{
+    get
+    {
+        if (_sequenceNumberTestObservationMasterFile != null)
+        {
+            return _sequenceNumberTestObservationMasterFile;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"OM4.1",
+            Type = @"Field",
+            Position = @"OM4.1",
+            Name = @"Sequence Number - Test/Observation Master File",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sequenceNumberTestObservationMasterFile = new HL7V271Field
+        {
+            field = message[@"OM4"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sequenceNumberTestObservationMasterFile.field.FieldRepetitions != null && _sequenceNumberTestObservationMasterFile.field.FieldRepetitions.Count > 0)
+        {
+            _sequenceNumberTestObservationMasterFile.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_sequenceNumberTestObservationMasterFile, fieldData);
+        }
+
+        return _sequenceNumberTestObservationMasterFile;
+    } 
+}
+
+internal HL7V271Field _derivedSpecimen;
+
+public HL7V271Field DerivedSpecimen
+{
+    get
+    {
+        if (_derivedSpecimen != null)
+        {
+            return _derivedSpecimen;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"OM4.2",
+            Type = @"Field",
+            Position = @"OM4.2",
+            Name = @"Derived Specimen",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0170",
+            TableName = @"Derived Specimen",
+            Description = @"This field contains the codes that identify the parents and children for diagnostic studies—especially in microbiology—where the initial specimen (e.g., blood) is processed to produce results (e.g., the identity of the bacteria grown out of the culture).  The process also produces new ""specimens"" (e.g., pure culture of staphylococcus, and E. coli), and these are studied by a second order process (bacterial sensitivities). The parents (e.g., blood culture) and children (e.g., penicillin MIC) are identified in such cases. Refer to HL7 Table 0170 - Derived Specimen for valid values",
+            Sample = @"",
+            Fields = null
+        }
+
+        _derivedSpecimen = new HL7V271Field
+        {
+            field = message[@"OM4"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_derivedSpecimen.field.FieldRepetitions != null && _derivedSpecimen.field.FieldRepetitions.Count > 0)
+        {
+            _derivedSpecimen.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_derivedSpecimen, fieldData);
+        }
+
+        return _derivedSpecimen;
+    } 
+}
+
+internal HL7V271Field _containerDescription;
+
+public HL7V271Field ContainerDescription
+{
+    get
+    {
+        if (_containerDescription != null)
+        {
+            return _containerDescription;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"OM4.3",
+            Type = @"Field",
+            Position = @"OM4.3",
+            Name = @"Container Description",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the physical appearance, including color of tube tops, shape, and material composition (e.g., red-top glass tube).  Note that the color is not necessarily a unique identifier of the additive and/or use of the tube.  This is especially true for black and some blue tube tops, as can be seen above.  Color is included here for user convenience.  ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _containerDescription = new HL7V271Field
+        {
+            field = message[@"OM4"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerDescription.field.FieldRepetitions != null && _containerDescription.field.FieldRepetitions.Count > 0)
+        {
+            _containerDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_containerDescription, fieldData);
+        }
+
+        return _containerDescription;
+    } 
+}
+
+internal HL7V271Field _containerVolume;
+
+public HL7V271Field ContainerVolume
+{
+    get
+    {
+        if (_containerVolume != null)
+        {
+            return _containerVolume;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"OM4.4",
+            Type = @"Field",
+            Position = @"OM4.4",
+            Name = @"Container Volume",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the capacity of the container.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _containerVolume = new HL7V271Field
+        {
+            field = message[@"OM4"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerVolume.field.FieldRepetitions != null && _containerVolume.field.FieldRepetitions.Count > 0)
+        {
+            _containerVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_containerVolume, fieldData);
+        }
+
+        return _containerVolume;
+    } 
+}
+
+internal HL7V271Field _containerUnits;
+
+public HL7V271Field ContainerUnits
+{
+    get
+    {
+        if (_containerUnits != null)
+        {
+            return _containerUnits;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"OM4.5",
+            Type = @"Field",
+            Position = @"OM4.5",
+            Name = @"Container Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the units of measure of the container volume.  If the units are ISO+ units, they should be recorded as single case abbreviations.  If the units are ANS+ or L (local), the units and the source code table must be recorded, except that in this case, component delimiters should be replaced by subcomponent delimiters.  For example, 1 indicates liters, whereas pt&&ANS+ indicates pints (ANSI units).  The default unit is milliliters (ml), which should be assumed if no units are reported.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"OM4.1",
-                            Type = @"Field",
-                            Position = @"OM4.1",
-                            Name = @"Sequence Number - Test/Observation Master File",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM4.2",
-                            Type = @"Field",
-                            Position = @"OM4.2",
-                            Name = @"Derived Specimen",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0170",
-                            TableName = @"Derived Specimen",
-                            Description = @"This field contains the codes that identify the parents and children for diagnostic studies—especially in microbiology—where the initial specimen (e.g., blood) is processed to produce results (e.g., the identity of the bacteria grown out of the culture).  The process also produces new ""specimens"" (e.g., pure culture of staphylococcus, and E. coli), and these are studied by a second order process (bacterial sensitivities). The parents (e.g., blood culture) and children (e.g., penicillin MIC) are identified in such cases. Refer to HL7 Table 0170 - Derived Specimen for valid values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM4.3",
-                            Type = @"Field",
-                            Position = @"OM4.3",
-                            Name = @"Container Description",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the physical appearance, including color of tube tops, shape, and material composition (e.g., red-top glass tube).  Note that the color is not necessarily a unique identifier of the additive and/or use of the tube.  This is especially true for black and some blue tube tops, as can be seen above.  Color is included here for user convenience.  ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM4.4",
-                            Type = @"Field",
-                            Position = @"OM4.4",
-                            Name = @"Container Volume",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the capacity of the container.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM4.5",
-                            Type = @"Field",
-                            Position = @"OM4.5",
-                            Name = @"Container Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the units of measure of the container volume.  If the units are ISO+ units, they should be recorded as single case abbreviations.  If the units are ANS+ or L (local), the units and the source code table must be recorded, except that in this case, component delimiters should be replaced by subcomponent delimiters.  For example, 1 indicates liters, whereas pt&&ANS+ indicates pints (ANSI units).  The default unit is milliliters (ml), which should be assumed if no units are reported.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM4.5.1",
                             Type = @"Component",
@@ -548,25 +668,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _containerUnits = new HL7V271Field
+        {
+            field = message[@"OM4"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerUnits.field.FieldRepetitions != null && _containerUnits.field.FieldRepetitions.Count > 0)
+        {
+            _containerUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_containerUnits, fieldData);
+        }
+
+        return _containerUnits;
+    } 
+}
+
+internal HL7V271Field _specimen;
+
+public HL7V271Field Specimen
+{
+    get
+    {
+        if (_specimen != null)
+        {
+            return _specimen;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"OM4.6",
+            Type = @"Field",
+            Position = @"OM4.6",
+            Name = @"Specimen",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field reports the specimen as one of the specimen codes described in ASTM Table 14 of 1238-91.  If multiple kinds of specimen are associated with this observation (as in the case for a creatinine clearance), multiple segments may be included, one for each specimen type.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM4.6",
-                            Type = @"Field",
-                            Position = @"OM4.6",
-                            Name = @"Specimen",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field reports the specimen as one of the specimen codes described in ASTM Table 14 of 1238-91.  If multiple kinds of specimen are associated with this observation (as in the case for a creatinine clearance), multiple segments may be included, one for each specimen type.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM4.6.1",
                             Type = @"Component",
@@ -992,27 +1142,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM4.7",
-                            Type = @"Field",
-                            Position = @"OM4.7",
-                            Name = @"Additive",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0371",
-                            TableName = @"Additive/Preservative",
-                            Description = @"This field contains the codes that should be those provided by NCCLS . Refer to HL7 Table 0371 - Additive/Preservative for valid values.  The table's values are taken from NCCLS AUTO4. The value set can be extended with user specific values.
+                        }
+        }
+
+        _specimen = new HL7V271Field
+        {
+            field = message[@"OM4"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimen.field.FieldRepetitions != null && _specimen.field.FieldRepetitions.Count > 0)
+        {
+            _specimen.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_specimen, fieldData);
+        }
+
+        return _specimen;
+    } 
+}
+
+internal HL7V271Field _additive;
+
+public HL7V271Field Additive
+{
+    get
+    {
+        if (_additive != null)
+        {
+            return _additive;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"OM4.7",
+            Type = @"Field",
+            Position = @"OM4.7",
+            Name = @"Additive",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0371",
+            TableName = @"Additive/Preservative",
+            Description = @"This field contains the codes that should be those provided by NCCLS . Refer to HL7 Table 0371 - Additive/Preservative for valid values.  The table's values are taken from NCCLS AUTO4. The value set can be extended with user specific values.
 
 This table was not specified in previous versions and thus sites may choose to use other site-specific tables.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OM4.7.1",
                             Type = @"Component",
@@ -1438,61 +1618,145 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _additive = new HL7V271Field
+        {
+            field = message[@"OM4"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_additive.field.FieldRepetitions != null && _additive.field.FieldRepetitions.Count > 0)
+        {
+            _additive.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_additive, fieldData);
+        }
+
+        return _additive;
+    } 
+}
+
+internal HL7V271Field _preparation;
+
+public HL7V271Field Preparation
+{
+    get
+    {
+        if (_preparation != null)
+        {
+            return _preparation;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"OM4.8",
+            Type = @"Field",
+            Position = @"OM4.8",
+            Name = @"Preparation",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the special processing that should be applied to the container, e.g., add acidifying tablets before sending.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _preparation = new HL7V271Field
+        {
+            field = message[@"OM4"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_preparation.field.FieldRepetitions != null && _preparation.field.FieldRepetitions.Count > 0)
+        {
+            _preparation.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_preparation, fieldData);
+        }
+
+        return _preparation;
+    } 
+}
+
+internal HL7V271Field _specialHandlingRequirements;
+
+public HL7V271Field SpecialHandlingRequirements
+{
+    get
+    {
+        if (_specialHandlingRequirements != null)
+        {
+            return _specialHandlingRequirements;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"OM4.9",
+            Type = @"Field",
+            Position = @"OM4.9",
+            Name = @"Special Handling Requirements",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the special handling requirements here (e.g., ice specimen, deliver within two hours of obtaining).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _specialHandlingRequirements = new HL7V271Field
+        {
+            field = message[@"OM4"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specialHandlingRequirements.field.FieldRepetitions != null && _specialHandlingRequirements.field.FieldRepetitions.Count > 0)
+        {
+            _specialHandlingRequirements.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_specialHandlingRequirements, fieldData);
+        }
+
+        return _specialHandlingRequirements;
+    } 
+}
+
+internal HL7V271Field _normalCollectionVolume;
+
+public HL7V271Field NormalCollectionVolume
+{
+    get
+    {
+        if (_normalCollectionVolume != null)
+        {
+            return _normalCollectionVolume;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"OM4.10",
+            Type = @"Field",
+            Position = @"OM4.10",
+            Name = @"Normal Collection Volume",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the normal specimen volume required by the lab.  This is the amount used by the normal methods and provides enough specimens to repeat the procedure at least once if needed.  The default unit is milliliters (ml).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM4.8",
-                            Type = @"Field",
-                            Position = @"OM4.8",
-                            Name = @"Preparation",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the special processing that should be applied to the container, e.g., add acidifying tablets before sending.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM4.9",
-                            Type = @"Field",
-                            Position = @"OM4.9",
-                            Name = @"Special Handling Requirements",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the special handling requirements here (e.g., ice specimen, deliver within two hours of obtaining).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM4.10",
-                            Type = @"Field",
-                            Position = @"OM4.10",
-                            Name = @"Normal Collection Volume",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the normal specimen volume required by the lab.  This is the amount used by the normal methods and provides enough specimens to repeat the procedure at least once if needed.  The default unit is milliliters (ml).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM4.10.1",
                             Type = @"Component",
@@ -1952,25 +2216,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _normalCollectionVolume = new HL7V271Field
+        {
+            field = message[@"OM4"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_normalCollectionVolume.field.FieldRepetitions != null && _normalCollectionVolume.field.FieldRepetitions.Count > 0)
+        {
+            _normalCollectionVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_normalCollectionVolume, fieldData);
+        }
+
+        return _normalCollectionVolume;
+    } 
+}
+
+internal HL7V271Field _minimumCollectionVolume;
+
+public HL7V271Field MinimumCollectionVolume
+{
+    get
+    {
+        if (_minimumCollectionVolume != null)
+        {
+            return _minimumCollectionVolume;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"OM4.11",
+            Type = @"Field",
+            Position = @"OM4.11",
+            Name = @"Minimum Collection Volume",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the amount of specimen needed by the most specimen sparing method (e.g., using micro techniques).  The minimum amount allows for only one determination.  The default unit is milliliters (ml).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM4.11",
-                            Type = @"Field",
-                            Position = @"OM4.11",
-                            Name = @"Minimum Collection Volume",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the amount of specimen needed by the most specimen sparing method (e.g., using micro techniques).  The minimum amount allows for only one determination.  The default unit is milliliters (ml).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM4.11.1",
                             Type = @"Component",
@@ -2430,61 +2724,145 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _minimumCollectionVolume = new HL7V271Field
+        {
+            field = message[@"OM4"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_minimumCollectionVolume.field.FieldRepetitions != null && _minimumCollectionVolume.field.FieldRepetitions.Count > 0)
+        {
+            _minimumCollectionVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_minimumCollectionVolume, fieldData);
+        }
+
+        return _minimumCollectionVolume;
+    } 
+}
+
+internal HL7V271Field _specimenRequirements;
+
+public HL7V271Field SpecimenRequirements
+{
+    get
+    {
+        if (_specimenRequirements != null)
+        {
+            return _specimenRequirements;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"OM4.12",
+            Type = @"Field",
+            Position = @"OM4.12",
+            Name = @"Specimen Requirements",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the other requirements for specimen delivery and special handling (e.g., delivery within one hour, iced).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _specimenRequirements = new HL7V271Field
+        {
+            field = message[@"OM4"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenRequirements.field.FieldRepetitions != null && _specimenRequirements.field.FieldRepetitions.Count > 0)
+        {
+            _specimenRequirements.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_specimenRequirements, fieldData);
+        }
+
+        return _specimenRequirements;
+    } 
+}
+
+internal HL7V271Field _specimenPriorities;
+
+public HL7V271Field SpecimenPriorities
+{
+    get
+    {
+        if (_specimenPriorities != null)
+        {
+            return _specimenPriorities;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"OM4.13",
+            Type = @"Field",
+            Position = @"OM4.13",
+            Name = @"Specimen Priorities",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0027",
+            TableName = @"Priority",
+            Description = @"This field contains the allowed priorities for obtaining the specimen.  Note that they may be different from the processing priorities given in OM1-25 - Processing Priority.  When a test is requested, the specimen priority given in TQ1-9 - Priority should be one of the priorities listed here.  Multiple priorities are separated by repeat delimiters.  Refer to HL7 Table 0027 - Priority for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _specimenPriorities = new HL7V271Field
+        {
+            field = message[@"OM4"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenPriorities.field.FieldRepetitions != null && _specimenPriorities.field.FieldRepetitions.Count > 0)
+        {
+            _specimenPriorities.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_specimenPriorities, fieldData);
+        }
+
+        return _specimenPriorities;
+    } 
+}
+
+internal HL7V271Field _specimenRetentionTime;
+
+public HL7V271Field SpecimenRetentionTime
+{
+    get
+    {
+        if (_specimenRetentionTime != null)
+        {
+            return _specimenRetentionTime;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"OM4.14",
+            Type = @"Field",
+            Position = @"OM4.14",
+            Name = @"Specimen Retention Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the usual time that a specimen for this observation is retained after the observation is completed, for the purpose of additional testing.  The first component is the duration, and the second component is an ISO time unit.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM4.12",
-                            Type = @"Field",
-                            Position = @"OM4.12",
-                            Name = @"Specimen Requirements",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the other requirements for specimen delivery and special handling (e.g., delivery within one hour, iced).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM4.13",
-                            Type = @"Field",
-                            Position = @"OM4.13",
-                            Name = @"Specimen Priorities",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0027",
-                            TableName = @"Priority",
-                            Description = @"This field contains the allowed priorities for obtaining the specimen.  Note that they may be different from the processing priorities given in OM1-25 - Processing Priority.  When a test is requested, the specimen priority given in TQ1-9 - Priority should be one of the priorities listed here.  Multiple priorities are separated by repeat delimiters.  Refer to HL7 Table 0027 - Priority for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM4.14",
-                            Type = @"Field",
-                            Position = @"OM4.14",
-                            Name = @"Specimen Retention Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the usual time that a specimen for this observation is retained after the observation is completed, for the purpose of additional testing.  The first component is the duration, and the second component is an ISO time unit.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM4.14.1",
                             Type = @"Component",
@@ -2944,590 +3322,23 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentOM4(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field sequenceNumberTestObservationMasterFile;
-
-public HL7V271Field SequenceNumberTestObservationMasterFile
-{
-    get
-    {
-        if (sequenceNumberTestObservationMasterFile != null)
-        {
-            return sequenceNumberTestObservationMasterFile;
-        }
-
-        sequenceNumberTestObservationMasterFile = new HL7V271Field
-        {
-            field = message[@"OM4"][1],
-            Id = @"OM4.1",
-            Type = @"Field",
-            Position = @"OM4.1",
-            Name = @"Sequence Number - Test/Observation Master File",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sequenceNumberTestObservationMasterFile.field.FieldRepetitions != null && sequenceNumberTestObservationMasterFile.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sequenceNumberTestObservationMasterFile.Id));
-            sequenceNumberTestObservationMasterFile.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(sequenceNumberTestObservationMasterFile, fieldData);
-        }
-
-        return sequenceNumberTestObservationMasterFile;
-    } 
-}
-
-internal HL7V271Field derivedSpecimen;
-
-public HL7V271Field DerivedSpecimen
-{
-    get
-    {
-        if (derivedSpecimen != null)
-        {
-            return derivedSpecimen;
-        }
-
-        derivedSpecimen = new HL7V271Field
-        {
-            field = message[@"OM4"][2],
-            Id = @"OM4.2",
-            Type = @"Field",
-            Position = @"OM4.2",
-            Name = @"Derived Specimen",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0170",
-            TableName = @"Derived Specimen",
-            Description = @"This field contains the codes that identify the parents and children for diagnostic studies—especially in microbiology—where the initial specimen (e.g., blood) is processed to produce results (e.g., the identity of the bacteria grown out of the culture).  The process also produces new ""specimens"" (e.g., pure culture of staphylococcus, and E. coli), and these are studied by a second order process (bacterial sensitivities). The parents (e.g., blood culture) and children (e.g., penicillin MIC) are identified in such cases. Refer to HL7 Table 0170 - Derived Specimen for valid values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (derivedSpecimen.field.FieldRepetitions != null && derivedSpecimen.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(derivedSpecimen.Id));
-            derivedSpecimen.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(derivedSpecimen, fieldData);
-        }
-
-        return derivedSpecimen;
-    } 
-}
-
-internal HL7V271Field containerDescription;
-
-public HL7V271Field ContainerDescription
-{
-    get
-    {
-        if (containerDescription != null)
-        {
-            return containerDescription;
-        }
-
-        containerDescription = new HL7V271Field
-        {
-            field = message[@"OM4"][3],
-            Id = @"OM4.3",
-            Type = @"Field",
-            Position = @"OM4.3",
-            Name = @"Container Description",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the physical appearance, including color of tube tops, shape, and material composition (e.g., red-top glass tube).  Note that the color is not necessarily a unique identifier of the additive and/or use of the tube.  This is especially true for black and some blue tube tops, as can be seen above.  Color is included here for user convenience.  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerDescription.field.FieldRepetitions != null && containerDescription.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerDescription.Id));
-            containerDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(containerDescription, fieldData);
-        }
-
-        return containerDescription;
-    } 
-}
-
-internal HL7V271Field containerVolume;
-
-public HL7V271Field ContainerVolume
-{
-    get
-    {
-        if (containerVolume != null)
-        {
-            return containerVolume;
-        }
-
-        containerVolume = new HL7V271Field
-        {
-            field = message[@"OM4"][4],
-            Id = @"OM4.4",
-            Type = @"Field",
-            Position = @"OM4.4",
-            Name = @"Container Volume",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the capacity of the container.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerVolume.field.FieldRepetitions != null && containerVolume.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerVolume.Id));
-            containerVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(containerVolume, fieldData);
-        }
-
-        return containerVolume;
-    } 
-}
-
-internal HL7V271Field containerUnits;
-
-public HL7V271Field ContainerUnits
-{
-    get
-    {
-        if (containerUnits != null)
-        {
-            return containerUnits;
-        }
-
-        containerUnits = new HL7V271Field
-        {
-            field = message[@"OM4"][5],
-            Id = @"OM4.5",
-            Type = @"Field",
-            Position = @"OM4.5",
-            Name = @"Container Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the units of measure of the container volume.  If the units are ISO+ units, they should be recorded as single case abbreviations.  If the units are ANS+ or L (local), the units and the source code table must be recorded, except that in this case, component delimiters should be replaced by subcomponent delimiters.  For example, 1 indicates liters, whereas pt&&ANS+ indicates pints (ANSI units).  The default unit is milliliters (ml), which should be assumed if no units are reported.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerUnits.field.FieldRepetitions != null && containerUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerUnits.Id));
-            containerUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(containerUnits, fieldData);
-        }
-
-        return containerUnits;
-    } 
-}
-
-internal HL7V271Field specimen;
-
-public HL7V271Field Specimen
-{
-    get
-    {
-        if (specimen != null)
-        {
-            return specimen;
-        }
-
-        specimen = new HL7V271Field
-        {
-            field = message[@"OM4"][6],
-            Id = @"OM4.6",
-            Type = @"Field",
-            Position = @"OM4.6",
-            Name = @"Specimen",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field reports the specimen as one of the specimen codes described in ASTM Table 14 of 1238-91.  If multiple kinds of specimen are associated with this observation (as in the case for a creatinine clearance), multiple segments may be included, one for each specimen type.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimen.field.FieldRepetitions != null && specimen.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimen.Id));
-            specimen.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(specimen, fieldData);
-        }
-
-        return specimen;
-    } 
-}
-
-internal HL7V271Field additive;
-
-public HL7V271Field Additive
-{
-    get
-    {
-        if (additive != null)
-        {
-            return additive;
-        }
-
-        additive = new HL7V271Field
-        {
-            field = message[@"OM4"][7],
-            Id = @"OM4.7",
-            Type = @"Field",
-            Position = @"OM4.7",
-            Name = @"Additive",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0371",
-            TableName = @"Additive/Preservative",
-            Description = @"This field contains the codes that should be those provided by NCCLS . Refer to HL7 Table 0371 - Additive/Preservative for valid values.  The table's values are taken from NCCLS AUTO4. The value set can be extended with user specific values.
-
-This table was not specified in previous versions and thus sites may choose to use other site-specific tables.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (additive.field.FieldRepetitions != null && additive.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(additive.Id));
-            additive.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(additive, fieldData);
-        }
-
-        return additive;
-    } 
-}
-
-internal HL7V271Field preparation;
-
-public HL7V271Field Preparation
-{
-    get
-    {
-        if (preparation != null)
-        {
-            return preparation;
-        }
-
-        preparation = new HL7V271Field
-        {
-            field = message[@"OM4"][8],
-            Id = @"OM4.8",
-            Type = @"Field",
-            Position = @"OM4.8",
-            Name = @"Preparation",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the special processing that should be applied to the container, e.g., add acidifying tablets before sending.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (preparation.field.FieldRepetitions != null && preparation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(preparation.Id));
-            preparation.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(preparation, fieldData);
-        }
-
-        return preparation;
-    } 
-}
-
-internal HL7V271Field specialHandlingRequirements;
-
-public HL7V271Field SpecialHandlingRequirements
-{
-    get
-    {
-        if (specialHandlingRequirements != null)
-        {
-            return specialHandlingRequirements;
-        }
-
-        specialHandlingRequirements = new HL7V271Field
-        {
-            field = message[@"OM4"][9],
-            Id = @"OM4.9",
-            Type = @"Field",
-            Position = @"OM4.9",
-            Name = @"Special Handling Requirements",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the special handling requirements here (e.g., ice specimen, deliver within two hours of obtaining).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specialHandlingRequirements.field.FieldRepetitions != null && specialHandlingRequirements.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specialHandlingRequirements.Id));
-            specialHandlingRequirements.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(specialHandlingRequirements, fieldData);
-        }
-
-        return specialHandlingRequirements;
-    } 
-}
-
-internal HL7V271Field normalCollectionVolume;
-
-public HL7V271Field NormalCollectionVolume
-{
-    get
-    {
-        if (normalCollectionVolume != null)
-        {
-            return normalCollectionVolume;
-        }
-
-        normalCollectionVolume = new HL7V271Field
-        {
-            field = message[@"OM4"][10],
-            Id = @"OM4.10",
-            Type = @"Field",
-            Position = @"OM4.10",
-            Name = @"Normal Collection Volume",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the normal specimen volume required by the lab.  This is the amount used by the normal methods and provides enough specimens to repeat the procedure at least once if needed.  The default unit is milliliters (ml).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (normalCollectionVolume.field.FieldRepetitions != null && normalCollectionVolume.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(normalCollectionVolume.Id));
-            normalCollectionVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(normalCollectionVolume, fieldData);
-        }
-
-        return normalCollectionVolume;
-    } 
-}
-
-internal HL7V271Field minimumCollectionVolume;
-
-public HL7V271Field MinimumCollectionVolume
-{
-    get
-    {
-        if (minimumCollectionVolume != null)
-        {
-            return minimumCollectionVolume;
-        }
-
-        minimumCollectionVolume = new HL7V271Field
-        {
-            field = message[@"OM4"][11],
-            Id = @"OM4.11",
-            Type = @"Field",
-            Position = @"OM4.11",
-            Name = @"Minimum Collection Volume",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the amount of specimen needed by the most specimen sparing method (e.g., using micro techniques).  The minimum amount allows for only one determination.  The default unit is milliliters (ml).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (minimumCollectionVolume.field.FieldRepetitions != null && minimumCollectionVolume.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(minimumCollectionVolume.Id));
-            minimumCollectionVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(minimumCollectionVolume, fieldData);
-        }
-
-        return minimumCollectionVolume;
-    } 
-}
-
-internal HL7V271Field specimenRequirements;
-
-public HL7V271Field SpecimenRequirements
-{
-    get
-    {
-        if (specimenRequirements != null)
-        {
-            return specimenRequirements;
-        }
-
-        specimenRequirements = new HL7V271Field
-        {
-            field = message[@"OM4"][12],
-            Id = @"OM4.12",
-            Type = @"Field",
-            Position = @"OM4.12",
-            Name = @"Specimen Requirements",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the other requirements for specimen delivery and special handling (e.g., delivery within one hour, iced).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenRequirements.field.FieldRepetitions != null && specimenRequirements.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenRequirements.Id));
-            specimenRequirements.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(specimenRequirements, fieldData);
-        }
-
-        return specimenRequirements;
-    } 
-}
-
-internal HL7V271Field specimenPriorities;
-
-public HL7V271Field SpecimenPriorities
-{
-    get
-    {
-        if (specimenPriorities != null)
-        {
-            return specimenPriorities;
-        }
-
-        specimenPriorities = new HL7V271Field
-        {
-            field = message[@"OM4"][13],
-            Id = @"OM4.13",
-            Type = @"Field",
-            Position = @"OM4.13",
-            Name = @"Specimen Priorities",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0027",
-            TableName = @"Priority",
-            Description = @"This field contains the allowed priorities for obtaining the specimen.  Note that they may be different from the processing priorities given in OM1-25 - Processing Priority.  When a test is requested, the specimen priority given in TQ1-9 - Priority should be one of the priorities listed here.  Multiple priorities are separated by repeat delimiters.  Refer to HL7 Table 0027 - Priority for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenPriorities.field.FieldRepetitions != null && specimenPriorities.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenPriorities.Id));
-            specimenPriorities.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(specimenPriorities, fieldData);
-        }
-
-        return specimenPriorities;
-    } 
-}
-
-internal HL7V271Field specimenRetentionTime;
-
-public HL7V271Field SpecimenRetentionTime
-{
-    get
-    {
-        if (specimenRetentionTime != null)
-        {
-            return specimenRetentionTime;
-        }
-
-        specimenRetentionTime = new HL7V271Field
+        _specimenRetentionTime = new HL7V271Field
         {
             field = message[@"OM4"][14],
-            Id = @"OM4.14",
-            Type = @"Field",
-            Position = @"OM4.14",
-            Name = @"Specimen Retention Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the usual time that a specimen for this observation is retained after the observation is completed, for the purpose of additional testing.  The first component is the duration, and the second component is an ISO time unit.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (specimenRetentionTime.field.FieldRepetitions != null && specimenRetentionTime.field.FieldRepetitions.Count > 0)
+        if (_specimenRetentionTime.field.FieldRepetitions != null && _specimenRetentionTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenRetentionTime.Id));
-            specimenRetentionTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(specimenRetentionTime, fieldData);
+            _specimenRetentionTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_specimenRetentionTime, fieldData);
         }
 
-        return specimenRetentionTime;
+        return _specimenRetentionTime;
     } 
 }
     }

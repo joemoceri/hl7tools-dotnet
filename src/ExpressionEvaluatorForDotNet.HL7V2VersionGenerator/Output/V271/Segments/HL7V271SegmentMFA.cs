@@ -29,86 +29,179 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"MFA.1",
-                            Type = @"Field",
-                            Position = @"MFA.1",
-                            Name = @"Record-level Event Code",
-                            Length = 3,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0180",
-                            TableName = @"Record-level Event Code",
-                            Description = @"This field defines record-level event for the master file record identified by the MFI segment and the primary key in this segment.  Refer to HL7 Table 0180 - Record-level Event Code for valid values.
+        public HL7V271SegmentMFA(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _recordlevelEventCode;
+
+public HL7V271Field RecordlevelEventCode
+{
+    get
+    {
+        if (_recordlevelEventCode != null)
+        {
+            return _recordlevelEventCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"MFA.1",
+            Type = @"Field",
+            Position = @"MFA.1",
+            Name = @"Record-level Event Code",
+            Length = 3,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0180",
+            TableName = @"Record-level Event Code",
+            Description = @"This field defines record-level event for the master file record identified by the MFI segment and the primary key in this segment.  Refer to HL7 Table 0180 - Record-level Event Code for valid values.
 
 Note: If the MFI-3 - File-level event code is ""REP"" (replace file), then each MFA segment must have an MFA-1 - Record-level event code of ""MAD"" (add record to master file).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MFA.2",
-                            Type = @"Field",
-                            Position = @"MFA.2",
-                            Name = @"Mfn Control Id",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a number or other identifier that uniquely identifies this change to this record from the point of view of the originating system.  This field uniquely identifies the particular record (identified by the MFE segment) being acknowledged by this MFA segment.  When returned to the originating system via the MFA segment, this field allows the target system to precisely identify which change to this record is being acknowledged.  It is only required if MFI-6 - Response Level Code requires responses at the record level (any value other than NE). ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MFA.3",
-                            Type = @"Field",
-                            Position = @"MFA.3",
-                            Name = @"Event Completion Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field may be required or optional depending on the site specifications for the given master file, master file event, and receiving facility.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MFA.4",
-                            Type = @"Field",
-                            Position = @"MFA.4",
-                            Name = @"Mfn Record Level Error Return",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0181",
-                            TableName = @"MFN Record-level Error Return",
-                            Description = @"This field contains the status of the requested update.  Site-defined table, specific to each master file being updated via this transaction.
+            Sample = @"",
+            Fields = null
+        }
+
+        _recordlevelEventCode = new HL7V271Field
+        {
+            field = message[@"MFA"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_recordlevelEventCode.field.FieldRepetitions != null && _recordlevelEventCode.field.FieldRepetitions.Count > 0)
+        {
+            _recordlevelEventCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_recordlevelEventCode, fieldData);
+        }
+
+        return _recordlevelEventCode;
+    } 
+}
+
+internal HL7V271Field _mfnControlId;
+
+public HL7V271Field MfnControlId
+{
+    get
+    {
+        if (_mfnControlId != null)
+        {
+            return _mfnControlId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"MFA.2",
+            Type = @"Field",
+            Position = @"MFA.2",
+            Name = @"Mfn Control Id",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a number or other identifier that uniquely identifies this change to this record from the point of view of the originating system.  This field uniquely identifies the particular record (identified by the MFE segment) being acknowledged by this MFA segment.  When returned to the originating system via the MFA segment, this field allows the target system to precisely identify which change to this record is being acknowledged.  It is only required if MFI-6 - Response Level Code requires responses at the record level (any value other than NE). ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _mfnControlId = new HL7V271Field
+        {
+            field = message[@"MFA"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_mfnControlId.field.FieldRepetitions != null && _mfnControlId.field.FieldRepetitions.Count > 0)
+        {
+            _mfnControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_mfnControlId, fieldData);
+        }
+
+        return _mfnControlId;
+    } 
+}
+
+internal HL7V271Field _eventCompletionDateTime;
+
+public HL7V271Field EventCompletionDateTime
+{
+    get
+    {
+        if (_eventCompletionDateTime != null)
+        {
+            return _eventCompletionDateTime;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"MFA.3",
+            Type = @"Field",
+            Position = @"MFA.3",
+            Name = @"Event Completion Date/Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field may be required or optional depending on the site specifications for the given master file, master file event, and receiving facility.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventCompletionDateTime = new HL7V271Field
+        {
+            field = message[@"MFA"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventCompletionDateTime.field.FieldRepetitions != null && _eventCompletionDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _eventCompletionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_eventCompletionDateTime, fieldData);
+        }
+
+        return _eventCompletionDateTime;
+    } 
+}
+
+internal HL7V271Field _mfnRecordLevelErrorReturn;
+
+public HL7V271Field MfnRecordLevelErrorReturn
+{
+    get
+    {
+        if (_mfnRecordLevelErrorReturn != null)
+        {
+            return _mfnRecordLevelErrorReturn;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"MFA.4",
+            Type = @"Field",
+            Position = @"MFA.4",
+            Name = @"Mfn Record Level Error Return",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0181",
+            TableName = @"MFN Record-level Error Return",
+            Description = @"This field contains the status of the requested update.  Site-defined table, specific to each master file being updated via this transaction.
 
 Refer to User-defined Table 0181 - MFN Record-level Error Return for suggested values.  All such tables will have at least the following two return code values: ""S"" for successful and ""U"" for unsuccessful.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"MFA.4.1",
                             Type = @"Component",
@@ -534,237 +627,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MFA.5",
-                            Type = @"Field",
-                            Position = @"MFA.5",
-                            Name = @"Primary Key Value - Mfa",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"varies",
-                            DataTypeName = @"Varies",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field uniquely identifies the record of the master file (identified in the MFI segment) for which the update status is being acknowledged (as defined by the field MFN-4 - Record Level Error Return).  The data type of this field is defined by the value of MFA-6 - Value Type - MFA, and may take on the format of any of the HL7 data types defined in HL7 Table 0355 - Primary Key Value Type.  The PL data type is used only on location master transactions. 
-
-The repetition of the primary key permits the identification of an individual component of a complex record as the object of the record-level event code.  This feature allows the Master Files protocol to be used for modifications of single components of complex records.  If this field repeats, the field MFA-6 - Primary Key Value Type - MFA must also repeat (with the same number of repetitions), and the data type of each repetition of MFA-5 - Primary Key Value - MFA is specified by the corresponding repetition of MFA-6 - Value Type - MFA.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MFA.6",
-                            Type = @"Field",
-                            Position = @"MFA.6",
-                            Name = @"Primary Key Value Type - Mfa",
-                            Length = 3,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0355",
-                            TableName = @"Primary Key Value Type",
-                            Description = @"This field contains the HL7 data type of MFA-5 - Primary Key Value - MFA.  The valid HL7 data types are listed in HL7 Table 0355 - Primary Key Value Type.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentMFA(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field recordlevelEventCode;
-
-public HL7V271Field RecordlevelEventCode
-{
-    get
-    {
-        if (recordlevelEventCode != null)
-        {
-            return recordlevelEventCode;
-        }
-
-        recordlevelEventCode = new HL7V271Field
-        {
-            field = message[@"MFA"][1],
-            Id = @"MFA.1",
-            Type = @"Field",
-            Position = @"MFA.1",
-            Name = @"Record-level Event Code",
-            Length = 3,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0180",
-            TableName = @"Record-level Event Code",
-            Description = @"This field defines record-level event for the master file record identified by the MFI segment and the primary key in this segment.  Refer to HL7 Table 0180 - Record-level Event Code for valid values.
-
-Note: If the MFI-3 - File-level event code is ""REP"" (replace file), then each MFA segment must have an MFA-1 - Record-level event code of ""MAD"" (add record to master file).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (recordlevelEventCode.field.FieldRepetitions != null && recordlevelEventCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(recordlevelEventCode.Id));
-            recordlevelEventCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(recordlevelEventCode, fieldData);
-        }
-
-        return recordlevelEventCode;
-    } 
-}
-
-internal HL7V271Field mfnControlId;
-
-public HL7V271Field MfnControlId
-{
-    get
-    {
-        if (mfnControlId != null)
-        {
-            return mfnControlId;
-        }
-
-        mfnControlId = new HL7V271Field
-        {
-            field = message[@"MFA"][2],
-            Id = @"MFA.2",
-            Type = @"Field",
-            Position = @"MFA.2",
-            Name = @"Mfn Control Id",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a number or other identifier that uniquely identifies this change to this record from the point of view of the originating system.  This field uniquely identifies the particular record (identified by the MFE segment) being acknowledged by this MFA segment.  When returned to the originating system via the MFA segment, this field allows the target system to precisely identify which change to this record is being acknowledged.  It is only required if MFI-6 - Response Level Code requires responses at the record level (any value other than NE). ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (mfnControlId.field.FieldRepetitions != null && mfnControlId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mfnControlId.Id));
-            mfnControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(mfnControlId, fieldData);
-        }
-
-        return mfnControlId;
-    } 
-}
-
-internal HL7V271Field eventCompletionDateTime;
-
-public HL7V271Field EventCompletionDateTime
-{
-    get
-    {
-        if (eventCompletionDateTime != null)
-        {
-            return eventCompletionDateTime;
-        }
-
-        eventCompletionDateTime = new HL7V271Field
-        {
-            field = message[@"MFA"][3],
-            Id = @"MFA.3",
-            Type = @"Field",
-            Position = @"MFA.3",
-            Name = @"Event Completion Date/Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field may be required or optional depending on the site specifications for the given master file, master file event, and receiving facility.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventCompletionDateTime.field.FieldRepetitions != null && eventCompletionDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventCompletionDateTime.Id));
-            eventCompletionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(eventCompletionDateTime, fieldData);
-        }
-
-        return eventCompletionDateTime;
-    } 
-}
-
-internal HL7V271Field mfnRecordLevelErrorReturn;
-
-public HL7V271Field MfnRecordLevelErrorReturn
-{
-    get
-    {
-        if (mfnRecordLevelErrorReturn != null)
-        {
-            return mfnRecordLevelErrorReturn;
-        }
-
-        mfnRecordLevelErrorReturn = new HL7V271Field
+        _mfnRecordLevelErrorReturn = new HL7V271Field
         {
             field = message[@"MFA"][4],
-            Id = @"MFA.4",
-            Type = @"Field",
-            Position = @"MFA.4",
-            Name = @"Mfn Record Level Error Return",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0181",
-            TableName = @"MFN Record-level Error Return",
-            Description = @"This field contains the status of the requested update.  Site-defined table, specific to each master file being updated via this transaction.
-
-Refer to User-defined Table 0181 - MFN Record-level Error Return for suggested values.  All such tables will have at least the following two return code values: ""S"" for successful and ""U"" for unsuccessful.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (mfnRecordLevelErrorReturn.field.FieldRepetitions != null && mfnRecordLevelErrorReturn.field.FieldRepetitions.Count > 0)
+        if (_mfnRecordLevelErrorReturn.field.FieldRepetitions != null && _mfnRecordLevelErrorReturn.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mfnRecordLevelErrorReturn.Id));
-            mfnRecordLevelErrorReturn.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(mfnRecordLevelErrorReturn, fieldData);
+            _mfnRecordLevelErrorReturn.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_mfnRecordLevelErrorReturn, fieldData);
         }
 
-        return mfnRecordLevelErrorReturn;
+        return _mfnRecordLevelErrorReturn;
     } 
 }
 
-internal HL7V271Field primaryKeyValueMfa;
+internal HL7V271Field _primaryKeyValueMfa;
 
 public HL7V271Field PrimaryKeyValueMfa
 {
     get
     {
-        if (primaryKeyValueMfa != null)
+        if (_primaryKeyValueMfa != null)
         {
-            return primaryKeyValueMfa;
+            return _primaryKeyValueMfa;
         }
 
-        primaryKeyValueMfa = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"MFA"][5],
             Id = @"MFA.5",
             Type = @"Field",
             Position = @"MFA.5",
@@ -780,34 +675,38 @@ public HL7V271Field PrimaryKeyValueMfa
 
 The repetition of the primary key permits the identification of an individual component of a complex record as the object of the record-level event code.  This feature allows the Master Files protocol to be used for modifications of single components of complex records.  If this field repeats, the field MFA-6 - Primary Key Value Type - MFA must also repeat (with the same number of repetitions), and the data type of each repetition of MFA-5 - Primary Key Value - MFA is specified by the corresponding repetition of MFA-6 - Value Type - MFA.",
             Sample = @"",
+            Fields = null
+        }
+
+        _primaryKeyValueMfa = new HL7V271Field
+        {
+            field = message[@"MFA"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (primaryKeyValueMfa.field.FieldRepetitions != null && primaryKeyValueMfa.field.FieldRepetitions.Count > 0)
+        if (_primaryKeyValueMfa.field.FieldRepetitions != null && _primaryKeyValueMfa.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryKeyValueMfa.Id));
-            primaryKeyValueMfa.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(primaryKeyValueMfa, fieldData);
+            _primaryKeyValueMfa.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_primaryKeyValueMfa, fieldData);
         }
 
-        return primaryKeyValueMfa;
+        return _primaryKeyValueMfa;
     } 
 }
 
-internal HL7V271Field primaryKeyValueTypeMfa;
+internal HL7V271Field _primaryKeyValueTypeMfa;
 
 public HL7V271Field PrimaryKeyValueTypeMfa
 {
     get
     {
-        if (primaryKeyValueTypeMfa != null)
+        if (_primaryKeyValueTypeMfa != null)
         {
-            return primaryKeyValueTypeMfa;
+            return _primaryKeyValueTypeMfa;
         }
 
-        primaryKeyValueTypeMfa = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"MFA"][6],
             Id = @"MFA.6",
             Type = @"Field",
             Position = @"MFA.6",
@@ -821,17 +720,22 @@ public HL7V271Field PrimaryKeyValueTypeMfa
             TableName = @"Primary Key Value Type",
             Description = @"This field contains the HL7 data type of MFA-5 - Primary Key Value - MFA.  The valid HL7 data types are listed in HL7 Table 0355 - Primary Key Value Type.",
             Sample = @"",
+            Fields = null
+        }
+
+        _primaryKeyValueTypeMfa = new HL7V271Field
+        {
+            field = message[@"MFA"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (primaryKeyValueTypeMfa.field.FieldRepetitions != null && primaryKeyValueTypeMfa.field.FieldRepetitions.Count > 0)
+        if (_primaryKeyValueTypeMfa.field.FieldRepetitions != null && _primaryKeyValueTypeMfa.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryKeyValueTypeMfa.Id));
-            primaryKeyValueTypeMfa.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(primaryKeyValueTypeMfa, fieldData);
+            _primaryKeyValueTypeMfa.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_primaryKeyValueTypeMfa, fieldData);
         }
 
-        return primaryKeyValueTypeMfa;
+        return _primaryKeyValueTypeMfa;
     } 
 }
     }

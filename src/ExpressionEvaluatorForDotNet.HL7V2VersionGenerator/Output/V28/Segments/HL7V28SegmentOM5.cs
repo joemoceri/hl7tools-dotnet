@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentOM5(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _sequenceNumberTestObservationMasterFile;
+
+public HL7V28Field SequenceNumberTestObservationMasterFile
+{
+    get
+    {
+        if (_sequenceNumberTestObservationMasterFile != null)
+        {
+            return _sequenceNumberTestObservationMasterFile;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OM5.1",
+            Type = @"Field",
+            Position = @"OM5.1",
+            Name = @"Sequence Number - Test/Observation Master File",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sequenceNumberTestObservationMasterFile = new HL7V28Field
+        {
+            field = message[@"OM5"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sequenceNumberTestObservationMasterFile.field.FieldRepetitions != null && _sequenceNumberTestObservationMasterFile.field.FieldRepetitions.Count > 0)
+        {
+            _sequenceNumberTestObservationMasterFile.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_sequenceNumberTestObservationMasterFile, fieldData);
+        }
+
+        return _sequenceNumberTestObservationMasterFile;
+    } 
+}
+
+internal HL7V28Field _testObservationsIncludedWithinAnOrderedTestBattery;
+
+public HL7V28Field TestObservationsIncludedWithinAnOrderedTestBattery
+{
+    get
+    {
+        if (_testObservationsIncludedWithinAnOrderedTestBattery != null)
+        {
+            return _testObservationsIncludedWithinAnOrderedTestBattery;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OM5.2",
+            Type = @"Field",
+            Position = @"OM5.2",
+            Name = @"Test/Observations Included Within An Ordered Test Battery",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the observations whose categorical responses are taken from a specified table of codes (e.g., CWE data types).  Record the preferred coding system for this observation (e.g., ICD9, SNOMED III).  Take the codes from ASTM Table 3 or 5, or specify a local code.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"OM5.1",
-                            Type = @"Field",
-                            Position = @"OM5.1",
-                            Name = @"Sequence Number - Test/Observation Master File",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM5.2",
-                            Type = @"Field",
-                            Position = @"OM5.2",
-                            Name = @"Test/Observations Included Within An Ordered Test Battery",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the observations whose categorical responses are taken from a specified table of codes (e.g., CWE data types).  Record the preferred coding system for this observation (e.g., ICD9, SNOMED III).  Take the codes from ASTM Table 3 or 5, or specify a local code.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM5.2.1",
                             Type = @"Component",
@@ -496,131 +535,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM5.3",
-                            Type = @"Field",
-                            Position = @"OM5.3",
-                            Name = @"Observation Id Suffixes",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the tests or procedures that produce a type which uses observation ID suffixes following the service/test/observation ID code.  This field lists the possible options.  The applicable three-character mnemonics given in ASTM Table 20 (or others appropriate to the application) are listed, separated by repeat delimiters.  For example, a chest X-ray may use the suffixes IMP, REC, DEV, or others. Each of the expected suffixes should be listed here.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentOM5(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field sequenceNumberTestObservationMasterFile;
-
-public HL7V28Field SequenceNumberTestObservationMasterFile
-{
-    get
-    {
-        if (sequenceNumberTestObservationMasterFile != null)
-        {
-            return sequenceNumberTestObservationMasterFile;
-        }
-
-        sequenceNumberTestObservationMasterFile = new HL7V28Field
-        {
-            field = message[@"OM5"][1],
-            Id = @"OM5.1",
-            Type = @"Field",
-            Position = @"OM5.1",
-            Name = @"Sequence Number - Test/Observation Master File",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sequenceNumberTestObservationMasterFile.field.FieldRepetitions != null && sequenceNumberTestObservationMasterFile.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sequenceNumberTestObservationMasterFile.Id));
-            sequenceNumberTestObservationMasterFile.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(sequenceNumberTestObservationMasterFile, fieldData);
-        }
-
-        return sequenceNumberTestObservationMasterFile;
-    } 
-}
-
-internal HL7V28Field testObservationsIncludedWithinAnOrderedTestBattery;
-
-public HL7V28Field TestObservationsIncludedWithinAnOrderedTestBattery
-{
-    get
-    {
-        if (testObservationsIncludedWithinAnOrderedTestBattery != null)
-        {
-            return testObservationsIncludedWithinAnOrderedTestBattery;
-        }
-
-        testObservationsIncludedWithinAnOrderedTestBattery = new HL7V28Field
+        _testObservationsIncludedWithinAnOrderedTestBattery = new HL7V28Field
         {
             field = message[@"OM5"][2],
-            Id = @"OM5.2",
-            Type = @"Field",
-            Position = @"OM5.2",
-            Name = @"Test/Observations Included Within An Ordered Test Battery",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the observations whose categorical responses are taken from a specified table of codes (e.g., CWE data types).  Record the preferred coding system for this observation (e.g., ICD9, SNOMED III).  Take the codes from ASTM Table 3 or 5, or specify a local code.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (testObservationsIncludedWithinAnOrderedTestBattery.field.FieldRepetitions != null && testObservationsIncludedWithinAnOrderedTestBattery.field.FieldRepetitions.Count > 0)
+        if (_testObservationsIncludedWithinAnOrderedTestBattery.field.FieldRepetitions != null && _testObservationsIncludedWithinAnOrderedTestBattery.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(testObservationsIncludedWithinAnOrderedTestBattery.Id));
-            testObservationsIncludedWithinAnOrderedTestBattery.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(testObservationsIncludedWithinAnOrderedTestBattery, fieldData);
+            _testObservationsIncludedWithinAnOrderedTestBattery.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_testObservationsIncludedWithinAnOrderedTestBattery, fieldData);
         }
 
-        return testObservationsIncludedWithinAnOrderedTestBattery;
+        return _testObservationsIncludedWithinAnOrderedTestBattery;
     } 
 }
 
-internal HL7V28Field observationIdSuffixes;
+internal HL7V28Field _observationIdSuffixes;
 
 public HL7V28Field ObservationIdSuffixes
 {
     get
     {
-        if (observationIdSuffixes != null)
+        if (_observationIdSuffixes != null)
         {
-            return observationIdSuffixes;
+            return _observationIdSuffixes;
         }
 
-        observationIdSuffixes = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"OM5"][3],
             Id = @"OM5.3",
             Type = @"Field",
             Position = @"OM5.3",
@@ -634,17 +581,22 @@ public HL7V28Field ObservationIdSuffixes
             TableName = null,
             Description = @"This field contains the tests or procedures that produce a type which uses observation ID suffixes following the service/test/observation ID code.  This field lists the possible options.  The applicable three-character mnemonics given in ASTM Table 20 (or others appropriate to the application) are listed, separated by repeat delimiters.  For example, a chest X-ray may use the suffixes IMP, REC, DEV, or others. Each of the expected suffixes should be listed here.",
             Sample = @"",
+            Fields = null
+        }
+
+        _observationIdSuffixes = new HL7V28Field
+        {
+            field = message[@"OM5"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (observationIdSuffixes.field.FieldRepetitions != null && observationIdSuffixes.field.FieldRepetitions.Count > 0)
+        if (_observationIdSuffixes.field.FieldRepetitions != null && _observationIdSuffixes.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationIdSuffixes.Id));
-            observationIdSuffixes.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(observationIdSuffixes, fieldData);
+            _observationIdSuffixes.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_observationIdSuffixes, fieldData);
         }
 
-        return observationIdSuffixes;
+        return _observationIdSuffixes;
     } 
 }
     }

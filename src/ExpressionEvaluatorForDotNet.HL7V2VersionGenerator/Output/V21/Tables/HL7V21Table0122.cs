@@ -74,6 +74,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Research",
                             Comment = null
                         },
+                        
                     };
             } 
         }

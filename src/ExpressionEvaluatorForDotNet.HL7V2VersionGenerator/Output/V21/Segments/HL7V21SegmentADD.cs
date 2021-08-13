@@ -25,52 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"ADD.1",
-                            Type = @"Field",
-                            Position = @"ADD.1",
-                            Name = @"Addendum Continuation Pointer",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentADD(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field addendumContinuationPointer;
+        internal HL7V21Field _addendumContinuationPointer;
 
 public HL7V21Field AddendumContinuationPointer
 {
     get
     {
-        if (addendumContinuationPointer != null)
+        if (_addendumContinuationPointer != null)
         {
-            return addendumContinuationPointer;
+            return _addendumContinuationPointer;
         }
 
-        addendumContinuationPointer = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ADD"][1],
             Id = @"ADD.1",
             Type = @"Field",
             Position = @"ADD.1",
@@ -84,17 +56,22 @@ public HL7V21Field AddendumContinuationPointer
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _addendumContinuationPointer = new HL7V21Field
+        {
+            field = message[@"ADD"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (addendumContinuationPointer.field.FieldRepetitions != null && addendumContinuationPointer.field.FieldRepetitions.Count > 0)
+        if (_addendumContinuationPointer.field.FieldRepetitions != null && _addendumContinuationPointer.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(addendumContinuationPointer.Id));
-            addendumContinuationPointer.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(addendumContinuationPointer, fieldData);
+            _addendumContinuationPointer.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_addendumContinuationPointer, fieldData);
         }
 
-        return addendumContinuationPointer;
+        return _addendumContinuationPointer;
     } 
 }
     }

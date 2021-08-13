@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentCSP(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _studyPhaseIdentifier;
+
+public HL7V27Field StudyPhaseIdentifier
+{
+    get
+    {
+        if (_studyPhaseIdentifier != null)
+        {
+            return _studyPhaseIdentifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"CSP.1",
+            Type = @"Field",
+            Position = @"CSP.1",
+            Name = @"Study Phase Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"TThis field identifies the phase of the study that a patient has entered. The set of codes will generally be developed for each clinical trial, although there are patterns that trials in particular disease or prevention categories may follow. The phase structure will be based on data collation and reporting needs for the study. It is an operational structure and need not be discussed in the clinical trial protocol documentation or even made known to patient care or data collection personnel. The coding system will usually be developed by the sponsor for multicentered clinical trials to standardize the receipt of automated data. Local codes could be added if an additional local message is desired. Otherwise, local coding conventions will be used. Example: 2^Init Rx, Crs 1^NCI T93-0807 Phases",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"CSP.1",
-                            Type = @"Field",
-                            Position = @"CSP.1",
-                            Name = @"Study Phase Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"TThis field identifies the phase of the study that a patient has entered. The set of codes will generally be developed for each clinical trial, although there are patterns that trials in particular disease or prevention categories may follow. The phase structure will be based on data collation and reporting needs for the study. It is an operational structure and need not be discussed in the clinical trial protocol documentation or even made known to patient care or data collection personnel. The coding system will usually be developed by the sponsor for multicentered clinical trials to standardize the receipt of automated data. Local codes could be added if an additional local message is desired. Otherwise, local coding conventions will be used. Example: 2^Init Rx, Crs 1^NCI T93-0807 Phases",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CSP.1.1",
                             Type = @"Component",
@@ -476,61 +488,145 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _studyPhaseIdentifier = new HL7V27Field
+        {
+            field = message[@"CSP"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_studyPhaseIdentifier.field.FieldRepetitions != null && _studyPhaseIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _studyPhaseIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_studyPhaseIdentifier, fieldData);
+        }
+
+        return _studyPhaseIdentifier;
+    } 
+}
+
+internal HL7V27Field _dateTimeStudyPhaseBegan;
+
+public HL7V27Field DateTimeStudyPhaseBegan
+{
+    get
+    {
+        if (_dateTimeStudyPhaseBegan != null)
+        {
+            return _dateTimeStudyPhaseBegan;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"CSP.2",
+            Type = @"Field",
+            Position = @"CSP.2",
+            Name = @"Date/Time Study Phase Began",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date the patient began this phase interval. The time is optional.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dateTimeStudyPhaseBegan = new HL7V27Field
+        {
+            field = message[@"CSP"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeStudyPhaseBegan.field.FieldRepetitions != null && _dateTimeStudyPhaseBegan.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeStudyPhaseBegan.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_dateTimeStudyPhaseBegan, fieldData);
+        }
+
+        return _dateTimeStudyPhaseBegan;
+    } 
+}
+
+internal HL7V27Field _dateTimeStudyPhaseEnded;
+
+public HL7V27Field DateTimeStudyPhaseEnded
+{
+    get
+    {
+        if (_dateTimeStudyPhaseEnded != null)
+        {
+            return _dateTimeStudyPhaseEnded;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"CSP.3",
+            Type = @"Field",
+            Position = @"CSP.3",
+            Name = @"Date/Time Study Phase Ended",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date the patient ended this phase interval.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dateTimeStudyPhaseEnded = new HL7V27Field
+        {
+            field = message[@"CSP"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeStudyPhaseEnded.field.FieldRepetitions != null && _dateTimeStudyPhaseEnded.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeStudyPhaseEnded.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_dateTimeStudyPhaseEnded, fieldData);
+        }
+
+        return _dateTimeStudyPhaseEnded;
+    } 
+}
+
+internal HL7V27Field _studyPhaseEvaluability;
+
+public HL7V27Field StudyPhaseEvaluability
+{
+    get
+    {
+        if (_studyPhaseEvaluability != null)
+        {
+            return _studyPhaseEvaluability;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"CSP.4",
+            Type = @"Field",
+            Position = @"CSP.4",
+            Name = @"Study Phase Evaluability",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the disposition of the patient’s data for this phase interval for quality control and data analysis purposes. The set of codes will vary across clinical trials. An example answer set: Complete, Adverse Events Only, Outcome Only, None, Unknown.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSP.2",
-                            Type = @"Field",
-                            Position = @"CSP.2",
-                            Name = @"Date/Time Study Phase Began",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date the patient began this phase interval. The time is optional.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CSP.3",
-                            Type = @"Field",
-                            Position = @"CSP.3",
-                            Name = @"Date/Time Study Phase Ended",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date the patient ended this phase interval.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CSP.4",
-                            Type = @"Field",
-                            Position = @"CSP.4",
-                            Name = @"Study Phase Evaluability",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the disposition of the patient’s data for this phase interval for quality control and data analysis purposes. The set of codes will vary across clinical trials. An example answer set: Complete, Adverse Events Only, Outcome Only, None, Unknown.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSP.4.1",
                             Type = @"Component",
@@ -956,178 +1052,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentCSP(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field studyPhaseIdentifier;
-
-public HL7V27Field StudyPhaseIdentifier
-{
-    get
-    {
-        if (studyPhaseIdentifier != null)
-        {
-            return studyPhaseIdentifier;
-        }
-
-        studyPhaseIdentifier = new HL7V27Field
-        {
-            field = message[@"CSP"][1],
-            Id = @"CSP.1",
-            Type = @"Field",
-            Position = @"CSP.1",
-            Name = @"Study Phase Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"TThis field identifies the phase of the study that a patient has entered. The set of codes will generally be developed for each clinical trial, although there are patterns that trials in particular disease or prevention categories may follow. The phase structure will be based on data collation and reporting needs for the study. It is an operational structure and need not be discussed in the clinical trial protocol documentation or even made known to patient care or data collection personnel. The coding system will usually be developed by the sponsor for multicentered clinical trials to standardize the receipt of automated data. Local codes could be added if an additional local message is desired. Otherwise, local coding conventions will be used. Example: 2^Init Rx, Crs 1^NCI T93-0807 Phases",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (studyPhaseIdentifier.field.FieldRepetitions != null && studyPhaseIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studyPhaseIdentifier.Id));
-            studyPhaseIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(studyPhaseIdentifier, fieldData);
-        }
-
-        return studyPhaseIdentifier;
-    } 
-}
-
-internal HL7V27Field dateTimeStudyPhaseBegan;
-
-public HL7V27Field DateTimeStudyPhaseBegan
-{
-    get
-    {
-        if (dateTimeStudyPhaseBegan != null)
-        {
-            return dateTimeStudyPhaseBegan;
-        }
-
-        dateTimeStudyPhaseBegan = new HL7V27Field
-        {
-            field = message[@"CSP"][2],
-            Id = @"CSP.2",
-            Type = @"Field",
-            Position = @"CSP.2",
-            Name = @"Date/Time Study Phase Began",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date the patient began this phase interval. The time is optional.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeStudyPhaseBegan.field.FieldRepetitions != null && dateTimeStudyPhaseBegan.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeStudyPhaseBegan.Id));
-            dateTimeStudyPhaseBegan.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(dateTimeStudyPhaseBegan, fieldData);
-        }
-
-        return dateTimeStudyPhaseBegan;
-    } 
-}
-
-internal HL7V27Field dateTimeStudyPhaseEnded;
-
-public HL7V27Field DateTimeStudyPhaseEnded
-{
-    get
-    {
-        if (dateTimeStudyPhaseEnded != null)
-        {
-            return dateTimeStudyPhaseEnded;
-        }
-
-        dateTimeStudyPhaseEnded = new HL7V27Field
-        {
-            field = message[@"CSP"][3],
-            Id = @"CSP.3",
-            Type = @"Field",
-            Position = @"CSP.3",
-            Name = @"Date/Time Study Phase Ended",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date the patient ended this phase interval.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeStudyPhaseEnded.field.FieldRepetitions != null && dateTimeStudyPhaseEnded.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeStudyPhaseEnded.Id));
-            dateTimeStudyPhaseEnded.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(dateTimeStudyPhaseEnded, fieldData);
-        }
-
-        return dateTimeStudyPhaseEnded;
-    } 
-}
-
-internal HL7V27Field studyPhaseEvaluability;
-
-public HL7V27Field StudyPhaseEvaluability
-{
-    get
-    {
-        if (studyPhaseEvaluability != null)
-        {
-            return studyPhaseEvaluability;
-        }
-
-        studyPhaseEvaluability = new HL7V27Field
+        _studyPhaseEvaluability = new HL7V27Field
         {
             field = message[@"CSP"][4],
-            Id = @"CSP.4",
-            Type = @"Field",
-            Position = @"CSP.4",
-            Name = @"Study Phase Evaluability",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the disposition of the patient’s data for this phase interval for quality control and data analysis purposes. The set of codes will vary across clinical trials. An example answer set: Complete, Adverse Events Only, Outcome Only, None, Unknown.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (studyPhaseEvaluability.field.FieldRepetitions != null && studyPhaseEvaluability.field.FieldRepetitions.Count > 0)
+        if (_studyPhaseEvaluability.field.FieldRepetitions != null && _studyPhaseEvaluability.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studyPhaseEvaluability.Id));
-            studyPhaseEvaluability.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(studyPhaseEvaluability, fieldData);
+            _studyPhaseEvaluability.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_studyPhaseEvaluability, fieldData);
         }
 
-        return studyPhaseEvaluability;
+        return _studyPhaseEvaluability;
     } 
 }
     }

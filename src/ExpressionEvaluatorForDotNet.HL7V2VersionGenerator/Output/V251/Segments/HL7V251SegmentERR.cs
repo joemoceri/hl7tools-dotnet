@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentERR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _errorCodeandLocation;
+
+public HL7V251Field ErrorCodeandLocation
+{
+    get
+    {
+        if (_errorCodeandLocation != null)
+        {
+            return _errorCodeandLocation;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERR.1",
+            Type = @"Field",
+            Position = @"ERR.1",
+            Name = @"Error Code and Location",
+            Length = 493,
+            Usage = @"B",
+            Rpt = @"*",
+            DataType = @"ELD",
+            DataTypeName = @"Error Location and Description",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies an erroneous segment in another message. Retained for backward compatibility only as of v 2.5; refer to ERR-2 and ERR-3 instead.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ERR.1",
-                            Type = @"Field",
-                            Position = @"ERR.1",
-                            Name = @"Error Code and Location",
-                            Length = 493,
-                            Usage = @"B",
-                            Rpt = @"*",
-                            DataType = @"ELD",
-                            DataTypeName = @"Error Location and Description",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies an erroneous segment in another message. Retained for backward compatibility only as of v 2.5; refer to ERR-2 and ERR-3 instead.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERR.1.1",
                             Type = @"Component",
@@ -226,25 +238,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _errorCodeandLocation = new HL7V251Field
+        {
+            field = message[@"ERR"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_errorCodeandLocation.field.FieldRepetitions != null && _errorCodeandLocation.field.FieldRepetitions.Count > 0)
+        {
+            _errorCodeandLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_errorCodeandLocation, fieldData);
+        }
+
+        return _errorCodeandLocation;
+    } 
+}
+
+internal HL7V251Field _errorLocation;
+
+public HL7V251Field ErrorLocation
+{
+    get
+    {
+        if (_errorLocation != null)
+        {
+            return _errorLocation;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERR.2",
+            Type = @"Field",
+            Position = @"ERR.2",
+            Name = @"Error Location",
+            Length = 18,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ERL",
+            DataTypeName = @"Error Location",
+            TableId = null,
+            TableName = null,
+            Description = @"Identifies the location in a message related to the identified error, warning or message. If multiple repetitions are present, the error results from the values in a combination of places.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ERR.2",
-                            Type = @"Field",
-                            Position = @"ERR.2",
-                            Name = @"Error Location",
-                            Length = 18,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ERL",
-                            DataTypeName = @"Error Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identifies the location in a message related to the identified error, warning or message. If multiple repetitions are present, the error results from the values in a combination of places.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ERR.2.1",
                             Type = @"Component",
@@ -350,25 +392,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the number of the sub-component within the component. The first sub-component is assigned a number of 1. Sub-component number should not be specified when referring to the entire component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _errorLocation = new HL7V251Field
+        {
+            field = message[@"ERR"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_errorLocation.field.FieldRepetitions != null && _errorLocation.field.FieldRepetitions.Count > 0)
+        {
+            _errorLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_errorLocation, fieldData);
+        }
+
+        return _errorLocation;
+    } 
+}
+
+internal HL7V251Field _hL7ErrorCode;
+
+public HL7V251Field HL7ErrorCode
+{
+    get
+    {
+        if (_hL7ErrorCode != null)
+        {
+            return _hL7ErrorCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERR.3",
+            Type = @"Field",
+            Position = @"ERR.3",
+            Name = @"HL7 Error Code",
+            Length = 705,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0357",
+            TableName = @"Message error condition codes",
+            Description = @"Identifies the HL7 (communications) error code. Refer to HL7 Table 0357 - Message Error Condition Codes for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ERR.3",
-                            Type = @"Field",
-                            Position = @"ERR.3",
-                            Name = @"HL7 Error Code",
-                            Length = 705,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0357",
-                            TableName = @"Message error condition codes",
-                            Description = @"Identifies the HL7 (communications) error code. Refer to HL7 Table 0357 - Message Error Condition Codes for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ERR.3.1",
                             Type = @"Component",
@@ -528,43 +600,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _hL7ErrorCode = new HL7V251Field
+        {
+            field = message[@"ERR"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_hL7ErrorCode.field.FieldRepetitions != null && _hL7ErrorCode.field.FieldRepetitions.Count > 0)
+        {
+            _hL7ErrorCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_hL7ErrorCode, fieldData);
+        }
+
+        return _hL7ErrorCode;
+    } 
+}
+
+internal HL7V251Field _severity;
+
+public HL7V251Field Severity
+{
+    get
+    {
+        if (_severity != null)
+        {
+            return _severity;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERR.4",
+            Type = @"Field",
+            Position = @"ERR.4",
+            Name = @"Severity",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0516",
+            TableName = @"Error severity",
+            Description = @"Identifies the severity of an application error. Knowing if something is Error, Warning or Information is intrinsic to how an application handles the content. Refer to HL7 Table 0516 - Error severity for valid values. If ERR-3 has a value of ""0"", ERR-4 will have a value of ""I"".",
+            Sample = @"",
+            Fields = null
+        }
+
+        _severity = new HL7V251Field
+        {
+            field = message[@"ERR"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_severity.field.FieldRepetitions != null && _severity.field.FieldRepetitions.Count > 0)
+        {
+            _severity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_severity, fieldData);
+        }
+
+        return _severity;
+    } 
+}
+
+internal HL7V251Field _applicationErrorCode;
+
+public HL7V251Field ApplicationErrorCode
+{
+    get
+    {
+        if (_applicationErrorCode != null)
+        {
+            return _applicationErrorCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERR.5",
+            Type = @"Field",
+            Position = @"ERR.5",
+            Name = @"Application Error Code",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0533",
+            TableName = @"Application error code",
+            Description = @"Application specific code identifying the specific error that occurred. Refer to User-Defined Table 0533 - Application Error Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ERR.4",
-                            Type = @"Field",
-                            Position = @"ERR.4",
-                            Name = @"Severity",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0516",
-                            TableName = @"Error severity",
-                            Description = @"Identifies the severity of an application error. Knowing if something is Error, Warning or Information is intrinsic to how an application handles the content. Refer to HL7 Table 0516 - Error severity for valid values. If ERR-3 has a value of ""0"", ERR-4 will have a value of ""I"".",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ERR.5",
-                            Type = @"Field",
-                            Position = @"ERR.5",
-                            Name = @"Application Error Code",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0533",
-                            TableName = @"Application error code",
-                            Description = @"Application specific code identifying the specific error that occurred. Refer to User-Defined Table 0533 - Application Error Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ERR.5.1",
                             Type = @"Component",
@@ -724,97 +853,235 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _applicationErrorCode = new HL7V251Field
+        {
+            field = message[@"ERR"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_applicationErrorCode.field.FieldRepetitions != null && _applicationErrorCode.field.FieldRepetitions.Count > 0)
+        {
+            _applicationErrorCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_applicationErrorCode, fieldData);
+        }
+
+        return _applicationErrorCode;
+    } 
+}
+
+internal HL7V251Field _applicationErrorParameter;
+
+public HL7V251Field ApplicationErrorParameter
+{
+    get
+    {
+        if (_applicationErrorParameter != null)
+        {
+            return _applicationErrorParameter;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERR.6",
+            Type = @"Field",
+            Position = @"ERR.6",
+            Name = @"Application Error Parameter",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"10",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Additional information to be used, together with the Application Error Code, to understand a particular error condition/warning/etc. This field can repeat to allow for up to 10 parameters.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _applicationErrorParameter = new HL7V251Field
+        {
+            field = message[@"ERR"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_applicationErrorParameter.field.FieldRepetitions != null && _applicationErrorParameter.field.FieldRepetitions.Count > 0)
+        {
+            _applicationErrorParameter.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_applicationErrorParameter, fieldData);
+        }
+
+        return _applicationErrorParameter;
+    } 
+}
+
+internal HL7V251Field _diagnosticInformation;
+
+public HL7V251Field DiagnosticInformation
+{
+    get
+    {
+        if (_diagnosticInformation != null)
+        {
+            return _diagnosticInformation;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERR.7",
+            Type = @"Field",
+            Position = @"ERR.7",
+            Name = @"Diagnostic Information",
+            Length = 2048,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Information that may be used by help desk or other support personnel to diagnose a problem.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _diagnosticInformation = new HL7V251Field
+        {
+            field = message[@"ERR"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_diagnosticInformation.field.FieldRepetitions != null && _diagnosticInformation.field.FieldRepetitions.Count > 0)
+        {
+            _diagnosticInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_diagnosticInformation, fieldData);
+        }
+
+        return _diagnosticInformation;
+    } 
+}
+
+internal HL7V251Field _userMessage;
+
+public HL7V251Field UserMessage
+{
+    get
+    {
+        if (_userMessage != null)
+        {
+            return _userMessage;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERR.8",
+            Type = @"Field",
+            Position = @"ERR.8",
+            Name = @"User Message",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The text message to be displayed to the application user.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _userMessage = new HL7V251Field
+        {
+            field = message[@"ERR"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_userMessage.field.FieldRepetitions != null && _userMessage.field.FieldRepetitions.Count > 0)
+        {
+            _userMessage.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_userMessage, fieldData);
+        }
+
+        return _userMessage;
+    } 
+}
+
+internal HL7V251Field _informPersonIndicator;
+
+public HL7V251Field InformPersonIndicator
+{
+    get
+    {
+        if (_informPersonIndicator != null)
+        {
+            return _informPersonIndicator;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERR.9",
+            Type = @"Field",
+            Position = @"ERR.9",
+            Name = @"Inform Person Indicator",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0517",
+            TableName = @"Inform person code",
+            Description = @"A code to indicate who (if anyone) should be informed of the error. This field may also be used to indicate that a particular person should NOT be informed of the error (e.g. Do not inform patient). Refer to User-defined table 0517- Inform Person Code for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _informPersonIndicator = new HL7V251Field
+        {
+            field = message[@"ERR"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_informPersonIndicator.field.FieldRepetitions != null && _informPersonIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _informPersonIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_informPersonIndicator, fieldData);
+        }
+
+        return _informPersonIndicator;
+    } 
+}
+
+internal HL7V251Field _overrideType;
+
+public HL7V251Field OverrideType
+{
+    get
+    {
+        if (_overrideType != null)
+        {
+            return _overrideType;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERR.10",
+            Type = @"Field",
+            Position = @"ERR.10",
+            Name = @"Override Type",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0518",
+            TableName = @"Override type",
+            Description = @"Identifies what type of override can be used to override the specific error identified. Refer to User-defined table 0518 Override Type for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ERR.6",
-                            Type = @"Field",
-                            Position = @"ERR.6",
-                            Name = @"Application Error Parameter",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"10",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Additional information to be used, together with the Application Error Code, to understand a particular error condition/warning/etc. This field can repeat to allow for up to 10 parameters.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ERR.7",
-                            Type = @"Field",
-                            Position = @"ERR.7",
-                            Name = @"Diagnostic Information",
-                            Length = 2048,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Information that may be used by help desk or other support personnel to diagnose a problem.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ERR.8",
-                            Type = @"Field",
-                            Position = @"ERR.8",
-                            Name = @"User Message",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The text message to be displayed to the application user.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ERR.9",
-                            Type = @"Field",
-                            Position = @"ERR.9",
-                            Name = @"Inform Person Indicator",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0517",
-                            TableName = @"Inform person code",
-                            Description = @"A code to indicate who (if anyone) should be informed of the error. This field may also be used to indicate that a particular person should NOT be informed of the error (e.g. Do not inform patient). Refer to User-defined table 0517- Inform Person Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ERR.10",
-                            Type = @"Field",
-                            Position = @"ERR.10",
-                            Name = @"Override Type",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0518",
-                            TableName = @"Override type",
-                            Description = @"Identifies what type of override can be used to override the specific error identified. Refer to User-defined table 0518 Override Type for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ERR.10.1",
                             Type = @"Component",
@@ -974,25 +1241,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _overrideType = new HL7V251Field
+        {
+            field = message[@"ERR"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_overrideType.field.FieldRepetitions != null && _overrideType.field.FieldRepetitions.Count > 0)
+        {
+            _overrideType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_overrideType, fieldData);
+        }
+
+        return _overrideType;
+    } 
+}
+
+internal HL7V251Field _overrideReasonCode;
+
+public HL7V251Field OverrideReasonCode
+{
+    get
+    {
+        if (_overrideReasonCode != null)
+        {
+            return _overrideReasonCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERR.11",
+            Type = @"Field",
+            Position = @"ERR.11",
+            Name = @"Override Reason Code",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0519",
+            TableName = @"Override reason",
+            Description = @"Provides a list of potential override codes that can be used to override enforcement of the application rule that generated the error. Refer to User-defined table 0519 - Override Reason for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ERR.11",
-                            Type = @"Field",
-                            Position = @"ERR.11",
-                            Name = @"Override Reason Code",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0519",
-                            TableName = @"Override reason",
-                            Description = @"Provides a list of potential override codes that can be used to override enforcement of the application rule that generated the error. Refer to User-defined table 0519 - Override Reason for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ERR.11.1",
                             Type = @"Component",
@@ -1152,25 +1449,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _overrideReasonCode = new HL7V251Field
+        {
+            field = message[@"ERR"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_overrideReasonCode.field.FieldRepetitions != null && _overrideReasonCode.field.FieldRepetitions.Count > 0)
+        {
+            _overrideReasonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_overrideReasonCode, fieldData);
+        }
+
+        return _overrideReasonCode;
+    } 
+}
+
+internal HL7V251Field _helpDeskContactPoint;
+
+public HL7V251Field HelpDeskContactPoint
+{
+    get
+    {
+        if (_helpDeskContactPoint != null)
+        {
+            return _helpDeskContactPoint;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERR.12",
+            Type = @"Field",
+            Position = @"ERR.12",
+            Name = @"Help Desk Contact Point",
+            Length = 652,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"Lists phone, e-mail, fax, and other relevant numbers for helpdesk support related to the specified error.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ERR.12",
-                            Type = @"Field",
-                            Position = @"ERR.12",
-                            Name = @"Help Desk Contact Point",
-                            Length = 652,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Lists phone, e-mail, fax, and other relevant numbers for helpdesk support related to the specified error.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ERR.12.1",
                             Type = @"Component",
@@ -1390,506 +1717,23 @@ Format: [NNN] [(999)]999-9999 [X99999] [B99999] [C any text] ",
 Example: |^^^^^^^^^^^1-800-Dentist| ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentERR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field errorCodeandLocation;
-
-public HL7V251Field ErrorCodeandLocation
-{
-    get
-    {
-        if (errorCodeandLocation != null)
-        {
-            return errorCodeandLocation;
-        }
-
-        errorCodeandLocation = new HL7V251Field
-        {
-            field = message[@"ERR"][1],
-            Id = @"ERR.1",
-            Type = @"Field",
-            Position = @"ERR.1",
-            Name = @"Error Code and Location",
-            Length = 493,
-            Usage = @"B",
-            Rpt = @"*",
-            DataType = @"ELD",
-            DataTypeName = @"Error Location and Description",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies an erroneous segment in another message. Retained for backward compatibility only as of v 2.5; refer to ERR-2 and ERR-3 instead.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (errorCodeandLocation.field.FieldRepetitions != null && errorCodeandLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(errorCodeandLocation.Id));
-            errorCodeandLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(errorCodeandLocation, fieldData);
-        }
-
-        return errorCodeandLocation;
-    } 
-}
-
-internal HL7V251Field errorLocation;
-
-public HL7V251Field ErrorLocation
-{
-    get
-    {
-        if (errorLocation != null)
-        {
-            return errorLocation;
-        }
-
-        errorLocation = new HL7V251Field
-        {
-            field = message[@"ERR"][2],
-            Id = @"ERR.2",
-            Type = @"Field",
-            Position = @"ERR.2",
-            Name = @"Error Location",
-            Length = 18,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ERL",
-            DataTypeName = @"Error Location",
-            TableId = null,
-            TableName = null,
-            Description = @"Identifies the location in a message related to the identified error, warning or message. If multiple repetitions are present, the error results from the values in a combination of places.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (errorLocation.field.FieldRepetitions != null && errorLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(errorLocation.Id));
-            errorLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(errorLocation, fieldData);
-        }
-
-        return errorLocation;
-    } 
-}
-
-internal HL7V251Field hL7ErrorCode;
-
-public HL7V251Field HL7ErrorCode
-{
-    get
-    {
-        if (hL7ErrorCode != null)
-        {
-            return hL7ErrorCode;
-        }
-
-        hL7ErrorCode = new HL7V251Field
-        {
-            field = message[@"ERR"][3],
-            Id = @"ERR.3",
-            Type = @"Field",
-            Position = @"ERR.3",
-            Name = @"HL7 Error Code",
-            Length = 705,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0357",
-            TableName = @"Message error condition codes",
-            Description = @"Identifies the HL7 (communications) error code. Refer to HL7 Table 0357 - Message Error Condition Codes for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (hL7ErrorCode.field.FieldRepetitions != null && hL7ErrorCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(hL7ErrorCode.Id));
-            hL7ErrorCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(hL7ErrorCode, fieldData);
-        }
-
-        return hL7ErrorCode;
-    } 
-}
-
-internal HL7V251Field severity;
-
-public HL7V251Field Severity
-{
-    get
-    {
-        if (severity != null)
-        {
-            return severity;
-        }
-
-        severity = new HL7V251Field
-        {
-            field = message[@"ERR"][4],
-            Id = @"ERR.4",
-            Type = @"Field",
-            Position = @"ERR.4",
-            Name = @"Severity",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0516",
-            TableName = @"Error severity",
-            Description = @"Identifies the severity of an application error. Knowing if something is Error, Warning or Information is intrinsic to how an application handles the content. Refer to HL7 Table 0516 - Error severity for valid values. If ERR-3 has a value of ""0"", ERR-4 will have a value of ""I"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (severity.field.FieldRepetitions != null && severity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(severity.Id));
-            severity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(severity, fieldData);
-        }
-
-        return severity;
-    } 
-}
-
-internal HL7V251Field applicationErrorCode;
-
-public HL7V251Field ApplicationErrorCode
-{
-    get
-    {
-        if (applicationErrorCode != null)
-        {
-            return applicationErrorCode;
-        }
-
-        applicationErrorCode = new HL7V251Field
-        {
-            field = message[@"ERR"][5],
-            Id = @"ERR.5",
-            Type = @"Field",
-            Position = @"ERR.5",
-            Name = @"Application Error Code",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0533",
-            TableName = @"Application error code",
-            Description = @"Application specific code identifying the specific error that occurred. Refer to User-Defined Table 0533 - Application Error Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (applicationErrorCode.field.FieldRepetitions != null && applicationErrorCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(applicationErrorCode.Id));
-            applicationErrorCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(applicationErrorCode, fieldData);
-        }
-
-        return applicationErrorCode;
-    } 
-}
-
-internal HL7V251Field applicationErrorParameter;
-
-public HL7V251Field ApplicationErrorParameter
-{
-    get
-    {
-        if (applicationErrorParameter != null)
-        {
-            return applicationErrorParameter;
-        }
-
-        applicationErrorParameter = new HL7V251Field
-        {
-            field = message[@"ERR"][6],
-            Id = @"ERR.6",
-            Type = @"Field",
-            Position = @"ERR.6",
-            Name = @"Application Error Parameter",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"10",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Additional information to be used, together with the Application Error Code, to understand a particular error condition/warning/etc. This field can repeat to allow for up to 10 parameters.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (applicationErrorParameter.field.FieldRepetitions != null && applicationErrorParameter.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(applicationErrorParameter.Id));
-            applicationErrorParameter.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(applicationErrorParameter, fieldData);
-        }
-
-        return applicationErrorParameter;
-    } 
-}
-
-internal HL7V251Field diagnosticInformation;
-
-public HL7V251Field DiagnosticInformation
-{
-    get
-    {
-        if (diagnosticInformation != null)
-        {
-            return diagnosticInformation;
-        }
-
-        diagnosticInformation = new HL7V251Field
-        {
-            field = message[@"ERR"][7],
-            Id = @"ERR.7",
-            Type = @"Field",
-            Position = @"ERR.7",
-            Name = @"Diagnostic Information",
-            Length = 2048,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Information that may be used by help desk or other support personnel to diagnose a problem.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (diagnosticInformation.field.FieldRepetitions != null && diagnosticInformation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosticInformation.Id));
-            diagnosticInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(diagnosticInformation, fieldData);
-        }
-
-        return diagnosticInformation;
-    } 
-}
-
-internal HL7V251Field userMessage;
-
-public HL7V251Field UserMessage
-{
-    get
-    {
-        if (userMessage != null)
-        {
-            return userMessage;
-        }
-
-        userMessage = new HL7V251Field
-        {
-            field = message[@"ERR"][8],
-            Id = @"ERR.8",
-            Type = @"Field",
-            Position = @"ERR.8",
-            Name = @"User Message",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The text message to be displayed to the application user.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (userMessage.field.FieldRepetitions != null && userMessage.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(userMessage.Id));
-            userMessage.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(userMessage, fieldData);
-        }
-
-        return userMessage;
-    } 
-}
-
-internal HL7V251Field informPersonIndicator;
-
-public HL7V251Field InformPersonIndicator
-{
-    get
-    {
-        if (informPersonIndicator != null)
-        {
-            return informPersonIndicator;
-        }
-
-        informPersonIndicator = new HL7V251Field
-        {
-            field = message[@"ERR"][9],
-            Id = @"ERR.9",
-            Type = @"Field",
-            Position = @"ERR.9",
-            Name = @"Inform Person Indicator",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0517",
-            TableName = @"Inform person code",
-            Description = @"A code to indicate who (if anyone) should be informed of the error. This field may also be used to indicate that a particular person should NOT be informed of the error (e.g. Do not inform patient). Refer to User-defined table 0517- Inform Person Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (informPersonIndicator.field.FieldRepetitions != null && informPersonIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(informPersonIndicator.Id));
-            informPersonIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(informPersonIndicator, fieldData);
-        }
-
-        return informPersonIndicator;
-    } 
-}
-
-internal HL7V251Field overrideType;
-
-public HL7V251Field OverrideType
-{
-    get
-    {
-        if (overrideType != null)
-        {
-            return overrideType;
-        }
-
-        overrideType = new HL7V251Field
-        {
-            field = message[@"ERR"][10],
-            Id = @"ERR.10",
-            Type = @"Field",
-            Position = @"ERR.10",
-            Name = @"Override Type",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0518",
-            TableName = @"Override type",
-            Description = @"Identifies what type of override can be used to override the specific error identified. Refer to User-defined table 0518 Override Type for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (overrideType.field.FieldRepetitions != null && overrideType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(overrideType.Id));
-            overrideType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(overrideType, fieldData);
-        }
-
-        return overrideType;
-    } 
-}
-
-internal HL7V251Field overrideReasonCode;
-
-public HL7V251Field OverrideReasonCode
-{
-    get
-    {
-        if (overrideReasonCode != null)
-        {
-            return overrideReasonCode;
-        }
-
-        overrideReasonCode = new HL7V251Field
-        {
-            field = message[@"ERR"][11],
-            Id = @"ERR.11",
-            Type = @"Field",
-            Position = @"ERR.11",
-            Name = @"Override Reason Code",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0519",
-            TableName = @"Override reason",
-            Description = @"Provides a list of potential override codes that can be used to override enforcement of the application rule that generated the error. Refer to User-defined table 0519 - Override Reason for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (overrideReasonCode.field.FieldRepetitions != null && overrideReasonCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(overrideReasonCode.Id));
-            overrideReasonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(overrideReasonCode, fieldData);
-        }
-
-        return overrideReasonCode;
-    } 
-}
-
-internal HL7V251Field helpDeskContactPoint;
-
-public HL7V251Field HelpDeskContactPoint
-{
-    get
-    {
-        if (helpDeskContactPoint != null)
-        {
-            return helpDeskContactPoint;
-        }
-
-        helpDeskContactPoint = new HL7V251Field
+        _helpDeskContactPoint = new HL7V251Field
         {
             field = message[@"ERR"][12],
-            Id = @"ERR.12",
-            Type = @"Field",
-            Position = @"ERR.12",
-            Name = @"Help Desk Contact Point",
-            Length = 652,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"Lists phone, e-mail, fax, and other relevant numbers for helpdesk support related to the specified error.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (helpDeskContactPoint.field.FieldRepetitions != null && helpDeskContactPoint.field.FieldRepetitions.Count > 0)
+        if (_helpDeskContactPoint.field.FieldRepetitions != null && _helpDeskContactPoint.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(helpDeskContactPoint.Id));
-            helpDeskContactPoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(helpDeskContactPoint, fieldData);
+            _helpDeskContactPoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_helpDeskContactPoint, fieldData);
         }
 
-        return helpDeskContactPoint;
+        return _helpDeskContactPoint;
     } 
 }
     }

@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentRXR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _route;
+
+public HL7V24Field Route
+{
+    get
+    {
+        if (_route != null)
+        {
+            return _route;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"RXR.1",
+            Type = @"Field",
+            Position = @"RXR.1",
+            Name = @"Route",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0162",
+            TableName = @"Route of administration",
+            Description = @"This field is the route of administration.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"RXR.1",
-                            Type = @"Field",
-                            Position = @"RXR.1",
-                            Name = @"Route",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0162",
-                            TableName = @"Route of administration",
-                            Description = @"This field is the route of administration.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXR.1.1",
                             Type = @"Component",
@@ -160,25 +172,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _route = new HL7V24Field
+        {
+            field = message[@"RXR"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_route.field.FieldRepetitions != null && _route.field.FieldRepetitions.Count > 0)
+        {
+            _route.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_route, fieldData);
+        }
+
+        return _route;
+    } 
+}
+
+internal HL7V24Field _administrationSite;
+
+public HL7V24Field AdministrationSite
+{
+    get
+    {
+        if (_administrationSite != null)
+        {
+            return _administrationSite;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"RXR.2",
+            Type = @"Field",
+            Position = @"RXR.2",
+            Name = @"Administration Site",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0163",
+            TableName = @"Body site",
+            Description = @"This field contains the site of the administration route. Refer to HL7 Table 0163 - Body Site for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXR.2",
-                            Type = @"Field",
-                            Position = @"RXR.2",
-                            Name = @"Administration Site",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0163",
-                            TableName = @"Body site",
-                            Description = @"This field contains the site of the administration route. Refer to HL7 Table 0163 - Body Site for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXR.2.1",
                             Type = @"Component",
@@ -288,25 +330,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _administrationSite = new HL7V24Field
+        {
+            field = message[@"RXR"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_administrationSite.field.FieldRepetitions != null && _administrationSite.field.FieldRepetitions.Count > 0)
+        {
+            _administrationSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_administrationSite, fieldData);
+        }
+
+        return _administrationSite;
+    } 
+}
+
+internal HL7V24Field _administrationDevice;
+
+public HL7V24Field AdministrationDevice
+{
+    get
+    {
+        if (_administrationDevice != null)
+        {
+            return _administrationDevice;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"RXR.3",
+            Type = @"Field",
+            Position = @"RXR.3",
+            Name = @"Administration Device",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0164",
+            TableName = @"Administration device",
+            Description = @"This field contains the mechanical device used to aid in the administration of the drug or other treatment. Common examples are IV-sets of different types. Refer to HL7 Table 0164 - Administration device for valid entries.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXR.3",
-                            Type = @"Field",
-                            Position = @"RXR.3",
-                            Name = @"Administration Device",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0164",
-                            TableName = @"Administration device",
-                            Description = @"This field contains the mechanical device used to aid in the administration of the drug or other treatment. Common examples are IV-sets of different types. Refer to HL7 Table 0164 - Administration device for valid entries.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXR.3.1",
                             Type = @"Component",
@@ -416,25 +488,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _administrationDevice = new HL7V24Field
+        {
+            field = message[@"RXR"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_administrationDevice.field.FieldRepetitions != null && _administrationDevice.field.FieldRepetitions.Count > 0)
+        {
+            _administrationDevice.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_administrationDevice, fieldData);
+        }
+
+        return _administrationDevice;
+    } 
+}
+
+internal HL7V24Field _administrationMethod;
+
+public HL7V24Field AdministrationMethod
+{
+    get
+    {
+        if (_administrationMethod != null)
+        {
+            return _administrationMethod;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"RXR.4",
+            Type = @"Field",
+            Position = @"RXR.4",
+            Name = @"Administration Method",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0165",
+            TableName = @"Administration method",
+            Description = @"This field identifies the specific method requested for the administration of the drug or treatment to the patient. Refer to HL7 Table 0165 - Administration method for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXR.4",
-                            Type = @"Field",
-                            Position = @"RXR.4",
-                            Name = @"Administration Method",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0165",
-                            TableName = @"Administration method",
-                            Description = @"This field identifies the specific method requested for the administration of the drug or treatment to the patient. Refer to HL7 Table 0165 - Administration method for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXR.4.1",
                             Type = @"Component",
@@ -544,25 +646,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _administrationMethod = new HL7V24Field
+        {
+            field = message[@"RXR"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_administrationMethod.field.FieldRepetitions != null && _administrationMethod.field.FieldRepetitions.Count > 0)
+        {
+            _administrationMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_administrationMethod, fieldData);
+        }
+
+        return _administrationMethod;
+    } 
+}
+
+internal HL7V24Field _routingInstruction;
+
+public HL7V24Field RoutingInstruction
+{
+    get
+    {
+        if (_routingInstruction != null)
+        {
+            return _routingInstruction;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"RXR.5",
+            Type = @"Field",
+            Position = @"RXR.5",
+            Name = @"Routing Instruction",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field provides instruction on administration routing, especially in cases where more than one route of administration is possible. A typical case would be designating which IV line should be used when more than one IV line is a possible route for injection.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXR.5",
-                            Type = @"Field",
-                            Position = @"RXR.5",
-                            Name = @"Routing Instruction",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field provides instruction on administration routing, especially in cases where more than one route of administration is possible. A typical case would be designating which IV line should be used when more than one IV line is a possible route for injection.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXR.5.1",
                             Type = @"Component",
@@ -672,219 +804,23 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentRXR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field route;
-
-public HL7V24Field Route
-{
-    get
-    {
-        if (route != null)
-        {
-            return route;
-        }
-
-        route = new HL7V24Field
-        {
-            field = message[@"RXR"][1],
-            Id = @"RXR.1",
-            Type = @"Field",
-            Position = @"RXR.1",
-            Name = @"Route",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0162",
-            TableName = @"Route of administration",
-            Description = @"This field is the route of administration.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (route.field.FieldRepetitions != null && route.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(route.Id));
-            route.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(route, fieldData);
-        }
-
-        return route;
-    } 
-}
-
-internal HL7V24Field administrationSite;
-
-public HL7V24Field AdministrationSite
-{
-    get
-    {
-        if (administrationSite != null)
-        {
-            return administrationSite;
-        }
-
-        administrationSite = new HL7V24Field
-        {
-            field = message[@"RXR"][2],
-            Id = @"RXR.2",
-            Type = @"Field",
-            Position = @"RXR.2",
-            Name = @"Administration Site",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0163",
-            TableName = @"Body site",
-            Description = @"This field contains the site of the administration route. Refer to HL7 Table 0163 - Body Site for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (administrationSite.field.FieldRepetitions != null && administrationSite.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(administrationSite.Id));
-            administrationSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(administrationSite, fieldData);
-        }
-
-        return administrationSite;
-    } 
-}
-
-internal HL7V24Field administrationDevice;
-
-public HL7V24Field AdministrationDevice
-{
-    get
-    {
-        if (administrationDevice != null)
-        {
-            return administrationDevice;
-        }
-
-        administrationDevice = new HL7V24Field
-        {
-            field = message[@"RXR"][3],
-            Id = @"RXR.3",
-            Type = @"Field",
-            Position = @"RXR.3",
-            Name = @"Administration Device",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0164",
-            TableName = @"Administration device",
-            Description = @"This field contains the mechanical device used to aid in the administration of the drug or other treatment. Common examples are IV-sets of different types. Refer to HL7 Table 0164 - Administration device for valid entries.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (administrationDevice.field.FieldRepetitions != null && administrationDevice.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(administrationDevice.Id));
-            administrationDevice.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(administrationDevice, fieldData);
-        }
-
-        return administrationDevice;
-    } 
-}
-
-internal HL7V24Field administrationMethod;
-
-public HL7V24Field AdministrationMethod
-{
-    get
-    {
-        if (administrationMethod != null)
-        {
-            return administrationMethod;
-        }
-
-        administrationMethod = new HL7V24Field
-        {
-            field = message[@"RXR"][4],
-            Id = @"RXR.4",
-            Type = @"Field",
-            Position = @"RXR.4",
-            Name = @"Administration Method",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0165",
-            TableName = @"Administration method",
-            Description = @"This field identifies the specific method requested for the administration of the drug or treatment to the patient. Refer to HL7 Table 0165 - Administration method for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (administrationMethod.field.FieldRepetitions != null && administrationMethod.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(administrationMethod.Id));
-            administrationMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(administrationMethod, fieldData);
-        }
-
-        return administrationMethod;
-    } 
-}
-
-internal HL7V24Field routingInstruction;
-
-public HL7V24Field RoutingInstruction
-{
-    get
-    {
-        if (routingInstruction != null)
-        {
-            return routingInstruction;
-        }
-
-        routingInstruction = new HL7V24Field
+        _routingInstruction = new HL7V24Field
         {
             field = message[@"RXR"][5],
-            Id = @"RXR.5",
-            Type = @"Field",
-            Position = @"RXR.5",
-            Name = @"Routing Instruction",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field provides instruction on administration routing, especially in cases where more than one route of administration is possible. A typical case would be designating which IV line should be used when more than one IV line is a possible route for injection.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (routingInstruction.field.FieldRepetitions != null && routingInstruction.field.FieldRepetitions.Count > 0)
+        if (_routingInstruction.field.FieldRepetitions != null && _routingInstruction.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(routingInstruction.Id));
-            routingInstruction.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(routingInstruction, fieldData);
+            _routingInstruction.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_routingInstruction, fieldData);
         }
 
-        return routingInstruction;
+        return _routingInstruction;
     } 
 }
     }

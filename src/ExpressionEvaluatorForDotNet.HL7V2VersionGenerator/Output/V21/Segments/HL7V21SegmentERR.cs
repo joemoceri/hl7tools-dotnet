@@ -25,52 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"ERR.1",
-                            Type = @"Field",
-                            Position = @"ERR.1",
-                            Name = @"Error Code And Location",
-                            Length = 80,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0060",
-                            TableName = @"ERROR CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentERR(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field errorCodeAndLocation;
+        internal HL7V21Field _errorCodeAndLocation;
 
 public HL7V21Field ErrorCodeAndLocation
 {
     get
     {
-        if (errorCodeAndLocation != null)
+        if (_errorCodeAndLocation != null)
         {
-            return errorCodeAndLocation;
+            return _errorCodeAndLocation;
         }
 
-        errorCodeAndLocation = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ERR"][1],
             Id = @"ERR.1",
             Type = @"Field",
             Position = @"ERR.1",
@@ -84,17 +56,22 @@ public HL7V21Field ErrorCodeAndLocation
             TableName = @"ERROR CODE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _errorCodeAndLocation = new HL7V21Field
+        {
+            field = message[@"ERR"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (errorCodeAndLocation.field.FieldRepetitions != null && errorCodeAndLocation.field.FieldRepetitions.Count > 0)
+        if (_errorCodeAndLocation.field.FieldRepetitions != null && _errorCodeAndLocation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(errorCodeAndLocation.Id));
-            errorCodeAndLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(errorCodeAndLocation, fieldData);
+            _errorCodeAndLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_errorCodeAndLocation, fieldData);
         }
 
-        return errorCodeAndLocation;
+        return _errorCodeAndLocation;
     } 
 }
     }

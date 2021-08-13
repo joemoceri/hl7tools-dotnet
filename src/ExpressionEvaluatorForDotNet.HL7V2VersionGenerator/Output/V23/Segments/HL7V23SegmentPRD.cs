@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V23SegmentPRD(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field _role;
+
+public HL7V23Field Role
+{
+    get
+    {
+        if (_role != null)
+        {
+            return _role;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRD.1",
+            Type = @"Field",
+            Position = @"PRD.1",
+            Name = @"Role",
+            Length = 200,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0286",
+            TableName = @"Provider role",
+            Description = @"This field contains the contact role that defines the relationship of the person described in this segment to the patient being referred.  When a referral is inter-enterprise in nature, there are several important relationships that must be identified.  For example, the proper identification of both the referring and the referred-to provider is critical for proper processing of a referral.  In addition, some enterprises may want information regarding a consulting provider or the identity of the person who actually prepared the referral.  This contact role may also expand to represent affiliated persons to whom information regarding this referral must be forwarded or copied.  Refer to user-defined table 0286 - Provider role for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PRD.1",
-                            Type = @"Field",
-                            Position = @"PRD.1",
-                            Name = @"Role",
-                            Length = 200,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0286",
-                            TableName = @"Provider role",
-                            Description = @"This field contains the contact role that defines the relationship of the person described in this segment to the patient being referred.  When a referral is inter-enterprise in nature, there are several important relationships that must be identified.  For example, the proper identification of both the referring and the referred-to provider is critical for proper processing of a referral.  In addition, some enterprises may want information regarding a consulting provider or the identity of the person who actually prepared the referral.  This contact role may also expand to represent affiliated persons to whom information regarding this referral must be forwarded or copied.  Refer to user-defined table 0286 - Provider role for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRD.1.1",
                             Type = @"Component",
@@ -156,25 +168,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _role = new HL7V23Field
+        {
+            field = message[@"PRD"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_role.field.FieldRepetitions != null && _role.field.FieldRepetitions.Count > 0)
+        {
+            _role.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_role, fieldData);
+        }
+
+        return _role;
+    } 
+}
+
+internal HL7V23Field _providerName;
+
+public HL7V23Field ProviderName
+{
+    get
+    {
+        if (_providerName != null)
+        {
+            return _providerName;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRD.2",
+            Type = @"Field",
+            Position = @"PRD.2",
+            Name = @"Provider Name",
+            Length = 106,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the provider identified in this segment.  Generally, this field will describe a physician associated with the referral.  However, it is not limited to physicians.  This field may contain the name of any valid healthcare provider associated with this referral.  If this Provider Name is a physician’s name, you may refer to PRD-1-provider identifiers (Section 11.5.3.7) for the physician identifier",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRD.2",
-                            Type = @"Field",
-                            Position = @"PRD.2",
-                            Name = @"Provider Name",
-                            Length = 106,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the provider identified in this segment.  Generally, this field will describe a physician associated with the referral.  However, it is not limited to physicians.  This field may contain the name of any valid healthcare provider associated with this referral.  If this Provider Name is a physician’s name, you may refer to PRD-1-provider identifiers (Section 11.5.3.7) for the physician identifier",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRD.2.1",
                             Type = @"Component",
@@ -316,25 +358,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"In general this component provides an indication of the representation provided by the data item.  It does not necessarily specify the character sets used. Thus, even though the representation might provide an indication of what to expect, the sender is still free to encode the contents using whatever character set is desired.  This component provides only hints for the receiver, so it can make choices regarding what it has been sent and what it is capable of displaying",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerName = new HL7V23Field
+        {
+            field = message[@"PRD"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerName.field.FieldRepetitions != null && _providerName.field.FieldRepetitions.Count > 0)
+        {
+            _providerName.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_providerName, fieldData);
+        }
+
+        return _providerName;
+    } 
+}
+
+internal HL7V23Field _providerAddress;
+
+public HL7V23Field ProviderAddress
+{
+    get
+    {
+        if (_providerAddress != null)
+        {
+            return _providerAddress;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRD.3",
+            Type = @"Field",
+            Position = @"PRD.3",
+            Name = @"Provider Address",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the mailing address of the provider identified in this segment.  One of the key components to completing the “circle of care” and provider/institution bonding is the issuance of follow-up correspondence to the referring provider",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRD.3",
-                            Type = @"Field",
-                            Position = @"PRD.3",
-                            Name = @"Provider Address",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the mailing address of the provider identified in this segment.  One of the key components to completing the “circle of care” and provider/institution bonding is the issuance of follow-up correspondence to the referring provider",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRD.3.1",
                             Type = @"Component",
@@ -515,25 +587,55 @@ Allowable values:  codes defined by government",
 Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerAddress = new HL7V23Field
+        {
+            field = message[@"PRD"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerAddress.field.FieldRepetitions != null && _providerAddress.field.FieldRepetitions.Count > 0)
+        {
+            _providerAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_providerAddress, fieldData);
+        }
+
+        return _providerAddress;
+    } 
+}
+
+internal HL7V23Field _providerLocation;
+
+public HL7V23Field ProviderLocation
+{
+    get
+    {
+        if (_providerLocation != null)
+        {
+            return _providerLocation;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRD.4",
+            Type = @"Field",
+            Position = @"PRD.4",
+            Name = @"Provider Location",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the location of the provider as needed when a provider that may be external to a given enterprise must be referenced.  For example, if this provider represented the referred-to physician, the PRD-4-provider location should identify the clinic of the physician or provider to whom this referral has been sent.  The identification of the provider’s location is specified by an application and facility identifier carried in the facility field.  The application ID and facility ID would be used in the same manner as their corresponding fields in the MSH segment (MSH-3-sending application, MSH-5-receiving application MSH-4-sending facility, MSH-6-receiving facility).  That is, the facility field will contain an application identifier and facility identifier which describe the location of this provider.  However, it should be noted that they may describe a different location because the provider location being referenced in this field may not be the location from which the message originated, which is being described by the MSH",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRD.4",
-                            Type = @"Field",
-                            Position = @"PRD.4",
-                            Name = @"Provider Location",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the location of the provider as needed when a provider that may be external to a given enterprise must be referenced.  For example, if this provider represented the referred-to physician, the PRD-4-provider location should identify the clinic of the physician or provider to whom this referral has been sent.  The identification of the provider’s location is specified by an application and facility identifier carried in the facility field.  The application ID and facility ID would be used in the same manner as their corresponding fields in the MSH segment (MSH-3-sending application, MSH-5-receiving application MSH-4-sending facility, MSH-6-receiving facility).  That is, the facility field will contain an application identifier and facility identifier which describe the location of this provider.  However, it should be noted that they may describe a different location because the provider location being referenced in this field may not be the location from which the message originated, which is being described by the MSH",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRD.4.1",
                             Type = @"Component",
@@ -745,25 +847,55 @@ Allowable Values:  codes defined by government",
                             Description = @"A free text description of the location",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerLocation = new HL7V23Field
+        {
+            field = message[@"PRD"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerLocation.field.FieldRepetitions != null && _providerLocation.field.FieldRepetitions.Count > 0)
+        {
+            _providerLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_providerLocation, fieldData);
+        }
+
+        return _providerLocation;
+    } 
+}
+
+internal HL7V23Field _providerCommunicationInformation;
+
+public HL7V23Field ProviderCommunicationInformation
+{
+    get
+    {
+        if (_providerCommunicationInformation != null)
+        {
+            return _providerCommunicationInformation;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRD.5",
+            Type = @"Field",
+            Position = @"PRD.5",
+            Name = @"Provider Communication Information",
+            Length = 100,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains information, such as the phone number or electronic mail address, used to communicate with the provider or organization",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRD.5",
-                            Type = @"Field",
-                            Position = @"PRD.5",
-                            Name = @"Provider Communication Information",
-                            Length = 100,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains information, such as the phone number or electronic mail address, used to communicate with the provider or organization",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRD.5.1",
                             Type = @"Component",
@@ -923,25 +1055,55 @@ Allowable Values:  codes defined by government",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerCommunicationInformation = new HL7V23Field
+        {
+            field = message[@"PRD"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerCommunicationInformation.field.FieldRepetitions != null && _providerCommunicationInformation.field.FieldRepetitions.Count > 0)
+        {
+            _providerCommunicationInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_providerCommunicationInformation, fieldData);
+        }
+
+        return _providerCommunicationInformation;
+    } 
+}
+
+internal HL7V23Field _preferredMethodofContact;
+
+public HL7V23Field PreferredMethodofContact
+{
+    get
+    {
+        if (_preferredMethodofContact != null)
+        {
+            return _preferredMethodofContact;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRD.6",
+            Type = @"Field",
+            Position = @"PRD.6",
+            Name = @"Preferred Method of Contact",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0185",
+            TableName = @"Preferred method of contact",
+            Description = @"This field contains the preferred method to use when communicating with the provider.  Refer to user-defined table 0185 - Preferred method of contact for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRD.6",
-                            Type = @"Field",
-                            Position = @"PRD.6",
-                            Name = @"Preferred Method of Contact",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0185",
-                            TableName = @"Preferred method of contact",
-                            Description = @"This field contains the preferred method to use when communicating with the provider.  Refer to user-defined table 0185 - Preferred method of contact for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRD.6.1",
                             Type = @"Component",
@@ -1047,25 +1209,55 @@ Allowable Values:  codes defined by government",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _preferredMethodofContact = new HL7V23Field
+        {
+            field = message[@"PRD"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_preferredMethodofContact.field.FieldRepetitions != null && _preferredMethodofContact.field.FieldRepetitions.Count > 0)
+        {
+            _preferredMethodofContact.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_preferredMethodofContact, fieldData);
+        }
+
+        return _preferredMethodofContact;
+    } 
+}
+
+internal HL7V23Field _providerIdentifiers;
+
+public HL7V23Field ProviderIdentifiers
+{
+    get
+    {
+        if (_providerIdentifiers != null)
+        {
+            return _providerIdentifiers;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRD.7",
+            Type = @"Field",
+            Position = @"PRD.7",
+            Name = @"Provider Identifiers",
+            Length = 100,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CM_PI",
+            DataTypeName = @"Person Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This repeating field contains the provider’s unique identifiers such as UPIN, Medicare and Medicaid numbers.  Refer to PRA-6-practitioner ID numbers  in Chapter 8 ( Section 8.6.3.6, “Practitioner ID numbers”) for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRD.7",
-                            Type = @"Field",
-                            Position = @"PRD.7",
-                            Name = @"Provider Identifiers",
-                            Length = 100,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CM_PI",
-                            DataTypeName = @"Person Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This repeating field contains the provider’s unique identifiers such as UPIN, Medicare and Medicaid numbers.  Refer to PRA-6-practitioner ID numbers  in Chapter 8 ( Section 8.6.3.6, “Practitioner ID numbers”) for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRD.7.1",
                             Type = @"Component",
@@ -1117,390 +1309,39 @@ Allowable Values:  codes defined by government",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRD.8",
-                            Type = @"Field",
-                            Position = @"PRD.8",
-                            Name = @"Effective Start Date of Role",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date that the role of the provider effectively began.  For example, this date may represent the date on which a physician was assigned as a patient’s primary care provider
-
-Note: The PRD-8-effective start date of role and PRD-9-effective end date of role fields should not be used as trigger events.  For example, they should not be used to trigger a change in role.  These two dates are for informational purposes only. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
-                        {
-                            Id = @"PRD.8.1",
-                            Type = @"Component",
-                            Position = @"PRD.8.1",
-                            Name = @"Time Of An Event",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },}
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRD.9",
-                            Type = @"Field",
-                            Position = @"PRD.9",
-                            Name = @"Effective End Date of Role",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date that the role of the provider effectively ended.  For example, this date may represent the date that a physician was removed as a patient’s primary care provider.
-
-Note: The PRD-8-effective start date of role and PRD-9-effective end date of role fields should not be used as trigger events.  For example, they should not be used to trigger a change in role.  These two dates are for informational purposes only. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
-                        {
-                            Id = @"PRD.9.1",
-                            Type = @"Component",
-                            Position = @"PRD.9.1",
-                            Name = @"Time Of An Event",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },}
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V23SegmentPRD(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V23Field role;
-
-public HL7V23Field Role
-{
-    get
-    {
-        if (role != null)
-        {
-            return role;
-        }
-
-        role = new HL7V23Field
-        {
-            field = message[@"PRD"][1],
-            Id = @"PRD.1",
-            Type = @"Field",
-            Position = @"PRD.1",
-            Name = @"Role",
-            Length = 200,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0286",
-            TableName = @"Provider role",
-            Description = @"This field contains the contact role that defines the relationship of the person described in this segment to the patient being referred.  When a referral is inter-enterprise in nature, there are several important relationships that must be identified.  For example, the proper identification of both the referring and the referred-to provider is critical for proper processing of a referral.  In addition, some enterprises may want information regarding a consulting provider or the identity of the person who actually prepared the referral.  This contact role may also expand to represent affiliated persons to whom information regarding this referral must be forwarded or copied.  Refer to user-defined table 0286 - Provider role for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (role.field.FieldRepetitions != null && role.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(role.Id));
-            role.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(role, fieldData);
-        }
-
-        return role;
-    } 
-}
-
-internal HL7V23Field providerName;
-
-public HL7V23Field ProviderName
-{
-    get
-    {
-        if (providerName != null)
-        {
-            return providerName;
-        }
-
-        providerName = new HL7V23Field
-        {
-            field = message[@"PRD"][2],
-            Id = @"PRD.2",
-            Type = @"Field",
-            Position = @"PRD.2",
-            Name = @"Provider Name",
-            Length = 106,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the provider identified in this segment.  Generally, this field will describe a physician associated with the referral.  However, it is not limited to physicians.  This field may contain the name of any valid healthcare provider associated with this referral.  If this Provider Name is a physician’s name, you may refer to PRD-1-provider identifiers (Section 11.5.3.7) for the physician identifier",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerName.field.FieldRepetitions != null && providerName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerName.Id));
-            providerName.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(providerName, fieldData);
-        }
-
-        return providerName;
-    } 
-}
-
-internal HL7V23Field providerAddress;
-
-public HL7V23Field ProviderAddress
-{
-    get
-    {
-        if (providerAddress != null)
-        {
-            return providerAddress;
-        }
-
-        providerAddress = new HL7V23Field
-        {
-            field = message[@"PRD"][3],
-            Id = @"PRD.3",
-            Type = @"Field",
-            Position = @"PRD.3",
-            Name = @"Provider Address",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the mailing address of the provider identified in this segment.  One of the key components to completing the “circle of care” and provider/institution bonding is the issuance of follow-up correspondence to the referring provider",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerAddress.field.FieldRepetitions != null && providerAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerAddress.Id));
-            providerAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(providerAddress, fieldData);
-        }
-
-        return providerAddress;
-    } 
-}
-
-internal HL7V23Field providerLocation;
-
-public HL7V23Field ProviderLocation
-{
-    get
-    {
-        if (providerLocation != null)
-        {
-            return providerLocation;
-        }
-
-        providerLocation = new HL7V23Field
-        {
-            field = message[@"PRD"][4],
-            Id = @"PRD.4",
-            Type = @"Field",
-            Position = @"PRD.4",
-            Name = @"Provider Location",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the location of the provider as needed when a provider that may be external to a given enterprise must be referenced.  For example, if this provider represented the referred-to physician, the PRD-4-provider location should identify the clinic of the physician or provider to whom this referral has been sent.  The identification of the provider’s location is specified by an application and facility identifier carried in the facility field.  The application ID and facility ID would be used in the same manner as their corresponding fields in the MSH segment (MSH-3-sending application, MSH-5-receiving application MSH-4-sending facility, MSH-6-receiving facility).  That is, the facility field will contain an application identifier and facility identifier which describe the location of this provider.  However, it should be noted that they may describe a different location because the provider location being referenced in this field may not be the location from which the message originated, which is being described by the MSH",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerLocation.field.FieldRepetitions != null && providerLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerLocation.Id));
-            providerLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(providerLocation, fieldData);
-        }
-
-        return providerLocation;
-    } 
-}
-
-internal HL7V23Field providerCommunicationInformation;
-
-public HL7V23Field ProviderCommunicationInformation
-{
-    get
-    {
-        if (providerCommunicationInformation != null)
-        {
-            return providerCommunicationInformation;
-        }
-
-        providerCommunicationInformation = new HL7V23Field
-        {
-            field = message[@"PRD"][5],
-            Id = @"PRD.5",
-            Type = @"Field",
-            Position = @"PRD.5",
-            Name = @"Provider Communication Information",
-            Length = 100,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains information, such as the phone number or electronic mail address, used to communicate with the provider or organization",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerCommunicationInformation.field.FieldRepetitions != null && providerCommunicationInformation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerCommunicationInformation.Id));
-            providerCommunicationInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(providerCommunicationInformation, fieldData);
-        }
-
-        return providerCommunicationInformation;
-    } 
-}
-
-internal HL7V23Field preferredMethodofContact;
-
-public HL7V23Field PreferredMethodofContact
-{
-    get
-    {
-        if (preferredMethodofContact != null)
-        {
-            return preferredMethodofContact;
-        }
-
-        preferredMethodofContact = new HL7V23Field
-        {
-            field = message[@"PRD"][6],
-            Id = @"PRD.6",
-            Type = @"Field",
-            Position = @"PRD.6",
-            Name = @"Preferred Method of Contact",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0185",
-            TableName = @"Preferred method of contact",
-            Description = @"This field contains the preferred method to use when communicating with the provider.  Refer to user-defined table 0185 - Preferred method of contact for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (preferredMethodofContact.field.FieldRepetitions != null && preferredMethodofContact.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(preferredMethodofContact.Id));
-            preferredMethodofContact.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(preferredMethodofContact, fieldData);
-        }
-
-        return preferredMethodofContact;
-    } 
-}
-
-internal HL7V23Field providerIdentifiers;
-
-public HL7V23Field ProviderIdentifiers
-{
-    get
-    {
-        if (providerIdentifiers != null)
-        {
-            return providerIdentifiers;
-        }
-
-        providerIdentifiers = new HL7V23Field
+        _providerIdentifiers = new HL7V23Field
         {
             field = message[@"PRD"][7],
-            Id = @"PRD.7",
-            Type = @"Field",
-            Position = @"PRD.7",
-            Name = @"Provider Identifiers",
-            Length = 100,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CM_PI",
-            DataTypeName = @"Person Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This repeating field contains the provider’s unique identifiers such as UPIN, Medicare and Medicaid numbers.  Refer to PRA-6-practitioner ID numbers  in Chapter 8 ( Section 8.6.3.6, “Practitioner ID numbers”) for suggested values",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (providerIdentifiers.field.FieldRepetitions != null && providerIdentifiers.field.FieldRepetitions.Count > 0)
+        if (_providerIdentifiers.field.FieldRepetitions != null && _providerIdentifiers.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerIdentifiers.Id));
-            providerIdentifiers.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(providerIdentifiers, fieldData);
+            _providerIdentifiers.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_providerIdentifiers, fieldData);
         }
 
-        return providerIdentifiers;
+        return _providerIdentifiers;
     } 
 }
 
-internal HL7V23Field effectiveStartDateofRole;
+internal HL7V23Field _effectiveStartDateofRole;
 
 public HL7V23Field EffectiveStartDateofRole
 {
     get
     {
-        if (effectiveStartDateofRole != null)
+        if (_effectiveStartDateofRole != null)
         {
-            return effectiveStartDateofRole;
+            return _effectiveStartDateofRole;
         }
 
-        effectiveStartDateofRole = new HL7V23Field
+        var fieldData = new HL7V23FieldData
         {
-            field = message[@"PRD"][8],
             Id = @"PRD.8",
             Type = @"Field",
             Position = @"PRD.8",
@@ -1516,34 +1357,57 @@ public HL7V23Field EffectiveStartDateofRole
 
 Note: The PRD-8-effective start date of role and PRD-9-effective end date of role fields should not be used as trigger events.  For example, they should not be used to trigger a change in role.  These two dates are for informational purposes only. ",
             Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
+                        {
+                            Id = @"PRD.8.1",
+                            Type = @"Component",
+                            Position = @"PRD.8.1",
+                            Name = @"Time Of An Event",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        }
+        }
+
+        _effectiveStartDateofRole = new HL7V23Field
+        {
+            field = message[@"PRD"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (effectiveStartDateofRole.field.FieldRepetitions != null && effectiveStartDateofRole.field.FieldRepetitions.Count > 0)
+        if (_effectiveStartDateofRole.field.FieldRepetitions != null && _effectiveStartDateofRole.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(effectiveStartDateofRole.Id));
-            effectiveStartDateofRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(effectiveStartDateofRole, fieldData);
+            _effectiveStartDateofRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_effectiveStartDateofRole, fieldData);
         }
 
-        return effectiveStartDateofRole;
+        return _effectiveStartDateofRole;
     } 
 }
 
-internal HL7V23Field effectiveEndDateofRole;
+internal HL7V23Field _effectiveEndDateofRole;
 
 public HL7V23Field EffectiveEndDateofRole
 {
     get
     {
-        if (effectiveEndDateofRole != null)
+        if (_effectiveEndDateofRole != null)
         {
-            return effectiveEndDateofRole;
+            return _effectiveEndDateofRole;
         }
 
-        effectiveEndDateofRole = new HL7V23Field
+        var fieldData = new HL7V23FieldData
         {
-            field = message[@"PRD"][9],
             Id = @"PRD.9",
             Type = @"Field",
             Position = @"PRD.9",
@@ -1559,17 +1423,41 @@ public HL7V23Field EffectiveEndDateofRole
 
 Note: The PRD-8-effective start date of role and PRD-9-effective end date of role fields should not be used as trigger events.  For example, they should not be used to trigger a change in role.  These two dates are for informational purposes only. ",
             Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
+                        {
+                            Id = @"PRD.9.1",
+                            Type = @"Component",
+                            Position = @"PRD.9.1",
+                            Name = @"Time Of An Event",
+                            Length = 0,
+                            Usage = @"O",
+                            Rpt = @"1",
+                            DataType = @"ST",
+                            DataTypeName = @"String Data",
+                            TableId = null,
+                            TableName = null,
+                            Description = null,
+                            Sample = @"",
+                            FieldDatas = null
+                        },
+                        }
+        }
+
+        _effectiveEndDateofRole = new HL7V23Field
+        {
+            field = message[@"PRD"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (effectiveEndDateofRole.field.FieldRepetitions != null && effectiveEndDateofRole.field.FieldRepetitions.Count > 0)
+        if (_effectiveEndDateofRole.field.FieldRepetitions != null && _effectiveEndDateofRole.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(effectiveEndDateofRole.Id));
-            effectiveEndDateofRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(effectiveEndDateofRole, fieldData);
+            _effectiveEndDateofRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_effectiveEndDateofRole, fieldData);
         }
 
-        return effectiveEndDateofRole;
+        return _effectiveEndDateofRole;
     } 
 }
     }

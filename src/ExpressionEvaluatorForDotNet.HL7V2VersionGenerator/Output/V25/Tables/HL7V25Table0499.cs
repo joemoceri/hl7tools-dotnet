@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_09",
+
                     };
             } 
         }
@@ -41,6 +42,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Professional Judgment",
                             Comment = null
                         },
+                        
                     };
             } 
         }

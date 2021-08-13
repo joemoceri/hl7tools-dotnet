@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -41,6 +42,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Pro-rate.  Apply this price to this interval, pro-rated by whatever portion of the interval has occurred/been consumed",
                             Comment = null
                         },
+                        
                     };
             } 
         }

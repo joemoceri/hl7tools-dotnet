@@ -12,6 +12,64 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Output\V21\HL7V21Component.cs" />
+    <Compile Include="Output\V21\HL7V21Field.cs" />
+    <Compile Include="Output\V21\HL7V21FieldData.cs" />
+    <Compile Include="Output\V21\HL7V21FieldRepetition.cs" />
+    <Compile Include="Output\V21\HL7V21SubComponent.cs" />
+    <Compile Include="Output\V22\HL7V22Component.cs" />
+    <Compile Include="Output\V22\HL7V22Field.cs" />
+    <Compile Include="Output\V22\HL7V22FieldData.cs" />
+    <Compile Include="Output\V22\HL7V22FieldRepetition.cs" />
+    <Compile Include="Output\V22\HL7V22SubComponent.cs" />
+    <Compile Include="Output\V231\HL7V231Component.cs" />
+    <Compile Include="Output\V231\HL7V231Field.cs" />
+    <Compile Include="Output\V231\HL7V231FieldData.cs" />
+    <Compile Include="Output\V231\HL7V231FieldRepetition.cs" />
+    <Compile Include="Output\V231\HL7V231SubComponent.cs" />
+    <Compile Include="Output\V23\HL7V23Component.cs" />
+    <Compile Include="Output\V23\HL7V23Field.cs" />
+    <Compile Include="Output\V23\HL7V23FieldData.cs" />
+    <Compile Include="Output\V23\HL7V23FieldRepetition.cs" />
+    <Compile Include="Output\V23\HL7V23SubComponent.cs" />
+    <Compile Include="Output\V24\HL7V24Component.cs" />
+    <Compile Include="Output\V24\HL7V24Field.cs" />
+    <Compile Include="Output\V24\HL7V24FieldData.cs" />
+    <Compile Include="Output\V24\HL7V24FieldRepetition.cs" />
+    <Compile Include="Output\V24\HL7V24SubComponent.cs" />
+    <Compile Include="Output\V251\HL7V251Component.cs" />
+    <Compile Include="Output\V251\HL7V251Field.cs" />
+    <Compile Include="Output\V251\HL7V251FieldData.cs" />
+    <Compile Include="Output\V251\HL7V251FieldRepetition.cs" />
+    <Compile Include="Output\V251\HL7V251SubComponent.cs" />
+    <Compile Include="Output\V25\HL7V25Component.cs" />
+    <Compile Include="Output\V25\HL7V25Field.cs" />
+    <Compile Include="Output\V25\HL7V25FieldData.cs" />
+    <Compile Include="Output\V25\HL7V25FieldRepetition.cs" />
+    <Compile Include="Output\V25\HL7V25SubComponent.cs" />
+    <Compile Include="Output\V26\HL7V26Component.cs" />
+    <Compile Include="Output\V26\HL7V26Field.cs" />
+    <Compile Include="Output\V26\HL7V26FieldData.cs" />
+    <Compile Include="Output\V26\HL7V26FieldRepetition.cs" />
+    <Compile Include="Output\V26\HL7V26SubComponent.cs" />
+    <Compile Include="Output\V271\HL7V271Component.cs" />
+    <Compile Include="Output\V271\HL7V271Field.cs" />
+    <Compile Include="Output\V271\HL7V271FieldData.cs" />
+    <Compile Include="Output\V271\HL7V271FieldRepetition.cs" />
+    <Compile Include="Output\V271\HL7V271SubComponent.cs" />
+    <Compile Include="Output\V27\HL7V27Component.cs" />
+    <Compile Include="Output\V27\HL7V27Field.cs" />
+    <Compile Include="Output\V27\HL7V27FieldData.cs" />
+    <Compile Include="Output\V27\HL7V27FieldRepetition.cs" />
+    <Compile Include="Output\V27\HL7V27SubComponent.cs" />
+    <Compile Include="Output\V28\HL7V28Component.cs" />
+    <Compile Include="Output\V28\HL7V28Field.cs" />
+    <Compile Include="Output\V28\HL7V28FieldData.cs" />
+    <Compile Include="Output\V28\HL7V28FieldRepetition.cs" />
+    <Compile Include="Output\V28\HL7V28SubComponent.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="106.12.0" />
   </ItemGroup>
@@ -20,133 +78,8 @@
     <Folder Include="Caristix\LocalData\" />
   </ItemGroup>
 
-	<ItemGroup>
-		<Content Include="Output\**\*.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Remove="Output\V21\HL7V21Component.cs" />
-	  <Content Remove="Output\V21\HL7V21Field.cs" />
-	  <Content Remove="Output\V21\HL7V21FieldRepetition.cs" />
-	  <Content Remove="Output\V21\HL7V21SubComponent.cs" />
-	  <Content Remove="Output\V21\Segments\HL7V21SegmentPID.cs" />
-	  <Content Remove="Output\V22\HL7V22Component.cs" />
-	  <Content Remove="Output\V22\HL7V22Field.cs" />
-	  <Content Remove="Output\V22\HL7V22FieldRepetition.cs" />
-	  <Content Remove="Output\V22\HL7V22SubComponent.cs" />
-	  <Content Remove="Output\V22\Segments\HL7V22SegmentFT1.cs" />
-	  <Content Remove="Output\V231\HL7V231Component.cs" />
-	  <Content Remove="Output\V231\HL7V231Field.cs" />
-	  <Content Remove="Output\V231\HL7V231FieldRepetition.cs" />
-	  <Content Remove="Output\V231\HL7V231SubComponent.cs" />
-	  <Content Remove="Output\V23\DataTypes\HL7V23DataTypeAD.cs" />
-	  <Content Remove="Output\V23\DataTypes\HL7V23DataTypeCD.cs" />
-	  <Content Remove="Output\V23\HL7V23Component.cs" />
-	  <Content Remove="Output\V23\HL7V23Field.cs" />
-	  <Content Remove="Output\V23\HL7V23FieldRepetition.cs" />
-	  <Content Remove="Output\V23\HL7V23SubComponent.cs" />
-	  <Content Remove="Output\V23\Segments\HL7V23SegmentMSH.cs" />
-	  <Content Remove="Output\V23\Segments\HL7V23SegmentNTE.cs" />
-	  <Content Remove="Output\V23\Segments\HL7V23SegmentPD1.cs" />
-	  <Content Remove="Output\V23\Segments\HL7V23SegmentSCH.cs" />
-	  <Content Remove="Output\V23\Segments\HL7V23SegmentUB2.cs" />
-	  <Content Remove="Output\V23\TriggerEvents\HL7V23TriggerEventSIU_S12.cs" />
-	  <Content Remove="Output\V24\HL7V24Component.cs" />
-	  <Content Remove="Output\V24\HL7V24Field.cs" />
-	  <Content Remove="Output\V24\HL7V24FieldRepetition.cs" />
-	  <Content Remove="Output\V24\HL7V24SubComponent.cs" />
-	  <Content Remove="Output\V251\HL7V251Component.cs" />
-	  <Content Remove="Output\V251\HL7V251Field.cs" />
-	  <Content Remove="Output\V251\HL7V251FieldRepetition.cs" />
-	  <Content Remove="Output\V251\HL7V251SubComponent.cs" />
-	  <Content Remove="Output\V25\HL7V25Component.cs" />
-	  <Content Remove="Output\V25\HL7V25Field.cs" />
-	  <Content Remove="Output\V25\HL7V25FieldRepetition.cs" />
-	  <Content Remove="Output\V25\HL7V25SubComponent.cs" />
-	  <Content Remove="Output\V26\HL7V26Component.cs" />
-	  <Content Remove="Output\V26\HL7V26Field.cs" />
-	  <Content Remove="Output\V26\HL7V26FieldRepetition.cs" />
-	  <Content Remove="Output\V26\HL7V26SubComponent.cs" />
-	  <Content Remove="Output\V271\HL7V271Component.cs" />
-	  <Content Remove="Output\V271\HL7V271Field.cs" />
-	  <Content Remove="Output\V271\HL7V271FieldRepetition.cs" />
-	  <Content Remove="Output\V271\HL7V271SubComponent.cs" />
-	  <Content Remove="Output\V27\HL7V27Component.cs" />
-	  <Content Remove="Output\V27\HL7V27Field.cs" />
-	  <Content Remove="Output\V27\HL7V27FieldRepetition.cs" />
-	  <Content Remove="Output\V27\HL7V27SubComponent.cs" />
-	  <Content Remove="Output\V28\HL7V28Component.cs" />
-	  <Content Remove="Output\V28\HL7V28Field.cs" />
-	  <Content Remove="Output\V28\HL7V28FieldRepetition.cs" />
-	  <Content Remove="Output\V28\HL7V28SubComponent.cs" />
-	  <Content Remove="Output\V28\Segments\HL7V28SegmentACC.cs" />
-	  <Content Remove="Output\V28\Segments\HL7V28SegmentSTZ.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Include="Output\V21\HL7V21Component.cs" />
-	  <Compile Include="Output\V21\HL7V21Field.cs" />
-	  <Compile Include="Output\V21\HL7V21FieldRepetition.cs" />
-	  <Compile Include="Output\V21\HL7V21SubComponent.cs" />
-	  <Compile Include="Output\V21\Segments\HL7V21SegmentPID.cs" />
-	  <Compile Include="Output\V22\HL7V22Component.cs" />
-	  <Compile Include="Output\V22\HL7V22Field.cs" />
-	  <Compile Include="Output\V22\HL7V22FieldRepetition.cs" />
-	  <Compile Include="Output\V22\HL7V22SubComponent.cs" />
-	  <Compile Include="Output\V22\Segments\HL7V22SegmentFT1.cs" />
-	  <Compile Include="Output\V231\HL7V231Component.cs" />
-	  <Compile Include="Output\V231\HL7V231Field.cs" />
-	  <Compile Include="Output\V231\HL7V231FieldRepetition.cs" />
-	  <Compile Include="Output\V231\HL7V231SubComponent.cs" />
-	  <Compile Include="Output\V23\DataTypes\HL7V23DataTypeAD.cs" />
-	  <Compile Include="Output\V23\DataTypes\HL7V23DataTypeCD.cs" />
-	  <Compile Include="Output\V23\HL7V23Component.cs" />
-	  <Compile Include="Output\V23\HL7V23Field.cs" />
-	  <Compile Include="Output\V23\HL7V23FieldRepetition.cs" />
-	  <Compile Include="Output\V23\HL7V23SubComponent.cs" />
-	  <Compile Include="Output\V23\Segments\HL7V23SegmentNTE.cs" />
-	  <Compile Include="Output\V23\Segments\HL7V23SegmentPD1.cs" />
-	  <Compile Include="Output\V23\Segments\HL7V23SegmentSCH.cs" />
-	  <Compile Include="Output\V23\Segments\HL7V23SegmentUB2.cs" />
-	  <Compile Include="Output\V23\TriggerEvents\HL7V23TriggerEventSIU_S12.cs" />
-	  <Compile Include="Output\V24\HL7V24Component.cs" />
-	  <Compile Include="Output\V24\HL7V24Field.cs" />
-	  <Compile Include="Output\V24\HL7V24FieldRepetition.cs" />
-	  <Compile Include="Output\V24\HL7V24SubComponent.cs" />
-	  <Compile Include="Output\V251\HL7V251Component.cs" />
-	  <Compile Include="Output\V251\HL7V251Field.cs" />
-	  <Compile Include="Output\V251\HL7V251FieldRepetition.cs" />
-	  <Compile Include="Output\V251\HL7V251SubComponent.cs" />
-	  <Compile Include="Output\V25\HL7V25Component.cs" />
-	  <Compile Include="Output\V25\HL7V25Field.cs" />
-	  <Compile Include="Output\V25\HL7V25FieldRepetition.cs" />
-	  <Compile Include="Output\V25\HL7V25SubComponent.cs" />
-	  <Compile Include="Output\V26\HL7V26Component.cs" />
-	  <Compile Include="Output\V26\HL7V26Field.cs" />
-	  <Compile Include="Output\V26\HL7V26FieldRepetition.cs" />
-	  <Compile Include="Output\V26\HL7V26SubComponent.cs" />
-	  <Compile Include="Output\V271\HL7V271Component.cs" />
-	  <Compile Include="Output\V271\HL7V271Field.cs" />
-	  <Compile Include="Output\V271\HL7V271FieldRepetition.cs" />
-	  <Compile Include="Output\V271\HL7V271SubComponent.cs" />
-	  <Compile Include="Output\V27\HL7V27Component.cs" />
-	  <Compile Include="Output\V27\HL7V27Field.cs" />
-	  <Compile Include="Output\V27\HL7V27FieldRepetition.cs" />
-	  <Compile Include="Output\V27\HL7V27SubComponent.cs" />
-	  <Compile Include="Output\V28\HL7V28Component.cs" />
-	  <Compile Include="Output\V28\HL7V28Field.cs" />
-	  <Compile Include="Output\V28\HL7V28FieldRepetition.cs" />
-	  <Compile Include="Output\V28\HL7V28SubComponent.cs" />
-	  <Compile Include="Output\V28\Segments\HL7V28SegmentACC.cs" />
-	  <Compile Include="Output\V28\Segments\HL7V28SegmentSTZ.cs" />
-	</ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\ExpressionEvaluatorForDotNet\ExpressionEvaluatorForDotNet.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Output\V23\Segments\HL7V23SegmentMSH.cs" />
   </ItemGroup>
 
 </Project>

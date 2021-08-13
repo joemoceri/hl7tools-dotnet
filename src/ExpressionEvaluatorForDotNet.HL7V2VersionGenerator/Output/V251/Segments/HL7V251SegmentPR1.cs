@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentPR1(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _setIDPR1;
+
+public HL7V251Field SetIDPR1
+{
+    get
+    {
+        if (_setIDPR1 != null)
+        {
+            return _setIDPR1;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.1",
+            Type = @"Field",
+            Position = @"PR1.1",
+            Name = @"Set ID - PR1",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDPR1 = new HL7V251Field
+        {
+            field = message[@"PR1"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDPR1.field.FieldRepetitions != null && _setIDPR1.field.FieldRepetitions.Count > 0)
+        {
+            _setIDPR1.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_setIDPR1, fieldData);
+        }
+
+        return _setIDPR1;
+    } 
+}
+
+internal HL7V251Field _procedureCodingMethod;
+
+public HL7V251Field ProcedureCodingMethod
+{
+    get
+    {
+        if (_procedureCodingMethod != null)
+        {
+            return _procedureCodingMethod;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.2",
+            Type = @"Field",
+            Position = @"PR1.2",
+            Name = @"Procedure Coding Method",
+            Length = 3,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0089",
+            TableName = @"Procedure Coding Method",
+            Description = @"As of Version 2.3, this field has been retained for backward compatibility only . Use the components of PR1-3 - Procedure Code instead of this field.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _procedureCodingMethod = new HL7V251Field
+        {
+            field = message[@"PR1"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedureCodingMethod.field.FieldRepetitions != null && _procedureCodingMethod.field.FieldRepetitions.Count > 0)
+        {
+            _procedureCodingMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_procedureCodingMethod, fieldData);
+        }
+
+        return _procedureCodingMethod;
+    } 
+}
+
+internal HL7V251Field _procedureCode;
+
+public HL7V251Field ProcedureCode
+{
+    get
+    {
+        if (_procedureCode != null)
+        {
+            return _procedureCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.3",
+            Type = @"Field",
+            Position = @"PR1.3",
+            Name = @"Procedure Code",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0088",
+            TableName = @"Procedure Code",
+            Description = @"Use this field instead of PR1-2 - Procedure Coding Method and PR1-4 - Procedure Description . Those two fields have been retained for backward compatibility only. This field contains a unique identifier assigned to the procedure. Refer to User-defined Table 0088 - Procedure Code for suggested values. This field is a CE data type for compatibility with clinical and ancillary systems.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PR1.1",
-                            Type = @"Field",
-                            Position = @"PR1.1",
-                            Name = @"Set ID - PR1",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PR1.2",
-                            Type = @"Field",
-                            Position = @"PR1.2",
-                            Name = @"Procedure Coding Method",
-                            Length = 3,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0089",
-                            TableName = @"Procedure Coding Method",
-                            Description = @"As of Version 2.3, this field has been retained for backward compatibility only . Use the components of PR1-3 - Procedure Code instead of this field.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PR1.3",
-                            Type = @"Field",
-                            Position = @"PR1.3",
-                            Name = @"Procedure Code",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0088",
-                            TableName = @"Procedure Code",
-                            Description = @"Use this field instead of PR1-2 - Procedure Coding Method and PR1-4 - Procedure Description . Those two fields have been retained for backward compatibility only. This field contains a unique identifier assigned to the procedure. Refer to User-defined Table 0088 - Procedure Code for suggested values. This field is a CE data type for compatibility with clinical and ancillary systems.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PR1.3.1",
                             Type = @"Component",
@@ -192,43 +258,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _procedureCode = new HL7V251Field
+        {
+            field = message[@"PR1"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedureCode.field.FieldRepetitions != null && _procedureCode.field.FieldRepetitions.Count > 0)
+        {
+            _procedureCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_procedureCode, fieldData);
+        }
+
+        return _procedureCode;
+    } 
+}
+
+internal HL7V251Field _procedureDescription;
+
+public HL7V251Field ProcedureDescription
+{
+    get
+    {
+        if (_procedureDescription != null)
+        {
+            return _procedureDescription;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.4",
+            Type = @"Field",
+            Position = @"PR1.4",
+            Name = @"Procedure Description",
+            Length = 40,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"As of Version 2.3, this field has been retained for backward compatibility only . Use the components of PR1-3 - Procedure Code instead of this field. The field contains a text description that describes the procedure.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _procedureDescription = new HL7V251Field
+        {
+            field = message[@"PR1"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedureDescription.field.FieldRepetitions != null && _procedureDescription.field.FieldRepetitions.Count > 0)
+        {
+            _procedureDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_procedureDescription, fieldData);
+        }
+
+        return _procedureDescription;
+    } 
+}
+
+internal HL7V251Field _procedureDateTime;
+
+public HL7V251Field ProcedureDateTime
+{
+    get
+    {
+        if (_procedureDateTime != null)
+        {
+            return _procedureDateTime;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.5",
+            Type = @"Field",
+            Position = @"PR1.5",
+            Name = @"Procedure Date/Time",
+            Length = 26,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time that the procedure was performed.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PR1.4",
-                            Type = @"Field",
-                            Position = @"PR1.4",
-                            Name = @"Procedure Description",
-                            Length = 40,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"As of Version 2.3, this field has been retained for backward compatibility only . Use the components of PR1-3 - Procedure Code instead of this field. The field contains a text description that describes the procedure.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PR1.5",
-                            Type = @"Field",
-                            Position = @"PR1.5",
-                            Name = @"Procedure Date/Time",
-                            Length = 26,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time that the procedure was performed.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PR1.5.1",
                             Type = @"Component",
@@ -264,61 +387,145 @@ namespace ExpressionEvaluatorForDotNet
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _procedureDateTime = new HL7V251Field
+        {
+            field = message[@"PR1"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedureDateTime.field.FieldRepetitions != null && _procedureDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _procedureDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_procedureDateTime, fieldData);
+        }
+
+        return _procedureDateTime;
+    } 
+}
+
+internal HL7V251Field _procedureFunctionalType;
+
+public HL7V251Field ProcedureFunctionalType
+{
+    get
+    {
+        if (_procedureFunctionalType != null)
+        {
+            return _procedureFunctionalType;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.6",
+            Type = @"Field",
+            Position = @"PR1.6",
+            Name = @"Procedure Functional Type",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0230",
+            TableName = @"Procedure Functional Type",
+            Description = @"This field contains the optional code that further defines the type of procedure. Refer to User-defined Table 0230 - Procedure Functional Type for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _procedureFunctionalType = new HL7V251Field
+        {
+            field = message[@"PR1"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedureFunctionalType.field.FieldRepetitions != null && _procedureFunctionalType.field.FieldRepetitions.Count > 0)
+        {
+            _procedureFunctionalType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_procedureFunctionalType, fieldData);
+        }
+
+        return _procedureFunctionalType;
+    } 
+}
+
+internal HL7V251Field _procedureMinutes;
+
+public HL7V251Field ProcedureMinutes
+{
+    get
+    {
+        if (_procedureMinutes != null)
+        {
+            return _procedureMinutes;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.7",
+            Type = @"Field",
+            Position = @"PR1.7",
+            Name = @"Procedure Minutes",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the length of time in whole minutes that the procedure took to complete.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _procedureMinutes = new HL7V251Field
+        {
+            field = message[@"PR1"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedureMinutes.field.FieldRepetitions != null && _procedureMinutes.field.FieldRepetitions.Count > 0)
+        {
+            _procedureMinutes.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_procedureMinutes, fieldData);
+        }
+
+        return _procedureMinutes;
+    } 
+}
+
+internal HL7V251Field _anesthesiologist;
+
+public HL7V251Field Anesthesiologist
+{
+    get
+    {
+        if (_anesthesiologist != null)
+        {
+            return _anesthesiologist;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.8",
+            Type = @"Field",
+            Position = @"PR1.8",
+            Name = @"Anesthesiologist",
+            Length = 250,
+            Usage = @"B",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = @"0010",
+            TableName = @"Physician ID",
+            Description = @"HL7 has introduced the ROL segment to report a wide range of practitioner roles related to a single procedure. When using trigger events introduced in HL7 Version 2.3, it is recommended that the ROL segment be used to report all practitioner roles related to the procedure.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PR1.6",
-                            Type = @"Field",
-                            Position = @"PR1.6",
-                            Name = @"Procedure Functional Type",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0230",
-                            TableName = @"Procedure Functional Type",
-                            Description = @"This field contains the optional code that further defines the type of procedure. Refer to User-defined Table 0230 - Procedure Functional Type for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PR1.7",
-                            Type = @"Field",
-                            Position = @"PR1.7",
-                            Name = @"Procedure Minutes",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the length of time in whole minutes that the procedure took to complete.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PR1.8",
-                            Type = @"Field",
-                            Position = @"PR1.8",
-                            Name = @"Anesthesiologist",
-                            Length = 250,
-                            Usage = @"B",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = @"0010",
-                            TableName = @"Physician ID",
-                            Description = @"HL7 has introduced the ROL segment to report a wide range of practitioner roles related to a single procedure. When using trigger events introduced in HL7 Version 2.3, it is recommended that the ROL segment be used to report all practitioner roles related to the procedure.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PR1.8.1",
                             Type = @"Component",
@@ -1534,61 +1741,145 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _anesthesiologist = new HL7V251Field
+        {
+            field = message[@"PR1"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_anesthesiologist.field.FieldRepetitions != null && _anesthesiologist.field.FieldRepetitions.Count > 0)
+        {
+            _anesthesiologist.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_anesthesiologist, fieldData);
+        }
+
+        return _anesthesiologist;
+    } 
+}
+
+internal HL7V251Field _anesthesiaCode;
+
+public HL7V251Field AnesthesiaCode
+{
+    get
+    {
+        if (_anesthesiaCode != null)
+        {
+            return _anesthesiaCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.9",
+            Type = @"Field",
+            Position = @"PR1.9",
+            Name = @"Anesthesia Code",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0019",
+            TableName = @"Anesthesia Code",
+            Description = @"This field contains a unique identifier of the anesthesia used during the procedure. Refer to User-defined Table 0019 - Anesthesia Code for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _anesthesiaCode = new HL7V251Field
+        {
+            field = message[@"PR1"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_anesthesiaCode.field.FieldRepetitions != null && _anesthesiaCode.field.FieldRepetitions.Count > 0)
+        {
+            _anesthesiaCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_anesthesiaCode, fieldData);
+        }
+
+        return _anesthesiaCode;
+    } 
+}
+
+internal HL7V251Field _anesthesiaMinutes;
+
+public HL7V251Field AnesthesiaMinutes
+{
+    get
+    {
+        if (_anesthesiaMinutes != null)
+        {
+            return _anesthesiaMinutes;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.10",
+            Type = @"Field",
+            Position = @"PR1.10",
+            Name = @"Anesthesia Minutes",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the length of time in minutes that the anesthesia was administered.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _anesthesiaMinutes = new HL7V251Field
+        {
+            field = message[@"PR1"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_anesthesiaMinutes.field.FieldRepetitions != null && _anesthesiaMinutes.field.FieldRepetitions.Count > 0)
+        {
+            _anesthesiaMinutes.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_anesthesiaMinutes, fieldData);
+        }
+
+        return _anesthesiaMinutes;
+    } 
+}
+
+internal HL7V251Field _surgeon;
+
+public HL7V251Field Surgeon
+{
+    get
+    {
+        if (_surgeon != null)
+        {
+            return _surgeon;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.11",
+            Type = @"Field",
+            Position = @"PR1.11",
+            Name = @"Surgeon",
+            Length = 250,
+            Usage = @"B",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = @"0010",
+            TableName = @"Physician ID",
+            Description = @"HL7 has introduced the ROL segment to report a wide range of practitioner roles related to a single procedure. When using trigger events introduced in HL7 Version 2.3, it is recommended that the ROL segment be used to report all practitioner roles related to the procedure.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PR1.9",
-                            Type = @"Field",
-                            Position = @"PR1.9",
-                            Name = @"Anesthesia Code",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0019",
-                            TableName = @"Anesthesia Code",
-                            Description = @"This field contains a unique identifier of the anesthesia used during the procedure. Refer to User-defined Table 0019 - Anesthesia Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PR1.10",
-                            Type = @"Field",
-                            Position = @"PR1.10",
-                            Name = @"Anesthesia Minutes",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the length of time in minutes that the anesthesia was administered.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PR1.11",
-                            Type = @"Field",
-                            Position = @"PR1.11",
-                            Name = @"Surgeon",
-                            Length = 250,
-                            Usage = @"B",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = @"0010",
-                            TableName = @"Physician ID",
-                            Description = @"HL7 has introduced the ROL segment to report a wide range of practitioner roles related to a single procedure. When using trigger events introduced in HL7 Version 2.3, it is recommended that the ROL segment be used to report all practitioner roles related to the procedure.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PR1.11.1",
                             Type = @"Component",
@@ -2804,25 +3095,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _surgeon = new HL7V251Field
+        {
+            field = message[@"PR1"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_surgeon.field.FieldRepetitions != null && _surgeon.field.FieldRepetitions.Count > 0)
+        {
+            _surgeon.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_surgeon, fieldData);
+        }
+
+        return _surgeon;
+    } 
+}
+
+internal HL7V251Field _procedurePractitioner;
+
+public HL7V251Field ProcedurePractitioner
+{
+    get
+    {
+        if (_procedurePractitioner != null)
+        {
+            return _procedurePractitioner;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.12",
+            Type = @"Field",
+            Position = @"PR1.12",
+            Name = @"Procedure Practitioner",
+            Length = 250,
+            Usage = @"B",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = @"0010",
+            TableName = @"Physician ID",
+            Description = @"HL7 has introduced the ROL segment to report a wide range of practitioner roles related to a single procedure. When using trigger events introduced in HL7 Version 2.3, it is recommended that the ROL segment be used to report all practitioner roles related to the procedure.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PR1.12",
-                            Type = @"Field",
-                            Position = @"PR1.12",
-                            Name = @"Procedure Practitioner",
-                            Length = 250,
-                            Usage = @"B",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = @"0010",
-                            TableName = @"Physician ID",
-                            Description = @"HL7 has introduced the ROL segment to report a wide range of practitioner roles related to a single procedure. When using trigger events introduced in HL7 Version 2.3, it is recommended that the ROL segment be used to report all practitioner roles related to the procedure.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PR1.12.1",
                             Type = @"Component",
@@ -4038,25 +4359,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _procedurePractitioner = new HL7V251Field
+        {
+            field = message[@"PR1"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedurePractitioner.field.FieldRepetitions != null && _procedurePractitioner.field.FieldRepetitions.Count > 0)
+        {
+            _procedurePractitioner.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_procedurePractitioner, fieldData);
+        }
+
+        return _procedurePractitioner;
+    } 
+}
+
+internal HL7V251Field _consentCode;
+
+public HL7V251Field ConsentCode
+{
+    get
+    {
+        if (_consentCode != null)
+        {
+            return _consentCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.13",
+            Type = @"Field",
+            Position = @"PR1.13",
+            Name = @"Consent Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0059",
+            TableName = @"Consent Code",
+            Description = @"This field contains the type of consent that was obtained for permission to treat the patient. Refer to User-defined Table 0059 - Consent Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PR1.13",
-                            Type = @"Field",
-                            Position = @"PR1.13",
-                            Name = @"Consent Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0059",
-                            TableName = @"Consent Code",
-                            Description = @"This field contains the type of consent that was obtained for permission to treat the patient. Refer to User-defined Table 0059 - Consent Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PR1.13.1",
                             Type = @"Component",
@@ -4162,43 +4513,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _consentCode = new HL7V251Field
+        {
+            field = message[@"PR1"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentCode.field.FieldRepetitions != null && _consentCode.field.FieldRepetitions.Count > 0)
+        {
+            _consentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_consentCode, fieldData);
+        }
+
+        return _consentCode;
+    } 
+}
+
+internal HL7V251Field _procedurePriority;
+
+public HL7V251Field ProcedurePriority
+{
+    get
+    {
+        if (_procedurePriority != null)
+        {
+            return _procedurePriority;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.14",
+            Type = @"Field",
+            Position = @"PR1.14",
+            Name = @"Procedure Priority",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0418",
+            TableName = @"Procedure Priority",
+            Description = @"This field contains a number that identifies the significance or priority of the procedure code. Refer to HL7 Table 0418 - Procedure Priority for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _procedurePriority = new HL7V251Field
+        {
+            field = message[@"PR1"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedurePriority.field.FieldRepetitions != null && _procedurePriority.field.FieldRepetitions.Count > 0)
+        {
+            _procedurePriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_procedurePriority, fieldData);
+        }
+
+        return _procedurePriority;
+    } 
+}
+
+internal HL7V251Field _associatedDiagnosisCode;
+
+public HL7V251Field AssociatedDiagnosisCode
+{
+    get
+    {
+        if (_associatedDiagnosisCode != null)
+        {
+            return _associatedDiagnosisCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.15",
+            Type = @"Field",
+            Position = @"PR1.15",
+            Name = @"Associated Diagnosis Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0051",
+            TableName = @"Diagnosis Code",
+            Description = @"This field contains the diagnosis that is the primary reason this procedure was performed, e.g. in the US, Medicare wants to know for which diagnosis this procedure is submitted for inclusion on CMS 1500 form. Refer to User-defined Table 0051 - Diagnosis Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PR1.14",
-                            Type = @"Field",
-                            Position = @"PR1.14",
-                            Name = @"Procedure Priority",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0418",
-                            TableName = @"Procedure Priority",
-                            Description = @"This field contains a number that identifies the significance or priority of the procedure code. Refer to HL7 Table 0418 - Procedure Priority for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PR1.15",
-                            Type = @"Field",
-                            Position = @"PR1.15",
-                            Name = @"Associated Diagnosis Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0051",
-                            TableName = @"Diagnosis Code",
-                            Description = @"This field contains the diagnosis that is the primary reason this procedure was performed, e.g. in the US, Medicare wants to know for which diagnosis this procedure is submitted for inclusion on CMS 1500 form. Refer to User-defined Table 0051 - Diagnosis Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PR1.15.1",
                             Type = @"Component",
@@ -4304,25 +4712,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _associatedDiagnosisCode = new HL7V251Field
+        {
+            field = message[@"PR1"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_associatedDiagnosisCode.field.FieldRepetitions != null && _associatedDiagnosisCode.field.FieldRepetitions.Count > 0)
+        {
+            _associatedDiagnosisCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_associatedDiagnosisCode, fieldData);
+        }
+
+        return _associatedDiagnosisCode;
+    } 
+}
+
+internal HL7V251Field _procedureCodeModifier;
+
+public HL7V251Field ProcedureCodeModifier
+{
+    get
+    {
+        if (_procedureCodeModifier != null)
+        {
+            return _procedureCodeModifier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.16",
+            Type = @"Field",
+            Position = @"PR1.16",
+            Name = @"Procedure Code Modifier",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0340",
+            TableName = @"Procedure code modifier",
+            Description = @"This field contains the procedure code modifier to the procedure code reported in field 3, when applicable. Procedure code modifiers are defined by regulatory agencies such as CMS and the AMA. Multiple modifiers may be reported. Refer to User-defined Table 0340 - Procedure Code Modifier for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PR1.16",
-                            Type = @"Field",
-                            Position = @"PR1.16",
-                            Name = @"Procedure Code Modifier",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0340",
-                            TableName = @"Procedure code modifier",
-                            Description = @"This field contains the procedure code modifier to the procedure code reported in field 3, when applicable. Procedure code modifiers are defined by regulatory agencies such as CMS and the AMA. Multiple modifiers may be reported. Refer to User-defined Table 0340 - Procedure Code Modifier for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PR1.16.1",
                             Type = @"Component",
@@ -4428,43 +4866,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _procedureCodeModifier = new HL7V251Field
+        {
+            field = message[@"PR1"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedureCodeModifier.field.FieldRepetitions != null && _procedureCodeModifier.field.FieldRepetitions.Count > 0)
+        {
+            _procedureCodeModifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_procedureCodeModifier, fieldData);
+        }
+
+        return _procedureCodeModifier;
+    } 
+}
+
+internal HL7V251Field _procedureDRGType;
+
+public HL7V251Field ProcedureDRGType
+{
+    get
+    {
+        if (_procedureDRGType != null)
+        {
+            return _procedureDRGType;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.17",
+            Type = @"Field",
+            Position = @"PR1.17",
+            Name = @"Procedure DRG Type",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0416",
+            TableName = @"Procedure DRG Type",
+            Description = @"This field indicates a procedures priority ranking relative to its DRG. Refer to User-defined Table 0416 - Procedure DRG Type for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _procedureDRGType = new HL7V251Field
+        {
+            field = message[@"PR1"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedureDRGType.field.FieldRepetitions != null && _procedureDRGType.field.FieldRepetitions.Count > 0)
+        {
+            _procedureDRGType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_procedureDRGType, fieldData);
+        }
+
+        return _procedureDRGType;
+    } 
+}
+
+internal HL7V251Field _tissueTypeCode;
+
+public HL7V251Field TissueTypeCode
+{
+    get
+    {
+        if (_tissueTypeCode != null)
+        {
+            return _tissueTypeCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.18",
+            Type = @"Field",
+            Position = @"PR1.18",
+            Name = @"Tissue Type Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0417",
+            TableName = @"Tissue Type Code",
+            Description = @"Code representing type of tissue removed from a patient during this procedure. Refer to User-defined Table 0417 - Tissue Type Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PR1.17",
-                            Type = @"Field",
-                            Position = @"PR1.17",
-                            Name = @"Procedure DRG Type",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0416",
-                            TableName = @"Procedure DRG Type",
-                            Description = @"This field indicates a procedures priority ranking relative to its DRG. Refer to User-defined Table 0416 - Procedure DRG Type for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PR1.18",
-                            Type = @"Field",
-                            Position = @"PR1.18",
-                            Name = @"Tissue Type Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0417",
-                            TableName = @"Tissue Type Code",
-                            Description = @"Code representing type of tissue removed from a patient during this procedure. Refer to User-defined Table 0417 - Tissue Type Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PR1.18.1",
                             Type = @"Component",
@@ -4570,25 +5065,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _tissueTypeCode = new HL7V251Field
+        {
+            field = message[@"PR1"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_tissueTypeCode.field.FieldRepetitions != null && _tissueTypeCode.field.FieldRepetitions.Count > 0)
+        {
+            _tissueTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_tissueTypeCode, fieldData);
+        }
+
+        return _tissueTypeCode;
+    } 
+}
+
+internal HL7V251Field _procedureIdentifier;
+
+public HL7V251Field ProcedureIdentifier
+{
+    get
+    {
+        if (_procedureIdentifier != null)
+        {
+            return _procedureIdentifier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PR1.19",
+            Type = @"Field",
+            Position = @"PR1.19",
+            Name = @"Procedure Identifier",
+            Length = 427,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a value that uniquely identifies a single procedure for an encounter. It is unique across all segments and messages for an encounter.  This field is required in all implementations employing Update Diagnosis/Procedures (P12) messages. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PR1.19",
-                            Type = @"Field",
-                            Position = @"PR1.19",
-                            Name = @"Procedure Identifier",
-                            Length = 427,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a value that uniquely identifies a single procedure for an encounter. It is unique across all segments and messages for an encounter.  This field is required in all implementations employing Update Diagnosis/Procedures (P12) messages. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PR1.19.1",
                             Type = @"Component",
@@ -4658,828 +5183,39 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PR1.20",
-                            Type = @"Field",
-                            Position = @"PR1.20",
-                            Name = @"Procedure Action Code",
-                            Length = 1,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0206",
-                            TableName = @"Segment action code",
-                            Description = @"This field defines the action to be taken for this procedure. Refer to HL7 Table 0206 - Segment Action Code for valid values.  This field is required for the Update Diagnosis/Procedures (P12) message.  In all other events it is optional. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentPR1(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field setIDPR1;
-
-public HL7V251Field SetIDPR1
-{
-    get
-    {
-        if (setIDPR1 != null)
-        {
-            return setIDPR1;
-        }
-
-        setIDPR1 = new HL7V251Field
-        {
-            field = message[@"PR1"][1],
-            Id = @"PR1.1",
-            Type = @"Field",
-            Position = @"PR1.1",
-            Name = @"Set ID - PR1",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDPR1.field.FieldRepetitions != null && setIDPR1.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDPR1.Id));
-            setIDPR1.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(setIDPR1, fieldData);
-        }
-
-        return setIDPR1;
-    } 
-}
-
-internal HL7V251Field procedureCodingMethod;
-
-public HL7V251Field ProcedureCodingMethod
-{
-    get
-    {
-        if (procedureCodingMethod != null)
-        {
-            return procedureCodingMethod;
-        }
-
-        procedureCodingMethod = new HL7V251Field
-        {
-            field = message[@"PR1"][2],
-            Id = @"PR1.2",
-            Type = @"Field",
-            Position = @"PR1.2",
-            Name = @"Procedure Coding Method",
-            Length = 3,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0089",
-            TableName = @"Procedure Coding Method",
-            Description = @"As of Version 2.3, this field has been retained for backward compatibility only . Use the components of PR1-3 - Procedure Code instead of this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedureCodingMethod.field.FieldRepetitions != null && procedureCodingMethod.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureCodingMethod.Id));
-            procedureCodingMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(procedureCodingMethod, fieldData);
-        }
-
-        return procedureCodingMethod;
-    } 
-}
-
-internal HL7V251Field procedureCode;
-
-public HL7V251Field ProcedureCode
-{
-    get
-    {
-        if (procedureCode != null)
-        {
-            return procedureCode;
-        }
-
-        procedureCode = new HL7V251Field
-        {
-            field = message[@"PR1"][3],
-            Id = @"PR1.3",
-            Type = @"Field",
-            Position = @"PR1.3",
-            Name = @"Procedure Code",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0088",
-            TableName = @"Procedure Code",
-            Description = @"Use this field instead of PR1-2 - Procedure Coding Method and PR1-4 - Procedure Description . Those two fields have been retained for backward compatibility only. This field contains a unique identifier assigned to the procedure. Refer to User-defined Table 0088 - Procedure Code for suggested values. This field is a CE data type for compatibility with clinical and ancillary systems.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedureCode.field.FieldRepetitions != null && procedureCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureCode.Id));
-            procedureCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(procedureCode, fieldData);
-        }
-
-        return procedureCode;
-    } 
-}
-
-internal HL7V251Field procedureDescription;
-
-public HL7V251Field ProcedureDescription
-{
-    get
-    {
-        if (procedureDescription != null)
-        {
-            return procedureDescription;
-        }
-
-        procedureDescription = new HL7V251Field
-        {
-            field = message[@"PR1"][4],
-            Id = @"PR1.4",
-            Type = @"Field",
-            Position = @"PR1.4",
-            Name = @"Procedure Description",
-            Length = 40,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"As of Version 2.3, this field has been retained for backward compatibility only . Use the components of PR1-3 - Procedure Code instead of this field. The field contains a text description that describes the procedure.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedureDescription.field.FieldRepetitions != null && procedureDescription.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureDescription.Id));
-            procedureDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(procedureDescription, fieldData);
-        }
-
-        return procedureDescription;
-    } 
-}
-
-internal HL7V251Field procedureDateTime;
-
-public HL7V251Field ProcedureDateTime
-{
-    get
-    {
-        if (procedureDateTime != null)
-        {
-            return procedureDateTime;
-        }
-
-        procedureDateTime = new HL7V251Field
-        {
-            field = message[@"PR1"][5],
-            Id = @"PR1.5",
-            Type = @"Field",
-            Position = @"PR1.5",
-            Name = @"Procedure Date/Time",
-            Length = 26,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time that the procedure was performed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedureDateTime.field.FieldRepetitions != null && procedureDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureDateTime.Id));
-            procedureDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(procedureDateTime, fieldData);
-        }
-
-        return procedureDateTime;
-    } 
-}
-
-internal HL7V251Field procedureFunctionalType;
-
-public HL7V251Field ProcedureFunctionalType
-{
-    get
-    {
-        if (procedureFunctionalType != null)
-        {
-            return procedureFunctionalType;
-        }
-
-        procedureFunctionalType = new HL7V251Field
-        {
-            field = message[@"PR1"][6],
-            Id = @"PR1.6",
-            Type = @"Field",
-            Position = @"PR1.6",
-            Name = @"Procedure Functional Type",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0230",
-            TableName = @"Procedure Functional Type",
-            Description = @"This field contains the optional code that further defines the type of procedure. Refer to User-defined Table 0230 - Procedure Functional Type for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedureFunctionalType.field.FieldRepetitions != null && procedureFunctionalType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureFunctionalType.Id));
-            procedureFunctionalType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(procedureFunctionalType, fieldData);
-        }
-
-        return procedureFunctionalType;
-    } 
-}
-
-internal HL7V251Field procedureMinutes;
-
-public HL7V251Field ProcedureMinutes
-{
-    get
-    {
-        if (procedureMinutes != null)
-        {
-            return procedureMinutes;
-        }
-
-        procedureMinutes = new HL7V251Field
-        {
-            field = message[@"PR1"][7],
-            Id = @"PR1.7",
-            Type = @"Field",
-            Position = @"PR1.7",
-            Name = @"Procedure Minutes",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the length of time in whole minutes that the procedure took to complete.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedureMinutes.field.FieldRepetitions != null && procedureMinutes.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureMinutes.Id));
-            procedureMinutes.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(procedureMinutes, fieldData);
-        }
-
-        return procedureMinutes;
-    } 
-}
-
-internal HL7V251Field anesthesiologist;
-
-public HL7V251Field Anesthesiologist
-{
-    get
-    {
-        if (anesthesiologist != null)
-        {
-            return anesthesiologist;
-        }
-
-        anesthesiologist = new HL7V251Field
-        {
-            field = message[@"PR1"][8],
-            Id = @"PR1.8",
-            Type = @"Field",
-            Position = @"PR1.8",
-            Name = @"Anesthesiologist",
-            Length = 250,
-            Usage = @"B",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = @"0010",
-            TableName = @"Physician ID",
-            Description = @"HL7 has introduced the ROL segment to report a wide range of practitioner roles related to a single procedure. When using trigger events introduced in HL7 Version 2.3, it is recommended that the ROL segment be used to report all practitioner roles related to the procedure.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (anesthesiologist.field.FieldRepetitions != null && anesthesiologist.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(anesthesiologist.Id));
-            anesthesiologist.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(anesthesiologist, fieldData);
-        }
-
-        return anesthesiologist;
-    } 
-}
-
-internal HL7V251Field anesthesiaCode;
-
-public HL7V251Field AnesthesiaCode
-{
-    get
-    {
-        if (anesthesiaCode != null)
-        {
-            return anesthesiaCode;
-        }
-
-        anesthesiaCode = new HL7V251Field
-        {
-            field = message[@"PR1"][9],
-            Id = @"PR1.9",
-            Type = @"Field",
-            Position = @"PR1.9",
-            Name = @"Anesthesia Code",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0019",
-            TableName = @"Anesthesia Code",
-            Description = @"This field contains a unique identifier of the anesthesia used during the procedure. Refer to User-defined Table 0019 - Anesthesia Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (anesthesiaCode.field.FieldRepetitions != null && anesthesiaCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(anesthesiaCode.Id));
-            anesthesiaCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(anesthesiaCode, fieldData);
-        }
-
-        return anesthesiaCode;
-    } 
-}
-
-internal HL7V251Field anesthesiaMinutes;
-
-public HL7V251Field AnesthesiaMinutes
-{
-    get
-    {
-        if (anesthesiaMinutes != null)
-        {
-            return anesthesiaMinutes;
-        }
-
-        anesthesiaMinutes = new HL7V251Field
-        {
-            field = message[@"PR1"][10],
-            Id = @"PR1.10",
-            Type = @"Field",
-            Position = @"PR1.10",
-            Name = @"Anesthesia Minutes",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the length of time in minutes that the anesthesia was administered.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (anesthesiaMinutes.field.FieldRepetitions != null && anesthesiaMinutes.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(anesthesiaMinutes.Id));
-            anesthesiaMinutes.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(anesthesiaMinutes, fieldData);
-        }
-
-        return anesthesiaMinutes;
-    } 
-}
-
-internal HL7V251Field surgeon;
-
-public HL7V251Field Surgeon
-{
-    get
-    {
-        if (surgeon != null)
-        {
-            return surgeon;
-        }
-
-        surgeon = new HL7V251Field
-        {
-            field = message[@"PR1"][11],
-            Id = @"PR1.11",
-            Type = @"Field",
-            Position = @"PR1.11",
-            Name = @"Surgeon",
-            Length = 250,
-            Usage = @"B",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = @"0010",
-            TableName = @"Physician ID",
-            Description = @"HL7 has introduced the ROL segment to report a wide range of practitioner roles related to a single procedure. When using trigger events introduced in HL7 Version 2.3, it is recommended that the ROL segment be used to report all practitioner roles related to the procedure.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (surgeon.field.FieldRepetitions != null && surgeon.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(surgeon.Id));
-            surgeon.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(surgeon, fieldData);
-        }
-
-        return surgeon;
-    } 
-}
-
-internal HL7V251Field procedurePractitioner;
-
-public HL7V251Field ProcedurePractitioner
-{
-    get
-    {
-        if (procedurePractitioner != null)
-        {
-            return procedurePractitioner;
-        }
-
-        procedurePractitioner = new HL7V251Field
-        {
-            field = message[@"PR1"][12],
-            Id = @"PR1.12",
-            Type = @"Field",
-            Position = @"PR1.12",
-            Name = @"Procedure Practitioner",
-            Length = 250,
-            Usage = @"B",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = @"0010",
-            TableName = @"Physician ID",
-            Description = @"HL7 has introduced the ROL segment to report a wide range of practitioner roles related to a single procedure. When using trigger events introduced in HL7 Version 2.3, it is recommended that the ROL segment be used to report all practitioner roles related to the procedure.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedurePractitioner.field.FieldRepetitions != null && procedurePractitioner.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedurePractitioner.Id));
-            procedurePractitioner.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(procedurePractitioner, fieldData);
-        }
-
-        return procedurePractitioner;
-    } 
-}
-
-internal HL7V251Field consentCode;
-
-public HL7V251Field ConsentCode
-{
-    get
-    {
-        if (consentCode != null)
-        {
-            return consentCode;
-        }
-
-        consentCode = new HL7V251Field
-        {
-            field = message[@"PR1"][13],
-            Id = @"PR1.13",
-            Type = @"Field",
-            Position = @"PR1.13",
-            Name = @"Consent Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0059",
-            TableName = @"Consent Code",
-            Description = @"This field contains the type of consent that was obtained for permission to treat the patient. Refer to User-defined Table 0059 - Consent Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentCode.field.FieldRepetitions != null && consentCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentCode.Id));
-            consentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(consentCode, fieldData);
-        }
-
-        return consentCode;
-    } 
-}
-
-internal HL7V251Field procedurePriority;
-
-public HL7V251Field ProcedurePriority
-{
-    get
-    {
-        if (procedurePriority != null)
-        {
-            return procedurePriority;
-        }
-
-        procedurePriority = new HL7V251Field
-        {
-            field = message[@"PR1"][14],
-            Id = @"PR1.14",
-            Type = @"Field",
-            Position = @"PR1.14",
-            Name = @"Procedure Priority",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0418",
-            TableName = @"Procedure Priority",
-            Description = @"This field contains a number that identifies the significance or priority of the procedure code. Refer to HL7 Table 0418 - Procedure Priority for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedurePriority.field.FieldRepetitions != null && procedurePriority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedurePriority.Id));
-            procedurePriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(procedurePriority, fieldData);
-        }
-
-        return procedurePriority;
-    } 
-}
-
-internal HL7V251Field associatedDiagnosisCode;
-
-public HL7V251Field AssociatedDiagnosisCode
-{
-    get
-    {
-        if (associatedDiagnosisCode != null)
-        {
-            return associatedDiagnosisCode;
-        }
-
-        associatedDiagnosisCode = new HL7V251Field
-        {
-            field = message[@"PR1"][15],
-            Id = @"PR1.15",
-            Type = @"Field",
-            Position = @"PR1.15",
-            Name = @"Associated Diagnosis Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0051",
-            TableName = @"Diagnosis Code",
-            Description = @"This field contains the diagnosis that is the primary reason this procedure was performed, e.g. in the US, Medicare wants to know for which diagnosis this procedure is submitted for inclusion on CMS 1500 form. Refer to User-defined Table 0051 - Diagnosis Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (associatedDiagnosisCode.field.FieldRepetitions != null && associatedDiagnosisCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(associatedDiagnosisCode.Id));
-            associatedDiagnosisCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(associatedDiagnosisCode, fieldData);
-        }
-
-        return associatedDiagnosisCode;
-    } 
-}
-
-internal HL7V251Field procedureCodeModifier;
-
-public HL7V251Field ProcedureCodeModifier
-{
-    get
-    {
-        if (procedureCodeModifier != null)
-        {
-            return procedureCodeModifier;
-        }
-
-        procedureCodeModifier = new HL7V251Field
-        {
-            field = message[@"PR1"][16],
-            Id = @"PR1.16",
-            Type = @"Field",
-            Position = @"PR1.16",
-            Name = @"Procedure Code Modifier",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0340",
-            TableName = @"Procedure code modifier",
-            Description = @"This field contains the procedure code modifier to the procedure code reported in field 3, when applicable. Procedure code modifiers are defined by regulatory agencies such as CMS and the AMA. Multiple modifiers may be reported. Refer to User-defined Table 0340 - Procedure Code Modifier for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedureCodeModifier.field.FieldRepetitions != null && procedureCodeModifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureCodeModifier.Id));
-            procedureCodeModifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(procedureCodeModifier, fieldData);
-        }
-
-        return procedureCodeModifier;
-    } 
-}
-
-internal HL7V251Field procedureDRGType;
-
-public HL7V251Field ProcedureDRGType
-{
-    get
-    {
-        if (procedureDRGType != null)
-        {
-            return procedureDRGType;
-        }
-
-        procedureDRGType = new HL7V251Field
-        {
-            field = message[@"PR1"][17],
-            Id = @"PR1.17",
-            Type = @"Field",
-            Position = @"PR1.17",
-            Name = @"Procedure DRG Type",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0416",
-            TableName = @"Procedure DRG Type",
-            Description = @"This field indicates a procedures priority ranking relative to its DRG. Refer to User-defined Table 0416 - Procedure DRG Type for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedureDRGType.field.FieldRepetitions != null && procedureDRGType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureDRGType.Id));
-            procedureDRGType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(procedureDRGType, fieldData);
-        }
-
-        return procedureDRGType;
-    } 
-}
-
-internal HL7V251Field tissueTypeCode;
-
-public HL7V251Field TissueTypeCode
-{
-    get
-    {
-        if (tissueTypeCode != null)
-        {
-            return tissueTypeCode;
-        }
-
-        tissueTypeCode = new HL7V251Field
-        {
-            field = message[@"PR1"][18],
-            Id = @"PR1.18",
-            Type = @"Field",
-            Position = @"PR1.18",
-            Name = @"Tissue Type Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0417",
-            TableName = @"Tissue Type Code",
-            Description = @"Code representing type of tissue removed from a patient during this procedure. Refer to User-defined Table 0417 - Tissue Type Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (tissueTypeCode.field.FieldRepetitions != null && tissueTypeCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(tissueTypeCode.Id));
-            tissueTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(tissueTypeCode, fieldData);
-        }
-
-        return tissueTypeCode;
-    } 
-}
-
-internal HL7V251Field procedureIdentifier;
-
-public HL7V251Field ProcedureIdentifier
-{
-    get
-    {
-        if (procedureIdentifier != null)
-        {
-            return procedureIdentifier;
-        }
-
-        procedureIdentifier = new HL7V251Field
+        _procedureIdentifier = new HL7V251Field
         {
             field = message[@"PR1"][19],
-            Id = @"PR1.19",
-            Type = @"Field",
-            Position = @"PR1.19",
-            Name = @"Procedure Identifier",
-            Length = 427,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a value that uniquely identifies a single procedure for an encounter. It is unique across all segments and messages for an encounter.  This field is required in all implementations employing Update Diagnosis/Procedures (P12) messages. ",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (procedureIdentifier.field.FieldRepetitions != null && procedureIdentifier.field.FieldRepetitions.Count > 0)
+        if (_procedureIdentifier.field.FieldRepetitions != null && _procedureIdentifier.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureIdentifier.Id));
-            procedureIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(procedureIdentifier, fieldData);
+            _procedureIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_procedureIdentifier, fieldData);
         }
 
-        return procedureIdentifier;
+        return _procedureIdentifier;
     } 
 }
 
-internal HL7V251Field procedureActionCode;
+internal HL7V251Field _procedureActionCode;
 
 public HL7V251Field ProcedureActionCode
 {
     get
     {
-        if (procedureActionCode != null)
+        if (_procedureActionCode != null)
         {
-            return procedureActionCode;
+            return _procedureActionCode;
         }
 
-        procedureActionCode = new HL7V251Field
+        var fieldData = new HL7V251FieldData
         {
-            field = message[@"PR1"][20],
             Id = @"PR1.20",
             Type = @"Field",
             Position = @"PR1.20",
@@ -5493,17 +5229,22 @@ public HL7V251Field ProcedureActionCode
             TableName = @"Segment action code",
             Description = @"This field defines the action to be taken for this procedure. Refer to HL7 Table 0206 - Segment Action Code for valid values.  This field is required for the Update Diagnosis/Procedures (P12) message.  In all other events it is optional. ",
             Sample = @"",
+            Fields = null
+        }
+
+        _procedureActionCode = new HL7V251Field
+        {
+            field = message[@"PR1"][20],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (procedureActionCode.field.FieldRepetitions != null && procedureActionCode.field.FieldRepetitions.Count > 0)
+        if (_procedureActionCode.field.FieldRepetitions != null && _procedureActionCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureActionCode.Id));
-            procedureActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(procedureActionCode, fieldData);
+            _procedureActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_procedureActionCode, fieldData);
         }
 
-        return procedureActionCode;
+        return _procedureActionCode;
     } 
 }
     }

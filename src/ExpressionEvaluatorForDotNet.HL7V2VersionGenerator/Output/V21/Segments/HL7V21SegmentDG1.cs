@@ -25,286 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"DG1.1",
-                            Type = @"Field",
-                            Position = @"DG1.1",
-                            Name = @"Set Id - Diagnosis",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Set Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.2",
-                            Type = @"Field",
-                            Position = @"DG1.2",
-                            Name = @"Diagnosis Coding Method",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0053",
-                            TableName = @"DIAGNOSIS CODING METHOD",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.3",
-                            Type = @"Field",
-                            Position = @"DG1.3",
-                            Name = @"Diagnosis Code",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0051",
-                            TableName = @"DIAGNOSIS CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.4",
-                            Type = @"Field",
-                            Position = @"DG1.4",
-                            Name = @"Diagnosis Description",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.5",
-                            Type = @"Field",
-                            Position = @"DG1.5",
-                            Name = @"Diagnosis Date/Time",
-                            Length = 19,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.6",
-                            Type = @"Field",
-                            Position = @"DG1.6",
-                            Name = @"Diagnosis/Drg Type",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0052",
-                            TableName = @"DIAGNOSIS TYPE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.7",
-                            Type = @"Field",
-                            Position = @"DG1.7",
-                            Name = @"Major Diagnostic Category",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = @"0118",
-                            TableName = @"MAJOR DIAGNOSTIC CATEGORY",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.8",
-                            Type = @"Field",
-                            Position = @"DG1.8",
-                            Name = @"Diagnostic Related Group",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0055",
-                            TableName = @"DRG CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.9",
-                            Type = @"Field",
-                            Position = @"DG1.9",
-                            Name = @"Drg Approval Indicator",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.10",
-                            Type = @"Field",
-                            Position = @"DG1.10",
-                            Name = @"Drg Grouper Review Code",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0056",
-                            TableName = @"DRG GROUPER REVIEW CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.11",
-                            Type = @"Field",
-                            Position = @"DG1.11",
-                            Name = @"Outlier Type",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0083",
-                            TableName = @"OUTLIER TYPE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.12",
-                            Type = @"Field",
-                            Position = @"DG1.12",
-                            Name = @"Outlier Days",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.13",
-                            Type = @"Field",
-                            Position = @"DG1.13",
-                            Name = @"Outlier Cost",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.14",
-                            Type = @"Field",
-                            Position = @"DG1.14",
-                            Name = @"Grouper Version And Type",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentDG1(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field setIdDiagnosis;
+        internal HL7V21Field _setIdDiagnosis;
 
 public HL7V21Field SetIdDiagnosis
 {
     get
     {
-        if (setIdDiagnosis != null)
+        if (_setIdDiagnosis != null)
         {
-            return setIdDiagnosis;
+            return _setIdDiagnosis;
         }
 
-        setIdDiagnosis = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DG1"][1],
             Id = @"DG1.1",
             Type = @"Field",
             Position = @"DG1.1",
@@ -318,34 +56,38 @@ public HL7V21Field SetIdDiagnosis
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _setIdDiagnosis = new HL7V21Field
+        {
+            field = message[@"DG1"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (setIdDiagnosis.field.FieldRepetitions != null && setIdDiagnosis.field.FieldRepetitions.Count > 0)
+        if (_setIdDiagnosis.field.FieldRepetitions != null && _setIdDiagnosis.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdDiagnosis.Id));
-            setIdDiagnosis.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(setIdDiagnosis, fieldData);
+            _setIdDiagnosis.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_setIdDiagnosis, fieldData);
         }
 
-        return setIdDiagnosis;
+        return _setIdDiagnosis;
     } 
 }
 
-internal HL7V21Field diagnosisCodingMethod;
+internal HL7V21Field _diagnosisCodingMethod;
 
 public HL7V21Field DiagnosisCodingMethod
 {
     get
     {
-        if (diagnosisCodingMethod != null)
+        if (_diagnosisCodingMethod != null)
         {
-            return diagnosisCodingMethod;
+            return _diagnosisCodingMethod;
         }
 
-        diagnosisCodingMethod = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DG1"][2],
             Id = @"DG1.2",
             Type = @"Field",
             Position = @"DG1.2",
@@ -359,34 +101,38 @@ public HL7V21Field DiagnosisCodingMethod
             TableName = @"DIAGNOSIS CODING METHOD",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _diagnosisCodingMethod = new HL7V21Field
+        {
+            field = message[@"DG1"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (diagnosisCodingMethod.field.FieldRepetitions != null && diagnosisCodingMethod.field.FieldRepetitions.Count > 0)
+        if (_diagnosisCodingMethod.field.FieldRepetitions != null && _diagnosisCodingMethod.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosisCodingMethod.Id));
-            diagnosisCodingMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(diagnosisCodingMethod, fieldData);
+            _diagnosisCodingMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_diagnosisCodingMethod, fieldData);
         }
 
-        return diagnosisCodingMethod;
+        return _diagnosisCodingMethod;
     } 
 }
 
-internal HL7V21Field diagnosisCode;
+internal HL7V21Field _diagnosisCode;
 
 public HL7V21Field DiagnosisCode
 {
     get
     {
-        if (diagnosisCode != null)
+        if (_diagnosisCode != null)
         {
-            return diagnosisCode;
+            return _diagnosisCode;
         }
 
-        diagnosisCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DG1"][3],
             Id = @"DG1.3",
             Type = @"Field",
             Position = @"DG1.3",
@@ -400,34 +146,38 @@ public HL7V21Field DiagnosisCode
             TableName = @"DIAGNOSIS CODE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _diagnosisCode = new HL7V21Field
+        {
+            field = message[@"DG1"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (diagnosisCode.field.FieldRepetitions != null && diagnosisCode.field.FieldRepetitions.Count > 0)
+        if (_diagnosisCode.field.FieldRepetitions != null && _diagnosisCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosisCode.Id));
-            diagnosisCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(diagnosisCode, fieldData);
+            _diagnosisCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_diagnosisCode, fieldData);
         }
 
-        return diagnosisCode;
+        return _diagnosisCode;
     } 
 }
 
-internal HL7V21Field diagnosisDescription;
+internal HL7V21Field _diagnosisDescription;
 
 public HL7V21Field DiagnosisDescription
 {
     get
     {
-        if (diagnosisDescription != null)
+        if (_diagnosisDescription != null)
         {
-            return diagnosisDescription;
+            return _diagnosisDescription;
         }
 
-        diagnosisDescription = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DG1"][4],
             Id = @"DG1.4",
             Type = @"Field",
             Position = @"DG1.4",
@@ -441,34 +191,38 @@ public HL7V21Field DiagnosisDescription
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _diagnosisDescription = new HL7V21Field
+        {
+            field = message[@"DG1"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (diagnosisDescription.field.FieldRepetitions != null && diagnosisDescription.field.FieldRepetitions.Count > 0)
+        if (_diagnosisDescription.field.FieldRepetitions != null && _diagnosisDescription.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosisDescription.Id));
-            diagnosisDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(diagnosisDescription, fieldData);
+            _diagnosisDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_diagnosisDescription, fieldData);
         }
 
-        return diagnosisDescription;
+        return _diagnosisDescription;
     } 
 }
 
-internal HL7V21Field diagnosisDateTime;
+internal HL7V21Field _diagnosisDateTime;
 
 public HL7V21Field DiagnosisDateTime
 {
     get
     {
-        if (diagnosisDateTime != null)
+        if (_diagnosisDateTime != null)
         {
-            return diagnosisDateTime;
+            return _diagnosisDateTime;
         }
 
-        diagnosisDateTime = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DG1"][5],
             Id = @"DG1.5",
             Type = @"Field",
             Position = @"DG1.5",
@@ -482,34 +236,38 @@ public HL7V21Field DiagnosisDateTime
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _diagnosisDateTime = new HL7V21Field
+        {
+            field = message[@"DG1"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (diagnosisDateTime.field.FieldRepetitions != null && diagnosisDateTime.field.FieldRepetitions.Count > 0)
+        if (_diagnosisDateTime.field.FieldRepetitions != null && _diagnosisDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosisDateTime.Id));
-            diagnosisDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(diagnosisDateTime, fieldData);
+            _diagnosisDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_diagnosisDateTime, fieldData);
         }
 
-        return diagnosisDateTime;
+        return _diagnosisDateTime;
     } 
 }
 
-internal HL7V21Field diagnosisDrgType;
+internal HL7V21Field _diagnosisDrgType;
 
 public HL7V21Field DiagnosisDrgType
 {
     get
     {
-        if (diagnosisDrgType != null)
+        if (_diagnosisDrgType != null)
         {
-            return diagnosisDrgType;
+            return _diagnosisDrgType;
         }
 
-        diagnosisDrgType = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DG1"][6],
             Id = @"DG1.6",
             Type = @"Field",
             Position = @"DG1.6",
@@ -523,34 +281,38 @@ public HL7V21Field DiagnosisDrgType
             TableName = @"DIAGNOSIS TYPE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _diagnosisDrgType = new HL7V21Field
+        {
+            field = message[@"DG1"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (diagnosisDrgType.field.FieldRepetitions != null && diagnosisDrgType.field.FieldRepetitions.Count > 0)
+        if (_diagnosisDrgType.field.FieldRepetitions != null && _diagnosisDrgType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosisDrgType.Id));
-            diagnosisDrgType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(diagnosisDrgType, fieldData);
+            _diagnosisDrgType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_diagnosisDrgType, fieldData);
         }
 
-        return diagnosisDrgType;
+        return _diagnosisDrgType;
     } 
 }
 
-internal HL7V21Field majorDiagnosticCategory;
+internal HL7V21Field _majorDiagnosticCategory;
 
 public HL7V21Field MajorDiagnosticCategory
 {
     get
     {
-        if (majorDiagnosticCategory != null)
+        if (_majorDiagnosticCategory != null)
         {
-            return majorDiagnosticCategory;
+            return _majorDiagnosticCategory;
         }
 
-        majorDiagnosticCategory = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DG1"][7],
             Id = @"DG1.7",
             Type = @"Field",
             Position = @"DG1.7",
@@ -564,34 +326,38 @@ public HL7V21Field MajorDiagnosticCategory
             TableName = @"MAJOR DIAGNOSTIC CATEGORY",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _majorDiagnosticCategory = new HL7V21Field
+        {
+            field = message[@"DG1"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (majorDiagnosticCategory.field.FieldRepetitions != null && majorDiagnosticCategory.field.FieldRepetitions.Count > 0)
+        if (_majorDiagnosticCategory.field.FieldRepetitions != null && _majorDiagnosticCategory.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(majorDiagnosticCategory.Id));
-            majorDiagnosticCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(majorDiagnosticCategory, fieldData);
+            _majorDiagnosticCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_majorDiagnosticCategory, fieldData);
         }
 
-        return majorDiagnosticCategory;
+        return _majorDiagnosticCategory;
     } 
 }
 
-internal HL7V21Field diagnosticRelatedGroup;
+internal HL7V21Field _diagnosticRelatedGroup;
 
 public HL7V21Field DiagnosticRelatedGroup
 {
     get
     {
-        if (diagnosticRelatedGroup != null)
+        if (_diagnosticRelatedGroup != null)
         {
-            return diagnosticRelatedGroup;
+            return _diagnosticRelatedGroup;
         }
 
-        diagnosticRelatedGroup = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DG1"][8],
             Id = @"DG1.8",
             Type = @"Field",
             Position = @"DG1.8",
@@ -605,34 +371,38 @@ public HL7V21Field DiagnosticRelatedGroup
             TableName = @"DRG CODE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _diagnosticRelatedGroup = new HL7V21Field
+        {
+            field = message[@"DG1"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (diagnosticRelatedGroup.field.FieldRepetitions != null && diagnosticRelatedGroup.field.FieldRepetitions.Count > 0)
+        if (_diagnosticRelatedGroup.field.FieldRepetitions != null && _diagnosticRelatedGroup.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosticRelatedGroup.Id));
-            diagnosticRelatedGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(diagnosticRelatedGroup, fieldData);
+            _diagnosticRelatedGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_diagnosticRelatedGroup, fieldData);
         }
 
-        return diagnosticRelatedGroup;
+        return _diagnosticRelatedGroup;
     } 
 }
 
-internal HL7V21Field drgApprovalIndicator;
+internal HL7V21Field _drgApprovalIndicator;
 
 public HL7V21Field DrgApprovalIndicator
 {
     get
     {
-        if (drgApprovalIndicator != null)
+        if (_drgApprovalIndicator != null)
         {
-            return drgApprovalIndicator;
+            return _drgApprovalIndicator;
         }
 
-        drgApprovalIndicator = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DG1"][9],
             Id = @"DG1.9",
             Type = @"Field",
             Position = @"DG1.9",
@@ -646,34 +416,38 @@ public HL7V21Field DrgApprovalIndicator
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _drgApprovalIndicator = new HL7V21Field
+        {
+            field = message[@"DG1"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (drgApprovalIndicator.field.FieldRepetitions != null && drgApprovalIndicator.field.FieldRepetitions.Count > 0)
+        if (_drgApprovalIndicator.field.FieldRepetitions != null && _drgApprovalIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(drgApprovalIndicator.Id));
-            drgApprovalIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(drgApprovalIndicator, fieldData);
+            _drgApprovalIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_drgApprovalIndicator, fieldData);
         }
 
-        return drgApprovalIndicator;
+        return _drgApprovalIndicator;
     } 
 }
 
-internal HL7V21Field drgGrouperReviewCode;
+internal HL7V21Field _drgGrouperReviewCode;
 
 public HL7V21Field DrgGrouperReviewCode
 {
     get
     {
-        if (drgGrouperReviewCode != null)
+        if (_drgGrouperReviewCode != null)
         {
-            return drgGrouperReviewCode;
+            return _drgGrouperReviewCode;
         }
 
-        drgGrouperReviewCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DG1"][10],
             Id = @"DG1.10",
             Type = @"Field",
             Position = @"DG1.10",
@@ -687,34 +461,38 @@ public HL7V21Field DrgGrouperReviewCode
             TableName = @"DRG GROUPER REVIEW CODE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _drgGrouperReviewCode = new HL7V21Field
+        {
+            field = message[@"DG1"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (drgGrouperReviewCode.field.FieldRepetitions != null && drgGrouperReviewCode.field.FieldRepetitions.Count > 0)
+        if (_drgGrouperReviewCode.field.FieldRepetitions != null && _drgGrouperReviewCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(drgGrouperReviewCode.Id));
-            drgGrouperReviewCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(drgGrouperReviewCode, fieldData);
+            _drgGrouperReviewCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_drgGrouperReviewCode, fieldData);
         }
 
-        return drgGrouperReviewCode;
+        return _drgGrouperReviewCode;
     } 
 }
 
-internal HL7V21Field outlierType;
+internal HL7V21Field _outlierType;
 
 public HL7V21Field OutlierType
 {
     get
     {
-        if (outlierType != null)
+        if (_outlierType != null)
         {
-            return outlierType;
+            return _outlierType;
         }
 
-        outlierType = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DG1"][11],
             Id = @"DG1.11",
             Type = @"Field",
             Position = @"DG1.11",
@@ -728,34 +506,38 @@ public HL7V21Field OutlierType
             TableName = @"OUTLIER TYPE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _outlierType = new HL7V21Field
+        {
+            field = message[@"DG1"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (outlierType.field.FieldRepetitions != null && outlierType.field.FieldRepetitions.Count > 0)
+        if (_outlierType.field.FieldRepetitions != null && _outlierType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(outlierType.Id));
-            outlierType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(outlierType, fieldData);
+            _outlierType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_outlierType, fieldData);
         }
 
-        return outlierType;
+        return _outlierType;
     } 
 }
 
-internal HL7V21Field outlierDays;
+internal HL7V21Field _outlierDays;
 
 public HL7V21Field OutlierDays
 {
     get
     {
-        if (outlierDays != null)
+        if (_outlierDays != null)
         {
-            return outlierDays;
+            return _outlierDays;
         }
 
-        outlierDays = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DG1"][12],
             Id = @"DG1.12",
             Type = @"Field",
             Position = @"DG1.12",
@@ -769,34 +551,38 @@ public HL7V21Field OutlierDays
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _outlierDays = new HL7V21Field
+        {
+            field = message[@"DG1"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (outlierDays.field.FieldRepetitions != null && outlierDays.field.FieldRepetitions.Count > 0)
+        if (_outlierDays.field.FieldRepetitions != null && _outlierDays.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(outlierDays.Id));
-            outlierDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(outlierDays, fieldData);
+            _outlierDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_outlierDays, fieldData);
         }
 
-        return outlierDays;
+        return _outlierDays;
     } 
 }
 
-internal HL7V21Field outlierCost;
+internal HL7V21Field _outlierCost;
 
 public HL7V21Field OutlierCost
 {
     get
     {
-        if (outlierCost != null)
+        if (_outlierCost != null)
         {
-            return outlierCost;
+            return _outlierCost;
         }
 
-        outlierCost = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DG1"][13],
             Id = @"DG1.13",
             Type = @"Field",
             Position = @"DG1.13",
@@ -810,34 +596,38 @@ public HL7V21Field OutlierCost
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _outlierCost = new HL7V21Field
+        {
+            field = message[@"DG1"][13],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (outlierCost.field.FieldRepetitions != null && outlierCost.field.FieldRepetitions.Count > 0)
+        if (_outlierCost.field.FieldRepetitions != null && _outlierCost.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(outlierCost.Id));
-            outlierCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(outlierCost, fieldData);
+            _outlierCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_outlierCost, fieldData);
         }
 
-        return outlierCost;
+        return _outlierCost;
     } 
 }
 
-internal HL7V21Field grouperVersionAndType;
+internal HL7V21Field _grouperVersionAndType;
 
 public HL7V21Field GrouperVersionAndType
 {
     get
     {
-        if (grouperVersionAndType != null)
+        if (_grouperVersionAndType != null)
         {
-            return grouperVersionAndType;
+            return _grouperVersionAndType;
         }
 
-        grouperVersionAndType = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DG1"][14],
             Id = @"DG1.14",
             Type = @"Field",
             Position = @"DG1.14",
@@ -851,17 +641,22 @@ public HL7V21Field GrouperVersionAndType
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _grouperVersionAndType = new HL7V21Field
+        {
+            field = message[@"DG1"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (grouperVersionAndType.field.FieldRepetitions != null && grouperVersionAndType.field.FieldRepetitions.Count > 0)
+        if (_grouperVersionAndType.field.FieldRepetitions != null && _grouperVersionAndType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(grouperVersionAndType.Id));
-            grouperVersionAndType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(grouperVersionAndType, fieldData);
+            _grouperVersionAndType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_grouperVersionAndType, fieldData);
         }
 
-        return grouperVersionAndType;
+        return _grouperVersionAndType;
     } 
 }
     }

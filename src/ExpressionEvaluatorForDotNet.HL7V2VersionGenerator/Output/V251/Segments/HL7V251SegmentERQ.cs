@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentERQ(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _queryTag;
+
+public HL7V251Field QueryTag
+{
+    get
+    {
+        if (_queryTag != null)
+        {
+            return _queryTag;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERQ.1",
+            Type = @"Field",
+            Position = @"ERQ.1",
+            Name = @"Query Tag",
+            Length = 32,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field may be valued by the initiating system to identify the query, and may be used to match response messages to the originating query.  If it is valued, the responding system is required to echo it back as the first field in the query acknowledgment segment (QAK).  This field differs from MSA-2Message control ID in that its value remains constant for each message (i.e., all continuation messages) associated with the query, whereas MSA-2-Message control ID may vary with each continuation message, since it is associated with each individual message, not the query as a whole.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _queryTag = new HL7V251Field
+        {
+            field = message[@"ERQ"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_queryTag.field.FieldRepetitions != null && _queryTag.field.FieldRepetitions.Count > 0)
+        {
+            _queryTag.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_queryTag, fieldData);
+        }
+
+        return _queryTag;
+    } 
+}
+
+internal HL7V251Field _eventIdentifier;
+
+public HL7V251Field EventIdentifier
+{
+    get
+    {
+        if (_eventIdentifier != null)
+        {
+            return _eventIdentifier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERQ.2",
+            Type = @"Field",
+            Position = @"ERQ.2",
+            Name = @"Event Identifier",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the HL7 event identifier corresponding to the original trigger event.  Its contents dictate the format of the response message.  Hence, a value of “A04” in this field indicates a request for the data associated with the “register a patient” trigger event.  The ERP response message returns the contents of the “register a patient” message.  If more than one match is found, the ERP returns repeating groups of the segments defined by the “A04” message. ",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ERQ.1",
-                            Type = @"Field",
-                            Position = @"ERQ.1",
-                            Name = @"Query Tag",
-                            Length = 32,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field may be valued by the initiating system to identify the query, and may be used to match response messages to the originating query.  If it is valued, the responding system is required to echo it back as the first field in the query acknowledgment segment (QAK).  This field differs from MSA-2Message control ID in that its value remains constant for each message (i.e., all continuation messages) associated with the query, whereas MSA-2-Message control ID may vary with each continuation message, since it is associated with each individual message, not the query as a whole.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ERQ.2",
-                            Type = @"Field",
-                            Position = @"ERQ.2",
-                            Name = @"Event Identifier",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the HL7 event identifier corresponding to the original trigger event.  Its contents dictate the format of the response message.  Hence, a value of “A04” in this field indicates a request for the data associated with the “register a patient” trigger event.  The ERP response message returns the contents of the “register a patient” message.  If more than one match is found, the ERP returns repeating groups of the segments defined by the “A04” message. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERQ.2.1",
                             Type = @"Component",
@@ -174,25 +213,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _eventIdentifier = new HL7V251Field
+        {
+            field = message[@"ERQ"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventIdentifier.field.FieldRepetitions != null && _eventIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _eventIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_eventIdentifier, fieldData);
+        }
+
+        return _eventIdentifier;
+    } 
+}
+
+internal HL7V251Field _inputParameterList;
+
+public HL7V251Field InputParameterList
+{
+    get
+    {
+        if (_inputParameterList != null)
+        {
+            return _inputParameterList;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ERQ.3",
+            Type = @"Field",
+            Position = @"ERQ.3",
+            Name = @"Input Parameter List",
+            Length = 256,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"QIP",
+            DataTypeName = @"Query Input Parameter List",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the list of parameter names and values to be passed to the responding system, in the form “<segment field name> ^ <value1 & value2 & value3 ...>.”  A single valued parameter contains only a single subcomponent in the second component: thus no subcomponent delimiters are needed (e.g., <segment field name> ^ <value>).  A simple list of values (i.e., a onedimensional array) may be passed instead of a single value by separating each value with the subcomponent delimiter: “<segment field name> ^ <value1&value2 &...>.”",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ERQ.3",
-                            Type = @"Field",
-                            Position = @"ERQ.3",
-                            Name = @"Input Parameter List",
-                            Length = 256,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"QIP",
-                            DataTypeName = @"Query Input Parameter List",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the list of parameter names and values to be passed to the responding system, in the form “<segment field name> ^ <value1 & value2 & value3 ...>.”  A single valued parameter contains only a single subcomponent in the second component: thus no subcomponent delimiters are needed (e.g., <segment field name> ^ <value>).  A simple list of values (i.e., a onedimensional array) may be passed instead of a single value by separating each value with the subcomponent delimiter: “<segment field name> ^ <value1&value2 &...>.”",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ERQ.3.1",
                             Type = @"Component",
@@ -226,137 +295,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component contains the field value or values in the form ""value1& value2 & value3""",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentERQ(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field queryTag;
-
-public HL7V251Field QueryTag
-{
-    get
-    {
-        if (queryTag != null)
-        {
-            return queryTag;
-        }
-
-        queryTag = new HL7V251Field
-        {
-            field = message[@"ERQ"][1],
-            Id = @"ERQ.1",
-            Type = @"Field",
-            Position = @"ERQ.1",
-            Name = @"Query Tag",
-            Length = 32,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field may be valued by the initiating system to identify the query, and may be used to match response messages to the originating query.  If it is valued, the responding system is required to echo it back as the first field in the query acknowledgment segment (QAK).  This field differs from MSA-2Message control ID in that its value remains constant for each message (i.e., all continuation messages) associated with the query, whereas MSA-2-Message control ID may vary with each continuation message, since it is associated with each individual message, not the query as a whole.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (queryTag.field.FieldRepetitions != null && queryTag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(queryTag.Id));
-            queryTag.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(queryTag, fieldData);
-        }
-
-        return queryTag;
-    } 
-}
-
-internal HL7V251Field eventIdentifier;
-
-public HL7V251Field EventIdentifier
-{
-    get
-    {
-        if (eventIdentifier != null)
-        {
-            return eventIdentifier;
-        }
-
-        eventIdentifier = new HL7V251Field
-        {
-            field = message[@"ERQ"][2],
-            Id = @"ERQ.2",
-            Type = @"Field",
-            Position = @"ERQ.2",
-            Name = @"Event Identifier",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the HL7 event identifier corresponding to the original trigger event.  Its contents dictate the format of the response message.  Hence, a value of “A04” in this field indicates a request for the data associated with the “register a patient” trigger event.  The ERP response message returns the contents of the “register a patient” message.  If more than one match is found, the ERP returns repeating groups of the segments defined by the “A04” message. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventIdentifier.field.FieldRepetitions != null && eventIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventIdentifier.Id));
-            eventIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(eventIdentifier, fieldData);
-        }
-
-        return eventIdentifier;
-    } 
-}
-
-internal HL7V251Field inputParameterList;
-
-public HL7V251Field InputParameterList
-{
-    get
-    {
-        if (inputParameterList != null)
-        {
-            return inputParameterList;
-        }
-
-        inputParameterList = new HL7V251Field
+        _inputParameterList = new HL7V251Field
         {
             field = message[@"ERQ"][3],
-            Id = @"ERQ.3",
-            Type = @"Field",
-            Position = @"ERQ.3",
-            Name = @"Input Parameter List",
-            Length = 256,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"QIP",
-            DataTypeName = @"Query Input Parameter List",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the list of parameter names and values to be passed to the responding system, in the form “<segment field name> ^ <value1 & value2 & value3 ...>.”  A single valued parameter contains only a single subcomponent in the second component: thus no subcomponent delimiters are needed (e.g., <segment field name> ^ <value>).  A simple list of values (i.e., a onedimensional array) may be passed instead of a single value by separating each value with the subcomponent delimiter: “<segment field name> ^ <value1&value2 &...>.”",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (inputParameterList.field.FieldRepetitions != null && inputParameterList.field.FieldRepetitions.Count > 0)
+        if (_inputParameterList.field.FieldRepetitions != null && _inputParameterList.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inputParameterList.Id));
-            inputParameterList.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(inputParameterList, fieldData);
+            _inputParameterList.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_inputParameterList, fieldData);
         }
 
-        return inputParameterList;
+        return _inputParameterList;
     } 
 }
     }

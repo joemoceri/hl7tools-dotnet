@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             } 
         }
@@ -59,6 +60,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Update record for master file",
                             Comment = null
                         },
+                        
                     };
             } 
         }

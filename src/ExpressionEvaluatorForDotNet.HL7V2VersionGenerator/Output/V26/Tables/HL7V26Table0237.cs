@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_07",
+
                     };
             } 
         }
@@ -77,6 +78,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Drug withdrawal",
                             Comment = null
                         },
+                        
                     };
             } 
         }

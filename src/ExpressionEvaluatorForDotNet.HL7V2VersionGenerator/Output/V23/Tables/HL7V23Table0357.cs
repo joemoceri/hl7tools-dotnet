@@ -104,6 +104,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Application internal error",
                             Comment = @"A catchall for internal errors not explicitly covered by other codes."
                         },
+                        
                     };
             } 
         }

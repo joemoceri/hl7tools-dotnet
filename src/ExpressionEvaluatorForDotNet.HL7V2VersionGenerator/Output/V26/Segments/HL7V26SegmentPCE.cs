@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentPCE(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _setIDPCE;
+
+public HL7V26Field SetIDPCE
+{
+    get
+    {
+        if (_setIDPCE != null)
+        {
+            return _setIDPCE;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PCE.1",
+            Type = @"Field",
+            Position = @"PCE.1",
+            Name = @"Set ID – PCE",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a sequential number that identifies this segment within a given material item segment group. For the first occurrence of the segment in a given group, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDPCE = new HL7V26Field
+        {
+            field = message[@"PCE"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDPCE.field.FieldRepetitions != null && _setIDPCE.field.FieldRepetitions.Count > 0)
+        {
+            _setIDPCE.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_setIDPCE, fieldData);
+        }
+
+        return _setIDPCE;
+    } 
+}
+
+internal HL7V26Field _costCenterAccountNumber;
+
+public HL7V26Field CostCenterAccountNumber
+{
+    get
+    {
+        if (_costCenterAccountNumber != null)
+        {
+            return _costCenterAccountNumber;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PCE.2",
+            Type = @"Field",
+            Position = @"PCE.2",
+            Name = @"Cost Center Account Number",
+            Length = 30,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0319",
+            TableName = @"Department Cost Center",
+            Description = @"This field would contain the specific general ledger cost center account number associated with a department that may issue or charge for this item. Refer to HL7 Table 0319 - Department Cost Center in Chapter 4 for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _costCenterAccountNumber = new HL7V26Field
+        {
+            field = message[@"PCE"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_costCenterAccountNumber.field.FieldRepetitions != null && _costCenterAccountNumber.field.FieldRepetitions.Count > 0)
+        {
+            _costCenterAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_costCenterAccountNumber, fieldData);
+        }
+
+        return _costCenterAccountNumber;
+    } 
+}
+
+internal HL7V26Field _transactionCode;
+
+public HL7V26Field TransactionCode
+{
+    get
+    {
+        if (_transactionCode != null)
+        {
+            return _transactionCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PCE.3",
+            Type = @"Field",
+            Position = @"PCE.3",
+            Name = @"Transaction Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0132",
+            TableName = @"Transaction Code",
+            Description = @"This field contains a code that is used by a billing system to charge for the inventory supply item, the descriptive name of the patient charge for that system (as it may appear on a patient's bill or charge labels) and the name of the coding system that assigned the charge code. Refer to User-defined Table 0132 - Transaction Codes in Chapter 6for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PCE.1",
-                            Type = @"Field",
-                            Position = @"PCE.1",
-                            Name = @"Set ID – PCE",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a sequential number that identifies this segment within a given material item segment group. For the first occurrence of the segment in a given group, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCE.2",
-                            Type = @"Field",
-                            Position = @"PCE.2",
-                            Name = @"Cost Center Account Number",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0319",
-                            TableName = @"Department Cost Center",
-                            Description = @"This field would contain the specific general ledger cost center account number associated with a department that may issue or charge for this item. Refer to HL7 Table 0319 - Department Cost Center in Chapter 4 for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCE.3",
-                            Type = @"Field",
-                            Position = @"PCE.3",
-                            Name = @"Transaction Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0132",
-                            TableName = @"Transaction Code",
-                            Description = @"This field contains a code that is used by a billing system to charge for the inventory supply item, the descriptive name of the patient charge for that system (as it may appear on a patient's bill or charge labels) and the name of the coding system that assigned the charge code. Refer to User-defined Table 0132 - Transaction Codes in Chapter 6for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PCE.3.1",
                             Type = @"Component",
@@ -246,25 +312,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transactionCode = new HL7V26Field
+        {
+            field = message[@"PCE"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionCode.field.FieldRepetitions != null && _transactionCode.field.FieldRepetitions.Count > 0)
+        {
+            _transactionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_transactionCode, fieldData);
+        }
+
+        return _transactionCode;
+    } 
+}
+
+internal HL7V26Field _transactionAmountUnit;
+
+public HL7V26Field TransactionAmountUnit
+{
+    get
+    {
+        if (_transactionAmountUnit != null)
+        {
+            return _transactionAmountUnit;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PCE.4",
+            Type = @"Field",
+            Position = @"PCE.4",
+            Name = @"Transaction Amount - Unit",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"The price that a department charges to a patient for this inventory supply item when using the Patient Charge Billing code present in this segment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PCE.4",
-                            Type = @"Field",
-                            Position = @"PCE.4",
-                            Name = @"Transaction Amount - Unit",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The price that a department charges to a patient for this inventory supply item when using the Patient Charge Billing code present in this segment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PCE.4.1",
                             Type = @"Component",
@@ -564,178 +660,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentPCE(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field setIDPCE;
-
-public HL7V26Field SetIDPCE
-{
-    get
-    {
-        if (setIDPCE != null)
-        {
-            return setIDPCE;
-        }
-
-        setIDPCE = new HL7V26Field
-        {
-            field = message[@"PCE"][1],
-            Id = @"PCE.1",
-            Type = @"Field",
-            Position = @"PCE.1",
-            Name = @"Set ID – PCE",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a sequential number that identifies this segment within a given material item segment group. For the first occurrence of the segment in a given group, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDPCE.field.FieldRepetitions != null && setIDPCE.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDPCE.Id));
-            setIDPCE.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(setIDPCE, fieldData);
-        }
-
-        return setIDPCE;
-    } 
-}
-
-internal HL7V26Field costCenterAccountNumber;
-
-public HL7V26Field CostCenterAccountNumber
-{
-    get
-    {
-        if (costCenterAccountNumber != null)
-        {
-            return costCenterAccountNumber;
-        }
-
-        costCenterAccountNumber = new HL7V26Field
-        {
-            field = message[@"PCE"][2],
-            Id = @"PCE.2",
-            Type = @"Field",
-            Position = @"PCE.2",
-            Name = @"Cost Center Account Number",
-            Length = 30,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0319",
-            TableName = @"Department Cost Center",
-            Description = @"This field would contain the specific general ledger cost center account number associated with a department that may issue or charge for this item. Refer to HL7 Table 0319 - Department Cost Center in Chapter 4 for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (costCenterAccountNumber.field.FieldRepetitions != null && costCenterAccountNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(costCenterAccountNumber.Id));
-            costCenterAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(costCenterAccountNumber, fieldData);
-        }
-
-        return costCenterAccountNumber;
-    } 
-}
-
-internal HL7V26Field transactionCode;
-
-public HL7V26Field TransactionCode
-{
-    get
-    {
-        if (transactionCode != null)
-        {
-            return transactionCode;
-        }
-
-        transactionCode = new HL7V26Field
-        {
-            field = message[@"PCE"][3],
-            Id = @"PCE.3",
-            Type = @"Field",
-            Position = @"PCE.3",
-            Name = @"Transaction Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0132",
-            TableName = @"Transaction Code",
-            Description = @"This field contains a code that is used by a billing system to charge for the inventory supply item, the descriptive name of the patient charge for that system (as it may appear on a patient's bill or charge labels) and the name of the coding system that assigned the charge code. Refer to User-defined Table 0132 - Transaction Codes in Chapter 6for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionCode.field.FieldRepetitions != null && transactionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionCode.Id));
-            transactionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(transactionCode, fieldData);
-        }
-
-        return transactionCode;
-    } 
-}
-
-internal HL7V26Field transactionAmountUnit;
-
-public HL7V26Field TransactionAmountUnit
-{
-    get
-    {
-        if (transactionAmountUnit != null)
-        {
-            return transactionAmountUnit;
-        }
-
-        transactionAmountUnit = new HL7V26Field
+        _transactionAmountUnit = new HL7V26Field
         {
             field = message[@"PCE"][4],
-            Id = @"PCE.4",
-            Type = @"Field",
-            Position = @"PCE.4",
-            Name = @"Transaction Amount - Unit",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"The price that a department charges to a patient for this inventory supply item when using the Patient Charge Billing code present in this segment.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transactionAmountUnit.field.FieldRepetitions != null && transactionAmountUnit.field.FieldRepetitions.Count > 0)
+        if (_transactionAmountUnit.field.FieldRepetitions != null && _transactionAmountUnit.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionAmountUnit.Id));
-            transactionAmountUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(transactionAmountUnit, fieldData);
+            _transactionAmountUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_transactionAmountUnit, fieldData);
         }
 
-        return transactionAmountUnit;
+        return _transactionAmountUnit;
     } 
 }
     }

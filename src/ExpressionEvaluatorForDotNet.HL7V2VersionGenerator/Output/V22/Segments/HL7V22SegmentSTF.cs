@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V22SegmentSTF(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V22Field _stfPrimaryKeyValue;
+
+public HL7V22Field StfPrimaryKeyValue
+{
+    get
+    {
+        if (_stfPrimaryKeyValue != null)
+        {
+            return _stfPrimaryKeyValue;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"STF.1",
+            Type = @"Field",
+            Position = @"STF.1",
+            Name = @"Stf - Primary Key Value",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"STF.1",
-                            Type = @"Field",
-                            Position = @"STF.1",
-                            Name = @"Stf - Primary Key Value",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.1.1",
                             Type = @"Component",
@@ -156,25 +168,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _stfPrimaryKeyValue = new HL7V22Field
+        {
+            field = message[@"STF"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_stfPrimaryKeyValue.field.FieldRepetitions != null && _stfPrimaryKeyValue.field.FieldRepetitions.Count > 0)
+        {
+            _stfPrimaryKeyValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_stfPrimaryKeyValue, fieldData);
+        }
+
+        return _stfPrimaryKeyValue;
+    } 
+}
+
+internal HL7V22Field _staffIdCode;
+
+public HL7V22Field StaffIdCode
+{
+    get
+    {
+        if (_staffIdCode != null)
+        {
+            return _staffIdCode;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"STF.2",
+            Type = @"Field",
+            Position = @"STF.2",
+            Name = @"Staff Id Code",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.2",
-                            Type = @"Field",
-                            Position = @"STF.2",
-                            Name = @"Staff Id Code",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.2.1",
                             Type = @"Component",
@@ -280,25 +322,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _staffIdCode = new HL7V22Field
+        {
+            field = message[@"STF"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_staffIdCode.field.FieldRepetitions != null && _staffIdCode.field.FieldRepetitions.Count > 0)
+        {
+            _staffIdCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_staffIdCode, fieldData);
+        }
+
+        return _staffIdCode;
+    } 
+}
+
+internal HL7V22Field _staffName;
+
+public HL7V22Field StaffName
+{
+    get
+    {
+        if (_staffName != null)
+        {
+            return _staffName;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"STF.3",
+            Type = @"Field",
+            Position = @"STF.3",
+            Name = @"Staff Name",
+            Length = 48,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"PN",
+            DataTypeName = @"Person Name",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.3",
-                            Type = @"Field",
-                            Position = @"STF.3",
-                            Name = @"Staff Name",
-                            Length = 48,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"PN",
-                            DataTypeName = @"Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.3.1",
                             Type = @"Component",
@@ -404,61 +476,145 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _staffName = new HL7V22Field
+        {
+            field = message[@"STF"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_staffName.field.FieldRepetitions != null && _staffName.field.FieldRepetitions.Count > 0)
+        {
+            _staffName.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_staffName, fieldData);
+        }
+
+        return _staffName;
+    } 
+}
+
+internal HL7V22Field _staffType;
+
+public HL7V22Field StaffType
+{
+    get
+    {
+        if (_staffType != null)
+        {
+            return _staffType;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"STF.4",
+            Type = @"Field",
+            Position = @"STF.4",
+            Name = @"Staff Type",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"0182",
+            TableName = @"STAFF TYPE",
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _staffType = new HL7V22Field
+        {
+            field = message[@"STF"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_staffType.field.FieldRepetitions != null && _staffType.field.FieldRepetitions.Count > 0)
+        {
+            _staffType.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_staffType, fieldData);
+        }
+
+        return _staffType;
+    } 
+}
+
+internal HL7V22Field _sex;
+
+public HL7V22Field Sex
+{
+    get
+    {
+        if (_sex != null)
+        {
+            return _sex;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"STF.5",
+            Type = @"Field",
+            Position = @"STF.5",
+            Name = @"Sex",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"0001",
+            TableName = @"SEX",
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _sex = new HL7V22Field
+        {
+            field = message[@"STF"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sex.field.FieldRepetitions != null && _sex.field.FieldRepetitions.Count > 0)
+        {
+            _sex.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_sex, fieldData);
+        }
+
+        return _sex;
+    } 
+}
+
+internal HL7V22Field _dateOfBirth;
+
+public HL7V22Field DateOfBirth
+{
+    get
+    {
+        if (_dateOfBirth != null)
+        {
+            return _dateOfBirth;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"STF.6",
+            Type = @"Field",
+            Position = @"STF.6",
+            Name = @"Date Of Birth",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.4",
-                            Type = @"Field",
-                            Position = @"STF.4",
-                            Name = @"Staff Type",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0182",
-                            TableName = @"STAFF TYPE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.5",
-                            Type = @"Field",
-                            Position = @"STF.5",
-                            Name = @"Sex",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0001",
-                            TableName = @"SEX",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.6",
-                            Type = @"Field",
-                            Position = @"STF.6",
-                            Name = @"Date Of Birth",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.6.1",
                             Type = @"Component",
@@ -492,43 +648,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dateOfBirth = new HL7V22Field
+        {
+            field = message[@"STF"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateOfBirth.field.FieldRepetitions != null && _dateOfBirth.field.FieldRepetitions.Count > 0)
+        {
+            _dateOfBirth.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_dateOfBirth, fieldData);
+        }
+
+        return _dateOfBirth;
+    } 
+}
+
+internal HL7V22Field _activeInactive;
+
+public HL7V22Field ActiveInactive
+{
+    get
+    {
+        if (_activeInactive != null)
+        {
+            return _activeInactive;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"STF.7",
+            Type = @"Field",
+            Position = @"STF.7",
+            Name = @"Active / Inactive",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"0183",
+            TableName = @"ACTIVE/INACTIVE",
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _activeInactive = new HL7V22Field
+        {
+            field = message[@"STF"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_activeInactive.field.FieldRepetitions != null && _activeInactive.field.FieldRepetitions.Count > 0)
+        {
+            _activeInactive.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_activeInactive, fieldData);
+        }
+
+        return _activeInactive;
+    } 
+}
+
+internal HL7V22Field _department;
+
+public HL7V22Field Department
+{
+    get
+    {
+        if (_department != null)
+        {
+            return _department;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"STF.8",
+            Type = @"Field",
+            Position = @"STF.8",
+            Name = @"Department",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0184",
+            TableName = @"DEPARTMENT",
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.7",
-                            Type = @"Field",
-                            Position = @"STF.7",
-                            Name = @"Active / Inactive",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0183",
-                            TableName = @"ACTIVE/INACTIVE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.8",
-                            Type = @"Field",
-                            Position = @"STF.8",
-                            Name = @"Department",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0184",
-                            TableName = @"DEPARTMENT",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.8.1",
                             Type = @"Component",
@@ -634,25 +847,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _department = new HL7V22Field
+        {
+            field = message[@"STF"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_department.field.FieldRepetitions != null && _department.field.FieldRepetitions.Count > 0)
+        {
+            _department.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_department, fieldData);
+        }
+
+        return _department;
+    } 
+}
+
+internal HL7V22Field _service;
+
+public HL7V22Field Service
+{
+    get
+    {
+        if (_service != null)
+        {
+            return _service;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"STF.9",
+            Type = @"Field",
+            Position = @"STF.9",
+            Name = @"Service",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.9",
-                            Type = @"Field",
-                            Position = @"STF.9",
-                            Name = @"Service",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.9.1",
                             Type = @"Component",
@@ -758,43 +1001,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _service = new HL7V22Field
+        {
+            field = message[@"STF"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_service.field.FieldRepetitions != null && _service.field.FieldRepetitions.Count > 0)
+        {
+            _service.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_service, fieldData);
+        }
+
+        return _service;
+    } 
+}
+
+internal HL7V22Field _phone;
+
+public HL7V22Field Phone
+{
+    get
+    {
+        if (_phone != null)
+        {
+            return _phone;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"STF.10",
+            Type = @"Field",
+            Position = @"STF.10",
+            Name = @"Phone",
+            Length = 40,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"TN",
+            DataTypeName = @"Telephone Number",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _phone = new HL7V22Field
+        {
+            field = message[@"STF"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_phone.field.FieldRepetitions != null && _phone.field.FieldRepetitions.Count > 0)
+        {
+            _phone.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_phone, fieldData);
+        }
+
+        return _phone;
+    } 
+}
+
+internal HL7V22Field _officeHomeAddress;
+
+public HL7V22Field OfficeHomeAddress
+{
+    get
+    {
+        if (_officeHomeAddress != null)
+        {
+            return _officeHomeAddress;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"STF.11",
+            Type = @"Field",
+            Position = @"STF.11",
+            Name = @"Office / Home Address",
+            Length = 106,
+            Usage = @"O",
+            Rpt = @"2",
+            DataType = @"AD",
+            DataTypeName = @"Address",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.10",
-                            Type = @"Field",
-                            Position = @"STF.10",
-                            Name = @"Phone",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"TN",
-                            DataTypeName = @"Telephone Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.11",
-                            Type = @"Field",
-                            Position = @"STF.11",
-                            Name = @"Office / Home Address",
-                            Length = 106,
-                            Usage = @"O",
-                            Rpt = @"2",
-                            DataType = @"AD",
-                            DataTypeName = @"Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.11.1",
                             Type = @"Component",
@@ -936,25 +1236,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _officeHomeAddress = new HL7V22Field
+        {
+            field = message[@"STF"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_officeHomeAddress.field.FieldRepetitions != null && _officeHomeAddress.field.FieldRepetitions.Count > 0)
+        {
+            _officeHomeAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_officeHomeAddress, fieldData);
+        }
+
+        return _officeHomeAddress;
+    } 
+}
+
+internal HL7V22Field _activationDate;
+
+public HL7V22Field ActivationDate
+{
+    get
+    {
+        if (_activationDate != null)
+        {
+            return _activationDate;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"STF.12",
+            Type = @"Field",
+            Position = @"STF.12",
+            Name = @"Activation Date",
+            Length = 19,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CM_DIN",
+            DataTypeName = @"Activation Date",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.12",
-                            Type = @"Field",
-                            Position = @"STF.12",
-                            Name = @"Activation Date",
-                            Length = 19,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CM_DIN",
-                            DataTypeName = @"Activation Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.12.1",
                             Type = @"Component",
@@ -1128,25 +1458,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _activationDate = new HL7V22Field
+        {
+            field = message[@"STF"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_activationDate.field.FieldRepetitions != null && _activationDate.field.FieldRepetitions.Count > 0)
+        {
+            _activationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_activationDate, fieldData);
+        }
+
+        return _activationDate;
+    } 
+}
+
+internal HL7V22Field _inactivationDate;
+
+public HL7V22Field InactivationDate
+{
+    get
+    {
+        if (_inactivationDate != null)
+        {
+            return _inactivationDate;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"STF.13",
+            Type = @"Field",
+            Position = @"STF.13",
+            Name = @"Inactivation Date",
+            Length = 19,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CM_DIN",
+            DataTypeName = @"Activation Date",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.13",
-                            Type = @"Field",
-                            Position = @"STF.13",
-                            Name = @"Inactivation Date",
-                            Length = 19,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CM_DIN",
-                            DataTypeName = @"Activation Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.13.1",
                             Type = @"Component",
@@ -1320,25 +1680,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inactivationDate = new HL7V22Field
+        {
+            field = message[@"STF"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inactivationDate.field.FieldRepetitions != null && _inactivationDate.field.FieldRepetitions.Count > 0)
+        {
+            _inactivationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_inactivationDate, fieldData);
+        }
+
+        return _inactivationDate;
+    } 
+}
+
+internal HL7V22Field _backupPersonId;
+
+public HL7V22Field BackupPersonId
+{
+    get
+    {
+        if (_backupPersonId != null)
+        {
+            return _backupPersonId;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"STF.14",
+            Type = @"Field",
+            Position = @"STF.14",
+            Name = @"Backup Person Id",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.14",
-                            Type = @"Field",
-                            Position = @"STF.14",
-                            Name = @"Backup Person Id",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.14.1",
                             Type = @"Component",
@@ -1444,641 +1834,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.15",
-                            Type = @"Field",
-                            Position = @"STF.15",
-                            Name = @"E-mail Address",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.16",
-                            Type = @"Field",
-                            Position = @"STF.16",
-                            Name = @"Preferred Method Of Contact",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0185",
-                            TableName = @"PREFERRED METHOD OF CONTACT",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V22SegmentSTF(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V22Field stfPrimaryKeyValue;
-
-public HL7V22Field StfPrimaryKeyValue
-{
-    get
-    {
-        if (stfPrimaryKeyValue != null)
-        {
-            return stfPrimaryKeyValue;
-        }
-
-        stfPrimaryKeyValue = new HL7V22Field
-        {
-            field = message[@"STF"][1],
-            Id = @"STF.1",
-            Type = @"Field",
-            Position = @"STF.1",
-            Name = @"Stf - Primary Key Value",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (stfPrimaryKeyValue.field.FieldRepetitions != null && stfPrimaryKeyValue.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(stfPrimaryKeyValue.Id));
-            stfPrimaryKeyValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(stfPrimaryKeyValue, fieldData);
-        }
-
-        return stfPrimaryKeyValue;
-    } 
-}
-
-internal HL7V22Field staffIdCode;
-
-public HL7V22Field StaffIdCode
-{
-    get
-    {
-        if (staffIdCode != null)
-        {
-            return staffIdCode;
-        }
-
-        staffIdCode = new HL7V22Field
-        {
-            field = message[@"STF"][2],
-            Id = @"STF.2",
-            Type = @"Field",
-            Position = @"STF.2",
-            Name = @"Staff Id Code",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (staffIdCode.field.FieldRepetitions != null && staffIdCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(staffIdCode.Id));
-            staffIdCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(staffIdCode, fieldData);
-        }
-
-        return staffIdCode;
-    } 
-}
-
-internal HL7V22Field staffName;
-
-public HL7V22Field StaffName
-{
-    get
-    {
-        if (staffName != null)
-        {
-            return staffName;
-        }
-
-        staffName = new HL7V22Field
-        {
-            field = message[@"STF"][3],
-            Id = @"STF.3",
-            Type = @"Field",
-            Position = @"STF.3",
-            Name = @"Staff Name",
-            Length = 48,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"PN",
-            DataTypeName = @"Person Name",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (staffName.field.FieldRepetitions != null && staffName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(staffName.Id));
-            staffName.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(staffName, fieldData);
-        }
-
-        return staffName;
-    } 
-}
-
-internal HL7V22Field staffType;
-
-public HL7V22Field StaffType
-{
-    get
-    {
-        if (staffType != null)
-        {
-            return staffType;
-        }
-
-        staffType = new HL7V22Field
-        {
-            field = message[@"STF"][4],
-            Id = @"STF.4",
-            Type = @"Field",
-            Position = @"STF.4",
-            Name = @"Staff Type",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0182",
-            TableName = @"STAFF TYPE",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (staffType.field.FieldRepetitions != null && staffType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(staffType.Id));
-            staffType.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(staffType, fieldData);
-        }
-
-        return staffType;
-    } 
-}
-
-internal HL7V22Field sex;
-
-public HL7V22Field Sex
-{
-    get
-    {
-        if (sex != null)
-        {
-            return sex;
-        }
-
-        sex = new HL7V22Field
-        {
-            field = message[@"STF"][5],
-            Id = @"STF.5",
-            Type = @"Field",
-            Position = @"STF.5",
-            Name = @"Sex",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0001",
-            TableName = @"SEX",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sex.field.FieldRepetitions != null && sex.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sex.Id));
-            sex.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(sex, fieldData);
-        }
-
-        return sex;
-    } 
-}
-
-internal HL7V22Field dateOfBirth;
-
-public HL7V22Field DateOfBirth
-{
-    get
-    {
-        if (dateOfBirth != null)
-        {
-            return dateOfBirth;
-        }
-
-        dateOfBirth = new HL7V22Field
-        {
-            field = message[@"STF"][6],
-            Id = @"STF.6",
-            Type = @"Field",
-            Position = @"STF.6",
-            Name = @"Date Of Birth",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateOfBirth.field.FieldRepetitions != null && dateOfBirth.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateOfBirth.Id));
-            dateOfBirth.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(dateOfBirth, fieldData);
-        }
-
-        return dateOfBirth;
-    } 
-}
-
-internal HL7V22Field activeInactive;
-
-public HL7V22Field ActiveInactive
-{
-    get
-    {
-        if (activeInactive != null)
-        {
-            return activeInactive;
-        }
-
-        activeInactive = new HL7V22Field
-        {
-            field = message[@"STF"][7],
-            Id = @"STF.7",
-            Type = @"Field",
-            Position = @"STF.7",
-            Name = @"Active / Inactive",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0183",
-            TableName = @"ACTIVE/INACTIVE",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (activeInactive.field.FieldRepetitions != null && activeInactive.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(activeInactive.Id));
-            activeInactive.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(activeInactive, fieldData);
-        }
-
-        return activeInactive;
-    } 
-}
-
-internal HL7V22Field department;
-
-public HL7V22Field Department
-{
-    get
-    {
-        if (department != null)
-        {
-            return department;
-        }
-
-        department = new HL7V22Field
-        {
-            field = message[@"STF"][8],
-            Id = @"STF.8",
-            Type = @"Field",
-            Position = @"STF.8",
-            Name = @"Department",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0184",
-            TableName = @"DEPARTMENT",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (department.field.FieldRepetitions != null && department.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(department.Id));
-            department.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(department, fieldData);
-        }
-
-        return department;
-    } 
-}
-
-internal HL7V22Field service;
-
-public HL7V22Field Service
-{
-    get
-    {
-        if (service != null)
-        {
-            return service;
-        }
-
-        service = new HL7V22Field
-        {
-            field = message[@"STF"][9],
-            Id = @"STF.9",
-            Type = @"Field",
-            Position = @"STF.9",
-            Name = @"Service",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (service.field.FieldRepetitions != null && service.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(service.Id));
-            service.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(service, fieldData);
-        }
-
-        return service;
-    } 
-}
-
-internal HL7V22Field phone;
-
-public HL7V22Field Phone
-{
-    get
-    {
-        if (phone != null)
-        {
-            return phone;
-        }
-
-        phone = new HL7V22Field
-        {
-            field = message[@"STF"][10],
-            Id = @"STF.10",
-            Type = @"Field",
-            Position = @"STF.10",
-            Name = @"Phone",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"TN",
-            DataTypeName = @"Telephone Number",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phone.field.FieldRepetitions != null && phone.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phone.Id));
-            phone.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(phone, fieldData);
-        }
-
-        return phone;
-    } 
-}
-
-internal HL7V22Field officeHomeAddress;
-
-public HL7V22Field OfficeHomeAddress
-{
-    get
-    {
-        if (officeHomeAddress != null)
-        {
-            return officeHomeAddress;
-        }
-
-        officeHomeAddress = new HL7V22Field
-        {
-            field = message[@"STF"][11],
-            Id = @"STF.11",
-            Type = @"Field",
-            Position = @"STF.11",
-            Name = @"Office / Home Address",
-            Length = 106,
-            Usage = @"O",
-            Rpt = @"2",
-            DataType = @"AD",
-            DataTypeName = @"Address",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (officeHomeAddress.field.FieldRepetitions != null && officeHomeAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(officeHomeAddress.Id));
-            officeHomeAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(officeHomeAddress, fieldData);
-        }
-
-        return officeHomeAddress;
-    } 
-}
-
-internal HL7V22Field activationDate;
-
-public HL7V22Field ActivationDate
-{
-    get
-    {
-        if (activationDate != null)
-        {
-            return activationDate;
-        }
-
-        activationDate = new HL7V22Field
-        {
-            field = message[@"STF"][12],
-            Id = @"STF.12",
-            Type = @"Field",
-            Position = @"STF.12",
-            Name = @"Activation Date",
-            Length = 19,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CM_DIN",
-            DataTypeName = @"Activation Date",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (activationDate.field.FieldRepetitions != null && activationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(activationDate.Id));
-            activationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(activationDate, fieldData);
-        }
-
-        return activationDate;
-    } 
-}
-
-internal HL7V22Field inactivationDate;
-
-public HL7V22Field InactivationDate
-{
-    get
-    {
-        if (inactivationDate != null)
-        {
-            return inactivationDate;
-        }
-
-        inactivationDate = new HL7V22Field
-        {
-            field = message[@"STF"][13],
-            Id = @"STF.13",
-            Type = @"Field",
-            Position = @"STF.13",
-            Name = @"Inactivation Date",
-            Length = 19,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CM_DIN",
-            DataTypeName = @"Activation Date",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inactivationDate.field.FieldRepetitions != null && inactivationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inactivationDate.Id));
-            inactivationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(inactivationDate, fieldData);
-        }
-
-        return inactivationDate;
-    } 
-}
-
-internal HL7V22Field backupPersonId;
-
-public HL7V22Field BackupPersonId
-{
-    get
-    {
-        if (backupPersonId != null)
-        {
-            return backupPersonId;
-        }
-
-        backupPersonId = new HL7V22Field
+        _backupPersonId = new HL7V22Field
         {
             field = message[@"STF"][14],
-            Id = @"STF.14",
-            Type = @"Field",
-            Position = @"STF.14",
-            Name = @"Backup Person Id",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (backupPersonId.field.FieldRepetitions != null && backupPersonId.field.FieldRepetitions.Count > 0)
+        if (_backupPersonId.field.FieldRepetitions != null && _backupPersonId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(backupPersonId.Id));
-            backupPersonId.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(backupPersonId, fieldData);
+            _backupPersonId.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_backupPersonId, fieldData);
         }
 
-        return backupPersonId;
+        return _backupPersonId;
     } 
 }
 
-internal HL7V22Field emailAddress;
+internal HL7V22Field _emailAddress;
 
 public HL7V22Field EmailAddress
 {
     get
     {
-        if (emailAddress != null)
+        if (_emailAddress != null)
         {
-            return emailAddress;
+            return _emailAddress;
         }
 
-        emailAddress = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"STF"][15],
             Id = @"STF.15",
             Type = @"Field",
             Position = @"STF.15",
@@ -2092,34 +1880,38 @@ public HL7V22Field EmailAddress
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _emailAddress = new HL7V22Field
+        {
+            field = message[@"STF"][15],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (emailAddress.field.FieldRepetitions != null && emailAddress.field.FieldRepetitions.Count > 0)
+        if (_emailAddress.field.FieldRepetitions != null && _emailAddress.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(emailAddress.Id));
-            emailAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(emailAddress, fieldData);
+            _emailAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_emailAddress, fieldData);
         }
 
-        return emailAddress;
+        return _emailAddress;
     } 
 }
 
-internal HL7V22Field preferredMethodOfContact;
+internal HL7V22Field _preferredMethodOfContact;
 
 public HL7V22Field PreferredMethodOfContact
 {
     get
     {
-        if (preferredMethodOfContact != null)
+        if (_preferredMethodOfContact != null)
         {
-            return preferredMethodOfContact;
+            return _preferredMethodOfContact;
         }
 
-        preferredMethodOfContact = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"STF"][16],
             Id = @"STF.16",
             Type = @"Field",
             Position = @"STF.16",
@@ -2133,17 +1925,22 @@ public HL7V22Field PreferredMethodOfContact
             TableName = @"PREFERRED METHOD OF CONTACT",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _preferredMethodOfContact = new HL7V22Field
+        {
+            field = message[@"STF"][16],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (preferredMethodOfContact.field.FieldRepetitions != null && preferredMethodOfContact.field.FieldRepetitions.Count > 0)
+        if (_preferredMethodOfContact.field.FieldRepetitions != null && _preferredMethodOfContact.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(preferredMethodOfContact.Id));
-            preferredMethodOfContact.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(preferredMethodOfContact, fieldData);
+            _preferredMethodOfContact.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_preferredMethodOfContact, fieldData);
         }
 
-        return preferredMethodOfContact;
+        return _preferredMethodOfContact;
     } 
 }
     }

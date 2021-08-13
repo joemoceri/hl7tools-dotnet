@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -185,6 +186,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"To identify measures at a point in time.  This is a synonym for ""spot"" or ""random"" as applied to urine measurements.",
                             Comment = null
                         },
+                        
                     };
             } 
         }

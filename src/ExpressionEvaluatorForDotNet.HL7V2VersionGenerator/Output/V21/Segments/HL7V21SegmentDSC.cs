@@ -25,52 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"DSC.1",
-                            Type = @"Field",
-                            Position = @"DSC.1",
-                            Name = @"Continuation Pointer",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentDSC(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field continuationPointer;
+        internal HL7V21Field _continuationPointer;
 
 public HL7V21Field ContinuationPointer
 {
     get
     {
-        if (continuationPointer != null)
+        if (_continuationPointer != null)
         {
-            return continuationPointer;
+            return _continuationPointer;
         }
 
-        continuationPointer = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DSC"][1],
             Id = @"DSC.1",
             Type = @"Field",
             Position = @"DSC.1",
@@ -84,17 +56,22 @@ public HL7V21Field ContinuationPointer
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _continuationPointer = new HL7V21Field
+        {
+            field = message[@"DSC"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (continuationPointer.field.FieldRepetitions != null && continuationPointer.field.FieldRepetitions.Count > 0)
+        if (_continuationPointer.field.FieldRepetitions != null && _continuationPointer.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(continuationPointer.Id));
-            continuationPointer.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(continuationPointer, fieldData);
+            _continuationPointer.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_continuationPointer, fieldData);
         }
 
-        return continuationPointer;
+        return _continuationPointer;
     } 
 }
     }

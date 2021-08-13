@@ -38,6 +38,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Stat",
                             Comment = null
                         },
+                        
                     };
             } 
         }

@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_07",
+
                     };
             } 
         }
@@ -143,6 +144,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Worse (use when direction not relevant)",
                             Comment = null
                         },
+                        
                     };
             } 
         }

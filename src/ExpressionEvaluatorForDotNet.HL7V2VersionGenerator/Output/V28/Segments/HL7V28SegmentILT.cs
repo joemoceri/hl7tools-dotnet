@@ -31,121 +31,268 @@ Note that on-hand quantities do NOT refer to a continuously updated quantity.  T
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"ILT.1",
-                            Type = @"Field",
-                            Position = @"ILT.1",
-                            Name = @"Set Id - Ilt",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ILT.2",
-                            Type = @"Field",
-                            Position = @"ILT.2",
-                            Name = @"Inventory Lot Number",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the lot number of the service item in inventory.
+        public HL7V28SegmentILT(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _setIdIlt;
+
+public HL7V28Field SetIdIlt
+{
+    get
+    {
+        if (_setIdIlt != null)
+        {
+            return _setIdIlt;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ILT.1",
+            Type = @"Field",
+            Position = @"ILT.1",
+            Name = @"Set Id - Ilt",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdIlt = new HL7V28Field
+        {
+            field = message[@"ILT"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdIlt.field.FieldRepetitions != null && _setIdIlt.field.FieldRepetitions.Count > 0)
+        {
+            _setIdIlt.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_setIdIlt, fieldData);
+        }
+
+        return _setIdIlt;
+    } 
+}
+
+internal HL7V28Field _inventoryLotNumber;
+
+public HL7V28Field InventoryLotNumber
+{
+    get
+    {
+        if (_inventoryLotNumber != null)
+        {
+            return _inventoryLotNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ILT.2",
+            Type = @"Field",
+            Position = @"ILT.2",
+            Name = @"Inventory Lot Number",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the lot number of the service item in inventory.
 
 Note:  The lot number is the number printed on the label attached to the item or container holding the substance.  If the substance is a vaccine, for example, and a diluent is required, a lot number may appear on the vial containing the diluent; however, any such identifier associated with a diluent is not the identifier of interest. The substance lot number should be reported, not that of the diluent.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ILT.3",
-                            Type = @"Field",
-                            Position = @"ILT.3",
-                            Name = @"Inventory Expiration Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the expiration date of the service item in inventory
+            Sample = @"",
+            Fields = null
+        }
+
+        _inventoryLotNumber = new HL7V28Field
+        {
+            field = message[@"ILT"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryLotNumber.field.FieldRepetitions != null && _inventoryLotNumber.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_inventoryLotNumber, fieldData);
+        }
+
+        return _inventoryLotNumber;
+    } 
+}
+
+internal HL7V28Field _inventoryExpirationDate;
+
+public HL7V28Field InventoryExpirationDate
+{
+    get
+    {
+        if (_inventoryExpirationDate != null)
+        {
+            return _inventoryExpirationDate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ILT.3",
+            Type = @"Field",
+            Position = @"ILT.3",
+            Name = @"Inventory Expiration Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the expiration date of the service item in inventory
 Note:  Expiration date does not always have a ""day"" component; therefore, such a date may be transmitted as YYYYMM.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _inventoryExpirationDate = new HL7V28Field
+        {
+            field = message[@"ILT"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryExpirationDate.field.FieldRepetitions != null && _inventoryExpirationDate.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryExpirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_inventoryExpirationDate, fieldData);
+        }
+
+        return _inventoryExpirationDate;
+    } 
+}
+
+internal HL7V28Field _inventoryReceivedDate;
+
+public HL7V28Field InventoryReceivedDate
+{
+    get
+    {
+        if (_inventoryReceivedDate != null)
+        {
+            return _inventoryReceivedDate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ILT.4",
+            Type = @"Field",
+            Position = @"ILT.4",
+            Name = @"Inventory Received Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the most recent date that the product in question was received into inventory.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _inventoryReceivedDate = new HL7V28Field
+        {
+            field = message[@"ILT"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryReceivedDate.field.FieldRepetitions != null && _inventoryReceivedDate.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryReceivedDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_inventoryReceivedDate, fieldData);
+        }
+
+        return _inventoryReceivedDate;
+    } 
+}
+
+internal HL7V28Field _inventoryReceivedQuantity;
+
+public HL7V28Field InventoryReceivedQuantity
+{
+    get
+    {
+        if (_inventoryReceivedQuantity != null)
+        {
+            return _inventoryReceivedQuantity;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ILT.5",
+            Type = @"Field",
+            Position = @"ILT.5",
+            Name = @"Inventory Received Quantity",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the quantity of this inventory item that was received on the date specific in ILT-4 Inventory Received Date field.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _inventoryReceivedQuantity = new HL7V28Field
+        {
+            field = message[@"ILT"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryReceivedQuantity.field.FieldRepetitions != null && _inventoryReceivedQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryReceivedQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_inventoryReceivedQuantity, fieldData);
+        }
+
+        return _inventoryReceivedQuantity;
+    } 
+}
+
+internal HL7V28Field _inventoryReceivedQuantityUnit;
+
+public HL7V28Field InventoryReceivedQuantityUnit
+{
+    get
+    {
+        if (_inventoryReceivedQuantityUnit != null)
+        {
+            return _inventoryReceivedQuantityUnit;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ILT.6",
+            Type = @"Field",
+            Position = @"ILT.6",
+            Name = @"Inventory Received Quantity Unit",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0818",
+            TableName = @"Package",
+            Description = @"This field specifies the unit for the Inventory Received Quantity. See User-defined Table 0818 – Package as described in PKG-2 Packaging Units and as presented in Chapter 2C, Code Tables, for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ILT.4",
-                            Type = @"Field",
-                            Position = @"ILT.4",
-                            Name = @"Inventory Received Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the most recent date that the product in question was received into inventory.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ILT.5",
-                            Type = @"Field",
-                            Position = @"ILT.5",
-                            Name = @"Inventory Received Quantity",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the quantity of this inventory item that was received on the date specific in ILT-4 Inventory Received Date field.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ILT.6",
-                            Type = @"Field",
-                            Position = @"ILT.6",
-                            Name = @"Inventory Received Quantity Unit",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0818",
-                            TableName = @"Package",
-                            Description = @"This field specifies the unit for the Inventory Received Quantity. See User-defined Table 0818 – Package as described in PKG-2 Packaging Units and as presented in Chapter 2C, Code Tables, for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ILT.6.1",
                             Type = @"Component",
@@ -573,25 +720,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inventoryReceivedQuantityUnit = new HL7V28Field
+        {
+            field = message[@"ILT"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryReceivedQuantityUnit.field.FieldRepetitions != null && _inventoryReceivedQuantityUnit.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryReceivedQuantityUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_inventoryReceivedQuantityUnit, fieldData);
+        }
+
+        return _inventoryReceivedQuantityUnit;
+    } 
+}
+
+internal HL7V28Field _inventoryReceivedItemCost;
+
+public HL7V28Field InventoryReceivedItemCost
+{
+    get
+    {
+        if (_inventoryReceivedItemCost != null)
+        {
+            return _inventoryReceivedItemCost;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ILT.7",
+            Type = @"Field",
+            Position = @"ILT.7",
+            Name = @"Inventory Received Item Cost",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"MO",
+            DataTypeName = @"Money",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the per-unit cost of the inventory item at the time of receipt.  ILT-6 Inventory Received Quantity Unit field specifies the per-unit basis of this field.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ILT.7",
-                            Type = @"Field",
-                            Position = @"ILT.7",
-                            Name = @"Inventory Received Item Cost",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"MO",
-                            DataTypeName = @"Money",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the per-unit cost of the inventory item at the time of receipt.  ILT-6 Inventory Received Quantity Unit field specifies the per-unit basis of this field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ILT.7.1",
                             Type = @"Component",
@@ -630,61 +807,145 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
 |99.50^USD|",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inventoryReceivedItemCost = new HL7V28Field
+        {
+            field = message[@"ILT"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryReceivedItemCost.field.FieldRepetitions != null && _inventoryReceivedItemCost.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryReceivedItemCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_inventoryReceivedItemCost, fieldData);
+        }
+
+        return _inventoryReceivedItemCost;
+    } 
+}
+
+internal HL7V28Field _inventoryOnHandDate;
+
+public HL7V28Field InventoryOnHandDate
+{
+    get
+    {
+        if (_inventoryOnHandDate != null)
+        {
+            return _inventoryOnHandDate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ILT.8",
+            Type = @"Field",
+            Position = @"ILT.8",
+            Name = @"Inventory On Hand Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the most recent date that an inventory count was performed for the inventory item.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _inventoryOnHandDate = new HL7V28Field
+        {
+            field = message[@"ILT"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryOnHandDate.field.FieldRepetitions != null && _inventoryOnHandDate.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryOnHandDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_inventoryOnHandDate, fieldData);
+        }
+
+        return _inventoryOnHandDate;
+    } 
+}
+
+internal HL7V28Field _inventoryOnHandQuantity;
+
+public HL7V28Field InventoryOnHandQuantity
+{
+    get
+    {
+        if (_inventoryOnHandQuantity != null)
+        {
+            return _inventoryOnHandQuantity;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ILT.9",
+            Type = @"Field",
+            Position = @"ILT.9",
+            Name = @"Inventory On Hand Quantity",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the quantity of this inventory item that was available for issue/use as of the date specified in ILT-8 Inventory on Hand Date field.  No adjustment has been made for subsequent use.  ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _inventoryOnHandQuantity = new HL7V28Field
+        {
+            field = message[@"ILT"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryOnHandQuantity.field.FieldRepetitions != null && _inventoryOnHandQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryOnHandQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_inventoryOnHandQuantity, fieldData);
+        }
+
+        return _inventoryOnHandQuantity;
+    } 
+}
+
+internal HL7V28Field _inventoryOnHandQuantityUnit;
+
+public HL7V28Field InventoryOnHandQuantityUnit
+{
+    get
+    {
+        if (_inventoryOnHandQuantityUnit != null)
+        {
+            return _inventoryOnHandQuantityUnit;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"ILT.10",
+            Type = @"Field",
+            Position = @"ILT.10",
+            Name = @"Inventory On Hand Quantity Unit",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0818",
+            TableName = @"Package",
+            Description = @"This field contains the quantity of this inventory item that was available for issue/use as of the date specified in ILT-8 Inventory on Hand Date field.  No adjustment has been made for subsequent use.  See User-defined Table 0818 – Package as described in PKG-2 Packaging Units and as presented in Chapter 2C, Code Tables, for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ILT.8",
-                            Type = @"Field",
-                            Position = @"ILT.8",
-                            Name = @"Inventory On Hand Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the most recent date that an inventory count was performed for the inventory item.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ILT.9",
-                            Type = @"Field",
-                            Position = @"ILT.9",
-                            Name = @"Inventory On Hand Quantity",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the quantity of this inventory item that was available for issue/use as of the date specified in ILT-8 Inventory on Hand Date field.  No adjustment has been made for subsequent use.  ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ILT.10",
-                            Type = @"Field",
-                            Position = @"ILT.10",
-                            Name = @"Inventory On Hand Quantity Unit",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0818",
-                            TableName = @"Package",
-                            Description = @"This field contains the quantity of this inventory item that was available for issue/use as of the date specified in ILT-8 Inventory on Hand Date field.  No adjustment has been made for subsequent use.  See User-defined Table 0818 – Package as described in PKG-2 Packaging Units and as presented in Chapter 2C, Code Tables, for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ILT.10.1",
                             Type = @"Component",
@@ -1112,427 +1373,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentILT(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field setIdIlt;
-
-public HL7V28Field SetIdIlt
-{
-    get
-    {
-        if (setIdIlt != null)
-        {
-            return setIdIlt;
-        }
-
-        setIdIlt = new HL7V28Field
-        {
-            field = message[@"ILT"][1],
-            Id = @"ILT.1",
-            Type = @"Field",
-            Position = @"ILT.1",
-            Name = @"Set Id - Ilt",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdIlt.field.FieldRepetitions != null && setIdIlt.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdIlt.Id));
-            setIdIlt.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(setIdIlt, fieldData);
-        }
-
-        return setIdIlt;
-    } 
-}
-
-internal HL7V28Field inventoryLotNumber;
-
-public HL7V28Field InventoryLotNumber
-{
-    get
-    {
-        if (inventoryLotNumber != null)
-        {
-            return inventoryLotNumber;
-        }
-
-        inventoryLotNumber = new HL7V28Field
-        {
-            field = message[@"ILT"][2],
-            Id = @"ILT.2",
-            Type = @"Field",
-            Position = @"ILT.2",
-            Name = @"Inventory Lot Number",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the lot number of the service item in inventory.
-
-Note:  The lot number is the number printed on the label attached to the item or container holding the substance.  If the substance is a vaccine, for example, and a diluent is required, a lot number may appear on the vial containing the diluent; however, any such identifier associated with a diluent is not the identifier of interest. The substance lot number should be reported, not that of the diluent.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryLotNumber.field.FieldRepetitions != null && inventoryLotNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryLotNumber.Id));
-            inventoryLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(inventoryLotNumber, fieldData);
-        }
-
-        return inventoryLotNumber;
-    } 
-}
-
-internal HL7V28Field inventoryExpirationDate;
-
-public HL7V28Field InventoryExpirationDate
-{
-    get
-    {
-        if (inventoryExpirationDate != null)
-        {
-            return inventoryExpirationDate;
-        }
-
-        inventoryExpirationDate = new HL7V28Field
-        {
-            field = message[@"ILT"][3],
-            Id = @"ILT.3",
-            Type = @"Field",
-            Position = @"ILT.3",
-            Name = @"Inventory Expiration Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the expiration date of the service item in inventory
-Note:  Expiration date does not always have a ""day"" component; therefore, such a date may be transmitted as YYYYMM.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryExpirationDate.field.FieldRepetitions != null && inventoryExpirationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryExpirationDate.Id));
-            inventoryExpirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(inventoryExpirationDate, fieldData);
-        }
-
-        return inventoryExpirationDate;
-    } 
-}
-
-internal HL7V28Field inventoryReceivedDate;
-
-public HL7V28Field InventoryReceivedDate
-{
-    get
-    {
-        if (inventoryReceivedDate != null)
-        {
-            return inventoryReceivedDate;
-        }
-
-        inventoryReceivedDate = new HL7V28Field
-        {
-            field = message[@"ILT"][4],
-            Id = @"ILT.4",
-            Type = @"Field",
-            Position = @"ILT.4",
-            Name = @"Inventory Received Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the most recent date that the product in question was received into inventory.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryReceivedDate.field.FieldRepetitions != null && inventoryReceivedDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryReceivedDate.Id));
-            inventoryReceivedDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(inventoryReceivedDate, fieldData);
-        }
-
-        return inventoryReceivedDate;
-    } 
-}
-
-internal HL7V28Field inventoryReceivedQuantity;
-
-public HL7V28Field InventoryReceivedQuantity
-{
-    get
-    {
-        if (inventoryReceivedQuantity != null)
-        {
-            return inventoryReceivedQuantity;
-        }
-
-        inventoryReceivedQuantity = new HL7V28Field
-        {
-            field = message[@"ILT"][5],
-            Id = @"ILT.5",
-            Type = @"Field",
-            Position = @"ILT.5",
-            Name = @"Inventory Received Quantity",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the quantity of this inventory item that was received on the date specific in ILT-4 Inventory Received Date field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryReceivedQuantity.field.FieldRepetitions != null && inventoryReceivedQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryReceivedQuantity.Id));
-            inventoryReceivedQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(inventoryReceivedQuantity, fieldData);
-        }
-
-        return inventoryReceivedQuantity;
-    } 
-}
-
-internal HL7V28Field inventoryReceivedQuantityUnit;
-
-public HL7V28Field InventoryReceivedQuantityUnit
-{
-    get
-    {
-        if (inventoryReceivedQuantityUnit != null)
-        {
-            return inventoryReceivedQuantityUnit;
-        }
-
-        inventoryReceivedQuantityUnit = new HL7V28Field
-        {
-            field = message[@"ILT"][6],
-            Id = @"ILT.6",
-            Type = @"Field",
-            Position = @"ILT.6",
-            Name = @"Inventory Received Quantity Unit",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0818",
-            TableName = @"Package",
-            Description = @"This field specifies the unit for the Inventory Received Quantity. See User-defined Table 0818 – Package as described in PKG-2 Packaging Units and as presented in Chapter 2C, Code Tables, for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryReceivedQuantityUnit.field.FieldRepetitions != null && inventoryReceivedQuantityUnit.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryReceivedQuantityUnit.Id));
-            inventoryReceivedQuantityUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(inventoryReceivedQuantityUnit, fieldData);
-        }
-
-        return inventoryReceivedQuantityUnit;
-    } 
-}
-
-internal HL7V28Field inventoryReceivedItemCost;
-
-public HL7V28Field InventoryReceivedItemCost
-{
-    get
-    {
-        if (inventoryReceivedItemCost != null)
-        {
-            return inventoryReceivedItemCost;
-        }
-
-        inventoryReceivedItemCost = new HL7V28Field
-        {
-            field = message[@"ILT"][7],
-            Id = @"ILT.7",
-            Type = @"Field",
-            Position = @"ILT.7",
-            Name = @"Inventory Received Item Cost",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"MO",
-            DataTypeName = @"Money",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the per-unit cost of the inventory item at the time of receipt.  ILT-6 Inventory Received Quantity Unit field specifies the per-unit basis of this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryReceivedItemCost.field.FieldRepetitions != null && inventoryReceivedItemCost.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryReceivedItemCost.Id));
-            inventoryReceivedItemCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(inventoryReceivedItemCost, fieldData);
-        }
-
-        return inventoryReceivedItemCost;
-    } 
-}
-
-internal HL7V28Field inventoryOnHandDate;
-
-public HL7V28Field InventoryOnHandDate
-{
-    get
-    {
-        if (inventoryOnHandDate != null)
-        {
-            return inventoryOnHandDate;
-        }
-
-        inventoryOnHandDate = new HL7V28Field
-        {
-            field = message[@"ILT"][8],
-            Id = @"ILT.8",
-            Type = @"Field",
-            Position = @"ILT.8",
-            Name = @"Inventory On Hand Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the most recent date that an inventory count was performed for the inventory item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryOnHandDate.field.FieldRepetitions != null && inventoryOnHandDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryOnHandDate.Id));
-            inventoryOnHandDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(inventoryOnHandDate, fieldData);
-        }
-
-        return inventoryOnHandDate;
-    } 
-}
-
-internal HL7V28Field inventoryOnHandQuantity;
-
-public HL7V28Field InventoryOnHandQuantity
-{
-    get
-    {
-        if (inventoryOnHandQuantity != null)
-        {
-            return inventoryOnHandQuantity;
-        }
-
-        inventoryOnHandQuantity = new HL7V28Field
-        {
-            field = message[@"ILT"][9],
-            Id = @"ILT.9",
-            Type = @"Field",
-            Position = @"ILT.9",
-            Name = @"Inventory On Hand Quantity",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the quantity of this inventory item that was available for issue/use as of the date specified in ILT-8 Inventory on Hand Date field.  No adjustment has been made for subsequent use.  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryOnHandQuantity.field.FieldRepetitions != null && inventoryOnHandQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryOnHandQuantity.Id));
-            inventoryOnHandQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(inventoryOnHandQuantity, fieldData);
-        }
-
-        return inventoryOnHandQuantity;
-    } 
-}
-
-internal HL7V28Field inventoryOnHandQuantityUnit;
-
-public HL7V28Field InventoryOnHandQuantityUnit
-{
-    get
-    {
-        if (inventoryOnHandQuantityUnit != null)
-        {
-            return inventoryOnHandQuantityUnit;
-        }
-
-        inventoryOnHandQuantityUnit = new HL7V28Field
+        _inventoryOnHandQuantityUnit = new HL7V28Field
         {
             field = message[@"ILT"][10],
-            Id = @"ILT.10",
-            Type = @"Field",
-            Position = @"ILT.10",
-            Name = @"Inventory On Hand Quantity Unit",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0818",
-            TableName = @"Package",
-            Description = @"This field contains the quantity of this inventory item that was available for issue/use as of the date specified in ILT-8 Inventory on Hand Date field.  No adjustment has been made for subsequent use.  See User-defined Table 0818 – Package as described in PKG-2 Packaging Units and as presented in Chapter 2C, Code Tables, for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (inventoryOnHandQuantityUnit.field.FieldRepetitions != null && inventoryOnHandQuantityUnit.field.FieldRepetitions.Count > 0)
+        if (_inventoryOnHandQuantityUnit.field.FieldRepetitions != null && _inventoryOnHandQuantityUnit.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryOnHandQuantityUnit.Id));
-            inventoryOnHandQuantityUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(inventoryOnHandQuantityUnit, fieldData);
+            _inventoryOnHandQuantityUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_inventoryOnHandQuantityUnit, fieldData);
         }
 
-        return inventoryOnHandQuantityUnit;
+        return _inventoryOnHandQuantityUnit;
     } 
 }
     }

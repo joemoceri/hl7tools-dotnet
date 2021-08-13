@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -41,6 +42,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Charge on Result",
                             Comment = null
                         },
+                        
                     };
             } 
         }

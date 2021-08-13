@@ -32,28 +32,40 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V23SegmentMRG(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field _priorPatientIDInternal;
+
+public HL7V23Field PriorPatientIDInternal
+{
+    get
+    {
+        if (_priorPatientIDInternal != null)
+        {
+            return _priorPatientIDInternal;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"MRG.1",
+            Type = @"Field",
+            Position = @"MRG.1",
+            Name = @"Prior Patient ID - Internal",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the internal prior patient identifier.  This field contains a list of potential “old” numbers to match.  Only one old number can be merged with one new number in a transaction.  When merging patient IDs, A34 (merge patient information - patient ID only) and A36 (merge patient informationpatient ID & account number), the patient ID contained in the PID segment cannot repeat.  Refer to HL7 table 0061 - Check digit scheme",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"MRG.1",
-                            Type = @"Field",
-                            Position = @"MRG.1",
-                            Name = @"Prior Patient ID - Internal",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the internal prior patient identifier.  This field contains a list of potential “old” numbers to match.  Only one old number can be merged with one new number in a transaction.  When merging patient IDs, A34 (merge patient information - patient ID only) and A36 (merge patient informationpatient ID & account number), the patient ID contained in the PID segment cannot repeat.  Refer to HL7 table 0061 - Check digit scheme",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.1.1",
                             Type = @"Component",
@@ -263,25 +275,55 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _priorPatientIDInternal = new HL7V23Field
+        {
+            field = message[@"MRG"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorPatientIDInternal.field.FieldRepetitions != null && _priorPatientIDInternal.field.FieldRepetitions.Count > 0)
+        {
+            _priorPatientIDInternal.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_priorPatientIDInternal, fieldData);
+        }
+
+        return _priorPatientIDInternal;
+    } 
+}
+
+internal HL7V23Field _priorAlternatePatientID;
+
+public HL7V23Field PriorAlternatePatientID
+{
+    get
+    {
+        if (_priorAlternatePatientID != null)
+        {
+            return _priorAlternatePatientID;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"MRG.2",
+            Type = @"Field",
+            Position = @"MRG.2",
+            Name = @"Prior Alternate Patient ID",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the prior alternate patient identifier.  Refer to HL7 table 0061 - Check digit scheme ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MRG.2",
-                            Type = @"Field",
-                            Position = @"MRG.2",
-                            Name = @"Prior Alternate Patient ID",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the prior alternate patient identifier.  Refer to HL7 table 0061 - Check digit scheme ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MRG.2.1",
                             Type = @"Component",
@@ -491,25 +533,55 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _priorAlternatePatientID = new HL7V23Field
+        {
+            field = message[@"MRG"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorAlternatePatientID.field.FieldRepetitions != null && _priorAlternatePatientID.field.FieldRepetitions.Count > 0)
+        {
+            _priorAlternatePatientID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_priorAlternatePatientID, fieldData);
+        }
+
+        return _priorAlternatePatientID;
+    } 
+}
+
+internal HL7V23Field _priorPatientAccountNumber;
+
+public HL7V23Field PriorPatientAccountNumber
+{
+    get
+    {
+        if (_priorPatientAccountNumber != null)
+        {
+            return _priorPatientAccountNumber;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"MRG.3",
+            Type = @"Field",
+            Position = @"MRG.3",
+            Name = @"Prior Patient Account Number",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the prior patient account number.   Refer to HL7 table 0061 - Check digit scheme ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MRG.3",
-                            Type = @"Field",
-                            Position = @"MRG.3",
-                            Name = @"Prior Patient Account Number",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the prior patient account number.   Refer to HL7 table 0061 - Check digit scheme ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MRG.3.1",
                             Type = @"Component",
@@ -719,25 +791,55 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _priorPatientAccountNumber = new HL7V23Field
+        {
+            field = message[@"MRG"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorPatientAccountNumber.field.FieldRepetitions != null && _priorPatientAccountNumber.field.FieldRepetitions.Count > 0)
+        {
+            _priorPatientAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_priorPatientAccountNumber, fieldData);
+        }
+
+        return _priorPatientAccountNumber;
+    } 
+}
+
+internal HL7V23Field _priorPatientIDExternal;
+
+public HL7V23Field PriorPatientIDExternal
+{
+    get
+    {
+        if (_priorPatientIDExternal != null)
+        {
+            return _priorPatientIDExternal;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"MRG.4",
+            Type = @"Field",
+            Position = @"MRG.4",
+            Name = @"Prior Patient ID - External",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the external prior patient identifier.  Refer to HL7 table 0061 - Check digit scheme",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MRG.4",
-                            Type = @"Field",
-                            Position = @"MRG.4",
-                            Name = @"Prior Patient ID - External",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the external prior patient identifier.  Refer to HL7 table 0061 - Check digit scheme",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MRG.4.1",
                             Type = @"Component",
@@ -947,25 +1049,55 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _priorPatientIDExternal = new HL7V23Field
+        {
+            field = message[@"MRG"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorPatientIDExternal.field.FieldRepetitions != null && _priorPatientIDExternal.field.FieldRepetitions.Count > 0)
+        {
+            _priorPatientIDExternal.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_priorPatientIDExternal, fieldData);
+        }
+
+        return _priorPatientIDExternal;
+    } 
+}
+
+internal HL7V23Field _priorVisitNumber;
+
+public HL7V23Field PriorVisitNumber
+{
+    get
+    {
+        if (_priorVisitNumber != null)
+        {
+            return _priorVisitNumber;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"MRG.5",
+            Type = @"Field",
+            Position = @"MRG.5",
+            Name = @"Prior Visit Number",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the prior visit number.  Refer to HL7 table 0061 - Check digit scheme ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MRG.5",
-                            Type = @"Field",
-                            Position = @"MRG.5",
-                            Name = @"Prior Visit Number",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the prior visit number.  Refer to HL7 table 0061 - Check digit scheme ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MRG.5.1",
                             Type = @"Component",
@@ -1175,25 +1307,55 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _priorVisitNumber = new HL7V23Field
+        {
+            field = message[@"MRG"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorVisitNumber.field.FieldRepetitions != null && _priorVisitNumber.field.FieldRepetitions.Count > 0)
+        {
+            _priorVisitNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_priorVisitNumber, fieldData);
+        }
+
+        return _priorVisitNumber;
+    } 
+}
+
+internal HL7V23Field _priorAlternateVisitID;
+
+public HL7V23Field PriorAlternateVisitID
+{
+    get
+    {
+        if (_priorAlternateVisitID != null)
+        {
+            return _priorAlternateVisitID;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"MRG.6",
+            Type = @"Field",
+            Position = @"MRG.6",
+            Name = @"Prior Alternate Visit ID",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the prior alternate visit number.  Refer to HL7 table 0061 - Check digit scheme",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MRG.6",
-                            Type = @"Field",
-                            Position = @"MRG.6",
-                            Name = @"Prior Alternate Visit ID",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the prior alternate visit number.  Refer to HL7 table 0061 - Check digit scheme",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MRG.6.1",
                             Type = @"Component",
@@ -1403,25 +1565,55 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _priorAlternateVisitID = new HL7V23Field
+        {
+            field = message[@"MRG"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorAlternateVisitID.field.FieldRepetitions != null && _priorAlternateVisitID.field.FieldRepetitions.Count > 0)
+        {
+            _priorAlternateVisitID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_priorAlternateVisitID, fieldData);
+        }
+
+        return _priorAlternateVisitID;
+    } 
+}
+
+internal HL7V23Field _priorPatientName;
+
+public HL7V23Field PriorPatientName
+{
+    get
+    {
+        if (_priorPatientName != null)
+        {
+            return _priorPatientName;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"MRG.7",
+            Type = @"Field",
+            Position = @"MRG.7",
+            Name = @"Prior Patient Name",
+            Length = 48,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the prior name of the patient  This field is not used to change a patient name.  Refer to Chapter 2 for the name type code table",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MRG.7",
-                            Type = @"Field",
-                            Position = @"MRG.7",
-                            Name = @"Prior Patient Name",
-                            Length = 48,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the prior name of the patient  This field is not used to change a patient name.  Refer to Chapter 2 for the name type code table",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MRG.7.1",
                             Type = @"Component",
@@ -1563,301 +1755,23 @@ The assigning facility ID, the fourth component of the patient identifiers, is a
                             Description = @"In general this component provides an indication of the representation provided by the data item.  It does not necessarily specify the character sets used. Thus, even though the representation might provide an indication of what to expect, the sender is still free to encode the contents using whatever character set is desired.  This component provides only hints for the receiver, so it can make choices regarding what it has been sent and what it is capable of displaying",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V23SegmentMRG(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V23Field priorPatientIDInternal;
-
-public HL7V23Field PriorPatientIDInternal
-{
-    get
-    {
-        if (priorPatientIDInternal != null)
-        {
-            return priorPatientIDInternal;
-        }
-
-        priorPatientIDInternal = new HL7V23Field
-        {
-            field = message[@"MRG"][1],
-            Id = @"MRG.1",
-            Type = @"Field",
-            Position = @"MRG.1",
-            Name = @"Prior Patient ID - Internal",
-            Length = 20,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the internal prior patient identifier.  This field contains a list of potential “old” numbers to match.  Only one old number can be merged with one new number in a transaction.  When merging patient IDs, A34 (merge patient information - patient ID only) and A36 (merge patient informationpatient ID & account number), the patient ID contained in the PID segment cannot repeat.  Refer to HL7 table 0061 - Check digit scheme",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorPatientIDInternal.field.FieldRepetitions != null && priorPatientIDInternal.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientIDInternal.Id));
-            priorPatientIDInternal.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(priorPatientIDInternal, fieldData);
-        }
-
-        return priorPatientIDInternal;
-    } 
-}
-
-internal HL7V23Field priorAlternatePatientID;
-
-public HL7V23Field PriorAlternatePatientID
-{
-    get
-    {
-        if (priorAlternatePatientID != null)
-        {
-            return priorAlternatePatientID;
-        }
-
-        priorAlternatePatientID = new HL7V23Field
-        {
-            field = message[@"MRG"][2],
-            Id = @"MRG.2",
-            Type = @"Field",
-            Position = @"MRG.2",
-            Name = @"Prior Alternate Patient ID",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the prior alternate patient identifier.  Refer to HL7 table 0061 - Check digit scheme ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorAlternatePatientID.field.FieldRepetitions != null && priorAlternatePatientID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorAlternatePatientID.Id));
-            priorAlternatePatientID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(priorAlternatePatientID, fieldData);
-        }
-
-        return priorAlternatePatientID;
-    } 
-}
-
-internal HL7V23Field priorPatientAccountNumber;
-
-public HL7V23Field PriorPatientAccountNumber
-{
-    get
-    {
-        if (priorPatientAccountNumber != null)
-        {
-            return priorPatientAccountNumber;
-        }
-
-        priorPatientAccountNumber = new HL7V23Field
-        {
-            field = message[@"MRG"][3],
-            Id = @"MRG.3",
-            Type = @"Field",
-            Position = @"MRG.3",
-            Name = @"Prior Patient Account Number",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the prior patient account number.   Refer to HL7 table 0061 - Check digit scheme ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorPatientAccountNumber.field.FieldRepetitions != null && priorPatientAccountNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientAccountNumber.Id));
-            priorPatientAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(priorPatientAccountNumber, fieldData);
-        }
-
-        return priorPatientAccountNumber;
-    } 
-}
-
-internal HL7V23Field priorPatientIDExternal;
-
-public HL7V23Field PriorPatientIDExternal
-{
-    get
-    {
-        if (priorPatientIDExternal != null)
-        {
-            return priorPatientIDExternal;
-        }
-
-        priorPatientIDExternal = new HL7V23Field
-        {
-            field = message[@"MRG"][4],
-            Id = @"MRG.4",
-            Type = @"Field",
-            Position = @"MRG.4",
-            Name = @"Prior Patient ID - External",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the external prior patient identifier.  Refer to HL7 table 0061 - Check digit scheme",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorPatientIDExternal.field.FieldRepetitions != null && priorPatientIDExternal.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientIDExternal.Id));
-            priorPatientIDExternal.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(priorPatientIDExternal, fieldData);
-        }
-
-        return priorPatientIDExternal;
-    } 
-}
-
-internal HL7V23Field priorVisitNumber;
-
-public HL7V23Field PriorVisitNumber
-{
-    get
-    {
-        if (priorVisitNumber != null)
-        {
-            return priorVisitNumber;
-        }
-
-        priorVisitNumber = new HL7V23Field
-        {
-            field = message[@"MRG"][5],
-            Id = @"MRG.5",
-            Type = @"Field",
-            Position = @"MRG.5",
-            Name = @"Prior Visit Number",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the prior visit number.  Refer to HL7 table 0061 - Check digit scheme ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorVisitNumber.field.FieldRepetitions != null && priorVisitNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorVisitNumber.Id));
-            priorVisitNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(priorVisitNumber, fieldData);
-        }
-
-        return priorVisitNumber;
-    } 
-}
-
-internal HL7V23Field priorAlternateVisitID;
-
-public HL7V23Field PriorAlternateVisitID
-{
-    get
-    {
-        if (priorAlternateVisitID != null)
-        {
-            return priorAlternateVisitID;
-        }
-
-        priorAlternateVisitID = new HL7V23Field
-        {
-            field = message[@"MRG"][6],
-            Id = @"MRG.6",
-            Type = @"Field",
-            Position = @"MRG.6",
-            Name = @"Prior Alternate Visit ID",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the prior alternate visit number.  Refer to HL7 table 0061 - Check digit scheme",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorAlternateVisitID.field.FieldRepetitions != null && priorAlternateVisitID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorAlternateVisitID.Id));
-            priorAlternateVisitID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(priorAlternateVisitID, fieldData);
-        }
-
-        return priorAlternateVisitID;
-    } 
-}
-
-internal HL7V23Field priorPatientName;
-
-public HL7V23Field PriorPatientName
-{
-    get
-    {
-        if (priorPatientName != null)
-        {
-            return priorPatientName;
-        }
-
-        priorPatientName = new HL7V23Field
+        _priorPatientName = new HL7V23Field
         {
             field = message[@"MRG"][7],
-            Id = @"MRG.7",
-            Type = @"Field",
-            Position = @"MRG.7",
-            Name = @"Prior Patient Name",
-            Length = 48,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the prior name of the patient  This field is not used to change a patient name.  Refer to Chapter 2 for the name type code table",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (priorPatientName.field.FieldRepetitions != null && priorPatientName.field.FieldRepetitions.Count > 0)
+        if (_priorPatientName.field.FieldRepetitions != null && _priorPatientName.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientName.Id));
-            priorPatientName.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(priorPatientName, fieldData);
+            _priorPatientName.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_priorPatientName, fieldData);
         }
 
-        return priorPatientName;
+        return _priorPatientName;
     } 
 }
     }

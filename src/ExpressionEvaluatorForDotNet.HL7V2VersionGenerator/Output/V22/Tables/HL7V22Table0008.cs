@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -65,6 +66,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Enhanced mode:  Application acknowledgement:  Commit Reject",
                             Comment = null
                         },
+                        
                     };
             } 
         }

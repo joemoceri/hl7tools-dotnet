@@ -25,286 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"ORC.1",
-                            Type = @"Field",
-                            Position = @"ORC.1",
-                            Name = @"Order Control",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = @"0119",
-                            TableName = @"ORDER CONTROL",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.2",
-                            Type = @"Field",
-                            Position = @"ORC.2",
-                            Name = @"Placer Order #",
-                            Length = 75,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM",
-                            DataTypeName = @"",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.3",
-                            Type = @"Field",
-                            Position = @"ORC.3",
-                            Name = @"Filler Order #",
-                            Length = 75,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM",
-                            DataTypeName = @"",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.4",
-                            Type = @"Field",
-                            Position = @"ORC.4",
-                            Name = @"Placer Group #",
-                            Length = 75,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM",
-                            DataTypeName = @"",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.5",
-                            Type = @"Field",
-                            Position = @"ORC.5",
-                            Name = @"Order Status",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = @"0038",
-                            TableName = @"ORDER STATUS",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.6",
-                            Type = @"Field",
-                            Position = @"ORC.6",
-                            Name = @"Response Flag",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = @"0121",
-                            TableName = @"RESPONSE FLAG",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.7",
-                            Type = @"Field",
-                            Position = @"ORC.7",
-                            Name = @"Timing/Quantity",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM",
-                            DataTypeName = @"",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.8",
-                            Type = @"Field",
-                            Position = @"ORC.8",
-                            Name = @"Parent",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM",
-                            DataTypeName = @"",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.9",
-                            Type = @"Field",
-                            Position = @"ORC.9",
-                            Name = @"Date/Time Of Transaction",
-                            Length = 19,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.10",
-                            Type = @"Field",
-                            Position = @"ORC.10",
-                            Name = @"Entered By",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CN",
-                            DataTypeName = @"Composite Id Number And Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.11",
-                            Type = @"Field",
-                            Position = @"ORC.11",
-                            Name = @"Verified By",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CN",
-                            DataTypeName = @"Composite Id Number And Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.12",
-                            Type = @"Field",
-                            Position = @"ORC.12",
-                            Name = @"Ordering Provider",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CN",
-                            DataTypeName = @"Composite Id Number And Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.13",
-                            Type = @"Field",
-                            Position = @"ORC.13",
-                            Name = @"Enterer's Location",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM",
-                            DataTypeName = @"",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.14",
-                            Type = @"Field",
-                            Position = @"ORC.14",
-                            Name = @"Call Back Phone Number",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"2",
-                            DataType = @"TN",
-                            DataTypeName = @"Telephone Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentORC(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field orderControl;
+        internal HL7V21Field _orderControl;
 
 public HL7V21Field OrderControl
 {
     get
     {
-        if (orderControl != null)
+        if (_orderControl != null)
         {
-            return orderControl;
+            return _orderControl;
         }
 
-        orderControl = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORC"][1],
             Id = @"ORC.1",
             Type = @"Field",
             Position = @"ORC.1",
@@ -318,34 +56,38 @@ public HL7V21Field OrderControl
             TableName = @"ORDER CONTROL",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _orderControl = new HL7V21Field
+        {
+            field = message[@"ORC"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (orderControl.field.FieldRepetitions != null && orderControl.field.FieldRepetitions.Count > 0)
+        if (_orderControl.field.FieldRepetitions != null && _orderControl.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderControl.Id));
-            orderControl.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(orderControl, fieldData);
+            _orderControl.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_orderControl, fieldData);
         }
 
-        return orderControl;
+        return _orderControl;
     } 
 }
 
-internal HL7V21Field placerOrder#;
+internal HL7V21Field _placerOrder#;
 
 public HL7V21Field PlacerOrder#
 {
     get
     {
-        if (placerOrder# != null)
+        if (_placerOrder# != null)
         {
-            return placerOrder#;
+            return _placerOrder#;
         }
 
-        placerOrder# = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORC"][2],
             Id = @"ORC.2",
             Type = @"Field",
             Position = @"ORC.2",
@@ -359,34 +101,38 @@ public HL7V21Field PlacerOrder#
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _placerOrder# = new HL7V21Field
+        {
+            field = message[@"ORC"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (placerOrder#.field.FieldRepetitions != null && placerOrder#.field.FieldRepetitions.Count > 0)
+        if (_placerOrder#.field.FieldRepetitions != null && _placerOrder#.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerOrder#.Id));
-            placerOrder#.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(placerOrder#, fieldData);
+            _placerOrder#.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_placerOrder#, fieldData);
         }
 
-        return placerOrder#;
+        return _placerOrder#;
     } 
 }
 
-internal HL7V21Field fillerOrder#;
+internal HL7V21Field _fillerOrder#;
 
 public HL7V21Field FillerOrder#
 {
     get
     {
-        if (fillerOrder# != null)
+        if (_fillerOrder# != null)
         {
-            return fillerOrder#;
+            return _fillerOrder#;
         }
 
-        fillerOrder# = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORC"][3],
             Id = @"ORC.3",
             Type = @"Field",
             Position = @"ORC.3",
@@ -400,34 +146,38 @@ public HL7V21Field FillerOrder#
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _fillerOrder# = new HL7V21Field
+        {
+            field = message[@"ORC"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fillerOrder#.field.FieldRepetitions != null && fillerOrder#.field.FieldRepetitions.Count > 0)
+        if (_fillerOrder#.field.FieldRepetitions != null && _fillerOrder#.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerOrder#.Id));
-            fillerOrder#.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(fillerOrder#, fieldData);
+            _fillerOrder#.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_fillerOrder#, fieldData);
         }
 
-        return fillerOrder#;
+        return _fillerOrder#;
     } 
 }
 
-internal HL7V21Field placerGroup#;
+internal HL7V21Field _placerGroup#;
 
 public HL7V21Field PlacerGroup#
 {
     get
     {
-        if (placerGroup# != null)
+        if (_placerGroup# != null)
         {
-            return placerGroup#;
+            return _placerGroup#;
         }
 
-        placerGroup# = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORC"][4],
             Id = @"ORC.4",
             Type = @"Field",
             Position = @"ORC.4",
@@ -441,34 +191,38 @@ public HL7V21Field PlacerGroup#
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _placerGroup# = new HL7V21Field
+        {
+            field = message[@"ORC"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (placerGroup#.field.FieldRepetitions != null && placerGroup#.field.FieldRepetitions.Count > 0)
+        if (_placerGroup#.field.FieldRepetitions != null && _placerGroup#.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerGroup#.Id));
-            placerGroup#.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(placerGroup#, fieldData);
+            _placerGroup#.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_placerGroup#, fieldData);
         }
 
-        return placerGroup#;
+        return _placerGroup#;
     } 
 }
 
-internal HL7V21Field orderStatus;
+internal HL7V21Field _orderStatus;
 
 public HL7V21Field OrderStatus
 {
     get
     {
-        if (orderStatus != null)
+        if (_orderStatus != null)
         {
-            return orderStatus;
+            return _orderStatus;
         }
 
-        orderStatus = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORC"][5],
             Id = @"ORC.5",
             Type = @"Field",
             Position = @"ORC.5",
@@ -482,34 +236,38 @@ public HL7V21Field OrderStatus
             TableName = @"ORDER STATUS",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _orderStatus = new HL7V21Field
+        {
+            field = message[@"ORC"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (orderStatus.field.FieldRepetitions != null && orderStatus.field.FieldRepetitions.Count > 0)
+        if (_orderStatus.field.FieldRepetitions != null && _orderStatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderStatus.Id));
-            orderStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(orderStatus, fieldData);
+            _orderStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_orderStatus, fieldData);
         }
 
-        return orderStatus;
+        return _orderStatus;
     } 
 }
 
-internal HL7V21Field responseFlag;
+internal HL7V21Field _responseFlag;
 
 public HL7V21Field ResponseFlag
 {
     get
     {
-        if (responseFlag != null)
+        if (_responseFlag != null)
         {
-            return responseFlag;
+            return _responseFlag;
         }
 
-        responseFlag = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORC"][6],
             Id = @"ORC.6",
             Type = @"Field",
             Position = @"ORC.6",
@@ -523,34 +281,38 @@ public HL7V21Field ResponseFlag
             TableName = @"RESPONSE FLAG",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _responseFlag = new HL7V21Field
+        {
+            field = message[@"ORC"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (responseFlag.field.FieldRepetitions != null && responseFlag.field.FieldRepetitions.Count > 0)
+        if (_responseFlag.field.FieldRepetitions != null && _responseFlag.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(responseFlag.Id));
-            responseFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(responseFlag, fieldData);
+            _responseFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_responseFlag, fieldData);
         }
 
-        return responseFlag;
+        return _responseFlag;
     } 
 }
 
-internal HL7V21Field timingQuantity;
+internal HL7V21Field _timingQuantity;
 
 public HL7V21Field TimingQuantity
 {
     get
     {
-        if (timingQuantity != null)
+        if (_timingQuantity != null)
         {
-            return timingQuantity;
+            return _timingQuantity;
         }
 
-        timingQuantity = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORC"][7],
             Id = @"ORC.7",
             Type = @"Field",
             Position = @"ORC.7",
@@ -564,34 +326,38 @@ public HL7V21Field TimingQuantity
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _timingQuantity = new HL7V21Field
+        {
+            field = message[@"ORC"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (timingQuantity.field.FieldRepetitions != null && timingQuantity.field.FieldRepetitions.Count > 0)
+        if (_timingQuantity.field.FieldRepetitions != null && _timingQuantity.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(timingQuantity.Id));
-            timingQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(timingQuantity, fieldData);
+            _timingQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_timingQuantity, fieldData);
         }
 
-        return timingQuantity;
+        return _timingQuantity;
     } 
 }
 
-internal HL7V21Field parent;
+internal HL7V21Field _parent;
 
 public HL7V21Field Parent
 {
     get
     {
-        if (parent != null)
+        if (_parent != null)
         {
-            return parent;
+            return _parent;
         }
 
-        parent = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORC"][8],
             Id = @"ORC.8",
             Type = @"Field",
             Position = @"ORC.8",
@@ -605,34 +371,38 @@ public HL7V21Field Parent
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _parent = new HL7V21Field
+        {
+            field = message[@"ORC"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (parent.field.FieldRepetitions != null && parent.field.FieldRepetitions.Count > 0)
+        if (_parent.field.FieldRepetitions != null && _parent.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(parent.Id));
-            parent.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(parent, fieldData);
+            _parent.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_parent, fieldData);
         }
 
-        return parent;
+        return _parent;
     } 
 }
 
-internal HL7V21Field dateTimeOfTransaction;
+internal HL7V21Field _dateTimeOfTransaction;
 
 public HL7V21Field DateTimeOfTransaction
 {
     get
     {
-        if (dateTimeOfTransaction != null)
+        if (_dateTimeOfTransaction != null)
         {
-            return dateTimeOfTransaction;
+            return _dateTimeOfTransaction;
         }
 
-        dateTimeOfTransaction = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORC"][9],
             Id = @"ORC.9",
             Type = @"Field",
             Position = @"ORC.9",
@@ -646,34 +416,38 @@ public HL7V21Field DateTimeOfTransaction
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _dateTimeOfTransaction = new HL7V21Field
+        {
+            field = message[@"ORC"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dateTimeOfTransaction.field.FieldRepetitions != null && dateTimeOfTransaction.field.FieldRepetitions.Count > 0)
+        if (_dateTimeOfTransaction.field.FieldRepetitions != null && _dateTimeOfTransaction.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeOfTransaction.Id));
-            dateTimeOfTransaction.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(dateTimeOfTransaction, fieldData);
+            _dateTimeOfTransaction.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_dateTimeOfTransaction, fieldData);
         }
 
-        return dateTimeOfTransaction;
+        return _dateTimeOfTransaction;
     } 
 }
 
-internal HL7V21Field enteredBy;
+internal HL7V21Field _enteredBy;
 
 public HL7V21Field EnteredBy
 {
     get
     {
-        if (enteredBy != null)
+        if (_enteredBy != null)
         {
-            return enteredBy;
+            return _enteredBy;
         }
 
-        enteredBy = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORC"][10],
             Id = @"ORC.10",
             Type = @"Field",
             Position = @"ORC.10",
@@ -687,34 +461,38 @@ public HL7V21Field EnteredBy
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _enteredBy = new HL7V21Field
+        {
+            field = message[@"ORC"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (enteredBy.field.FieldRepetitions != null && enteredBy.field.FieldRepetitions.Count > 0)
+        if (_enteredBy.field.FieldRepetitions != null && _enteredBy.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteredBy.Id));
-            enteredBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(enteredBy, fieldData);
+            _enteredBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_enteredBy, fieldData);
         }
 
-        return enteredBy;
+        return _enteredBy;
     } 
 }
 
-internal HL7V21Field verifiedBy;
+internal HL7V21Field _verifiedBy;
 
 public HL7V21Field VerifiedBy
 {
     get
     {
-        if (verifiedBy != null)
+        if (_verifiedBy != null)
         {
-            return verifiedBy;
+            return _verifiedBy;
         }
 
-        verifiedBy = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORC"][11],
             Id = @"ORC.11",
             Type = @"Field",
             Position = @"ORC.11",
@@ -728,34 +506,38 @@ public HL7V21Field VerifiedBy
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _verifiedBy = new HL7V21Field
+        {
+            field = message[@"ORC"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (verifiedBy.field.FieldRepetitions != null && verifiedBy.field.FieldRepetitions.Count > 0)
+        if (_verifiedBy.field.FieldRepetitions != null && _verifiedBy.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(verifiedBy.Id));
-            verifiedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(verifiedBy, fieldData);
+            _verifiedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_verifiedBy, fieldData);
         }
 
-        return verifiedBy;
+        return _verifiedBy;
     } 
 }
 
-internal HL7V21Field orderingProvider;
+internal HL7V21Field _orderingProvider;
 
 public HL7V21Field OrderingProvider
 {
     get
     {
-        if (orderingProvider != null)
+        if (_orderingProvider != null)
         {
-            return orderingProvider;
+            return _orderingProvider;
         }
 
-        orderingProvider = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORC"][12],
             Id = @"ORC.12",
             Type = @"Field",
             Position = @"ORC.12",
@@ -769,34 +551,38 @@ public HL7V21Field OrderingProvider
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _orderingProvider = new HL7V21Field
+        {
+            field = message[@"ORC"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (orderingProvider.field.FieldRepetitions != null && orderingProvider.field.FieldRepetitions.Count > 0)
+        if (_orderingProvider.field.FieldRepetitions != null && _orderingProvider.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderingProvider.Id));
-            orderingProvider.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(orderingProvider, fieldData);
+            _orderingProvider.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_orderingProvider, fieldData);
         }
 
-        return orderingProvider;
+        return _orderingProvider;
     } 
 }
 
-internal HL7V21Field enterersLocation;
+internal HL7V21Field _enterersLocation;
 
 public HL7V21Field EnterersLocation
 {
     get
     {
-        if (enterersLocation != null)
+        if (_enterersLocation != null)
         {
-            return enterersLocation;
+            return _enterersLocation;
         }
 
-        enterersLocation = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORC"][13],
             Id = @"ORC.13",
             Type = @"Field",
             Position = @"ORC.13",
@@ -810,34 +596,38 @@ public HL7V21Field EnterersLocation
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _enterersLocation = new HL7V21Field
+        {
+            field = message[@"ORC"][13],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (enterersLocation.field.FieldRepetitions != null && enterersLocation.field.FieldRepetitions.Count > 0)
+        if (_enterersLocation.field.FieldRepetitions != null && _enterersLocation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enterersLocation.Id));
-            enterersLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(enterersLocation, fieldData);
+            _enterersLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_enterersLocation, fieldData);
         }
 
-        return enterersLocation;
+        return _enterersLocation;
     } 
 }
 
-internal HL7V21Field callBackPhoneNumber;
+internal HL7V21Field _callBackPhoneNumber;
 
 public HL7V21Field CallBackPhoneNumber
 {
     get
     {
-        if (callBackPhoneNumber != null)
+        if (_callBackPhoneNumber != null)
         {
-            return callBackPhoneNumber;
+            return _callBackPhoneNumber;
         }
 
-        callBackPhoneNumber = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORC"][14],
             Id = @"ORC.14",
             Type = @"Field",
             Position = @"ORC.14",
@@ -851,17 +641,22 @@ public HL7V21Field CallBackPhoneNumber
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _callBackPhoneNumber = new HL7V21Field
+        {
+            field = message[@"ORC"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (callBackPhoneNumber.field.FieldRepetitions != null && callBackPhoneNumber.field.FieldRepetitions.Count > 0)
+        if (_callBackPhoneNumber.field.FieldRepetitions != null && _callBackPhoneNumber.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(callBackPhoneNumber.Id));
-            callBackPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(callBackPhoneNumber, fieldData);
+            _callBackPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_callBackPhoneNumber, fieldData);
         }
 
-        return callBackPhoneNumber;
+        return _callBackPhoneNumber;
     } 
 }
     }

@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentDMI(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _diagnosticRelatedGroup;
+
+public HL7V27Field DiagnosticRelatedGroup
+{
+    get
+    {
+        if (_diagnosticRelatedGroup != null)
+        {
+            return _diagnosticRelatedGroup;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"DMI.1",
+            Type = @"Field",
+            Position = @"DMI.1",
+            Name = @"Diagnostic Related Group",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0055",
+            TableName = @"Diagnosis Related Group",
+            Description = @"This field contains the DRG for the transaction.  Interim DRG's could be determined for an encounter.  Refer to External Table 0055 – Diagnosis Related Group for suggested values.  ",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"DMI.1",
-                            Type = @"Field",
-                            Position = @"DMI.1",
-                            Name = @"Diagnostic Related Group",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0055",
-                            TableName = @"Diagnosis Related Group",
-                            Description = @"This field contains the DRG for the transaction.  Interim DRG's could be determined for an encounter.  Refer to External Table 0055 – Diagnosis Related Group for suggested values.  ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DMI.1.1",
                             Type = @"Component",
@@ -487,25 +499,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _diagnosticRelatedGroup = new HL7V27Field
+        {
+            field = message[@"DMI"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_diagnosticRelatedGroup.field.FieldRepetitions != null && _diagnosticRelatedGroup.field.FieldRepetitions.Count > 0)
+        {
+            _diagnosticRelatedGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_diagnosticRelatedGroup, fieldData);
+        }
+
+        return _diagnosticRelatedGroup;
+    } 
+}
+
+internal HL7V27Field _majorDiagnosticCategory;
+
+public HL7V27Field MajorDiagnosticCategory
+{
+    get
+    {
+        if (_majorDiagnosticCategory != null)
+        {
+            return _majorDiagnosticCategory;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"DMI.2",
+            Type = @"Field",
+            Position = @"DMI.2",
+            Name = @"Major Diagnostic Category",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0118",
+            TableName = @"Major Diagnostic Category",
+            Description = @"This field indicates the determined Major Diagnostic Category (MDC) value. Refer to External Table 0118 – Major Diagnostic Category for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DMI.2",
-                            Type = @"Field",
-                            Position = @"DMI.2",
-                            Name = @"Major Diagnostic Category",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0118",
-                            TableName = @"Major Diagnostic Category",
-                            Description = @"This field indicates the determined Major Diagnostic Category (MDC) value. Refer to External Table 0118 – Major Diagnostic Category for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DMI.2.1",
                             Type = @"Component",
@@ -942,27 +984,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DMI.3",
-                            Type = @"Field",
-                            Position = @"DMI.3",
-                            Name = @"Lower And Upper Trim Points",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"NR",
-                            DataTypeName = @"Numeric Range",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the lower and upper trim points as calculated for this DRG.
+                        }
+        }
+
+        _majorDiagnosticCategory = new HL7V27Field
+        {
+            field = message[@"DMI"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_majorDiagnosticCategory.field.FieldRepetitions != null && _majorDiagnosticCategory.field.FieldRepetitions.Count > 0)
+        {
+            _majorDiagnosticCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_majorDiagnosticCategory, fieldData);
+        }
+
+        return _majorDiagnosticCategory;
+    } 
+}
+
+internal HL7V27Field _lowerAndUpperTrimPoints;
+
+public HL7V27Field LowerAndUpperTrimPoints
+{
+    get
+    {
+        if (_lowerAndUpperTrimPoints != null)
+        {
+            return _lowerAndUpperTrimPoints;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"DMI.3",
+            Type = @"Field",
+            Position = @"DMI.3",
+            Name = @"Lower And Upper Trim Points",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"NR",
+            DataTypeName = @"Numeric Range",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the lower and upper trim points as calculated for this DRG.
 
 Example as used in Germany: The ""lower trim point"" is equivalent to 1/3 of the average length of stay for patients having this DRG.  The ""upper trim point"" is equivalent to 3 times the average length of stay.  ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"DMI.3.1",
                             Type = @"Component",
@@ -996,192 +1068,39 @@ Example as used in Germany: The ""lower trim point"" is equivalent to 1/3 of the
                             Description = @"The number specifying the high limit or boundary of the range.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DMI.4",
-                            Type = @"Field",
-                            Position = @"DMI.4",
-                            Name = @"Average Length Of Stay",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the average length of stay in days, calculated as the geometric mean value, allocated to the determined DRG.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DMI.5",
-                            Type = @"Field",
-                            Position = @"DMI.5",
-                            Name = @"Relative Weight",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Each DRG has its own relative weight (cost weight) which is calculated (defined) by official institutions. This value is the basis for calculating other values, e.g., the effective weight.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentDMI(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field diagnosticRelatedGroup;
-
-public HL7V27Field DiagnosticRelatedGroup
-{
-    get
-    {
-        if (diagnosticRelatedGroup != null)
-        {
-            return diagnosticRelatedGroup;
-        }
-
-        diagnosticRelatedGroup = new HL7V27Field
-        {
-            field = message[@"DMI"][1],
-            Id = @"DMI.1",
-            Type = @"Field",
-            Position = @"DMI.1",
-            Name = @"Diagnostic Related Group",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0055",
-            TableName = @"Diagnosis Related Group",
-            Description = @"This field contains the DRG for the transaction.  Interim DRG's could be determined for an encounter.  Refer to External Table 0055 – Diagnosis Related Group for suggested values.  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (diagnosticRelatedGroup.field.FieldRepetitions != null && diagnosticRelatedGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosticRelatedGroup.Id));
-            diagnosticRelatedGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(diagnosticRelatedGroup, fieldData);
-        }
-
-        return diagnosticRelatedGroup;
-    } 
-}
-
-internal HL7V27Field majorDiagnosticCategory;
-
-public HL7V27Field MajorDiagnosticCategory
-{
-    get
-    {
-        if (majorDiagnosticCategory != null)
-        {
-            return majorDiagnosticCategory;
-        }
-
-        majorDiagnosticCategory = new HL7V27Field
-        {
-            field = message[@"DMI"][2],
-            Id = @"DMI.2",
-            Type = @"Field",
-            Position = @"DMI.2",
-            Name = @"Major Diagnostic Category",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0118",
-            TableName = @"Major Diagnostic Category",
-            Description = @"This field indicates the determined Major Diagnostic Category (MDC) value. Refer to External Table 0118 – Major Diagnostic Category for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (majorDiagnosticCategory.field.FieldRepetitions != null && majorDiagnosticCategory.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(majorDiagnosticCategory.Id));
-            majorDiagnosticCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(majorDiagnosticCategory, fieldData);
-        }
-
-        return majorDiagnosticCategory;
-    } 
-}
-
-internal HL7V27Field lowerAndUpperTrimPoints;
-
-public HL7V27Field LowerAndUpperTrimPoints
-{
-    get
-    {
-        if (lowerAndUpperTrimPoints != null)
-        {
-            return lowerAndUpperTrimPoints;
-        }
-
-        lowerAndUpperTrimPoints = new HL7V27Field
+        _lowerAndUpperTrimPoints = new HL7V27Field
         {
             field = message[@"DMI"][3],
-            Id = @"DMI.3",
-            Type = @"Field",
-            Position = @"DMI.3",
-            Name = @"Lower And Upper Trim Points",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"NR",
-            DataTypeName = @"Numeric Range",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the lower and upper trim points as calculated for this DRG.
-
-Example as used in Germany: The ""lower trim point"" is equivalent to 1/3 of the average length of stay for patients having this DRG.  The ""upper trim point"" is equivalent to 3 times the average length of stay.  ",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (lowerAndUpperTrimPoints.field.FieldRepetitions != null && lowerAndUpperTrimPoints.field.FieldRepetitions.Count > 0)
+        if (_lowerAndUpperTrimPoints.field.FieldRepetitions != null && _lowerAndUpperTrimPoints.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(lowerAndUpperTrimPoints.Id));
-            lowerAndUpperTrimPoints.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(lowerAndUpperTrimPoints, fieldData);
+            _lowerAndUpperTrimPoints.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_lowerAndUpperTrimPoints, fieldData);
         }
 
-        return lowerAndUpperTrimPoints;
+        return _lowerAndUpperTrimPoints;
     } 
 }
 
-internal HL7V27Field averageLengthOfStay;
+internal HL7V27Field _averageLengthOfStay;
 
 public HL7V27Field AverageLengthOfStay
 {
     get
     {
-        if (averageLengthOfStay != null)
+        if (_averageLengthOfStay != null)
         {
-            return averageLengthOfStay;
+            return _averageLengthOfStay;
         }
 
-        averageLengthOfStay = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"DMI"][4],
             Id = @"DMI.4",
             Type = @"Field",
             Position = @"DMI.4",
@@ -1195,34 +1114,38 @@ public HL7V27Field AverageLengthOfStay
             TableName = null,
             Description = @"This field contains the average length of stay in days, calculated as the geometric mean value, allocated to the determined DRG.",
             Sample = @"",
+            Fields = null
+        }
+
+        _averageLengthOfStay = new HL7V27Field
+        {
+            field = message[@"DMI"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (averageLengthOfStay.field.FieldRepetitions != null && averageLengthOfStay.field.FieldRepetitions.Count > 0)
+        if (_averageLengthOfStay.field.FieldRepetitions != null && _averageLengthOfStay.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(averageLengthOfStay.Id));
-            averageLengthOfStay.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(averageLengthOfStay, fieldData);
+            _averageLengthOfStay.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_averageLengthOfStay, fieldData);
         }
 
-        return averageLengthOfStay;
+        return _averageLengthOfStay;
     } 
 }
 
-internal HL7V27Field relativeWeight;
+internal HL7V27Field _relativeWeight;
 
 public HL7V27Field RelativeWeight
 {
     get
     {
-        if (relativeWeight != null)
+        if (_relativeWeight != null)
         {
-            return relativeWeight;
+            return _relativeWeight;
         }
 
-        relativeWeight = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"DMI"][5],
             Id = @"DMI.5",
             Type = @"Field",
             Position = @"DMI.5",
@@ -1236,17 +1159,22 @@ public HL7V27Field RelativeWeight
             TableName = null,
             Description = @"Each DRG has its own relative weight (cost weight) which is calculated (defined) by official institutions. This value is the basis for calculating other values, e.g., the effective weight.",
             Sample = @"",
+            Fields = null
+        }
+
+        _relativeWeight = new HL7V27Field
+        {
+            field = message[@"DMI"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (relativeWeight.field.FieldRepetitions != null && relativeWeight.field.FieldRepetitions.Count > 0)
+        if (_relativeWeight.field.FieldRepetitions != null && _relativeWeight.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(relativeWeight.Id));
-            relativeWeight.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(relativeWeight, fieldData);
+            _relativeWeight.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_relativeWeight, fieldData);
         }
 
-        return relativeWeight;
+        return _relativeWeight;
     } 
 }
     }

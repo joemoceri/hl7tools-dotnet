@@ -32,6 +32,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Mod 11 check digit scheme",
                             Comment = null
                         },
+                        
                     };
             } 
         }

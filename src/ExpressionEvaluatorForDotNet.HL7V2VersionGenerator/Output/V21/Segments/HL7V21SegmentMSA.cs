@@ -25,124 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"MSA.1",
-                            Type = @"Field",
-                            Position = @"MSA.1",
-                            Name = @"Acknowledgment Code",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0008",
-                            TableName = @"ACKNOWLEDGMENT CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSA.2",
-                            Type = @"Field",
-                            Position = @"MSA.2",
-                            Name = @"Message Control Id",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSA.3",
-                            Type = @"Field",
-                            Position = @"MSA.3",
-                            Name = @"Text Message",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSA.4",
-                            Type = @"Field",
-                            Position = @"MSA.4",
-                            Name = @"Expected Sequence Number",
-                            Length = 15,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSA.5",
-                            Type = @"Field",
-                            Position = @"MSA.5",
-                            Name = @"Delayed Acknowledgment Type",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0102",
-                            TableName = @"DELAYED ACKNOWLEDGMENT TYPE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentMSA(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field acknowledgmentCode;
+        internal HL7V21Field _acknowledgmentCode;
 
 public HL7V21Field AcknowledgmentCode
 {
     get
     {
-        if (acknowledgmentCode != null)
+        if (_acknowledgmentCode != null)
         {
-            return acknowledgmentCode;
+            return _acknowledgmentCode;
         }
 
-        acknowledgmentCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSA"][1],
             Id = @"MSA.1",
             Type = @"Field",
             Position = @"MSA.1",
@@ -156,34 +56,38 @@ public HL7V21Field AcknowledgmentCode
             TableName = @"ACKNOWLEDGMENT CODE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _acknowledgmentCode = new HL7V21Field
+        {
+            field = message[@"MSA"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (acknowledgmentCode.field.FieldRepetitions != null && acknowledgmentCode.field.FieldRepetitions.Count > 0)
+        if (_acknowledgmentCode.field.FieldRepetitions != null && _acknowledgmentCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(acknowledgmentCode.Id));
-            acknowledgmentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(acknowledgmentCode, fieldData);
+            _acknowledgmentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_acknowledgmentCode, fieldData);
         }
 
-        return acknowledgmentCode;
+        return _acknowledgmentCode;
     } 
 }
 
-internal HL7V21Field messageControlId;
+internal HL7V21Field _messageControlId;
 
 public HL7V21Field MessageControlId
 {
     get
     {
-        if (messageControlId != null)
+        if (_messageControlId != null)
         {
-            return messageControlId;
+            return _messageControlId;
         }
 
-        messageControlId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSA"][2],
             Id = @"MSA.2",
             Type = @"Field",
             Position = @"MSA.2",
@@ -197,34 +101,38 @@ public HL7V21Field MessageControlId
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _messageControlId = new HL7V21Field
+        {
+            field = message[@"MSA"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (messageControlId.field.FieldRepetitions != null && messageControlId.field.FieldRepetitions.Count > 0)
+        if (_messageControlId.field.FieldRepetitions != null && _messageControlId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(messageControlId.Id));
-            messageControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(messageControlId, fieldData);
+            _messageControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_messageControlId, fieldData);
         }
 
-        return messageControlId;
+        return _messageControlId;
     } 
 }
 
-internal HL7V21Field textMessage;
+internal HL7V21Field _textMessage;
 
 public HL7V21Field TextMessage
 {
     get
     {
-        if (textMessage != null)
+        if (_textMessage != null)
         {
-            return textMessage;
+            return _textMessage;
         }
 
-        textMessage = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSA"][3],
             Id = @"MSA.3",
             Type = @"Field",
             Position = @"MSA.3",
@@ -238,34 +146,38 @@ public HL7V21Field TextMessage
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _textMessage = new HL7V21Field
+        {
+            field = message[@"MSA"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (textMessage.field.FieldRepetitions != null && textMessage.field.FieldRepetitions.Count > 0)
+        if (_textMessage.field.FieldRepetitions != null && _textMessage.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(textMessage.Id));
-            textMessage.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(textMessage, fieldData);
+            _textMessage.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_textMessage, fieldData);
         }
 
-        return textMessage;
+        return _textMessage;
     } 
 }
 
-internal HL7V21Field expectedSequenceNumber;
+internal HL7V21Field _expectedSequenceNumber;
 
 public HL7V21Field ExpectedSequenceNumber
 {
     get
     {
-        if (expectedSequenceNumber != null)
+        if (_expectedSequenceNumber != null)
         {
-            return expectedSequenceNumber;
+            return _expectedSequenceNumber;
         }
 
-        expectedSequenceNumber = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSA"][4],
             Id = @"MSA.4",
             Type = @"Field",
             Position = @"MSA.4",
@@ -279,34 +191,38 @@ public HL7V21Field ExpectedSequenceNumber
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _expectedSequenceNumber = new HL7V21Field
+        {
+            field = message[@"MSA"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (expectedSequenceNumber.field.FieldRepetitions != null && expectedSequenceNumber.field.FieldRepetitions.Count > 0)
+        if (_expectedSequenceNumber.field.FieldRepetitions != null && _expectedSequenceNumber.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(expectedSequenceNumber.Id));
-            expectedSequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(expectedSequenceNumber, fieldData);
+            _expectedSequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_expectedSequenceNumber, fieldData);
         }
 
-        return expectedSequenceNumber;
+        return _expectedSequenceNumber;
     } 
 }
 
-internal HL7V21Field delayedAcknowledgmentType;
+internal HL7V21Field _delayedAcknowledgmentType;
 
 public HL7V21Field DelayedAcknowledgmentType
 {
     get
     {
-        if (delayedAcknowledgmentType != null)
+        if (_delayedAcknowledgmentType != null)
         {
-            return delayedAcknowledgmentType;
+            return _delayedAcknowledgmentType;
         }
 
-        delayedAcknowledgmentType = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSA"][5],
             Id = @"MSA.5",
             Type = @"Field",
             Position = @"MSA.5",
@@ -320,17 +236,22 @@ public HL7V21Field DelayedAcknowledgmentType
             TableName = @"DELAYED ACKNOWLEDGMENT TYPE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _delayedAcknowledgmentType = new HL7V21Field
+        {
+            field = message[@"MSA"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (delayedAcknowledgmentType.field.FieldRepetitions != null && delayedAcknowledgmentType.field.FieldRepetitions.Count > 0)
+        if (_delayedAcknowledgmentType.field.FieldRepetitions != null && _delayedAcknowledgmentType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(delayedAcknowledgmentType.Id));
-            delayedAcknowledgmentType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(delayedAcknowledgmentType, fieldData);
+            _delayedAcknowledgmentType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_delayedAcknowledgmentType, fieldData);
         }
 
-        return delayedAcknowledgmentType;
+        return _delayedAcknowledgmentType;
     } 
 }
     }

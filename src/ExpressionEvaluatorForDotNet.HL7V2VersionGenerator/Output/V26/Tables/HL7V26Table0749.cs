@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             } 
         }
@@ -53,6 +54,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Invalid code; code is relevant for grouping",
                             Comment = null
                         },
+                        
                     };
             } 
         }

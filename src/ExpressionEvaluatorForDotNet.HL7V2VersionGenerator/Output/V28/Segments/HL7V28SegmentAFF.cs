@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentAFF(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _setIdAff;
+
+public HL7V28Field SetIdAff
+{
+    get
+    {
+        if (_setIdAff != null)
+        {
+            return _setIdAff;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"AFF.1",
+            Type = @"Field",
+            Position = @"AFF.1",
+            Name = @"Set Id - Aff",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction.  For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdAff = new HL7V28Field
+        {
+            field = message[@"AFF"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdAff.field.FieldRepetitions != null && _setIdAff.field.FieldRepetitions.Count > 0)
+        {
+            _setIdAff.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_setIdAff, fieldData);
+        }
+
+        return _setIdAff;
+    } 
+}
+
+internal HL7V28Field _professionalOrganization;
+
+public HL7V28Field ProfessionalOrganization
+{
+    get
+    {
+        if (_professionalOrganization != null)
+        {
+            return _professionalOrganization;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"AFF.2",
+            Type = @"Field",
+            Position = @"AFF.2",
+            Name = @"Professional Organization",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the official name of the association promoting specific professional interests with which the staff member is affiliated.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"AFF.1",
-                            Type = @"Field",
-                            Position = @"AFF.1",
-                            Name = @"Set Id - Aff",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction.  For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AFF.2",
-                            Type = @"Field",
-                            Position = @"AFF.2",
-                            Name = @"Professional Organization",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the official name of the association promoting specific professional interests with which the staff member is affiliated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AFF.2.1",
                             Type = @"Component",
@@ -800,25 +839,55 @@ In general this component provides an indication of the representation provided 
 Note: The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _professionalOrganization = new HL7V28Field
+        {
+            field = message[@"AFF"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_professionalOrganization.field.FieldRepetitions != null && _professionalOrganization.field.FieldRepetitions.Count > 0)
+        {
+            _professionalOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_professionalOrganization, fieldData);
+        }
+
+        return _professionalOrganization;
+    } 
+}
+
+internal HL7V28Field _professionalOrganizationAddress;
+
+public HL7V28Field ProfessionalOrganizationAddress
+{
+    get
+    {
+        if (_professionalOrganizationAddress != null)
+        {
+            return _professionalOrganizationAddress;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"AFF.3",
+            Type = @"Field",
+            Position = @"AFF.3",
+            Name = @"Professional Organization Address",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the postal address of the professional organization with which the Staff Member is associated.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AFF.3",
-                            Type = @"Field",
-                            Position = @"AFF.3",
-                            Name = @"Professional Organization Address",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the postal address of the professional organization with which the Staff Member is associated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AFF.3.1",
                             Type = @"Component",
@@ -3091,25 +3160,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _professionalOrganizationAddress = new HL7V28Field
+        {
+            field = message[@"AFF"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_professionalOrganizationAddress.field.FieldRepetitions != null && _professionalOrganizationAddress.field.FieldRepetitions.Count > 0)
+        {
+            _professionalOrganizationAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_professionalOrganizationAddress, fieldData);
+        }
+
+        return _professionalOrganizationAddress;
+    } 
+}
+
+internal HL7V28Field _professionalOrganizationAffiliationDateRange;
+
+public HL7V28Field ProfessionalOrganizationAffiliationDateRange
+{
+    get
+    {
+        if (_professionalOrganizationAffiliationDateRange != null)
+        {
+            return _professionalOrganizationAffiliationDateRange;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"AFF.4",
+            Type = @"Field",
+            Position = @"AFF.4",
+            Name = @"Professional Organization Affiliation Date Range",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"DR",
+            DataTypeName = @"Date/time Range",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the period the staff member started and ended membership in the professional organization.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AFF.4",
-                            Type = @"Field",
-                            Position = @"AFF.4",
-                            Name = @"Professional Organization Affiliation Date Range",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"DR",
-                            DataTypeName = @"Date/time Range",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the period the staff member started and ended membership in the professional organization.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AFF.4.1",
                             Type = @"Component",
@@ -3143,213 +3242,39 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AFF.5",
-                            Type = @"Field",
-                            Position = @"AFF.5",
-                            Name = @"Professional Affiliation Additional Information",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains miscellaneous additional information related to the staff member's membership in the professional organization.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentAFF(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field setIdAff;
-
-public HL7V28Field SetIdAff
-{
-    get
-    {
-        if (setIdAff != null)
-        {
-            return setIdAff;
-        }
-
-        setIdAff = new HL7V28Field
-        {
-            field = message[@"AFF"][1],
-            Id = @"AFF.1",
-            Type = @"Field",
-            Position = @"AFF.1",
-            Name = @"Set Id - Aff",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction.  For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdAff.field.FieldRepetitions != null && setIdAff.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdAff.Id));
-            setIdAff.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(setIdAff, fieldData);
-        }
-
-        return setIdAff;
-    } 
-}
-
-internal HL7V28Field professionalOrganization;
-
-public HL7V28Field ProfessionalOrganization
-{
-    get
-    {
-        if (professionalOrganization != null)
-        {
-            return professionalOrganization;
-        }
-
-        professionalOrganization = new HL7V28Field
-        {
-            field = message[@"AFF"][2],
-            Id = @"AFF.2",
-            Type = @"Field",
-            Position = @"AFF.2",
-            Name = @"Professional Organization",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the official name of the association promoting specific professional interests with which the staff member is affiliated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (professionalOrganization.field.FieldRepetitions != null && professionalOrganization.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(professionalOrganization.Id));
-            professionalOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(professionalOrganization, fieldData);
-        }
-
-        return professionalOrganization;
-    } 
-}
-
-internal HL7V28Field professionalOrganizationAddress;
-
-public HL7V28Field ProfessionalOrganizationAddress
-{
-    get
-    {
-        if (professionalOrganizationAddress != null)
-        {
-            return professionalOrganizationAddress;
-        }
-
-        professionalOrganizationAddress = new HL7V28Field
-        {
-            field = message[@"AFF"][3],
-            Id = @"AFF.3",
-            Type = @"Field",
-            Position = @"AFF.3",
-            Name = @"Professional Organization Address",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the postal address of the professional organization with which the Staff Member is associated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (professionalOrganizationAddress.field.FieldRepetitions != null && professionalOrganizationAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(professionalOrganizationAddress.Id));
-            professionalOrganizationAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(professionalOrganizationAddress, fieldData);
-        }
-
-        return professionalOrganizationAddress;
-    } 
-}
-
-internal HL7V28Field professionalOrganizationAffiliationDateRange;
-
-public HL7V28Field ProfessionalOrganizationAffiliationDateRange
-{
-    get
-    {
-        if (professionalOrganizationAffiliationDateRange != null)
-        {
-            return professionalOrganizationAffiliationDateRange;
-        }
-
-        professionalOrganizationAffiliationDateRange = new HL7V28Field
+        _professionalOrganizationAffiliationDateRange = new HL7V28Field
         {
             field = message[@"AFF"][4],
-            Id = @"AFF.4",
-            Type = @"Field",
-            Position = @"AFF.4",
-            Name = @"Professional Organization Affiliation Date Range",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"DR",
-            DataTypeName = @"Date/time Range",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the period the staff member started and ended membership in the professional organization.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (professionalOrganizationAffiliationDateRange.field.FieldRepetitions != null && professionalOrganizationAffiliationDateRange.field.FieldRepetitions.Count > 0)
+        if (_professionalOrganizationAffiliationDateRange.field.FieldRepetitions != null && _professionalOrganizationAffiliationDateRange.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(professionalOrganizationAffiliationDateRange.Id));
-            professionalOrganizationAffiliationDateRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(professionalOrganizationAffiliationDateRange, fieldData);
+            _professionalOrganizationAffiliationDateRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_professionalOrganizationAffiliationDateRange, fieldData);
         }
 
-        return professionalOrganizationAffiliationDateRange;
+        return _professionalOrganizationAffiliationDateRange;
     } 
 }
 
-internal HL7V28Field professionalAffiliationAdditionalInformation;
+internal HL7V28Field _professionalAffiliationAdditionalInformation;
 
 public HL7V28Field ProfessionalAffiliationAdditionalInformation
 {
     get
     {
-        if (professionalAffiliationAdditionalInformation != null)
+        if (_professionalAffiliationAdditionalInformation != null)
         {
-            return professionalAffiliationAdditionalInformation;
+            return _professionalAffiliationAdditionalInformation;
         }
 
-        professionalAffiliationAdditionalInformation = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"AFF"][5],
             Id = @"AFF.5",
             Type = @"Field",
             Position = @"AFF.5",
@@ -3363,17 +3288,22 @@ public HL7V28Field ProfessionalAffiliationAdditionalInformation
             TableName = null,
             Description = @"This field contains miscellaneous additional information related to the staff member's membership in the professional organization.",
             Sample = @"",
+            Fields = null
+        }
+
+        _professionalAffiliationAdditionalInformation = new HL7V28Field
+        {
+            field = message[@"AFF"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (professionalAffiliationAdditionalInformation.field.FieldRepetitions != null && professionalAffiliationAdditionalInformation.field.FieldRepetitions.Count > 0)
+        if (_professionalAffiliationAdditionalInformation.field.FieldRepetitions != null && _professionalAffiliationAdditionalInformation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(professionalAffiliationAdditionalInformation.Id));
-            professionalAffiliationAdditionalInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(professionalAffiliationAdditionalInformation, fieldData);
+            _professionalAffiliationAdditionalInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_professionalAffiliationAdditionalInformation, fieldData);
         }
 
-        return professionalAffiliationAdditionalInformation;
+        return _professionalAffiliationAdditionalInformation;
     } 
 }
     }

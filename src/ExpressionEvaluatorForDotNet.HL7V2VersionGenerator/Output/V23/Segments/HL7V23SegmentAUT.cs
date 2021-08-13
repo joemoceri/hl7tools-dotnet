@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V23SegmentAUT(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field _authorizingPayorPlanCode;
+
+public HL7V23Field AuthorizingPayorPlanCode
+{
+    get
+    {
+        if (_authorizingPayorPlanCode != null)
+        {
+            return _authorizingPayorPlanCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"AUT.1",
+            Type = @"Field",
+            Position = @"AUT.1",
+            Name = @"Authorizing Payor, Plan Code",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0072",
+            TableName = @"Insurance plan ID",
+            Description = @"This field contains the ID of the coverage plan authorizing treatment.  Values should be entries in a locally-defined table of plan codes.  Refer to user-defined table 0072 - Insurance company plans for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"AUT.1",
-                            Type = @"Field",
-                            Position = @"AUT.1",
-                            Name = @"Authorizing Payor, Plan Code",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0072",
-                            TableName = @"Insurance plan ID",
-                            Description = @"This field contains the ID of the coverage plan authorizing treatment.  Values should be entries in a locally-defined table of plan codes.  Refer to user-defined table 0072 - Insurance company plans for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AUT.1.1",
                             Type = @"Component",
@@ -156,25 +168,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _authorizingPayorPlanCode = new HL7V23Field
+        {
+            field = message[@"AUT"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_authorizingPayorPlanCode.field.FieldRepetitions != null && _authorizingPayorPlanCode.field.FieldRepetitions.Count > 0)
+        {
+            _authorizingPayorPlanCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_authorizingPayorPlanCode, fieldData);
+        }
+
+        return _authorizingPayorPlanCode;
+    } 
+}
+
+internal HL7V23Field _authorizingPayorCompanyID;
+
+public HL7V23Field AuthorizingPayorCompanyID
+{
+    get
+    {
+        if (_authorizingPayorCompanyID != null)
+        {
+            return _authorizingPayorCompanyID;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"AUT.2",
+            Type = @"Field",
+            Position = @"AUT.2",
+            Name = @"Authorizing Payor, Company ID",
+            Length = 200,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0285",
+            TableName = @"Insurance company ID codes",
+            Description = @"This field contains the ID of the insurance company or other entity that administers the authorizing coverage plan.  Values may be entries in a locally-defined table of payor codes.  Refer to userdefined table 0285 - Insurance company ID codes for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AUT.2",
-                            Type = @"Field",
-                            Position = @"AUT.2",
-                            Name = @"Authorizing Payor, Company ID",
-                            Length = 200,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0285",
-                            TableName = @"Insurance company ID codes",
-                            Description = @"This field contains the ID of the insurance company or other entity that administers the authorizing coverage plan.  Values may be entries in a locally-defined table of payor codes.  Refer to userdefined table 0285 - Insurance company ID codes for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AUT.2.1",
                             Type = @"Component",
@@ -280,43 +322,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _authorizingPayorCompanyID = new HL7V23Field
+        {
+            field = message[@"AUT"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_authorizingPayorCompanyID.field.FieldRepetitions != null && _authorizingPayorCompanyID.field.FieldRepetitions.Count > 0)
+        {
+            _authorizingPayorCompanyID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_authorizingPayorCompanyID, fieldData);
+        }
+
+        return _authorizingPayorCompanyID;
+    } 
+}
+
+internal HL7V23Field _authorizingPayorCompanyName;
+
+public HL7V23Field AuthorizingPayorCompanyName
+{
+    get
+    {
+        if (_authorizingPayorCompanyName != null)
+        {
+            return _authorizingPayorCompanyName;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"AUT.3",
+            Type = @"Field",
+            Position = @"AUT.3",
+            Name = @"Authorizing Payor, Company Name",
+            Length = 45,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the insurance company or other entity that administers the authorizing coverage plan",
+            Sample = @"",
+            Fields = null
+        }
+
+        _authorizingPayorCompanyName = new HL7V23Field
+        {
+            field = message[@"AUT"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_authorizingPayorCompanyName.field.FieldRepetitions != null && _authorizingPayorCompanyName.field.FieldRepetitions.Count > 0)
+        {
+            _authorizingPayorCompanyName.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_authorizingPayorCompanyName, fieldData);
+        }
+
+        return _authorizingPayorCompanyName;
+    } 
+}
+
+internal HL7V23Field _authorizationEffectiveDate;
+
+public HL7V23Field AuthorizationEffectiveDate
+{
+    get
+    {
+        if (_authorizationEffectiveDate != null)
+        {
+            return _authorizationEffectiveDate;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"AUT.4",
+            Type = @"Field",
+            Position = @"AUT.4",
+            Name = @"Authorization Effective Date",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the effective date of the authorization",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AUT.3",
-                            Type = @"Field",
-                            Position = @"AUT.3",
-                            Name = @"Authorizing Payor, Company Name",
-                            Length = 45,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the insurance company or other entity that administers the authorizing coverage plan",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AUT.4",
-                            Type = @"Field",
-                            Position = @"AUT.4",
-                            Name = @"Authorization Effective Date",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the effective date of the authorization",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AUT.4.1",
                             Type = @"Component",
@@ -332,25 +431,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _authorizationEffectiveDate = new HL7V23Field
+        {
+            field = message[@"AUT"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_authorizationEffectiveDate.field.FieldRepetitions != null && _authorizationEffectiveDate.field.FieldRepetitions.Count > 0)
+        {
+            _authorizationEffectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_authorizationEffectiveDate, fieldData);
+        }
+
+        return _authorizationEffectiveDate;
+    } 
+}
+
+internal HL7V23Field _authorizationExpirationDate;
+
+public HL7V23Field AuthorizationExpirationDate
+{
+    get
+    {
+        if (_authorizationExpirationDate != null)
+        {
+            return _authorizationExpirationDate;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"AUT.5",
+            Type = @"Field",
+            Position = @"AUT.5",
+            Name = @"Authorization Expiration Date",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the expiration date after which the authorization to treat will no longer be in effect from the perspective of the coverage plan",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AUT.5",
-                            Type = @"Field",
-                            Position = @"AUT.5",
-                            Name = @"Authorization Expiration Date",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the expiration date after which the authorization to treat will no longer be in effect from the perspective of the coverage plan",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AUT.5.1",
                             Type = @"Component",
@@ -366,31 +495,61 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AUT.6",
-                            Type = @"Field",
-                            Position = @"AUT.6",
-                            Name = @"Authorization Identifier",
-                            Length = 30,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the coverage application’s permanent identifier assigned to track the authorization and all related billing documents.  This field is conditionally required.  It is not required when authorization information is being requested.  However, it is required when this segment is contained in a message which is responding to a request and contains the authorization information.  This is a composite field. 
+                        }
+        }
+
+        _authorizationExpirationDate = new HL7V23Field
+        {
+            field = message[@"AUT"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_authorizationExpirationDate.field.FieldRepetitions != null && _authorizationExpirationDate.field.FieldRepetitions.Count > 0)
+        {
+            _authorizationExpirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_authorizationExpirationDate, fieldData);
+        }
+
+        return _authorizationExpirationDate;
+    } 
+}
+
+internal HL7V23Field _authorizationIdentifier;
+
+public HL7V23Field AuthorizationIdentifier
+{
+    get
+    {
+        if (_authorizationIdentifier != null)
+        {
+            return _authorizationIdentifier;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"AUT.6",
+            Type = @"Field",
+            Position = @"AUT.6",
+            Name = @"Authorization Identifier",
+            Length = 30,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the coverage application’s permanent identifier assigned to track the authorization and all related billing documents.  This field is conditionally required.  It is not required when authorization information is being requested.  However, it is required when this segment is contained in a message which is responding to a request and contains the authorization information.  This is a composite field. 
 
 The first component of this field is a string of up to 15 characters that identifies an individual authorization.  It is assigned by the coverage application, and it identifies an authorization, and the subsequent billing transactions resulting from the given authorization, uniquely among all such authorizations granted from a particular processing application. 
 
 The second component is optional because this field, itself, is already defined as an authorization identifier. 
 
 The third component is optional.  If used it should contain the application identifier for the coverage application. The application identifier is a string of up to six characters that is uniquely associated with an application.  A given healthcare provider facility, or group of intercommunicating healthcare provider facilities, should establish a unique list of applications that may be potential originators and recipients, and then assign unique application identifiers to each of those applications.  This list of application identifiers becomes one of the healthcare provider facility’s master dictionary lists.  Since applications fulfilling different application roles can send and receive referral messages containing authorizations, the coverage application identifier may not identify the application sending or receiving a particular message.  Data elements on the Message Header (MSH) segment are available to identify the actual sending and receiving applications",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"AUT.6.1",
                             Type = @"Component",
@@ -460,25 +619,55 @@ The third component is optional.  If used it should contain the application iden
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _authorizationIdentifier = new HL7V23Field
+        {
+            field = message[@"AUT"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_authorizationIdentifier.field.FieldRepetitions != null && _authorizationIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _authorizationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_authorizationIdentifier, fieldData);
+        }
+
+        return _authorizationIdentifier;
+    } 
+}
+
+internal HL7V23Field _reimbursementLimit;
+
+public HL7V23Field ReimbursementLimit
+{
+    get
+    {
+        if (_reimbursementLimit != null)
+        {
+            return _reimbursementLimit;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"AUT.7",
+            Type = @"Field",
+            Position = @"AUT.7",
+            Name = @"Reimbursement Limit",
+            Length = 25,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the dollar limit for reimbursement specified by the coverage plan for the authorized treatment",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AUT.7",
-                            Type = @"Field",
-                            Position = @"AUT.7",
-                            Name = @"Reimbursement Limit",
-                            Length = 25,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the dollar limit for reimbursement specified by the coverage plan for the authorized treatment",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AUT.7.1",
                             Type = @"Component",
@@ -728,61 +917,145 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"Refers to HL7 table 0298 - CP range type for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _reimbursementLimit = new HL7V23Field
+        {
+            field = message[@"AUT"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reimbursementLimit.field.FieldRepetitions != null && _reimbursementLimit.field.FieldRepetitions.Count > 0)
+        {
+            _reimbursementLimit.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_reimbursementLimit, fieldData);
+        }
+
+        return _reimbursementLimit;
+    } 
+}
+
+internal HL7V23Field _requestedNumberofTreatments;
+
+public HL7V23Field RequestedNumberofTreatments
+{
+    get
+    {
+        if (_requestedNumberofTreatments != null)
+        {
+            return _requestedNumberofTreatments;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"AUT.8",
+            Type = @"Field",
+            Position = @"AUT.8",
+            Name = @"Requested Number of Treatments",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the requested number of times that the treatment may be administered to the patient without obtaining additional authorization",
+            Sample = @"",
+            Fields = null
+        }
+
+        _requestedNumberofTreatments = new HL7V23Field
+        {
+            field = message[@"AUT"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedNumberofTreatments.field.FieldRepetitions != null && _requestedNumberofTreatments.field.FieldRepetitions.Count > 0)
+        {
+            _requestedNumberofTreatments.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_requestedNumberofTreatments, fieldData);
+        }
+
+        return _requestedNumberofTreatments;
+    } 
+}
+
+internal HL7V23Field _authorizedNumberofTreatments;
+
+public HL7V23Field AuthorizedNumberofTreatments
+{
+    get
+    {
+        if (_authorizedNumberofTreatments != null)
+        {
+            return _authorizedNumberofTreatments;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"AUT.9",
+            Type = @"Field",
+            Position = @"AUT.9",
+            Name = @"Authorized Number of Treatments",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number of times that the authorized treatment may be administered to the patient without obtaining additional authorization",
+            Sample = @"",
+            Fields = null
+        }
+
+        _authorizedNumberofTreatments = new HL7V23Field
+        {
+            field = message[@"AUT"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_authorizedNumberofTreatments.field.FieldRepetitions != null && _authorizedNumberofTreatments.field.FieldRepetitions.Count > 0)
+        {
+            _authorizedNumberofTreatments.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_authorizedNumberofTreatments, fieldData);
+        }
+
+        return _authorizedNumberofTreatments;
+    } 
+}
+
+internal HL7V23Field _processDate;
+
+public HL7V23Field ProcessDate
+{
+    get
+    {
+        if (_processDate != null)
+        {
+            return _processDate;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"AUT.10",
+            Type = @"Field",
+            Position = @"AUT.10",
+            Name = @"Process Date",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date that the authorization originated with the authorizing party",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AUT.8",
-                            Type = @"Field",
-                            Position = @"AUT.8",
-                            Name = @"Requested Number of Treatments",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the requested number of times that the treatment may be administered to the patient without obtaining additional authorization",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AUT.9",
-                            Type = @"Field",
-                            Position = @"AUT.9",
-                            Name = @"Authorized Number of Treatments",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number of times that the authorized treatment may be administered to the patient without obtaining additional authorization",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AUT.10",
-                            Type = @"Field",
-                            Position = @"AUT.10",
-                            Name = @"Process Date",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date that the authorization originated with the authorizing party",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AUT.10.1",
                             Type = @"Component",
@@ -798,430 +1071,23 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V23SegmentAUT(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V23Field authorizingPayorPlanCode;
-
-public HL7V23Field AuthorizingPayorPlanCode
-{
-    get
-    {
-        if (authorizingPayorPlanCode != null)
-        {
-            return authorizingPayorPlanCode;
-        }
-
-        authorizingPayorPlanCode = new HL7V23Field
-        {
-            field = message[@"AUT"][1],
-            Id = @"AUT.1",
-            Type = @"Field",
-            Position = @"AUT.1",
-            Name = @"Authorizing Payor, Plan Code",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0072",
-            TableName = @"Insurance plan ID",
-            Description = @"This field contains the ID of the coverage plan authorizing treatment.  Values should be entries in a locally-defined table of plan codes.  Refer to user-defined table 0072 - Insurance company plans for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (authorizingPayorPlanCode.field.FieldRepetitions != null && authorizingPayorPlanCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authorizingPayorPlanCode.Id));
-            authorizingPayorPlanCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(authorizingPayorPlanCode, fieldData);
-        }
-
-        return authorizingPayorPlanCode;
-    } 
-}
-
-internal HL7V23Field authorizingPayorCompanyID;
-
-public HL7V23Field AuthorizingPayorCompanyID
-{
-    get
-    {
-        if (authorizingPayorCompanyID != null)
-        {
-            return authorizingPayorCompanyID;
-        }
-
-        authorizingPayorCompanyID = new HL7V23Field
-        {
-            field = message[@"AUT"][2],
-            Id = @"AUT.2",
-            Type = @"Field",
-            Position = @"AUT.2",
-            Name = @"Authorizing Payor, Company ID",
-            Length = 200,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0285",
-            TableName = @"Insurance company ID codes",
-            Description = @"This field contains the ID of the insurance company or other entity that administers the authorizing coverage plan.  Values may be entries in a locally-defined table of payor codes.  Refer to userdefined table 0285 - Insurance company ID codes for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (authorizingPayorCompanyID.field.FieldRepetitions != null && authorizingPayorCompanyID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authorizingPayorCompanyID.Id));
-            authorizingPayorCompanyID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(authorizingPayorCompanyID, fieldData);
-        }
-
-        return authorizingPayorCompanyID;
-    } 
-}
-
-internal HL7V23Field authorizingPayorCompanyName;
-
-public HL7V23Field AuthorizingPayorCompanyName
-{
-    get
-    {
-        if (authorizingPayorCompanyName != null)
-        {
-            return authorizingPayorCompanyName;
-        }
-
-        authorizingPayorCompanyName = new HL7V23Field
-        {
-            field = message[@"AUT"][3],
-            Id = @"AUT.3",
-            Type = @"Field",
-            Position = @"AUT.3",
-            Name = @"Authorizing Payor, Company Name",
-            Length = 45,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the insurance company or other entity that administers the authorizing coverage plan",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (authorizingPayorCompanyName.field.FieldRepetitions != null && authorizingPayorCompanyName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authorizingPayorCompanyName.Id));
-            authorizingPayorCompanyName.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(authorizingPayorCompanyName, fieldData);
-        }
-
-        return authorizingPayorCompanyName;
-    } 
-}
-
-internal HL7V23Field authorizationEffectiveDate;
-
-public HL7V23Field AuthorizationEffectiveDate
-{
-    get
-    {
-        if (authorizationEffectiveDate != null)
-        {
-            return authorizationEffectiveDate;
-        }
-
-        authorizationEffectiveDate = new HL7V23Field
-        {
-            field = message[@"AUT"][4],
-            Id = @"AUT.4",
-            Type = @"Field",
-            Position = @"AUT.4",
-            Name = @"Authorization Effective Date",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the effective date of the authorization",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (authorizationEffectiveDate.field.FieldRepetitions != null && authorizationEffectiveDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authorizationEffectiveDate.Id));
-            authorizationEffectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(authorizationEffectiveDate, fieldData);
-        }
-
-        return authorizationEffectiveDate;
-    } 
-}
-
-internal HL7V23Field authorizationExpirationDate;
-
-public HL7V23Field AuthorizationExpirationDate
-{
-    get
-    {
-        if (authorizationExpirationDate != null)
-        {
-            return authorizationExpirationDate;
-        }
-
-        authorizationExpirationDate = new HL7V23Field
-        {
-            field = message[@"AUT"][5],
-            Id = @"AUT.5",
-            Type = @"Field",
-            Position = @"AUT.5",
-            Name = @"Authorization Expiration Date",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the expiration date after which the authorization to treat will no longer be in effect from the perspective of the coverage plan",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (authorizationExpirationDate.field.FieldRepetitions != null && authorizationExpirationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authorizationExpirationDate.Id));
-            authorizationExpirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(authorizationExpirationDate, fieldData);
-        }
-
-        return authorizationExpirationDate;
-    } 
-}
-
-internal HL7V23Field authorizationIdentifier;
-
-public HL7V23Field AuthorizationIdentifier
-{
-    get
-    {
-        if (authorizationIdentifier != null)
-        {
-            return authorizationIdentifier;
-        }
-
-        authorizationIdentifier = new HL7V23Field
-        {
-            field = message[@"AUT"][6],
-            Id = @"AUT.6",
-            Type = @"Field",
-            Position = @"AUT.6",
-            Name = @"Authorization Identifier",
-            Length = 30,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the coverage application’s permanent identifier assigned to track the authorization and all related billing documents.  This field is conditionally required.  It is not required when authorization information is being requested.  However, it is required when this segment is contained in a message which is responding to a request and contains the authorization information.  This is a composite field. 
-
-The first component of this field is a string of up to 15 characters that identifies an individual authorization.  It is assigned by the coverage application, and it identifies an authorization, and the subsequent billing transactions resulting from the given authorization, uniquely among all such authorizations granted from a particular processing application. 
-
-The second component is optional because this field, itself, is already defined as an authorization identifier. 
-
-The third component is optional.  If used it should contain the application identifier for the coverage application. The application identifier is a string of up to six characters that is uniquely associated with an application.  A given healthcare provider facility, or group of intercommunicating healthcare provider facilities, should establish a unique list of applications that may be potential originators and recipients, and then assign unique application identifiers to each of those applications.  This list of application identifiers becomes one of the healthcare provider facility’s master dictionary lists.  Since applications fulfilling different application roles can send and receive referral messages containing authorizations, the coverage application identifier may not identify the application sending or receiving a particular message.  Data elements on the Message Header (MSH) segment are available to identify the actual sending and receiving applications",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (authorizationIdentifier.field.FieldRepetitions != null && authorizationIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authorizationIdentifier.Id));
-            authorizationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(authorizationIdentifier, fieldData);
-        }
-
-        return authorizationIdentifier;
-    } 
-}
-
-internal HL7V23Field reimbursementLimit;
-
-public HL7V23Field ReimbursementLimit
-{
-    get
-    {
-        if (reimbursementLimit != null)
-        {
-            return reimbursementLimit;
-        }
-
-        reimbursementLimit = new HL7V23Field
-        {
-            field = message[@"AUT"][7],
-            Id = @"AUT.7",
-            Type = @"Field",
-            Position = @"AUT.7",
-            Name = @"Reimbursement Limit",
-            Length = 25,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the dollar limit for reimbursement specified by the coverage plan for the authorized treatment",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reimbursementLimit.field.FieldRepetitions != null && reimbursementLimit.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reimbursementLimit.Id));
-            reimbursementLimit.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(reimbursementLimit, fieldData);
-        }
-
-        return reimbursementLimit;
-    } 
-}
-
-internal HL7V23Field requestedNumberofTreatments;
-
-public HL7V23Field RequestedNumberofTreatments
-{
-    get
-    {
-        if (requestedNumberofTreatments != null)
-        {
-            return requestedNumberofTreatments;
-        }
-
-        requestedNumberofTreatments = new HL7V23Field
-        {
-            field = message[@"AUT"][8],
-            Id = @"AUT.8",
-            Type = @"Field",
-            Position = @"AUT.8",
-            Name = @"Requested Number of Treatments",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the requested number of times that the treatment may be administered to the patient without obtaining additional authorization",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedNumberofTreatments.field.FieldRepetitions != null && requestedNumberofTreatments.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedNumberofTreatments.Id));
-            requestedNumberofTreatments.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(requestedNumberofTreatments, fieldData);
-        }
-
-        return requestedNumberofTreatments;
-    } 
-}
-
-internal HL7V23Field authorizedNumberofTreatments;
-
-public HL7V23Field AuthorizedNumberofTreatments
-{
-    get
-    {
-        if (authorizedNumberofTreatments != null)
-        {
-            return authorizedNumberofTreatments;
-        }
-
-        authorizedNumberofTreatments = new HL7V23Field
-        {
-            field = message[@"AUT"][9],
-            Id = @"AUT.9",
-            Type = @"Field",
-            Position = @"AUT.9",
-            Name = @"Authorized Number of Treatments",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number of times that the authorized treatment may be administered to the patient without obtaining additional authorization",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (authorizedNumberofTreatments.field.FieldRepetitions != null && authorizedNumberofTreatments.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authorizedNumberofTreatments.Id));
-            authorizedNumberofTreatments.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(authorizedNumberofTreatments, fieldData);
-        }
-
-        return authorizedNumberofTreatments;
-    } 
-}
-
-internal HL7V23Field processDate;
-
-public HL7V23Field ProcessDate
-{
-    get
-    {
-        if (processDate != null)
-        {
-            return processDate;
-        }
-
-        processDate = new HL7V23Field
+        _processDate = new HL7V23Field
         {
             field = message[@"AUT"][10],
-            Id = @"AUT.10",
-            Type = @"Field",
-            Position = @"AUT.10",
-            Name = @"Process Date",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date that the authorization originated with the authorizing party",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (processDate.field.FieldRepetitions != null && processDate.field.FieldRepetitions.Count > 0)
+        if (_processDate.field.FieldRepetitions != null && _processDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(processDate.Id));
-            processDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(processDate, fieldData);
+            _processDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_processDate, fieldData);
         }
 
-        return processDate;
+        return _processDate;
     } 
 }
     }

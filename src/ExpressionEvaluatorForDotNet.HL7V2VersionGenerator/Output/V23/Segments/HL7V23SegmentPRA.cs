@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V23SegmentPRA(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field _pRAPrimaryKeyValue;
+
+public HL7V23Field PRAPrimaryKeyValue
+{
+    get
+    {
+        if (_pRAPrimaryKeyValue != null)
+        {
+            return _pRAPrimaryKeyValue;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRA.1",
+            Type = @"Field",
+            Position = @"PRA.1",
+            Name = @"PRA - Primary Key Value",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field must match MFE-4-primary key value, to identify which entry is being referenced",
+            Sample = @"",
+            Fields = null
+        }
+
+        _pRAPrimaryKeyValue = new HL7V23Field
+        {
+            field = message[@"PRA"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_pRAPrimaryKeyValue.field.FieldRepetitions != null && _pRAPrimaryKeyValue.field.FieldRepetitions.Count > 0)
+        {
+            _pRAPrimaryKeyValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_pRAPrimaryKeyValue, fieldData);
+        }
+
+        return _pRAPrimaryKeyValue;
+    } 
+}
+
+internal HL7V23Field _practionerGroup;
+
+public HL7V23Field PractionerGroup
+{
+    get
+    {
+        if (_practionerGroup != null)
+        {
+            return _practionerGroup;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRA.2",
+            Type = @"Field",
+            Position = @"PRA.2",
+            Name = @"Practioner Group",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name and/or code of a group of practitioners to which this practitioner belongs",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PRA.1",
-                            Type = @"Field",
-                            Position = @"PRA.1",
-                            Name = @"PRA - Primary Key Value",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field must match MFE-4-primary key value, to identify which entry is being referenced",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRA.2",
-                            Type = @"Field",
-                            Position = @"PRA.2",
-                            Name = @"Practioner Group",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name and/or code of a group of practitioners to which this practitioner belongs",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.2.1",
                             Type = @"Component",
@@ -174,61 +213,145 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _practionerGroup = new HL7V23Field
+        {
+            field = message[@"PRA"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_practionerGroup.field.FieldRepetitions != null && _practionerGroup.field.FieldRepetitions.Count > 0)
+        {
+            _practionerGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_practionerGroup, fieldData);
+        }
+
+        return _practionerGroup;
+    } 
+}
+
+internal HL7V23Field _practionerCategory;
+
+public HL7V23Field PractionerCategory
+{
+    get
+    {
+        if (_practionerCategory != null)
+        {
+            return _practionerCategory;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRA.3",
+            Type = @"Field",
+            Position = @"PRA.3",
+            Name = @"Practioner Category",
+            Length = 3,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0186",
+            TableName = @"Practitioner Category",
+            Description = @"This field contains the category of practitioner.  Refer to user-defined table 0186 - Practitioner category whose values may include codes for staff physician, courtesy physician, resident, physician assistant, physical therapist, psychiatrist, psychologist, pharmacist, registered nurse, licensed practical nurse, licensed vocational nurse, nurse practitioner, etc",
+            Sample = @"",
+            Fields = null
+        }
+
+        _practionerCategory = new HL7V23Field
+        {
+            field = message[@"PRA"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_practionerCategory.field.FieldRepetitions != null && _practionerCategory.field.FieldRepetitions.Count > 0)
+        {
+            _practionerCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_practionerCategory, fieldData);
+        }
+
+        return _practionerCategory;
+    } 
+}
+
+internal HL7V23Field _providerBilling;
+
+public HL7V23Field ProviderBilling
+{
+    get
+    {
+        if (_providerBilling != null)
+        {
+            return _providerBilling;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRA.4",
+            Type = @"Field",
+            Position = @"PRA.4",
+            Name = @"Provider Billing",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0187",
+            TableName = @"Provider billing",
+            Description = @"This field indicates how provider services are billed.  Refer to HL7 table 0187 - Provider billing for valid values",
+            Sample = @"",
+            Fields = null
+        }
+
+        _providerBilling = new HL7V23Field
+        {
+            field = message[@"PRA"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerBilling.field.FieldRepetitions != null && _providerBilling.field.FieldRepetitions.Count > 0)
+        {
+            _providerBilling.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_providerBilling, fieldData);
+        }
+
+        return _providerBilling;
+    } 
+}
+
+internal HL7V23Field _specialty;
+
+public HL7V23Field Specialty
+{
+    get
+    {
+        if (_specialty != null)
+        {
+            return _specialty;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRA.5",
+            Type = @"Field",
+            Position = @"PRA.5",
+            Name = @"Specialty",
+            Length = 100,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CM_SPD",
+            DataTypeName = @"Specialty",
+            TableId = null,
+            TableName = null,
+            Description = @"This repeating field is made up of multiple components to record the practitioner’s specialties.  The multiple components of each specialty are: (1) specialty name or abbreviation, identifies provider’s specialty, (2) name of specialty governing board, (3) Certification Status, (4) certified date contains the  date of certification, if certified",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRA.3",
-                            Type = @"Field",
-                            Position = @"PRA.3",
-                            Name = @"Practioner Category",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0186",
-                            TableName = @"Practitioner Category",
-                            Description = @"This field contains the category of practitioner.  Refer to user-defined table 0186 - Practitioner category whose values may include codes for staff physician, courtesy physician, resident, physician assistant, physical therapist, psychiatrist, psychologist, pharmacist, registered nurse, licensed practical nurse, licensed vocational nurse, nurse practitioner, etc",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRA.4",
-                            Type = @"Field",
-                            Position = @"PRA.4",
-                            Name = @"Provider Billing",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0187",
-                            TableName = @"Provider billing",
-                            Description = @"This field indicates how provider services are billed.  Refer to HL7 table 0187 - Provider billing for valid values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRA.5",
-                            Type = @"Field",
-                            Position = @"PRA.5",
-                            Name = @"Specialty",
-                            Length = 100,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CM_SPD",
-                            DataTypeName = @"Specialty",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This repeating field is made up of multiple components to record the practitioner’s specialties.  The multiple components of each specialty are: (1) specialty name or abbreviation, identifies provider’s specialty, (2) name of specialty governing board, (3) Certification Status, (4) certified date contains the  date of certification, if certified",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRA.5.1",
                             Type = @"Component",
@@ -298,25 +421,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specialty = new HL7V23Field
+        {
+            field = message[@"PRA"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specialty.field.FieldRepetitions != null && _specialty.field.FieldRepetitions.Count > 0)
+        {
+            _specialty.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_specialty, fieldData);
+        }
+
+        return _specialty;
+    } 
+}
+
+internal HL7V23Field _practitionerIDNumbers;
+
+public HL7V23Field PractitionerIDNumbers
+{
+    get
+    {
+        if (_practitionerIDNumbers != null)
+        {
+            return _practitionerIDNumbers;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRA.6",
+            Type = @"Field",
+            Position = @"PRA.6",
+            Name = @"Practitioner ID Numbers",
+            Length = 100,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CM_PLN",
+            DataTypeName = @"Practitioner ID Numbers",
+            TableId = null,
+            TableName = null,
+            Description = @"This repeating field contains this practitioner’s license numbers and other ID numbers.  This is a field made up of the following components: (1) the ID number, and (2) the type of number, and optionally (3) the state or province in which it is valid, if relevant, or other qualifying information.  It is recommended that state qualifications use the abbreviations from the postal service of the country.  The practitioner ID number type (component 2) is a user-defined table (table 0338).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRA.6",
-                            Type = @"Field",
-                            Position = @"PRA.6",
-                            Name = @"Practitioner ID Numbers",
-                            Length = 100,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CM_PLN",
-                            DataTypeName = @"Practitioner ID Numbers",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This repeating field contains this practitioner’s license numbers and other ID numbers.  This is a field made up of the following components: (1) the ID number, and (2) the type of number, and optionally (3) the state or province in which it is valid, if relevant, or other qualifying information.  It is recommended that state qualifications use the abbreviations from the postal service of the country.  The practitioner ID number type (component 2) is a user-defined table (table 0338).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRA.6.1",
                             Type = @"Component",
@@ -386,25 +539,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _practitionerIDNumbers = new HL7V23Field
+        {
+            field = message[@"PRA"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_practitionerIDNumbers.field.FieldRepetitions != null && _practitionerIDNumbers.field.FieldRepetitions.Count > 0)
+        {
+            _practitionerIDNumbers.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_practitionerIDNumbers, fieldData);
+        }
+
+        return _practitionerIDNumbers;
+    } 
+}
+
+internal HL7V23Field _privileges;
+
+public HL7V23Field Privileges
+{
+    get
+    {
+        if (_privileges != null)
+        {
+            return _privileges;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRA.7",
+            Type = @"Field",
+            Position = @"PRA.7",
+            Name = @"Privileges",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CM_PIP",
+            DataTypeName = @"Privileges",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the institutional privileges which this provider may exercise.  Depends upon institutional needs.  For example, admit, transfer, discharge, place orders, verify orders, review results, etc.  Can also be used for privileges other than patient services.  This is a repeating field, with each privilege made up of the following components: (1) privilege; (2) privilege class; (3) privilege expiration date, if any; and (4) privilege activation date, if any.  Note that the privilege and privilege class components are CE data types, and thus they are encoded with the subcomponent delimiter (&) rather than the component delimiter (^)",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRA.7",
-                            Type = @"Field",
-                            Position = @"PRA.7",
-                            Name = @"Privileges",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CM_PIP",
-                            DataTypeName = @"Privileges",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the institutional privileges which this provider may exercise.  Depends upon institutional needs.  For example, admit, transfer, discharge, place orders, verify orders, review results, etc.  Can also be used for privileges other than patient services.  This is a repeating field, with each privilege made up of the following components: (1) privilege; (2) privilege class; (3) privilege expiration date, if any; and (4) privilege activation date, if any.  Note that the privilege and privilege class components are CE data types, and thus they are encoded with the subcomponent delimiter (&) rather than the component delimiter (^)",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRA.7.1",
                             Type = @"Component",
@@ -686,336 +869,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRA.8",
-                            Type = @"Field",
-                            Position = @"PRA.8",
-                            Name = @"Date Entered Practice",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date the practitioner began practicing at the present institution (e.g., at hospital, at physician organization, at managed care network).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V23SegmentPRA(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V23Field pRAPrimaryKeyValue;
-
-public HL7V23Field PRAPrimaryKeyValue
-{
-    get
-    {
-        if (pRAPrimaryKeyValue != null)
-        {
-            return pRAPrimaryKeyValue;
-        }
-
-        pRAPrimaryKeyValue = new HL7V23Field
-        {
-            field = message[@"PRA"][1],
-            Id = @"PRA.1",
-            Type = @"Field",
-            Position = @"PRA.1",
-            Name = @"PRA - Primary Key Value",
-            Length = 20,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field must match MFE-4-primary key value, to identify which entry is being referenced",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (pRAPrimaryKeyValue.field.FieldRepetitions != null && pRAPrimaryKeyValue.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pRAPrimaryKeyValue.Id));
-            pRAPrimaryKeyValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(pRAPrimaryKeyValue, fieldData);
-        }
-
-        return pRAPrimaryKeyValue;
-    } 
-}
-
-internal HL7V23Field practionerGroup;
-
-public HL7V23Field PractionerGroup
-{
-    get
-    {
-        if (practionerGroup != null)
-        {
-            return practionerGroup;
-        }
-
-        practionerGroup = new HL7V23Field
-        {
-            field = message[@"PRA"][2],
-            Id = @"PRA.2",
-            Type = @"Field",
-            Position = @"PRA.2",
-            Name = @"Practioner Group",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name and/or code of a group of practitioners to which this practitioner belongs",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (practionerGroup.field.FieldRepetitions != null && practionerGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(practionerGroup.Id));
-            practionerGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(practionerGroup, fieldData);
-        }
-
-        return practionerGroup;
-    } 
-}
-
-internal HL7V23Field practionerCategory;
-
-public HL7V23Field PractionerCategory
-{
-    get
-    {
-        if (practionerCategory != null)
-        {
-            return practionerCategory;
-        }
-
-        practionerCategory = new HL7V23Field
-        {
-            field = message[@"PRA"][3],
-            Id = @"PRA.3",
-            Type = @"Field",
-            Position = @"PRA.3",
-            Name = @"Practioner Category",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0186",
-            TableName = @"Practitioner Category",
-            Description = @"This field contains the category of practitioner.  Refer to user-defined table 0186 - Practitioner category whose values may include codes for staff physician, courtesy physician, resident, physician assistant, physical therapist, psychiatrist, psychologist, pharmacist, registered nurse, licensed practical nurse, licensed vocational nurse, nurse practitioner, etc",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (practionerCategory.field.FieldRepetitions != null && practionerCategory.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(practionerCategory.Id));
-            practionerCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(practionerCategory, fieldData);
-        }
-
-        return practionerCategory;
-    } 
-}
-
-internal HL7V23Field providerBilling;
-
-public HL7V23Field ProviderBilling
-{
-    get
-    {
-        if (providerBilling != null)
-        {
-            return providerBilling;
-        }
-
-        providerBilling = new HL7V23Field
-        {
-            field = message[@"PRA"][4],
-            Id = @"PRA.4",
-            Type = @"Field",
-            Position = @"PRA.4",
-            Name = @"Provider Billing",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0187",
-            TableName = @"Provider billing",
-            Description = @"This field indicates how provider services are billed.  Refer to HL7 table 0187 - Provider billing for valid values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerBilling.field.FieldRepetitions != null && providerBilling.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerBilling.Id));
-            providerBilling.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(providerBilling, fieldData);
-        }
-
-        return providerBilling;
-    } 
-}
-
-internal HL7V23Field specialty;
-
-public HL7V23Field Specialty
-{
-    get
-    {
-        if (specialty != null)
-        {
-            return specialty;
-        }
-
-        specialty = new HL7V23Field
-        {
-            field = message[@"PRA"][5],
-            Id = @"PRA.5",
-            Type = @"Field",
-            Position = @"PRA.5",
-            Name = @"Specialty",
-            Length = 100,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CM_SPD",
-            DataTypeName = @"Specialty",
-            TableId = null,
-            TableName = null,
-            Description = @"This repeating field is made up of multiple components to record the practitioner’s specialties.  The multiple components of each specialty are: (1) specialty name or abbreviation, identifies provider’s specialty, (2) name of specialty governing board, (3) Certification Status, (4) certified date contains the  date of certification, if certified",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specialty.field.FieldRepetitions != null && specialty.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specialty.Id));
-            specialty.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(specialty, fieldData);
-        }
-
-        return specialty;
-    } 
-}
-
-internal HL7V23Field practitionerIDNumbers;
-
-public HL7V23Field PractitionerIDNumbers
-{
-    get
-    {
-        if (practitionerIDNumbers != null)
-        {
-            return practitionerIDNumbers;
-        }
-
-        practitionerIDNumbers = new HL7V23Field
-        {
-            field = message[@"PRA"][6],
-            Id = @"PRA.6",
-            Type = @"Field",
-            Position = @"PRA.6",
-            Name = @"Practitioner ID Numbers",
-            Length = 100,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CM_PLN",
-            DataTypeName = @"Practitioner ID Numbers",
-            TableId = null,
-            TableName = null,
-            Description = @"This repeating field contains this practitioner’s license numbers and other ID numbers.  This is a field made up of the following components: (1) the ID number, and (2) the type of number, and optionally (3) the state or province in which it is valid, if relevant, or other qualifying information.  It is recommended that state qualifications use the abbreviations from the postal service of the country.  The practitioner ID number type (component 2) is a user-defined table (table 0338).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (practitionerIDNumbers.field.FieldRepetitions != null && practitionerIDNumbers.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(practitionerIDNumbers.Id));
-            practitionerIDNumbers.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(practitionerIDNumbers, fieldData);
-        }
-
-        return practitionerIDNumbers;
-    } 
-}
-
-internal HL7V23Field privileges;
-
-public HL7V23Field Privileges
-{
-    get
-    {
-        if (privileges != null)
-        {
-            return privileges;
-        }
-
-        privileges = new HL7V23Field
+        _privileges = new HL7V23Field
         {
             field = message[@"PRA"][7],
-            Id = @"PRA.7",
-            Type = @"Field",
-            Position = @"PRA.7",
-            Name = @"Privileges",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CM_PIP",
-            DataTypeName = @"Privileges",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the institutional privileges which this provider may exercise.  Depends upon institutional needs.  For example, admit, transfer, discharge, place orders, verify orders, review results, etc.  Can also be used for privileges other than patient services.  This is a repeating field, with each privilege made up of the following components: (1) privilege; (2) privilege class; (3) privilege expiration date, if any; and (4) privilege activation date, if any.  Note that the privilege and privilege class components are CE data types, and thus they are encoded with the subcomponent delimiter (&) rather than the component delimiter (^)",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (privileges.field.FieldRepetitions != null && privileges.field.FieldRepetitions.Count > 0)
+        if (_privileges.field.FieldRepetitions != null && _privileges.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(privileges.Id));
-            privileges.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(privileges, fieldData);
+            _privileges.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_privileges, fieldData);
         }
 
-        return privileges;
+        return _privileges;
     } 
 }
 
-internal HL7V23Field dateEnteredPractice;
+internal HL7V23Field _dateEnteredPractice;
 
 public HL7V23Field DateEnteredPractice
 {
     get
     {
-        if (dateEnteredPractice != null)
+        if (_dateEnteredPractice != null)
         {
-            return dateEnteredPractice;
+            return _dateEnteredPractice;
         }
 
-        dateEnteredPractice = new HL7V23Field
+        var fieldData = new HL7V23FieldData
         {
-            field = message[@"PRA"][8],
             Id = @"PRA.8",
             Type = @"Field",
             Position = @"PRA.8",
@@ -1029,17 +915,22 @@ public HL7V23Field DateEnteredPractice
             TableName = null,
             Description = @"This field contains the date the practitioner began practicing at the present institution (e.g., at hospital, at physician organization, at managed care network).",
             Sample = @"",
+            Fields = null
+        }
+
+        _dateEnteredPractice = new HL7V23Field
+        {
+            field = message[@"PRA"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dateEnteredPractice.field.FieldRepetitions != null && dateEnteredPractice.field.FieldRepetitions.Count > 0)
+        if (_dateEnteredPractice.field.FieldRepetitions != null && _dateEnteredPractice.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateEnteredPractice.Id));
-            dateEnteredPractice.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(dateEnteredPractice, fieldData);
+            _dateEnteredPractice.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_dateEnteredPractice, fieldData);
         }
 
-        return dateEnteredPractice;
+        return _dateEnteredPractice;
     } 
 }
     }

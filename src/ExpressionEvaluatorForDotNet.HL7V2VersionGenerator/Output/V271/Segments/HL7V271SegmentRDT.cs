@@ -29,52 +29,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"RDT.1",
-                            Type = @"Field",
-                            Position = @"RDT.1",
-                            Name = @"Column Value",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"varies",
-                            DataTypeName = @"Varies",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is a requested field.  Fields occur in the position order defined for the query or table (unless overridden by an optional RDF segment on a stored procedure request or Virtual Table query message), separated by field delimiters.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V271SegmentRDT(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V271Field columnValue;
+        internal HL7V271Field _columnValue;
 
 public HL7V271Field ColumnValue
 {
     get
     {
-        if (columnValue != null)
+        if (_columnValue != null)
         {
-            return columnValue;
+            return _columnValue;
         }
 
-        columnValue = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"RDT"][1],
             Id = @"RDT.1",
             Type = @"Field",
             Position = @"RDT.1",
@@ -88,17 +60,22 @@ public HL7V271Field ColumnValue
             TableName = null,
             Description = @"This field is a requested field.  Fields occur in the position order defined for the query or table (unless overridden by an optional RDF segment on a stored procedure request or Virtual Table query message), separated by field delimiters.",
             Sample = @"",
+            Fields = null
+        }
+
+        _columnValue = new HL7V271Field
+        {
+            field = message[@"RDT"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (columnValue.field.FieldRepetitions != null && columnValue.field.FieldRepetitions.Count > 0)
+        if (_columnValue.field.FieldRepetitions != null && _columnValue.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(columnValue.Id));
-            columnValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(columnValue, fieldData);
+            _columnValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_columnValue, fieldData);
         }
 
-        return columnValue;
+        return _columnValue;
     } 
 }
     }

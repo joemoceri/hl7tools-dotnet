@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V22SegmentMFI(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V22Field _masterFileIdentifier;
+
+public HL7V22Field MasterFileIdentifier
+{
+    get
+    {
+        if (_masterFileIdentifier != null)
+        {
+            return _masterFileIdentifier;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MFI.1",
+            Type = @"Field",
+            Position = @"MFI.1",
+            Name = @"Master File Identifier",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0175",
+            TableName = @"MASTER FILE IDENTIFIER CODE",
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"MFI.1",
-                            Type = @"Field",
-                            Position = @"MFI.1",
-                            Name = @"Master File Identifier",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0175",
-                            TableName = @"MASTER FILE IDENTIFIER CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MFI.1.1",
                             Type = @"Component",
@@ -156,61 +168,145 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _masterFileIdentifier = new HL7V22Field
+        {
+            field = message[@"MFI"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_masterFileIdentifier.field.FieldRepetitions != null && _masterFileIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _masterFileIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_masterFileIdentifier, fieldData);
+        }
+
+        return _masterFileIdentifier;
+    } 
+}
+
+internal HL7V22Field _masterFileApplicationIdentifier;
+
+public HL7V22Field MasterFileApplicationIdentifier
+{
+    get
+    {
+        if (_masterFileApplicationIdentifier != null)
+        {
+            return _masterFileApplicationIdentifier;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MFI.2",
+            Type = @"Field",
+            Position = @"MFI.2",
+            Name = @"Master File Application Identifier",
+            Length = 6,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"0176",
+            TableName = @"MASTER FILE APPLICATION IDENTIFIER",
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _masterFileApplicationIdentifier = new HL7V22Field
+        {
+            field = message[@"MFI"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_masterFileApplicationIdentifier.field.FieldRepetitions != null && _masterFileApplicationIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _masterFileApplicationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_masterFileApplicationIdentifier, fieldData);
+        }
+
+        return _masterFileApplicationIdentifier;
+    } 
+}
+
+internal HL7V22Field _filelevelEventCode;
+
+public HL7V22Field FilelevelEventCode
+{
+    get
+    {
+        if (_filelevelEventCode != null)
+        {
+            return _filelevelEventCode;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MFI.3",
+            Type = @"Field",
+            Position = @"MFI.3",
+            Name = @"File-level Event Code",
+            Length = 3,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"0178",
+            TableName = @"FILE-LEVEL EVENT CODE",
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _filelevelEventCode = new HL7V22Field
+        {
+            field = message[@"MFI"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_filelevelEventCode.field.FieldRepetitions != null && _filelevelEventCode.field.FieldRepetitions.Count > 0)
+        {
+            _filelevelEventCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_filelevelEventCode, fieldData);
+        }
+
+        return _filelevelEventCode;
+    } 
+}
+
+internal HL7V22Field _enteredDateTime;
+
+public HL7V22Field EnteredDateTime
+{
+    get
+    {
+        if (_enteredDateTime != null)
+        {
+            return _enteredDateTime;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MFI.4",
+            Type = @"Field",
+            Position = @"MFI.4",
+            Name = @"Entered Date / Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MFI.2",
-                            Type = @"Field",
-                            Position = @"MFI.2",
-                            Name = @"Master File Application Identifier",
-                            Length = 6,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0176",
-                            TableName = @"MASTER FILE APPLICATION IDENTIFIER",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MFI.3",
-                            Type = @"Field",
-                            Position = @"MFI.3",
-                            Name = @"File-level Event Code",
-                            Length = 3,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0178",
-                            TableName = @"FILE-LEVEL EVENT CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MFI.4",
-                            Type = @"Field",
-                            Position = @"MFI.4",
-                            Name = @"Entered Date / Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MFI.4.1",
                             Type = @"Component",
@@ -244,25 +340,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _enteredDateTime = new HL7V22Field
+        {
+            field = message[@"MFI"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_enteredDateTime.field.FieldRepetitions != null && _enteredDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _enteredDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_enteredDateTime, fieldData);
+        }
+
+        return _enteredDateTime;
+    } 
+}
+
+internal HL7V22Field _effectiveDateTime;
+
+public HL7V22Field EffectiveDateTime
+{
+    get
+    {
+        if (_effectiveDateTime != null)
+        {
+            return _effectiveDateTime;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MFI.5",
+            Type = @"Field",
+            Position = @"MFI.5",
+            Name = @"Effective Date / Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MFI.5",
-                            Type = @"Field",
-                            Position = @"MFI.5",
-                            Name = @"Effective Date / Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MFI.5.1",
                             Type = @"Component",
@@ -296,254 +422,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MFI.6",
-                            Type = @"Field",
-                            Position = @"MFI.6",
-                            Name = @"Response Level Code",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0179",
-                            TableName = @"RESPONSE LEVEL",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V22SegmentMFI(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V22Field masterFileIdentifier;
-
-public HL7V22Field MasterFileIdentifier
-{
-    get
-    {
-        if (masterFileIdentifier != null)
-        {
-            return masterFileIdentifier;
-        }
-
-        masterFileIdentifier = new HL7V22Field
-        {
-            field = message[@"MFI"][1],
-            Id = @"MFI.1",
-            Type = @"Field",
-            Position = @"MFI.1",
-            Name = @"Master File Identifier",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0175",
-            TableName = @"MASTER FILE IDENTIFIER CODE",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (masterFileIdentifier.field.FieldRepetitions != null && masterFileIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(masterFileIdentifier.Id));
-            masterFileIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(masterFileIdentifier, fieldData);
-        }
-
-        return masterFileIdentifier;
-    } 
-}
-
-internal HL7V22Field masterFileApplicationIdentifier;
-
-public HL7V22Field MasterFileApplicationIdentifier
-{
-    get
-    {
-        if (masterFileApplicationIdentifier != null)
-        {
-            return masterFileApplicationIdentifier;
-        }
-
-        masterFileApplicationIdentifier = new HL7V22Field
-        {
-            field = message[@"MFI"][2],
-            Id = @"MFI.2",
-            Type = @"Field",
-            Position = @"MFI.2",
-            Name = @"Master File Application Identifier",
-            Length = 6,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0176",
-            TableName = @"MASTER FILE APPLICATION IDENTIFIER",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (masterFileApplicationIdentifier.field.FieldRepetitions != null && masterFileApplicationIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(masterFileApplicationIdentifier.Id));
-            masterFileApplicationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(masterFileApplicationIdentifier, fieldData);
-        }
-
-        return masterFileApplicationIdentifier;
-    } 
-}
-
-internal HL7V22Field filelevelEventCode;
-
-public HL7V22Field FilelevelEventCode
-{
-    get
-    {
-        if (filelevelEventCode != null)
-        {
-            return filelevelEventCode;
-        }
-
-        filelevelEventCode = new HL7V22Field
-        {
-            field = message[@"MFI"][3],
-            Id = @"MFI.3",
-            Type = @"Field",
-            Position = @"MFI.3",
-            Name = @"File-level Event Code",
-            Length = 3,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0178",
-            TableName = @"FILE-LEVEL EVENT CODE",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (filelevelEventCode.field.FieldRepetitions != null && filelevelEventCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(filelevelEventCode.Id));
-            filelevelEventCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(filelevelEventCode, fieldData);
-        }
-
-        return filelevelEventCode;
-    } 
-}
-
-internal HL7V22Field enteredDateTime;
-
-public HL7V22Field EnteredDateTime
-{
-    get
-    {
-        if (enteredDateTime != null)
-        {
-            return enteredDateTime;
-        }
-
-        enteredDateTime = new HL7V22Field
-        {
-            field = message[@"MFI"][4],
-            Id = @"MFI.4",
-            Type = @"Field",
-            Position = @"MFI.4",
-            Name = @"Entered Date / Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (enteredDateTime.field.FieldRepetitions != null && enteredDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteredDateTime.Id));
-            enteredDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(enteredDateTime, fieldData);
-        }
-
-        return enteredDateTime;
-    } 
-}
-
-internal HL7V22Field effectiveDateTime;
-
-public HL7V22Field EffectiveDateTime
-{
-    get
-    {
-        if (effectiveDateTime != null)
-        {
-            return effectiveDateTime;
-        }
-
-        effectiveDateTime = new HL7V22Field
+        _effectiveDateTime = new HL7V22Field
         {
             field = message[@"MFI"][5],
-            Id = @"MFI.5",
-            Type = @"Field",
-            Position = @"MFI.5",
-            Name = @"Effective Date / Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (effectiveDateTime.field.FieldRepetitions != null && effectiveDateTime.field.FieldRepetitions.Count > 0)
+        if (_effectiveDateTime.field.FieldRepetitions != null && _effectiveDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(effectiveDateTime.Id));
-            effectiveDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(effectiveDateTime, fieldData);
+            _effectiveDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_effectiveDateTime, fieldData);
         }
 
-        return effectiveDateTime;
+        return _effectiveDateTime;
     } 
 }
 
-internal HL7V22Field responseLevelCode;
+internal HL7V22Field _responseLevelCode;
 
 public HL7V22Field ResponseLevelCode
 {
     get
     {
-        if (responseLevelCode != null)
+        if (_responseLevelCode != null)
         {
-            return responseLevelCode;
+            return _responseLevelCode;
         }
 
-        responseLevelCode = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"MFI"][6],
             Id = @"MFI.6",
             Type = @"Field",
             Position = @"MFI.6",
@@ -557,17 +468,22 @@ public HL7V22Field ResponseLevelCode
             TableName = @"RESPONSE LEVEL",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _responseLevelCode = new HL7V22Field
+        {
+            field = message[@"MFI"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (responseLevelCode.field.FieldRepetitions != null && responseLevelCode.field.FieldRepetitions.Count > 0)
+        if (_responseLevelCode.field.FieldRepetitions != null && _responseLevelCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(responseLevelCode.Id));
-            responseLevelCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(responseLevelCode, fieldData);
+            _responseLevelCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_responseLevelCode, fieldData);
         }
 
-        return responseLevelCode;
+        return _responseLevelCode;
     } 
 }
     }

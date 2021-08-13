@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -71,6 +72,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"X.400 email address: Use Only If TelecommunicationUse Code Is NET",
                             Comment = null
                         },
+                        
                     };
             } 
         }

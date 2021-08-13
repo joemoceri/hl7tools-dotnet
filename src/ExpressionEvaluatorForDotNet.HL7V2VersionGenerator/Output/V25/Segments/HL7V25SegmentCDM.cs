@@ -31,28 +31,40 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V25SegmentCDM(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V25Field _primaryKeyValueCDM;
+
+public HL7V25Field PrimaryKeyValueCDM
+{
+    get
+    {
+        if (_primaryKeyValueCDM != null)
+        {
+            return _primaryKeyValueCDM;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"CDM.1",
+            Type = @"Field",
+            Position = @"CDM.1",
+            Name = @"Primary Key Value - CDM",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0132",
+            TableName = @"Transaction Code",
+            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying the thing that can be charged. The key field of the entry. For example, this field would be used to uniquely identify a procedure, item, or test for charging purposes. Probably the same set of values as used in FT1-7- Transaction Code in financial messages. Must match MFE-4 - Primary Key Value - MFE. Refer to User-defined Table 0132 - Transaction for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"CDM.1",
-                            Type = @"Field",
-                            Position = @"CDM.1",
-                            Name = @"Primary Key Value - CDM",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0132",
-                            TableName = @"Transaction Code",
-                            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying the thing that can be charged. The key field of the entry. For example, this field would be used to uniquely identify a procedure, item, or test for charging purposes. Probably the same set of values as used in FT1-7- Transaction Code in financial messages. Must match MFE-4 - Primary Key Value - MFE. Refer to User-defined Table 0132 - Transaction for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDM.1.1",
                             Type = @"Component",
@@ -158,25 +170,55 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primaryKeyValueCDM = new HL7V25Field
+        {
+            field = message[@"CDM"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryKeyValueCDM.field.FieldRepetitions != null && _primaryKeyValueCDM.field.FieldRepetitions.Count > 0)
+        {
+            _primaryKeyValueCDM.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_primaryKeyValueCDM, fieldData);
+        }
+
+        return _primaryKeyValueCDM;
+    } 
+}
+
+internal HL7V25Field _chargeCodeAlias;
+
+public HL7V25Field ChargeCodeAlias
+{
+    get
+    {
+        if (_chargeCodeAlias != null)
+        {
+            return _chargeCodeAlias;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"CDM.2",
+            Type = @"Field",
+            Position = @"CDM.2",
+            Name = @"Charge Code Alias",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an alternative charge code. For example, points to another charge description master entry in cases where one code supersedes or overrides another code. Repeating field allows for different codes used by different systems which should be handled as if they were the same; for example, the general ledger code may differ from the billing code. Or, in a multi-facility environment which does facility-specific pricing, there may be more than one of these master file entries for one charge description, each with a different facility.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CDM.2",
-                            Type = @"Field",
-                            Position = @"CDM.2",
-                            Name = @"Charge Code Alias",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an alternative charge code. For example, points to another charge description master entry in cases where one code supersedes or overrides another code. Repeating field allows for different codes used by different systems which should be handled as if they were the same; for example, the general ledger code may differ from the billing code. Or, in a multi-facility environment which does facility-specific pricing, there may be more than one of these master file entries for one charge description, each with a different facility.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CDM.2.1",
                             Type = @"Component",
@@ -282,79 +324,190 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _chargeCodeAlias = new HL7V25Field
+        {
+            field = message[@"CDM"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_chargeCodeAlias.field.FieldRepetitions != null && _chargeCodeAlias.field.FieldRepetitions.Count > 0)
+        {
+            _chargeCodeAlias.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_chargeCodeAlias, fieldData);
+        }
+
+        return _chargeCodeAlias;
+    } 
+}
+
+internal HL7V25Field _chargeDescriptionShort;
+
+public HL7V25Field ChargeDescriptionShort
+{
+    get
+    {
+        if (_chargeDescriptionShort != null)
+        {
+            return _chargeDescriptionShort;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"CDM.3",
+            Type = @"Field",
+            Position = @"CDM.3",
+            Name = @"Charge Description Short",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the text abbreviations or code that is associated with this CDM entry.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _chargeDescriptionShort = new HL7V25Field
+        {
+            field = message[@"CDM"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_chargeDescriptionShort.field.FieldRepetitions != null && _chargeDescriptionShort.field.FieldRepetitions.Count > 0)
+        {
+            _chargeDescriptionShort.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_chargeDescriptionShort, fieldData);
+        }
+
+        return _chargeDescriptionShort;
+    } 
+}
+
+internal HL7V25Field _chargeDescriptionLong;
+
+public HL7V25Field ChargeDescriptionLong
+{
+    get
+    {
+        if (_chargeDescriptionLong != null)
+        {
+            return _chargeDescriptionLong;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"CDM.4",
+            Type = @"Field",
+            Position = @"CDM.4",
+            Name = @"Charge Description Long",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the full text description of this CDM entry.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _chargeDescriptionLong = new HL7V25Field
+        {
+            field = message[@"CDM"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_chargeDescriptionLong.field.FieldRepetitions != null && _chargeDescriptionLong.field.FieldRepetitions.Count > 0)
+        {
+            _chargeDescriptionLong.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_chargeDescriptionLong, fieldData);
+        }
+
+        return _chargeDescriptionLong;
+    } 
+}
+
+internal HL7V25Field _descriptionOverrideIndicator;
+
+public HL7V25Field DescriptionOverrideIndicator
+{
+    get
+    {
+        if (_descriptionOverrideIndicator != null)
+        {
+            return _descriptionOverrideIndicator;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"CDM.5",
+            Type = @"Field",
+            Position = @"CDM.5",
+            Name = @"Description Override Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0268",
+            TableName = @"Override",
+            Description = @"This field indicates whether this CDM entrys description can be overridden. Refer to User-defined Table 0268 - Override for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _descriptionOverrideIndicator = new HL7V25Field
+        {
+            field = message[@"CDM"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_descriptionOverrideIndicator.field.FieldRepetitions != null && _descriptionOverrideIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _descriptionOverrideIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_descriptionOverrideIndicator, fieldData);
+        }
+
+        return _descriptionOverrideIndicator;
+    } 
+}
+
+internal HL7V25Field _explodingCharges;
+
+public HL7V25Field ExplodingCharges
+{
+    get
+    {
+        if (_explodingCharges != null)
+        {
+            return _explodingCharges;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"CDM.6",
+            Type = @"Field",
+            Position = @"CDM.6",
+            Name = @"Exploding Charges",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the repeating occurrences for a list of other CDM entry charge codes identifying the other charges which should be generated from this CDM entry. If non-null, posting a charge to this CDM entry should result in posting the charges identified here. These are sometimes called ""linked items.""",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CDM.3",
-                            Type = @"Field",
-                            Position = @"CDM.3",
-                            Name = @"Charge Description Short",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the text abbreviations or code that is associated with this CDM entry.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CDM.4",
-                            Type = @"Field",
-                            Position = @"CDM.4",
-                            Name = @"Charge Description Long",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the full text description of this CDM entry.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CDM.5",
-                            Type = @"Field",
-                            Position = @"CDM.5",
-                            Name = @"Description Override Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0268",
-                            TableName = @"Override",
-                            Description = @"This field indicates whether this CDM entrys description can be overridden. Refer to User-defined Table 0268 - Override for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CDM.6",
-                            Type = @"Field",
-                            Position = @"CDM.6",
-                            Name = @"Exploding Charges",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the repeating occurrences for a list of other CDM entry charge codes identifying the other charges which should be generated from this CDM entry. If non-null, posting a charge to this CDM entry should result in posting the charges identified here. These are sometimes called ""linked items.""",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CDM.6.1",
                             Type = @"Component",
@@ -460,25 +613,55 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _explodingCharges = new HL7V25Field
+        {
+            field = message[@"CDM"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_explodingCharges.field.FieldRepetitions != null && _explodingCharges.field.FieldRepetitions.Count > 0)
+        {
+            _explodingCharges.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_explodingCharges, fieldData);
+        }
+
+        return _explodingCharges;
+    } 
+}
+
+internal HL7V25Field _procedureCode;
+
+public HL7V25Field ProcedureCode
+{
+    get
+    {
+        if (_procedureCode != null)
+        {
+            return _procedureCode;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"CDM.7",
+            Type = @"Field",
+            Position = @"CDM.7",
+            Name = @"Procedure Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0088",
+            TableName = @"Procedure Code",
+            Description = @"This field contains the procedure code for procedure, if any, associated with this charge description. Repeating field allows for different procedure coding systems such as CPT4, ASTM, ICD9. Coded entry made up of code plus coding schema. Refer to User defined Table 0088 - Procedure code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CDM.7",
-                            Type = @"Field",
-                            Position = @"CDM.7",
-                            Name = @"Procedure Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0088",
-                            TableName = @"Procedure Code",
-                            Description = @"This field contains the procedure code for procedure, if any, associated with this charge description. Repeating field allows for different procedure coding systems such as CPT4, ASTM, ICD9. Coded entry made up of code plus coding schema. Refer to User defined Table 0088 - Procedure code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CDM.7.1",
                             Type = @"Component",
@@ -584,43 +767,100 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _procedureCode = new HL7V25Field
+        {
+            field = message[@"CDM"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedureCode.field.FieldRepetitions != null && _procedureCode.field.FieldRepetitions.Count > 0)
+        {
+            _procedureCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_procedureCode, fieldData);
+        }
+
+        return _procedureCode;
+    } 
+}
+
+internal HL7V25Field _activeInactiveFlag;
+
+public HL7V25Field ActiveInactiveFlag
+{
+    get
+    {
+        if (_activeInactiveFlag != null)
+        {
+            return _activeInactiveFlag;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"CDM.8",
+            Type = @"Field",
+            Position = @"CDM.8",
+            Name = @"Active/Inactive Flag",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0183",
+            TableName = @"Active/Inactive",
+            Description = @"This field indicates whether this is a usable CDM entry. Refer to HL7 table 0183 - Active/inactive for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _activeInactiveFlag = new HL7V25Field
+        {
+            field = message[@"CDM"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_activeInactiveFlag.field.FieldRepetitions != null && _activeInactiveFlag.field.FieldRepetitions.Count > 0)
+        {
+            _activeInactiveFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_activeInactiveFlag, fieldData);
+        }
+
+        return _activeInactiveFlag;
+    } 
+}
+
+internal HL7V25Field _inventoryNumber;
+
+public HL7V25Field InventoryNumber
+{
+    get
+    {
+        if (_inventoryNumber != null)
+        {
+            return _inventoryNumber;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"CDM.9",
+            Type = @"Field",
+            Position = @"CDM.9",
+            Name = @"Inventory Number",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0463",
+            TableName = @"Inventory Number",
+            Description = @"This optional field contains an identifying stock number, if any, which might be used, for example, as a cross reference for materials management. Refer to User-defined Table 0463 - Inventory number for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CDM.8",
-                            Type = @"Field",
-                            Position = @"CDM.8",
-                            Name = @"Active/Inactive Flag",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0183",
-                            TableName = @"Active/Inactive",
-                            Description = @"This field indicates whether this is a usable CDM entry. Refer to HL7 table 0183 - Active/inactive for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CDM.9",
-                            Type = @"Field",
-                            Position = @"CDM.9",
-                            Name = @"Inventory Number",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0463",
-                            TableName = @"Inventory Number",
-                            Description = @"This optional field contains an identifying stock number, if any, which might be used, for example, as a cross reference for materials management. Refer to User-defined Table 0463 - Inventory number for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CDM.9.1",
                             Type = @"Component",
@@ -726,43 +966,100 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inventoryNumber = new HL7V25Field
+        {
+            field = message[@"CDM"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryNumber.field.FieldRepetitions != null && _inventoryNumber.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_inventoryNumber, fieldData);
+        }
+
+        return _inventoryNumber;
+    } 
+}
+
+internal HL7V25Field _resourceLoad;
+
+public HL7V25Field ResourceLoad
+{
+    get
+    {
+        if (_resourceLoad != null)
+        {
+            return _resourceLoad;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"CDM.10",
+            Type = @"Field",
+            Position = @"CDM.10",
+            Name = @"Resource Load",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the Relative Value Unit (RVU) minutes and ATS, a factor related to CPT4 coding and to pricing structure for physical billing.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _resourceLoad = new HL7V25Field
+        {
+            field = message[@"CDM"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_resourceLoad.field.FieldRepetitions != null && _resourceLoad.field.FieldRepetitions.Count > 0)
+        {
+            _resourceLoad.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_resourceLoad, fieldData);
+        }
+
+        return _resourceLoad;
+    } 
+}
+
+internal HL7V25Field _contractNumber;
+
+public HL7V25Field ContractNumber
+{
+    get
+    {
+        if (_contractNumber != null)
+        {
+            return _contractNumber;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"CDM.11",
+            Type = @"Field",
+            Position = @"CDM.11",
+            Name = @"Contract Number",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID with Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains any contract number pertaining to this chargeable item. For example, supplier contract or service contract.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CDM.10",
-                            Type = @"Field",
-                            Position = @"CDM.10",
-                            Name = @"Resource Load",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the Relative Value Unit (RVU) minutes and ATS, a factor related to CPT4 coding and to pricing structure for physical billing.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CDM.11",
-                            Type = @"Field",
-                            Position = @"CDM.11",
-                            Name = @"Contract Number",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID with Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains any contract number pertaining to this chargeable item. For example, supplier contract or service contract.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CDM.11.1",
                             Type = @"Component",
@@ -1364,25 +1661,55 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contractNumber = new HL7V25Field
+        {
+            field = message[@"CDM"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contractNumber.field.FieldRepetitions != null && _contractNumber.field.FieldRepetitions.Count > 0)
+        {
+            _contractNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_contractNumber, fieldData);
+        }
+
+        return _contractNumber;
+    } 
+}
+
+internal HL7V25Field _contractOrganization;
+
+public HL7V25Field ContractOrganization
+{
+    get
+    {
+        if (_contractOrganization != null)
+        {
+            return _contractOrganization;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"CDM.12",
+            Type = @"Field",
+            Position = @"CDM.12",
+            Name = @"Contract Organization",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the organization with which there is a contractual arrangement for providing the service or material used for this chargeable item.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CDM.12",
-                            Type = @"Field",
-                            Position = @"CDM.12",
-                            Name = @"Contract Organization",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the organization with which there is a contractual arrangement for providing the service or material used for this chargeable item.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CDM.12.1",
                             Type = @"Component",
@@ -1664,541 +1991,39 @@ The CDM segment contains the fields which, for one chargeable item, remain the s
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CDM.13",
-                            Type = @"Field",
-                            Position = @"CDM.13",
-                            Name = @"Room Fee Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field contains a room fee indicator. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V25SegmentCDM(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V25Field primaryKeyValueCDM;
-
-public HL7V25Field PrimaryKeyValueCDM
-{
-    get
-    {
-        if (primaryKeyValueCDM != null)
-        {
-            return primaryKeyValueCDM;
-        }
-
-        primaryKeyValueCDM = new HL7V25Field
-        {
-            field = message[@"CDM"][1],
-            Id = @"CDM.1",
-            Type = @"Field",
-            Position = @"CDM.1",
-            Name = @"Primary Key Value - CDM",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0132",
-            TableName = @"Transaction Code",
-            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying the thing that can be charged. The key field of the entry. For example, this field would be used to uniquely identify a procedure, item, or test for charging purposes. Probably the same set of values as used in FT1-7- Transaction Code in financial messages. Must match MFE-4 - Primary Key Value - MFE. Refer to User-defined Table 0132 - Transaction for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryKeyValueCDM.field.FieldRepetitions != null && primaryKeyValueCDM.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryKeyValueCDM.Id));
-            primaryKeyValueCDM.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(primaryKeyValueCDM, fieldData);
-        }
-
-        return primaryKeyValueCDM;
-    } 
-}
-
-internal HL7V25Field chargeCodeAlias;
-
-public HL7V25Field ChargeCodeAlias
-{
-    get
-    {
-        if (chargeCodeAlias != null)
-        {
-            return chargeCodeAlias;
-        }
-
-        chargeCodeAlias = new HL7V25Field
-        {
-            field = message[@"CDM"][2],
-            Id = @"CDM.2",
-            Type = @"Field",
-            Position = @"CDM.2",
-            Name = @"Charge Code Alias",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an alternative charge code. For example, points to another charge description master entry in cases where one code supersedes or overrides another code. Repeating field allows for different codes used by different systems which should be handled as if they were the same; for example, the general ledger code may differ from the billing code. Or, in a multi-facility environment which does facility-specific pricing, there may be more than one of these master file entries for one charge description, each with a different facility.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (chargeCodeAlias.field.FieldRepetitions != null && chargeCodeAlias.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(chargeCodeAlias.Id));
-            chargeCodeAlias.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(chargeCodeAlias, fieldData);
-        }
-
-        return chargeCodeAlias;
-    } 
-}
-
-internal HL7V25Field chargeDescriptionShort;
-
-public HL7V25Field ChargeDescriptionShort
-{
-    get
-    {
-        if (chargeDescriptionShort != null)
-        {
-            return chargeDescriptionShort;
-        }
-
-        chargeDescriptionShort = new HL7V25Field
-        {
-            field = message[@"CDM"][3],
-            Id = @"CDM.3",
-            Type = @"Field",
-            Position = @"CDM.3",
-            Name = @"Charge Description Short",
-            Length = 20,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the text abbreviations or code that is associated with this CDM entry.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (chargeDescriptionShort.field.FieldRepetitions != null && chargeDescriptionShort.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(chargeDescriptionShort.Id));
-            chargeDescriptionShort.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(chargeDescriptionShort, fieldData);
-        }
-
-        return chargeDescriptionShort;
-    } 
-}
-
-internal HL7V25Field chargeDescriptionLong;
-
-public HL7V25Field ChargeDescriptionLong
-{
-    get
-    {
-        if (chargeDescriptionLong != null)
-        {
-            return chargeDescriptionLong;
-        }
-
-        chargeDescriptionLong = new HL7V25Field
-        {
-            field = message[@"CDM"][4],
-            Id = @"CDM.4",
-            Type = @"Field",
-            Position = @"CDM.4",
-            Name = @"Charge Description Long",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the full text description of this CDM entry.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (chargeDescriptionLong.field.FieldRepetitions != null && chargeDescriptionLong.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(chargeDescriptionLong.Id));
-            chargeDescriptionLong.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(chargeDescriptionLong, fieldData);
-        }
-
-        return chargeDescriptionLong;
-    } 
-}
-
-internal HL7V25Field descriptionOverrideIndicator;
-
-public HL7V25Field DescriptionOverrideIndicator
-{
-    get
-    {
-        if (descriptionOverrideIndicator != null)
-        {
-            return descriptionOverrideIndicator;
-        }
-
-        descriptionOverrideIndicator = new HL7V25Field
-        {
-            field = message[@"CDM"][5],
-            Id = @"CDM.5",
-            Type = @"Field",
-            Position = @"CDM.5",
-            Name = @"Description Override Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0268",
-            TableName = @"Override",
-            Description = @"This field indicates whether this CDM entrys description can be overridden. Refer to User-defined Table 0268 - Override for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (descriptionOverrideIndicator.field.FieldRepetitions != null && descriptionOverrideIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(descriptionOverrideIndicator.Id));
-            descriptionOverrideIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(descriptionOverrideIndicator, fieldData);
-        }
-
-        return descriptionOverrideIndicator;
-    } 
-}
-
-internal HL7V25Field explodingCharges;
-
-public HL7V25Field ExplodingCharges
-{
-    get
-    {
-        if (explodingCharges != null)
-        {
-            return explodingCharges;
-        }
-
-        explodingCharges = new HL7V25Field
-        {
-            field = message[@"CDM"][6],
-            Id = @"CDM.6",
-            Type = @"Field",
-            Position = @"CDM.6",
-            Name = @"Exploding Charges",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the repeating occurrences for a list of other CDM entry charge codes identifying the other charges which should be generated from this CDM entry. If non-null, posting a charge to this CDM entry should result in posting the charges identified here. These are sometimes called ""linked items.""",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (explodingCharges.field.FieldRepetitions != null && explodingCharges.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(explodingCharges.Id));
-            explodingCharges.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(explodingCharges, fieldData);
-        }
-
-        return explodingCharges;
-    } 
-}
-
-internal HL7V25Field procedureCode;
-
-public HL7V25Field ProcedureCode
-{
-    get
-    {
-        if (procedureCode != null)
-        {
-            return procedureCode;
-        }
-
-        procedureCode = new HL7V25Field
-        {
-            field = message[@"CDM"][7],
-            Id = @"CDM.7",
-            Type = @"Field",
-            Position = @"CDM.7",
-            Name = @"Procedure Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0088",
-            TableName = @"Procedure Code",
-            Description = @"This field contains the procedure code for procedure, if any, associated with this charge description. Repeating field allows for different procedure coding systems such as CPT4, ASTM, ICD9. Coded entry made up of code plus coding schema. Refer to User defined Table 0088 - Procedure code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedureCode.field.FieldRepetitions != null && procedureCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureCode.Id));
-            procedureCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(procedureCode, fieldData);
-        }
-
-        return procedureCode;
-    } 
-}
-
-internal HL7V25Field activeInactiveFlag;
-
-public HL7V25Field ActiveInactiveFlag
-{
-    get
-    {
-        if (activeInactiveFlag != null)
-        {
-            return activeInactiveFlag;
-        }
-
-        activeInactiveFlag = new HL7V25Field
-        {
-            field = message[@"CDM"][8],
-            Id = @"CDM.8",
-            Type = @"Field",
-            Position = @"CDM.8",
-            Name = @"Active/Inactive Flag",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0183",
-            TableName = @"Active/Inactive",
-            Description = @"This field indicates whether this is a usable CDM entry. Refer to HL7 table 0183 - Active/inactive for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (activeInactiveFlag.field.FieldRepetitions != null && activeInactiveFlag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(activeInactiveFlag.Id));
-            activeInactiveFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(activeInactiveFlag, fieldData);
-        }
-
-        return activeInactiveFlag;
-    } 
-}
-
-internal HL7V25Field inventoryNumber;
-
-public HL7V25Field InventoryNumber
-{
-    get
-    {
-        if (inventoryNumber != null)
-        {
-            return inventoryNumber;
-        }
-
-        inventoryNumber = new HL7V25Field
-        {
-            field = message[@"CDM"][9],
-            Id = @"CDM.9",
-            Type = @"Field",
-            Position = @"CDM.9",
-            Name = @"Inventory Number",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0463",
-            TableName = @"Inventory Number",
-            Description = @"This optional field contains an identifying stock number, if any, which might be used, for example, as a cross reference for materials management. Refer to User-defined Table 0463 - Inventory number for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryNumber.field.FieldRepetitions != null && inventoryNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryNumber.Id));
-            inventoryNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(inventoryNumber, fieldData);
-        }
-
-        return inventoryNumber;
-    } 
-}
-
-internal HL7V25Field resourceLoad;
-
-public HL7V25Field ResourceLoad
-{
-    get
-    {
-        if (resourceLoad != null)
-        {
-            return resourceLoad;
-        }
-
-        resourceLoad = new HL7V25Field
-        {
-            field = message[@"CDM"][10],
-            Id = @"CDM.10",
-            Type = @"Field",
-            Position = @"CDM.10",
-            Name = @"Resource Load",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the Relative Value Unit (RVU) minutes and ATS, a factor related to CPT4 coding and to pricing structure for physical billing.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (resourceLoad.field.FieldRepetitions != null && resourceLoad.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resourceLoad.Id));
-            resourceLoad.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(resourceLoad, fieldData);
-        }
-
-        return resourceLoad;
-    } 
-}
-
-internal HL7V25Field contractNumber;
-
-public HL7V25Field ContractNumber
-{
-    get
-    {
-        if (contractNumber != null)
-        {
-            return contractNumber;
-        }
-
-        contractNumber = new HL7V25Field
-        {
-            field = message[@"CDM"][11],
-            Id = @"CDM.11",
-            Type = @"Field",
-            Position = @"CDM.11",
-            Name = @"Contract Number",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID with Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains any contract number pertaining to this chargeable item. For example, supplier contract or service contract.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contractNumber.field.FieldRepetitions != null && contractNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contractNumber.Id));
-            contractNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(contractNumber, fieldData);
-        }
-
-        return contractNumber;
-    } 
-}
-
-internal HL7V25Field contractOrganization;
-
-public HL7V25Field ContractOrganization
-{
-    get
-    {
-        if (contractOrganization != null)
-        {
-            return contractOrganization;
-        }
-
-        contractOrganization = new HL7V25Field
+        _contractOrganization = new HL7V25Field
         {
             field = message[@"CDM"][12],
-            Id = @"CDM.12",
-            Type = @"Field",
-            Position = @"CDM.12",
-            Name = @"Contract Organization",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the organization with which there is a contractual arrangement for providing the service or material used for this chargeable item.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (contractOrganization.field.FieldRepetitions != null && contractOrganization.field.FieldRepetitions.Count > 0)
+        if (_contractOrganization.field.FieldRepetitions != null && _contractOrganization.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contractOrganization.Id));
-            contractOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(contractOrganization, fieldData);
+            _contractOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_contractOrganization, fieldData);
         }
 
-        return contractOrganization;
+        return _contractOrganization;
     } 
 }
 
-internal HL7V25Field roomFeeIndicator;
+internal HL7V25Field _roomFeeIndicator;
 
 public HL7V25Field RoomFeeIndicator
 {
     get
     {
-        if (roomFeeIndicator != null)
+        if (_roomFeeIndicator != null)
         {
-            return roomFeeIndicator;
+            return _roomFeeIndicator;
         }
 
-        roomFeeIndicator = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"CDM"][13],
             Id = @"CDM.13",
             Type = @"Field",
             Position = @"CDM.13",
@@ -2212,17 +2037,22 @@ public HL7V25Field RoomFeeIndicator
             TableName = @"Yes/no indicator",
             Description = @"This field contains a room fee indicator. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _roomFeeIndicator = new HL7V25Field
+        {
+            field = message[@"CDM"][13],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (roomFeeIndicator.field.FieldRepetitions != null && roomFeeIndicator.field.FieldRepetitions.Count > 0)
+        if (_roomFeeIndicator.field.FieldRepetitions != null && _roomFeeIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(roomFeeIndicator.Id));
-            roomFeeIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(roomFeeIndicator, fieldData);
+            _roomFeeIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_roomFeeIndicator, fieldData);
         }
 
-        return roomFeeIndicator;
+        return _roomFeeIndicator;
     } 
 }
     }

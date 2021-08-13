@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_15",
+
                     };
             } 
         }
@@ -95,6 +96,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Transcriptionist",
                             Comment = null
                         },
+                        
                     };
             } 
         }

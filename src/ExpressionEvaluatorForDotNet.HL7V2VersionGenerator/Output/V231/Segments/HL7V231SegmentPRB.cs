@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V231SegmentPRB(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V231Field _actionCode;
+
+public HL7V231Field ActionCode
+{
+    get
+    {
+        if (_actionCode != null)
+        {
+            return _actionCode;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.1",
+            Type = @"Field",
+            Position = @"PRB.1",
+            Name = @"Action Code",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0287",
+            TableName = @"Problem/goal action code",
+            Description = @"This field contains the intent of the message. Refer to HL7 table 0287 - Problem/goal action code for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _actionCode = new HL7V231Field
+        {
+            field = message[@"PRB"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_actionCode.field.FieldRepetitions != null && _actionCode.field.FieldRepetitions.Count > 0)
+        {
+            _actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_actionCode, fieldData);
+        }
+
+        return _actionCode;
+    } 
+}
+
+internal HL7V231Field _actionDateTime;
+
+public HL7V231Field ActionDateTime
+{
+    get
+    {
+        if (_actionDateTime != null)
+        {
+            return _actionDateTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.2",
+            Type = @"Field",
+            Position = @"PRB.2",
+            Name = @"Action Date/Time",
+            Length = 26,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time that the operation represented by the action code was performed.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PRB.1",
-                            Type = @"Field",
-                            Position = @"PRB.1",
-                            Name = @"Action Code",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0287",
-                            TableName = @"Problem/goal action code",
-                            Description = @"This field contains the intent of the message. Refer to HL7 table 0287 - Problem/goal action code for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRB.2",
-                            Type = @"Field",
-                            Position = @"PRB.2",
-                            Name = @"Action Date/Time",
-                            Length = 26,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time that the operation represented by the action code was performed.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRB.2.1",
                             Type = @"Component",
@@ -84,25 +123,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _actionDateTime = new HL7V231Field
+        {
+            field = message[@"PRB"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_actionDateTime.field.FieldRepetitions != null && _actionDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _actionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_actionDateTime, fieldData);
+        }
+
+        return _actionDateTime;
+    } 
+}
+
+internal HL7V231Field _problemID;
+
+public HL7V231Field ProblemID
+{
+    get
+    {
+        if (_problemID != null)
+        {
+            return _problemID;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.3",
+            Type = @"Field",
+            Position = @"PRB.3",
+            Name = @"Problem ID",
+            Length = 80,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the problem. This is the identifier from an institution's master list of problems.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.3",
-                            Type = @"Field",
-                            Position = @"PRB.3",
-                            Name = @"Problem ID",
-                            Length = 80,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the problem. This is the identifier from an institution's master list of problems.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.3.1",
                             Type = @"Component",
@@ -208,25 +277,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _problemID = new HL7V231Field
+        {
+            field = message[@"PRB"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_problemID.field.FieldRepetitions != null && _problemID.field.FieldRepetitions.Count > 0)
+        {
+            _problemID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_problemID, fieldData);
+        }
+
+        return _problemID;
+    } 
+}
+
+internal HL7V231Field _problemInstanceID;
+
+public HL7V231Field ProblemInstanceID
+{
+    get
+    {
+        if (_problemInstanceID != null)
+        {
+            return _problemInstanceID;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.4",
+            Type = @"Field",
+            Position = @"PRB.4",
+            Name = @"Problem Instance ID",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identifier assigned by an initiating system to an instance of a problem.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.4",
-                            Type = @"Field",
-                            Position = @"PRB.4",
-                            Name = @"Problem Instance ID",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the identifier assigned by an initiating system to an instance of a problem.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.4.1",
                             Type = @"Component",
@@ -296,25 +395,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values. See Section 2.8.20.2 Universal ID (ST), for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _problemInstanceID = new HL7V231Field
+        {
+            field = message[@"PRB"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_problemInstanceID.field.FieldRepetitions != null && _problemInstanceID.field.FieldRepetitions.Count > 0)
+        {
+            _problemInstanceID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_problemInstanceID, fieldData);
+        }
+
+        return _problemInstanceID;
+    } 
+}
+
+internal HL7V231Field _episodeofCareID;
+
+public HL7V231Field EpisodeofCareID
+{
+    get
+    {
+        if (_episodeofCareID != null)
+        {
+            return _episodeofCareID;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.5",
+            Type = @"Field",
+            Position = @"PRB.5",
+            Name = @"Episode of Care ID",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field uniquely identifies the episode of care to which this problem applies. (See note under 'Ongoing issues.')",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.5",
-                            Type = @"Field",
-                            Position = @"PRB.5",
-                            Name = @"Episode of Care ID",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field uniquely identifies the episode of care to which this problem applies. (See note under 'Ongoing issues.')",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.5.1",
                             Type = @"Component",
@@ -384,43 +513,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values. See Section 2.8.20.2 Universal ID (ST), for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _episodeofCareID = new HL7V231Field
+        {
+            field = message[@"PRB"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_episodeofCareID.field.FieldRepetitions != null && _episodeofCareID.field.FieldRepetitions.Count > 0)
+        {
+            _episodeofCareID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_episodeofCareID, fieldData);
+        }
+
+        return _episodeofCareID;
+    } 
+}
+
+internal HL7V231Field _problemListPriority;
+
+public HL7V231Field ProblemListPriority
+{
+    get
+    {
+        if (_problemListPriority != null)
+        {
+            return _problemListPriority;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.6",
+            Type = @"Field",
+            Position = @"PRB.6",
+            Name = @"Problem List Priority",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field prioritizes this problem on a list that is maintained for the individual.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _problemListPriority = new HL7V231Field
+        {
+            field = message[@"PRB"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_problemListPriority.field.FieldRepetitions != null && _problemListPriority.field.FieldRepetitions.Count > 0)
+        {
+            _problemListPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_problemListPriority, fieldData);
+        }
+
+        return _problemListPriority;
+    } 
+}
+
+internal HL7V231Field _problemEstablishedDateTime;
+
+public HL7V231Field ProblemEstablishedDateTime
+{
+    get
+    {
+        if (_problemEstablishedDateTime != null)
+        {
+            return _problemEstablishedDateTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.7",
+            Type = @"Field",
+            Position = @"PRB.7",
+            Name = @"Problem Established Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the corresponding problem was initially identified by the caregiver.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.6",
-                            Type = @"Field",
-                            Position = @"PRB.6",
-                            Name = @"Problem List Priority",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field prioritizes this problem on a list that is maintained for the individual.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRB.7",
-                            Type = @"Field",
-                            Position = @"PRB.7",
-                            Name = @"Problem Established Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when the corresponding problem was initially identified by the caregiver.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.7.1",
                             Type = @"Component",
@@ -436,25 +622,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _problemEstablishedDateTime = new HL7V231Field
+        {
+            field = message[@"PRB"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_problemEstablishedDateTime.field.FieldRepetitions != null && _problemEstablishedDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _problemEstablishedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_problemEstablishedDateTime, fieldData);
+        }
+
+        return _problemEstablishedDateTime;
+    } 
+}
+
+internal HL7V231Field _anticipatedProblemResolutionDateTime;
+
+public HL7V231Field AnticipatedProblemResolutionDateTime
+{
+    get
+    {
+        if (_anticipatedProblemResolutionDateTime != null)
+        {
+            return _anticipatedProblemResolutionDateTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.8",
+            Type = @"Field",
+            Position = @"PRB.8",
+            Name = @"Anticipated Problem Resolution Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the estimated date/time for resolving the stated problem.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.8",
-                            Type = @"Field",
-                            Position = @"PRB.8",
-                            Name = @"Anticipated Problem Resolution Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the estimated date/time for resolving the stated problem.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.8.1",
                             Type = @"Component",
@@ -470,25 +686,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _anticipatedProblemResolutionDateTime = new HL7V231Field
+        {
+            field = message[@"PRB"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_anticipatedProblemResolutionDateTime.field.FieldRepetitions != null && _anticipatedProblemResolutionDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _anticipatedProblemResolutionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_anticipatedProblemResolutionDateTime, fieldData);
+        }
+
+        return _anticipatedProblemResolutionDateTime;
+    } 
+}
+
+internal HL7V231Field _actualProblemResolutionDateTime;
+
+public HL7V231Field ActualProblemResolutionDateTime
+{
+    get
+    {
+        if (_actualProblemResolutionDateTime != null)
+        {
+            return _actualProblemResolutionDateTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.9",
+            Type = @"Field",
+            Position = @"PRB.9",
+            Name = @"Actual Problem Resolution Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time that the problem was actually resolved.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.9",
-                            Type = @"Field",
-                            Position = @"PRB.9",
-                            Name = @"Actual Problem Resolution Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time that the problem was actually resolved.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.9.1",
                             Type = @"Component",
@@ -504,25 +750,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _actualProblemResolutionDateTime = new HL7V231Field
+        {
+            field = message[@"PRB"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_actualProblemResolutionDateTime.field.FieldRepetitions != null && _actualProblemResolutionDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _actualProblemResolutionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_actualProblemResolutionDateTime, fieldData);
+        }
+
+        return _actualProblemResolutionDateTime;
+    } 
+}
+
+internal HL7V231Field _problemClassification;
+
+public HL7V231Field ProblemClassification
+{
+    get
+    {
+        if (_problemClassification != null)
+        {
+            return _problemClassification;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.10",
+            Type = @"Field",
+            Position = @"PRB.10",
+            Name = @"Problem Classification",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the kind of problem. This field can be used to categorize problems so that they may be managed and viewed independently within different applications (e.g., admission, final, post-operative, pre-operative, outpatient, discharge, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.10",
-                            Type = @"Field",
-                            Position = @"PRB.10",
-                            Name = @"Problem Classification",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the kind of problem. This field can be used to categorize problems so that they may be managed and viewed independently within different applications (e.g., admission, final, post-operative, pre-operative, outpatient, discharge, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.10.1",
                             Type = @"Component",
@@ -628,25 +904,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _problemClassification = new HL7V231Field
+        {
+            field = message[@"PRB"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_problemClassification.field.FieldRepetitions != null && _problemClassification.field.FieldRepetitions.Count > 0)
+        {
+            _problemClassification.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_problemClassification, fieldData);
+        }
+
+        return _problemClassification;
+    } 
+}
+
+internal HL7V231Field _problemManagementDiscipline;
+
+public HL7V231Field ProblemManagementDiscipline
+{
+    get
+    {
+        if (_problemManagementDiscipline != null)
+        {
+            return _problemManagementDiscipline;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.11",
+            Type = @"Field",
+            Position = @"PRB.11",
+            Name = @"Problem Management Discipline",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the category of caregiver with responsibility for managing this specific problem (e.g., care team, nursing, medicine, respiratory therapy, occupational therapy, dietary etc.). This is a repeating field to allow identification of all disciplines who may have the responsibility for this problem.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.11",
-                            Type = @"Field",
-                            Position = @"PRB.11",
-                            Name = @"Problem Management Discipline",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the category of caregiver with responsibility for managing this specific problem (e.g., care team, nursing, medicine, respiratory therapy, occupational therapy, dietary etc.). This is a repeating field to allow identification of all disciplines who may have the responsibility for this problem.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.11.1",
                             Type = @"Component",
@@ -752,25 +1058,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _problemManagementDiscipline = new HL7V231Field
+        {
+            field = message[@"PRB"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_problemManagementDiscipline.field.FieldRepetitions != null && _problemManagementDiscipline.field.FieldRepetitions.Count > 0)
+        {
+            _problemManagementDiscipline.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_problemManagementDiscipline, fieldData);
+        }
+
+        return _problemManagementDiscipline;
+    } 
+}
+
+internal HL7V231Field _problemPersistence;
+
+public HL7V231Field ProblemPersistence
+{
+    get
+    {
+        if (_problemPersistence != null)
+        {
+            return _problemPersistence;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.12",
+            Type = @"Field",
+            Position = @"PRB.12",
+            Name = @"Problem Persistence",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the perseverance of a problem (e.g., acute, chronic, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.12",
-                            Type = @"Field",
-                            Position = @"PRB.12",
-                            Name = @"Problem Persistence",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the perseverance of a problem (e.g., acute, chronic, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.12.1",
                             Type = @"Component",
@@ -876,25 +1212,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _problemPersistence = new HL7V231Field
+        {
+            field = message[@"PRB"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_problemPersistence.field.FieldRepetitions != null && _problemPersistence.field.FieldRepetitions.Count > 0)
+        {
+            _problemPersistence.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_problemPersistence, fieldData);
+        }
+
+        return _problemPersistence;
+    } 
+}
+
+internal HL7V231Field _problemConfirmationStatus;
+
+public HL7V231Field ProblemConfirmationStatus
+{
+    get
+    {
+        if (_problemConfirmationStatus != null)
+        {
+            return _problemConfirmationStatus;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.13",
+            Type = @"Field",
+            Position = @"PRB.13",
+            Name = @"Problem Confirmation Status",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the verification status of a problem (e.g., confirmed, differential, provisional, rule-out, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.13",
-                            Type = @"Field",
-                            Position = @"PRB.13",
-                            Name = @"Problem Confirmation Status",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the verification status of a problem (e.g., confirmed, differential, provisional, rule-out, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.13.1",
                             Type = @"Component",
@@ -1000,25 +1366,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _problemConfirmationStatus = new HL7V231Field
+        {
+            field = message[@"PRB"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_problemConfirmationStatus.field.FieldRepetitions != null && _problemConfirmationStatus.field.FieldRepetitions.Count > 0)
+        {
+            _problemConfirmationStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_problemConfirmationStatus, fieldData);
+        }
+
+        return _problemConfirmationStatus;
+    } 
+}
+
+internal HL7V231Field _problemLifeCycleStatus;
+
+public HL7V231Field ProblemLifeCycleStatus
+{
+    get
+    {
+        if (_problemLifeCycleStatus != null)
+        {
+            return _problemLifeCycleStatus;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.14",
+            Type = @"Field",
+            Position = @"PRB.14",
+            Name = @"Problem Life Cycle Status",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the current status of the problem at this particular date/time (e.g., active, active-improving, active-stable, active-worsening, inactive, resolved, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.14",
-                            Type = @"Field",
-                            Position = @"PRB.14",
-                            Name = @"Problem Life Cycle Status",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the current status of the problem at this particular date/time (e.g., active, active-improving, active-stable, active-worsening, inactive, resolved, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.14.1",
                             Type = @"Component",
@@ -1124,25 +1520,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _problemLifeCycleStatus = new HL7V231Field
+        {
+            field = message[@"PRB"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_problemLifeCycleStatus.field.FieldRepetitions != null && _problemLifeCycleStatus.field.FieldRepetitions.Count > 0)
+        {
+            _problemLifeCycleStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_problemLifeCycleStatus, fieldData);
+        }
+
+        return _problemLifeCycleStatus;
+    } 
+}
+
+internal HL7V231Field _problemLifeCycleStatusDateTime;
+
+public HL7V231Field ProblemLifeCycleStatusDateTime
+{
+    get
+    {
+        if (_problemLifeCycleStatusDateTime != null)
+        {
+            return _problemLifeCycleStatusDateTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.15",
+            Type = @"Field",
+            Position = @"PRB.15",
+            Name = @"Problem Life Cycle Status Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the effective date/time of the current problem life cycle status.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.15",
-                            Type = @"Field",
-                            Position = @"PRB.15",
-                            Name = @"Problem Life Cycle Status Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the effective date/time of the current problem life cycle status.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.15.1",
                             Type = @"Component",
@@ -1158,25 +1584,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _problemLifeCycleStatusDateTime = new HL7V231Field
+        {
+            field = message[@"PRB"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_problemLifeCycleStatusDateTime.field.FieldRepetitions != null && _problemLifeCycleStatusDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _problemLifeCycleStatusDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_problemLifeCycleStatusDateTime, fieldData);
+        }
+
+        return _problemLifeCycleStatusDateTime;
+    } 
+}
+
+internal HL7V231Field _problemDateofOnset;
+
+public HL7V231Field ProblemDateofOnset
+{
+    get
+    {
+        if (_problemDateofOnset != null)
+        {
+            return _problemDateofOnset;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.16",
+            Type = @"Field",
+            Position = @"PRB.16",
+            Name = @"Problem Date of Onset",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the problem began.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.16",
-                            Type = @"Field",
-                            Position = @"PRB.16",
-                            Name = @"Problem Date of Onset",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when the problem began.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.16.1",
                             Type = @"Component",
@@ -1192,43 +1648,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _problemDateofOnset = new HL7V231Field
+        {
+            field = message[@"PRB"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_problemDateofOnset.field.FieldRepetitions != null && _problemDateofOnset.field.FieldRepetitions.Count > 0)
+        {
+            _problemDateofOnset.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_problemDateofOnset, fieldData);
+        }
+
+        return _problemDateofOnset;
+    } 
+}
+
+internal HL7V231Field _problemOnsetText;
+
+public HL7V231Field ProblemOnsetText
+{
+    get
+    {
+        if (_problemOnsetText != null)
+        {
+            return _problemOnsetText;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.17",
+            Type = @"Field",
+            Position = @"PRB.17",
+            Name = @"Problem Onset Text",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field allows for a textual representation of the time when the problem began.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _problemOnsetText = new HL7V231Field
+        {
+            field = message[@"PRB"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_problemOnsetText.field.FieldRepetitions != null && _problemOnsetText.field.FieldRepetitions.Count > 0)
+        {
+            _problemOnsetText.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_problemOnsetText, fieldData);
+        }
+
+        return _problemOnsetText;
+    } 
+}
+
+internal HL7V231Field _problemRanking;
+
+public HL7V231Field ProblemRanking
+{
+    get
+    {
+        if (_problemRanking != null)
+        {
+            return _problemRanking;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.18",
+            Type = @"Field",
+            Position = @"PRB.18",
+            Name = @"Problem Ranking",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a user-defined prioritization of a problem (e.g., numeric ranking, or the use of words such as 'primary,' 'secondary,' etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.17",
-                            Type = @"Field",
-                            Position = @"PRB.17",
-                            Name = @"Problem Onset Text",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field allows for a textual representation of the time when the problem began.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRB.18",
-                            Type = @"Field",
-                            Position = @"PRB.18",
-                            Name = @"Problem Ranking",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a user-defined prioritization of a problem (e.g., numeric ranking, or the use of words such as 'primary,' 'secondary,' etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.18.1",
                             Type = @"Component",
@@ -1334,25 +1847,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _problemRanking = new HL7V231Field
+        {
+            field = message[@"PRB"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_problemRanking.field.FieldRepetitions != null && _problemRanking.field.FieldRepetitions.Count > 0)
+        {
+            _problemRanking.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_problemRanking, fieldData);
+        }
+
+        return _problemRanking;
+    } 
+}
+
+internal HL7V231Field _certaintyofProblem;
+
+public HL7V231Field CertaintyofProblem
+{
+    get
+    {
+        if (_certaintyofProblem != null)
+        {
+            return _certaintyofProblem;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.19",
+            Type = @"Field",
+            Position = @"PRB.19",
+            Name = @"Certainty of Problem",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a qualitative representation of the certainty of a problem (e.g., HI - high, LO - low, ME - medium, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.19",
-                            Type = @"Field",
-                            Position = @"PRB.19",
-                            Name = @"Certainty of Problem",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a qualitative representation of the certainty of a problem (e.g., HI - high, LO - low, ME - medium, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.19.1",
                             Type = @"Component",
@@ -1458,43 +2001,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _certaintyofProblem = new HL7V231Field
+        {
+            field = message[@"PRB"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_certaintyofProblem.field.FieldRepetitions != null && _certaintyofProblem.field.FieldRepetitions.Count > 0)
+        {
+            _certaintyofProblem.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_certaintyofProblem, fieldData);
+        }
+
+        return _certaintyofProblem;
+    } 
+}
+
+internal HL7V231Field _probabilityofProblem;
+
+public HL7V231Field ProbabilityofProblem
+{
+    get
+    {
+        if (_probabilityofProblem != null)
+        {
+            return _probabilityofProblem;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.20",
+            Type = @"Field",
+            Position = @"PRB.20",
+            Name = @"Probability of Problem",
+            Length = 5,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a quantitative or numeric representation of the certainty that the problem exists for this patient. This field has a valid range of 0 to 1. For example, a healthcare provider may be 75% (.75) sure that the problem has been correctly identified.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _probabilityofProblem = new HL7V231Field
+        {
+            field = message[@"PRB"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_probabilityofProblem.field.FieldRepetitions != null && _probabilityofProblem.field.FieldRepetitions.Count > 0)
+        {
+            _probabilityofProblem.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_probabilityofProblem, fieldData);
+        }
+
+        return _probabilityofProblem;
+    } 
+}
+
+internal HL7V231Field _individualAwarenessofProblem;
+
+public HL7V231Field IndividualAwarenessofProblem
+{
+    get
+    {
+        if (_individualAwarenessofProblem != null)
+        {
+            return _individualAwarenessofProblem;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.21",
+            Type = @"Field",
+            Position = @"PRB.21",
+            Name = @"Individual Awareness of Problem",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the individual's comprehension of the problem (e.g., full, marginal, partial, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.20",
-                            Type = @"Field",
-                            Position = @"PRB.20",
-                            Name = @"Probability of Problem",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a quantitative or numeric representation of the certainty that the problem exists for this patient. This field has a valid range of 0 to 1. For example, a healthcare provider may be 75% (.75) sure that the problem has been correctly identified.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRB.21",
-                            Type = @"Field",
-                            Position = @"PRB.21",
-                            Name = @"Individual Awareness of Problem",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the individual's comprehension of the problem (e.g., full, marginal, partial, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.21.1",
                             Type = @"Component",
@@ -1600,25 +2200,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _individualAwarenessofProblem = new HL7V231Field
+        {
+            field = message[@"PRB"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_individualAwarenessofProblem.field.FieldRepetitions != null && _individualAwarenessofProblem.field.FieldRepetitions.Count > 0)
+        {
+            _individualAwarenessofProblem.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_individualAwarenessofProblem, fieldData);
+        }
+
+        return _individualAwarenessofProblem;
+    } 
+}
+
+internal HL7V231Field _problemPrognosis;
+
+public HL7V231Field ProblemPrognosis
+{
+    get
+    {
+        if (_problemPrognosis != null)
+        {
+            return _problemPrognosis;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.22",
+            Type = @"Field",
+            Position = @"PRB.22",
+            Name = @"Problem Prognosis",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the prognosis for the individual's problem (e.g., good, poor, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.22",
-                            Type = @"Field",
-                            Position = @"PRB.22",
-                            Name = @"Problem Prognosis",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the prognosis for the individual's problem (e.g., good, poor, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.22.1",
                             Type = @"Component",
@@ -1724,25 +2354,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _problemPrognosis = new HL7V231Field
+        {
+            field = message[@"PRB"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_problemPrognosis.field.FieldRepetitions != null && _problemPrognosis.field.FieldRepetitions.Count > 0)
+        {
+            _problemPrognosis.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_problemPrognosis, fieldData);
+        }
+
+        return _problemPrognosis;
+    } 
+}
+
+internal HL7V231Field _individualAwarenessofPrognosis;
+
+public HL7V231Field IndividualAwarenessofPrognosis
+{
+    get
+    {
+        if (_individualAwarenessofPrognosis != null)
+        {
+            return _individualAwarenessofPrognosis;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.23",
+            Type = @"Field",
+            Position = @"PRB.23",
+            Name = @"Individual Awareness of Prognosis",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the individual's comprehension of the prognosis for the problem (e.g., full, marginal, partial, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.23",
-                            Type = @"Field",
-                            Position = @"PRB.23",
-                            Name = @"Individual Awareness of Prognosis",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the individual's comprehension of the prognosis for the problem (e.g., full, marginal, partial, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.23.1",
                             Type = @"Component",
@@ -1848,43 +2508,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _individualAwarenessofPrognosis = new HL7V231Field
+        {
+            field = message[@"PRB"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_individualAwarenessofPrognosis.field.FieldRepetitions != null && _individualAwarenessofPrognosis.field.FieldRepetitions.Count > 0)
+        {
+            _individualAwarenessofPrognosis.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_individualAwarenessofPrognosis, fieldData);
+        }
+
+        return _individualAwarenessofPrognosis;
+    } 
+}
+
+internal HL7V231Field _familySignificantOtherAwarenessofProblemPrognosis;
+
+public HL7V231Field FamilySignificantOtherAwarenessofProblemPrognosis
+{
+    get
+    {
+        if (_familySignificantOtherAwarenessofProblemPrognosis != null)
+        {
+            return _familySignificantOtherAwarenessofProblemPrognosis;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.24",
+            Type = @"Field",
+            Position = @"PRB.24",
+            Name = @"Family/Significant Other Awareness of Problem/Prognosis",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the individual's family or significant other's comprehension of the actual problem/prognosis.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _familySignificantOtherAwarenessofProblemPrognosis = new HL7V231Field
+        {
+            field = message[@"PRB"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_familySignificantOtherAwarenessofProblemPrognosis.field.FieldRepetitions != null && _familySignificantOtherAwarenessofProblemPrognosis.field.FieldRepetitions.Count > 0)
+        {
+            _familySignificantOtherAwarenessofProblemPrognosis.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_familySignificantOtherAwarenessofProblemPrognosis, fieldData);
+        }
+
+        return _familySignificantOtherAwarenessofProblemPrognosis;
+    } 
+}
+
+internal HL7V231Field _securitySensitivity;
+
+public HL7V231Field SecuritySensitivity
+{
+    get
+    {
+        if (_securitySensitivity != null)
+        {
+            return _securitySensitivity;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PRB.25",
+            Type = @"Field",
+            Position = @"PRB.25",
+            Name = @"Security/Sensitivity",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains information about the level of security and/or sensitivity surrounding the problem (e.g., highly sensitive, not sensitive, sensitive, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRB.24",
-                            Type = @"Field",
-                            Position = @"PRB.24",
-                            Name = @"Family/Significant Other Awareness of Problem/Prognosis",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the individual's family or significant other's comprehension of the actual problem/prognosis.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRB.25",
-                            Type = @"Field",
-                            Position = @"PRB.25",
-                            Name = @"Security/Sensitivity",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains information about the level of security and/or sensitivity surrounding the problem (e.g., highly sensitive, not sensitive, sensitive, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRB.25.1",
                             Type = @"Component",
@@ -1990,1039 +2707,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V231SegmentPRB(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V231Field actionCode;
-
-public HL7V231Field ActionCode
-{
-    get
-    {
-        if (actionCode != null)
-        {
-            return actionCode;
-        }
-
-        actionCode = new HL7V231Field
-        {
-            field = message[@"PRB"][1],
-            Id = @"PRB.1",
-            Type = @"Field",
-            Position = @"PRB.1",
-            Name = @"Action Code",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0287",
-            TableName = @"Problem/goal action code",
-            Description = @"This field contains the intent of the message. Refer to HL7 table 0287 - Problem/goal action code for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (actionCode.field.FieldRepetitions != null && actionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actionCode.Id));
-            actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(actionCode, fieldData);
-        }
-
-        return actionCode;
-    } 
-}
-
-internal HL7V231Field actionDateTime;
-
-public HL7V231Field ActionDateTime
-{
-    get
-    {
-        if (actionDateTime != null)
-        {
-            return actionDateTime;
-        }
-
-        actionDateTime = new HL7V231Field
-        {
-            field = message[@"PRB"][2],
-            Id = @"PRB.2",
-            Type = @"Field",
-            Position = @"PRB.2",
-            Name = @"Action Date/Time",
-            Length = 26,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time that the operation represented by the action code was performed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (actionDateTime.field.FieldRepetitions != null && actionDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actionDateTime.Id));
-            actionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(actionDateTime, fieldData);
-        }
-
-        return actionDateTime;
-    } 
-}
-
-internal HL7V231Field problemID;
-
-public HL7V231Field ProblemID
-{
-    get
-    {
-        if (problemID != null)
-        {
-            return problemID;
-        }
-
-        problemID = new HL7V231Field
-        {
-            field = message[@"PRB"][3],
-            Id = @"PRB.3",
-            Type = @"Field",
-            Position = @"PRB.3",
-            Name = @"Problem ID",
-            Length = 80,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the problem. This is the identifier from an institution's master list of problems.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (problemID.field.FieldRepetitions != null && problemID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(problemID.Id));
-            problemID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(problemID, fieldData);
-        }
-
-        return problemID;
-    } 
-}
-
-internal HL7V231Field problemInstanceID;
-
-public HL7V231Field ProblemInstanceID
-{
-    get
-    {
-        if (problemInstanceID != null)
-        {
-            return problemInstanceID;
-        }
-
-        problemInstanceID = new HL7V231Field
-        {
-            field = message[@"PRB"][4],
-            Id = @"PRB.4",
-            Type = @"Field",
-            Position = @"PRB.4",
-            Name = @"Problem Instance ID",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the identifier assigned by an initiating system to an instance of a problem.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (problemInstanceID.field.FieldRepetitions != null && problemInstanceID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(problemInstanceID.Id));
-            problemInstanceID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(problemInstanceID, fieldData);
-        }
-
-        return problemInstanceID;
-    } 
-}
-
-internal HL7V231Field episodeofCareID;
-
-public HL7V231Field EpisodeofCareID
-{
-    get
-    {
-        if (episodeofCareID != null)
-        {
-            return episodeofCareID;
-        }
-
-        episodeofCareID = new HL7V231Field
-        {
-            field = message[@"PRB"][5],
-            Id = @"PRB.5",
-            Type = @"Field",
-            Position = @"PRB.5",
-            Name = @"Episode of Care ID",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field uniquely identifies the episode of care to which this problem applies. (See note under 'Ongoing issues.')",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (episodeofCareID.field.FieldRepetitions != null && episodeofCareID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(episodeofCareID.Id));
-            episodeofCareID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(episodeofCareID, fieldData);
-        }
-
-        return episodeofCareID;
-    } 
-}
-
-internal HL7V231Field problemListPriority;
-
-public HL7V231Field ProblemListPriority
-{
-    get
-    {
-        if (problemListPriority != null)
-        {
-            return problemListPriority;
-        }
-
-        problemListPriority = new HL7V231Field
-        {
-            field = message[@"PRB"][6],
-            Id = @"PRB.6",
-            Type = @"Field",
-            Position = @"PRB.6",
-            Name = @"Problem List Priority",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field prioritizes this problem on a list that is maintained for the individual.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (problemListPriority.field.FieldRepetitions != null && problemListPriority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(problemListPriority.Id));
-            problemListPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(problemListPriority, fieldData);
-        }
-
-        return problemListPriority;
-    } 
-}
-
-internal HL7V231Field problemEstablishedDateTime;
-
-public HL7V231Field ProblemEstablishedDateTime
-{
-    get
-    {
-        if (problemEstablishedDateTime != null)
-        {
-            return problemEstablishedDateTime;
-        }
-
-        problemEstablishedDateTime = new HL7V231Field
-        {
-            field = message[@"PRB"][7],
-            Id = @"PRB.7",
-            Type = @"Field",
-            Position = @"PRB.7",
-            Name = @"Problem Established Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when the corresponding problem was initially identified by the caregiver.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (problemEstablishedDateTime.field.FieldRepetitions != null && problemEstablishedDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(problemEstablishedDateTime.Id));
-            problemEstablishedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(problemEstablishedDateTime, fieldData);
-        }
-
-        return problemEstablishedDateTime;
-    } 
-}
-
-internal HL7V231Field anticipatedProblemResolutionDateTime;
-
-public HL7V231Field AnticipatedProblemResolutionDateTime
-{
-    get
-    {
-        if (anticipatedProblemResolutionDateTime != null)
-        {
-            return anticipatedProblemResolutionDateTime;
-        }
-
-        anticipatedProblemResolutionDateTime = new HL7V231Field
-        {
-            field = message[@"PRB"][8],
-            Id = @"PRB.8",
-            Type = @"Field",
-            Position = @"PRB.8",
-            Name = @"Anticipated Problem Resolution Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the estimated date/time for resolving the stated problem.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (anticipatedProblemResolutionDateTime.field.FieldRepetitions != null && anticipatedProblemResolutionDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(anticipatedProblemResolutionDateTime.Id));
-            anticipatedProblemResolutionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(anticipatedProblemResolutionDateTime, fieldData);
-        }
-
-        return anticipatedProblemResolutionDateTime;
-    } 
-}
-
-internal HL7V231Field actualProblemResolutionDateTime;
-
-public HL7V231Field ActualProblemResolutionDateTime
-{
-    get
-    {
-        if (actualProblemResolutionDateTime != null)
-        {
-            return actualProblemResolutionDateTime;
-        }
-
-        actualProblemResolutionDateTime = new HL7V231Field
-        {
-            field = message[@"PRB"][9],
-            Id = @"PRB.9",
-            Type = @"Field",
-            Position = @"PRB.9",
-            Name = @"Actual Problem Resolution Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time that the problem was actually resolved.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (actualProblemResolutionDateTime.field.FieldRepetitions != null && actualProblemResolutionDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actualProblemResolutionDateTime.Id));
-            actualProblemResolutionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(actualProblemResolutionDateTime, fieldData);
-        }
-
-        return actualProblemResolutionDateTime;
-    } 
-}
-
-internal HL7V231Field problemClassification;
-
-public HL7V231Field ProblemClassification
-{
-    get
-    {
-        if (problemClassification != null)
-        {
-            return problemClassification;
-        }
-
-        problemClassification = new HL7V231Field
-        {
-            field = message[@"PRB"][10],
-            Id = @"PRB.10",
-            Type = @"Field",
-            Position = @"PRB.10",
-            Name = @"Problem Classification",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the kind of problem. This field can be used to categorize problems so that they may be managed and viewed independently within different applications (e.g., admission, final, post-operative, pre-operative, outpatient, discharge, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (problemClassification.field.FieldRepetitions != null && problemClassification.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(problemClassification.Id));
-            problemClassification.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(problemClassification, fieldData);
-        }
-
-        return problemClassification;
-    } 
-}
-
-internal HL7V231Field problemManagementDiscipline;
-
-public HL7V231Field ProblemManagementDiscipline
-{
-    get
-    {
-        if (problemManagementDiscipline != null)
-        {
-            return problemManagementDiscipline;
-        }
-
-        problemManagementDiscipline = new HL7V231Field
-        {
-            field = message[@"PRB"][11],
-            Id = @"PRB.11",
-            Type = @"Field",
-            Position = @"PRB.11",
-            Name = @"Problem Management Discipline",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the category of caregiver with responsibility for managing this specific problem (e.g., care team, nursing, medicine, respiratory therapy, occupational therapy, dietary etc.). This is a repeating field to allow identification of all disciplines who may have the responsibility for this problem.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (problemManagementDiscipline.field.FieldRepetitions != null && problemManagementDiscipline.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(problemManagementDiscipline.Id));
-            problemManagementDiscipline.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(problemManagementDiscipline, fieldData);
-        }
-
-        return problemManagementDiscipline;
-    } 
-}
-
-internal HL7V231Field problemPersistence;
-
-public HL7V231Field ProblemPersistence
-{
-    get
-    {
-        if (problemPersistence != null)
-        {
-            return problemPersistence;
-        }
-
-        problemPersistence = new HL7V231Field
-        {
-            field = message[@"PRB"][12],
-            Id = @"PRB.12",
-            Type = @"Field",
-            Position = @"PRB.12",
-            Name = @"Problem Persistence",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the perseverance of a problem (e.g., acute, chronic, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (problemPersistence.field.FieldRepetitions != null && problemPersistence.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(problemPersistence.Id));
-            problemPersistence.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(problemPersistence, fieldData);
-        }
-
-        return problemPersistence;
-    } 
-}
-
-internal HL7V231Field problemConfirmationStatus;
-
-public HL7V231Field ProblemConfirmationStatus
-{
-    get
-    {
-        if (problemConfirmationStatus != null)
-        {
-            return problemConfirmationStatus;
-        }
-
-        problemConfirmationStatus = new HL7V231Field
-        {
-            field = message[@"PRB"][13],
-            Id = @"PRB.13",
-            Type = @"Field",
-            Position = @"PRB.13",
-            Name = @"Problem Confirmation Status",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the verification status of a problem (e.g., confirmed, differential, provisional, rule-out, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (problemConfirmationStatus.field.FieldRepetitions != null && problemConfirmationStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(problemConfirmationStatus.Id));
-            problemConfirmationStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(problemConfirmationStatus, fieldData);
-        }
-
-        return problemConfirmationStatus;
-    } 
-}
-
-internal HL7V231Field problemLifeCycleStatus;
-
-public HL7V231Field ProblemLifeCycleStatus
-{
-    get
-    {
-        if (problemLifeCycleStatus != null)
-        {
-            return problemLifeCycleStatus;
-        }
-
-        problemLifeCycleStatus = new HL7V231Field
-        {
-            field = message[@"PRB"][14],
-            Id = @"PRB.14",
-            Type = @"Field",
-            Position = @"PRB.14",
-            Name = @"Problem Life Cycle Status",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the current status of the problem at this particular date/time (e.g., active, active-improving, active-stable, active-worsening, inactive, resolved, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (problemLifeCycleStatus.field.FieldRepetitions != null && problemLifeCycleStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(problemLifeCycleStatus.Id));
-            problemLifeCycleStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(problemLifeCycleStatus, fieldData);
-        }
-
-        return problemLifeCycleStatus;
-    } 
-}
-
-internal HL7V231Field problemLifeCycleStatusDateTime;
-
-public HL7V231Field ProblemLifeCycleStatusDateTime
-{
-    get
-    {
-        if (problemLifeCycleStatusDateTime != null)
-        {
-            return problemLifeCycleStatusDateTime;
-        }
-
-        problemLifeCycleStatusDateTime = new HL7V231Field
-        {
-            field = message[@"PRB"][15],
-            Id = @"PRB.15",
-            Type = @"Field",
-            Position = @"PRB.15",
-            Name = @"Problem Life Cycle Status Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the effective date/time of the current problem life cycle status.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (problemLifeCycleStatusDateTime.field.FieldRepetitions != null && problemLifeCycleStatusDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(problemLifeCycleStatusDateTime.Id));
-            problemLifeCycleStatusDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(problemLifeCycleStatusDateTime, fieldData);
-        }
-
-        return problemLifeCycleStatusDateTime;
-    } 
-}
-
-internal HL7V231Field problemDateofOnset;
-
-public HL7V231Field ProblemDateofOnset
-{
-    get
-    {
-        if (problemDateofOnset != null)
-        {
-            return problemDateofOnset;
-        }
-
-        problemDateofOnset = new HL7V231Field
-        {
-            field = message[@"PRB"][16],
-            Id = @"PRB.16",
-            Type = @"Field",
-            Position = @"PRB.16",
-            Name = @"Problem Date of Onset",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when the problem began.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (problemDateofOnset.field.FieldRepetitions != null && problemDateofOnset.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(problemDateofOnset.Id));
-            problemDateofOnset.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(problemDateofOnset, fieldData);
-        }
-
-        return problemDateofOnset;
-    } 
-}
-
-internal HL7V231Field problemOnsetText;
-
-public HL7V231Field ProblemOnsetText
-{
-    get
-    {
-        if (problemOnsetText != null)
-        {
-            return problemOnsetText;
-        }
-
-        problemOnsetText = new HL7V231Field
-        {
-            field = message[@"PRB"][17],
-            Id = @"PRB.17",
-            Type = @"Field",
-            Position = @"PRB.17",
-            Name = @"Problem Onset Text",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field allows for a textual representation of the time when the problem began.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (problemOnsetText.field.FieldRepetitions != null && problemOnsetText.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(problemOnsetText.Id));
-            problemOnsetText.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(problemOnsetText, fieldData);
-        }
-
-        return problemOnsetText;
-    } 
-}
-
-internal HL7V231Field problemRanking;
-
-public HL7V231Field ProblemRanking
-{
-    get
-    {
-        if (problemRanking != null)
-        {
-            return problemRanking;
-        }
-
-        problemRanking = new HL7V231Field
-        {
-            field = message[@"PRB"][18],
-            Id = @"PRB.18",
-            Type = @"Field",
-            Position = @"PRB.18",
-            Name = @"Problem Ranking",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a user-defined prioritization of a problem (e.g., numeric ranking, or the use of words such as 'primary,' 'secondary,' etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (problemRanking.field.FieldRepetitions != null && problemRanking.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(problemRanking.Id));
-            problemRanking.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(problemRanking, fieldData);
-        }
-
-        return problemRanking;
-    } 
-}
-
-internal HL7V231Field certaintyofProblem;
-
-public HL7V231Field CertaintyofProblem
-{
-    get
-    {
-        if (certaintyofProblem != null)
-        {
-            return certaintyofProblem;
-        }
-
-        certaintyofProblem = new HL7V231Field
-        {
-            field = message[@"PRB"][19],
-            Id = @"PRB.19",
-            Type = @"Field",
-            Position = @"PRB.19",
-            Name = @"Certainty of Problem",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a qualitative representation of the certainty of a problem (e.g., HI - high, LO - low, ME - medium, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (certaintyofProblem.field.FieldRepetitions != null && certaintyofProblem.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certaintyofProblem.Id));
-            certaintyofProblem.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(certaintyofProblem, fieldData);
-        }
-
-        return certaintyofProblem;
-    } 
-}
-
-internal HL7V231Field probabilityofProblem;
-
-public HL7V231Field ProbabilityofProblem
-{
-    get
-    {
-        if (probabilityofProblem != null)
-        {
-            return probabilityofProblem;
-        }
-
-        probabilityofProblem = new HL7V231Field
-        {
-            field = message[@"PRB"][20],
-            Id = @"PRB.20",
-            Type = @"Field",
-            Position = @"PRB.20",
-            Name = @"Probability of Problem",
-            Length = 5,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a quantitative or numeric representation of the certainty that the problem exists for this patient. This field has a valid range of 0 to 1. For example, a healthcare provider may be 75% (.75) sure that the problem has been correctly identified.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (probabilityofProblem.field.FieldRepetitions != null && probabilityofProblem.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(probabilityofProblem.Id));
-            probabilityofProblem.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(probabilityofProblem, fieldData);
-        }
-
-        return probabilityofProblem;
-    } 
-}
-
-internal HL7V231Field individualAwarenessofProblem;
-
-public HL7V231Field IndividualAwarenessofProblem
-{
-    get
-    {
-        if (individualAwarenessofProblem != null)
-        {
-            return individualAwarenessofProblem;
-        }
-
-        individualAwarenessofProblem = new HL7V231Field
-        {
-            field = message[@"PRB"][21],
-            Id = @"PRB.21",
-            Type = @"Field",
-            Position = @"PRB.21",
-            Name = @"Individual Awareness of Problem",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the individual's comprehension of the problem (e.g., full, marginal, partial, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (individualAwarenessofProblem.field.FieldRepetitions != null && individualAwarenessofProblem.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(individualAwarenessofProblem.Id));
-            individualAwarenessofProblem.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(individualAwarenessofProblem, fieldData);
-        }
-
-        return individualAwarenessofProblem;
-    } 
-}
-
-internal HL7V231Field problemPrognosis;
-
-public HL7V231Field ProblemPrognosis
-{
-    get
-    {
-        if (problemPrognosis != null)
-        {
-            return problemPrognosis;
-        }
-
-        problemPrognosis = new HL7V231Field
-        {
-            field = message[@"PRB"][22],
-            Id = @"PRB.22",
-            Type = @"Field",
-            Position = @"PRB.22",
-            Name = @"Problem Prognosis",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the prognosis for the individual's problem (e.g., good, poor, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (problemPrognosis.field.FieldRepetitions != null && problemPrognosis.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(problemPrognosis.Id));
-            problemPrognosis.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(problemPrognosis, fieldData);
-        }
-
-        return problemPrognosis;
-    } 
-}
-
-internal HL7V231Field individualAwarenessofPrognosis;
-
-public HL7V231Field IndividualAwarenessofPrognosis
-{
-    get
-    {
-        if (individualAwarenessofPrognosis != null)
-        {
-            return individualAwarenessofPrognosis;
-        }
-
-        individualAwarenessofPrognosis = new HL7V231Field
-        {
-            field = message[@"PRB"][23],
-            Id = @"PRB.23",
-            Type = @"Field",
-            Position = @"PRB.23",
-            Name = @"Individual Awareness of Prognosis",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the individual's comprehension of the prognosis for the problem (e.g., full, marginal, partial, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (individualAwarenessofPrognosis.field.FieldRepetitions != null && individualAwarenessofPrognosis.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(individualAwarenessofPrognosis.Id));
-            individualAwarenessofPrognosis.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(individualAwarenessofPrognosis, fieldData);
-        }
-
-        return individualAwarenessofPrognosis;
-    } 
-}
-
-internal HL7V231Field familySignificantOtherAwarenessofProblemPrognosis;
-
-public HL7V231Field FamilySignificantOtherAwarenessofProblemPrognosis
-{
-    get
-    {
-        if (familySignificantOtherAwarenessofProblemPrognosis != null)
-        {
-            return familySignificantOtherAwarenessofProblemPrognosis;
-        }
-
-        familySignificantOtherAwarenessofProblemPrognosis = new HL7V231Field
-        {
-            field = message[@"PRB"][24],
-            Id = @"PRB.24",
-            Type = @"Field",
-            Position = @"PRB.24",
-            Name = @"Family/Significant Other Awareness of Problem/Prognosis",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the individual's family or significant other's comprehension of the actual problem/prognosis.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (familySignificantOtherAwarenessofProblemPrognosis.field.FieldRepetitions != null && familySignificantOtherAwarenessofProblemPrognosis.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(familySignificantOtherAwarenessofProblemPrognosis.Id));
-            familySignificantOtherAwarenessofProblemPrognosis.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(familySignificantOtherAwarenessofProblemPrognosis, fieldData);
-        }
-
-        return familySignificantOtherAwarenessofProblemPrognosis;
-    } 
-}
-
-internal HL7V231Field securitySensitivity;
-
-public HL7V231Field SecuritySensitivity
-{
-    get
-    {
-        if (securitySensitivity != null)
-        {
-            return securitySensitivity;
-        }
-
-        securitySensitivity = new HL7V231Field
+        _securitySensitivity = new HL7V231Field
         {
             field = message[@"PRB"][25],
-            Id = @"PRB.25",
-            Type = @"Field",
-            Position = @"PRB.25",
-            Name = @"Security/Sensitivity",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains information about the level of security and/or sensitivity surrounding the problem (e.g., highly sensitive, not sensitive, sensitive, etc.).",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (securitySensitivity.field.FieldRepetitions != null && securitySensitivity.field.FieldRepetitions.Count > 0)
+        if (_securitySensitivity.field.FieldRepetitions != null && _securitySensitivity.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(securitySensitivity.Id));
-            securitySensitivity.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(securitySensitivity, fieldData);
+            _securitySensitivity.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_securitySensitivity, fieldData);
         }
 
-        return securitySensitivity;
+        return _securitySensitivity;
     } 
 }
     }

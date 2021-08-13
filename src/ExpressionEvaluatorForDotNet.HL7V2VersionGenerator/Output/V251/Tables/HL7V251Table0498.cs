@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_09",
+
                     };
             } 
         }
@@ -65,6 +66,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Rescinded - Consent was initially granted, but was subsequently revoked or ended.",
                             Comment = null
                         },
+                        
                     };
             } 
         }

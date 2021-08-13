@@ -31,28 +31,40 @@ The assigning authority, the fourth component of the patient identifiers, is an 
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentMRG(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _priorPatientIdentifierList;
+
+public HL7V271Field PriorPatientIdentifierList
+{
+    get
+    {
+        if (_priorPatientIdentifierList != null)
+        {
+            return _priorPatientIdentifierList;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"MRG.1",
+            Type = @"Field",
+            Position = @"MRG.1",
+            Name = @"Prior Patient Identifier List",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the prior patient identifier list. This field contains a list of potential ""old"" numbers to match. Only one old number can be merged with one new number in a transaction. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"MRG.1",
-                            Type = @"Field",
-                            Position = @"MRG.1",
-                            Name = @"Prior Patient Identifier List",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the prior patient identifier list. This field contains a list of potential ""old"" numbers to match. Only one old number can be merged with one new number in a transaction. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.1.1",
                             Type = @"Component",
@@ -1254,43 +1266,100 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _priorPatientIdentifierList = new HL7V271Field
+        {
+            field = message[@"MRG"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorPatientIdentifierList.field.FieldRepetitions != null && _priorPatientIdentifierList.field.FieldRepetitions.Count > 0)
+        {
+            _priorPatientIdentifierList.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_priorPatientIdentifierList, fieldData);
+        }
+
+        return _priorPatientIdentifierList;
+    } 
+}
+
+internal HL7V271Field _priorAlternatePatientId;
+
+public HL7V271Field PriorAlternatePatientId
+{
+    get
+    {
+        if (_priorAlternatePatientId != null)
+        {
+            return _priorAlternatePatientId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"MRG.2",
+            Type = @"Field",
+            Position = @"MRG.2",
+            Name = @"Prior Alternate Patient Id",
+            Length = 0,
+            Usage = @"W",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The MRG-2 field was retained for backward compatibility only as of V2.3.1 and withdrawn as of v2.7. The reader is referred to section 3.4.10.1, MRG-1 Prior Patient Identifier List (CX) 00211, instead.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _priorAlternatePatientId = new HL7V271Field
+        {
+            field = message[@"MRG"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorAlternatePatientId.field.FieldRepetitions != null && _priorAlternatePatientId.field.FieldRepetitions.Count > 0)
+        {
+            _priorAlternatePatientId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_priorAlternatePatientId, fieldData);
+        }
+
+        return _priorAlternatePatientId;
+    } 
+}
+
+internal HL7V271Field _priorPatientAccountNumber;
+
+public HL7V271Field PriorPatientAccountNumber
+{
+    get
+    {
+        if (_priorPatientAccountNumber != null)
+        {
+            return _priorPatientAccountNumber;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"MRG.3",
+            Type = @"Field",
+            Position = @"MRG.3",
+            Name = @"Prior Patient Account Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the prior patient account number. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MRG.2",
-                            Type = @"Field",
-                            Position = @"MRG.2",
-                            Name = @"Prior Alternate Patient Id",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The MRG-2 field was retained for backward compatibility only as of V2.3.1 and withdrawn as of v2.7. The reader is referred to section 3.4.10.1, MRG-1 Prior Patient Identifier List (CX) 00211, instead.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MRG.3",
-                            Type = @"Field",
-                            Position = @"MRG.3",
-                            Name = @"Prior Patient Account Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the prior patient account number. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MRG.3.1",
                             Type = @"Component",
@@ -2492,43 +2561,100 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _priorPatientAccountNumber = new HL7V271Field
+        {
+            field = message[@"MRG"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorPatientAccountNumber.field.FieldRepetitions != null && _priorPatientAccountNumber.field.FieldRepetitions.Count > 0)
+        {
+            _priorPatientAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_priorPatientAccountNumber, fieldData);
+        }
+
+        return _priorPatientAccountNumber;
+    } 
+}
+
+internal HL7V271Field _priorPatientId;
+
+public HL7V271Field PriorPatientId
+{
+    get
+    {
+        if (_priorPatientId != null)
+        {
+            return _priorPatientId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"MRG.4",
+            Type = @"Field",
+            Position = @"MRG.4",
+            Name = @"Prior Patient Id",
+            Length = 0,
+            Usage = @"W",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The MRG-4 field was retained for backward compatibility only as of V2.3.1 and withdrawn as of v2.7. The reader is referred to section 3.4.10.1, MRG-1 Prior Patient Identifier List (CX) 00211, instead.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _priorPatientId = new HL7V271Field
+        {
+            field = message[@"MRG"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorPatientId.field.FieldRepetitions != null && _priorPatientId.field.FieldRepetitions.Count > 0)
+        {
+            _priorPatientId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_priorPatientId, fieldData);
+        }
+
+        return _priorPatientId;
+    } 
+}
+
+internal HL7V271Field _priorVisitNumber;
+
+public HL7V271Field PriorVisitNumber
+{
+    get
+    {
+        if (_priorVisitNumber != null)
+        {
+            return _priorVisitNumber;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"MRG.5",
+            Type = @"Field",
+            Position = @"MRG.5",
+            Name = @"Prior Visit Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the prior visit number. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MRG.4",
-                            Type = @"Field",
-                            Position = @"MRG.4",
-                            Name = @"Prior Patient Id",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The MRG-4 field was retained for backward compatibility only as of V2.3.1 and withdrawn as of v2.7. The reader is referred to section 3.4.10.1, MRG-1 Prior Patient Identifier List (CX) 00211, instead.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MRG.5",
-                            Type = @"Field",
-                            Position = @"MRG.5",
-                            Name = @"Prior Visit Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the prior visit number. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MRG.5.1",
                             Type = @"Component",
@@ -3730,25 +3856,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _priorVisitNumber = new HL7V271Field
+        {
+            field = message[@"MRG"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorVisitNumber.field.FieldRepetitions != null && _priorVisitNumber.field.FieldRepetitions.Count > 0)
+        {
+            _priorVisitNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_priorVisitNumber, fieldData);
+        }
+
+        return _priorVisitNumber;
+    } 
+}
+
+internal HL7V271Field _priorAlternateVisitId;
+
+public HL7V271Field PriorAlternateVisitId
+{
+    get
+    {
+        if (_priorAlternateVisitId != null)
+        {
+            return _priorAlternateVisitId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"MRG.6",
+            Type = @"Field",
+            Position = @"MRG.6",
+            Name = @"Prior Alternate Visit Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the prior alternate visit number. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MRG.6",
-                            Type = @"Field",
-                            Position = @"MRG.6",
-                            Name = @"Prior Alternate Visit Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the prior alternate visit number. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MRG.6.1",
                             Type = @"Component",
@@ -4950,25 +5106,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _priorAlternateVisitId = new HL7V271Field
+        {
+            field = message[@"MRG"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorAlternateVisitId.field.FieldRepetitions != null && _priorAlternateVisitId.field.FieldRepetitions.Count > 0)
+        {
+            _priorAlternateVisitId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_priorAlternateVisitId, fieldData);
+        }
+
+        return _priorAlternateVisitId;
+    } 
+}
+
+internal HL7V271Field _priorPatientName;
+
+public HL7V271Field PriorPatientName
+{
+    get
+    {
+        if (_priorPatientName != null)
+        {
+            return _priorPatientName;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"MRG.7",
+            Type = @"Field",
+            Position = @"MRG.7",
+            Name = @"Prior Patient Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the prior name of the patient. This field is not used to change a patient name. Refer to HL7 Table 0200 - Name Type for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MRG.7",
-                            Type = @"Field",
-                            Position = @"MRG.7",
-                            Name = @"Prior Patient Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the prior name of the patient. This field is not used to change a patient name. Refer to HL7 Table 0200 - Name Type for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MRG.7.1",
                             Type = @"Component",
@@ -5778,301 +5964,23 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentMRG(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field priorPatientIdentifierList;
-
-public HL7V271Field PriorPatientIdentifierList
-{
-    get
-    {
-        if (priorPatientIdentifierList != null)
-        {
-            return priorPatientIdentifierList;
-        }
-
-        priorPatientIdentifierList = new HL7V271Field
-        {
-            field = message[@"MRG"][1],
-            Id = @"MRG.1",
-            Type = @"Field",
-            Position = @"MRG.1",
-            Name = @"Prior Patient Identifier List",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the prior patient identifier list. This field contains a list of potential ""old"" numbers to match. Only one old number can be merged with one new number in a transaction. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorPatientIdentifierList.field.FieldRepetitions != null && priorPatientIdentifierList.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientIdentifierList.Id));
-            priorPatientIdentifierList.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(priorPatientIdentifierList, fieldData);
-        }
-
-        return priorPatientIdentifierList;
-    } 
-}
-
-internal HL7V271Field priorAlternatePatientId;
-
-public HL7V271Field PriorAlternatePatientId
-{
-    get
-    {
-        if (priorAlternatePatientId != null)
-        {
-            return priorAlternatePatientId;
-        }
-
-        priorAlternatePatientId = new HL7V271Field
-        {
-            field = message[@"MRG"][2],
-            Id = @"MRG.2",
-            Type = @"Field",
-            Position = @"MRG.2",
-            Name = @"Prior Alternate Patient Id",
-            Length = 0,
-            Usage = @"W",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The MRG-2 field was retained for backward compatibility only as of V2.3.1 and withdrawn as of v2.7. The reader is referred to section 3.4.10.1, MRG-1 Prior Patient Identifier List (CX) 00211, instead.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorAlternatePatientId.field.FieldRepetitions != null && priorAlternatePatientId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorAlternatePatientId.Id));
-            priorAlternatePatientId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(priorAlternatePatientId, fieldData);
-        }
-
-        return priorAlternatePatientId;
-    } 
-}
-
-internal HL7V271Field priorPatientAccountNumber;
-
-public HL7V271Field PriorPatientAccountNumber
-{
-    get
-    {
-        if (priorPatientAccountNumber != null)
-        {
-            return priorPatientAccountNumber;
-        }
-
-        priorPatientAccountNumber = new HL7V271Field
-        {
-            field = message[@"MRG"][3],
-            Id = @"MRG.3",
-            Type = @"Field",
-            Position = @"MRG.3",
-            Name = @"Prior Patient Account Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the prior patient account number. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorPatientAccountNumber.field.FieldRepetitions != null && priorPatientAccountNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientAccountNumber.Id));
-            priorPatientAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(priorPatientAccountNumber, fieldData);
-        }
-
-        return priorPatientAccountNumber;
-    } 
-}
-
-internal HL7V271Field priorPatientId;
-
-public HL7V271Field PriorPatientId
-{
-    get
-    {
-        if (priorPatientId != null)
-        {
-            return priorPatientId;
-        }
-
-        priorPatientId = new HL7V271Field
-        {
-            field = message[@"MRG"][4],
-            Id = @"MRG.4",
-            Type = @"Field",
-            Position = @"MRG.4",
-            Name = @"Prior Patient Id",
-            Length = 0,
-            Usage = @"W",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The MRG-4 field was retained for backward compatibility only as of V2.3.1 and withdrawn as of v2.7. The reader is referred to section 3.4.10.1, MRG-1 Prior Patient Identifier List (CX) 00211, instead.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorPatientId.field.FieldRepetitions != null && priorPatientId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientId.Id));
-            priorPatientId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(priorPatientId, fieldData);
-        }
-
-        return priorPatientId;
-    } 
-}
-
-internal HL7V271Field priorVisitNumber;
-
-public HL7V271Field PriorVisitNumber
-{
-    get
-    {
-        if (priorVisitNumber != null)
-        {
-            return priorVisitNumber;
-        }
-
-        priorVisitNumber = new HL7V271Field
-        {
-            field = message[@"MRG"][5],
-            Id = @"MRG.5",
-            Type = @"Field",
-            Position = @"MRG.5",
-            Name = @"Prior Visit Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the prior visit number. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorVisitNumber.field.FieldRepetitions != null && priorVisitNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorVisitNumber.Id));
-            priorVisitNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(priorVisitNumber, fieldData);
-        }
-
-        return priorVisitNumber;
-    } 
-}
-
-internal HL7V271Field priorAlternateVisitId;
-
-public HL7V271Field PriorAlternateVisitId
-{
-    get
-    {
-        if (priorAlternateVisitId != null)
-        {
-            return priorAlternateVisitId;
-        }
-
-        priorAlternateVisitId = new HL7V271Field
-        {
-            field = message[@"MRG"][6],
-            Id = @"MRG.6",
-            Type = @"Field",
-            Position = @"MRG.6",
-            Name = @"Prior Alternate Visit Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the prior alternate visit number. Refer to HL7 Table 0061 - Check Digit Scheme for valid values. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorAlternateVisitId.field.FieldRepetitions != null && priorAlternateVisitId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorAlternateVisitId.Id));
-            priorAlternateVisitId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(priorAlternateVisitId, fieldData);
-        }
-
-        return priorAlternateVisitId;
-    } 
-}
-
-internal HL7V271Field priorPatientName;
-
-public HL7V271Field PriorPatientName
-{
-    get
-    {
-        if (priorPatientName != null)
-        {
-            return priorPatientName;
-        }
-
-        priorPatientName = new HL7V271Field
+        _priorPatientName = new HL7V271Field
         {
             field = message[@"MRG"][7],
-            Id = @"MRG.7",
-            Type = @"Field",
-            Position = @"MRG.7",
-            Name = @"Prior Patient Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the prior name of the patient. This field is not used to change a patient name. Refer to HL7 Table 0200 - Name Type for valid values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (priorPatientName.field.FieldRepetitions != null && priorPatientName.field.FieldRepetitions.Count > 0)
+        if (_priorPatientName.field.FieldRepetitions != null && _priorPatientName.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientName.Id));
-            priorPatientName.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(priorPatientName, fieldData);
+            _priorPatientName.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_priorPatientName, fieldData);
         }
 
-        return priorPatientName;
+        return _priorPatientName;
     } 
 }
     }

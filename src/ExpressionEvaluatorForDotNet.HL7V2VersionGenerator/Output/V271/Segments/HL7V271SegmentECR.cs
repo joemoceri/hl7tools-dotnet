@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentECR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _commandResponse;
+
+public HL7V271Field CommandResponse
+{
+    get
+    {
+        if (_commandResponse != null)
+        {
+            return _commandResponse;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"ECR.1",
+            Type = @"Field",
+            Position = @"ECR.1",
+            Name = @"Command Response",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0387",
+            TableName = @"Command Response",
+            Description = @"This field identifies the response of the previously issued command.  Refer to User-defined Table 0387 – Command Response for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ECR.1",
-                            Type = @"Field",
-                            Position = @"ECR.1",
-                            Name = @"Command Response",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0387",
-                            TableName = @"Command Response",
-                            Description = @"This field identifies the response of the previously issued command.  Refer to User-defined Table 0387 – Command Response for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ECR.1.1",
                             Type = @"Component",
@@ -476,108 +488,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ECR.2",
-                            Type = @"Field",
-                            Position = @"ECR.2",
-                            Name = @"Date/Time Completed",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time that the receiving component completed the requested command.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ECR.3",
-                            Type = @"Field",
-                            Position = @"ECR.3",
-                            Name = @"Command Response Parameters",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies any associated parameters that relate to the returned response command message.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentECR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field commandResponse;
-
-public HL7V271Field CommandResponse
-{
-    get
-    {
-        if (commandResponse != null)
-        {
-            return commandResponse;
-        }
-
-        commandResponse = new HL7V271Field
+        _commandResponse = new HL7V271Field
         {
             field = message[@"ECR"][1],
-            Id = @"ECR.1",
-            Type = @"Field",
-            Position = @"ECR.1",
-            Name = @"Command Response",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0387",
-            TableName = @"Command Response",
-            Description = @"This field identifies the response of the previously issued command.  Refer to User-defined Table 0387 – Command Response for valid values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (commandResponse.field.FieldRepetitions != null && commandResponse.field.FieldRepetitions.Count > 0)
+        if (_commandResponse.field.FieldRepetitions != null && _commandResponse.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(commandResponse.Id));
-            commandResponse.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(commandResponse, fieldData);
+            _commandResponse.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_commandResponse, fieldData);
         }
 
-        return commandResponse;
+        return _commandResponse;
     } 
 }
 
-internal HL7V271Field dateTimeCompleted;
+internal HL7V271Field _dateTimeCompleted;
 
 public HL7V271Field DateTimeCompleted
 {
     get
     {
-        if (dateTimeCompleted != null)
+        if (_dateTimeCompleted != null)
         {
-            return dateTimeCompleted;
+            return _dateTimeCompleted;
         }
 
-        dateTimeCompleted = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"ECR"][2],
             Id = @"ECR.2",
             Type = @"Field",
             Position = @"ECR.2",
@@ -591,34 +534,38 @@ public HL7V271Field DateTimeCompleted
             TableName = null,
             Description = @"This field contains the date and time that the receiving component completed the requested command.",
             Sample = @"",
+            Fields = null
+        }
+
+        _dateTimeCompleted = new HL7V271Field
+        {
+            field = message[@"ECR"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dateTimeCompleted.field.FieldRepetitions != null && dateTimeCompleted.field.FieldRepetitions.Count > 0)
+        if (_dateTimeCompleted.field.FieldRepetitions != null && _dateTimeCompleted.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeCompleted.Id));
-            dateTimeCompleted.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(dateTimeCompleted, fieldData);
+            _dateTimeCompleted.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_dateTimeCompleted, fieldData);
         }
 
-        return dateTimeCompleted;
+        return _dateTimeCompleted;
     } 
 }
 
-internal HL7V271Field commandResponseParameters;
+internal HL7V271Field _commandResponseParameters;
 
 public HL7V271Field CommandResponseParameters
 {
     get
     {
-        if (commandResponseParameters != null)
+        if (_commandResponseParameters != null)
         {
-            return commandResponseParameters;
+            return _commandResponseParameters;
         }
 
-        commandResponseParameters = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"ECR"][3],
             Id = @"ECR.3",
             Type = @"Field",
             Position = @"ECR.3",
@@ -632,17 +579,22 @@ public HL7V271Field CommandResponseParameters
             TableName = null,
             Description = @"This field identifies any associated parameters that relate to the returned response command message.",
             Sample = @"",
+            Fields = null
+        }
+
+        _commandResponseParameters = new HL7V271Field
+        {
+            field = message[@"ECR"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (commandResponseParameters.field.FieldRepetitions != null && commandResponseParameters.field.FieldRepetitions.Count > 0)
+        if (_commandResponseParameters.field.FieldRepetitions != null && _commandResponseParameters.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(commandResponseParameters.Id));
-            commandResponseParameters.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(commandResponseParameters, fieldData);
+            _commandResponseParameters.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_commandResponseParameters, fieldData);
         }
 
-        return commandResponseParameters;
+        return _commandResponseParameters;
     } 
 }
     }

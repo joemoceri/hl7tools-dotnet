@@ -29,82 +29,175 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V23SegmentFT1(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field _setIDFinancialTransaction;
+
+public HL7V23Field SetIDFinancialTransaction
+{
+    get
+    {
+        if (_setIDFinancialTransaction != null)
+        {
+            return _setIDFinancialTransaction;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.1",
+            Type = @"Field",
+            Position = @"FT1.1",
+            Name = @"Set ID - Financial Transaction",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction.  For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDFinancialTransaction = new HL7V23Field
+        {
+            field = message[@"FT1"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDFinancialTransaction.field.FieldRepetitions != null && _setIDFinancialTransaction.field.FieldRepetitions.Count > 0)
+        {
+            _setIDFinancialTransaction.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_setIDFinancialTransaction, fieldData);
+        }
+
+        return _setIDFinancialTransaction;
+    } 
+}
+
+internal HL7V23Field _transactionID;
+
+public HL7V23Field TransactionID
+{
+    get
+    {
+        if (_transactionID != null)
+        {
+            return _transactionID;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.2",
+            Type = @"Field",
+            Position = @"FT1.2",
+            Name = @"Transaction ID",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a number assigned by the sending system for control purposes.  The number can be returned by the receiving system to identify errors. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _transactionID = new HL7V23Field
+        {
+            field = message[@"FT1"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionID.field.FieldRepetitions != null && _transactionID.field.FieldRepetitions.Count > 0)
+        {
+            _transactionID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transactionID, fieldData);
+        }
+
+        return _transactionID;
+    } 
+}
+
+internal HL7V23Field _transactionBatchID;
+
+public HL7V23Field TransactionBatchID
+{
+    get
+    {
+        if (_transactionBatchID != null)
+        {
+            return _transactionBatchID;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.3",
+            Type = @"Field",
+            Position = @"FT1.3",
+            Name = @"Transaction Batch ID",
+            Length = 10,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field uniquely identifies the batch in which this transaction belongs.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _transactionBatchID = new HL7V23Field
+        {
+            field = message[@"FT1"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionBatchID.field.FieldRepetitions != null && _transactionBatchID.field.FieldRepetitions.Count > 0)
+        {
+            _transactionBatchID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transactionBatchID, fieldData);
+        }
+
+        return _transactionBatchID;
+    } 
+}
+
+internal HL7V23Field _transactionDate;
+
+public HL7V23Field TransactionDate
+{
+    get
+    {
+        if (_transactionDate != null)
+        {
+            return _transactionDate;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.4",
+            Type = @"Field",
+            Position = @"FT1.4",
+            Name = @"Transaction Date",
+            Length = 26,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date of the transaction.  For example, this field would be used to identify the date a procedure, item, or test was conducted or used.  It may be defaulted to today’s date.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"FT1.1",
-                            Type = @"Field",
-                            Position = @"FT1.1",
-                            Name = @"Set ID - Financial Transaction",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction.  For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.2",
-                            Type = @"Field",
-                            Position = @"FT1.2",
-                            Name = @"Transaction ID",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a number assigned by the sending system for control purposes.  The number can be returned by the receiving system to identify errors. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.3",
-                            Type = @"Field",
-                            Position = @"FT1.3",
-                            Name = @"Transaction Batch ID",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field uniquely identifies the batch in which this transaction belongs.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.4",
-                            Type = @"Field",
-                            Position = @"FT1.4",
-                            Name = @"Transaction Date",
-                            Length = 26,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date of the transaction.  For example, this field would be used to identify the date a procedure, item, or test was conducted or used.  It may be defaulted to today’s date.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"FT1.4.1",
                             Type = @"Component",
@@ -120,25 +213,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transactionDate = new HL7V23Field
+        {
+            field = message[@"FT1"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionDate.field.FieldRepetitions != null && _transactionDate.field.FieldRepetitions.Count > 0)
+        {
+            _transactionDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transactionDate, fieldData);
+        }
+
+        return _transactionDate;
+    } 
+}
+
+internal HL7V23Field _transactionPostingDate;
+
+public HL7V23Field TransactionPostingDate
+{
+    get
+    {
+        if (_transactionPostingDate != null)
+        {
+            return _transactionPostingDate;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.5",
+            Type = @"Field",
+            Position = @"FT1.5",
+            Name = @"Transaction Posting Date",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date of the transaction that was sent to the financial system for posting.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.5",
-                            Type = @"Field",
-                            Position = @"FT1.5",
-                            Name = @"Transaction Posting Date",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date of the transaction that was sent to the financial system for posting.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.5.1",
                             Type = @"Component",
@@ -154,43 +277,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transactionPostingDate = new HL7V23Field
+        {
+            field = message[@"FT1"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionPostingDate.field.FieldRepetitions != null && _transactionPostingDate.field.FieldRepetitions.Count > 0)
+        {
+            _transactionPostingDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transactionPostingDate, fieldData);
+        }
+
+        return _transactionPostingDate;
+    } 
+}
+
+internal HL7V23Field _transactionType;
+
+public HL7V23Field TransactionType
+{
+    get
+    {
+        if (_transactionType != null)
+        {
+            return _transactionType;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.6",
+            Type = @"Field",
+            Position = @"FT1.6",
+            Name = @"Transaction Type",
+            Length = 8,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0017",
+            TableName = @"Transaction type",
+            Description = @"This field contains the code that identifies the type of transaction.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _transactionType = new HL7V23Field
+        {
+            field = message[@"FT1"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionType.field.FieldRepetitions != null && _transactionType.field.FieldRepetitions.Count > 0)
+        {
+            _transactionType.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transactionType, fieldData);
+        }
+
+        return _transactionType;
+    } 
+}
+
+internal HL7V23Field _transactionCode;
+
+public HL7V23Field TransactionCode
+{
+    get
+    {
+        if (_transactionCode != null)
+        {
+            return _transactionCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.7",
+            Type = @"Field",
+            Position = @"FT1.7",
+            Name = @"Transaction Code",
+            Length = 80,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0132",
+            TableName = @"Transaction code",
+            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying the transaction.  For example, this field would be used to uniquely identify a procedure, supply item, or test for charging purposes.  Refer to user-defined table 0132 - Transaction code for suggested values.  See Chapter 7 for a discussion of the universal service ID. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.6",
-                            Type = @"Field",
-                            Position = @"FT1.6",
-                            Name = @"Transaction Type",
-                            Length = 8,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0017",
-                            TableName = @"Transaction type",
-                            Description = @"This field contains the code that identifies the type of transaction.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.7",
-                            Type = @"Field",
-                            Position = @"FT1.7",
-                            Name = @"Transaction Code",
-                            Length = 80,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0132",
-                            TableName = @"Transaction code",
-                            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying the transaction.  For example, this field would be used to uniquely identify a procedure, supply item, or test for charging purposes.  Refer to user-defined table 0132 - Transaction code for suggested values.  See Chapter 7 for a discussion of the universal service ID. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.7.1",
                             Type = @"Component",
@@ -296,79 +476,190 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transactionCode = new HL7V23Field
+        {
+            field = message[@"FT1"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionCode.field.FieldRepetitions != null && _transactionCode.field.FieldRepetitions.Count > 0)
+        {
+            _transactionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transactionCode, fieldData);
+        }
+
+        return _transactionCode;
+    } 
+}
+
+internal HL7V23Field _transactionDescription;
+
+public HL7V23Field TransactionDescription
+{
+    get
+    {
+        if (_transactionDescription != null)
+        {
+            return _transactionDescription;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.8",
+            Type = @"Field",
+            Position = @"FT1.8",
+            Name = @"Transaction Description",
+            Length = 40,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has been retained for backward compatibility only.   As of Version 2.3, FT1-7transaction code contains a component for the transaction description.  When used for backward compatibility, FT1-8-transaction description contains a description of the transaction associated with the code entered in FT1-7-transaction code ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _transactionDescription = new HL7V23Field
+        {
+            field = message[@"FT1"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionDescription.field.FieldRepetitions != null && _transactionDescription.field.FieldRepetitions.Count > 0)
+        {
+            _transactionDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transactionDescription, fieldData);
+        }
+
+        return _transactionDescription;
+    } 
+}
+
+internal HL7V23Field _transactionDescriptionalternate;
+
+public HL7V23Field TransactionDescriptionalternate
+{
+    get
+    {
+        if (_transactionDescriptionalternate != null)
+        {
+            return _transactionDescriptionalternate;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.9",
+            Type = @"Field",
+            Position = @"FT1.9",
+            Name = @"Transaction Description - alternate",
+            Length = 40,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has been retained for backward compatibility only.  As of Version 2.3, FT1-7transaction code contains a component for the alternate transaction description.  When used for backward compatibility, FT1-9-transaction description-alt contains an alternate description of the transaction associated with the code entered in FT1-7-transaction code.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _transactionDescriptionalternate = new HL7V23Field
+        {
+            field = message[@"FT1"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionDescriptionalternate.field.FieldRepetitions != null && _transactionDescriptionalternate.field.FieldRepetitions.Count > 0)
+        {
+            _transactionDescriptionalternate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transactionDescriptionalternate, fieldData);
+        }
+
+        return _transactionDescriptionalternate;
+    } 
+}
+
+internal HL7V23Field _transactionQuantity;
+
+public HL7V23Field TransactionQuantity
+{
+    get
+    {
+        if (_transactionQuantity != null)
+        {
+            return _transactionQuantity;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.10",
+            Type = @"Field",
+            Position = @"FT1.10",
+            Name = @"Transaction Quantity",
+            Length = 6,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the quantity of items associated with this transaction",
+            Sample = @"",
+            Fields = null
+        }
+
+        _transactionQuantity = new HL7V23Field
+        {
+            field = message[@"FT1"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionQuantity.field.FieldRepetitions != null && _transactionQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _transactionQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transactionQuantity, fieldData);
+        }
+
+        return _transactionQuantity;
+    } 
+}
+
+internal HL7V23Field _transactionAmountExtended;
+
+public HL7V23Field TransactionAmountExtended
+{
+    get
+    {
+        if (_transactionAmountExtended != null)
+        {
+            return _transactionAmountExtended;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.11",
+            Type = @"Field",
+            Position = @"FT1.11",
+            Name = @"Transaction Amount - Extended",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the amount of a transaction.  It may be left blank if the transaction is automatically priced.  Total price for multiple items",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.8",
-                            Type = @"Field",
-                            Position = @"FT1.8",
-                            Name = @"Transaction Description",
-                            Length = 40,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has been retained for backward compatibility only.   As of Version 2.3, FT1-7transaction code contains a component for the transaction description.  When used for backward compatibility, FT1-8-transaction description contains a description of the transaction associated with the code entered in FT1-7-transaction code ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.9",
-                            Type = @"Field",
-                            Position = @"FT1.9",
-                            Name = @"Transaction Description - alternate",
-                            Length = 40,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has been retained for backward compatibility only.  As of Version 2.3, FT1-7transaction code contains a component for the alternate transaction description.  When used for backward compatibility, FT1-9-transaction description-alt contains an alternate description of the transaction associated with the code entered in FT1-7-transaction code.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.10",
-                            Type = @"Field",
-                            Position = @"FT1.10",
-                            Name = @"Transaction Quantity",
-                            Length = 6,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the quantity of items associated with this transaction",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.11",
-                            Type = @"Field",
-                            Position = @"FT1.11",
-                            Name = @"Transaction Amount - Extended",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the amount of a transaction.  It may be left blank if the transaction is automatically priced.  Total price for multiple items",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.11.1",
                             Type = @"Component",
@@ -618,25 +909,55 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"Refers to HL7 table 0298 - CP range type for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transactionAmountExtended = new HL7V23Field
+        {
+            field = message[@"FT1"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionAmountExtended.field.FieldRepetitions != null && _transactionAmountExtended.field.FieldRepetitions.Count > 0)
+        {
+            _transactionAmountExtended.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transactionAmountExtended, fieldData);
+        }
+
+        return _transactionAmountExtended;
+    } 
+}
+
+internal HL7V23Field _transactionAmountUnit;
+
+public HL7V23Field TransactionAmountUnit
+{
+    get
+    {
+        if (_transactionAmountUnit != null)
+        {
+            return _transactionAmountUnit;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.12",
+            Type = @"Field",
+            Position = @"FT1.12",
+            Name = @"Transaction Amount - Unit",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the unit price of a transaction.  Price of a single item",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.12",
-                            Type = @"Field",
-                            Position = @"FT1.12",
-                            Name = @"Transaction Amount - Unit",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the unit price of a transaction.  Price of a single item",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.12.1",
                             Type = @"Component",
@@ -886,25 +1207,55 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"Refers to HL7 table 0298 - CP range type for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transactionAmountUnit = new HL7V23Field
+        {
+            field = message[@"FT1"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionAmountUnit.field.FieldRepetitions != null && _transactionAmountUnit.field.FieldRepetitions.Count > 0)
+        {
+            _transactionAmountUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transactionAmountUnit, fieldData);
+        }
+
+        return _transactionAmountUnit;
+    } 
+}
+
+internal HL7V23Field _departmentCode;
+
+public HL7V23Field DepartmentCode
+{
+    get
+    {
+        if (_departmentCode != null)
+        {
+            return _departmentCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.13",
+            Type = @"Field",
+            Position = @"FT1.13",
+            Name = @"Department Code",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0049",
+            TableName = @"Department code",
+            Description = @"This field contains the department code that controls the transaction code described above.  Refer to user-defined table 0049 - Department code for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.13",
-                            Type = @"Field",
-                            Position = @"FT1.13",
-                            Name = @"Department Code",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0049",
-                            TableName = @"Department code",
-                            Description = @"This field contains the department code that controls the transaction code described above.  Refer to user-defined table 0049 - Department code for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.13.1",
                             Type = @"Component",
@@ -1010,25 +1361,55 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _departmentCode = new HL7V23Field
+        {
+            field = message[@"FT1"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_departmentCode.field.FieldRepetitions != null && _departmentCode.field.FieldRepetitions.Count > 0)
+        {
+            _departmentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_departmentCode, fieldData);
+        }
+
+        return _departmentCode;
+    } 
+}
+
+internal HL7V23Field _insurancePlanID;
+
+public HL7V23Field InsurancePlanID
+{
+    get
+    {
+        if (_insurancePlanID != null)
+        {
+            return _insurancePlanID;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.14",
+            Type = @"Field",
+            Position = @"FT1.14",
+            Name = @"Insurance Plan ID",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0072",
+            TableName = @"Insurance plan ID",
+            Description = @"This field contains the identifier of the primary insurance plan with which this transaction should be associated.  Refer to user-defined table 0072 - Insurance plan ID for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.14",
-                            Type = @"Field",
-                            Position = @"FT1.14",
-                            Name = @"Insurance Plan ID",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0072",
-                            TableName = @"Insurance plan ID",
-                            Description = @"This field contains the identifier of the primary insurance plan with which this transaction should be associated.  Refer to user-defined table 0072 - Insurance plan ID for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.14.1",
                             Type = @"Component",
@@ -1134,25 +1515,55 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _insurancePlanID = new HL7V23Field
+        {
+            field = message[@"FT1"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_insurancePlanID.field.FieldRepetitions != null && _insurancePlanID.field.FieldRepetitions.Count > 0)
+        {
+            _insurancePlanID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_insurancePlanID, fieldData);
+        }
+
+        return _insurancePlanID;
+    } 
+}
+
+internal HL7V23Field _insuranceAmount;
+
+public HL7V23Field InsuranceAmount
+{
+    get
+    {
+        if (_insuranceAmount != null)
+        {
+            return _insuranceAmount;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.15",
+            Type = @"Field",
+            Position = @"FT1.15",
+            Name = @"Insurance Amount",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the amount to be posted to the insurance plan referenced above",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.15",
-                            Type = @"Field",
-                            Position = @"FT1.15",
-                            Name = @"Insurance Amount",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the amount to be posted to the insurance plan referenced above",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.15.1",
                             Type = @"Component",
@@ -1402,25 +1813,55 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"Refers to HL7 table 0298 - CP range type for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _insuranceAmount = new HL7V23Field
+        {
+            field = message[@"FT1"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_insuranceAmount.field.FieldRepetitions != null && _insuranceAmount.field.FieldRepetitions.Count > 0)
+        {
+            _insuranceAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_insuranceAmount, fieldData);
+        }
+
+        return _insuranceAmount;
+    } 
+}
+
+internal HL7V23Field _assignedPatientLocation;
+
+public HL7V23Field AssignedPatientLocation
+{
+    get
+    {
+        if (_assignedPatientLocation != null)
+        {
+            return _assignedPatientLocation;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.16",
+            Type = @"Field",
+            Position = @"FT1.16",
+            Name = @"Assigned Patient Location",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the current patient location.  This can be the location of the patient when the charge item was ordered or when the charged service was rendered.  For the current assigned patient location, use PV1-3-assigned patient location",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.16",
-                            Type = @"Field",
-                            Position = @"FT1.16",
-                            Name = @"Assigned Patient Location",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the current patient location.  This can be the location of the patient when the charge item was ordered or when the charged service was rendered.  For the current assigned patient location, use PV1-3-assigned patient location",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.16.1",
                             Type = @"Component",
@@ -1632,61 +2073,145 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"A free text description of the location",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _assignedPatientLocation = new HL7V23Field
+        {
+            field = message[@"FT1"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_assignedPatientLocation.field.FieldRepetitions != null && _assignedPatientLocation.field.FieldRepetitions.Count > 0)
+        {
+            _assignedPatientLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_assignedPatientLocation, fieldData);
+        }
+
+        return _assignedPatientLocation;
+    } 
+}
+
+internal HL7V23Field _feeSchedule;
+
+public HL7V23Field FeeSchedule
+{
+    get
+    {
+        if (_feeSchedule != null)
+        {
+            return _feeSchedule;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.17",
+            Type = @"Field",
+            Position = @"FT1.17",
+            Name = @"Fee Schedule",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0024",
+            TableName = @"Fee schedule",
+            Description = @"This field contains the code used to select the appropriate fee schedule to be used for this transaction posting.  Refer to user-defined table 0024 - Fee schedule for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _feeSchedule = new HL7V23Field
+        {
+            field = message[@"FT1"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_feeSchedule.field.FieldRepetitions != null && _feeSchedule.field.FieldRepetitions.Count > 0)
+        {
+            _feeSchedule.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_feeSchedule, fieldData);
+        }
+
+        return _feeSchedule;
+    } 
+}
+
+internal HL7V23Field _patientType;
+
+public HL7V23Field PatientType
+{
+    get
+    {
+        if (_patientType != null)
+        {
+            return _patientType;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.18",
+            Type = @"Field",
+            Position = @"FT1.18",
+            Name = @"Patient Type",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0018",
+            TableName = @"Patient type",
+            Description = @"This field contains the type code assigned to the patient for this episode of care (visit or stay).  Refer to user-defined table 0018 - Patient type for suggested values.  This is for use when the patient type for billing purposes is different than the visit patient type in PV1-18-patient type.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _patientType = new HL7V23Field
+        {
+            field = message[@"FT1"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientType.field.FieldRepetitions != null && _patientType.field.FieldRepetitions.Count > 0)
+        {
+            _patientType.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_patientType, fieldData);
+        }
+
+        return _patientType;
+    } 
+}
+
+internal HL7V23Field _diagnosisCode;
+
+public HL7V23Field DiagnosisCode
+{
+    get
+    {
+        if (_diagnosisCode != null)
+        {
+            return _diagnosisCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.19",
+            Type = @"Field",
+            Position = @"FT1.19",
+            Name = @"Diagnosis Code",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0051",
+            TableName = @"Diagnosis code",
+            Description = @"This field contains the primary diagnosis code for billing purposes.  ICD9-CM is assumed for all diagnosis codes.  This is the most current diagnosis code that has been assigned to the patient.  ICD10 can also be used.  Refer to user-defined table 0051 - Diagnosis code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.17",
-                            Type = @"Field",
-                            Position = @"FT1.17",
-                            Name = @"Fee Schedule",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0024",
-                            TableName = @"Fee schedule",
-                            Description = @"This field contains the code used to select the appropriate fee schedule to be used for this transaction posting.  Refer to user-defined table 0024 - Fee schedule for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.18",
-                            Type = @"Field",
-                            Position = @"FT1.18",
-                            Name = @"Patient Type",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0018",
-                            TableName = @"Patient type",
-                            Description = @"This field contains the type code assigned to the patient for this episode of care (visit or stay).  Refer to user-defined table 0018 - Patient type for suggested values.  This is for use when the patient type for billing purposes is different than the visit patient type in PV1-18-patient type.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.19",
-                            Type = @"Field",
-                            Position = @"FT1.19",
-                            Name = @"Diagnosis Code",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0051",
-                            TableName = @"Diagnosis code",
-                            Description = @"This field contains the primary diagnosis code for billing purposes.  ICD9-CM is assumed for all diagnosis codes.  This is the most current diagnosis code that has been assigned to the patient.  ICD10 can also be used.  Refer to user-defined table 0051 - Diagnosis code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.19.1",
                             Type = @"Component",
@@ -1792,25 +2317,55 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _diagnosisCode = new HL7V23Field
+        {
+            field = message[@"FT1"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_diagnosisCode.field.FieldRepetitions != null && _diagnosisCode.field.FieldRepetitions.Count > 0)
+        {
+            _diagnosisCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_diagnosisCode, fieldData);
+        }
+
+        return _diagnosisCode;
+    } 
+}
+
+internal HL7V23Field _performedByCode;
+
+public HL7V23Field PerformedByCode
+{
+    get
+    {
+        if (_performedByCode != null)
+        {
+            return _performedByCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.20",
+            Type = @"Field",
+            Position = @"FT1.20",
+            Name = @"Performed By Code",
+            Length = 120,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name",
+            TableId = @"0084",
+            TableName = @"Performed by",
+            Description = @"This field contains the composite number/name of the person/group that performed the test/procedure/transaction, etc.  This is the service provider.  Refer to user-defined table 0084 - Performed by for suggested values.  Multiple names and identifiers for the same practitioner may be sent in this field, not multiple practitioners.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.20",
-                            Type = @"Field",
-                            Position = @"FT1.20",
-                            Name = @"Performed By Code",
-                            Length = 120,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name",
-                            TableId = @"0084",
-                            TableName = @"Performed by",
-                            Description = @"This field contains the composite number/name of the person/group that performed the test/procedure/transaction, etc.  This is the service provider.  Refer to user-defined table 0084 - Performed by for suggested values.  Multiple names and identifiers for the same practitioner may be sent in this field, not multiple practitioners.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.20.1",
                             Type = @"Component",
@@ -2164,25 +2719,55 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _performedByCode = new HL7V23Field
+        {
+            field = message[@"FT1"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_performedByCode.field.FieldRepetitions != null && _performedByCode.field.FieldRepetitions.Count > 0)
+        {
+            _performedByCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_performedByCode, fieldData);
+        }
+
+        return _performedByCode;
+    } 
+}
+
+internal HL7V23Field _orderedByCode;
+
+public HL7V23Field OrderedByCode
+{
+    get
+    {
+        if (_orderedByCode != null)
+        {
+            return _orderedByCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.21",
+            Type = @"Field",
+            Position = @"FT1.21",
+            Name = @"Ordered By Code",
+            Length = 120,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the composite number/name of the person/group that ordered the test/ procedure/transaction, etc.  Multiple names and identifiers for the same practitioner may be sent in this field, not multiple practitioners.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.21",
-                            Type = @"Field",
-                            Position = @"FT1.21",
-                            Name = @"Ordered By Code",
-                            Length = 120,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the composite number/name of the person/group that ordered the test/ procedure/transaction, etc.  Multiple names and identifiers for the same practitioner may be sent in this field, not multiple practitioners.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.21.1",
                             Type = @"Component",
@@ -2536,25 +3121,55 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _orderedByCode = new HL7V23Field
+        {
+            field = message[@"FT1"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_orderedByCode.field.FieldRepetitions != null && _orderedByCode.field.FieldRepetitions.Count > 0)
+        {
+            _orderedByCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_orderedByCode, fieldData);
+        }
+
+        return _orderedByCode;
+    } 
+}
+
+internal HL7V23Field _unitCost;
+
+public HL7V23Field UnitCost
+{
+    get
+    {
+        if (_unitCost != null)
+        {
+            return _unitCost;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.22",
+            Type = @"Field",
+            Position = @"FT1.22",
+            Name = @"Unit Cost",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the unit cost of transaction.  The cost of a single item",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.22",
-                            Type = @"Field",
-                            Position = @"FT1.22",
-                            Name = @"Unit Cost",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the unit cost of transaction.  The cost of a single item",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.22.1",
                             Type = @"Component",
@@ -2804,25 +3419,55 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"Refers to HL7 table 0298 - CP range type for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _unitCost = new HL7V23Field
+        {
+            field = message[@"FT1"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_unitCost.field.FieldRepetitions != null && _unitCost.field.FieldRepetitions.Count > 0)
+        {
+            _unitCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_unitCost, fieldData);
+        }
+
+        return _unitCost;
+    } 
+}
+
+internal HL7V23Field _fillerOrderNumber;
+
+public HL7V23Field FillerOrderNumber
+{
+    get
+    {
+        if (_fillerOrderNumber != null)
+        {
+            return _fillerOrderNumber;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.23",
+            Type = @"Field",
+            Position = @"FT1.23",
+            Name = @"Filler Order Number",
+            Length = 22,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used when the billing system is requesting observational reporting justification for a charge.  This is the number used by a filler to uniquely identify a result.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.23",
-                            Type = @"Field",
-                            Position = @"FT1.23",
-                            Name = @"Filler Order Number",
-                            Length = 22,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used when the billing system is requesting observational reporting justification for a charge.  This is the number used by a filler to uniquely identify a result.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.23.1",
                             Type = @"Component",
@@ -2892,25 +3537,55 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _fillerOrderNumber = new HL7V23Field
+        {
+            field = message[@"FT1"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fillerOrderNumber.field.FieldRepetitions != null && _fillerOrderNumber.field.FieldRepetitions.Count > 0)
+        {
+            _fillerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_fillerOrderNumber, fieldData);
+        }
+
+        return _fillerOrderNumber;
+    } 
+}
+
+internal HL7V23Field _enteredByCode;
+
+public HL7V23Field EnteredByCode
+{
+    get
+    {
+        if (_enteredByCode != null)
+        {
+            return _enteredByCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.24",
+            Type = @"Field",
+            Position = @"FT1.24",
+            Name = @"Entered By Code",
+            Length = 120,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the composite number/name of the person who entered the insurance information. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.24",
-                            Type = @"Field",
-                            Position = @"FT1.24",
-                            Name = @"Entered By Code",
-                            Length = 120,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the composite number/name of the person who entered the insurance information. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.24.1",
                             Type = @"Component",
@@ -3264,25 +3939,55 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _enteredByCode = new HL7V23Field
+        {
+            field = message[@"FT1"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_enteredByCode.field.FieldRepetitions != null && _enteredByCode.field.FieldRepetitions.Count > 0)
+        {
+            _enteredByCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_enteredByCode, fieldData);
+        }
+
+        return _enteredByCode;
+    } 
+}
+
+internal HL7V23Field _procedureCode;
+
+public HL7V23Field ProcedureCode
+{
+    get
+    {
+        if (_procedureCode != null)
+        {
+            return _procedureCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"FT1.25",
+            Type = @"Field",
+            Position = @"FT1.25",
+            Name = @"Procedure Code",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0088",
+            TableName = @"Procedure code",
+            Description = @"This field contains a unique identifier assigned to the procedure, if any, associated with the charge.  Refer to user-defined table 0088 - Procedure code for suggested values.  This field is a CE data type for compatibility with clinical and ancillary systems.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FT1.25",
-                            Type = @"Field",
-                            Position = @"FT1.25",
-                            Name = @"Procedure Code",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0088",
-                            TableName = @"Procedure code",
-                            Description = @"This field contains a unique identifier assigned to the procedure, if any, associated with the charge.  Refer to user-defined table 0088 - Procedure code for suggested values.  This field is a CE data type for compatibility with clinical and ancillary systems.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FT1.25.1",
                             Type = @"Component",
@@ -3388,1039 +4093,23 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V23SegmentFT1(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V23Field setIDFinancialTransaction;
-
-public HL7V23Field SetIDFinancialTransaction
-{
-    get
-    {
-        if (setIDFinancialTransaction != null)
-        {
-            return setIDFinancialTransaction;
-        }
-
-        setIDFinancialTransaction = new HL7V23Field
-        {
-            field = message[@"FT1"][1],
-            Id = @"FT1.1",
-            Type = @"Field",
-            Position = @"FT1.1",
-            Name = @"Set ID - Financial Transaction",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction.  For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDFinancialTransaction.field.FieldRepetitions != null && setIDFinancialTransaction.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDFinancialTransaction.Id));
-            setIDFinancialTransaction.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(setIDFinancialTransaction, fieldData);
-        }
-
-        return setIDFinancialTransaction;
-    } 
-}
-
-internal HL7V23Field transactionID;
-
-public HL7V23Field TransactionID
-{
-    get
-    {
-        if (transactionID != null)
-        {
-            return transactionID;
-        }
-
-        transactionID = new HL7V23Field
-        {
-            field = message[@"FT1"][2],
-            Id = @"FT1.2",
-            Type = @"Field",
-            Position = @"FT1.2",
-            Name = @"Transaction ID",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a number assigned by the sending system for control purposes.  The number can be returned by the receiving system to identify errors. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionID.field.FieldRepetitions != null && transactionID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionID.Id));
-            transactionID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transactionID, fieldData);
-        }
-
-        return transactionID;
-    } 
-}
-
-internal HL7V23Field transactionBatchID;
-
-public HL7V23Field TransactionBatchID
-{
-    get
-    {
-        if (transactionBatchID != null)
-        {
-            return transactionBatchID;
-        }
-
-        transactionBatchID = new HL7V23Field
-        {
-            field = message[@"FT1"][3],
-            Id = @"FT1.3",
-            Type = @"Field",
-            Position = @"FT1.3",
-            Name = @"Transaction Batch ID",
-            Length = 10,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field uniquely identifies the batch in which this transaction belongs.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionBatchID.field.FieldRepetitions != null && transactionBatchID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionBatchID.Id));
-            transactionBatchID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transactionBatchID, fieldData);
-        }
-
-        return transactionBatchID;
-    } 
-}
-
-internal HL7V23Field transactionDate;
-
-public HL7V23Field TransactionDate
-{
-    get
-    {
-        if (transactionDate != null)
-        {
-            return transactionDate;
-        }
-
-        transactionDate = new HL7V23Field
-        {
-            field = message[@"FT1"][4],
-            Id = @"FT1.4",
-            Type = @"Field",
-            Position = @"FT1.4",
-            Name = @"Transaction Date",
-            Length = 26,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date of the transaction.  For example, this field would be used to identify the date a procedure, item, or test was conducted or used.  It may be defaulted to today’s date.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionDate.field.FieldRepetitions != null && transactionDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionDate.Id));
-            transactionDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transactionDate, fieldData);
-        }
-
-        return transactionDate;
-    } 
-}
-
-internal HL7V23Field transactionPostingDate;
-
-public HL7V23Field TransactionPostingDate
-{
-    get
-    {
-        if (transactionPostingDate != null)
-        {
-            return transactionPostingDate;
-        }
-
-        transactionPostingDate = new HL7V23Field
-        {
-            field = message[@"FT1"][5],
-            Id = @"FT1.5",
-            Type = @"Field",
-            Position = @"FT1.5",
-            Name = @"Transaction Posting Date",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date of the transaction that was sent to the financial system for posting.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionPostingDate.field.FieldRepetitions != null && transactionPostingDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionPostingDate.Id));
-            transactionPostingDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transactionPostingDate, fieldData);
-        }
-
-        return transactionPostingDate;
-    } 
-}
-
-internal HL7V23Field transactionType;
-
-public HL7V23Field TransactionType
-{
-    get
-    {
-        if (transactionType != null)
-        {
-            return transactionType;
-        }
-
-        transactionType = new HL7V23Field
-        {
-            field = message[@"FT1"][6],
-            Id = @"FT1.6",
-            Type = @"Field",
-            Position = @"FT1.6",
-            Name = @"Transaction Type",
-            Length = 8,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0017",
-            TableName = @"Transaction type",
-            Description = @"This field contains the code that identifies the type of transaction.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionType.field.FieldRepetitions != null && transactionType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionType.Id));
-            transactionType.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transactionType, fieldData);
-        }
-
-        return transactionType;
-    } 
-}
-
-internal HL7V23Field transactionCode;
-
-public HL7V23Field TransactionCode
-{
-    get
-    {
-        if (transactionCode != null)
-        {
-            return transactionCode;
-        }
-
-        transactionCode = new HL7V23Field
-        {
-            field = message[@"FT1"][7],
-            Id = @"FT1.7",
-            Type = @"Field",
-            Position = @"FT1.7",
-            Name = @"Transaction Code",
-            Length = 80,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0132",
-            TableName = @"Transaction code",
-            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying the transaction.  For example, this field would be used to uniquely identify a procedure, supply item, or test for charging purposes.  Refer to user-defined table 0132 - Transaction code for suggested values.  See Chapter 7 for a discussion of the universal service ID. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionCode.field.FieldRepetitions != null && transactionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionCode.Id));
-            transactionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transactionCode, fieldData);
-        }
-
-        return transactionCode;
-    } 
-}
-
-internal HL7V23Field transactionDescription;
-
-public HL7V23Field TransactionDescription
-{
-    get
-    {
-        if (transactionDescription != null)
-        {
-            return transactionDescription;
-        }
-
-        transactionDescription = new HL7V23Field
-        {
-            field = message[@"FT1"][8],
-            Id = @"FT1.8",
-            Type = @"Field",
-            Position = @"FT1.8",
-            Name = @"Transaction Description",
-            Length = 40,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has been retained for backward compatibility only.   As of Version 2.3, FT1-7transaction code contains a component for the transaction description.  When used for backward compatibility, FT1-8-transaction description contains a description of the transaction associated with the code entered in FT1-7-transaction code ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionDescription.field.FieldRepetitions != null && transactionDescription.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionDescription.Id));
-            transactionDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transactionDescription, fieldData);
-        }
-
-        return transactionDescription;
-    } 
-}
-
-internal HL7V23Field transactionDescriptionalternate;
-
-public HL7V23Field TransactionDescriptionalternate
-{
-    get
-    {
-        if (transactionDescriptionalternate != null)
-        {
-            return transactionDescriptionalternate;
-        }
-
-        transactionDescriptionalternate = new HL7V23Field
-        {
-            field = message[@"FT1"][9],
-            Id = @"FT1.9",
-            Type = @"Field",
-            Position = @"FT1.9",
-            Name = @"Transaction Description - alternate",
-            Length = 40,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has been retained for backward compatibility only.  As of Version 2.3, FT1-7transaction code contains a component for the alternate transaction description.  When used for backward compatibility, FT1-9-transaction description-alt contains an alternate description of the transaction associated with the code entered in FT1-7-transaction code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionDescriptionalternate.field.FieldRepetitions != null && transactionDescriptionalternate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionDescriptionalternate.Id));
-            transactionDescriptionalternate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transactionDescriptionalternate, fieldData);
-        }
-
-        return transactionDescriptionalternate;
-    } 
-}
-
-internal HL7V23Field transactionQuantity;
-
-public HL7V23Field TransactionQuantity
-{
-    get
-    {
-        if (transactionQuantity != null)
-        {
-            return transactionQuantity;
-        }
-
-        transactionQuantity = new HL7V23Field
-        {
-            field = message[@"FT1"][10],
-            Id = @"FT1.10",
-            Type = @"Field",
-            Position = @"FT1.10",
-            Name = @"Transaction Quantity",
-            Length = 6,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the quantity of items associated with this transaction",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionQuantity.field.FieldRepetitions != null && transactionQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionQuantity.Id));
-            transactionQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transactionQuantity, fieldData);
-        }
-
-        return transactionQuantity;
-    } 
-}
-
-internal HL7V23Field transactionAmountExtended;
-
-public HL7V23Field TransactionAmountExtended
-{
-    get
-    {
-        if (transactionAmountExtended != null)
-        {
-            return transactionAmountExtended;
-        }
-
-        transactionAmountExtended = new HL7V23Field
-        {
-            field = message[@"FT1"][11],
-            Id = @"FT1.11",
-            Type = @"Field",
-            Position = @"FT1.11",
-            Name = @"Transaction Amount - Extended",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the amount of a transaction.  It may be left blank if the transaction is automatically priced.  Total price for multiple items",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionAmountExtended.field.FieldRepetitions != null && transactionAmountExtended.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionAmountExtended.Id));
-            transactionAmountExtended.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transactionAmountExtended, fieldData);
-        }
-
-        return transactionAmountExtended;
-    } 
-}
-
-internal HL7V23Field transactionAmountUnit;
-
-public HL7V23Field TransactionAmountUnit
-{
-    get
-    {
-        if (transactionAmountUnit != null)
-        {
-            return transactionAmountUnit;
-        }
-
-        transactionAmountUnit = new HL7V23Field
-        {
-            field = message[@"FT1"][12],
-            Id = @"FT1.12",
-            Type = @"Field",
-            Position = @"FT1.12",
-            Name = @"Transaction Amount - Unit",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the unit price of a transaction.  Price of a single item",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionAmountUnit.field.FieldRepetitions != null && transactionAmountUnit.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionAmountUnit.Id));
-            transactionAmountUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transactionAmountUnit, fieldData);
-        }
-
-        return transactionAmountUnit;
-    } 
-}
-
-internal HL7V23Field departmentCode;
-
-public HL7V23Field DepartmentCode
-{
-    get
-    {
-        if (departmentCode != null)
-        {
-            return departmentCode;
-        }
-
-        departmentCode = new HL7V23Field
-        {
-            field = message[@"FT1"][13],
-            Id = @"FT1.13",
-            Type = @"Field",
-            Position = @"FT1.13",
-            Name = @"Department Code",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0049",
-            TableName = @"Department code",
-            Description = @"This field contains the department code that controls the transaction code described above.  Refer to user-defined table 0049 - Department code for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (departmentCode.field.FieldRepetitions != null && departmentCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(departmentCode.Id));
-            departmentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(departmentCode, fieldData);
-        }
-
-        return departmentCode;
-    } 
-}
-
-internal HL7V23Field insurancePlanID;
-
-public HL7V23Field InsurancePlanID
-{
-    get
-    {
-        if (insurancePlanID != null)
-        {
-            return insurancePlanID;
-        }
-
-        insurancePlanID = new HL7V23Field
-        {
-            field = message[@"FT1"][14],
-            Id = @"FT1.14",
-            Type = @"Field",
-            Position = @"FT1.14",
-            Name = @"Insurance Plan ID",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0072",
-            TableName = @"Insurance plan ID",
-            Description = @"This field contains the identifier of the primary insurance plan with which this transaction should be associated.  Refer to user-defined table 0072 - Insurance plan ID for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (insurancePlanID.field.FieldRepetitions != null && insurancePlanID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(insurancePlanID.Id));
-            insurancePlanID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(insurancePlanID, fieldData);
-        }
-
-        return insurancePlanID;
-    } 
-}
-
-internal HL7V23Field insuranceAmount;
-
-public HL7V23Field InsuranceAmount
-{
-    get
-    {
-        if (insuranceAmount != null)
-        {
-            return insuranceAmount;
-        }
-
-        insuranceAmount = new HL7V23Field
-        {
-            field = message[@"FT1"][15],
-            Id = @"FT1.15",
-            Type = @"Field",
-            Position = @"FT1.15",
-            Name = @"Insurance Amount",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the amount to be posted to the insurance plan referenced above",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (insuranceAmount.field.FieldRepetitions != null && insuranceAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(insuranceAmount.Id));
-            insuranceAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(insuranceAmount, fieldData);
-        }
-
-        return insuranceAmount;
-    } 
-}
-
-internal HL7V23Field assignedPatientLocation;
-
-public HL7V23Field AssignedPatientLocation
-{
-    get
-    {
-        if (assignedPatientLocation != null)
-        {
-            return assignedPatientLocation;
-        }
-
-        assignedPatientLocation = new HL7V23Field
-        {
-            field = message[@"FT1"][16],
-            Id = @"FT1.16",
-            Type = @"Field",
-            Position = @"FT1.16",
-            Name = @"Assigned Patient Location",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the current patient location.  This can be the location of the patient when the charge item was ordered or when the charged service was rendered.  For the current assigned patient location, use PV1-3-assigned patient location",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (assignedPatientLocation.field.FieldRepetitions != null && assignedPatientLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(assignedPatientLocation.Id));
-            assignedPatientLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(assignedPatientLocation, fieldData);
-        }
-
-        return assignedPatientLocation;
-    } 
-}
-
-internal HL7V23Field feeSchedule;
-
-public HL7V23Field FeeSchedule
-{
-    get
-    {
-        if (feeSchedule != null)
-        {
-            return feeSchedule;
-        }
-
-        feeSchedule = new HL7V23Field
-        {
-            field = message[@"FT1"][17],
-            Id = @"FT1.17",
-            Type = @"Field",
-            Position = @"FT1.17",
-            Name = @"Fee Schedule",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0024",
-            TableName = @"Fee schedule",
-            Description = @"This field contains the code used to select the appropriate fee schedule to be used for this transaction posting.  Refer to user-defined table 0024 - Fee schedule for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (feeSchedule.field.FieldRepetitions != null && feeSchedule.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(feeSchedule.Id));
-            feeSchedule.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(feeSchedule, fieldData);
-        }
-
-        return feeSchedule;
-    } 
-}
-
-internal HL7V23Field patientType;
-
-public HL7V23Field PatientType
-{
-    get
-    {
-        if (patientType != null)
-        {
-            return patientType;
-        }
-
-        patientType = new HL7V23Field
-        {
-            field = message[@"FT1"][18],
-            Id = @"FT1.18",
-            Type = @"Field",
-            Position = @"FT1.18",
-            Name = @"Patient Type",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0018",
-            TableName = @"Patient type",
-            Description = @"This field contains the type code assigned to the patient for this episode of care (visit or stay).  Refer to user-defined table 0018 - Patient type for suggested values.  This is for use when the patient type for billing purposes is different than the visit patient type in PV1-18-patient type.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientType.field.FieldRepetitions != null && patientType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientType.Id));
-            patientType.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(patientType, fieldData);
-        }
-
-        return patientType;
-    } 
-}
-
-internal HL7V23Field diagnosisCode;
-
-public HL7V23Field DiagnosisCode
-{
-    get
-    {
-        if (diagnosisCode != null)
-        {
-            return diagnosisCode;
-        }
-
-        diagnosisCode = new HL7V23Field
-        {
-            field = message[@"FT1"][19],
-            Id = @"FT1.19",
-            Type = @"Field",
-            Position = @"FT1.19",
-            Name = @"Diagnosis Code",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0051",
-            TableName = @"Diagnosis code",
-            Description = @"This field contains the primary diagnosis code for billing purposes.  ICD9-CM is assumed for all diagnosis codes.  This is the most current diagnosis code that has been assigned to the patient.  ICD10 can also be used.  Refer to user-defined table 0051 - Diagnosis code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (diagnosisCode.field.FieldRepetitions != null && diagnosisCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosisCode.Id));
-            diagnosisCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(diagnosisCode, fieldData);
-        }
-
-        return diagnosisCode;
-    } 
-}
-
-internal HL7V23Field performedByCode;
-
-public HL7V23Field PerformedByCode
-{
-    get
-    {
-        if (performedByCode != null)
-        {
-            return performedByCode;
-        }
-
-        performedByCode = new HL7V23Field
-        {
-            field = message[@"FT1"][20],
-            Id = @"FT1.20",
-            Type = @"Field",
-            Position = @"FT1.20",
-            Name = @"Performed By Code",
-            Length = 120,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name",
-            TableId = @"0084",
-            TableName = @"Performed by",
-            Description = @"This field contains the composite number/name of the person/group that performed the test/procedure/transaction, etc.  This is the service provider.  Refer to user-defined table 0084 - Performed by for suggested values.  Multiple names and identifiers for the same practitioner may be sent in this field, not multiple practitioners.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (performedByCode.field.FieldRepetitions != null && performedByCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(performedByCode.Id));
-            performedByCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(performedByCode, fieldData);
-        }
-
-        return performedByCode;
-    } 
-}
-
-internal HL7V23Field orderedByCode;
-
-public HL7V23Field OrderedByCode
-{
-    get
-    {
-        if (orderedByCode != null)
-        {
-            return orderedByCode;
-        }
-
-        orderedByCode = new HL7V23Field
-        {
-            field = message[@"FT1"][21],
-            Id = @"FT1.21",
-            Type = @"Field",
-            Position = @"FT1.21",
-            Name = @"Ordered By Code",
-            Length = 120,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the composite number/name of the person/group that ordered the test/ procedure/transaction, etc.  Multiple names and identifiers for the same practitioner may be sent in this field, not multiple practitioners.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (orderedByCode.field.FieldRepetitions != null && orderedByCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderedByCode.Id));
-            orderedByCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(orderedByCode, fieldData);
-        }
-
-        return orderedByCode;
-    } 
-}
-
-internal HL7V23Field unitCost;
-
-public HL7V23Field UnitCost
-{
-    get
-    {
-        if (unitCost != null)
-        {
-            return unitCost;
-        }
-
-        unitCost = new HL7V23Field
-        {
-            field = message[@"FT1"][22],
-            Id = @"FT1.22",
-            Type = @"Field",
-            Position = @"FT1.22",
-            Name = @"Unit Cost",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the unit cost of transaction.  The cost of a single item",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (unitCost.field.FieldRepetitions != null && unitCost.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(unitCost.Id));
-            unitCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(unitCost, fieldData);
-        }
-
-        return unitCost;
-    } 
-}
-
-internal HL7V23Field fillerOrderNumber;
-
-public HL7V23Field FillerOrderNumber
-{
-    get
-    {
-        if (fillerOrderNumber != null)
-        {
-            return fillerOrderNumber;
-        }
-
-        fillerOrderNumber = new HL7V23Field
-        {
-            field = message[@"FT1"][23],
-            Id = @"FT1.23",
-            Type = @"Field",
-            Position = @"FT1.23",
-            Name = @"Filler Order Number",
-            Length = 22,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used when the billing system is requesting observational reporting justification for a charge.  This is the number used by a filler to uniquely identify a result.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fillerOrderNumber.field.FieldRepetitions != null && fillerOrderNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerOrderNumber.Id));
-            fillerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(fillerOrderNumber, fieldData);
-        }
-
-        return fillerOrderNumber;
-    } 
-}
-
-internal HL7V23Field enteredByCode;
-
-public HL7V23Field EnteredByCode
-{
-    get
-    {
-        if (enteredByCode != null)
-        {
-            return enteredByCode;
-        }
-
-        enteredByCode = new HL7V23Field
-        {
-            field = message[@"FT1"][24],
-            Id = @"FT1.24",
-            Type = @"Field",
-            Position = @"FT1.24",
-            Name = @"Entered By Code",
-            Length = 120,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the composite number/name of the person who entered the insurance information. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (enteredByCode.field.FieldRepetitions != null && enteredByCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteredByCode.Id));
-            enteredByCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(enteredByCode, fieldData);
-        }
-
-        return enteredByCode;
-    } 
-}
-
-internal HL7V23Field procedureCode;
-
-public HL7V23Field ProcedureCode
-{
-    get
-    {
-        if (procedureCode != null)
-        {
-            return procedureCode;
-        }
-
-        procedureCode = new HL7V23Field
+        _procedureCode = new HL7V23Field
         {
             field = message[@"FT1"][25],
-            Id = @"FT1.25",
-            Type = @"Field",
-            Position = @"FT1.25",
-            Name = @"Procedure Code",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0088",
-            TableName = @"Procedure code",
-            Description = @"This field contains a unique identifier assigned to the procedure, if any, associated with the charge.  Refer to user-defined table 0088 - Procedure code for suggested values.  This field is a CE data type for compatibility with clinical and ancillary systems.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (procedureCode.field.FieldRepetitions != null && procedureCode.field.FieldRepetitions.Count > 0)
+        if (_procedureCode.field.FieldRepetitions != null && _procedureCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureCode.Id));
-            procedureCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(procedureCode, fieldData);
+            _procedureCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_procedureCode, fieldData);
         }
 
-        return procedureCode;
+        return _procedureCode;
     } 
 }
     }

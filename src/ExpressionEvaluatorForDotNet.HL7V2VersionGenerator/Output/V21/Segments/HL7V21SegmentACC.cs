@@ -25,88 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"ACC.1",
-                            Type = @"Field",
-                            Position = @"ACC.1",
-                            Name = @"Accident Date/Time",
-                            Length = 19,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ACC.2",
-                            Type = @"Field",
-                            Position = @"ACC.2",
-                            Name = @"Accident Code",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0050",
-                            TableName = @"ACCIDENT CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ACC.3",
-                            Type = @"Field",
-                            Position = @"ACC.3",
-                            Name = @"Accident Location",
-                            Length = 25,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentACC(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field accidentDateTime;
+        internal HL7V21Field _accidentDateTime;
 
 public HL7V21Field AccidentDateTime
 {
     get
     {
-        if (accidentDateTime != null)
+        if (_accidentDateTime != null)
         {
-            return accidentDateTime;
+            return _accidentDateTime;
         }
 
-        accidentDateTime = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ACC"][1],
             Id = @"ACC.1",
             Type = @"Field",
             Position = @"ACC.1",
@@ -120,34 +56,38 @@ public HL7V21Field AccidentDateTime
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _accidentDateTime = new HL7V21Field
+        {
+            field = message[@"ACC"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (accidentDateTime.field.FieldRepetitions != null && accidentDateTime.field.FieldRepetitions.Count > 0)
+        if (_accidentDateTime.field.FieldRepetitions != null && _accidentDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accidentDateTime.Id));
-            accidentDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(accidentDateTime, fieldData);
+            _accidentDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_accidentDateTime, fieldData);
         }
 
-        return accidentDateTime;
+        return _accidentDateTime;
     } 
 }
 
-internal HL7V21Field accidentCode;
+internal HL7V21Field _accidentCode;
 
 public HL7V21Field AccidentCode
 {
     get
     {
-        if (accidentCode != null)
+        if (_accidentCode != null)
         {
-            return accidentCode;
+            return _accidentCode;
         }
 
-        accidentCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ACC"][2],
             Id = @"ACC.2",
             Type = @"Field",
             Position = @"ACC.2",
@@ -161,34 +101,38 @@ public HL7V21Field AccidentCode
             TableName = @"ACCIDENT CODE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _accidentCode = new HL7V21Field
+        {
+            field = message[@"ACC"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (accidentCode.field.FieldRepetitions != null && accidentCode.field.FieldRepetitions.Count > 0)
+        if (_accidentCode.field.FieldRepetitions != null && _accidentCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accidentCode.Id));
-            accidentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(accidentCode, fieldData);
+            _accidentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_accidentCode, fieldData);
         }
 
-        return accidentCode;
+        return _accidentCode;
     } 
 }
 
-internal HL7V21Field accidentLocation;
+internal HL7V21Field _accidentLocation;
 
 public HL7V21Field AccidentLocation
 {
     get
     {
-        if (accidentLocation != null)
+        if (_accidentLocation != null)
         {
-            return accidentLocation;
+            return _accidentLocation;
         }
 
-        accidentLocation = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ACC"][3],
             Id = @"ACC.3",
             Type = @"Field",
             Position = @"ACC.3",
@@ -202,17 +146,22 @@ public HL7V21Field AccidentLocation
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _accidentLocation = new HL7V21Field
+        {
+            field = message[@"ACC"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (accidentLocation.field.FieldRepetitions != null && accidentLocation.field.FieldRepetitions.Count > 0)
+        if (_accidentLocation.field.FieldRepetitions != null && _accidentLocation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accidentLocation.Id));
-            accidentLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(accidentLocation, fieldData);
+            _accidentLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_accidentLocation, fieldData);
         }
 
-        return accidentLocation;
+        return _accidentLocation;
     } 
 }
     }

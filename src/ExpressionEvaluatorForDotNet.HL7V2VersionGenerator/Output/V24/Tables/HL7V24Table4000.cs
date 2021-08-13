@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -47,6 +48,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Phonetic (i.e., ASCII, Katakana, Hiragana, etc.)",
                             Comment = null
                         },
+                        
                     };
             } 
         }

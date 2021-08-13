@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_07",
+
                     };
             } 
         }
@@ -281,6 +282,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Swab, Wooden Shaft",
                             Comment = null
                         },
+                        
                     };
             } 
         }

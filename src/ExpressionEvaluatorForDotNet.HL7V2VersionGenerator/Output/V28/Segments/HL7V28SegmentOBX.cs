@@ -39,44 +39,81 @@ When using the OBX for the ANO category, OBX-2 Value Type should be valued to CW
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"OBX.1",
-                            Type = @"Field",
-                            Position = @"OBX.1",
-                            Name = @"Set Id - Obx",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the sequence number. For compatibility with ASTM.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.2",
-                            Type = @"Field",
-                            Position = @"OBX.2",
-                            Name = @"Value Type",
-                            Length = 3,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0125",
-                            TableName = @"Value Type",
-                            Description = @"This field defines the data type of OBX-5, Observation Value. This field is required if OBX-11-Observ result status is not valued with an ""X"". See HL7 Table 0125 – Value Types for valid values
+        public HL7V28SegmentOBX(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _setIdObx;
+
+public HL7V28Field SetIdObx
+{
+    get
+    {
+        if (_setIdObx != null)
+        {
+            return _setIdObx;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.1",
+            Type = @"Field",
+            Position = @"OBX.1",
+            Name = @"Set Id - Obx",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the sequence number. For compatibility with ASTM.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdObx = new HL7V28Field
+        {
+            field = message[@"OBX"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdObx.field.FieldRepetitions != null && _setIdObx.field.FieldRepetitions.Count > 0)
+        {
+            _setIdObx.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_setIdObx, fieldData);
+        }
+
+        return _setIdObx;
+    } 
+}
+
+internal HL7V28Field _valueType;
+
+public HL7V28Field ValueType
+{
+    get
+    {
+        if (_valueType != null)
+        {
+            return _valueType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.2",
+            Type = @"Field",
+            Position = @"OBX.2",
+            Name = @"Value Type",
+            Length = 3,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0125",
+            TableName = @"Value Type",
+            Description = @"This field defines the data type of OBX-5, Observation Value. This field is required if OBX-11-Observ result status is not valued with an ""X"". See HL7 Table 0125 – Value Types for valid values
 .
 For example, if the value is ‘CWE’ then the result in OBX-5 must be a coded entry or text or both. As of v2.7, the ST data type may not be used to transmit data that can be more precisely transmitted using other data types, e.g. SN when comparative symbols are needed.
 
@@ -91,32 +128,61 @@ We allow the FT data type in the OBX segment, but its use is discouraged. Format
 TX should not be used except to send large amounts of text. In the TX data type, the repeat delimiter can only be used to identify paragraph breaks. Use ST to send short, and possibly encodable, text strings.
 
 CDA documents are to be exchanged in the OBX segment in any message that can exchange documents (such as MDM or ORU). Within the OBX segment, the MIME package is encoded as an encapsulated (ED) data type.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.3",
-                            Type = @"Field",
-                            Position = @"OBX.3",
-                            Name = @"Observation Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains a unique identifier for the observation. The format is that of the Coded Element (CWE). Example: ""8625-6^P-R interval^LN"".
+            Sample = @"",
+            Fields = null
+        }
+
+        _valueType = new HL7V28Field
+        {
+            field = message[@"OBX"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_valueType.field.FieldRepetitions != null && _valueType.field.FieldRepetitions.Count > 0)
+        {
+            _valueType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_valueType, fieldData);
+        }
+
+        return _valueType;
+    } 
+}
+
+internal HL7V28Field _observationIdentifier;
+
+public HL7V28Field ObservationIdentifier
+{
+    get
+    {
+        if (_observationIdentifier != null)
+        {
+            return _observationIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.3",
+            Type = @"Field",
+            Position = @"OBX.3",
+            Name = @"Observation Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains a unique identifier for the observation. The format is that of the Coded Element (CWE). Example: ""8625-6^P-R interval^LN"".
 
 In most systems the identifier will point to a master observation table that will provide other attributes of the observation that may be used by the receiving system to process the observations it receives. A set of message segments for transmitting such master observation tables is described in Chapter 8. The relation of an observation ID to a master observation table is analogous to the relationship between a charge code (in a billing record) and the charge master.
 
 When local codes are used as the first identifier in this field we strongly encourage sending a universal identifier as well to permit receivers to equivalence results from different providers of the same service (e.g., a hospital lab and commercial lab that provides serum potassium to a nursing home). LOINC® is one possible universal and HL7-approved code system for the Observation identifier. It covers observations and measurements, such as laboratory tests, physical findings, radiology studies, and claims attachments. See HL7 Table 0396 – Coding System, the HL7 www list server and Appendix X2 of ASTM E1467 for neurophysiology tests, or it can be obtained from www.regenstrief.org/loinc/loinc.htm.
 
 The use of suffixes as described in section 7.1.3 and section 7.1.4 has been deprecated as of V2.7.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.3.1",
                             Type = @"Component",
@@ -544,23 +610,51 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.4",
-                            Type = @"Field",
-                            Position = @"OBX.4",
-                            Name = @"Observation Sub-id",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to distinguish between multiple OBX segments with the same observation ID organized under one OBR. For example, a chest X-ray report might include three separate diagnostic impressions. The standard requires three OBX segments, one for each impression. By putting a 1 in the Sub-ID of the first of these OBX segments, 2 in the second, and 3 in the third, we can uniquely identify each OBX segment for editing or replacement.
+                        }
+        }
+
+        _observationIdentifier = new HL7V28Field
+        {
+            field = message[@"OBX"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationIdentifier.field.FieldRepetitions != null && _observationIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _observationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_observationIdentifier, fieldData);
+        }
+
+        return _observationIdentifier;
+    } 
+}
+
+internal HL7V28Field _observationSubid;
+
+public HL7V28Field ObservationSubid
+{
+    get
+    {
+        if (_observationSubid != null)
+        {
+            return _observationSubid;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.4",
+            Type = @"Field",
+            Position = @"OBX.4",
+            Name = @"Observation Sub-id",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to distinguish between multiple OBX segments with the same observation ID organized under one OBR. For example, a chest X-ray report might include three separate diagnostic impressions. The standard requires three OBX segments, one for each impression. By putting a 1 in the Sub-ID of the first of these OBX segments, 2 in the second, and 3 in the third, we can uniquely identify each OBX segment for editing or replacement.
 
 The sub-identifier is also used to group related components in reports such as surgical pathology. It is traditional for surgical pathology reports to include all the tissues taken from one surgical procedure in one report. Consider, for example, a single surgical pathology report that describes the examination of gallbladder and appendix tissue. This report would be transmitted roughly as shown here:
 OBR|1||1234^LAB|11529-5^Study report^LN|...<cr>
@@ -612,24 +706,51 @@ If the observation includes a number of OBXs with the same value for the observa
 OBX|1|CWE|8601-7^EKG IMPRESSION ^LN|1|^atrial fibrillation|...<cr>
 OBX|2|CWE|8601-7^EKG IMPRESSION ^LN|2|^OLD SEPTAL MYOCARDIAL INFARCT|...<cr>
 OBX|3|CWE|8601-7^EKG IMPRESSION ^LN|3|^poor R wave progression|...<cr>",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.5",
-                            Type = @"Field",
-                            Position = @"OBX.5",
-                            Name = @"Observation Value",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"varies",
-                            DataTypeName = @"Varies",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the value observed by the observation producer. OBX-2-value type contains the data type for this field according to which observation value is formatted. It is not a required field because some systems will report only the Interpretation Codes (OBX-8), especially in product experience reporting. The length of the observation field is variable, depending upon OBX-3-value type. This field may repeat for multipart, single answer results.
+            Sample = @"",
+            Fields = null
+        }
+
+        _observationSubid = new HL7V28Field
+        {
+            field = message[@"OBX"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationSubid.field.FieldRepetitions != null && _observationSubid.field.FieldRepetitions.Count > 0)
+        {
+            _observationSubid.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_observationSubid, fieldData);
+        }
+
+        return _observationSubid;
+    } 
+}
+
+internal HL7V28Field _observationValue;
+
+public HL7V28Field ObservationValue
+{
+    get
+    {
+        if (_observationValue != null)
+        {
+            return _observationValue;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.5",
+            Type = @"Field",
+            Position = @"OBX.5",
+            Name = @"Observation Value",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"varies",
+            DataTypeName = @"Varies",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the value observed by the observation producer. OBX-2-value type contains the data type for this field according to which observation value is formatted. It is not a required field because some systems will report only the Interpretation Codes (OBX-8), especially in product experience reporting. The length of the observation field is variable, depending upon OBX-3-value type. This field may repeat for multipart, single answer results.
 
 Representation
 This field contains the value of OBX-3-observation identifier of the same segment. Depending upon the observation, the data type may be a number (e.g., a respiratory rate), a coded answer (e.g., a pathology impression recorded as SNOMED), or a date/time (the date/time that a unit of blood is sent to the ward). An observation value is always represented as the data type specified in OBX-2-value type of the same segment. Whether numeric or short text, the answer shall be recorded in ASCII text.
@@ -665,26 +786,55 @@ CDA documents are to be exchanged in the OBX segment. The value of OBX-2-Value T
 - Set the value of OBX-5.3-Data Subtype to '-hl7-cda-level-one.'
 - Set the value of OBX-5.4-Encoding to 'A'. (Note that a MIME package is not itself Base64-encoded. Rather entities within the MIME package are Base64-encoded. A MIME package is sent as ASCII text. Therefore, the correct value is 'A' not 'Base64.'
 - Set the value of OBX-5.5-Data to equal the MIME package. Every entity within the MIME package must be Base64-encoded. As stated in Chapter 2, ""the data component must be scanned before transmission for HL7 delimiter characters (and other non-printing ASCII or non-ASCII characters such as LineFeed), and any found must be escaped by using the HL7 escape sequences defined in Section 2.7 'Use of escape sequences in text fields.' On the receiving application, the data field must be de-escaped after being parsed."" As a result, CR/LF sequences required in the MIME package need to be escaped (i.e., converted to '\X0D0A\') prior to transmission. The content type of the first MIME entity is set to 'application/x-hl7-cda-level-one+xml', and should contain the CDA document itself. Multimedia objects referenced by the CDA document that need to be transmitted within the CDA document are to be placed in successive entities of the MIME package.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _observationValue = new HL7V28Field
+        {
+            field = message[@"OBX"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationValue.field.FieldRepetitions != null && _observationValue.field.FieldRepetitions.Count > 0)
+        {
+            _observationValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_observationValue, fieldData);
+        }
+
+        return _observationValue;
+    } 
+}
+
+internal HL7V28Field _units;
+
+public HL7V28Field Units
+{
+    get
+    {
+        if (_units != null)
+        {
+            return _units;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.6",
+            Type = @"Field",
+            Position = @"OBX.6",
+            Name = @"Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the units of measurement for the value in OBX-5, Observation Value. Coding system from which the values may be drawn include, UCUM, ISO+, ANSI X3.50 - 1986 and site specific (local) coding systems. Considering Version 3 direction and consistent use of V2 and V3 messages/documents within an organization, use of UCUM is strongly recommended.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBX.6",
-                            Type = @"Field",
-                            Position = @"OBX.6",
-                            Name = @"Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the units of measurement for the value in OBX-5, Observation Value. Coding system from which the values may be drawn include, UCUM, ISO+, ANSI X3.50 - 1986 and site specific (local) coding systems. Considering Version 3 direction and consistent use of V2 and V3 messages/documents within an organization, use of UCUM is strongly recommended.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.6.1",
                             Type = @"Component",
@@ -1112,47 +1262,102 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.7",
-                            Type = @"Field",
-                            Position = @"OBX.7",
-                            Name = @"References Range",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Components: for numeric values in the format:
+                        }
+        }
+
+        _units = new HL7V28Field
+        {
+            field = message[@"OBX"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_units.field.FieldRepetitions != null && _units.field.FieldRepetitions.Count > 0)
+        {
+            _units.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_units, fieldData);
+        }
+
+        return _units;
+    } 
+}
+
+internal HL7V28Field _referencesRange;
+
+public HL7V28Field ReferencesRange
+{
+    get
+    {
+        if (_referencesRange != null)
+        {
+            return _referencesRange;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.7",
+            Type = @"Field",
+            Position = @"OBX.7",
+            Name = @"References Range",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Components: for numeric values in the format:
 a) lower limit-upper limit (when both lower and upper limits are defined, e.g., for potassium 3.5 - 4.5)
 b) > lower limit (if no upper limit, e.g., >10)
 c) < upper limit (if no lower limit, e.g., <15)
 alphabetical values: the normal value may be reported in this location
 
 When the observation quantifies the amount of a toxic substance, then the upper limit of the range identifies the toxic limit. If the observation quantifies a drug, the lower limits identify the lower therapeutic bounds and the upper limits represent the upper therapeutic bounds above which toxic side effects are common.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.8",
-                            Type = @"Field",
-                            Position = @"OBX.8",
-                            Name = @"Interpretation Codes",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"One or more codes specifying a categorical assessment of the observation value (OBX.5), such as ""Normal"", ""Abnormal"", “Positive”, “Negative”, ""Resistant"", ""Susceptible"", etc.
+            Sample = @"",
+            Fields = null
+        }
+
+        _referencesRange = new HL7V28Field
+        {
+            field = message[@"OBX"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_referencesRange.field.FieldRepetitions != null && _referencesRange.field.FieldRepetitions.Count > 0)
+        {
+            _referencesRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_referencesRange, fieldData);
+        }
+
+        return _referencesRange;
+    } 
+}
+
+internal HL7V28Field _interpretationCodes;
+
+public HL7V28Field InterpretationCodes
+{
+    get
+    {
+        if (_interpretationCodes != null)
+        {
+            return _interpretationCodes;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.8",
+            Type = @"Field",
+            Position = @"OBX.8",
+            Name = @"Interpretation Codes",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"One or more codes specifying a categorical assessment of the observation value (OBX.5), such as ""Normal"", ""Abnormal"", “Positive”, “Negative”, ""Resistant"", ""Susceptible"", etc.
 
 This field may also be used to convey an assessment of an observation where no legitimate result may be obtained. This includes laboratory assays that are rejected due to the presence of interfering substances, specimen toxicity or failure of quality control.
 
@@ -1161,8 +1366,10 @@ As a CWE data type, this field may be populated with either HL7-defined codes or
 When the filler can discern the normal status of a textual report, such as chest X-ray reports or microbiologic culture, these should be reported as ""N"" when normal and ""A""when abnormal. Multiple codes, e.g., abnormal and worse, would be separated by a repeat delimiter, e.g., ""A~W"".
 
 Results may also be reported in shorthand by reporting the normalcy status without specifying the exact numeric value of the result. Such shorthand is quite common in clinical notes, where physicians will simply say that the glucose result was normal. Such shorthand reporting is also seen in drug experience reporting. In such cases, the result can be reported in the OBX by reporting the interpretation code in OBX-8-Interpretation Codes without specifying any value in OBX-5-observation value.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.8.1",
                             Type = @"Component",
@@ -1590,61 +1797,143 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.9",
-                            Type = @"Field",
-                            Position = @"OBX.9",
-                            Name = @"Probability",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the probability of a result being true for results with categorical values. It mainly applies to discrete coded results. It is a decimal number represented as an ASCII string that must be between 0 and 1, inclusive.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.10",
-                            Type = @"Field",
-                            Position = @"OBX.10",
-                            Name = @"Nature Of Abnormal Test",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0080",
-                            TableName = @"Nature of Abnormal Testing",
-                            Description = @"This field contains the nature of the abnormal test. Refer to HL7 Table 0080 - Nature of abnormal testing for valid values. As many of the codes as apply may be included, separated by repeat delimiters. For example, normal values based on age, sex, and race would be codes as ""A~S~R"".
+                        }
+        }
+
+        _interpretationCodes = new HL7V28Field
+        {
+            field = message[@"OBX"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_interpretationCodes.field.FieldRepetitions != null && _interpretationCodes.field.FieldRepetitions.Count > 0)
+        {
+            _interpretationCodes.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_interpretationCodes, fieldData);
+        }
+
+        return _interpretationCodes;
+    } 
+}
+
+internal HL7V28Field _probability;
+
+public HL7V28Field Probability
+{
+    get
+    {
+        if (_probability != null)
+        {
+            return _probability;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.9",
+            Type = @"Field",
+            Position = @"OBX.9",
+            Name = @"Probability",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the probability of a result being true for results with categorical values. It mainly applies to discrete coded results. It is a decimal number represented as an ASCII string that must be between 0 and 1, inclusive.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _probability = new HL7V28Field
+        {
+            field = message[@"OBX"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_probability.field.FieldRepetitions != null && _probability.field.FieldRepetitions.Count > 0)
+        {
+            _probability.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_probability, fieldData);
+        }
+
+        return _probability;
+    } 
+}
+
+internal HL7V28Field _natureOfAbnormalTest;
+
+public HL7V28Field NatureOfAbnormalTest
+{
+    get
+    {
+        if (_natureOfAbnormalTest != null)
+        {
+            return _natureOfAbnormalTest;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.10",
+            Type = @"Field",
+            Position = @"OBX.10",
+            Name = @"Nature Of Abnormal Test",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0080",
+            TableName = @"Nature of Abnormal Testing",
+            Description = @"This field contains the nature of the abnormal test. Refer to HL7 Table 0080 - Nature of abnormal testing for valid values. As many of the codes as apply may be included, separated by repeat delimiters. For example, normal values based on age, sex, and race would be codes as ""A~S~R"".
 
 The constraints on the use of the codes in this table must be consistent with those defined in the PID segment, specifically PID-35-Species Code, PID-36-Breed Code and PID-37-Strain.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.11",
-                            Type = @"Field",
-                            Position = @"OBX.11",
-                            Name = @"Observation Result Status",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0085",
-                            TableName = @"Observation Result Status Codes Interpretation",
-                            Description = @"This field contains the observation result status. Refer to HL7 table 0085 - Observation result status codes interpretation for valid values. This field reflects the current completion status of the results for one Observation Identifier.
+            Sample = @"",
+            Fields = null
+        }
+
+        _natureOfAbnormalTest = new HL7V28Field
+        {
+            field = message[@"OBX"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_natureOfAbnormalTest.field.FieldRepetitions != null && _natureOfAbnormalTest.field.FieldRepetitions.Count > 0)
+        {
+            _natureOfAbnormalTest.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_natureOfAbnormalTest, fieldData);
+        }
+
+        return _natureOfAbnormalTest;
+    } 
+}
+
+internal HL7V28Field _observationResultStatus;
+
+public HL7V28Field ObservationResultStatus
+{
+    get
+    {
+        if (_observationResultStatus != null)
+        {
+            return _observationResultStatus;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.11",
+            Type = @"Field",
+            Position = @"OBX.11",
+            Name = @"Observation Result Status",
+            Length = 1,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0085",
+            TableName = @"Observation Result Status Codes Interpretation",
+            Description = @"This field contains the observation result status. Refer to HL7 table 0085 - Observation result status codes interpretation for valid values. This field reflects the current completion status of the results for one Observation Identifier.
 
 It is a required field. Previous versions of HL7 stated this implicitly by defining a default value of ""F."" Code F indicates that the result has been verified to be correct and final. Code W indicates that the result has been verified to be wrong (incorrect); a replacement (corrected) result may be transmitted later. Code C indicates that data contained in the OBX-5-observation value field are to replace previously transmitted (verified and) final result data with the same observation ID (including suffix, if applicable) and observation sub-ID usually because the previous results were wrong. Code D indicates that data previously transmitted in a result segment with the same observation ID (including suffix) and observation sub-ID should be deleted. When changing or deleting a result, multiple OBX segments with the same observation ID and observation sub-ID are replaced or deleted as a unit. Normal progression of results through intermediate (e.g., ‘gram positive cocci’) to final (e.g., ‘staphylococcus aureus’) should not be transmitted as C (correction); they should be transmitted as P (depending upon the specific case) until they are final.
 
@@ -1653,90 +1942,200 @@ If an observation involves multiple OBX segments with the same observation ID (i
 In the case of coding systems such as LOINC, the preceding rules typically mean that this field applies to a single OBX segment.
 
 There are situations where the observation battery required for the order needs to be dynamically specified at the time of ordering. That is, this battery is then defined by the set of OBX segments transmitted along with the order and generated by the placing system. For example, timed measurements of serum glucose challenge tests may vary among laboratories. One institution may report them at –30, -15, 0, 30, 60, and 120 minutes, while another may report them at –30, 0, 30, 60, 90, and 120 minutes. Master file entries may exist for each individual element of the battery but not for the battery itself. Another example may be Renin Studies where the specification may be done upon ordering without having a master file definition for each permutation of the possible element. The OBX segments in the ORM message can be used to create dynamic specifications to accommodate these permutations without defining pre-existing master file definitions for the battery itself. The result status field in the OBX can be used to indicate whether the OBX in the ORM message is used to provide a dynamic specification or is used to communicate a result as context to the order. The status of O shall be used to indicate that the OBX segment is used for a dynamic specification of the required result. An OBX used for a dynamic specification must contain the detaile",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.12",
-                            Type = @"Field",
-                            Position = @"OBX.12",
-                            Name = @"Effective Date Of Reference Range",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date (and, optionally, the time) on which the values in OBX-7-reference range went into effect.
+            Sample = @"",
+            Fields = null
+        }
+
+        _observationResultStatus = new HL7V28Field
+        {
+            field = message[@"OBX"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationResultStatus.field.FieldRepetitions != null && _observationResultStatus.field.FieldRepetitions.Count > 0)
+        {
+            _observationResultStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_observationResultStatus, fieldData);
+        }
+
+        return _observationResultStatus;
+    } 
+}
+
+internal HL7V28Field _effectiveDateOfReferenceRange;
+
+public HL7V28Field EffectiveDateOfReferenceRange
+{
+    get
+    {
+        if (_effectiveDateOfReferenceRange != null)
+        {
+            return _effectiveDateOfReferenceRange;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.12",
+            Type = @"Field",
+            Position = @"OBX.12",
+            Name = @"Effective Date Of Reference Range",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date (and, optionally, the time) on which the values in OBX-7-reference range went into effect.
 
 Usage Rule: This field can be valued only if OBX-7-reference range is populated.
 
 When this field is present, it facilitates comparison between identical results with different reference ranges. Reference range values may vary because of changes in laboratory practice over time. Such variances could reflect updated practice in laboratory medicine, or the use of updated instrumentation.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.13",
-                            Type = @"Field",
-                            Position = @"OBX.13",
-                            Name = @"User Defined Access Checks",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field permits the producer to record results-dependent codes for classifying the observation at the receiving system. This field should be needed only rarely, because most classifications are fixed attributes of the observation ID and can be defined in the associated observation master file (see description in Chapter 8).
+            Sample = @"",
+            Fields = null
+        }
+
+        _effectiveDateOfReferenceRange = new HL7V28Field
+        {
+            field = message[@"OBX"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_effectiveDateOfReferenceRange.field.FieldRepetitions != null && _effectiveDateOfReferenceRange.field.FieldRepetitions.Count > 0)
+        {
+            _effectiveDateOfReferenceRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_effectiveDateOfReferenceRange, fieldData);
+        }
+
+        return _effectiveDateOfReferenceRange;
+    } 
+}
+
+internal HL7V28Field _userDefinedAccessChecks;
+
+public HL7V28Field UserDefinedAccessChecks
+{
+    get
+    {
+        if (_userDefinedAccessChecks != null)
+        {
+            return _userDefinedAccessChecks;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.13",
+            Type = @"Field",
+            Position = @"OBX.13",
+            Name = @"User Defined Access Checks",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field permits the producer to record results-dependent codes for classifying the observation at the receiving system. This field should be needed only rarely, because most classifications are fixed attributes of the observation ID and can be defined in the associated observation master file (see description in Chapter 8).
 
 However, there are a few cases when such controls vary with the value of the observation in a complex way that the receiving system would not want to re-calculate. An example is an antimicrobial susceptibility result. Some systems prefer to display only the susceptibility results of inexpensive antimicrobials depending upon the organism, the source of the specimen and the patient’s allergy status. The sending service wants to send all of the susceptibilities so that certain privileged users (e.g., Infectious Disease specialists) can review all of the results but non-privileged users would see only the ""preferred"" antimicrobials to which the organism was susceptible. We expect that other cases also occur.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.14",
-                            Type = @"Field",
-                            Position = @"OBX.14",
-                            Name = @"Date/Time Of The Observation",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is required in two circumstances. The first is when the observations reported beneath one report header (OBR) have different dates/times. This could occur in the case of queries, timed test sequences, or clearance studies where one measurement within a battery may have a different time than another measurement.
+            Sample = @"",
+            Fields = null
+        }
+
+        _userDefinedAccessChecks = new HL7V28Field
+        {
+            field = message[@"OBX"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_userDefinedAccessChecks.field.FieldRepetitions != null && _userDefinedAccessChecks.field.FieldRepetitions.Count > 0)
+        {
+            _userDefinedAccessChecks.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_userDefinedAccessChecks, fieldData);
+        }
+
+        return _userDefinedAccessChecks;
+    } 
+}
+
+internal HL7V28Field _dateTimeOfTheObservation;
+
+public HL7V28Field DateTimeOfTheObservation
+{
+    get
+    {
+        if (_dateTimeOfTheObservation != null)
+        {
+            return _dateTimeOfTheObservation;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.14",
+            Type = @"Field",
+            Position = @"OBX.14",
+            Name = @"Date/Time Of The Observation",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is required in two circumstances. The first is when the observations reported beneath one report header (OBR) have different dates/times. This could occur in the case of queries, timed test sequences, or clearance studies where one measurement within a battery may have a different time than another measurement.
 
 It is also needed in the case of OBX segments that are being sent by the placer to the filler, in which case the date of the observation being transmitted is likely to have no relation to the date of the requested observation. In France, requesting services routinely send a set of the last observations along with the request for a new set of observations. The date of these observations is important to the filler laboratories.
 
 In all cases, the observation date-time is the physiologically relevant date-time or the closest approximation to that date-time. In the case of tests performed on specimens, the relevant date-time is the specimen’s collection date-time. In the case of observations taken directly on the patient (e.g., X-ray images, history and physical), the observation date-time is the date-time that the observation was performed.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _dateTimeOfTheObservation = new HL7V28Field
+        {
+            field = message[@"OBX"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeOfTheObservation.field.FieldRepetitions != null && _dateTimeOfTheObservation.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeOfTheObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_dateTimeOfTheObservation, fieldData);
+        }
+
+        return _dateTimeOfTheObservation;
+    } 
+}
+
+internal HL7V28Field _producersId;
+
+public HL7V28Field ProducersId
+{
+    get
+    {
+        if (_producersId != null)
+        {
+            return _producersId;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.15",
+            Type = @"Field",
+            Position = @"OBX.15",
+            Name = @"Producer's Id",
+            Length = 0,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field contains a unique identifier of the responsible producing service. It should be reported explicitly when the test results are produced at outside laboratories, for example. When this field is null, the receiving system assumes that the observations were produced by the sending organization. This information supports CLIA regulations in the US. The code for producer ID is recorded as a CWE data type. In the US, the Medicare number of the producing service is suggested as the identifier.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBX.15",
-                            Type = @"Field",
-                            Position = @"OBX.15",
-                            Name = @"Producer's Id",
-                            Length = 0,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field contains a unique identifier of the responsible producing service. It should be reported explicitly when the test results are produced at outside laboratories, for example. When this field is null, the receiving system assumes that the observations were produced by the sending organization. This information supports CLIA regulations in the US. The code for producer ID is recorded as a CWE data type. In the US, the Medicare number of the producing service is suggested as the identifier.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.15.1",
                             Type = @"Component",
@@ -2164,27 +2563,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.16",
-                            Type = @"Field",
-                            Position = @"OBX.16",
-                            Name = @"Responsible Observer",
-                            Length = 0,
-                            Usage = @"B",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. When required, this field contains the identifier of the individual directly responsible for the observation (i.e., the person who either performed or verified it). In a nursing service, the observer is usually the professional who performed the observation (e.g., took the blood pressure). In a laboratory, the observer is the technician who performed or verified the analysis. The code for the observer is recorded as a CWE data type. If the code is sent as a local code, it should be unique and unambiguous when combined with OBX-15-producer ID.
+                        }
+        }
+
+        _producersId = new HL7V28Field
+        {
+            field = message[@"OBX"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_producersId.field.FieldRepetitions != null && _producersId.field.FieldRepetitions.Count > 0)
+        {
+            _producersId.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_producersId, fieldData);
+        }
+
+        return _producersId;
+    } 
+}
+
+internal HL7V28Field _responsibleObserver;
+
+public HL7V28Field ResponsibleObserver
+{
+    get
+    {
+        if (_responsibleObserver != null)
+        {
+            return _responsibleObserver;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.16",
+            Type = @"Field",
+            Position = @"OBX.16",
+            Name = @"Responsible Observer",
+            Length = 0,
+            Usage = @"B",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. When required, this field contains the identifier of the individual directly responsible for the observation (i.e., the person who either performed or verified it). In a nursing service, the observer is usually the professional who performed the observation (e.g., took the blood pressure). In a laboratory, the observer is the technician who performed or verified the analysis. The code for the observer is recorded as a CWE data type. If the code is sent as a local code, it should be unique and unambiguous when combined with OBX-15-producer ID.
 
 The EUCLIDES method codes provide a vocabulary to use, or user-defined tables may provide an alternative.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.16.1",
                             Type = @"Component",
@@ -4590,27 +5019,57 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.17",
-                            Type = @"Field",
-                            Position = @"OBX.17",
-                            Name = @"Observation Method",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This optional field can be used to transmit the method or procedure by which an observation was obtained when the sending system wishes to distinguish among one measurement obtained by different methods and the distinction is not implicit in the test ID. Chemistry laboratories do not usually distinguish between two different methods used to measure a given serum constituent (e.g., serum potassium) as part of the test name. See the LOINC® Users Manual1 for a more complete discussion of these distinctions. If an observation producing service wanted to report the method used to obtain a particular observation, and the method was NOT embedded in the test name, they can use this field.
+                        }
+        }
+
+        _responsibleObserver = new HL7V28Field
+        {
+            field = message[@"OBX"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_responsibleObserver.field.FieldRepetitions != null && _responsibleObserver.field.FieldRepetitions.Count > 0)
+        {
+            _responsibleObserver.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_responsibleObserver, fieldData);
+        }
+
+        return _responsibleObserver;
+    } 
+}
+
+internal HL7V28Field _observationMethod;
+
+public HL7V28Field ObservationMethod
+{
+    get
+    {
+        if (_observationMethod != null)
+        {
+            return _observationMethod;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.17",
+            Type = @"Field",
+            Position = @"OBX.17",
+            Name = @"Observation Method",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This optional field can be used to transmit the method or procedure by which an observation was obtained when the sending system wishes to distinguish among one measurement obtained by different methods and the distinction is not implicit in the test ID. Chemistry laboratories do not usually distinguish between two different methods used to measure a given serum constituent (e.g., serum potassium) as part of the test name. See the LOINC® Users Manual1 for a more complete discussion of these distinctions. If an observation producing service wanted to report the method used to obtain a particular observation, and the method was NOT embedded in the test name, they can use this field.
 
 The EUCLIDES method codes provide a vocabulary to use, or user-defined tables may provide an alternative.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.17.1",
                             Type = @"Component",
@@ -5038,25 +5497,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _observationMethod = new HL7V28Field
+        {
+            field = message[@"OBX"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationMethod.field.FieldRepetitions != null && _observationMethod.field.FieldRepetitions.Count > 0)
+        {
+            _observationMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_observationMethod, fieldData);
+        }
+
+        return _observationMethod;
+    } 
+}
+
+internal HL7V28Field _equipmentInstanceIdentifier;
+
+public HL7V28Field EquipmentInstanceIdentifier
+{
+    get
+    {
+        if (_equipmentInstanceIdentifier != null)
+        {
+            return _equipmentInstanceIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.18",
+            Type = @"Field",
+            Position = @"OBX.18",
+            Name = @"Equipment Instance Identifier",
+            Length = 0,
+            Usage = @"B",
+            Rpt = @"*",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field identifies the Equipment Instance (e.g., Analyzer, Analyzer module, group of Analyzers, etc.) responsible for the production of the observation. This is the identifier from an institution's master list of equipment, where the institution is specified by the namespace ID or if it is blank, then by the ""Producer’s ID"" (OBX-15). It should be possible to retrieve from this master list the equipment type, serial number, etc., however it is not planned to transfer this information with every OBX. The repeating of this field allows for the hierarchical representation of the equipment (lowest level first), e.g., module of an instrument, instrument consisting of modules, cluster of multiple instruments, etc.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBX.18",
-                            Type = @"Field",
-                            Position = @"OBX.18",
-                            Name = @"Equipment Instance Identifier",
-                            Length = 0,
-                            Usage = @"B",
-                            Rpt = @"*",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field identifies the Equipment Instance (e.g., Analyzer, Analyzer module, group of Analyzers, etc.) responsible for the production of the observation. This is the identifier from an institution's master list of equipment, where the institution is specified by the namespace ID or if it is blank, then by the ""Producer’s ID"" (OBX-15). It should be possible to retrieve from this master list the equipment type, serial number, etc., however it is not planned to transfer this information with every OBX. The repeating of this field allows for the hierarchical representation of the equipment (lowest level first), e.g., module of an instrument, instrument consisting of modules, cluster of multiple instruments, etc.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.18.1",
                             Type = @"Component",
@@ -5132,47 +5621,104 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.19",
-                            Type = @"Field",
-                            Position = @"OBX.19",
-                            Name = @"Date/Time Of The Analysis",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to transfer the time stamp associated with generation of the analytical result by the instrument specified in Equipment Instance Identifier (see above).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.20",
-                            Type = @"Field",
-                            Position = @"OBX.20",
-                            Name = @"Observation Site",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0163",
-                            TableName = @"Body Site",
-                            Description = @"This field typically contains the body site(s) where the measurement being reported was obtained. This field should not be used for a specimen source or specimen collection site.
+                        }
+        }
+
+        _equipmentInstanceIdentifier = new HL7V28Field
+        {
+            field = message[@"OBX"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_equipmentInstanceIdentifier.field.FieldRepetitions != null && _equipmentInstanceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _equipmentInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_equipmentInstanceIdentifier, fieldData);
+        }
+
+        return _equipmentInstanceIdentifier;
+    } 
+}
+
+internal HL7V28Field _dateTimeOfTheAnalysis;
+
+public HL7V28Field DateTimeOfTheAnalysis
+{
+    get
+    {
+        if (_dateTimeOfTheAnalysis != null)
+        {
+            return _dateTimeOfTheAnalysis;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.19",
+            Type = @"Field",
+            Position = @"OBX.19",
+            Name = @"Date/Time Of The Analysis",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to transfer the time stamp associated with generation of the analytical result by the instrument specified in Equipment Instance Identifier (see above).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dateTimeOfTheAnalysis = new HL7V28Field
+        {
+            field = message[@"OBX"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeOfTheAnalysis.field.FieldRepetitions != null && _dateTimeOfTheAnalysis.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeOfTheAnalysis.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_dateTimeOfTheAnalysis, fieldData);
+        }
+
+        return _dateTimeOfTheAnalysis;
+    } 
+}
+
+internal HL7V28Field _observationSite;
+
+public HL7V28Field ObservationSite
+{
+    get
+    {
+        if (_observationSite != null)
+        {
+            return _observationSite;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.20",
+            Type = @"Field",
+            Position = @"OBX.20",
+            Name = @"Observation Site",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0163",
+            TableName = @"Body Site",
+            Description = @"This field typically contains the body site(s) where the measurement being reported was obtained. This field should not be used for a specimen source or specimen collection site.
 
 This information is of particular importance if the clinical meaning of a value is modified either directly by the site (for example, is the temperature central or peripheral?) or if the site of one measurement impacts the value of another measurement (for example, is the finger SpO2 probe on the same arm as the NIBP cuff?). In most cases these observations are performed directly upon the patient and do not involve a specimen.
 
 Any nationally recognized coding system might be used for this field including SNOMED or MDC; alternatively the HL7 Table 0163 – Body Site may be used. Veterinary medicine may choose the tables supported for the components of this field as decided by their industry.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.20.1",
                             Type = @"Component",
@@ -5600,27 +6146,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.21",
-                            Type = @"Field",
-                            Position = @"OBX.21",
-                            Name = @"Observation Instance Identifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a unique identifier for this observation. This instance identifier is persistent between messages.
+                        }
+        }
+
+        _observationSite = new HL7V28Field
+        {
+            field = message[@"OBX"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationSite.field.FieldRepetitions != null && _observationSite.field.FieldRepetitions.Count > 0)
+        {
+            _observationSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_observationSite, fieldData);
+        }
+
+        return _observationSite;
+    } 
+}
+
+internal HL7V28Field _observationInstanceIdentifier;
+
+public HL7V28Field ObservationInstanceIdentifier
+{
+    get
+    {
+        if (_observationInstanceIdentifier != null)
+        {
+            return _observationInstanceIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.21",
+            Type = @"Field",
+            Position = @"OBX.21",
+            Name = @"Observation Instance Identifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a unique identifier for this observation. This instance identifier is persistent between messages.
 
 Note: OBX-21 Observation Instance Identifier was introduced in v2.6 to support Patient Care messaging concepts and constructs. At this time, there are no documented use cases for this field in the context of messages as described in this chapter. This statement does not preclude the use of OBX-21, but implementers should exercise caution in using this field outside of the Patient Care context until the appropriate use cases are established. This identifier provides persistent reference to an object within or outside the message and represents an identifier established by external applications rather than temporal message considerations.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.21.1",
                             Type = @"Component",
@@ -5696,27 +6272,57 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.22",
-                            Type = @"Field",
-                            Position = @"OBX.22",
-                            Name = @"Mood Code",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0725",
-                            TableName = @"Mood Codes",
-                            Description = @"This field identifies the actuality of the observation (e.g., intent, request, promise, event). Refer to HL7 Table 0725 – Mood Codes for valid values. This field may only be used with new trigger events and new messages from v2.6 onward. When this field is not valued in a message that qualifies, then the Value is assumed to be 'EVN'.
+                        }
+        }
+
+        _observationInstanceIdentifier = new HL7V28Field
+        {
+            field = message[@"OBX"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationInstanceIdentifier.field.FieldRepetitions != null && _observationInstanceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _observationInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_observationInstanceIdentifier, fieldData);
+        }
+
+        return _observationInstanceIdentifier;
+    } 
+}
+
+internal HL7V28Field _moodCode;
+
+public HL7V28Field MoodCode
+{
+    get
+    {
+        if (_moodCode != null)
+        {
+            return _moodCode;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.22",
+            Type = @"Field",
+            Position = @"OBX.22",
+            Name = @"Mood Code",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0725",
+            TableName = @"Mood Codes",
+            Description = @"This field identifies the actuality of the observation (e.g., intent, request, promise, event). Refer to HL7 Table 0725 – Mood Codes for valid values. This field may only be used with new trigger events and new messages from v2.6 onward. When this field is not valued in a message that qualifies, then the Value is assumed to be 'EVN'.
 
 Note: OBX-22 Mood Code was introduced in v2.6 to support Patient Care messaging concepts and constructs. At this time, there are no documented use cases for this field in the context messages as described in this chapter. This statement does not preclude the use of OBX-22, but implementers should exercise caution in using this field outside of the Patient Care context until appropriate use cases are established. While a similar note exists for OBX-21 Observation Instance Identifier, particular care should be taken with OBX-22 as this could modify the intent of the segment/message and create backward compatibility problems.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.22.1",
                             Type = @"Component",
@@ -6153,27 +6759,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.23",
-                            Type = @"Field",
-                            Position = @"OBX.23",
-                            Name = @"Performing Organization Name",
-                            Length = 0,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field contains the name of the organization/service responsible for performing the service. When this field is null, the receiving system assumes that the observations were produced by the sending organization. The information for performing organization is recorded as an XON data type. In the US, the Medicare number of the performing organization is suggested as the identifier (component 10).
+                        }
+        }
+
+        _moodCode = new HL7V28Field
+        {
+            field = message[@"OBX"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_moodCode.field.FieldRepetitions != null && _moodCode.field.FieldRepetitions.Count > 0)
+        {
+            _moodCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_moodCode, fieldData);
+        }
+
+        return _moodCode;
+    } 
+}
+
+internal HL7V28Field _performingOrganizationName;
+
+public HL7V28Field PerformingOrganizationName
+{
+    get
+    {
+        if (_performingOrganizationName != null)
+        {
+            return _performingOrganizationName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.23",
+            Type = @"Field",
+            Position = @"OBX.23",
+            Name = @"Performing Organization Name",
+            Length = 0,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field contains the name of the organization/service responsible for performing the service. When this field is null, the receiving system assumes that the observations were produced by the sending organization. The information for performing organization is recorded as an XON data type. In the US, the Medicare number of the performing organization is suggested as the identifier (component 10).
 
 For lab, this field specifies the laboratory that produced the test result described in this OBX segment. It should be reported explicitly when the test results are produced at outside laboratories, for example. This information supports CLIA regulations in the US. For the US producing laboratories, which are CLIA certified, the CLIA identifier should be used for the organization identifier (component 10).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.23.1",
                             Type = @"Component",
@@ -6905,27 +7541,57 @@ In general this component provides an indication of the representation provided 
 Note: The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.24",
-                            Type = @"Field",
-                            Position = @"OBX.24",
-                            Name = @"Performing Organization Address",
-                            Length = 0,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field contains the address of the organization/service responsible for performing the service.
+                        }
+        }
+
+        _performingOrganizationName = new HL7V28Field
+        {
+            field = message[@"OBX"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_performingOrganizationName.field.FieldRepetitions != null && _performingOrganizationName.field.FieldRepetitions.Count > 0)
+        {
+            _performingOrganizationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_performingOrganizationName, fieldData);
+        }
+
+        return _performingOrganizationName;
+    } 
+}
+
+internal HL7V28Field _performingOrganizationAddress;
+
+public HL7V28Field PerformingOrganizationAddress
+{
+    get
+    {
+        if (_performingOrganizationAddress != null)
+        {
+            return _performingOrganizationAddress;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.24",
+            Type = @"Field",
+            Position = @"OBX.24",
+            Name = @"Performing Organization Address",
+            Length = 0,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field contains the address of the organization/service responsible for performing the service.
 
 For labs, this field specifies the address of the laboratory that produced the test result described in this OBX segment. It should be reported explicitly when the test results are produced at outside laboratories, for example. This information supports CLIA regulations in the US.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.24.1",
                             Type = @"Component",
@@ -9198,27 +9864,57 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.25",
-                            Type = @"Field",
-                            Position = @"OBX.25",
-                            Name = @"Performing Organization Medical Director",
-                            Length = 0,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field contains the medical director of the organization/service responsible for performing the service.
+                        }
+        }
+
+        _performingOrganizationAddress = new HL7V28Field
+        {
+            field = message[@"OBX"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_performingOrganizationAddress.field.FieldRepetitions != null && _performingOrganizationAddress.field.FieldRepetitions.Count > 0)
+        {
+            _performingOrganizationAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_performingOrganizationAddress, fieldData);
+        }
+
+        return _performingOrganizationAddress;
+    } 
+}
+
+internal HL7V28Field _performingOrganizationMedicalDirector;
+
+public HL7V28Field PerformingOrganizationMedicalDirector
+{
+    get
+    {
+        if (_performingOrganizationMedicalDirector != null)
+        {
+            return _performingOrganizationMedicalDirector;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.25",
+            Type = @"Field",
+            Position = @"OBX.25",
+            Name = @"Performing Organization Medical Director",
+            Length = 0,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field contains the medical director of the organization/service responsible for performing the service.
 
 For labs, this field specifies the medical director of the laboratory that produced the test result described in this OBX segment. This field is different than OBX-16 in that OBX-16 identifies the individual who performed the lab test (made the observation) whereas this field identifies the individual who is the medical director of the organization responsible for the result. It should be reported explicitly when the test results are produced at outside laboratories, for example. This information supports CLIA regulations in the US.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.25.1",
                             Type = @"Component",
@@ -11624,46 +12320,103 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.26",
-                            Type = @"Field",
-                            Position = @"OBX.26",
-                            Name = @"Patient Results Release Category",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0909",
-                            TableName = @"Patient Results Release Categorization Scheme",
-                            Description = @"This field contains instructions on whether to share the results with the patient, and if so how.
+                        }
+        }
+
+        _performingOrganizationMedicalDirector = new HL7V28Field
+        {
+            field = message[@"OBX"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_performingOrganizationMedicalDirector.field.FieldRepetitions != null && _performingOrganizationMedicalDirector.field.FieldRepetitions.Count > 0)
+        {
+            _performingOrganizationMedicalDirector.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_performingOrganizationMedicalDirector, fieldData);
+        }
+
+        return _performingOrganizationMedicalDirector;
+    } 
+}
+
+internal HL7V28Field _patientResultsReleaseCategory;
+
+public HL7V28Field PatientResultsReleaseCategory
+{
+    get
+    {
+        if (_patientResultsReleaseCategory != null)
+        {
+            return _patientResultsReleaseCategory;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.26",
+            Type = @"Field",
+            Position = @"OBX.26",
+            Name = @"Patient Results Release Category",
+            Length = 10,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0909",
+            TableName = @"Patient Results Release Categorization Scheme",
+            Description = @"This field contains instructions on whether to share the results with the patient, and if so how.
 
 Valid values are provided in HL7 Table 0909 – Patient Results Release Categorization Scheme.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.27",
-                            Type = @"Field",
-                            Position = @"OBX.27",
-                            Name = @"Root Cause",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0914",
-                            TableName = @"Root Cause",
-                            Description = @"This element contains the reason code indicating the root cause for the reissue of a previously released lab report.  This element is used in conjunction with OBX-11 Observation Result Status to define the root cause for a reissued laboratory result in the case of a corrected, amended, appended, or revised result.  For example, if the laboratory result was reissued due to an equipment malfunction.
+            Sample = @"",
+            Fields = null
+        }
+
+        _patientResultsReleaseCategory = new HL7V28Field
+        {
+            field = message[@"OBX"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientResultsReleaseCategory.field.FieldRepetitions != null && _patientResultsReleaseCategory.field.FieldRepetitions.Count > 0)
+        {
+            _patientResultsReleaseCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_patientResultsReleaseCategory, fieldData);
+        }
+
+        return _patientResultsReleaseCategory;
+    } 
+}
+
+internal HL7V28Field _rootCause;
+
+public HL7V28Field RootCause
+{
+    get
+    {
+        if (_rootCause != null)
+        {
+            return _rootCause;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.27",
+            Type = @"Field",
+            Position = @"OBX.27",
+            Name = @"Root Cause",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0914",
+            TableName = @"Root Cause",
+            Description = @"This element contains the reason code indicating the root cause for the reissue of a previously released lab report.  This element is used in conjunction with OBX-11 Observation Result Status to define the root cause for a reissued laboratory result in the case of a corrected, amended, appended, or revised result.  For example, if the laboratory result was reissued due to an equipment malfunction.
 Refer to User-defined Table 0914 – Root Cause in Chapter 2C, Code Tables, for potential values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.27.1",
                             Type = @"Component",
@@ -12091,29 +12844,59 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.28",
-                            Type = @"Field",
-                            Position = @"OBX.28",
-                            Name = @"Local Process Control",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0915",
-                            TableName = @"Process Control Code",
-                            Description = @"This element contains information intended to be used for locally defined processing, particularly process control/status type information.  It is defined as repeating and as a CWE data type to provide flexibility.  The specific use may be specified in a message profile or implementation guide (see Chapter 2.B), or use may be specified by local agreement internally within an organization. 
+                        }
+        }
+
+        _rootCause = new HL7V28Field
+        {
+            field = message[@"OBX"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rootCause.field.FieldRepetitions != null && _rootCause.field.FieldRepetitions.Count > 0)
+        {
+            _rootCause.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_rootCause, fieldData);
+        }
+
+        return _rootCause;
+    } 
+}
+
+internal HL7V28Field _localProcessControl;
+
+public HL7V28Field LocalProcessControl
+{
+    get
+    {
+        if (_localProcessControl != null)
+        {
+            return _localProcessControl;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OBX.28",
+            Type = @"Field",
+            Position = @"OBX.28",
+            Name = @"Local Process Control",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0915",
+            TableName = @"Process Control Code",
+            Description = @"This element contains information intended to be used for locally defined processing, particularly process control/status type information.  It is defined as repeating and as a CWE data type to provide flexibility.  The specific use may be specified in a message profile or implementation guide (see Chapter 2.B), or use may be specified by local agreement internally within an organization. 
 
 For example, a laboratory information system might use this element to convey an internal status during processing before the result is communicated outside the organization, such as revision previously reported, revision report pending.
 
 See User-Defined Table 0915 – Process Control Code in Chapter 2C, Code Tables, for a list of suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.28.1",
                             Type = @"Component",
@@ -12541,1327 +13324,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentOBX(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field setIdObx;
-
-public HL7V28Field SetIdObx
-{
-    get
-    {
-        if (setIdObx != null)
-        {
-            return setIdObx;
-        }
-
-        setIdObx = new HL7V28Field
-        {
-            field = message[@"OBX"][1],
-            Id = @"OBX.1",
-            Type = @"Field",
-            Position = @"OBX.1",
-            Name = @"Set Id - Obx",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the sequence number. For compatibility with ASTM.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdObx.field.FieldRepetitions != null && setIdObx.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdObx.Id));
-            setIdObx.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(setIdObx, fieldData);
-        }
-
-        return setIdObx;
-    } 
-}
-
-internal HL7V28Field valueType;
-
-public HL7V28Field ValueType
-{
-    get
-    {
-        if (valueType != null)
-        {
-            return valueType;
-        }
-
-        valueType = new HL7V28Field
-        {
-            field = message[@"OBX"][2],
-            Id = @"OBX.2",
-            Type = @"Field",
-            Position = @"OBX.2",
-            Name = @"Value Type",
-            Length = 3,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0125",
-            TableName = @"Value Type",
-            Description = @"This field defines the data type of OBX-5, Observation Value. This field is required if OBX-11-Observ result status is not valued with an ""X"". See HL7 Table 0125 – Value Types for valid values
-.
-For example, if the value is ‘CWE’ then the result in OBX-5 must be a coded entry or text or both. As of v2.7, the ST data type may not be used to transmit data that can be more precisely transmitted using other data types, e.g. SN when comparative symbols are needed.
-
-CQ is invalid because units for OBX-5-observation value are always specified explicitly in an OBX segment with OBX-6 units. SI is invalid because it only applies to HL7 message segments; ID is also invalid because it requires a constant field definition.
-
-The RP value (reference pointer) must be used if the OBX-5 contains a pointer to the data e.g., a URL of an image. The receiving system can use this reference pointer whenever it needs access to the actual data through other interface standards, e.g., DICOM, or through appropriate data base servers.
-
-The structured numeric (SN) data type provides for reporting ranges (e.g., 3-5 or 10-20), titres (e.g., 1:10), and out-of-range indicators (e.g., >50) in a structured and computer-interpretable way.
-
-We allow the FT data type in the OBX segment, but its use is discouraged. Formatted text usually implies a meaningful structure, e.g., a list of three independent diagnoses reported on different lines. But ideally, the structure in three independent diagnostic statements would be reported as three separate OBX segments.
-
-TX should not be used except to send large amounts of text. In the TX data type, the repeat delimiter can only be used to identify paragraph breaks. Use ST to send short, and possibly encodable, text strings.
-
-CDA documents are to be exchanged in the OBX segment in any message that can exchange documents (such as MDM or ORU). Within the OBX segment, the MIME package is encoded as an encapsulated (ED) data type.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (valueType.field.FieldRepetitions != null && valueType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(valueType.Id));
-            valueType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(valueType, fieldData);
-        }
-
-        return valueType;
-    } 
-}
-
-internal HL7V28Field observationIdentifier;
-
-public HL7V28Field ObservationIdentifier
-{
-    get
-    {
-        if (observationIdentifier != null)
-        {
-            return observationIdentifier;
-        }
-
-        observationIdentifier = new HL7V28Field
-        {
-            field = message[@"OBX"][3],
-            Id = @"OBX.3",
-            Type = @"Field",
-            Position = @"OBX.3",
-            Name = @"Observation Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains a unique identifier for the observation. The format is that of the Coded Element (CWE). Example: ""8625-6^P-R interval^LN"".
-
-In most systems the identifier will point to a master observation table that will provide other attributes of the observation that may be used by the receiving system to process the observations it receives. A set of message segments for transmitting such master observation tables is described in Chapter 8. The relation of an observation ID to a master observation table is analogous to the relationship between a charge code (in a billing record) and the charge master.
-
-When local codes are used as the first identifier in this field we strongly encourage sending a universal identifier as well to permit receivers to equivalence results from different providers of the same service (e.g., a hospital lab and commercial lab that provides serum potassium to a nursing home). LOINC® is one possible universal and HL7-approved code system for the Observation identifier. It covers observations and measurements, such as laboratory tests, physical findings, radiology studies, and claims attachments. See HL7 Table 0396 – Coding System, the HL7 www list server and Appendix X2 of ASTM E1467 for neurophysiology tests, or it can be obtained from www.regenstrief.org/loinc/loinc.htm.
-
-The use of suffixes as described in section 7.1.3 and section 7.1.4 has been deprecated as of V2.7.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationIdentifier.field.FieldRepetitions != null && observationIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationIdentifier.Id));
-            observationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(observationIdentifier, fieldData);
-        }
-
-        return observationIdentifier;
-    } 
-}
-
-internal HL7V28Field observationSubid;
-
-public HL7V28Field ObservationSubid
-{
-    get
-    {
-        if (observationSubid != null)
-        {
-            return observationSubid;
-        }
-
-        observationSubid = new HL7V28Field
-        {
-            field = message[@"OBX"][4],
-            Id = @"OBX.4",
-            Type = @"Field",
-            Position = @"OBX.4",
-            Name = @"Observation Sub-id",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to distinguish between multiple OBX segments with the same observation ID organized under one OBR. For example, a chest X-ray report might include three separate diagnostic impressions. The standard requires three OBX segments, one for each impression. By putting a 1 in the Sub-ID of the first of these OBX segments, 2 in the second, and 3 in the third, we can uniquely identify each OBX segment for editing or replacement.
-
-The sub-identifier is also used to group related components in reports such as surgical pathology. It is traditional for surgical pathology reports to include all the tissues taken from one surgical procedure in one report. Consider, for example, a single surgical pathology report that describes the examination of gallbladder and appendix tissue. This report would be transmitted roughly as shown here:
-OBR|1||1234^LAB|11529-5^Study report^LN|...<cr>
-OBX|1|CWE|88304&ANT|1|T57000^GALLBLADDER^SNM|...<cr>
-OBX|2|TX|22634-0^Path report.gross observation^LN|1|THIS IS A NORMAL GALLBLADDER|...<cr>
-OBX|3|TX|22635-7^Path report.microscopic observation^LN|1|MICROSCOPIC EXAM SHOWS HISTOLOGICALLY
-NORMAL GALLBLADDER TISSUE|...<cr>
-OBX|4|CWE|34574-4^Path report.final diagnosis^LN|1|M-00100^NML^SNM|...<cr>
-OBX|5|CWE|11529-5&ANT^Surgical Path Report^LN|2|T66000^APPENDIX^SNM|...<cr>
-OBX|6|TX|22634-0^Path report.gross observation^LN|2|THIS IS A RED, INFLAMED, SWOLLEN, BOGGY APPENDIX|...<cr>
-OBX|7|TX|22635-7^Path report.microscopic observation^LN|2|INFILTRATION WITH MANY PMN's - INDICATING INFLAMATORY CHANGE|...<cr>
-OBX|8|CWE|34574-4^Path report.final diagnosis^LN|2|M-40000^INFLAMMATION NOS^SNM|...<cr>
-
-The example in Figure 7-2 has two segments for each component of the report, one for each of the two tissues. Thus, there are two 88304&ANT segments; there are two ""22634-0^Path report.gross observation^LN"" segments, and there are two ""22635-7^Path report.microscopic observation^LN"" segments. Segments that apply to the gallbladder all have the sub-identifier 1. Segments that apply to the appendix all have sub-identifier 2.
-
-The observation sub ID has other grouping uses. It can be used to organize the reporting of some kinds of fluid intakes and outputs. For example, when intake occurs through multiple intravenous lines, a number of separate observations (OBX segments), the intake volume, the type of intake (Blood, D5W, Plasma, etc.), the site of the IV line, etc. may be needed for each intravenous line, each requiring a separate OBX segment. If more than one IV line is running, we can logically link all of the OBX segments that pertain to the first IV line by assigning them an observation sub ID of 1. We can do the same with the second IV line by assigning them a sub ID 2 and so on. The same would apply to the outputs of surgical drains when there are multiple such drains.
-
-The use of the sub ID to distinguish repeating OBXs for the same observation ID is really a special case of using the sub ID to group, as can be seen if we picture the OBX segments as part of a table where the rows correspond to a particular species of observation and the cells correspond to the sub ID numbers that would be associated with each corresponding OBX.
-
-The use of Sub IDs to group results is equivalent to defining a table, and the use of sub IDs to distinguish repeats is just a special case, represented by one column in this table.
-
-However, this approach introduces ambiguities if we have a set of repeating observations within a group, e.g., if the appendix observations include two impressions as in the 8th and 9th OBXs shown in the following example. This really represents the existence of a row nested within a single cell of the table.
-OBX|1|CWE|880304&ANT|1|T57000^GALLBLADDER^SNM|...<cr>
-OBX|2|TX|22634-0^Path report.gross observation^LN|1|THIS IS A NORMAL GALL BLADDER|...<cr>
-OBX|3|TX|22635-7^Path report.microscopic observation^LN|1|MICROSCOPIC EXAMINATION SHOWS HISTOLOGICALLY
-NORMAL GALLBLADDER TISSUE|...<cr>
-OBX|4|CWE|34574-4^Path report.final diagnosis^LN|1|M-00100^NML^SNM|...<cr>
-OBX|5|CWE|880304&ANT|2|T57000^APPENDIX^SNM|...<cr>
-OBX|6|TX|22634-0^Path report.gross observation^LN|2|THIS IS A RED, INFLAMED APPENDIX|...<cr>
-OBX|7|TX|22635-7^Path report.microscopic observation^LN|2|INFLAMMATION WITH MANY PUS CELLS-ACUTE INFLAMMATION|...<cr>
-OBX|8|CWE|34574-4^Path report.final diagnosis^LN|2|M-40000^INFLAMMATION NOS^SNM|...<cr>
-OBX|9|CWE|34574-4^Path report.final diagnosis^LN|2|M-30280^FECALITH^SNM|...<cr>
-
-The text under OBX-5-observation value provides guidance about dealing with two OBXs with the same observation ID and observation sub IDs. They are sent and replaced as a unit. However, some systems will take this to mean that the set of OBXs is to be combined into one composite observation in the receiving system. We suggest the use of a dot and a string (similar to the Dewey Decimal system) when users wish to distinguish each of the repeats within one type, or results within a cell for editing and correction purposes. Using this system, the previous example would become the following below. If there are cases where such nesting occurs at even deeper levels, this approach could be extended.
-OBX|1|CWE|880304&ANT|1|T57000^GALLBLADDER^SNM|...<cr>
-OBX|2|TX|22634-0^Path report.gross observation^LN|1|THIS IS A NORMAL GALL BLADDER|...<cr>
-OBX|3|TX|22635-7^Path report.microscopic observation^LN|1|MICROSCOPIC EXAMINATION SHOWS HISTOLOGICALLY
-NORMAL GALLBLADDER TISSUE|...<cr>
-OBX|4|CWE|34574-4^Path report.final diagnosis^LN|1|M-00100^NML^SNM|...<cr>
-OBX|5|CWE|880304&ANT|2|T57000^APPENDIX^SNM|...<cr>
-OBX|6|TX|22634-0^Path report.gross observation^LN|2|THIS IS A RED, INFLAMED APPENDIX|...<cr>
-OBX|7|TX|22635-7^Path report.microscopic observation^LN|2|INFLAMMATION WITH MANY PUS CELLS-ACUTE INFLAMMATION|...<cr>
-OBX|8|CWE|34574-4^Path report.final diagnosis^LN|2.1|M-40000^INFLAMMATION NOS^SNM|...<cr>
-OBX|9|CWE|34574-4^Path report.final diagnosis^LN|2.2|M-30280^FECALITH^SNM|...<cr>
-
-Use a null or 1 when there is no need for multiples.
-
-If the observation includes a number of OBXs with the same value for the observation ID OBX-3, then one must use different values for the sub-ID. This is in fact the case of the repeats depicted above, but without any need to group sets of OBXs. Three such OBXs could be distinguished by using sub-IDs 1, 2 etc. alternatively, sub-IDs 1.1, 1.2, 1.3 could be used. The following example shows and example of an electrocardiograph chest radiograph report with three diagnostic impressions, using 1,2,3 in the sub-ID field to distinguish the three separate results.
-OBX|1|CWE|8601-7^EKG IMPRESSION ^LN|1|^atrial fibrillation|...<cr>
-OBX|2|CWE|8601-7^EKG IMPRESSION ^LN|2|^OLD SEPTAL MYOCARDIAL INFARCT|...<cr>
-OBX|3|CWE|8601-7^EKG IMPRESSION ^LN|3|^poor R wave progression|...<cr>",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationSubid.field.FieldRepetitions != null && observationSubid.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationSubid.Id));
-            observationSubid.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(observationSubid, fieldData);
-        }
-
-        return observationSubid;
-    } 
-}
-
-internal HL7V28Field observationValue;
-
-public HL7V28Field ObservationValue
-{
-    get
-    {
-        if (observationValue != null)
-        {
-            return observationValue;
-        }
-
-        observationValue = new HL7V28Field
-        {
-            field = message[@"OBX"][5],
-            Id = @"OBX.5",
-            Type = @"Field",
-            Position = @"OBX.5",
-            Name = @"Observation Value",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"varies",
-            DataTypeName = @"Varies",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the value observed by the observation producer. OBX-2-value type contains the data type for this field according to which observation value is formatted. It is not a required field because some systems will report only the Interpretation Codes (OBX-8), especially in product experience reporting. The length of the observation field is variable, depending upon OBX-3-value type. This field may repeat for multipart, single answer results.
-
-Representation
-This field contains the value of OBX-3-observation identifier of the same segment. Depending upon the observation, the data type may be a number (e.g., a respiratory rate), a coded answer (e.g., a pathology impression recorded as SNOMED), or a date/time (the date/time that a unit of blood is sent to the ward). An observation value is always represented as the data type specified in OBX-2-value type of the same segment. Whether numeric or short text, the answer shall be recorded in ASCII text.
-
-Reporting logically independent observations
-The main sections of dictated reports, such as radiologic studies or history and physicals, are reported as separate OBX segments. In addition, each logically independent observation should be reported in a separate OBX segment, i.e., one OBX segment should not contain the result of more than one logically independent observation. This requirement is included to assure that the contents of OBX-6-units, OBX-8-interpretation codes, and OBX-9-probability can be interpreted unambiguously. The electrolytes and vital signs batteries, for example, would each be reported as four separate OBX segments. Two diagnostic impressions, e.g., congestive heart failure and pneumonia, would also be reported as two separate OBX segments whether reported as part of a discharge summary or chest X-ray report. Similarly, two bacterial organisms isolated in a single bacterial culture would be reported as two separate OBX segments.
-
-Though two independent diagnostic statements cannot be reported in one OBX segment, multiple categorical responses are allowed (usually as CWE data types separated by repeat delimiters), so long as they are fragments (modifiers) that together construct one diagnostic statement. Right upper lobe (recorded as one code) and pneumonia (recorded as another code), for example, could be both reported in one OBX segment. Such multiple ""values"" would be separated by repeat delimiters.
-
-Multiple OBX segments with the same observation ID and Sub ID
-In some systems, a single observation may include fragments of more than one data type. The most common example is a numeric result followed by coded comments (CWE). In this case, the logical observation can be sent in more than one OBX segment. For example, one segment of numeric or string data type for the numeric result and another segment of CWE data type for coded comments. If the producer was reporting multiple coded comments they would all be sent in one OBX segment separated by repeat delimiters because they all modified a single logical observation. Multiple OBX segments with the same observation ID and sub ID should always be sent in sequence with the most significant OBX segment (the one that has the normal flag/units and or reference range and status flag) first. The value of OBX-6 through 12 should be null in any following OBX segments with the same OBX-3-observation identifier and OBX-4-observation sub-ID. For the purpose of replacement or deletion, multiple OBX segments with the same observation ID and sub ID are treated as a unit. If any are replaced or deleted, they all are replaced.
-
-Coded values
-When an OBX segment contains values of CWE data types, the observations are stored as a combination of codes and/or text. In Section 7.7.3, ""CSS - Clinical Study Data Schedule Segment,"" examples of results that are represented as CWE data types are shown in the first and second OBX segments of OBR 1 and the first and second OBX segments of OBR 2. The observation may be an observation battery ID (for recommended studies), a diagnostic code or finding (for a diagnostic impression), or an anatomic site for a pathology report, or any of the other kinds of coded results.
-
-It is not necessary to always encode the information stored within a coded observation. For example, a chest X-ray impression could be transmitted as pure text even though it has a CWE data type. In this case, the test must be recorded as the second component of the result code, e.g.,
-OBX|1|CWE|19005^X-Ray Impression^LN|1|^CONGESTIVE HEART FAILURE.|...<cr>
-
-However, separate impressions, recommendations, etc., even if recorded as pure text, should be recorded in separate result segments. That is, congestive heart failure and pneumonia should not be sent as:
-OBX|1|CWE|19005^X-Ray Impression^LN|1|^CONGESTIVE HEART FAILURE AND PNEUMONIA|...<cr>
-
-but as:
-OBX|1|CWE|19005^X-Ray Impression^LN|1|^CONGESTIVE HEART FAILURE|...<cr>
-OBX|2|CWE|19005^X-Ray Impression^LN|2|^PNEUMONIA|....<cr>
-
-Even better would be fully-coded results that include computer understandable codes (component 1) instead of, or in addition to, the text description (component 2). One may include multiple values in a CWE value and these can be mixtures of code and text, but only when they are needed to construct one diagnosis, impression, or concept. When text follows codes as an independent value it would be taken as a modifier or addenda to the codes. E.g.,
-OBX|1|CWE|19005-8^X-ray impression^LN~29548-5^DiagnosisImpPatient^LN |1|428.0^CONGESTIVE HEART FAILURE^I9C~^MASSIVE HEART|...<cr>
-
-The text in component 2 should be an accurate description of the code in component 1. Likewise, if used, the text in component 5 should be an accurate description of the code in component 4.
-
-CDA documents are to be exchanged in the OBX segment. The value of OBX-2-Value Type should be set to 'ED'. OBX-5-Observation Value contains the MIME package encoded as an encapsulated data type. The components should be valued as follows:
-- Set the value of OBX-5.2-Type of Data to 'multipart.'
-- Set the value of OBX-5.3-Data Subtype to '-hl7-cda-level-one.'
-- Set the value of OBX-5.4-Encoding to 'A'. (Note that a MIME package is not itself Base64-encoded. Rather entities within the MIME package are Base64-encoded. A MIME package is sent as ASCII text. Therefore, the correct value is 'A' not 'Base64.'
-- Set the value of OBX-5.5-Data to equal the MIME package. Every entity within the MIME package must be Base64-encoded. As stated in Chapter 2, ""the data component must be scanned before transmission for HL7 delimiter characters (and other non-printing ASCII or non-ASCII characters such as LineFeed), and any found must be escaped by using the HL7 escape sequences defined in Section 2.7 'Use of escape sequences in text fields.' On the receiving application, the data field must be de-escaped after being parsed."" As a result, CR/LF sequences required in the MIME package need to be escaped (i.e., converted to '\X0D0A\') prior to transmission. The content type of the first MIME entity is set to 'application/x-hl7-cda-level-one+xml', and should contain the CDA document itself. Multimedia objects referenced by the CDA document that need to be transmitted within the CDA document are to be placed in successive entities of the MIME package.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationValue.field.FieldRepetitions != null && observationValue.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationValue.Id));
-            observationValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(observationValue, fieldData);
-        }
-
-        return observationValue;
-    } 
-}
-
-internal HL7V28Field units;
-
-public HL7V28Field Units
-{
-    get
-    {
-        if (units != null)
-        {
-            return units;
-        }
-
-        units = new HL7V28Field
-        {
-            field = message[@"OBX"][6],
-            Id = @"OBX.6",
-            Type = @"Field",
-            Position = @"OBX.6",
-            Name = @"Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the units of measurement for the value in OBX-5, Observation Value. Coding system from which the values may be drawn include, UCUM, ISO+, ANSI X3.50 - 1986 and site specific (local) coding systems. Considering Version 3 direction and consistent use of V2 and V3 messages/documents within an organization, use of UCUM is strongly recommended.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (units.field.FieldRepetitions != null && units.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(units.Id));
-            units.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(units, fieldData);
-        }
-
-        return units;
-    } 
-}
-
-internal HL7V28Field referencesRange;
-
-public HL7V28Field ReferencesRange
-{
-    get
-    {
-        if (referencesRange != null)
-        {
-            return referencesRange;
-        }
-
-        referencesRange = new HL7V28Field
-        {
-            field = message[@"OBX"][7],
-            Id = @"OBX.7",
-            Type = @"Field",
-            Position = @"OBX.7",
-            Name = @"References Range",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Components: for numeric values in the format:
-a) lower limit-upper limit (when both lower and upper limits are defined, e.g., for potassium 3.5 - 4.5)
-b) > lower limit (if no upper limit, e.g., >10)
-c) < upper limit (if no lower limit, e.g., <15)
-alphabetical values: the normal value may be reported in this location
-
-When the observation quantifies the amount of a toxic substance, then the upper limit of the range identifies the toxic limit. If the observation quantifies a drug, the lower limits identify the lower therapeutic bounds and the upper limits represent the upper therapeutic bounds above which toxic side effects are common.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (referencesRange.field.FieldRepetitions != null && referencesRange.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(referencesRange.Id));
-            referencesRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(referencesRange, fieldData);
-        }
-
-        return referencesRange;
-    } 
-}
-
-internal HL7V28Field interpretationCodes;
-
-public HL7V28Field InterpretationCodes
-{
-    get
-    {
-        if (interpretationCodes != null)
-        {
-            return interpretationCodes;
-        }
-
-        interpretationCodes = new HL7V28Field
-        {
-            field = message[@"OBX"][8],
-            Id = @"OBX.8",
-            Type = @"Field",
-            Position = @"OBX.8",
-            Name = @"Interpretation Codes",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"One or more codes specifying a categorical assessment of the observation value (OBX.5), such as ""Normal"", ""Abnormal"", “Positive”, “Negative”, ""Resistant"", ""Susceptible"", etc.
-
-This field may also be used to convey an assessment of an observation where no legitimate result may be obtained. This includes laboratory assays that are rejected due to the presence of interfering substances, specimen toxicity or failure of quality control.
-
-As a CWE data type, this field may be populated with either HL7-defined codes or codes derived from other code systems (such as SNOMED).
-
-When the filler can discern the normal status of a textual report, such as chest X-ray reports or microbiologic culture, these should be reported as ""N"" when normal and ""A""when abnormal. Multiple codes, e.g., abnormal and worse, would be separated by a repeat delimiter, e.g., ""A~W"".
-
-Results may also be reported in shorthand by reporting the normalcy status without specifying the exact numeric value of the result. Such shorthand is quite common in clinical notes, where physicians will simply say that the glucose result was normal. Such shorthand reporting is also seen in drug experience reporting. In such cases, the result can be reported in the OBX by reporting the interpretation code in OBX-8-Interpretation Codes without specifying any value in OBX-5-observation value.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (interpretationCodes.field.FieldRepetitions != null && interpretationCodes.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(interpretationCodes.Id));
-            interpretationCodes.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(interpretationCodes, fieldData);
-        }
-
-        return interpretationCodes;
-    } 
-}
-
-internal HL7V28Field probability;
-
-public HL7V28Field Probability
-{
-    get
-    {
-        if (probability != null)
-        {
-            return probability;
-        }
-
-        probability = new HL7V28Field
-        {
-            field = message[@"OBX"][9],
-            Id = @"OBX.9",
-            Type = @"Field",
-            Position = @"OBX.9",
-            Name = @"Probability",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the probability of a result being true for results with categorical values. It mainly applies to discrete coded results. It is a decimal number represented as an ASCII string that must be between 0 and 1, inclusive.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (probability.field.FieldRepetitions != null && probability.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(probability.Id));
-            probability.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(probability, fieldData);
-        }
-
-        return probability;
-    } 
-}
-
-internal HL7V28Field natureOfAbnormalTest;
-
-public HL7V28Field NatureOfAbnormalTest
-{
-    get
-    {
-        if (natureOfAbnormalTest != null)
-        {
-            return natureOfAbnormalTest;
-        }
-
-        natureOfAbnormalTest = new HL7V28Field
-        {
-            field = message[@"OBX"][10],
-            Id = @"OBX.10",
-            Type = @"Field",
-            Position = @"OBX.10",
-            Name = @"Nature Of Abnormal Test",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0080",
-            TableName = @"Nature of Abnormal Testing",
-            Description = @"This field contains the nature of the abnormal test. Refer to HL7 Table 0080 - Nature of abnormal testing for valid values. As many of the codes as apply may be included, separated by repeat delimiters. For example, normal values based on age, sex, and race would be codes as ""A~S~R"".
-
-The constraints on the use of the codes in this table must be consistent with those defined in the PID segment, specifically PID-35-Species Code, PID-36-Breed Code and PID-37-Strain.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (natureOfAbnormalTest.field.FieldRepetitions != null && natureOfAbnormalTest.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(natureOfAbnormalTest.Id));
-            natureOfAbnormalTest.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(natureOfAbnormalTest, fieldData);
-        }
-
-        return natureOfAbnormalTest;
-    } 
-}
-
-internal HL7V28Field observationResultStatus;
-
-public HL7V28Field ObservationResultStatus
-{
-    get
-    {
-        if (observationResultStatus != null)
-        {
-            return observationResultStatus;
-        }
-
-        observationResultStatus = new HL7V28Field
-        {
-            field = message[@"OBX"][11],
-            Id = @"OBX.11",
-            Type = @"Field",
-            Position = @"OBX.11",
-            Name = @"Observation Result Status",
-            Length = 1,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0085",
-            TableName = @"Observation Result Status Codes Interpretation",
-            Description = @"This field contains the observation result status. Refer to HL7 table 0085 - Observation result status codes interpretation for valid values. This field reflects the current completion status of the results for one Observation Identifier.
-
-It is a required field. Previous versions of HL7 stated this implicitly by defining a default value of ""F."" Code F indicates that the result has been verified to be correct and final. Code W indicates that the result has been verified to be wrong (incorrect); a replacement (corrected) result may be transmitted later. Code C indicates that data contained in the OBX-5-observation value field are to replace previously transmitted (verified and) final result data with the same observation ID (including suffix, if applicable) and observation sub-ID usually because the previous results were wrong. Code D indicates that data previously transmitted in a result segment with the same observation ID (including suffix) and observation sub-ID should be deleted. When changing or deleting a result, multiple OBX segments with the same observation ID and observation sub-ID are replaced or deleted as a unit. Normal progression of results through intermediate (e.g., ‘gram positive cocci’) to final (e.g., ‘staphylococcus aureus’) should not be transmitted as C (correction); they should be transmitted as P (depending upon the specific case) until they are final.
-
-If an observation involves multiple OBX segments with the same observation ID (including suffix) and observation sub-ID, the observation result status applies to all OBX segments, except where the value is D or X. The value of D or X is applicable only to the individual OBX. All other OBX segments with the same Observation ID and observation sub-ID must have the same value.
-
-In the case of coding systems such as LOINC, the preceding rules typically mean that this field applies to a single OBX segment.
-
-There are situations where the observation battery required for the order needs to be dynamically specified at the time of ordering. That is, this battery is then defined by the set of OBX segments transmitted along with the order and generated by the placing system. For example, timed measurements of serum glucose challenge tests may vary among laboratories. One institution may report them at –30, -15, 0, 30, 60, and 120 minutes, while another may report them at –30, 0, 30, 60, 90, and 120 minutes. Master file entries may exist for each individual element of the battery but not for the battery itself. Another example may be Renin Studies where the specification may be done upon ordering without having a master file definition for each permutation of the possible element. The OBX segments in the ORM message can be used to create dynamic specifications to accommodate these permutations without defining pre-existing master file definitions for the battery itself. The result status field in the OBX can be used to indicate whether the OBX in the ORM message is used to provide a dynamic specification or is used to communicate a result as context to the order. The status of O shall be used to indicate that the OBX segment is used for a dynamic specification of the required result. An OBX used for a dynamic specification must contain the detaile",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationResultStatus.field.FieldRepetitions != null && observationResultStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationResultStatus.Id));
-            observationResultStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(observationResultStatus, fieldData);
-        }
-
-        return observationResultStatus;
-    } 
-}
-
-internal HL7V28Field effectiveDateOfReferenceRange;
-
-public HL7V28Field EffectiveDateOfReferenceRange
-{
-    get
-    {
-        if (effectiveDateOfReferenceRange != null)
-        {
-            return effectiveDateOfReferenceRange;
-        }
-
-        effectiveDateOfReferenceRange = new HL7V28Field
-        {
-            field = message[@"OBX"][12],
-            Id = @"OBX.12",
-            Type = @"Field",
-            Position = @"OBX.12",
-            Name = @"Effective Date Of Reference Range",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date (and, optionally, the time) on which the values in OBX-7-reference range went into effect.
-
-Usage Rule: This field can be valued only if OBX-7-reference range is populated.
-
-When this field is present, it facilitates comparison between identical results with different reference ranges. Reference range values may vary because of changes in laboratory practice over time. Such variances could reflect updated practice in laboratory medicine, or the use of updated instrumentation.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (effectiveDateOfReferenceRange.field.FieldRepetitions != null && effectiveDateOfReferenceRange.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(effectiveDateOfReferenceRange.Id));
-            effectiveDateOfReferenceRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(effectiveDateOfReferenceRange, fieldData);
-        }
-
-        return effectiveDateOfReferenceRange;
-    } 
-}
-
-internal HL7V28Field userDefinedAccessChecks;
-
-public HL7V28Field UserDefinedAccessChecks
-{
-    get
-    {
-        if (userDefinedAccessChecks != null)
-        {
-            return userDefinedAccessChecks;
-        }
-
-        userDefinedAccessChecks = new HL7V28Field
-        {
-            field = message[@"OBX"][13],
-            Id = @"OBX.13",
-            Type = @"Field",
-            Position = @"OBX.13",
-            Name = @"User Defined Access Checks",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field permits the producer to record results-dependent codes for classifying the observation at the receiving system. This field should be needed only rarely, because most classifications are fixed attributes of the observation ID and can be defined in the associated observation master file (see description in Chapter 8).
-
-However, there are a few cases when such controls vary with the value of the observation in a complex way that the receiving system would not want to re-calculate. An example is an antimicrobial susceptibility result. Some systems prefer to display only the susceptibility results of inexpensive antimicrobials depending upon the organism, the source of the specimen and the patient’s allergy status. The sending service wants to send all of the susceptibilities so that certain privileged users (e.g., Infectious Disease specialists) can review all of the results but non-privileged users would see only the ""preferred"" antimicrobials to which the organism was susceptible. We expect that other cases also occur.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (userDefinedAccessChecks.field.FieldRepetitions != null && userDefinedAccessChecks.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(userDefinedAccessChecks.Id));
-            userDefinedAccessChecks.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(userDefinedAccessChecks, fieldData);
-        }
-
-        return userDefinedAccessChecks;
-    } 
-}
-
-internal HL7V28Field dateTimeOfTheObservation;
-
-public HL7V28Field DateTimeOfTheObservation
-{
-    get
-    {
-        if (dateTimeOfTheObservation != null)
-        {
-            return dateTimeOfTheObservation;
-        }
-
-        dateTimeOfTheObservation = new HL7V28Field
-        {
-            field = message[@"OBX"][14],
-            Id = @"OBX.14",
-            Type = @"Field",
-            Position = @"OBX.14",
-            Name = @"Date/Time Of The Observation",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is required in two circumstances. The first is when the observations reported beneath one report header (OBR) have different dates/times. This could occur in the case of queries, timed test sequences, or clearance studies where one measurement within a battery may have a different time than another measurement.
-
-It is also needed in the case of OBX segments that are being sent by the placer to the filler, in which case the date of the observation being transmitted is likely to have no relation to the date of the requested observation. In France, requesting services routinely send a set of the last observations along with the request for a new set of observations. The date of these observations is important to the filler laboratories.
-
-In all cases, the observation date-time is the physiologically relevant date-time or the closest approximation to that date-time. In the case of tests performed on specimens, the relevant date-time is the specimen’s collection date-time. In the case of observations taken directly on the patient (e.g., X-ray images, history and physical), the observation date-time is the date-time that the observation was performed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeOfTheObservation.field.FieldRepetitions != null && dateTimeOfTheObservation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeOfTheObservation.Id));
-            dateTimeOfTheObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(dateTimeOfTheObservation, fieldData);
-        }
-
-        return dateTimeOfTheObservation;
-    } 
-}
-
-internal HL7V28Field producersId;
-
-public HL7V28Field ProducersId
-{
-    get
-    {
-        if (producersId != null)
-        {
-            return producersId;
-        }
-
-        producersId = new HL7V28Field
-        {
-            field = message[@"OBX"][15],
-            Id = @"OBX.15",
-            Type = @"Field",
-            Position = @"OBX.15",
-            Name = @"Producer's Id",
-            Length = 0,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field contains a unique identifier of the responsible producing service. It should be reported explicitly when the test results are produced at outside laboratories, for example. When this field is null, the receiving system assumes that the observations were produced by the sending organization. This information supports CLIA regulations in the US. The code for producer ID is recorded as a CWE data type. In the US, the Medicare number of the producing service is suggested as the identifier.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (producersId.field.FieldRepetitions != null && producersId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(producersId.Id));
-            producersId.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(producersId, fieldData);
-        }
-
-        return producersId;
-    } 
-}
-
-internal HL7V28Field responsibleObserver;
-
-public HL7V28Field ResponsibleObserver
-{
-    get
-    {
-        if (responsibleObserver != null)
-        {
-            return responsibleObserver;
-        }
-
-        responsibleObserver = new HL7V28Field
-        {
-            field = message[@"OBX"][16],
-            Id = @"OBX.16",
-            Type = @"Field",
-            Position = @"OBX.16",
-            Name = @"Responsible Observer",
-            Length = 0,
-            Usage = @"B",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. When required, this field contains the identifier of the individual directly responsible for the observation (i.e., the person who either performed or verified it). In a nursing service, the observer is usually the professional who performed the observation (e.g., took the blood pressure). In a laboratory, the observer is the technician who performed or verified the analysis. The code for the observer is recorded as a CWE data type. If the code is sent as a local code, it should be unique and unambiguous when combined with OBX-15-producer ID.
-
-The EUCLIDES method codes provide a vocabulary to use, or user-defined tables may provide an alternative.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (responsibleObserver.field.FieldRepetitions != null && responsibleObserver.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(responsibleObserver.Id));
-            responsibleObserver.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(responsibleObserver, fieldData);
-        }
-
-        return responsibleObserver;
-    } 
-}
-
-internal HL7V28Field observationMethod;
-
-public HL7V28Field ObservationMethod
-{
-    get
-    {
-        if (observationMethod != null)
-        {
-            return observationMethod;
-        }
-
-        observationMethod = new HL7V28Field
-        {
-            field = message[@"OBX"][17],
-            Id = @"OBX.17",
-            Type = @"Field",
-            Position = @"OBX.17",
-            Name = @"Observation Method",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This optional field can be used to transmit the method or procedure by which an observation was obtained when the sending system wishes to distinguish among one measurement obtained by different methods and the distinction is not implicit in the test ID. Chemistry laboratories do not usually distinguish between two different methods used to measure a given serum constituent (e.g., serum potassium) as part of the test name. See the LOINC® Users Manual1 for a more complete discussion of these distinctions. If an observation producing service wanted to report the method used to obtain a particular observation, and the method was NOT embedded in the test name, they can use this field.
-
-The EUCLIDES method codes provide a vocabulary to use, or user-defined tables may provide an alternative.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationMethod.field.FieldRepetitions != null && observationMethod.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationMethod.Id));
-            observationMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(observationMethod, fieldData);
-        }
-
-        return observationMethod;
-    } 
-}
-
-internal HL7V28Field equipmentInstanceIdentifier;
-
-public HL7V28Field EquipmentInstanceIdentifier
-{
-    get
-    {
-        if (equipmentInstanceIdentifier != null)
-        {
-            return equipmentInstanceIdentifier;
-        }
-
-        equipmentInstanceIdentifier = new HL7V28Field
-        {
-            field = message[@"OBX"][18],
-            Id = @"OBX.18",
-            Type = @"Field",
-            Position = @"OBX.18",
-            Name = @"Equipment Instance Identifier",
-            Length = 0,
-            Usage = @"B",
-            Rpt = @"*",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field identifies the Equipment Instance (e.g., Analyzer, Analyzer module, group of Analyzers, etc.) responsible for the production of the observation. This is the identifier from an institution's master list of equipment, where the institution is specified by the namespace ID or if it is blank, then by the ""Producer’s ID"" (OBX-15). It should be possible to retrieve from this master list the equipment type, serial number, etc., however it is not planned to transfer this information with every OBX. The repeating of this field allows for the hierarchical representation of the equipment (lowest level first), e.g., module of an instrument, instrument consisting of modules, cluster of multiple instruments, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (equipmentInstanceIdentifier.field.FieldRepetitions != null && equipmentInstanceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(equipmentInstanceIdentifier.Id));
-            equipmentInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(equipmentInstanceIdentifier, fieldData);
-        }
-
-        return equipmentInstanceIdentifier;
-    } 
-}
-
-internal HL7V28Field dateTimeOfTheAnalysis;
-
-public HL7V28Field DateTimeOfTheAnalysis
-{
-    get
-    {
-        if (dateTimeOfTheAnalysis != null)
-        {
-            return dateTimeOfTheAnalysis;
-        }
-
-        dateTimeOfTheAnalysis = new HL7V28Field
-        {
-            field = message[@"OBX"][19],
-            Id = @"OBX.19",
-            Type = @"Field",
-            Position = @"OBX.19",
-            Name = @"Date/Time Of The Analysis",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to transfer the time stamp associated with generation of the analytical result by the instrument specified in Equipment Instance Identifier (see above).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeOfTheAnalysis.field.FieldRepetitions != null && dateTimeOfTheAnalysis.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeOfTheAnalysis.Id));
-            dateTimeOfTheAnalysis.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(dateTimeOfTheAnalysis, fieldData);
-        }
-
-        return dateTimeOfTheAnalysis;
-    } 
-}
-
-internal HL7V28Field observationSite;
-
-public HL7V28Field ObservationSite
-{
-    get
-    {
-        if (observationSite != null)
-        {
-            return observationSite;
-        }
-
-        observationSite = new HL7V28Field
-        {
-            field = message[@"OBX"][20],
-            Id = @"OBX.20",
-            Type = @"Field",
-            Position = @"OBX.20",
-            Name = @"Observation Site",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0163",
-            TableName = @"Body Site",
-            Description = @"This field typically contains the body site(s) where the measurement being reported was obtained. This field should not be used for a specimen source or specimen collection site.
-
-This information is of particular importance if the clinical meaning of a value is modified either directly by the site (for example, is the temperature central or peripheral?) or if the site of one measurement impacts the value of another measurement (for example, is the finger SpO2 probe on the same arm as the NIBP cuff?). In most cases these observations are performed directly upon the patient and do not involve a specimen.
-
-Any nationally recognized coding system might be used for this field including SNOMED or MDC; alternatively the HL7 Table 0163 – Body Site may be used. Veterinary medicine may choose the tables supported for the components of this field as decided by their industry.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationSite.field.FieldRepetitions != null && observationSite.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationSite.Id));
-            observationSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(observationSite, fieldData);
-        }
-
-        return observationSite;
-    } 
-}
-
-internal HL7V28Field observationInstanceIdentifier;
-
-public HL7V28Field ObservationInstanceIdentifier
-{
-    get
-    {
-        if (observationInstanceIdentifier != null)
-        {
-            return observationInstanceIdentifier;
-        }
-
-        observationInstanceIdentifier = new HL7V28Field
-        {
-            field = message[@"OBX"][21],
-            Id = @"OBX.21",
-            Type = @"Field",
-            Position = @"OBX.21",
-            Name = @"Observation Instance Identifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a unique identifier for this observation. This instance identifier is persistent between messages.
-
-Note: OBX-21 Observation Instance Identifier was introduced in v2.6 to support Patient Care messaging concepts and constructs. At this time, there are no documented use cases for this field in the context of messages as described in this chapter. This statement does not preclude the use of OBX-21, but implementers should exercise caution in using this field outside of the Patient Care context until the appropriate use cases are established. This identifier provides persistent reference to an object within or outside the message and represents an identifier established by external applications rather than temporal message considerations.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationInstanceIdentifier.field.FieldRepetitions != null && observationInstanceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationInstanceIdentifier.Id));
-            observationInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(observationInstanceIdentifier, fieldData);
-        }
-
-        return observationInstanceIdentifier;
-    } 
-}
-
-internal HL7V28Field moodCode;
-
-public HL7V28Field MoodCode
-{
-    get
-    {
-        if (moodCode != null)
-        {
-            return moodCode;
-        }
-
-        moodCode = new HL7V28Field
-        {
-            field = message[@"OBX"][22],
-            Id = @"OBX.22",
-            Type = @"Field",
-            Position = @"OBX.22",
-            Name = @"Mood Code",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0725",
-            TableName = @"Mood Codes",
-            Description = @"This field identifies the actuality of the observation (e.g., intent, request, promise, event). Refer to HL7 Table 0725 – Mood Codes for valid values. This field may only be used with new trigger events and new messages from v2.6 onward. When this field is not valued in a message that qualifies, then the Value is assumed to be 'EVN'.
-
-Note: OBX-22 Mood Code was introduced in v2.6 to support Patient Care messaging concepts and constructs. At this time, there are no documented use cases for this field in the context messages as described in this chapter. This statement does not preclude the use of OBX-22, but implementers should exercise caution in using this field outside of the Patient Care context until appropriate use cases are established. While a similar note exists for OBX-21 Observation Instance Identifier, particular care should be taken with OBX-22 as this could modify the intent of the segment/message and create backward compatibility problems.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (moodCode.field.FieldRepetitions != null && moodCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(moodCode.Id));
-            moodCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(moodCode, fieldData);
-        }
-
-        return moodCode;
-    } 
-}
-
-internal HL7V28Field performingOrganizationName;
-
-public HL7V28Field PerformingOrganizationName
-{
-    get
-    {
-        if (performingOrganizationName != null)
-        {
-            return performingOrganizationName;
-        }
-
-        performingOrganizationName = new HL7V28Field
-        {
-            field = message[@"OBX"][23],
-            Id = @"OBX.23",
-            Type = @"Field",
-            Position = @"OBX.23",
-            Name = @"Performing Organization Name",
-            Length = 0,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field contains the name of the organization/service responsible for performing the service. When this field is null, the receiving system assumes that the observations were produced by the sending organization. The information for performing organization is recorded as an XON data type. In the US, the Medicare number of the performing organization is suggested as the identifier (component 10).
-
-For lab, this field specifies the laboratory that produced the test result described in this OBX segment. It should be reported explicitly when the test results are produced at outside laboratories, for example. This information supports CLIA regulations in the US. For the US producing laboratories, which are CLIA certified, the CLIA identifier should be used for the organization identifier (component 10).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (performingOrganizationName.field.FieldRepetitions != null && performingOrganizationName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(performingOrganizationName.Id));
-            performingOrganizationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(performingOrganizationName, fieldData);
-        }
-
-        return performingOrganizationName;
-    } 
-}
-
-internal HL7V28Field performingOrganizationAddress;
-
-public HL7V28Field PerformingOrganizationAddress
-{
-    get
-    {
-        if (performingOrganizationAddress != null)
-        {
-            return performingOrganizationAddress;
-        }
-
-        performingOrganizationAddress = new HL7V28Field
-        {
-            field = message[@"OBX"][24],
-            Id = @"OBX.24",
-            Type = @"Field",
-            Position = @"OBX.24",
-            Name = @"Performing Organization Address",
-            Length = 0,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field contains the address of the organization/service responsible for performing the service.
-
-For labs, this field specifies the address of the laboratory that produced the test result described in this OBX segment. It should be reported explicitly when the test results are produced at outside laboratories, for example. This information supports CLIA regulations in the US.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (performingOrganizationAddress.field.FieldRepetitions != null && performingOrganizationAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(performingOrganizationAddress.Id));
-            performingOrganizationAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(performingOrganizationAddress, fieldData);
-        }
-
-        return performingOrganizationAddress;
-    } 
-}
-
-internal HL7V28Field performingOrganizationMedicalDirector;
-
-public HL7V28Field PerformingOrganizationMedicalDirector
-{
-    get
-    {
-        if (performingOrganizationMedicalDirector != null)
-        {
-            return performingOrganizationMedicalDirector;
-        }
-
-        performingOrganizationMedicalDirector = new HL7V28Field
-        {
-            field = message[@"OBX"][25],
-            Id = @"OBX.25",
-            Type = @"Field",
-            Position = @"OBX.25",
-            Name = @"Performing Organization Medical Director",
-            Length = 0,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"Retained for backwards compatibility as of V2.7 only. This field is now represented through the PRT segment. This field contains the medical director of the organization/service responsible for performing the service.
-
-For labs, this field specifies the medical director of the laboratory that produced the test result described in this OBX segment. This field is different than OBX-16 in that OBX-16 identifies the individual who performed the lab test (made the observation) whereas this field identifies the individual who is the medical director of the organization responsible for the result. It should be reported explicitly when the test results are produced at outside laboratories, for example. This information supports CLIA regulations in the US.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (performingOrganizationMedicalDirector.field.FieldRepetitions != null && performingOrganizationMedicalDirector.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(performingOrganizationMedicalDirector.Id));
-            performingOrganizationMedicalDirector.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(performingOrganizationMedicalDirector, fieldData);
-        }
-
-        return performingOrganizationMedicalDirector;
-    } 
-}
-
-internal HL7V28Field patientResultsReleaseCategory;
-
-public HL7V28Field PatientResultsReleaseCategory
-{
-    get
-    {
-        if (patientResultsReleaseCategory != null)
-        {
-            return patientResultsReleaseCategory;
-        }
-
-        patientResultsReleaseCategory = new HL7V28Field
-        {
-            field = message[@"OBX"][26],
-            Id = @"OBX.26",
-            Type = @"Field",
-            Position = @"OBX.26",
-            Name = @"Patient Results Release Category",
-            Length = 10,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0909",
-            TableName = @"Patient Results Release Categorization Scheme",
-            Description = @"This field contains instructions on whether to share the results with the patient, and if so how.
-
-Valid values are provided in HL7 Table 0909 – Patient Results Release Categorization Scheme.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientResultsReleaseCategory.field.FieldRepetitions != null && patientResultsReleaseCategory.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientResultsReleaseCategory.Id));
-            patientResultsReleaseCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(patientResultsReleaseCategory, fieldData);
-        }
-
-        return patientResultsReleaseCategory;
-    } 
-}
-
-internal HL7V28Field rootCause;
-
-public HL7V28Field RootCause
-{
-    get
-    {
-        if (rootCause != null)
-        {
-            return rootCause;
-        }
-
-        rootCause = new HL7V28Field
-        {
-            field = message[@"OBX"][27],
-            Id = @"OBX.27",
-            Type = @"Field",
-            Position = @"OBX.27",
-            Name = @"Root Cause",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0914",
-            TableName = @"Root Cause",
-            Description = @"This element contains the reason code indicating the root cause for the reissue of a previously released lab report.  This element is used in conjunction with OBX-11 Observation Result Status to define the root cause for a reissued laboratory result in the case of a corrected, amended, appended, or revised result.  For example, if the laboratory result was reissued due to an equipment malfunction.
-Refer to User-defined Table 0914 – Root Cause in Chapter 2C, Code Tables, for potential values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rootCause.field.FieldRepetitions != null && rootCause.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rootCause.Id));
-            rootCause.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(rootCause, fieldData);
-        }
-
-        return rootCause;
-    } 
-}
-
-internal HL7V28Field localProcessControl;
-
-public HL7V28Field LocalProcessControl
-{
-    get
-    {
-        if (localProcessControl != null)
-        {
-            return localProcessControl;
-        }
-
-        localProcessControl = new HL7V28Field
+        _localProcessControl = new HL7V28Field
         {
             field = message[@"OBX"][28],
-            Id = @"OBX.28",
-            Type = @"Field",
-            Position = @"OBX.28",
-            Name = @"Local Process Control",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0915",
-            TableName = @"Process Control Code",
-            Description = @"This element contains information intended to be used for locally defined processing, particularly process control/status type information.  It is defined as repeating and as a CWE data type to provide flexibility.  The specific use may be specified in a message profile or implementation guide (see Chapter 2.B), or use may be specified by local agreement internally within an organization. 
-
-For example, a laboratory information system might use this element to convey an internal status during processing before the result is communicated outside the organization, such as revision previously reported, revision report pending.
-
-See User-Defined Table 0915 – Process Control Code in Chapter 2C, Code Tables, for a list of suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (localProcessControl.field.FieldRepetitions != null && localProcessControl.field.FieldRepetitions.Count > 0)
+        if (_localProcessControl.field.FieldRepetitions != null && _localProcessControl.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(localProcessControl.Id));
-            localProcessControl.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(localProcessControl, fieldData);
+            _localProcessControl.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_localProcessControl, fieldData);
         }
 
-        return localProcessControl;
+        return _localProcessControl;
     } 
 }
     }

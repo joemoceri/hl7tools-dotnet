@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentUB2(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _setIdUb2;
+
+public HL7V28Field SetIdUb2
+{
+    get
+    {
+        if (_setIdUb2 != null)
+        {
+            return _setIdUb2;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"UB2.1",
+            Type = @"Field",
+            Position = @"UB2.1",
+            Name = @"Set Id - Ub2",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdUb2 = new HL7V28Field
+        {
+            field = message[@"UB2"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdUb2.field.FieldRepetitions != null && _setIdUb2.field.FieldRepetitions.Count > 0)
+        {
+            _setIdUb2.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_setIdUb2, fieldData);
+        }
+
+        return _setIdUb2;
+    } 
+}
+
+internal HL7V28Field _coinsuranceDays9;
+
+public HL7V28Field CoinsuranceDays9
+{
+    get
+    {
+        if (_coinsuranceDays9 != null)
+        {
+            return _coinsuranceDays9;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"UB2.2",
+            Type = @"Field",
+            Position = @"UB2.2",
+            Name = @"Co-insurance Days (9)",
+            Length = 3,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number of inpatient days exceeding defined benefit coverage. In the US, this corresponds to Uniform Billing form locator 9. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _coinsuranceDays9 = new HL7V28Field
+        {
+            field = message[@"UB2"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_coinsuranceDays9.field.FieldRepetitions != null && _coinsuranceDays9.field.FieldRepetitions.Count > 0)
+        {
+            _coinsuranceDays9.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_coinsuranceDays9, fieldData);
+        }
+
+        return _coinsuranceDays9;
+    } 
+}
+
+internal HL7V28Field _conditionCode2430;
+
+public HL7V28Field ConditionCode2430
+{
+    get
+    {
+        if (_conditionCode2430 != null)
+        {
+            return _conditionCode2430;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"UB2.3",
+            Type = @"Field",
+            Position = @"UB2.3",
+            Name = @"Condition Code (24-30)",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"7",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0043",
+            TableName = @"Condition Code",
+            Description = @"This field contains a code reporting conditions that may affect payer processing; for example, the condition is related to employment (Patient covered by insurance not reflected here, treatment of non-terminal condition for hospice patient). The code in this field can repeat up to seven times to correspond to Uniform Billing form locators 24-30. Refer to User-defined Table 0043 - Condition Code for suggested values. Refer to a UB specification for additional information. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"UB2.1",
-                            Type = @"Field",
-                            Position = @"UB2.1",
-                            Name = @"Set Id - Ub2",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB2.2",
-                            Type = @"Field",
-                            Position = @"UB2.2",
-                            Name = @"Co-insurance Days (9)",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number of inpatient days exceeding defined benefit coverage. In the US, this corresponds to Uniform Billing form locator 9. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB2.3",
-                            Type = @"Field",
-                            Position = @"UB2.3",
-                            Name = @"Condition Code (24-30)",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"7",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0043",
-                            TableName = @"Condition Code",
-                            Description = @"This field contains a code reporting conditions that may affect payer processing; for example, the condition is related to employment (Patient covered by insurance not reflected here, treatment of non-terminal condition for hospice patient). The code in this field can repeat up to seven times to correspond to Uniform Billing form locators 24-30. Refer to User-defined Table 0043 - Condition Code for suggested values. Refer to a UB specification for additional information. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UB2.3.1",
                             Type = @"Component",
@@ -514,61 +580,145 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _conditionCode2430 = new HL7V28Field
+        {
+            field = message[@"UB2"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_conditionCode2430.field.FieldRepetitions != null && _conditionCode2430.field.FieldRepetitions.Count > 0)
+        {
+            _conditionCode2430.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_conditionCode2430, fieldData);
+        }
+
+        return _conditionCode2430;
+    } 
+}
+
+internal HL7V28Field _coveredDays7;
+
+public HL7V28Field CoveredDays7
+{
+    get
+    {
+        if (_coveredDays7 != null)
+        {
+            return _coveredDays7;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"UB2.4",
+            Type = @"Field",
+            Position = @"UB2.4",
+            Name = @"Covered Days (7)",
+            Length = 3,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains Uniform Billing field 7. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _coveredDays7 = new HL7V28Field
+        {
+            field = message[@"UB2"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_coveredDays7.field.FieldRepetitions != null && _coveredDays7.field.FieldRepetitions.Count > 0)
+        {
+            _coveredDays7.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_coveredDays7, fieldData);
+        }
+
+        return _coveredDays7;
+    } 
+}
+
+internal HL7V28Field _noncoveredDays8;
+
+public HL7V28Field NoncoveredDays8
+{
+    get
+    {
+        if (_noncoveredDays8 != null)
+        {
+            return _noncoveredDays8;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"UB2.5",
+            Type = @"Field",
+            Position = @"UB2.5",
+            Name = @"Non-covered Days (8)",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains Uniform Billing field 8. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _noncoveredDays8 = new HL7V28Field
+        {
+            field = message[@"UB2"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_noncoveredDays8.field.FieldRepetitions != null && _noncoveredDays8.field.FieldRepetitions.Count > 0)
+        {
+            _noncoveredDays8.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_noncoveredDays8, fieldData);
+        }
+
+        return _noncoveredDays8;
+    } 
+}
+
+internal HL7V28Field _valueAmountAndCode;
+
+public HL7V28Field ValueAmountAndCode
+{
+    get
+    {
+        if (_valueAmountAndCode != null)
+        {
+            return _valueAmountAndCode;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"UB2.6",
+            Type = @"Field",
+            Position = @"UB2.6",
+            Name = @"Value Amount & Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"12",
+            DataType = @"UVC",
+            DataTypeName = @"Ub Value Code And Amount",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a monetary amount and an associated billing code. The pair in this field can repeat up to twelve times to represent/contain UB92 form locators 39a, 39b, 39c, 39d, 40a, 40b, 40c, 40d, 41a, 41b, 41c, and 41d. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"UB2.4",
-                            Type = @"Field",
-                            Position = @"UB2.4",
-                            Name = @"Covered Days (7)",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains Uniform Billing field 7. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB2.5",
-                            Type = @"Field",
-                            Position = @"UB2.5",
-                            Name = @"Non-covered Days (8)",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains Uniform Billing field 8. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB2.6",
-                            Type = @"Field",
-                            Position = @"UB2.6",
-                            Name = @"Value Amount & Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"12",
-                            DataType = @"UVC",
-                            DataTypeName = @"Ub Value Code And Amount",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a monetary amount and an associated billing code. The pair in this field can repeat up to twelve times to represent/contain UB92 form locators 39a, 39b, 39c, 39d, 40a, 40b, 40c, 40d, 41a, 41b, 41c, and 41d. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"UB2.6.1",
                             Type = @"Component",
@@ -1537,25 +1687,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _valueAmountAndCode = new HL7V28Field
+        {
+            field = message[@"UB2"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_valueAmountAndCode.field.FieldRepetitions != null && _valueAmountAndCode.field.FieldRepetitions.Count > 0)
+        {
+            _valueAmountAndCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_valueAmountAndCode, fieldData);
+        }
+
+        return _valueAmountAndCode;
+    } 
+}
+
+internal HL7V28Field _occurrenceCodeAndDate3235;
+
+public HL7V28Field OccurrenceCodeAndDate3235
+{
+    get
+    {
+        if (_occurrenceCodeAndDate3235 != null)
+        {
+            return _occurrenceCodeAndDate3235;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"UB2.7",
+            Type = @"Field",
+            Position = @"UB2.7",
+            Name = @"Occurrence Code & Date (32-35)",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"8",
+            DataType = @"OCD",
+            DataTypeName = @"Occurrence Code And Date",
+            TableId = null,
+            TableName = null,
+            Description = @"The set of values in this field can repeat up to eight times. Uniform Billing fields 32a, 32b, 33a, 33b, 34a, 34b, 35a, and 35b. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"UB2.7",
-                            Type = @"Field",
-                            Position = @"UB2.7",
-                            Name = @"Occurrence Code & Date (32-35)",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"8",
-                            DataType = @"OCD",
-                            DataTypeName = @"Occurrence Code And Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The set of values in this field can repeat up to eight times. Uniform Billing fields 32a, 32b, 33a, 33b, 34a, 34b, 35a, and 35b. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"UB2.7.1",
                             Type = @"Component",
@@ -2030,25 +2210,55 @@ Value set version ID is required if CNE.21 is populated.",
                             Description = @"The date the event, relating to a bill that may affect payer processing, occurred.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _occurrenceCodeAndDate3235 = new HL7V28Field
+        {
+            field = message[@"UB2"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_occurrenceCodeAndDate3235.field.FieldRepetitions != null && _occurrenceCodeAndDate3235.field.FieldRepetitions.Count > 0)
+        {
+            _occurrenceCodeAndDate3235.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_occurrenceCodeAndDate3235, fieldData);
+        }
+
+        return _occurrenceCodeAndDate3235;
+    } 
+}
+
+internal HL7V28Field _occurrenceSpanCodeDates36;
+
+public HL7V28Field OccurrenceSpanCodeDates36
+{
+    get
+    {
+        if (_occurrenceSpanCodeDates36 != null)
+        {
+            return _occurrenceSpanCodeDates36;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"UB2.8",
+            Type = @"Field",
+            Position = @"UB2.8",
+            Name = @"Occurrence Span Code/Dates (36)",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"2",
+            DataType = @"OSP",
+            DataTypeName = @"Occurrence Span Code And Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an occurrence span code and an associated date. This field can repeat up to two times to represent/contain Uniform Billing form locators 36a and 36b. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"UB2.8",
-                            Type = @"Field",
-                            Position = @"UB2.8",
-                            Name = @"Occurrence Span Code/Dates (36)",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"2",
-                            DataType = @"OSP",
-                            DataTypeName = @"Occurrence Span Code And Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an occurrence span code and an associated date. This field can repeat up to two times to represent/contain Uniform Billing form locators 36a and 36b. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"UB2.8.1",
                             Type = @"Component",
@@ -2539,521 +2749,39 @@ Value set version ID is required if CNE.21 is populated.",
                             Description = @"The date an event ended that relates to the payment of a claim.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB2.9",
-                            Type = @"Field",
-                            Position = @"UB2.9",
-                            Name = @"UB92 Locator 2 (state)",
-                            Length = 29,
-                            Usage = @"O",
-                            Rpt = @"2",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The value in this field may repeat up to two times.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB2.10",
-                            Type = @"Field",
-                            Position = @"UB2.10",
-                            Name = @"UB92 Locator 11 (state)",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"2",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The value in this field may repeat up to two times.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB2.11",
-                            Type = @"Field",
-                            Position = @"UB2.11",
-                            Name = @"UB92 Locator 31 (national)",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB2.12",
-                            Type = @"Field",
-                            Position = @"UB2.12",
-                            Name = @"Document Control Number",
-                            Length = 23,
-                            Usage = @"O",
-                            Rpt = @"3",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number assigned by payor that is used for rebilling/adjustment purposes. It may repeat up to three times. Refer Uniform Billing field 37.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB2.13",
-                            Type = @"Field",
-                            Position = @"UB2.13",
-                            Name = @"UB92 Locator 49 (national)",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"23",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is defined by CMS or other regulatory agencies. This field may repeat up to twenty-three times.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB2.14",
-                            Type = @"Field",
-                            Position = @"UB2.14",
-                            Name = @"UB92 Locator 56 (state)",
-                            Length = 14,
-                            Usage = @"O",
-                            Rpt = @"5",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field may repeat up to five times.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB2.15",
-                            Type = @"Field",
-                            Position = @"UB2.15",
-                            Name = @"UB92 Locator 57 (national)",
-                            Length = 27,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Defined by Uniform Billing CMS specification.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB2.16",
-                            Type = @"Field",
-                            Position = @"UB2.16",
-                            Name = @"UB92 Locator 78 (state)",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"2",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field may repeat up to two times.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB2.17",
-                            Type = @"Field",
-                            Position = @"UB2.17",
-                            Name = @"Special Visit Count",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the total number of special therapy visits.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentUB2(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field setIdUb2;
-
-public HL7V28Field SetIdUb2
-{
-    get
-    {
-        if (setIdUb2 != null)
-        {
-            return setIdUb2;
-        }
-
-        setIdUb2 = new HL7V28Field
-        {
-            field = message[@"UB2"][1],
-            Id = @"UB2.1",
-            Type = @"Field",
-            Position = @"UB2.1",
-            Name = @"Set Id - Ub2",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdUb2.field.FieldRepetitions != null && setIdUb2.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdUb2.Id));
-            setIdUb2.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(setIdUb2, fieldData);
-        }
-
-        return setIdUb2;
-    } 
-}
-
-internal HL7V28Field coinsuranceDays9;
-
-public HL7V28Field CoinsuranceDays9
-{
-    get
-    {
-        if (coinsuranceDays9 != null)
-        {
-            return coinsuranceDays9;
-        }
-
-        coinsuranceDays9 = new HL7V28Field
-        {
-            field = message[@"UB2"][2],
-            Id = @"UB2.2",
-            Type = @"Field",
-            Position = @"UB2.2",
-            Name = @"Co-insurance Days (9)",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number of inpatient days exceeding defined benefit coverage. In the US, this corresponds to Uniform Billing form locator 9. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (coinsuranceDays9.field.FieldRepetitions != null && coinsuranceDays9.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(coinsuranceDays9.Id));
-            coinsuranceDays9.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(coinsuranceDays9, fieldData);
-        }
-
-        return coinsuranceDays9;
-    } 
-}
-
-internal HL7V28Field conditionCode2430;
-
-public HL7V28Field ConditionCode2430
-{
-    get
-    {
-        if (conditionCode2430 != null)
-        {
-            return conditionCode2430;
-        }
-
-        conditionCode2430 = new HL7V28Field
-        {
-            field = message[@"UB2"][3],
-            Id = @"UB2.3",
-            Type = @"Field",
-            Position = @"UB2.3",
-            Name = @"Condition Code (24-30)",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"7",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0043",
-            TableName = @"Condition Code",
-            Description = @"This field contains a code reporting conditions that may affect payer processing; for example, the condition is related to employment (Patient covered by insurance not reflected here, treatment of non-terminal condition for hospice patient). The code in this field can repeat up to seven times to correspond to Uniform Billing form locators 24-30. Refer to User-defined Table 0043 - Condition Code for suggested values. Refer to a UB specification for additional information. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (conditionCode2430.field.FieldRepetitions != null && conditionCode2430.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(conditionCode2430.Id));
-            conditionCode2430.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(conditionCode2430, fieldData);
-        }
-
-        return conditionCode2430;
-    } 
-}
-
-internal HL7V28Field coveredDays7;
-
-public HL7V28Field CoveredDays7
-{
-    get
-    {
-        if (coveredDays7 != null)
-        {
-            return coveredDays7;
-        }
-
-        coveredDays7 = new HL7V28Field
-        {
-            field = message[@"UB2"][4],
-            Id = @"UB2.4",
-            Type = @"Field",
-            Position = @"UB2.4",
-            Name = @"Covered Days (7)",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains Uniform Billing field 7. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (coveredDays7.field.FieldRepetitions != null && coveredDays7.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(coveredDays7.Id));
-            coveredDays7.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(coveredDays7, fieldData);
-        }
-
-        return coveredDays7;
-    } 
-}
-
-internal HL7V28Field noncoveredDays8;
-
-public HL7V28Field NoncoveredDays8
-{
-    get
-    {
-        if (noncoveredDays8 != null)
-        {
-            return noncoveredDays8;
-        }
-
-        noncoveredDays8 = new HL7V28Field
-        {
-            field = message[@"UB2"][5],
-            Id = @"UB2.5",
-            Type = @"Field",
-            Position = @"UB2.5",
-            Name = @"Non-covered Days (8)",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains Uniform Billing field 8. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (noncoveredDays8.field.FieldRepetitions != null && noncoveredDays8.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(noncoveredDays8.Id));
-            noncoveredDays8.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(noncoveredDays8, fieldData);
-        }
-
-        return noncoveredDays8;
-    } 
-}
-
-internal HL7V28Field valueAmountAndCode;
-
-public HL7V28Field ValueAmountAndCode
-{
-    get
-    {
-        if (valueAmountAndCode != null)
-        {
-            return valueAmountAndCode;
-        }
-
-        valueAmountAndCode = new HL7V28Field
-        {
-            field = message[@"UB2"][6],
-            Id = @"UB2.6",
-            Type = @"Field",
-            Position = @"UB2.6",
-            Name = @"Value Amount & Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"12",
-            DataType = @"UVC",
-            DataTypeName = @"Ub Value Code And Amount",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a monetary amount and an associated billing code. The pair in this field can repeat up to twelve times to represent/contain UB92 form locators 39a, 39b, 39c, 39d, 40a, 40b, 40c, 40d, 41a, 41b, 41c, and 41d. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (valueAmountAndCode.field.FieldRepetitions != null && valueAmountAndCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(valueAmountAndCode.Id));
-            valueAmountAndCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(valueAmountAndCode, fieldData);
-        }
-
-        return valueAmountAndCode;
-    } 
-}
-
-internal HL7V28Field occurrenceCodeAndDate3235;
-
-public HL7V28Field OccurrenceCodeAndDate3235
-{
-    get
-    {
-        if (occurrenceCodeAndDate3235 != null)
-        {
-            return occurrenceCodeAndDate3235;
-        }
-
-        occurrenceCodeAndDate3235 = new HL7V28Field
-        {
-            field = message[@"UB2"][7],
-            Id = @"UB2.7",
-            Type = @"Field",
-            Position = @"UB2.7",
-            Name = @"Occurrence Code & Date (32-35)",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"8",
-            DataType = @"OCD",
-            DataTypeName = @"Occurrence Code And Date",
-            TableId = null,
-            TableName = null,
-            Description = @"The set of values in this field can repeat up to eight times. Uniform Billing fields 32a, 32b, 33a, 33b, 34a, 34b, 35a, and 35b. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (occurrenceCodeAndDate3235.field.FieldRepetitions != null && occurrenceCodeAndDate3235.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(occurrenceCodeAndDate3235.Id));
-            occurrenceCodeAndDate3235.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(occurrenceCodeAndDate3235, fieldData);
-        }
-
-        return occurrenceCodeAndDate3235;
-    } 
-}
-
-internal HL7V28Field occurrenceSpanCodeDates36;
-
-public HL7V28Field OccurrenceSpanCodeDates36
-{
-    get
-    {
-        if (occurrenceSpanCodeDates36 != null)
-        {
-            return occurrenceSpanCodeDates36;
-        }
-
-        occurrenceSpanCodeDates36 = new HL7V28Field
+        _occurrenceSpanCodeDates36 = new HL7V28Field
         {
             field = message[@"UB2"][8],
-            Id = @"UB2.8",
-            Type = @"Field",
-            Position = @"UB2.8",
-            Name = @"Occurrence Span Code/Dates (36)",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"2",
-            DataType = @"OSP",
-            DataTypeName = @"Occurrence Span Code And Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an occurrence span code and an associated date. This field can repeat up to two times to represent/contain Uniform Billing form locators 36a and 36b. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (occurrenceSpanCodeDates36.field.FieldRepetitions != null && occurrenceSpanCodeDates36.field.FieldRepetitions.Count > 0)
+        if (_occurrenceSpanCodeDates36.field.FieldRepetitions != null && _occurrenceSpanCodeDates36.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(occurrenceSpanCodeDates36.Id));
-            occurrenceSpanCodeDates36.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(occurrenceSpanCodeDates36, fieldData);
+            _occurrenceSpanCodeDates36.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_occurrenceSpanCodeDates36, fieldData);
         }
 
-        return occurrenceSpanCodeDates36;
+        return _occurrenceSpanCodeDates36;
     } 
 }
 
-internal HL7V28Field uB92Locator2state;
+internal HL7V28Field _uB92Locator2state;
 
 public HL7V28Field UB92Locator2state
 {
     get
     {
-        if (uB92Locator2state != null)
+        if (_uB92Locator2state != null)
         {
-            return uB92Locator2state;
+            return _uB92Locator2state;
         }
 
-        uB92Locator2state = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"UB2"][9],
             Id = @"UB2.9",
             Type = @"Field",
             Position = @"UB2.9",
@@ -3067,34 +2795,38 @@ public HL7V28Field UB92Locator2state
             TableName = null,
             Description = @"The value in this field may repeat up to two times.",
             Sample = @"",
+            Fields = null
+        }
+
+        _uB92Locator2state = new HL7V28Field
+        {
+            field = message[@"UB2"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (uB92Locator2state.field.FieldRepetitions != null && uB92Locator2state.field.FieldRepetitions.Count > 0)
+        if (_uB92Locator2state.field.FieldRepetitions != null && _uB92Locator2state.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator2state.Id));
-            uB92Locator2state.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(uB92Locator2state, fieldData);
+            _uB92Locator2state.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_uB92Locator2state, fieldData);
         }
 
-        return uB92Locator2state;
+        return _uB92Locator2state;
     } 
 }
 
-internal HL7V28Field uB92Locator11state;
+internal HL7V28Field _uB92Locator11state;
 
 public HL7V28Field UB92Locator11state
 {
     get
     {
-        if (uB92Locator11state != null)
+        if (_uB92Locator11state != null)
         {
-            return uB92Locator11state;
+            return _uB92Locator11state;
         }
 
-        uB92Locator11state = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"UB2"][10],
             Id = @"UB2.10",
             Type = @"Field",
             Position = @"UB2.10",
@@ -3108,34 +2840,38 @@ public HL7V28Field UB92Locator11state
             TableName = null,
             Description = @"The value in this field may repeat up to two times.",
             Sample = @"",
+            Fields = null
+        }
+
+        _uB92Locator11state = new HL7V28Field
+        {
+            field = message[@"UB2"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (uB92Locator11state.field.FieldRepetitions != null && uB92Locator11state.field.FieldRepetitions.Count > 0)
+        if (_uB92Locator11state.field.FieldRepetitions != null && _uB92Locator11state.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator11state.Id));
-            uB92Locator11state.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(uB92Locator11state, fieldData);
+            _uB92Locator11state.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_uB92Locator11state, fieldData);
         }
 
-        return uB92Locator11state;
+        return _uB92Locator11state;
     } 
 }
 
-internal HL7V28Field uB92Locator31national;
+internal HL7V28Field _uB92Locator31national;
 
 public HL7V28Field UB92Locator31national
 {
     get
     {
-        if (uB92Locator31national != null)
+        if (_uB92Locator31national != null)
         {
-            return uB92Locator31national;
+            return _uB92Locator31national;
         }
 
-        uB92Locator31national = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"UB2"][11],
             Id = @"UB2.11",
             Type = @"Field",
             Position = @"UB2.11",
@@ -3149,34 +2885,38 @@ public HL7V28Field UB92Locator31national
             TableName = null,
             Description = @"Defined by CMS or other regulatory agencies.",
             Sample = @"",
+            Fields = null
+        }
+
+        _uB92Locator31national = new HL7V28Field
+        {
+            field = message[@"UB2"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (uB92Locator31national.field.FieldRepetitions != null && uB92Locator31national.field.FieldRepetitions.Count > 0)
+        if (_uB92Locator31national.field.FieldRepetitions != null && _uB92Locator31national.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator31national.Id));
-            uB92Locator31national.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(uB92Locator31national, fieldData);
+            _uB92Locator31national.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_uB92Locator31national, fieldData);
         }
 
-        return uB92Locator31national;
+        return _uB92Locator31national;
     } 
 }
 
-internal HL7V28Field documentControlNumber;
+internal HL7V28Field _documentControlNumber;
 
 public HL7V28Field DocumentControlNumber
 {
     get
     {
-        if (documentControlNumber != null)
+        if (_documentControlNumber != null)
         {
-            return documentControlNumber;
+            return _documentControlNumber;
         }
 
-        documentControlNumber = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"UB2"][12],
             Id = @"UB2.12",
             Type = @"Field",
             Position = @"UB2.12",
@@ -3190,34 +2930,38 @@ public HL7V28Field DocumentControlNumber
             TableName = null,
             Description = @"This field contains the number assigned by payor that is used for rebilling/adjustment purposes. It may repeat up to three times. Refer Uniform Billing field 37.",
             Sample = @"",
+            Fields = null
+        }
+
+        _documentControlNumber = new HL7V28Field
+        {
+            field = message[@"UB2"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (documentControlNumber.field.FieldRepetitions != null && documentControlNumber.field.FieldRepetitions.Count > 0)
+        if (_documentControlNumber.field.FieldRepetitions != null && _documentControlNumber.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(documentControlNumber.Id));
-            documentControlNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(documentControlNumber, fieldData);
+            _documentControlNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_documentControlNumber, fieldData);
         }
 
-        return documentControlNumber;
+        return _documentControlNumber;
     } 
 }
 
-internal HL7V28Field uB92Locator49national;
+internal HL7V28Field _uB92Locator49national;
 
 public HL7V28Field UB92Locator49national
 {
     get
     {
-        if (uB92Locator49national != null)
+        if (_uB92Locator49national != null)
         {
-            return uB92Locator49national;
+            return _uB92Locator49national;
         }
 
-        uB92Locator49national = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"UB2"][13],
             Id = @"UB2.13",
             Type = @"Field",
             Position = @"UB2.13",
@@ -3231,34 +2975,38 @@ public HL7V28Field UB92Locator49national
             TableName = null,
             Description = @"This field is defined by CMS or other regulatory agencies. This field may repeat up to twenty-three times.",
             Sample = @"",
+            Fields = null
+        }
+
+        _uB92Locator49national = new HL7V28Field
+        {
+            field = message[@"UB2"][13],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (uB92Locator49national.field.FieldRepetitions != null && uB92Locator49national.field.FieldRepetitions.Count > 0)
+        if (_uB92Locator49national.field.FieldRepetitions != null && _uB92Locator49national.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator49national.Id));
-            uB92Locator49national.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(uB92Locator49national, fieldData);
+            _uB92Locator49national.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_uB92Locator49national, fieldData);
         }
 
-        return uB92Locator49national;
+        return _uB92Locator49national;
     } 
 }
 
-internal HL7V28Field uB92Locator56state;
+internal HL7V28Field _uB92Locator56state;
 
 public HL7V28Field UB92Locator56state
 {
     get
     {
-        if (uB92Locator56state != null)
+        if (_uB92Locator56state != null)
         {
-            return uB92Locator56state;
+            return _uB92Locator56state;
         }
 
-        uB92Locator56state = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"UB2"][14],
             Id = @"UB2.14",
             Type = @"Field",
             Position = @"UB2.14",
@@ -3272,34 +3020,38 @@ public HL7V28Field UB92Locator56state
             TableName = null,
             Description = @"This field may repeat up to five times.",
             Sample = @"",
+            Fields = null
+        }
+
+        _uB92Locator56state = new HL7V28Field
+        {
+            field = message[@"UB2"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (uB92Locator56state.field.FieldRepetitions != null && uB92Locator56state.field.FieldRepetitions.Count > 0)
+        if (_uB92Locator56state.field.FieldRepetitions != null && _uB92Locator56state.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator56state.Id));
-            uB92Locator56state.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(uB92Locator56state, fieldData);
+            _uB92Locator56state.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_uB92Locator56state, fieldData);
         }
 
-        return uB92Locator56state;
+        return _uB92Locator56state;
     } 
 }
 
-internal HL7V28Field uB92Locator57national;
+internal HL7V28Field _uB92Locator57national;
 
 public HL7V28Field UB92Locator57national
 {
     get
     {
-        if (uB92Locator57national != null)
+        if (_uB92Locator57national != null)
         {
-            return uB92Locator57national;
+            return _uB92Locator57national;
         }
 
-        uB92Locator57national = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"UB2"][15],
             Id = @"UB2.15",
             Type = @"Field",
             Position = @"UB2.15",
@@ -3313,34 +3065,38 @@ public HL7V28Field UB92Locator57national
             TableName = null,
             Description = @"Defined by Uniform Billing CMS specification.",
             Sample = @"",
+            Fields = null
+        }
+
+        _uB92Locator57national = new HL7V28Field
+        {
+            field = message[@"UB2"][15],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (uB92Locator57national.field.FieldRepetitions != null && uB92Locator57national.field.FieldRepetitions.Count > 0)
+        if (_uB92Locator57national.field.FieldRepetitions != null && _uB92Locator57national.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator57national.Id));
-            uB92Locator57national.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(uB92Locator57national, fieldData);
+            _uB92Locator57national.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_uB92Locator57national, fieldData);
         }
 
-        return uB92Locator57national;
+        return _uB92Locator57national;
     } 
 }
 
-internal HL7V28Field uB92Locator78state;
+internal HL7V28Field _uB92Locator78state;
 
 public HL7V28Field UB92Locator78state
 {
     get
     {
-        if (uB92Locator78state != null)
+        if (_uB92Locator78state != null)
         {
-            return uB92Locator78state;
+            return _uB92Locator78state;
         }
 
-        uB92Locator78state = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"UB2"][16],
             Id = @"UB2.16",
             Type = @"Field",
             Position = @"UB2.16",
@@ -3354,34 +3110,38 @@ public HL7V28Field UB92Locator78state
             TableName = null,
             Description = @"This field may repeat up to two times.",
             Sample = @"",
+            Fields = null
+        }
+
+        _uB92Locator78state = new HL7V28Field
+        {
+            field = message[@"UB2"][16],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (uB92Locator78state.field.FieldRepetitions != null && uB92Locator78state.field.FieldRepetitions.Count > 0)
+        if (_uB92Locator78state.field.FieldRepetitions != null && _uB92Locator78state.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uB92Locator78state.Id));
-            uB92Locator78state.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(uB92Locator78state, fieldData);
+            _uB92Locator78state.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_uB92Locator78state, fieldData);
         }
 
-        return uB92Locator78state;
+        return _uB92Locator78state;
     } 
 }
 
-internal HL7V28Field specialVisitCount;
+internal HL7V28Field _specialVisitCount;
 
 public HL7V28Field SpecialVisitCount
 {
     get
     {
-        if (specialVisitCount != null)
+        if (_specialVisitCount != null)
         {
-            return specialVisitCount;
+            return _specialVisitCount;
         }
 
-        specialVisitCount = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"UB2"][17],
             Id = @"UB2.17",
             Type = @"Field",
             Position = @"UB2.17",
@@ -3395,17 +3155,22 @@ public HL7V28Field SpecialVisitCount
             TableName = null,
             Description = @"This field contains the total number of special therapy visits.",
             Sample = @"",
+            Fields = null
+        }
+
+        _specialVisitCount = new HL7V28Field
+        {
+            field = message[@"UB2"][17],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (specialVisitCount.field.FieldRepetitions != null && specialVisitCount.field.FieldRepetitions.Count > 0)
+        if (_specialVisitCount.field.FieldRepetitions != null && _specialVisitCount.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specialVisitCount.Id));
-            specialVisitCount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(specialVisitCount, fieldData);
+            _specialVisitCount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_specialVisitCount, fieldData);
         }
 
-        return specialVisitCount;
+        return _specialVisitCount;
     } 
 }
     }

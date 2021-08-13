@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -83,6 +84,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Release 2.5.1",
                             Comment = @"January 2007"
                         },
+                        
                     };
             } 
         }

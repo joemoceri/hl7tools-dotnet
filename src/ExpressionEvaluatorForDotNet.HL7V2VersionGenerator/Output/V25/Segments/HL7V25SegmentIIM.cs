@@ -31,28 +31,40 @@ Note:  We recognize that the M15 Inventory Item Master File trigger event and th
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V25SegmentIIM(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V25Field _primaryKeyValueIIM;
+
+public HL7V25Field PrimaryKeyValueIIM
+{
+    get
+    {
+        if (_primaryKeyValueIIM != null)
+        {
+            return _primaryKeyValueIIM;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.1",
+            Type = @"Field",
+            Position = @"IIM.1",
+            Name = @"Primary Key Value - IIM",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying an inventoried item. It is the identifying key value, and must match MFE-4 - Primary Key Value - MFE .",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"IIM.1",
-                            Type = @"Field",
-                            Position = @"IIM.1",
-                            Name = @"Primary Key Value - IIM",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying an inventoried item. It is the identifying key value, and must match MFE-4 - Primary Key Value - MFE .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IIM.1.1",
                             Type = @"Component",
@@ -212,25 +224,55 @@ Note:  We recognize that the M15 Inventory Item Master File trigger event and th
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primaryKeyValueIIM = new HL7V25Field
+        {
+            field = message[@"IIM"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryKeyValueIIM.field.FieldRepetitions != null && _primaryKeyValueIIM.field.FieldRepetitions.Count > 0)
+        {
+            _primaryKeyValueIIM.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_primaryKeyValueIIM, fieldData);
+        }
+
+        return _primaryKeyValueIIM;
+    } 
+}
+
+internal HL7V25Field _serviceItemCode;
+
+public HL7V25Field ServiceItemCode
+{
+    get
+    {
+        if (_serviceItemCode != null)
+        {
+            return _serviceItemCode;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.2",
+            Type = @"Field",
+            Position = @"IIM.2",
+            Name = @"Service Item Code",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identifier of the service item. It relates the inventory item of this message to an entry in an Other Observation/Service Item master file.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IIM.2",
-                            Type = @"Field",
-                            Position = @"IIM.2",
-                            Name = @"Service Item Code",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the identifier of the service item. It relates the inventory item of this message to an entry in an Other Observation/Service Item master file.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IIM.2.1",
                             Type = @"Component",
@@ -390,47 +432,104 @@ Note:  We recognize that the M15 Inventory Item Master File trigger event and th
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IIM.3",
-                            Type = @"Field",
-                            Position = @"IIM.3",
-                            Name = @"Inventory Lot Number",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the lot number of the service item in inventory.
+                        }
+        }
+
+        _serviceItemCode = new HL7V25Field
+        {
+            field = message[@"IIM"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_serviceItemCode.field.FieldRepetitions != null && _serviceItemCode.field.FieldRepetitions.Count > 0)
+        {
+            _serviceItemCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_serviceItemCode, fieldData);
+        }
+
+        return _serviceItemCode;
+    } 
+}
+
+internal HL7V25Field _inventoryLotNumber;
+
+public HL7V25Field InventoryLotNumber
+{
+    get
+    {
+        if (_inventoryLotNumber != null)
+        {
+            return _inventoryLotNumber;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.3",
+            Type = @"Field",
+            Position = @"IIM.3",
+            Name = @"Inventory Lot Number",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the lot number of the service item in inventory.
 
 Note:  The lot number is the number printed on the label attached to the item or container holding the substance.  If the substance is a vaccine, for example, and a diluent is required, a lot number may appear on the vial containing the diluent; however, any such identifier associated with a diluent is not the identifier of interest. The substance lot number should be reported, not that of the diluent. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IIM.4",
-                            Type = @"Field",
-                            Position = @"IIM.4",
-                            Name = @"Inventory Expiration Date",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the expiration date of the service item in inventory.
+            Sample = @"",
+            Fields = null
+        }
+
+        _inventoryLotNumber = new HL7V25Field
+        {
+            field = message[@"IIM"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryLotNumber.field.FieldRepetitions != null && _inventoryLotNumber.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_inventoryLotNumber, fieldData);
+        }
+
+        return _inventoryLotNumber;
+    } 
+}
+
+internal HL7V25Field _inventoryExpirationDate;
+
+public HL7V25Field InventoryExpirationDate
+{
+    get
+    {
+        if (_inventoryExpirationDate != null)
+        {
+            return _inventoryExpirationDate;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.4",
+            Type = @"Field",
+            Position = @"IIM.4",
+            Name = @"Inventory Expiration Date",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the expiration date of the service item in inventory.
 
 Note:  Expiration date does not always have a “day” component; therefore, such a date may be transmitted as YYYYMM. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"IIM.4.1",
                             Type = @"Component",
@@ -466,25 +565,55 @@ Note:  Expiration date does not always have a “day” component; therefore, su
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inventoryExpirationDate = new HL7V25Field
+        {
+            field = message[@"IIM"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryExpirationDate.field.FieldRepetitions != null && _inventoryExpirationDate.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryExpirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_inventoryExpirationDate, fieldData);
+        }
+
+        return _inventoryExpirationDate;
+    } 
+}
+
+internal HL7V25Field _inventoryManufacturerName;
+
+public HL7V25Field InventoryManufacturerName
+{
+    get
+    {
+        if (_inventoryManufacturerName != null)
+        {
+            return _inventoryManufacturerName;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.5",
+            Type = @"Field",
+            Position = @"IIM.5",
+            Name = @"Inventory Manufacturer Name",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the manufacturer of the service item in inventory.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IIM.5",
-                            Type = @"Field",
-                            Position = @"IIM.5",
-                            Name = @"Inventory Manufacturer Name",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the manufacturer of the service item in inventory.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IIM.5.1",
                             Type = @"Component",
@@ -644,25 +773,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inventoryManufacturerName = new HL7V25Field
+        {
+            field = message[@"IIM"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryManufacturerName.field.FieldRepetitions != null && _inventoryManufacturerName.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryManufacturerName.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_inventoryManufacturerName, fieldData);
+        }
+
+        return _inventoryManufacturerName;
+    } 
+}
+
+internal HL7V25Field _inventoryLocation;
+
+public HL7V25Field InventoryLocation
+{
+    get
+    {
+        if (_inventoryLocation != null)
+        {
+            return _inventoryLocation;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.6",
+            Type = @"Field",
+            Position = @"IIM.6",
+            Name = @"Inventory Location",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the location of the inventory. As an implementation consideration, this location can have a range of specificity. The location can be very general, e.g., a facility where the inventory is warehoused, or very specific, e.g., a shelf location.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IIM.6",
-                            Type = @"Field",
-                            Position = @"IIM.6",
-                            Name = @"Inventory Location",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the location of the inventory. As an implementation consideration, this location can have a range of specificity. The location can be very general, e.g., a facility where the inventory is warehoused, or very specific, e.g., a shelf location.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IIM.6.1",
                             Type = @"Component",
@@ -822,25 +981,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inventoryLocation = new HL7V25Field
+        {
+            field = message[@"IIM"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryLocation.field.FieldRepetitions != null && _inventoryLocation.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_inventoryLocation, fieldData);
+        }
+
+        return _inventoryLocation;
+    } 
+}
+
+internal HL7V25Field _inventoryReceivedDate;
+
+public HL7V25Field InventoryReceivedDate
+{
+    get
+    {
+        if (_inventoryReceivedDate != null)
+        {
+            return _inventoryReceivedDate;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.7",
+            Type = @"Field",
+            Position = @"IIM.7",
+            Name = @"Inventory Received Date",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the most recent date that the product in question was received into inventory.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IIM.7",
-                            Type = @"Field",
-                            Position = @"IIM.7",
-                            Name = @"Inventory Received Date",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the most recent date that the product in question was received into inventory.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IIM.7.1",
                             Type = @"Component",
@@ -876,43 +1065,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inventoryReceivedDate = new HL7V25Field
+        {
+            field = message[@"IIM"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryReceivedDate.field.FieldRepetitions != null && _inventoryReceivedDate.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryReceivedDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_inventoryReceivedDate, fieldData);
+        }
+
+        return _inventoryReceivedDate;
+    } 
+}
+
+internal HL7V25Field _inventoryReceivedQuantity;
+
+public HL7V25Field InventoryReceivedQuantity
+{
+    get
+    {
+        if (_inventoryReceivedQuantity != null)
+        {
+            return _inventoryReceivedQuantity;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.8",
+            Type = @"Field",
+            Position = @"IIM.8",
+            Name = @"Inventory Received Quantity",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the quantity of this inventory item that was received on the date specific in IIM-7 Inventory Received Date.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _inventoryReceivedQuantity = new HL7V25Field
+        {
+            field = message[@"IIM"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryReceivedQuantity.field.FieldRepetitions != null && _inventoryReceivedQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryReceivedQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_inventoryReceivedQuantity, fieldData);
+        }
+
+        return _inventoryReceivedQuantity;
+    } 
+}
+
+internal HL7V25Field _inventoryReceivedQuantityUnit;
+
+public HL7V25Field InventoryReceivedQuantityUnit
+{
+    get
+    {
+        if (_inventoryReceivedQuantityUnit != null)
+        {
+            return _inventoryReceivedQuantityUnit;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.9",
+            Type = @"Field",
+            Position = @"IIM.9",
+            Name = @"Inventory Received Quantity Unit",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the unit for IIM-8 Inventory Received Quantity and IIM-10 Inventory Received Item Cost.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IIM.8",
-                            Type = @"Field",
-                            Position = @"IIM.8",
-                            Name = @"Inventory Received Quantity",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the quantity of this inventory item that was received on the date specific in IIM-7 Inventory Received Date.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IIM.9",
-                            Type = @"Field",
-                            Position = @"IIM.9",
-                            Name = @"Inventory Received Quantity Unit",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the unit for IIM-8 Inventory Received Quantity and IIM-10 Inventory Received Item Cost.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IIM.9.1",
                             Type = @"Component",
@@ -1072,25 +1318,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inventoryReceivedQuantityUnit = new HL7V25Field
+        {
+            field = message[@"IIM"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryReceivedQuantityUnit.field.FieldRepetitions != null && _inventoryReceivedQuantityUnit.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryReceivedQuantityUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_inventoryReceivedQuantityUnit, fieldData);
+        }
+
+        return _inventoryReceivedQuantityUnit;
+    } 
+}
+
+internal HL7V25Field _inventoryReceivedItemCost;
+
+public HL7V25Field InventoryReceivedItemCost
+{
+    get
+    {
+        if (_inventoryReceivedItemCost != null)
+        {
+            return _inventoryReceivedItemCost;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.10",
+            Type = @"Field",
+            Position = @"IIM.10",
+            Name = @"Inventory Received Item Cost",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"MO",
+            DataTypeName = @"Money",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the per-unit cost of the inventory item at the time of receipt. IIM-9 Inventory Received Quantity Unit specifies the per-unit basis of this field.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IIM.10",
-                            Type = @"Field",
-                            Position = @"IIM.10",
-                            Name = @"Inventory Received Item Cost",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"MO",
-                            DataTypeName = @"Money",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the per-unit cost of the inventory item at the time of receipt. IIM-9 Inventory Received Quantity Unit specifies the per-unit basis of this field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IIM.10.1",
                             Type = @"Component",
@@ -1124,25 +1400,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"The second component is the denomination in which the quantity is expressed. The values for the denomination component are those specified in ISO-4217. If the denomination is not specified, MSH-17-country code is used to determine the default.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inventoryReceivedItemCost = new HL7V25Field
+        {
+            field = message[@"IIM"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryReceivedItemCost.field.FieldRepetitions != null && _inventoryReceivedItemCost.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryReceivedItemCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_inventoryReceivedItemCost, fieldData);
+        }
+
+        return _inventoryReceivedItemCost;
+    } 
+}
+
+internal HL7V25Field _inventoryOnHandDate;
+
+public HL7V25Field InventoryOnHandDate
+{
+    get
+    {
+        if (_inventoryOnHandDate != null)
+        {
+            return _inventoryOnHandDate;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.11",
+            Type = @"Field",
+            Position = @"IIM.11",
+            Name = @"Inventory On Hand Date",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the most recent date that an inventory count for the inventory item was performed.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IIM.11",
-                            Type = @"Field",
-                            Position = @"IIM.11",
-                            Name = @"Inventory On Hand Date",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the most recent date that an inventory count for the inventory item was performed.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IIM.11.1",
                             Type = @"Component",
@@ -1178,43 +1484,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inventoryOnHandDate = new HL7V25Field
+        {
+            field = message[@"IIM"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryOnHandDate.field.FieldRepetitions != null && _inventoryOnHandDate.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryOnHandDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_inventoryOnHandDate, fieldData);
+        }
+
+        return _inventoryOnHandDate;
+    } 
+}
+
+internal HL7V25Field _inventoryOnHandQuantity;
+
+public HL7V25Field InventoryOnHandQuantity
+{
+    get
+    {
+        if (_inventoryOnHandQuantity != null)
+        {
+            return _inventoryOnHandQuantity;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.12",
+            Type = @"Field",
+            Position = @"IIM.12",
+            Name = @"Inventory On Hand Quantity",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the quantity of this inventory item that was available for issue/use as of the date specified in IIM-11 Inventory on Hand Date. No adjustment has been made for subsequent use.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _inventoryOnHandQuantity = new HL7V25Field
+        {
+            field = message[@"IIM"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryOnHandQuantity.field.FieldRepetitions != null && _inventoryOnHandQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryOnHandQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_inventoryOnHandQuantity, fieldData);
+        }
+
+        return _inventoryOnHandQuantity;
+    } 
+}
+
+internal HL7V25Field _inventoryOnHandQuantityUnit;
+
+public HL7V25Field InventoryOnHandQuantityUnit
+{
+    get
+    {
+        if (_inventoryOnHandQuantityUnit != null)
+        {
+            return _inventoryOnHandQuantityUnit;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.13",
+            Type = @"Field",
+            Position = @"IIM.13",
+            Name = @"Inventory On Hand Quantity Unit",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the unit for IIM-12 - Inventory on Hand Quantity.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IIM.12",
-                            Type = @"Field",
-                            Position = @"IIM.12",
-                            Name = @"Inventory On Hand Quantity",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the quantity of this inventory item that was available for issue/use as of the date specified in IIM-11 Inventory on Hand Date. No adjustment has been made for subsequent use.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IIM.13",
-                            Type = @"Field",
-                            Position = @"IIM.13",
-                            Name = @"Inventory On Hand Quantity Unit",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the unit for IIM-12 - Inventory on Hand Quantity.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IIM.13.1",
                             Type = @"Component",
@@ -1374,25 +1737,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inventoryOnHandQuantityUnit = new HL7V25Field
+        {
+            field = message[@"IIM"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryOnHandQuantityUnit.field.FieldRepetitions != null && _inventoryOnHandQuantityUnit.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryOnHandQuantityUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_inventoryOnHandQuantityUnit, fieldData);
+        }
+
+        return _inventoryOnHandQuantityUnit;
+    } 
+}
+
+internal HL7V25Field _procedureCode;
+
+public HL7V25Field ProcedureCode
+{
+    get
+    {
+        if (_procedureCode != null)
+        {
+            return _procedureCode;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.14",
+            Type = @"Field",
+            Position = @"IIM.14",
+            Name = @"Procedure Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0088",
+            TableName = @"Procedure Code",
+            Description = @"This field contains a unique identifier assigned to the service item, if any, associated with the charge. In the United States this is often the HCPCS code. Refer to User-defined Table 0088 - Procedure code for suggested values. This field is a CE data type for compatibility with clinical and ancillary systems.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IIM.14",
-                            Type = @"Field",
-                            Position = @"IIM.14",
-                            Name = @"Procedure Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0088",
-                            TableName = @"Procedure Code",
-                            Description = @"This field contains a unique identifier assigned to the service item, if any, associated with the charge. In the United States this is often the HCPCS code. Refer to User-defined Table 0088 - Procedure code for suggested values. This field is a CE data type for compatibility with clinical and ancillary systems.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IIM.14.1",
                             Type = @"Component",
@@ -1498,25 +1891,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _procedureCode = new HL7V25Field
+        {
+            field = message[@"IIM"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedureCode.field.FieldRepetitions != null && _procedureCode.field.FieldRepetitions.Count > 0)
+        {
+            _procedureCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_procedureCode, fieldData);
+        }
+
+        return _procedureCode;
+    } 
+}
+
+internal HL7V25Field _procedureCodeModifier;
+
+public HL7V25Field ProcedureCodeModifier
+{
+    get
+    {
+        if (_procedureCodeModifier != null)
+        {
+            return _procedureCodeModifier;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IIM.15",
+            Type = @"Field",
+            Position = @"IIM.15",
+            Name = @"Procedure Code Modifier",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0340",
+            TableName = @"Procedure code modifier",
+            Description = @"This field contains the procedure code modifier to the procedure code reported in IIM-14 Procedure Code , when applicable. Procedure code modifiers are defined by USA regulatory agencies such as CMS and the AMA. Multiple modifiers may be reported. Refer to User-defined Table 0340 - Procedure code modifier for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IIM.15",
-                            Type = @"Field",
-                            Position = @"IIM.15",
-                            Name = @"Procedure Code Modifier",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0340",
-                            TableName = @"Procedure code modifier",
-                            Description = @"This field contains the procedure code modifier to the procedure code reported in IIM-14 Procedure Code , when applicable. Procedure code modifiers are defined by USA regulatory agencies such as CMS and the AMA. Multiple modifiers may be reported. Refer to User-defined Table 0340 - Procedure code modifier for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IIM.15.1",
                             Type = @"Component",
@@ -1622,633 +2045,23 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V25SegmentIIM(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V25Field primaryKeyValueIIM;
-
-public HL7V25Field PrimaryKeyValueIIM
-{
-    get
-    {
-        if (primaryKeyValueIIM != null)
-        {
-            return primaryKeyValueIIM;
-        }
-
-        primaryKeyValueIIM = new HL7V25Field
-        {
-            field = message[@"IIM"][1],
-            Id = @"IIM.1",
-            Type = @"Field",
-            Position = @"IIM.1",
-            Name = @"Primary Key Value - IIM",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying an inventoried item. It is the identifying key value, and must match MFE-4 - Primary Key Value - MFE .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryKeyValueIIM.field.FieldRepetitions != null && primaryKeyValueIIM.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryKeyValueIIM.Id));
-            primaryKeyValueIIM.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(primaryKeyValueIIM, fieldData);
-        }
-
-        return primaryKeyValueIIM;
-    } 
-}
-
-internal HL7V25Field serviceItemCode;
-
-public HL7V25Field ServiceItemCode
-{
-    get
-    {
-        if (serviceItemCode != null)
-        {
-            return serviceItemCode;
-        }
-
-        serviceItemCode = new HL7V25Field
-        {
-            field = message[@"IIM"][2],
-            Id = @"IIM.2",
-            Type = @"Field",
-            Position = @"IIM.2",
-            Name = @"Service Item Code",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the identifier of the service item. It relates the inventory item of this message to an entry in an Other Observation/Service Item master file.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (serviceItemCode.field.FieldRepetitions != null && serviceItemCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(serviceItemCode.Id));
-            serviceItemCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(serviceItemCode, fieldData);
-        }
-
-        return serviceItemCode;
-    } 
-}
-
-internal HL7V25Field inventoryLotNumber;
-
-public HL7V25Field InventoryLotNumber
-{
-    get
-    {
-        if (inventoryLotNumber != null)
-        {
-            return inventoryLotNumber;
-        }
-
-        inventoryLotNumber = new HL7V25Field
-        {
-            field = message[@"IIM"][3],
-            Id = @"IIM.3",
-            Type = @"Field",
-            Position = @"IIM.3",
-            Name = @"Inventory Lot Number",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the lot number of the service item in inventory.
-
-Note:  The lot number is the number printed on the label attached to the item or container holding the substance.  If the substance is a vaccine, for example, and a diluent is required, a lot number may appear on the vial containing the diluent; however, any such identifier associated with a diluent is not the identifier of interest. The substance lot number should be reported, not that of the diluent. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryLotNumber.field.FieldRepetitions != null && inventoryLotNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryLotNumber.Id));
-            inventoryLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(inventoryLotNumber, fieldData);
-        }
-
-        return inventoryLotNumber;
-    } 
-}
-
-internal HL7V25Field inventoryExpirationDate;
-
-public HL7V25Field InventoryExpirationDate
-{
-    get
-    {
-        if (inventoryExpirationDate != null)
-        {
-            return inventoryExpirationDate;
-        }
-
-        inventoryExpirationDate = new HL7V25Field
-        {
-            field = message[@"IIM"][4],
-            Id = @"IIM.4",
-            Type = @"Field",
-            Position = @"IIM.4",
-            Name = @"Inventory Expiration Date",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the expiration date of the service item in inventory.
-
-Note:  Expiration date does not always have a “day” component; therefore, such a date may be transmitted as YYYYMM. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryExpirationDate.field.FieldRepetitions != null && inventoryExpirationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryExpirationDate.Id));
-            inventoryExpirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(inventoryExpirationDate, fieldData);
-        }
-
-        return inventoryExpirationDate;
-    } 
-}
-
-internal HL7V25Field inventoryManufacturerName;
-
-public HL7V25Field InventoryManufacturerName
-{
-    get
-    {
-        if (inventoryManufacturerName != null)
-        {
-            return inventoryManufacturerName;
-        }
-
-        inventoryManufacturerName = new HL7V25Field
-        {
-            field = message[@"IIM"][5],
-            Id = @"IIM.5",
-            Type = @"Field",
-            Position = @"IIM.5",
-            Name = @"Inventory Manufacturer Name",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the manufacturer of the service item in inventory.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryManufacturerName.field.FieldRepetitions != null && inventoryManufacturerName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryManufacturerName.Id));
-            inventoryManufacturerName.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(inventoryManufacturerName, fieldData);
-        }
-
-        return inventoryManufacturerName;
-    } 
-}
-
-internal HL7V25Field inventoryLocation;
-
-public HL7V25Field InventoryLocation
-{
-    get
-    {
-        if (inventoryLocation != null)
-        {
-            return inventoryLocation;
-        }
-
-        inventoryLocation = new HL7V25Field
-        {
-            field = message[@"IIM"][6],
-            Id = @"IIM.6",
-            Type = @"Field",
-            Position = @"IIM.6",
-            Name = @"Inventory Location",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the location of the inventory. As an implementation consideration, this location can have a range of specificity. The location can be very general, e.g., a facility where the inventory is warehoused, or very specific, e.g., a shelf location.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryLocation.field.FieldRepetitions != null && inventoryLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryLocation.Id));
-            inventoryLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(inventoryLocation, fieldData);
-        }
-
-        return inventoryLocation;
-    } 
-}
-
-internal HL7V25Field inventoryReceivedDate;
-
-public HL7V25Field InventoryReceivedDate
-{
-    get
-    {
-        if (inventoryReceivedDate != null)
-        {
-            return inventoryReceivedDate;
-        }
-
-        inventoryReceivedDate = new HL7V25Field
-        {
-            field = message[@"IIM"][7],
-            Id = @"IIM.7",
-            Type = @"Field",
-            Position = @"IIM.7",
-            Name = @"Inventory Received Date",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the most recent date that the product in question was received into inventory.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryReceivedDate.field.FieldRepetitions != null && inventoryReceivedDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryReceivedDate.Id));
-            inventoryReceivedDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(inventoryReceivedDate, fieldData);
-        }
-
-        return inventoryReceivedDate;
-    } 
-}
-
-internal HL7V25Field inventoryReceivedQuantity;
-
-public HL7V25Field InventoryReceivedQuantity
-{
-    get
-    {
-        if (inventoryReceivedQuantity != null)
-        {
-            return inventoryReceivedQuantity;
-        }
-
-        inventoryReceivedQuantity = new HL7V25Field
-        {
-            field = message[@"IIM"][8],
-            Id = @"IIM.8",
-            Type = @"Field",
-            Position = @"IIM.8",
-            Name = @"Inventory Received Quantity",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the quantity of this inventory item that was received on the date specific in IIM-7 Inventory Received Date.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryReceivedQuantity.field.FieldRepetitions != null && inventoryReceivedQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryReceivedQuantity.Id));
-            inventoryReceivedQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(inventoryReceivedQuantity, fieldData);
-        }
-
-        return inventoryReceivedQuantity;
-    } 
-}
-
-internal HL7V25Field inventoryReceivedQuantityUnit;
-
-public HL7V25Field InventoryReceivedQuantityUnit
-{
-    get
-    {
-        if (inventoryReceivedQuantityUnit != null)
-        {
-            return inventoryReceivedQuantityUnit;
-        }
-
-        inventoryReceivedQuantityUnit = new HL7V25Field
-        {
-            field = message[@"IIM"][9],
-            Id = @"IIM.9",
-            Type = @"Field",
-            Position = @"IIM.9",
-            Name = @"Inventory Received Quantity Unit",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the unit for IIM-8 Inventory Received Quantity and IIM-10 Inventory Received Item Cost.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryReceivedQuantityUnit.field.FieldRepetitions != null && inventoryReceivedQuantityUnit.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryReceivedQuantityUnit.Id));
-            inventoryReceivedQuantityUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(inventoryReceivedQuantityUnit, fieldData);
-        }
-
-        return inventoryReceivedQuantityUnit;
-    } 
-}
-
-internal HL7V25Field inventoryReceivedItemCost;
-
-public HL7V25Field InventoryReceivedItemCost
-{
-    get
-    {
-        if (inventoryReceivedItemCost != null)
-        {
-            return inventoryReceivedItemCost;
-        }
-
-        inventoryReceivedItemCost = new HL7V25Field
-        {
-            field = message[@"IIM"][10],
-            Id = @"IIM.10",
-            Type = @"Field",
-            Position = @"IIM.10",
-            Name = @"Inventory Received Item Cost",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"MO",
-            DataTypeName = @"Money",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the per-unit cost of the inventory item at the time of receipt. IIM-9 Inventory Received Quantity Unit specifies the per-unit basis of this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryReceivedItemCost.field.FieldRepetitions != null && inventoryReceivedItemCost.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryReceivedItemCost.Id));
-            inventoryReceivedItemCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(inventoryReceivedItemCost, fieldData);
-        }
-
-        return inventoryReceivedItemCost;
-    } 
-}
-
-internal HL7V25Field inventoryOnHandDate;
-
-public HL7V25Field InventoryOnHandDate
-{
-    get
-    {
-        if (inventoryOnHandDate != null)
-        {
-            return inventoryOnHandDate;
-        }
-
-        inventoryOnHandDate = new HL7V25Field
-        {
-            field = message[@"IIM"][11],
-            Id = @"IIM.11",
-            Type = @"Field",
-            Position = @"IIM.11",
-            Name = @"Inventory On Hand Date",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the most recent date that an inventory count for the inventory item was performed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryOnHandDate.field.FieldRepetitions != null && inventoryOnHandDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryOnHandDate.Id));
-            inventoryOnHandDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(inventoryOnHandDate, fieldData);
-        }
-
-        return inventoryOnHandDate;
-    } 
-}
-
-internal HL7V25Field inventoryOnHandQuantity;
-
-public HL7V25Field InventoryOnHandQuantity
-{
-    get
-    {
-        if (inventoryOnHandQuantity != null)
-        {
-            return inventoryOnHandQuantity;
-        }
-
-        inventoryOnHandQuantity = new HL7V25Field
-        {
-            field = message[@"IIM"][12],
-            Id = @"IIM.12",
-            Type = @"Field",
-            Position = @"IIM.12",
-            Name = @"Inventory On Hand Quantity",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the quantity of this inventory item that was available for issue/use as of the date specified in IIM-11 Inventory on Hand Date. No adjustment has been made for subsequent use.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryOnHandQuantity.field.FieldRepetitions != null && inventoryOnHandQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryOnHandQuantity.Id));
-            inventoryOnHandQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(inventoryOnHandQuantity, fieldData);
-        }
-
-        return inventoryOnHandQuantity;
-    } 
-}
-
-internal HL7V25Field inventoryOnHandQuantityUnit;
-
-public HL7V25Field InventoryOnHandQuantityUnit
-{
-    get
-    {
-        if (inventoryOnHandQuantityUnit != null)
-        {
-            return inventoryOnHandQuantityUnit;
-        }
-
-        inventoryOnHandQuantityUnit = new HL7V25Field
-        {
-            field = message[@"IIM"][13],
-            Id = @"IIM.13",
-            Type = @"Field",
-            Position = @"IIM.13",
-            Name = @"Inventory On Hand Quantity Unit",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the unit for IIM-12 - Inventory on Hand Quantity.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryOnHandQuantityUnit.field.FieldRepetitions != null && inventoryOnHandQuantityUnit.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryOnHandQuantityUnit.Id));
-            inventoryOnHandQuantityUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(inventoryOnHandQuantityUnit, fieldData);
-        }
-
-        return inventoryOnHandQuantityUnit;
-    } 
-}
-
-internal HL7V25Field procedureCode;
-
-public HL7V25Field ProcedureCode
-{
-    get
-    {
-        if (procedureCode != null)
-        {
-            return procedureCode;
-        }
-
-        procedureCode = new HL7V25Field
-        {
-            field = message[@"IIM"][14],
-            Id = @"IIM.14",
-            Type = @"Field",
-            Position = @"IIM.14",
-            Name = @"Procedure Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0088",
-            TableName = @"Procedure Code",
-            Description = @"This field contains a unique identifier assigned to the service item, if any, associated with the charge. In the United States this is often the HCPCS code. Refer to User-defined Table 0088 - Procedure code for suggested values. This field is a CE data type for compatibility with clinical and ancillary systems.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedureCode.field.FieldRepetitions != null && procedureCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureCode.Id));
-            procedureCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(procedureCode, fieldData);
-        }
-
-        return procedureCode;
-    } 
-}
-
-internal HL7V25Field procedureCodeModifier;
-
-public HL7V25Field ProcedureCodeModifier
-{
-    get
-    {
-        if (procedureCodeModifier != null)
-        {
-            return procedureCodeModifier;
-        }
-
-        procedureCodeModifier = new HL7V25Field
+        _procedureCodeModifier = new HL7V25Field
         {
             field = message[@"IIM"][15],
-            Id = @"IIM.15",
-            Type = @"Field",
-            Position = @"IIM.15",
-            Name = @"Procedure Code Modifier",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0340",
-            TableName = @"Procedure code modifier",
-            Description = @"This field contains the procedure code modifier to the procedure code reported in IIM-14 Procedure Code , when applicable. Procedure code modifiers are defined by USA regulatory agencies such as CMS and the AMA. Multiple modifiers may be reported. Refer to User-defined Table 0340 - Procedure code modifier for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (procedureCodeModifier.field.FieldRepetitions != null && procedureCodeModifier.field.FieldRepetitions.Count > 0)
+        if (_procedureCodeModifier.field.FieldRepetitions != null && _procedureCodeModifier.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureCodeModifier.Id));
-            procedureCodeModifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(procedureCodeModifier, fieldData);
+            _procedureCodeModifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_procedureCodeModifier, fieldData);
         }
 
-        return procedureCodeModifier;
+        return _procedureCodeModifier;
     } 
 }
     }

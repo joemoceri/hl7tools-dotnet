@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V22SegmentRXR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V22Field _route;
+
+public HL7V22Field Route
+{
+    get
+    {
+        if (_route != null)
+        {
+            return _route;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"RXR.1",
+            Type = @"Field",
+            Position = @"RXR.1",
+            Name = @"Route",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0162",
+            TableName = @"ROUTE OF ADMINISTRATION",
+            Description = @"route of administration.  Some current ""route codes,"" such as some of the NDC-derived codes include the site already.  In such cases, the entire code can be included in this field as a ""locally defined code"" for the CE data type.  Refer to table 0162 - route of administration for valid entries",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"RXR.1",
-                            Type = @"Field",
-                            Position = @"RXR.1",
-                            Name = @"Route",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0162",
-                            TableName = @"ROUTE OF ADMINISTRATION",
-                            Description = @"route of administration.  Some current ""route codes,"" such as some of the NDC-derived codes include the site already.  In such cases, the entire code can be included in this field as a ""locally defined code"" for the CE data type.  Refer to table 0162 - route of administration for valid entries",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXR.1.1",
                             Type = @"Component",
@@ -156,27 +168,57 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXR.2",
-                            Type = @"Field",
-                            Position = @"RXR.2",
-                            Name = @"Site",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0163",
-                            TableName = @"ADMINISTRIVE SITE",
-                            Description = @"site of the administration route.  Refer to table 0163 - administrative site for valid entries.
+                        }
+        }
+
+        _route = new HL7V22Field
+        {
+            field = message[@"RXR"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_route.field.FieldRepetitions != null && _route.field.FieldRepetitions.Count > 0)
+        {
+            _route.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_route, fieldData);
+        }
+
+        return _route;
+    } 
+}
+
+internal HL7V22Field _site;
+
+public HL7V22Field Site
+{
+    get
+    {
+        if (_site != null)
+        {
+            return _site;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"RXR.2",
+            Type = @"Field",
+            Position = @"RXR.2",
+            Name = @"Site",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0163",
+            TableName = @"ADMINISTRIVE SITE",
+            Description = @"site of the administration route.  Refer to table 0163 - administrative site for valid entries.
 
 As a CE data type, this field may be extended to cover a wide variety of body site codes (e.g., when SNOMED is used as the table source). ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXR.2.1",
                             Type = @"Component",
@@ -282,25 +324,55 @@ As a CE data type, this field may be extended to cover a wide variety of body si
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _site = new HL7V22Field
+        {
+            field = message[@"RXR"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_site.field.FieldRepetitions != null && _site.field.FieldRepetitions.Count > 0)
+        {
+            _site.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_site, fieldData);
+        }
+
+        return _site;
+    } 
+}
+
+internal HL7V22Field _administrationDevice;
+
+public HL7V22Field AdministrationDevice
+{
+    get
+    {
+        if (_administrationDevice != null)
+        {
+            return _administrationDevice;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"RXR.3",
+            Type = @"Field",
+            Position = @"RXR.3",
+            Name = @"Administration Device",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0164",
+            TableName = @"ADMINISTRATION DEVICE",
+            Description = @"mechanical device used to aid in the  administration of the drug.  Common examples are IV-sets of different types.  Refer to table 0164 - administration device for valid entries",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXR.3",
-                            Type = @"Field",
-                            Position = @"RXR.3",
-                            Name = @"Administration Device",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0164",
-                            TableName = @"ADMINISTRATION DEVICE",
-                            Description = @"mechanical device used to aid in the  administration of the drug.  Common examples are IV-sets of different types.  Refer to table 0164 - administration device for valid entries",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXR.3.1",
                             Type = @"Component",
@@ -406,25 +478,55 @@ As a CE data type, this field may be extended to cover a wide variety of body si
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _administrationDevice = new HL7V22Field
+        {
+            field = message[@"RXR"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_administrationDevice.field.FieldRepetitions != null && _administrationDevice.field.FieldRepetitions.Count > 0)
+        {
+            _administrationDevice.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_administrationDevice, fieldData);
+        }
+
+        return _administrationDevice;
+    } 
+}
+
+internal HL7V22Field _administrationMethod;
+
+public HL7V22Field AdministrationMethod
+{
+    get
+    {
+        if (_administrationMethod != null)
+        {
+            return _administrationMethod;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"RXR.4",
+            Type = @"Field",
+            Position = @"RXR.4",
+            Name = @"Administration Method",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0165",
+            TableName = @"ADMINISTRATION METHOD",
+            Description = @"administration method identifies the specific method requested for the administration of the drug to the patient.  Refer to table 0165 - administration method for valid entries",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXR.4",
-                            Type = @"Field",
-                            Position = @"RXR.4",
-                            Name = @"Administration Method",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0165",
-                            TableName = @"ADMINISTRATION METHOD",
-                            Description = @"administration method identifies the specific method requested for the administration of the drug to the patient.  Refer to table 0165 - administration method for valid entries",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXR.4.1",
                             Type = @"Component",
@@ -530,180 +632,23 @@ As a CE data type, this field may be extended to cover a wide variety of body si
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V22SegmentRXR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V22Field route;
-
-public HL7V22Field Route
-{
-    get
-    {
-        if (route != null)
-        {
-            return route;
-        }
-
-        route = new HL7V22Field
-        {
-            field = message[@"RXR"][1],
-            Id = @"RXR.1",
-            Type = @"Field",
-            Position = @"RXR.1",
-            Name = @"Route",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0162",
-            TableName = @"ROUTE OF ADMINISTRATION",
-            Description = @"route of administration.  Some current ""route codes,"" such as some of the NDC-derived codes include the site already.  In such cases, the entire code can be included in this field as a ""locally defined code"" for the CE data type.  Refer to table 0162 - route of administration for valid entries",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (route.field.FieldRepetitions != null && route.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(route.Id));
-            route.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(route, fieldData);
-        }
-
-        return route;
-    } 
-}
-
-internal HL7V22Field site;
-
-public HL7V22Field Site
-{
-    get
-    {
-        if (site != null)
-        {
-            return site;
-        }
-
-        site = new HL7V22Field
-        {
-            field = message[@"RXR"][2],
-            Id = @"RXR.2",
-            Type = @"Field",
-            Position = @"RXR.2",
-            Name = @"Site",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0163",
-            TableName = @"ADMINISTRIVE SITE",
-            Description = @"site of the administration route.  Refer to table 0163 - administrative site for valid entries.
-
-As a CE data type, this field may be extended to cover a wide variety of body site codes (e.g., when SNOMED is used as the table source). ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (site.field.FieldRepetitions != null && site.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(site.Id));
-            site.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(site, fieldData);
-        }
-
-        return site;
-    } 
-}
-
-internal HL7V22Field administrationDevice;
-
-public HL7V22Field AdministrationDevice
-{
-    get
-    {
-        if (administrationDevice != null)
-        {
-            return administrationDevice;
-        }
-
-        administrationDevice = new HL7V22Field
-        {
-            field = message[@"RXR"][3],
-            Id = @"RXR.3",
-            Type = @"Field",
-            Position = @"RXR.3",
-            Name = @"Administration Device",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0164",
-            TableName = @"ADMINISTRATION DEVICE",
-            Description = @"mechanical device used to aid in the  administration of the drug.  Common examples are IV-sets of different types.  Refer to table 0164 - administration device for valid entries",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (administrationDevice.field.FieldRepetitions != null && administrationDevice.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(administrationDevice.Id));
-            administrationDevice.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(administrationDevice, fieldData);
-        }
-
-        return administrationDevice;
-    } 
-}
-
-internal HL7V22Field administrationMethod;
-
-public HL7V22Field AdministrationMethod
-{
-    get
-    {
-        if (administrationMethod != null)
-        {
-            return administrationMethod;
-        }
-
-        administrationMethod = new HL7V22Field
+        _administrationMethod = new HL7V22Field
         {
             field = message[@"RXR"][4],
-            Id = @"RXR.4",
-            Type = @"Field",
-            Position = @"RXR.4",
-            Name = @"Administration Method",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0165",
-            TableName = @"ADMINISTRATION METHOD",
-            Description = @"administration method identifies the specific method requested for the administration of the drug to the patient.  Refer to table 0165 - administration method for valid entries",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (administrationMethod.field.FieldRepetitions != null && administrationMethod.field.FieldRepetitions.Count > 0)
+        if (_administrationMethod.field.FieldRepetitions != null && _administrationMethod.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(administrationMethod.Id));
-            administrationMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(administrationMethod, fieldData);
+            _administrationMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_administrationMethod, fieldData);
         }
 
-        return administrationMethod;
+        return _administrationMethod;
     } 
 }
     }

@@ -29,86 +29,179 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"PYE.1",
-                            Type = @"Field",
-                            Position = @"PYE.1",
-                            Name = @"Set ID – PYE",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Sequence Number.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PYE.2",
-                            Type = @"Field",
-                            Position = @"PYE.2",
-                            Name = @"Payee Type",
-                            Length = 6,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0557",
-                            TableName = @"Payee Type",
-                            Description = @"Type of Payee (e.g., Organization, Person). Refer to User-defined Table 0557 - Payee Type for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PYE.3",
-                            Type = @"Field",
-                            Position = @"PYE.3",
-                            Name = @"Payee Relationship to Invoice (Patient)",
-                            Length = 2,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0558",
-                            TableName = @"Payee Relationship to Invoice",
-                            Description = @"Conditional or empty: if Payee Type in list (""PERS"", ""PPER""), then Required, else Not Permitted.
+        public HL7V26SegmentPYE(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _setIDPYE;
+
+public HL7V26Field SetIDPYE
+{
+    get
+    {
+        if (_setIDPYE != null)
+        {
+            return _setIDPYE;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PYE.1",
+            Type = @"Field",
+            Position = @"PYE.1",
+            Name = @"Set ID – PYE",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"Sequence Number.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDPYE = new HL7V26Field
+        {
+            field = message[@"PYE"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDPYE.field.FieldRepetitions != null && _setIDPYE.field.FieldRepetitions.Count > 0)
+        {
+            _setIDPYE.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_setIDPYE, fieldData);
+        }
+
+        return _setIDPYE;
+    } 
+}
+
+internal HL7V26Field _payeeType;
+
+public HL7V26Field PayeeType
+{
+    get
+    {
+        if (_payeeType != null)
+        {
+            return _payeeType;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PYE.2",
+            Type = @"Field",
+            Position = @"PYE.2",
+            Name = @"Payee Type",
+            Length = 6,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0557",
+            TableName = @"Payee Type",
+            Description = @"Type of Payee (e.g., Organization, Person). Refer to User-defined Table 0557 - Payee Type for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _payeeType = new HL7V26Field
+        {
+            field = message[@"PYE"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payeeType.field.FieldRepetitions != null && _payeeType.field.FieldRepetitions.Count > 0)
+        {
+            _payeeType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_payeeType, fieldData);
+        }
+
+        return _payeeType;
+    } 
+}
+
+internal HL7V26Field _payeeRelationshiptoInvoicePatient;
+
+public HL7V26Field PayeeRelationshiptoInvoicePatient
+{
+    get
+    {
+        if (_payeeRelationshiptoInvoicePatient != null)
+        {
+            return _payeeRelationshiptoInvoicePatient;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PYE.3",
+            Type = @"Field",
+            Position = @"PYE.3",
+            Name = @"Payee Relationship to Invoice (Patient)",
+            Length = 2,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0558",
+            TableName = @"Payee Relationship to Invoice",
+            Description = @"Conditional or empty: if Payee Type in list (""PERS"", ""PPER""), then Required, else Not Permitted.
 
 For Person Payee Types, the relationship to Invoice.  Refer to User-defined Table 0558 – Payee Relationship to Invoice for suggested values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PYE.4",
-                            Type = @"Field",
-                            Position = @"PYE.4",
-                            Name = @"Payee Identification List",
-                            Length = 183,
-                            Usage = @"C",
-                            Rpt = @"5",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Conditional or empty: if Payee Type in list (""PPER"", ""ORG""), then Required, else Not Permitted.
+            Sample = @"",
+            Fields = null
+        }
+
+        _payeeRelationshiptoInvoicePatient = new HL7V26Field
+        {
+            field = message[@"PYE"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payeeRelationshiptoInvoicePatient.field.FieldRepetitions != null && _payeeRelationshiptoInvoicePatient.field.FieldRepetitions.Count > 0)
+        {
+            _payeeRelationshiptoInvoicePatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_payeeRelationshiptoInvoicePatient, fieldData);
+        }
+
+        return _payeeRelationshiptoInvoicePatient;
+    } 
+}
+
+internal HL7V26Field _payeeIdentificationList;
+
+public HL7V26Field PayeeIdentificationList
+{
+    get
+    {
+        if (_payeeIdentificationList != null)
+        {
+            return _payeeIdentificationList;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PYE.4",
+            Type = @"Field",
+            Position = @"PYE.4",
+            Name = @"Payee Identification List",
+            Length = 183,
+            Usage = @"C",
+            Rpt = @"5",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"Conditional or empty: if Payee Type in list (""PPER"", ""ORG""), then Required, else Not Permitted.
 
 Payee or Business Arrangement identification information; up to 5; defined by Payer/Provider agreement.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PYE.4.1",
                             Type = @"Component",
@@ -390,27 +483,57 @@ Payee or Business Arrangement identification information; up to 5; defined by Pa
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PYE.5",
-                            Type = @"Field",
-                            Position = @"PYE.5",
-                            Name = @"Payee Person Name",
-                            Length = 466,
-                            Usage = @"C",
-                            Rpt = @"4",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Conditional or empty: if Payee Type = (""PERS"", ""PPER), then Required, else Not Permitted.
+                        }
+        }
+
+        _payeeIdentificationList = new HL7V26Field
+        {
+            field = message[@"PYE"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payeeIdentificationList.field.FieldRepetitions != null && _payeeIdentificationList.field.FieldRepetitions.Count > 0)
+        {
+            _payeeIdentificationList.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_payeeIdentificationList, fieldData);
+        }
+
+        return _payeeIdentificationList;
+    } 
+}
+
+internal HL7V26Field _payeePersonName;
+
+public HL7V26Field PayeePersonName
+{
+    get
+    {
+        if (_payeePersonName != null)
+        {
+            return _payeePersonName;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PYE.5",
+            Type = @"Field",
+            Position = @"PYE.5",
+            Name = @"Payee Person Name",
+            Length = 466,
+            Usage = @"C",
+            Rpt = @"4",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"Conditional or empty: if Payee Type = (""PERS"", ""PPER), then Required, else Not Permitted.
 
 Individual's name, may be a patient's name or other individual.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PYE.5.1",
                             Type = @"Component",
@@ -942,27 +1065,57 @@ Individual's name, may be a patient's name or other individual.",
                             Description = @"Used to specify an abbreviation, or a string of abbreviations denoting qualifications that support the persons profession, (e.g., licenses, certificates, degrees, affiliations with professional societies, etc.). The Professional Suffix normally follows the Family Name when the Person Name is used for display purposes. Please note that this component is an unformatted string and is used for display purposes only. Detailed information regarding the contents of Professional Suffix is obtained using appropriate segments in Chapter 15, Personnel Management.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PYE.6",
-                            Type = @"Field",
-                            Position = @"PYE.6",
-                            Name = @"Payee Address",
-                            Length = 235,
-                            Usage = @"C",
-                            Rpt = @"4",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Conditional or empty: if Payee Type = (""PERS"", ""PPER), then Required, else Not Permitted.
+                        }
+        }
+
+        _payeePersonName = new HL7V26Field
+        {
+            field = message[@"PYE"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payeePersonName.field.FieldRepetitions != null && _payeePersonName.field.FieldRepetitions.Count > 0)
+        {
+            _payeePersonName.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_payeePersonName, fieldData);
+        }
+
+        return _payeePersonName;
+    } 
+}
+
+internal HL7V26Field _payeeAddress;
+
+public HL7V26Field PayeeAddress
+{
+    get
+    {
+        if (_payeeAddress != null)
+        {
+            return _payeeAddress;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PYE.6",
+            Type = @"Field",
+            Position = @"PYE.6",
+            Name = @"Payee Address",
+            Length = 235,
+            Usage = @"C",
+            Rpt = @"4",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"Conditional or empty: if Payee Type = (""PERS"", ""PPER), then Required, else Not Permitted.
 
 Address for payee. If not specified, then Payer will use address on file for this Payee, if applicable. If Payee is an individual, then this address can be used to send a check.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PYE.6.1",
                             Type = @"Component",
@@ -1850,307 +2003,39 @@ Address for payee. If not specified, then Payer will use address on file for thi
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PYE.7",
-                            Type = @"Field",
-                            Position = @"PYE.7",
-                            Name = @"Payment Method",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0570",
-                            TableName = @"Payment Method Code",
-                            Description = @"For Payee organizations that have more than one payment method.
-
-If for individual, then we may also need to indicate EFT, bank info, etc. 
-
-Refer to User-defined Table 0570 – Payment Method Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentPYE(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field setIDPYE;
-
-public HL7V26Field SetIDPYE
-{
-    get
-    {
-        if (setIDPYE != null)
-        {
-            return setIDPYE;
-        }
-
-        setIDPYE = new HL7V26Field
-        {
-            field = message[@"PYE"][1],
-            Id = @"PYE.1",
-            Type = @"Field",
-            Position = @"PYE.1",
-            Name = @"Set ID – PYE",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"Sequence Number.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDPYE.field.FieldRepetitions != null && setIDPYE.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDPYE.Id));
-            setIDPYE.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(setIDPYE, fieldData);
-        }
-
-        return setIDPYE;
-    } 
-}
-
-internal HL7V26Field payeeType;
-
-public HL7V26Field PayeeType
-{
-    get
-    {
-        if (payeeType != null)
-        {
-            return payeeType;
-        }
-
-        payeeType = new HL7V26Field
-        {
-            field = message[@"PYE"][2],
-            Id = @"PYE.2",
-            Type = @"Field",
-            Position = @"PYE.2",
-            Name = @"Payee Type",
-            Length = 6,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0557",
-            TableName = @"Payee Type",
-            Description = @"Type of Payee (e.g., Organization, Person). Refer to User-defined Table 0557 - Payee Type for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payeeType.field.FieldRepetitions != null && payeeType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payeeType.Id));
-            payeeType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(payeeType, fieldData);
-        }
-
-        return payeeType;
-    } 
-}
-
-internal HL7V26Field payeeRelationshiptoInvoicePatient;
-
-public HL7V26Field PayeeRelationshiptoInvoicePatient
-{
-    get
-    {
-        if (payeeRelationshiptoInvoicePatient != null)
-        {
-            return payeeRelationshiptoInvoicePatient;
-        }
-
-        payeeRelationshiptoInvoicePatient = new HL7V26Field
-        {
-            field = message[@"PYE"][3],
-            Id = @"PYE.3",
-            Type = @"Field",
-            Position = @"PYE.3",
-            Name = @"Payee Relationship to Invoice (Patient)",
-            Length = 2,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0558",
-            TableName = @"Payee Relationship to Invoice",
-            Description = @"Conditional or empty: if Payee Type in list (""PERS"", ""PPER""), then Required, else Not Permitted.
-
-For Person Payee Types, the relationship to Invoice.  Refer to User-defined Table 0558 – Payee Relationship to Invoice for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payeeRelationshiptoInvoicePatient.field.FieldRepetitions != null && payeeRelationshiptoInvoicePatient.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payeeRelationshiptoInvoicePatient.Id));
-            payeeRelationshiptoInvoicePatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(payeeRelationshiptoInvoicePatient, fieldData);
-        }
-
-        return payeeRelationshiptoInvoicePatient;
-    } 
-}
-
-internal HL7V26Field payeeIdentificationList;
-
-public HL7V26Field PayeeIdentificationList
-{
-    get
-    {
-        if (payeeIdentificationList != null)
-        {
-            return payeeIdentificationList;
-        }
-
-        payeeIdentificationList = new HL7V26Field
-        {
-            field = message[@"PYE"][4],
-            Id = @"PYE.4",
-            Type = @"Field",
-            Position = @"PYE.4",
-            Name = @"Payee Identification List",
-            Length = 183,
-            Usage = @"C",
-            Rpt = @"5",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"Conditional or empty: if Payee Type in list (""PPER"", ""ORG""), then Required, else Not Permitted.
-
-Payee or Business Arrangement identification information; up to 5; defined by Payer/Provider agreement.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payeeIdentificationList.field.FieldRepetitions != null && payeeIdentificationList.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payeeIdentificationList.Id));
-            payeeIdentificationList.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(payeeIdentificationList, fieldData);
-        }
-
-        return payeeIdentificationList;
-    } 
-}
-
-internal HL7V26Field payeePersonName;
-
-public HL7V26Field PayeePersonName
-{
-    get
-    {
-        if (payeePersonName != null)
-        {
-            return payeePersonName;
-        }
-
-        payeePersonName = new HL7V26Field
-        {
-            field = message[@"PYE"][5],
-            Id = @"PYE.5",
-            Type = @"Field",
-            Position = @"PYE.5",
-            Name = @"Payee Person Name",
-            Length = 466,
-            Usage = @"C",
-            Rpt = @"4",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"Conditional or empty: if Payee Type = (""PERS"", ""PPER), then Required, else Not Permitted.
-
-Individual's name, may be a patient's name or other individual.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payeePersonName.field.FieldRepetitions != null && payeePersonName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payeePersonName.Id));
-            payeePersonName.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(payeePersonName, fieldData);
-        }
-
-        return payeePersonName;
-    } 
-}
-
-internal HL7V26Field payeeAddress;
-
-public HL7V26Field PayeeAddress
-{
-    get
-    {
-        if (payeeAddress != null)
-        {
-            return payeeAddress;
-        }
-
-        payeeAddress = new HL7V26Field
+        _payeeAddress = new HL7V26Field
         {
             field = message[@"PYE"][6],
-            Id = @"PYE.6",
-            Type = @"Field",
-            Position = @"PYE.6",
-            Name = @"Payee Address",
-            Length = 235,
-            Usage = @"C",
-            Rpt = @"4",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"Conditional or empty: if Payee Type = (""PERS"", ""PPER), then Required, else Not Permitted.
-
-Address for payee. If not specified, then Payer will use address on file for this Payee, if applicable. If Payee is an individual, then this address can be used to send a check.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (payeeAddress.field.FieldRepetitions != null && payeeAddress.field.FieldRepetitions.Count > 0)
+        if (_payeeAddress.field.FieldRepetitions != null && _payeeAddress.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payeeAddress.Id));
-            payeeAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(payeeAddress, fieldData);
+            _payeeAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_payeeAddress, fieldData);
         }
 
-        return payeeAddress;
+        return _payeeAddress;
     } 
 }
 
-internal HL7V26Field paymentMethod;
+internal HL7V26Field _paymentMethod;
 
 public HL7V26Field PaymentMethod
 {
     get
     {
-        if (paymentMethod != null)
+        if (_paymentMethod != null)
         {
-            return paymentMethod;
+            return _paymentMethod;
         }
 
-        paymentMethod = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"PYE"][7],
             Id = @"PYE.7",
             Type = @"Field",
             Position = @"PYE.7",
@@ -2168,17 +2053,22 @@ If for individual, then we may also need to indicate EFT, bank info, etc.
 
 Refer to User-defined Table 0570 – Payment Method Code for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _paymentMethod = new HL7V26Field
+        {
+            field = message[@"PYE"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (paymentMethod.field.FieldRepetitions != null && paymentMethod.field.FieldRepetitions.Count > 0)
+        if (_paymentMethod.field.FieldRepetitions != null && _paymentMethod.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(paymentMethod.Id));
-            paymentMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(paymentMethod, fieldData);
+            _paymentMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_paymentMethod, fieldData);
         }
 
-        return paymentMethod;
+        return _paymentMethod;
     } 
 }
     }

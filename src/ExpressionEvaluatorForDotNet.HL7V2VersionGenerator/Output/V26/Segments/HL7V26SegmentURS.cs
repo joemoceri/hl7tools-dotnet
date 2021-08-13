@@ -31,172 +31,400 @@ The URS segment is identical with the QRF segment, except that if the name of an
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentURS(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _rUWhereSubjectDefinition;
+
+public HL7V26Field RUWhereSubjectDefinition
+{
+    get
+    {
+        if (_rUWhereSubjectDefinition != null)
+        {
+            return _rUWhereSubjectDefinition;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"URS.1",
+            Type = @"Field",
+            Position = @"URS.1",
+            Name = @"R/U Where Subject Definition",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the department, system, or subsystem to which the result pertains.  This field may repeat as in LAB~HEMO, etc. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _rUWhereSubjectDefinition = new HL7V26Field
+        {
+            field = message[@"URS"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rUWhereSubjectDefinition.field.FieldRepetitions != null && _rUWhereSubjectDefinition.field.FieldRepetitions.Count > 0)
+        {
+            _rUWhereSubjectDefinition.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_rUWhereSubjectDefinition, fieldData);
+        }
+
+        return _rUWhereSubjectDefinition;
+    } 
+}
+
+internal HL7V26Field _rUWhenDataStartDateTime;
+
+public HL7V26Field RUWhenDataStartDateTime
+{
+    get
+    {
+        if (_rUWhenDataStartDateTime != null)
+        {
+            return _rUWhenDataStartDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"URS.2",
+            Type = @"Field",
+            Position = @"URS.2",
+            Name = @"R/U When Data Start Date/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time the result starts (if applicable). ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _rUWhenDataStartDateTime = new HL7V26Field
+        {
+            field = message[@"URS"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rUWhenDataStartDateTime.field.FieldRepetitions != null && _rUWhenDataStartDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _rUWhenDataStartDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_rUWhenDataStartDateTime, fieldData);
+        }
+
+        return _rUWhenDataStartDateTime;
+    } 
+}
+
+internal HL7V26Field _rUWhenDataEndDateTime;
+
+public HL7V26Field RUWhenDataEndDateTime
+{
+    get
+    {
+        if (_rUWhenDataEndDateTime != null)
+        {
+            return _rUWhenDataEndDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"URS.3",
+            Type = @"Field",
+            Position = @"URS.3",
+            Name = @"R/U When Data End Date/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time the result ends (if applicable). ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _rUWhenDataEndDateTime = new HL7V26Field
+        {
+            field = message[@"URS"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rUWhenDataEndDateTime.field.FieldRepetitions != null && _rUWhenDataEndDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _rUWhenDataEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_rUWhenDataEndDateTime, fieldData);
+        }
+
+        return _rUWhenDataEndDateTime;
+    } 
+}
+
+internal HL7V26Field _rUWhatUserQualifier;
+
+public HL7V26Field RUWhatUserQualifier
+{
+    get
+    {
+        if (_rUWhatUserQualifier != null)
+        {
+            return _rUWhatUserQualifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"URS.4",
+            Type = @"Field",
+            Position = @"URS.4",
+            Name = @"R/U What User Qualifier",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an identifier to define further the characteristics of the data that are of interest. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _rUWhatUserQualifier = new HL7V26Field
+        {
+            field = message[@"URS"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rUWhatUserQualifier.field.FieldRepetitions != null && _rUWhatUserQualifier.field.FieldRepetitions.Count > 0)
+        {
+            _rUWhatUserQualifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_rUWhatUserQualifier, fieldData);
+        }
+
+        return _rUWhatUserQualifier;
+    } 
+}
+
+internal HL7V26Field _rUOtherResultsSubjectDefinition;
+
+public HL7V26Field RUOtherResultsSubjectDefinition
+{
+    get
+    {
+        if (_rUOtherResultsSubjectDefinition != null)
+        {
+            return _rUOtherResultsSubjectDefinition;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"URS.5",
+            Type = @"Field",
+            Position = @"URS.5",
+            Name = @"R/U Other Results Subject Definition",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a further qualifier, defined locally, for use between two systems.  This filter uses codes and field definitions that have specific meaning only to the application and/or site involved.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _rUOtherResultsSubjectDefinition = new HL7V26Field
+        {
+            field = message[@"URS"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rUOtherResultsSubjectDefinition.field.FieldRepetitions != null && _rUOtherResultsSubjectDefinition.field.FieldRepetitions.Count > 0)
+        {
+            _rUOtherResultsSubjectDefinition.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_rUOtherResultsSubjectDefinition, fieldData);
+        }
+
+        return _rUOtherResultsSubjectDefinition;
+    } 
+}
+
+internal HL7V26Field _rUWhichDateTimeQualifier;
+
+public HL7V26Field RUWhichDateTimeQualifier
+{
+    get
+    {
+        if (_rUWhichDateTimeQualifier != null)
+        {
+            return _rUWhichDateTimeQualifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"URS.6",
+            Type = @"Field",
+            Position = @"URS.6",
+            Name = @"R/U Which Date/Time Qualifier",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0156",
+            TableName = @"Which date/time qualifier",
+            Description = @"This field specifies the type of date referred to in URS-2-when data start date/time and URS-3-when data end date/time.  Refer to HL7 Table 0156 - Which date/time qualifier for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _rUWhichDateTimeQualifier = new HL7V26Field
+        {
+            field = message[@"URS"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rUWhichDateTimeQualifier.field.FieldRepetitions != null && _rUWhichDateTimeQualifier.field.FieldRepetitions.Count > 0)
+        {
+            _rUWhichDateTimeQualifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_rUWhichDateTimeQualifier, fieldData);
+        }
+
+        return _rUWhichDateTimeQualifier;
+    } 
+}
+
+internal HL7V26Field _rUWhichDateTimeStatusQualifier;
+
+public HL7V26Field RUWhichDateTimeStatusQualifier
+{
+    get
+    {
+        if (_rUWhichDateTimeStatusQualifier != null)
+        {
+            return _rUWhichDateTimeStatusQualifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"URS.7",
+            Type = @"Field",
+            Position = @"URS.7",
+            Name = @"R/U Which Date/Time Status Qualifier",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0157",
+            TableName = @"Which date/time status qualifier",
+            Description = @"This field specifies the status type of objects selected in date range defined by URS-2-when data start date/time and URS-3-When data end date/time.  Refer HL7 Table 0157 – Which date/time status qualifier for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _rUWhichDateTimeStatusQualifier = new HL7V26Field
+        {
+            field = message[@"URS"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rUWhichDateTimeStatusQualifier.field.FieldRepetitions != null && _rUWhichDateTimeStatusQualifier.field.FieldRepetitions.Count > 0)
+        {
+            _rUWhichDateTimeStatusQualifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_rUWhichDateTimeStatusQualifier, fieldData);
+        }
+
+        return _rUWhichDateTimeStatusQualifier;
+    } 
+}
+
+internal HL7V26Field _rUDateTimeSelectionQualifier;
+
+public HL7V26Field RUDateTimeSelectionQualifier
+{
+    get
+    {
+        if (_rUDateTimeSelectionQualifier != null)
+        {
+            return _rUDateTimeSelectionQualifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"URS.8",
+            Type = @"Field",
+            Position = @"URS.8",
+            Name = @"R/U Date/Time Selection Qualifier",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0158",
+            TableName = @"Date/time selection qualifier",
+            Description = @"This field allows the specification of certain types of values within the date/time range.  Refer to HL7 Table 0158 - Date/time selection qualifier for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _rUDateTimeSelectionQualifier = new HL7V26Field
+        {
+            field = message[@"URS"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rUDateTimeSelectionQualifier.field.FieldRepetitions != null && _rUDateTimeSelectionQualifier.field.FieldRepetitions.Count > 0)
+        {
+            _rUDateTimeSelectionQualifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_rUDateTimeSelectionQualifier, fieldData);
+        }
+
+        return _rUDateTimeSelectionQualifier;
+    } 
+}
+
+internal HL7V26Field _rUQuantityTimingQualifier;
+
+public HL7V26Field RUQuantityTimingQualifier
+{
+    get
+    {
+        if (_rUQuantityTimingQualifier != null)
+        {
+            return _rUQuantityTimingQualifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"URS.9",
+            Type = @"Field",
+            Position = @"URS.9",
+            Name = @"R/U Quantity/Timing Qualifier",
+            Length = 60,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"TQ",
+            DataTypeName = @"Timing Quantity",
+            TableId = null,
+            TableName = null,
+            Description = @"This field allows an interval definition to be used for specifying multiple responses to a query. With the addition of this filter, new query specifications should no longer use URS-2-R/U when data start date/time and URS-3-R/U when data end date/time in future implementations.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"URS.1",
-                            Type = @"Field",
-                            Position = @"URS.1",
-                            Name = @"R/U Where Subject Definition",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the department, system, or subsystem to which the result pertains.  This field may repeat as in LAB~HEMO, etc. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URS.2",
-                            Type = @"Field",
-                            Position = @"URS.2",
-                            Name = @"R/U When Data Start Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time the result starts (if applicable). ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URS.3",
-                            Type = @"Field",
-                            Position = @"URS.3",
-                            Name = @"R/U When Data End Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time the result ends (if applicable). ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URS.4",
-                            Type = @"Field",
-                            Position = @"URS.4",
-                            Name = @"R/U What User Qualifier",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an identifier to define further the characteristics of the data that are of interest. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URS.5",
-                            Type = @"Field",
-                            Position = @"URS.5",
-                            Name = @"R/U Other Results Subject Definition",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a further qualifier, defined locally, for use between two systems.  This filter uses codes and field definitions that have specific meaning only to the application and/or site involved.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URS.6",
-                            Type = @"Field",
-                            Position = @"URS.6",
-                            Name = @"R/U Which Date/Time Qualifier",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0156",
-                            TableName = @"Which date/time qualifier",
-                            Description = @"This field specifies the type of date referred to in URS-2-when data start date/time and URS-3-when data end date/time.  Refer to HL7 Table 0156 - Which date/time qualifier for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URS.7",
-                            Type = @"Field",
-                            Position = @"URS.7",
-                            Name = @"R/U Which Date/Time Status Qualifier",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0157",
-                            TableName = @"Which date/time status qualifier",
-                            Description = @"This field specifies the status type of objects selected in date range defined by URS-2-when data start date/time and URS-3-When data end date/time.  Refer HL7 Table 0157 – Which date/time status qualifier for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URS.8",
-                            Type = @"Field",
-                            Position = @"URS.8",
-                            Name = @"R/U Date/Time Selection Qualifier",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0158",
-                            TableName = @"Date/time selection qualifier",
-                            Description = @"This field allows the specification of certain types of values within the date/time range.  Refer to HL7 Table 0158 - Date/time selection qualifier for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URS.9",
-                            Type = @"Field",
-                            Position = @"URS.9",
-                            Name = @"R/U Quantity/Timing Qualifier",
-                            Length = 60,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"TQ",
-                            DataTypeName = @"Timing Quantity",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field allows an interval definition to be used for specifying multiple responses to a query. With the addition of this filter, new query specifications should no longer use URS-2-R/U when data start date/time and URS-3-R/U when data end date/time in future implementations.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"URS.9.1",
                             Type = @"Component",
@@ -998,383 +1226,23 @@ The sequencing conditions supported by this 10th component are based on the comp
                             Description = @"This component contains the total number of occurrences of a service that should result from this order. It is optional within TQ and does not repeat. If both the end date/time and the total occurrences are valued and the occurrences would extend beyond the end date/time, then the end date/time takes precedence. Otherwise the number of occurrences takes precedence.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentURS(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field rUWhereSubjectDefinition;
-
-public HL7V26Field RUWhereSubjectDefinition
-{
-    get
-    {
-        if (rUWhereSubjectDefinition != null)
-        {
-            return rUWhereSubjectDefinition;
-        }
-
-        rUWhereSubjectDefinition = new HL7V26Field
-        {
-            field = message[@"URS"][1],
-            Id = @"URS.1",
-            Type = @"Field",
-            Position = @"URS.1",
-            Name = @"R/U Where Subject Definition",
-            Length = 20,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the department, system, or subsystem to which the result pertains.  This field may repeat as in LAB~HEMO, etc. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rUWhereSubjectDefinition.field.FieldRepetitions != null && rUWhereSubjectDefinition.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUWhereSubjectDefinition.Id));
-            rUWhereSubjectDefinition.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(rUWhereSubjectDefinition, fieldData);
-        }
-
-        return rUWhereSubjectDefinition;
-    } 
-}
-
-internal HL7V26Field rUWhenDataStartDateTime;
-
-public HL7V26Field RUWhenDataStartDateTime
-{
-    get
-    {
-        if (rUWhenDataStartDateTime != null)
-        {
-            return rUWhenDataStartDateTime;
-        }
-
-        rUWhenDataStartDateTime = new HL7V26Field
-        {
-            field = message[@"URS"][2],
-            Id = @"URS.2",
-            Type = @"Field",
-            Position = @"URS.2",
-            Name = @"R/U When Data Start Date/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time the result starts (if applicable). ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rUWhenDataStartDateTime.field.FieldRepetitions != null && rUWhenDataStartDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUWhenDataStartDateTime.Id));
-            rUWhenDataStartDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(rUWhenDataStartDateTime, fieldData);
-        }
-
-        return rUWhenDataStartDateTime;
-    } 
-}
-
-internal HL7V26Field rUWhenDataEndDateTime;
-
-public HL7V26Field RUWhenDataEndDateTime
-{
-    get
-    {
-        if (rUWhenDataEndDateTime != null)
-        {
-            return rUWhenDataEndDateTime;
-        }
-
-        rUWhenDataEndDateTime = new HL7V26Field
-        {
-            field = message[@"URS"][3],
-            Id = @"URS.3",
-            Type = @"Field",
-            Position = @"URS.3",
-            Name = @"R/U When Data End Date/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time the result ends (if applicable). ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rUWhenDataEndDateTime.field.FieldRepetitions != null && rUWhenDataEndDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUWhenDataEndDateTime.Id));
-            rUWhenDataEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(rUWhenDataEndDateTime, fieldData);
-        }
-
-        return rUWhenDataEndDateTime;
-    } 
-}
-
-internal HL7V26Field rUWhatUserQualifier;
-
-public HL7V26Field RUWhatUserQualifier
-{
-    get
-    {
-        if (rUWhatUserQualifier != null)
-        {
-            return rUWhatUserQualifier;
-        }
-
-        rUWhatUserQualifier = new HL7V26Field
-        {
-            field = message[@"URS"][4],
-            Id = @"URS.4",
-            Type = @"Field",
-            Position = @"URS.4",
-            Name = @"R/U What User Qualifier",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an identifier to define further the characteristics of the data that are of interest. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rUWhatUserQualifier.field.FieldRepetitions != null && rUWhatUserQualifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUWhatUserQualifier.Id));
-            rUWhatUserQualifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(rUWhatUserQualifier, fieldData);
-        }
-
-        return rUWhatUserQualifier;
-    } 
-}
-
-internal HL7V26Field rUOtherResultsSubjectDefinition;
-
-public HL7V26Field RUOtherResultsSubjectDefinition
-{
-    get
-    {
-        if (rUOtherResultsSubjectDefinition != null)
-        {
-            return rUOtherResultsSubjectDefinition;
-        }
-
-        rUOtherResultsSubjectDefinition = new HL7V26Field
-        {
-            field = message[@"URS"][5],
-            Id = @"URS.5",
-            Type = @"Field",
-            Position = @"URS.5",
-            Name = @"R/U Other Results Subject Definition",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a further qualifier, defined locally, for use between two systems.  This filter uses codes and field definitions that have specific meaning only to the application and/or site involved.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rUOtherResultsSubjectDefinition.field.FieldRepetitions != null && rUOtherResultsSubjectDefinition.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUOtherResultsSubjectDefinition.Id));
-            rUOtherResultsSubjectDefinition.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(rUOtherResultsSubjectDefinition, fieldData);
-        }
-
-        return rUOtherResultsSubjectDefinition;
-    } 
-}
-
-internal HL7V26Field rUWhichDateTimeQualifier;
-
-public HL7V26Field RUWhichDateTimeQualifier
-{
-    get
-    {
-        if (rUWhichDateTimeQualifier != null)
-        {
-            return rUWhichDateTimeQualifier;
-        }
-
-        rUWhichDateTimeQualifier = new HL7V26Field
-        {
-            field = message[@"URS"][6],
-            Id = @"URS.6",
-            Type = @"Field",
-            Position = @"URS.6",
-            Name = @"R/U Which Date/Time Qualifier",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0156",
-            TableName = @"Which date/time qualifier",
-            Description = @"This field specifies the type of date referred to in URS-2-when data start date/time and URS-3-when data end date/time.  Refer to HL7 Table 0156 - Which date/time qualifier for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rUWhichDateTimeQualifier.field.FieldRepetitions != null && rUWhichDateTimeQualifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUWhichDateTimeQualifier.Id));
-            rUWhichDateTimeQualifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(rUWhichDateTimeQualifier, fieldData);
-        }
-
-        return rUWhichDateTimeQualifier;
-    } 
-}
-
-internal HL7V26Field rUWhichDateTimeStatusQualifier;
-
-public HL7V26Field RUWhichDateTimeStatusQualifier
-{
-    get
-    {
-        if (rUWhichDateTimeStatusQualifier != null)
-        {
-            return rUWhichDateTimeStatusQualifier;
-        }
-
-        rUWhichDateTimeStatusQualifier = new HL7V26Field
-        {
-            field = message[@"URS"][7],
-            Id = @"URS.7",
-            Type = @"Field",
-            Position = @"URS.7",
-            Name = @"R/U Which Date/Time Status Qualifier",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0157",
-            TableName = @"Which date/time status qualifier",
-            Description = @"This field specifies the status type of objects selected in date range defined by URS-2-when data start date/time and URS-3-When data end date/time.  Refer HL7 Table 0157 – Which date/time status qualifier for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rUWhichDateTimeStatusQualifier.field.FieldRepetitions != null && rUWhichDateTimeStatusQualifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUWhichDateTimeStatusQualifier.Id));
-            rUWhichDateTimeStatusQualifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(rUWhichDateTimeStatusQualifier, fieldData);
-        }
-
-        return rUWhichDateTimeStatusQualifier;
-    } 
-}
-
-internal HL7V26Field rUDateTimeSelectionQualifier;
-
-public HL7V26Field RUDateTimeSelectionQualifier
-{
-    get
-    {
-        if (rUDateTimeSelectionQualifier != null)
-        {
-            return rUDateTimeSelectionQualifier;
-        }
-
-        rUDateTimeSelectionQualifier = new HL7V26Field
-        {
-            field = message[@"URS"][8],
-            Id = @"URS.8",
-            Type = @"Field",
-            Position = @"URS.8",
-            Name = @"R/U Date/Time Selection Qualifier",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0158",
-            TableName = @"Date/time selection qualifier",
-            Description = @"This field allows the specification of certain types of values within the date/time range.  Refer to HL7 Table 0158 - Date/time selection qualifier for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rUDateTimeSelectionQualifier.field.FieldRepetitions != null && rUDateTimeSelectionQualifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUDateTimeSelectionQualifier.Id));
-            rUDateTimeSelectionQualifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(rUDateTimeSelectionQualifier, fieldData);
-        }
-
-        return rUDateTimeSelectionQualifier;
-    } 
-}
-
-internal HL7V26Field rUQuantityTimingQualifier;
-
-public HL7V26Field RUQuantityTimingQualifier
-{
-    get
-    {
-        if (rUQuantityTimingQualifier != null)
-        {
-            return rUQuantityTimingQualifier;
-        }
-
-        rUQuantityTimingQualifier = new HL7V26Field
+        _rUQuantityTimingQualifier = new HL7V26Field
         {
             field = message[@"URS"][9],
-            Id = @"URS.9",
-            Type = @"Field",
-            Position = @"URS.9",
-            Name = @"R/U Quantity/Timing Qualifier",
-            Length = 60,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"TQ",
-            DataTypeName = @"Timing Quantity",
-            TableId = null,
-            TableName = null,
-            Description = @"This field allows an interval definition to be used for specifying multiple responses to a query. With the addition of this filter, new query specifications should no longer use URS-2-R/U when data start date/time and URS-3-R/U when data end date/time in future implementations.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (rUQuantityTimingQualifier.field.FieldRepetitions != null && rUQuantityTimingQualifier.field.FieldRepetitions.Count > 0)
+        if (_rUQuantityTimingQualifier.field.FieldRepetitions != null && _rUQuantityTimingQualifier.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUQuantityTimingQualifier.Id));
-            rUQuantityTimingQualifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(rUQuantityTimingQualifier, fieldData);
+            _rUQuantityTimingQualifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_rUQuantityTimingQualifier, fieldData);
         }
 
-        return rUQuantityTimingQualifier;
+        return _rUQuantityTimingQualifier;
     } 
 }
     }

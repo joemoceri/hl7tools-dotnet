@@ -31,28 +31,40 @@ The following is an example of how the OVR segment might be used in a dispense m
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentOVR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _businessRuleOverrideType;
+
+public HL7V251Field BusinessRuleOverrideType
+{
+    get
+    {
+        if (_businessRuleOverrideType != null)
+        {
+            return _businessRuleOverrideType;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"OVR.1",
+            Type = @"Field",
+            Position = @"OVR.1",
+            Name = @"Business Rule Override Type",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0518",
+            TableName = @"Override type",
+            Description = @"Identifies what type of business rule override is being performed. Refer to User-defined Table 0518 - Override Type for suggested values. Given that an application provides end users with the ability to override business rules, there must be a way to communicate what business rule is being overridden.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"OVR.1",
-                            Type = @"Field",
-                            Position = @"OVR.1",
-                            Name = @"Business Rule Override Type",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0518",
-                            TableName = @"Override type",
-                            Description = @"Identifies what type of business rule override is being performed. Refer to User-defined Table 0518 - Override Type for suggested values. Given that an application provides end users with the ability to override business rules, there must be a way to communicate what business rule is being overridden.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OVR.1.1",
                             Type = @"Component",
@@ -212,25 +224,55 @@ The following is an example of how the OVR segment might be used in a dispense m
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _businessRuleOverrideType = new HL7V251Field
+        {
+            field = message[@"OVR"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_businessRuleOverrideType.field.FieldRepetitions != null && _businessRuleOverrideType.field.FieldRepetitions.Count > 0)
+        {
+            _businessRuleOverrideType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_businessRuleOverrideType, fieldData);
+        }
+
+        return _businessRuleOverrideType;
+    } 
+}
+
+internal HL7V251Field _businessRuleOverrideCode;
+
+public HL7V251Field BusinessRuleOverrideCode
+{
+    get
+    {
+        if (_businessRuleOverrideCode != null)
+        {
+            return _businessRuleOverrideCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"OVR.2",
+            Type = @"Field",
+            Position = @"OVR.2",
+            Name = @"Business Rule Override Code",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0521",
+            TableName = @"Override code",
+            Description = @"Indicates the reason for the business rule override. Refer to User-Defined Table 0521 - Override Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OVR.2",
-                            Type = @"Field",
-                            Position = @"OVR.2",
-                            Name = @"Business Rule Override Code",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0521",
-                            TableName = @"Override code",
-                            Description = @"Indicates the reason for the business rule override. Refer to User-Defined Table 0521 - Override Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OVR.2.1",
                             Type = @"Component",
@@ -390,43 +432,100 @@ The following is an example of how the OVR segment might be used in a dispense m
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _businessRuleOverrideCode = new HL7V251Field
+        {
+            field = message[@"OVR"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_businessRuleOverrideCode.field.FieldRepetitions != null && _businessRuleOverrideCode.field.FieldRepetitions.Count > 0)
+        {
+            _businessRuleOverrideCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_businessRuleOverrideCode, fieldData);
+        }
+
+        return _businessRuleOverrideCode;
+    } 
+}
+
+internal HL7V251Field _overrideComments;
+
+public HL7V251Field OverrideComments
+{
+    get
+    {
+        if (_overrideComments != null)
+        {
+            return _overrideComments;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"OVR.3",
+            Type = @"Field",
+            Position = @"OVR.3",
+            Name = @"Override Comments",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Additional descriptive comments detailing the circumstances of the override.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _overrideComments = new HL7V251Field
+        {
+            field = message[@"OVR"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_overrideComments.field.FieldRepetitions != null && _overrideComments.field.FieldRepetitions.Count > 0)
+        {
+            _overrideComments.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_overrideComments, fieldData);
+        }
+
+        return _overrideComments;
+    } 
+}
+
+internal HL7V251Field _overrideEnteredBy;
+
+public HL7V251Field OverrideEnteredBy
+{
+    get
+    {
+        if (_overrideEnteredBy != null)
+        {
+            return _overrideEnteredBy;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"OVR.4",
+            Type = @"Field",
+            Position = @"OVR.4",
+            Name = @"Override Entered By",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"Identifies the user entering the override in the system.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OVR.3",
-                            Type = @"Field",
-                            Position = @"OVR.3",
-                            Name = @"Override Comments",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Additional descriptive comments detailing the circumstances of the override.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OVR.4",
-                            Type = @"Field",
-                            Position = @"OVR.4",
-                            Name = @"Override Entered By",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identifies the user entering the override in the system.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OVR.4.1",
                             Type = @"Component",
@@ -1642,25 +1741,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _overrideEnteredBy = new HL7V251Field
+        {
+            field = message[@"OVR"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_overrideEnteredBy.field.FieldRepetitions != null && _overrideEnteredBy.field.FieldRepetitions.Count > 0)
+        {
+            _overrideEnteredBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_overrideEnteredBy, fieldData);
+        }
+
+        return _overrideEnteredBy;
+    } 
+}
+
+internal HL7V251Field _overrideAuthorizedBy;
+
+public HL7V251Field OverrideAuthorizedBy
+{
+    get
+    {
+        if (_overrideAuthorizedBy != null)
+        {
+            return _overrideAuthorizedBy;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"OVR.5",
+            Type = @"Field",
+            Position = @"OVR.5",
+            Name = @"Override Authorized By",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"Identifies the health services provider who accepts professional responsibility for overriding the business rule. This field should be left empty if the recording and responsible health care provider is the same as who entered the override.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OVR.5",
-                            Type = @"Field",
-                            Position = @"OVR.5",
-                            Name = @"Override Authorized By",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identifies the health services provider who accepts professional responsibility for overriding the business rule. This field should be left empty if the recording and responsible health care provider is the same as who entered the override.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OVR.5.1",
                             Type = @"Component",
@@ -2876,219 +3005,23 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentOVR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field businessRuleOverrideType;
-
-public HL7V251Field BusinessRuleOverrideType
-{
-    get
-    {
-        if (businessRuleOverrideType != null)
-        {
-            return businessRuleOverrideType;
-        }
-
-        businessRuleOverrideType = new HL7V251Field
-        {
-            field = message[@"OVR"][1],
-            Id = @"OVR.1",
-            Type = @"Field",
-            Position = @"OVR.1",
-            Name = @"Business Rule Override Type",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0518",
-            TableName = @"Override type",
-            Description = @"Identifies what type of business rule override is being performed. Refer to User-defined Table 0518 - Override Type for suggested values. Given that an application provides end users with the ability to override business rules, there must be a way to communicate what business rule is being overridden.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (businessRuleOverrideType.field.FieldRepetitions != null && businessRuleOverrideType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(businessRuleOverrideType.Id));
-            businessRuleOverrideType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(businessRuleOverrideType, fieldData);
-        }
-
-        return businessRuleOverrideType;
-    } 
-}
-
-internal HL7V251Field businessRuleOverrideCode;
-
-public HL7V251Field BusinessRuleOverrideCode
-{
-    get
-    {
-        if (businessRuleOverrideCode != null)
-        {
-            return businessRuleOverrideCode;
-        }
-
-        businessRuleOverrideCode = new HL7V251Field
-        {
-            field = message[@"OVR"][2],
-            Id = @"OVR.2",
-            Type = @"Field",
-            Position = @"OVR.2",
-            Name = @"Business Rule Override Code",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0521",
-            TableName = @"Override code",
-            Description = @"Indicates the reason for the business rule override. Refer to User-Defined Table 0521 - Override Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (businessRuleOverrideCode.field.FieldRepetitions != null && businessRuleOverrideCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(businessRuleOverrideCode.Id));
-            businessRuleOverrideCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(businessRuleOverrideCode, fieldData);
-        }
-
-        return businessRuleOverrideCode;
-    } 
-}
-
-internal HL7V251Field overrideComments;
-
-public HL7V251Field OverrideComments
-{
-    get
-    {
-        if (overrideComments != null)
-        {
-            return overrideComments;
-        }
-
-        overrideComments = new HL7V251Field
-        {
-            field = message[@"OVR"][3],
-            Id = @"OVR.3",
-            Type = @"Field",
-            Position = @"OVR.3",
-            Name = @"Override Comments",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Additional descriptive comments detailing the circumstances of the override.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (overrideComments.field.FieldRepetitions != null && overrideComments.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(overrideComments.Id));
-            overrideComments.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(overrideComments, fieldData);
-        }
-
-        return overrideComments;
-    } 
-}
-
-internal HL7V251Field overrideEnteredBy;
-
-public HL7V251Field OverrideEnteredBy
-{
-    get
-    {
-        if (overrideEnteredBy != null)
-        {
-            return overrideEnteredBy;
-        }
-
-        overrideEnteredBy = new HL7V251Field
-        {
-            field = message[@"OVR"][4],
-            Id = @"OVR.4",
-            Type = @"Field",
-            Position = @"OVR.4",
-            Name = @"Override Entered By",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"Identifies the user entering the override in the system.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (overrideEnteredBy.field.FieldRepetitions != null && overrideEnteredBy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(overrideEnteredBy.Id));
-            overrideEnteredBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(overrideEnteredBy, fieldData);
-        }
-
-        return overrideEnteredBy;
-    } 
-}
-
-internal HL7V251Field overrideAuthorizedBy;
-
-public HL7V251Field OverrideAuthorizedBy
-{
-    get
-    {
-        if (overrideAuthorizedBy != null)
-        {
-            return overrideAuthorizedBy;
-        }
-
-        overrideAuthorizedBy = new HL7V251Field
+        _overrideAuthorizedBy = new HL7V251Field
         {
             field = message[@"OVR"][5],
-            Id = @"OVR.5",
-            Type = @"Field",
-            Position = @"OVR.5",
-            Name = @"Override Authorized By",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"Identifies the health services provider who accepts professional responsibility for overriding the business rule. This field should be left empty if the recording and responsible health care provider is the same as who entered the override.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (overrideAuthorizedBy.field.FieldRepetitions != null && overrideAuthorizedBy.field.FieldRepetitions.Count > 0)
+        if (_overrideAuthorizedBy.field.FieldRepetitions != null && _overrideAuthorizedBy.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(overrideAuthorizedBy.Id));
-            overrideAuthorizedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(overrideAuthorizedBy, fieldData);
+            _overrideAuthorizedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_overrideAuthorizedBy, fieldData);
         }
 
-        return overrideAuthorizedBy;
+        return _overrideAuthorizedBy;
     } 
 }
     }

@@ -25,394 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"PID.1",
-                            Type = @"Field",
-                            Position = @"PID.1",
-                            Name = @"Set Id - Patient Id",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Set Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.2",
-                            Type = @"Field",
-                            Position = @"PID.2",
-                            Name = @"Patient Id External (external Id)",
-                            Length = 16,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CK",
-                            DataTypeName = @"Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.3",
-                            Type = @"Field",
-                            Position = @"PID.3",
-                            Name = @"Patient Id Internal (internal Id)",
-                            Length = 16,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CK",
-                            DataTypeName = @"Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.4",
-                            Type = @"Field",
-                            Position = @"PID.4",
-                            Name = @"Alternate Patient Id",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.5",
-                            Type = @"Field",
-                            Position = @"PID.5",
-                            Name = @"Patient Name",
-                            Length = 48,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"PN",
-                            DataTypeName = @"Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.6",
-                            Type = @"Field",
-                            Position = @"PID.6",
-                            Name = @"Mother's Maiden Name",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.7",
-                            Type = @"Field",
-                            Position = @"PID.7",
-                            Name = @"Date Of Birth",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.8",
-                            Type = @"Field",
-                            Position = @"PID.8",
-                            Name = @"Sex",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0001",
-                            TableName = @"SEX",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.9",
-                            Type = @"Field",
-                            Position = @"PID.9",
-                            Name = @"Patient Alias",
-                            Length = 48,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"PN",
-                            DataTypeName = @"Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.10",
-                            Type = @"Field",
-                            Position = @"PID.10",
-                            Name = @"Ethnic Group",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0005",
-                            TableName = @"ETHNIC GROUP",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.11",
-                            Type = @"Field",
-                            Position = @"PID.11",
-                            Name = @"Patient Address",
-                            Length = 106,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"AD",
-                            DataTypeName = @"Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.12",
-                            Type = @"Field",
-                            Position = @"PID.12",
-                            Name = @"County Code",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.13",
-                            Type = @"Field",
-                            Position = @"PID.13",
-                            Name = @"Phone Number - Home",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"3",
-                            DataType = @"TN",
-                            DataTypeName = @"Telephone Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.14",
-                            Type = @"Field",
-                            Position = @"PID.14",
-                            Name = @"Phone Number - Business",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"3",
-                            DataType = @"TN",
-                            DataTypeName = @"Telephone Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.15",
-                            Type = @"Field",
-                            Position = @"PID.15",
-                            Name = @"Language - Patient",
-                            Length = 25,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.16",
-                            Type = @"Field",
-                            Position = @"PID.16",
-                            Name = @"Marital Status",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0002",
-                            TableName = @"MARITAL STATUS",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.17",
-                            Type = @"Field",
-                            Position = @"PID.17",
-                            Name = @"Religion",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0006",
-                            TableName = @"RELIGION",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.18",
-                            Type = @"Field",
-                            Position = @"PID.18",
-                            Name = @"Patient Account Number",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CK",
-                            DataTypeName = @"Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.19",
-                            Type = @"Field",
-                            Position = @"PID.19",
-                            Name = @"Ssn Number - Patient",
-                            Length = 16,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.20",
-                            Type = @"Field",
-                            Position = @"PID.20",
-                            Name = @"Driver's Lic Num - Patient",
-                            Length = 25,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM",
-                            DataTypeName = @"",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentPID(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field setIdPatientId;
+        internal HL7V21Field _setIdPatientId;
 
 public HL7V21Field SetIdPatientId
 {
     get
     {
-        if (setIdPatientId != null)
+        if (_setIdPatientId != null)
         {
-            return setIdPatientId;
+            return _setIdPatientId;
         }
 
-        setIdPatientId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][1],
             Id = @"PID.1",
             Type = @"Field",
             Position = @"PID.1",
@@ -426,34 +56,38 @@ public HL7V21Field SetIdPatientId
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _setIdPatientId = new HL7V21Field
+        {
+            field = message[@"PID"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (setIdPatientId.field.FieldRepetitions != null && setIdPatientId.field.FieldRepetitions.Count > 0)
+        if (_setIdPatientId.field.FieldRepetitions != null && _setIdPatientId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdPatientId.Id));
-            setIdPatientId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(setIdPatientId, fieldData);
+            _setIdPatientId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_setIdPatientId, fieldData);
         }
 
-        return setIdPatientId;
+        return _setIdPatientId;
     } 
 }
 
-internal HL7V21Field patientIdExternalexternalId;
+internal HL7V21Field _patientIdExternalexternalId;
 
 public HL7V21Field PatientIdExternalexternalId
 {
     get
     {
-        if (patientIdExternalexternalId != null)
+        if (_patientIdExternalexternalId != null)
         {
-            return patientIdExternalexternalId;
+            return _patientIdExternalexternalId;
         }
 
-        patientIdExternalexternalId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][2],
             Id = @"PID.2",
             Type = @"Field",
             Position = @"PID.2",
@@ -467,34 +101,38 @@ public HL7V21Field PatientIdExternalexternalId
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _patientIdExternalexternalId = new HL7V21Field
+        {
+            field = message[@"PID"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientIdExternalexternalId.field.FieldRepetitions != null && patientIdExternalexternalId.field.FieldRepetitions.Count > 0)
+        if (_patientIdExternalexternalId.field.FieldRepetitions != null && _patientIdExternalexternalId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientIdExternalexternalId.Id));
-            patientIdExternalexternalId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(patientIdExternalexternalId, fieldData);
+            _patientIdExternalexternalId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_patientIdExternalexternalId, fieldData);
         }
 
-        return patientIdExternalexternalId;
+        return _patientIdExternalexternalId;
     } 
 }
 
-internal HL7V21Field patientIdInternalinternalId;
+internal HL7V21Field _patientIdInternalinternalId;
 
 public HL7V21Field PatientIdInternalinternalId
 {
     get
     {
-        if (patientIdInternalinternalId != null)
+        if (_patientIdInternalinternalId != null)
         {
-            return patientIdInternalinternalId;
+            return _patientIdInternalinternalId;
         }
 
-        patientIdInternalinternalId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][3],
             Id = @"PID.3",
             Type = @"Field",
             Position = @"PID.3",
@@ -508,34 +146,38 @@ public HL7V21Field PatientIdInternalinternalId
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _patientIdInternalinternalId = new HL7V21Field
+        {
+            field = message[@"PID"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientIdInternalinternalId.field.FieldRepetitions != null && patientIdInternalinternalId.field.FieldRepetitions.Count > 0)
+        if (_patientIdInternalinternalId.field.FieldRepetitions != null && _patientIdInternalinternalId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientIdInternalinternalId.Id));
-            patientIdInternalinternalId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(patientIdInternalinternalId, fieldData);
+            _patientIdInternalinternalId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_patientIdInternalinternalId, fieldData);
         }
 
-        return patientIdInternalinternalId;
+        return _patientIdInternalinternalId;
     } 
 }
 
-internal HL7V21Field alternatePatientId;
+internal HL7V21Field _alternatePatientId;
 
 public HL7V21Field AlternatePatientId
 {
     get
     {
-        if (alternatePatientId != null)
+        if (_alternatePatientId != null)
         {
-            return alternatePatientId;
+            return _alternatePatientId;
         }
 
-        alternatePatientId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][4],
             Id = @"PID.4",
             Type = @"Field",
             Position = @"PID.4",
@@ -549,34 +191,38 @@ public HL7V21Field AlternatePatientId
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _alternatePatientId = new HL7V21Field
+        {
+            field = message[@"PID"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (alternatePatientId.field.FieldRepetitions != null && alternatePatientId.field.FieldRepetitions.Count > 0)
+        if (_alternatePatientId.field.FieldRepetitions != null && _alternatePatientId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(alternatePatientId.Id));
-            alternatePatientId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(alternatePatientId, fieldData);
+            _alternatePatientId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_alternatePatientId, fieldData);
         }
 
-        return alternatePatientId;
+        return _alternatePatientId;
     } 
 }
 
-internal HL7V21Field patientName;
+internal HL7V21Field _patientName;
 
 public HL7V21Field PatientName
 {
     get
     {
-        if (patientName != null)
+        if (_patientName != null)
         {
-            return patientName;
+            return _patientName;
         }
 
-        patientName = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][5],
             Id = @"PID.5",
             Type = @"Field",
             Position = @"PID.5",
@@ -590,34 +236,38 @@ public HL7V21Field PatientName
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _patientName = new HL7V21Field
+        {
+            field = message[@"PID"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientName.field.FieldRepetitions != null && patientName.field.FieldRepetitions.Count > 0)
+        if (_patientName.field.FieldRepetitions != null && _patientName.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientName.Id));
-            patientName.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(patientName, fieldData);
+            _patientName.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_patientName, fieldData);
         }
 
-        return patientName;
+        return _patientName;
     } 
 }
 
-internal HL7V21Field mothersMaidenName;
+internal HL7V21Field _mothersMaidenName;
 
 public HL7V21Field MothersMaidenName
 {
     get
     {
-        if (mothersMaidenName != null)
+        if (_mothersMaidenName != null)
         {
-            return mothersMaidenName;
+            return _mothersMaidenName;
         }
 
-        mothersMaidenName = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][6],
             Id = @"PID.6",
             Type = @"Field",
             Position = @"PID.6",
@@ -631,34 +281,38 @@ public HL7V21Field MothersMaidenName
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _mothersMaidenName = new HL7V21Field
+        {
+            field = message[@"PID"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (mothersMaidenName.field.FieldRepetitions != null && mothersMaidenName.field.FieldRepetitions.Count > 0)
+        if (_mothersMaidenName.field.FieldRepetitions != null && _mothersMaidenName.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mothersMaidenName.Id));
-            mothersMaidenName.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(mothersMaidenName, fieldData);
+            _mothersMaidenName.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_mothersMaidenName, fieldData);
         }
 
-        return mothersMaidenName;
+        return _mothersMaidenName;
     } 
 }
 
-internal HL7V21Field dateOfBirth;
+internal HL7V21Field _dateOfBirth;
 
 public HL7V21Field DateOfBirth
 {
     get
     {
-        if (dateOfBirth != null)
+        if (_dateOfBirth != null)
         {
-            return dateOfBirth;
+            return _dateOfBirth;
         }
 
-        dateOfBirth = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][7],
             Id = @"PID.7",
             Type = @"Field",
             Position = @"PID.7",
@@ -672,34 +326,38 @@ public HL7V21Field DateOfBirth
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _dateOfBirth = new HL7V21Field
+        {
+            field = message[@"PID"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dateOfBirth.field.FieldRepetitions != null && dateOfBirth.field.FieldRepetitions.Count > 0)
+        if (_dateOfBirth.field.FieldRepetitions != null && _dateOfBirth.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateOfBirth.Id));
-            dateOfBirth.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(dateOfBirth, fieldData);
+            _dateOfBirth.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_dateOfBirth, fieldData);
         }
 
-        return dateOfBirth;
+        return _dateOfBirth;
     } 
 }
 
-internal HL7V21Field sex;
+internal HL7V21Field _sex;
 
 public HL7V21Field Sex
 {
     get
     {
-        if (sex != null)
+        if (_sex != null)
         {
-            return sex;
+            return _sex;
         }
 
-        sex = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][8],
             Id = @"PID.8",
             Type = @"Field",
             Position = @"PID.8",
@@ -713,34 +371,38 @@ public HL7V21Field Sex
             TableName = @"SEX",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _sex = new HL7V21Field
+        {
+            field = message[@"PID"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (sex.field.FieldRepetitions != null && sex.field.FieldRepetitions.Count > 0)
+        if (_sex.field.FieldRepetitions != null && _sex.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sex.Id));
-            sex.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(sex, fieldData);
+            _sex.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_sex, fieldData);
         }
 
-        return sex;
+        return _sex;
     } 
 }
 
-internal HL7V21Field patientAlias;
+internal HL7V21Field _patientAlias;
 
 public HL7V21Field PatientAlias
 {
     get
     {
-        if (patientAlias != null)
+        if (_patientAlias != null)
         {
-            return patientAlias;
+            return _patientAlias;
         }
 
-        patientAlias = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][9],
             Id = @"PID.9",
             Type = @"Field",
             Position = @"PID.9",
@@ -754,34 +416,38 @@ public HL7V21Field PatientAlias
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _patientAlias = new HL7V21Field
+        {
+            field = message[@"PID"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientAlias.field.FieldRepetitions != null && patientAlias.field.FieldRepetitions.Count > 0)
+        if (_patientAlias.field.FieldRepetitions != null && _patientAlias.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientAlias.Id));
-            patientAlias.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(patientAlias, fieldData);
+            _patientAlias.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_patientAlias, fieldData);
         }
 
-        return patientAlias;
+        return _patientAlias;
     } 
 }
 
-internal HL7V21Field ethnicGroup;
+internal HL7V21Field _ethnicGroup;
 
 public HL7V21Field EthnicGroup
 {
     get
     {
-        if (ethnicGroup != null)
+        if (_ethnicGroup != null)
         {
-            return ethnicGroup;
+            return _ethnicGroup;
         }
 
-        ethnicGroup = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][10],
             Id = @"PID.10",
             Type = @"Field",
             Position = @"PID.10",
@@ -795,34 +461,38 @@ public HL7V21Field EthnicGroup
             TableName = @"ETHNIC GROUP",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _ethnicGroup = new HL7V21Field
+        {
+            field = message[@"PID"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (ethnicGroup.field.FieldRepetitions != null && ethnicGroup.field.FieldRepetitions.Count > 0)
+        if (_ethnicGroup.field.FieldRepetitions != null && _ethnicGroup.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ethnicGroup.Id));
-            ethnicGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(ethnicGroup, fieldData);
+            _ethnicGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_ethnicGroup, fieldData);
         }
 
-        return ethnicGroup;
+        return _ethnicGroup;
     } 
 }
 
-internal HL7V21Field patientAddress;
+internal HL7V21Field _patientAddress;
 
 public HL7V21Field PatientAddress
 {
     get
     {
-        if (patientAddress != null)
+        if (_patientAddress != null)
         {
-            return patientAddress;
+            return _patientAddress;
         }
 
-        patientAddress = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][11],
             Id = @"PID.11",
             Type = @"Field",
             Position = @"PID.11",
@@ -836,34 +506,38 @@ public HL7V21Field PatientAddress
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _patientAddress = new HL7V21Field
+        {
+            field = message[@"PID"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientAddress.field.FieldRepetitions != null && patientAddress.field.FieldRepetitions.Count > 0)
+        if (_patientAddress.field.FieldRepetitions != null && _patientAddress.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientAddress.Id));
-            patientAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(patientAddress, fieldData);
+            _patientAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_patientAddress, fieldData);
         }
 
-        return patientAddress;
+        return _patientAddress;
     } 
 }
 
-internal HL7V21Field countyCode;
+internal HL7V21Field _countyCode;
 
 public HL7V21Field CountyCode
 {
     get
     {
-        if (countyCode != null)
+        if (_countyCode != null)
         {
-            return countyCode;
+            return _countyCode;
         }
 
-        countyCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][12],
             Id = @"PID.12",
             Type = @"Field",
             Position = @"PID.12",
@@ -877,34 +551,38 @@ public HL7V21Field CountyCode
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _countyCode = new HL7V21Field
+        {
+            field = message[@"PID"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (countyCode.field.FieldRepetitions != null && countyCode.field.FieldRepetitions.Count > 0)
+        if (_countyCode.field.FieldRepetitions != null && _countyCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(countyCode.Id));
-            countyCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(countyCode, fieldData);
+            _countyCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_countyCode, fieldData);
         }
 
-        return countyCode;
+        return _countyCode;
     } 
 }
 
-internal HL7V21Field phoneNumberHome;
+internal HL7V21Field _phoneNumberHome;
 
 public HL7V21Field PhoneNumberHome
 {
     get
     {
-        if (phoneNumberHome != null)
+        if (_phoneNumberHome != null)
         {
-            return phoneNumberHome;
+            return _phoneNumberHome;
         }
 
-        phoneNumberHome = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][13],
             Id = @"PID.13",
             Type = @"Field",
             Position = @"PID.13",
@@ -918,34 +596,38 @@ public HL7V21Field PhoneNumberHome
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _phoneNumberHome = new HL7V21Field
+        {
+            field = message[@"PID"][13],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (phoneNumberHome.field.FieldRepetitions != null && phoneNumberHome.field.FieldRepetitions.Count > 0)
+        if (_phoneNumberHome.field.FieldRepetitions != null && _phoneNumberHome.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phoneNumberHome.Id));
-            phoneNumberHome.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(phoneNumberHome, fieldData);
+            _phoneNumberHome.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_phoneNumberHome, fieldData);
         }
 
-        return phoneNumberHome;
+        return _phoneNumberHome;
     } 
 }
 
-internal HL7V21Field phoneNumberBusiness;
+internal HL7V21Field _phoneNumberBusiness;
 
 public HL7V21Field PhoneNumberBusiness
 {
     get
     {
-        if (phoneNumberBusiness != null)
+        if (_phoneNumberBusiness != null)
         {
-            return phoneNumberBusiness;
+            return _phoneNumberBusiness;
         }
 
-        phoneNumberBusiness = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][14],
             Id = @"PID.14",
             Type = @"Field",
             Position = @"PID.14",
@@ -959,34 +641,38 @@ public HL7V21Field PhoneNumberBusiness
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _phoneNumberBusiness = new HL7V21Field
+        {
+            field = message[@"PID"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (phoneNumberBusiness.field.FieldRepetitions != null && phoneNumberBusiness.field.FieldRepetitions.Count > 0)
+        if (_phoneNumberBusiness.field.FieldRepetitions != null && _phoneNumberBusiness.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phoneNumberBusiness.Id));
-            phoneNumberBusiness.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(phoneNumberBusiness, fieldData);
+            _phoneNumberBusiness.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_phoneNumberBusiness, fieldData);
         }
 
-        return phoneNumberBusiness;
+        return _phoneNumberBusiness;
     } 
 }
 
-internal HL7V21Field languagePatient;
+internal HL7V21Field _languagePatient;
 
 public HL7V21Field LanguagePatient
 {
     get
     {
-        if (languagePatient != null)
+        if (_languagePatient != null)
         {
-            return languagePatient;
+            return _languagePatient;
         }
 
-        languagePatient = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][15],
             Id = @"PID.15",
             Type = @"Field",
             Position = @"PID.15",
@@ -1000,34 +686,38 @@ public HL7V21Field LanguagePatient
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _languagePatient = new HL7V21Field
+        {
+            field = message[@"PID"][15],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (languagePatient.field.FieldRepetitions != null && languagePatient.field.FieldRepetitions.Count > 0)
+        if (_languagePatient.field.FieldRepetitions != null && _languagePatient.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(languagePatient.Id));
-            languagePatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(languagePatient, fieldData);
+            _languagePatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_languagePatient, fieldData);
         }
 
-        return languagePatient;
+        return _languagePatient;
     } 
 }
 
-internal HL7V21Field maritalStatus;
+internal HL7V21Field _maritalStatus;
 
 public HL7V21Field MaritalStatus
 {
     get
     {
-        if (maritalStatus != null)
+        if (_maritalStatus != null)
         {
-            return maritalStatus;
+            return _maritalStatus;
         }
 
-        maritalStatus = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][16],
             Id = @"PID.16",
             Type = @"Field",
             Position = @"PID.16",
@@ -1041,34 +731,38 @@ public HL7V21Field MaritalStatus
             TableName = @"MARITAL STATUS",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _maritalStatus = new HL7V21Field
+        {
+            field = message[@"PID"][16],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (maritalStatus.field.FieldRepetitions != null && maritalStatus.field.FieldRepetitions.Count > 0)
+        if (_maritalStatus.field.FieldRepetitions != null && _maritalStatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maritalStatus.Id));
-            maritalStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(maritalStatus, fieldData);
+            _maritalStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_maritalStatus, fieldData);
         }
 
-        return maritalStatus;
+        return _maritalStatus;
     } 
 }
 
-internal HL7V21Field religion;
+internal HL7V21Field _religion;
 
 public HL7V21Field Religion
 {
     get
     {
-        if (religion != null)
+        if (_religion != null)
         {
-            return religion;
+            return _religion;
         }
 
-        religion = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][17],
             Id = @"PID.17",
             Type = @"Field",
             Position = @"PID.17",
@@ -1082,34 +776,38 @@ public HL7V21Field Religion
             TableName = @"RELIGION",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _religion = new HL7V21Field
+        {
+            field = message[@"PID"][17],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (religion.field.FieldRepetitions != null && religion.field.FieldRepetitions.Count > 0)
+        if (_religion.field.FieldRepetitions != null && _religion.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(religion.Id));
-            religion.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(religion, fieldData);
+            _religion.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_religion, fieldData);
         }
 
-        return religion;
+        return _religion;
     } 
 }
 
-internal HL7V21Field patientAccountNumber;
+internal HL7V21Field _patientAccountNumber;
 
 public HL7V21Field PatientAccountNumber
 {
     get
     {
-        if (patientAccountNumber != null)
+        if (_patientAccountNumber != null)
         {
-            return patientAccountNumber;
+            return _patientAccountNumber;
         }
 
-        patientAccountNumber = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][18],
             Id = @"PID.18",
             Type = @"Field",
             Position = @"PID.18",
@@ -1123,34 +821,38 @@ public HL7V21Field PatientAccountNumber
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _patientAccountNumber = new HL7V21Field
+        {
+            field = message[@"PID"][18],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientAccountNumber.field.FieldRepetitions != null && patientAccountNumber.field.FieldRepetitions.Count > 0)
+        if (_patientAccountNumber.field.FieldRepetitions != null && _patientAccountNumber.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientAccountNumber.Id));
-            patientAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(patientAccountNumber, fieldData);
+            _patientAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_patientAccountNumber, fieldData);
         }
 
-        return patientAccountNumber;
+        return _patientAccountNumber;
     } 
 }
 
-internal HL7V21Field ssnNumberPatient;
+internal HL7V21Field _ssnNumberPatient;
 
 public HL7V21Field SsnNumberPatient
 {
     get
     {
-        if (ssnNumberPatient != null)
+        if (_ssnNumberPatient != null)
         {
-            return ssnNumberPatient;
+            return _ssnNumberPatient;
         }
 
-        ssnNumberPatient = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][19],
             Id = @"PID.19",
             Type = @"Field",
             Position = @"PID.19",
@@ -1164,34 +866,38 @@ public HL7V21Field SsnNumberPatient
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _ssnNumberPatient = new HL7V21Field
+        {
+            field = message[@"PID"][19],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (ssnNumberPatient.field.FieldRepetitions != null && ssnNumberPatient.field.FieldRepetitions.Count > 0)
+        if (_ssnNumberPatient.field.FieldRepetitions != null && _ssnNumberPatient.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ssnNumberPatient.Id));
-            ssnNumberPatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(ssnNumberPatient, fieldData);
+            _ssnNumberPatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_ssnNumberPatient, fieldData);
         }
 
-        return ssnNumberPatient;
+        return _ssnNumberPatient;
     } 
 }
 
-internal HL7V21Field driversLicNumPatient;
+internal HL7V21Field _driversLicNumPatient;
 
 public HL7V21Field DriversLicNumPatient
 {
     get
     {
-        if (driversLicNumPatient != null)
+        if (_driversLicNumPatient != null)
         {
-            return driversLicNumPatient;
+            return _driversLicNumPatient;
         }
 
-        driversLicNumPatient = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"PID"][20],
             Id = @"PID.20",
             Type = @"Field",
             Position = @"PID.20",
@@ -1205,17 +911,22 @@ public HL7V21Field DriversLicNumPatient
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _driversLicNumPatient = new HL7V21Field
+        {
+            field = message[@"PID"][20],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (driversLicNumPatient.field.FieldRepetitions != null && driversLicNumPatient.field.FieldRepetitions.Count > 0)
+        if (_driversLicNumPatient.field.FieldRepetitions != null && _driversLicNumPatient.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(driversLicNumPatient.Id));
-            driversLicNumPatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(driversLicNumPatient, fieldData);
+            _driversLicNumPatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_driversLicNumPatient, fieldData);
         }
 
-        return driversLicNumPatient;
+        return _driversLicNumPatient;
     } 
 }
     }

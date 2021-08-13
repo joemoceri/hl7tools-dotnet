@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentORG(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _setIDORG;
+
+public HL7V26Field SetIDORG
+{
+    get
+    {
+        if (_setIDORG != null)
+        {
+            return _setIDORG;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ORG.1",
+            Type = @"Field",
+            Position = @"ORG.1",
+            Name = @"Set ID – ORG",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDORG = new HL7V26Field
+        {
+            field = message[@"ORG"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDORG.field.FieldRepetitions != null && _setIDORG.field.FieldRepetitions.Count > 0)
+        {
+            _setIDORG.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_setIDORG, fieldData);
+        }
+
+        return _setIDORG;
+    } 
+}
+
+internal HL7V26Field _organizationUnitCode;
+
+public HL7V26Field OrganizationUnitCode
+{
+    get
+    {
+        if (_organizationUnitCode != null)
+        {
+            return _organizationUnitCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ORG.2",
+            Type = @"Field",
+            Position = @"ORG.2",
+            Name = @"Organization Unit Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0405",
+            TableName = @"Organization Unit",
+            Description = @"This field contains the hierarchical components of the organization unit, as defined by the institution. Refer to User-defined Table 0405 - Organization unit for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ORG.1",
-                            Type = @"Field",
-                            Position = @"ORG.1",
-                            Name = @"Set ID – ORG",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORG.2",
-                            Type = @"Field",
-                            Position = @"ORG.2",
-                            Name = @"Organization Unit Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0405",
-                            TableName = @"Organization Unit",
-                            Description = @"This field contains the hierarchical components of the organization unit, as defined by the institution. Refer to User-defined Table 0405 - Organization unit for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ORG.2.1",
                             Type = @"Component",
@@ -228,25 +267,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _organizationUnitCode = new HL7V26Field
+        {
+            field = message[@"ORG"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_organizationUnitCode.field.FieldRepetitions != null && _organizationUnitCode.field.FieldRepetitions.Count > 0)
+        {
+            _organizationUnitCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_organizationUnitCode, fieldData);
+        }
+
+        return _organizationUnitCode;
+    } 
+}
+
+internal HL7V26Field _organizationUnitTypeCode;
+
+public HL7V26Field OrganizationUnitTypeCode
+{
+    get
+    {
+        if (_organizationUnitTypeCode != null)
+        {
+            return _organizationUnitTypeCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ORG.3",
+            Type = @"Field",
+            Position = @"ORG.3",
+            Name = @"Organization Unit Type Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0474",
+            TableName = @"Organization Unit Type",
+            Description = @"This field contains a code indicating the classification of the organization unit. HL7 suggests using values in User-defined Table 0474 - Organization unit type .",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORG.3",
-                            Type = @"Field",
-                            Position = @"ORG.3",
-                            Name = @"Organization Unit Type Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0474",
-                            TableName = @"Organization Unit Type",
-                            Description = @"This field contains a code indicating the classification of the organization unit. HL7 suggests using values in User-defined Table 0474 - Organization unit type .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORG.3.1",
                             Type = @"Component",
@@ -406,43 +475,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _organizationUnitTypeCode = new HL7V26Field
+        {
+            field = message[@"ORG"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_organizationUnitTypeCode.field.FieldRepetitions != null && _organizationUnitTypeCode.field.FieldRepetitions.Count > 0)
+        {
+            _organizationUnitTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_organizationUnitTypeCode, fieldData);
+        }
+
+        return _organizationUnitTypeCode;
+    } 
+}
+
+internal HL7V26Field _primaryOrgUnitIndicator;
+
+public HL7V26Field PrimaryOrgUnitIndicator
+{
+    get
+    {
+        if (_primaryOrgUnitIndicator != null)
+        {
+            return _primaryOrgUnitIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ORG.4",
+            Type = @"Field",
+            Position = @"ORG.4",
+            Name = @"Primary Org Unit Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field contains an indicator for whether this organization unit is the primary organization unit for this practitioner. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _primaryOrgUnitIndicator = new HL7V26Field
+        {
+            field = message[@"ORG"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryOrgUnitIndicator.field.FieldRepetitions != null && _primaryOrgUnitIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _primaryOrgUnitIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_primaryOrgUnitIndicator, fieldData);
+        }
+
+        return _primaryOrgUnitIndicator;
+    } 
+}
+
+internal HL7V26Field _practitionerOrgUnitIdentifier;
+
+public HL7V26Field PractitionerOrgUnitIdentifier
+{
+    get
+    {
+        if (_practitionerOrgUnitIdentifier != null)
+        {
+            return _practitionerOrgUnitIdentifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ORG.5",
+            Type = @"Field",
+            Position = @"ORG.5",
+            Name = @"Practitioner Org Unit Identifier",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID with Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an identification code used by the institution to identify this person at this specific organization unit. If the person is identified with the same code at all organization units, then this data should be coded in STF-2-staff ID codes .",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORG.4",
-                            Type = @"Field",
-                            Position = @"ORG.4",
-                            Name = @"Primary Org Unit Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field contains an indicator for whether this organization unit is the primary organization unit for this practitioner. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORG.5",
-                            Type = @"Field",
-                            Position = @"ORG.5",
-                            Name = @"Practitioner Org Unit Identifier",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID with Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an identification code used by the institution to identify this person at this specific organization unit. If the person is identified with the same code at all organization units, then this data should be coded in STF-2-staff ID codes .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORG.5.1",
                             Type = @"Component",
@@ -1044,25 +1170,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _practitionerOrgUnitIdentifier = new HL7V26Field
+        {
+            field = message[@"ORG"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_practitionerOrgUnitIdentifier.field.FieldRepetitions != null && _practitionerOrgUnitIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _practitionerOrgUnitIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_practitionerOrgUnitIdentifier, fieldData);
+        }
+
+        return _practitionerOrgUnitIdentifier;
+    } 
+}
+
+internal HL7V26Field _healthCareProviderTypeCode;
+
+public HL7V26Field HealthCareProviderTypeCode
+{
+    get
+    {
+        if (_healthCareProviderTypeCode != null)
+        {
+            return _healthCareProviderTypeCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ORG.6",
+            Type = @"Field",
+            Position = @"ORG.6",
+            Name = @"Health Care Provider Type Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0452",
+            TableName = @"Health care provider type code",
+            Description = @"This field contains the major grouping of the service or occupation of the practitioner at a specific organization unit, for example, Behavioral Health & Social Service. HL7 suggests using values derived from the ANSI ASC X12 Health Care Provider Taxonomy, Level 1 - Type.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORG.6",
-                            Type = @"Field",
-                            Position = @"ORG.6",
-                            Name = @"Health Care Provider Type Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0452",
-                            TableName = @"Health care provider type code",
-                            Description = @"This field contains the major grouping of the service or occupation of the practitioner at a specific organization unit, for example, Behavioral Health & Social Service. HL7 suggests using values derived from the ANSI ASC X12 Health Care Provider Taxonomy, Level 1 - Type.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORG.6.1",
                             Type = @"Component",
@@ -1222,25 +1378,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _healthCareProviderTypeCode = new HL7V26Field
+        {
+            field = message[@"ORG"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_healthCareProviderTypeCode.field.FieldRepetitions != null && _healthCareProviderTypeCode.field.FieldRepetitions.Count > 0)
+        {
+            _healthCareProviderTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_healthCareProviderTypeCode, fieldData);
+        }
+
+        return _healthCareProviderTypeCode;
+    } 
+}
+
+internal HL7V26Field _healthCareProviderClassificationCode;
+
+public HL7V26Field HealthCareProviderClassificationCode
+{
+    get
+    {
+        if (_healthCareProviderClassificationCode != null)
+        {
+            return _healthCareProviderClassificationCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ORG.7",
+            Type = @"Field",
+            Position = @"ORG.7",
+            Name = @"Health Care Provider Classification Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0453",
+            TableName = @"Health care provider classification",
+            Description = @"This field contains the more specific service or occupation within the health care provider type of the practitioner at a specific organization unit, for example, Counselor. HL7 suggests using values derived from the ANSI ASC X12 Health Care Provider Taxonomy, Level 2 - Classification.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORG.7",
-                            Type = @"Field",
-                            Position = @"ORG.7",
-                            Name = @"Health Care Provider Classification Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0453",
-                            TableName = @"Health care provider classification",
-                            Description = @"This field contains the more specific service or occupation within the health care provider type of the practitioner at a specific organization unit, for example, Counselor. HL7 suggests using values derived from the ANSI ASC X12 Health Care Provider Taxonomy, Level 2 - Classification.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORG.7.1",
                             Type = @"Component",
@@ -1400,25 +1586,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _healthCareProviderClassificationCode = new HL7V26Field
+        {
+            field = message[@"ORG"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_healthCareProviderClassificationCode.field.FieldRepetitions != null && _healthCareProviderClassificationCode.field.FieldRepetitions.Count > 0)
+        {
+            _healthCareProviderClassificationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_healthCareProviderClassificationCode, fieldData);
+        }
+
+        return _healthCareProviderClassificationCode;
+    } 
+}
+
+internal HL7V26Field _healthCareProviderAreaofSpecializationCode;
+
+public HL7V26Field HealthCareProviderAreaofSpecializationCode
+{
+    get
+    {
+        if (_healthCareProviderAreaofSpecializationCode != null)
+        {
+            return _healthCareProviderAreaofSpecializationCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ORG.8",
+            Type = @"Field",
+            Position = @"ORG.8",
+            Name = @"Health Care Provider Area of Specialization Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0454",
+            TableName = @"Health care provider area of specialization",
+            Description = @"This field contains the segment of the population that a health care provider chooses to service, a specific medical service, a specialization in treating a specific disease, or any other descriptive characteristic about the provider's practice relating to the services rendered of the practitioner at a specific organization unit, for example, Mental Health. HL7 suggests using values derived from the ANSI ASC X12 Health Care Provider Taxonomy, Level 3 - specialization.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORG.8",
-                            Type = @"Field",
-                            Position = @"ORG.8",
-                            Name = @"Health Care Provider Area of Specialization Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0454",
-                            TableName = @"Health care provider area of specialization",
-                            Description = @"This field contains the segment of the population that a health care provider chooses to service, a specific medical service, a specialization in treating a specific disease, or any other descriptive characteristic about the provider's practice relating to the services rendered of the practitioner at a specific organization unit, for example, Mental Health. HL7 suggests using values derived from the ANSI ASC X12 Health Care Provider Taxonomy, Level 3 - specialization.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORG.8.1",
                             Type = @"Component",
@@ -1578,25 +1794,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _healthCareProviderAreaofSpecializationCode = new HL7V26Field
+        {
+            field = message[@"ORG"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_healthCareProviderAreaofSpecializationCode.field.FieldRepetitions != null && _healthCareProviderAreaofSpecializationCode.field.FieldRepetitions.Count > 0)
+        {
+            _healthCareProviderAreaofSpecializationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_healthCareProviderAreaofSpecializationCode, fieldData);
+        }
+
+        return _healthCareProviderAreaofSpecializationCode;
+    } 
+}
+
+internal HL7V26Field _effectiveDateRange;
+
+public HL7V26Field EffectiveDateRange
+{
+    get
+    {
+        if (_effectiveDateRange != null)
+        {
+            return _effectiveDateRange;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ORG.9",
+            Type = @"Field",
+            Position = @"ORG.9",
+            Name = @"Effective Date Range",
+            Length = 52,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DR",
+            DataTypeName = @"Date/Time Range",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date range in which the practitioner started and ended working at the specific organization unit in the specific practicing specialty category.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORG.9",
-                            Type = @"Field",
-                            Position = @"ORG.9",
-                            Name = @"Effective Date Range",
-                            Length = 52,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DR",
-                            DataTypeName = @"Date/Time Range",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date range in which the practitioner started and ended working at the specific organization unit in the specific practicing specialty category.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORG.9.1",
                             Type = @"Component",
@@ -1630,25 +1876,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _effectiveDateRange = new HL7V26Field
+        {
+            field = message[@"ORG"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_effectiveDateRange.field.FieldRepetitions != null && _effectiveDateRange.field.FieldRepetitions.Count > 0)
+        {
+            _effectiveDateRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_effectiveDateRange, fieldData);
+        }
+
+        return _effectiveDateRange;
+    } 
+}
+
+internal HL7V26Field _employmentStatusCode;
+
+public HL7V26Field EmploymentStatusCode
+{
+    get
+    {
+        if (_employmentStatusCode != null)
+        {
+            return _employmentStatusCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ORG.10",
+            Type = @"Field",
+            Position = @"ORG.10",
+            Name = @"Employment Status Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0066",
+            TableName = @"Employment Status",
+            Description = @"This field contains a code indicating the working relationship of the practitioner at this organization unit. It may be different than the work status specified in STF-20. Refer to User-defined Table 0066 - Employment status for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORG.10",
-                            Type = @"Field",
-                            Position = @"ORG.10",
-                            Name = @"Employment Status Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0066",
-                            TableName = @"Employment Status",
-                            Description = @"This field contains a code indicating the working relationship of the practitioner at this organization unit. It may be different than the work status specified in STF-20. Refer to User-defined Table 0066 - Employment status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORG.10.1",
                             Type = @"Component",
@@ -1808,477 +2084,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORG.11",
-                            Type = @"Field",
-                            Position = @"ORG.11",
-                            Name = @"Board Approval Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field contains an indicator for whether this practice specialty requires board approval. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORG.12",
-                            Type = @"Field",
-                            Position = @"ORG.12",
-                            Name = @"Primary Care Physician Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field contains an indicator for whether this practice specialty may act as a primary care physician (PCP). Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentORG(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field setIDORG;
-
-public HL7V26Field SetIDORG
-{
-    get
-    {
-        if (setIDORG != null)
-        {
-            return setIDORG;
-        }
-
-        setIDORG = new HL7V26Field
-        {
-            field = message[@"ORG"][1],
-            Id = @"ORG.1",
-            Type = @"Field",
-            Position = @"ORG.1",
-            Name = @"Set ID – ORG",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDORG.field.FieldRepetitions != null && setIDORG.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDORG.Id));
-            setIDORG.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(setIDORG, fieldData);
-        }
-
-        return setIDORG;
-    } 
-}
-
-internal HL7V26Field organizationUnitCode;
-
-public HL7V26Field OrganizationUnitCode
-{
-    get
-    {
-        if (organizationUnitCode != null)
-        {
-            return organizationUnitCode;
-        }
-
-        organizationUnitCode = new HL7V26Field
-        {
-            field = message[@"ORG"][2],
-            Id = @"ORG.2",
-            Type = @"Field",
-            Position = @"ORG.2",
-            Name = @"Organization Unit Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0405",
-            TableName = @"Organization Unit",
-            Description = @"This field contains the hierarchical components of the organization unit, as defined by the institution. Refer to User-defined Table 0405 - Organization unit for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (organizationUnitCode.field.FieldRepetitions != null && organizationUnitCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(organizationUnitCode.Id));
-            organizationUnitCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(organizationUnitCode, fieldData);
-        }
-
-        return organizationUnitCode;
-    } 
-}
-
-internal HL7V26Field organizationUnitTypeCode;
-
-public HL7V26Field OrganizationUnitTypeCode
-{
-    get
-    {
-        if (organizationUnitTypeCode != null)
-        {
-            return organizationUnitTypeCode;
-        }
-
-        organizationUnitTypeCode = new HL7V26Field
-        {
-            field = message[@"ORG"][3],
-            Id = @"ORG.3",
-            Type = @"Field",
-            Position = @"ORG.3",
-            Name = @"Organization Unit Type Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0474",
-            TableName = @"Organization Unit Type",
-            Description = @"This field contains a code indicating the classification of the organization unit. HL7 suggests using values in User-defined Table 0474 - Organization unit type .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (organizationUnitTypeCode.field.FieldRepetitions != null && organizationUnitTypeCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(organizationUnitTypeCode.Id));
-            organizationUnitTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(organizationUnitTypeCode, fieldData);
-        }
-
-        return organizationUnitTypeCode;
-    } 
-}
-
-internal HL7V26Field primaryOrgUnitIndicator;
-
-public HL7V26Field PrimaryOrgUnitIndicator
-{
-    get
-    {
-        if (primaryOrgUnitIndicator != null)
-        {
-            return primaryOrgUnitIndicator;
-        }
-
-        primaryOrgUnitIndicator = new HL7V26Field
-        {
-            field = message[@"ORG"][4],
-            Id = @"ORG.4",
-            Type = @"Field",
-            Position = @"ORG.4",
-            Name = @"Primary Org Unit Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field contains an indicator for whether this organization unit is the primary organization unit for this practitioner. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryOrgUnitIndicator.field.FieldRepetitions != null && primaryOrgUnitIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryOrgUnitIndicator.Id));
-            primaryOrgUnitIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(primaryOrgUnitIndicator, fieldData);
-        }
-
-        return primaryOrgUnitIndicator;
-    } 
-}
-
-internal HL7V26Field practitionerOrgUnitIdentifier;
-
-public HL7V26Field PractitionerOrgUnitIdentifier
-{
-    get
-    {
-        if (practitionerOrgUnitIdentifier != null)
-        {
-            return practitionerOrgUnitIdentifier;
-        }
-
-        practitionerOrgUnitIdentifier = new HL7V26Field
-        {
-            field = message[@"ORG"][5],
-            Id = @"ORG.5",
-            Type = @"Field",
-            Position = @"ORG.5",
-            Name = @"Practitioner Org Unit Identifier",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID with Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an identification code used by the institution to identify this person at this specific organization unit. If the person is identified with the same code at all organization units, then this data should be coded in STF-2-staff ID codes .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (practitionerOrgUnitIdentifier.field.FieldRepetitions != null && practitionerOrgUnitIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(practitionerOrgUnitIdentifier.Id));
-            practitionerOrgUnitIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(practitionerOrgUnitIdentifier, fieldData);
-        }
-
-        return practitionerOrgUnitIdentifier;
-    } 
-}
-
-internal HL7V26Field healthCareProviderTypeCode;
-
-public HL7V26Field HealthCareProviderTypeCode
-{
-    get
-    {
-        if (healthCareProviderTypeCode != null)
-        {
-            return healthCareProviderTypeCode;
-        }
-
-        healthCareProviderTypeCode = new HL7V26Field
-        {
-            field = message[@"ORG"][6],
-            Id = @"ORG.6",
-            Type = @"Field",
-            Position = @"ORG.6",
-            Name = @"Health Care Provider Type Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0452",
-            TableName = @"Health care provider type code",
-            Description = @"This field contains the major grouping of the service or occupation of the practitioner at a specific organization unit, for example, Behavioral Health & Social Service. HL7 suggests using values derived from the ANSI ASC X12 Health Care Provider Taxonomy, Level 1 - Type.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (healthCareProviderTypeCode.field.FieldRepetitions != null && healthCareProviderTypeCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(healthCareProviderTypeCode.Id));
-            healthCareProviderTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(healthCareProviderTypeCode, fieldData);
-        }
-
-        return healthCareProviderTypeCode;
-    } 
-}
-
-internal HL7V26Field healthCareProviderClassificationCode;
-
-public HL7V26Field HealthCareProviderClassificationCode
-{
-    get
-    {
-        if (healthCareProviderClassificationCode != null)
-        {
-            return healthCareProviderClassificationCode;
-        }
-
-        healthCareProviderClassificationCode = new HL7V26Field
-        {
-            field = message[@"ORG"][7],
-            Id = @"ORG.7",
-            Type = @"Field",
-            Position = @"ORG.7",
-            Name = @"Health Care Provider Classification Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0453",
-            TableName = @"Health care provider classification",
-            Description = @"This field contains the more specific service or occupation within the health care provider type of the practitioner at a specific organization unit, for example, Counselor. HL7 suggests using values derived from the ANSI ASC X12 Health Care Provider Taxonomy, Level 2 - Classification.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (healthCareProviderClassificationCode.field.FieldRepetitions != null && healthCareProviderClassificationCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(healthCareProviderClassificationCode.Id));
-            healthCareProviderClassificationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(healthCareProviderClassificationCode, fieldData);
-        }
-
-        return healthCareProviderClassificationCode;
-    } 
-}
-
-internal HL7V26Field healthCareProviderAreaofSpecializationCode;
-
-public HL7V26Field HealthCareProviderAreaofSpecializationCode
-{
-    get
-    {
-        if (healthCareProviderAreaofSpecializationCode != null)
-        {
-            return healthCareProviderAreaofSpecializationCode;
-        }
-
-        healthCareProviderAreaofSpecializationCode = new HL7V26Field
-        {
-            field = message[@"ORG"][8],
-            Id = @"ORG.8",
-            Type = @"Field",
-            Position = @"ORG.8",
-            Name = @"Health Care Provider Area of Specialization Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0454",
-            TableName = @"Health care provider area of specialization",
-            Description = @"This field contains the segment of the population that a health care provider chooses to service, a specific medical service, a specialization in treating a specific disease, or any other descriptive characteristic about the provider's practice relating to the services rendered of the practitioner at a specific organization unit, for example, Mental Health. HL7 suggests using values derived from the ANSI ASC X12 Health Care Provider Taxonomy, Level 3 - specialization.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (healthCareProviderAreaofSpecializationCode.field.FieldRepetitions != null && healthCareProviderAreaofSpecializationCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(healthCareProviderAreaofSpecializationCode.Id));
-            healthCareProviderAreaofSpecializationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(healthCareProviderAreaofSpecializationCode, fieldData);
-        }
-
-        return healthCareProviderAreaofSpecializationCode;
-    } 
-}
-
-internal HL7V26Field effectiveDateRange;
-
-public HL7V26Field EffectiveDateRange
-{
-    get
-    {
-        if (effectiveDateRange != null)
-        {
-            return effectiveDateRange;
-        }
-
-        effectiveDateRange = new HL7V26Field
-        {
-            field = message[@"ORG"][9],
-            Id = @"ORG.9",
-            Type = @"Field",
-            Position = @"ORG.9",
-            Name = @"Effective Date Range",
-            Length = 52,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DR",
-            DataTypeName = @"Date/Time Range",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date range in which the practitioner started and ended working at the specific organization unit in the specific practicing specialty category.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (effectiveDateRange.field.FieldRepetitions != null && effectiveDateRange.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(effectiveDateRange.Id));
-            effectiveDateRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(effectiveDateRange, fieldData);
-        }
-
-        return effectiveDateRange;
-    } 
-}
-
-internal HL7V26Field employmentStatusCode;
-
-public HL7V26Field EmploymentStatusCode
-{
-    get
-    {
-        if (employmentStatusCode != null)
-        {
-            return employmentStatusCode;
-        }
-
-        employmentStatusCode = new HL7V26Field
+        _employmentStatusCode = new HL7V26Field
         {
             field = message[@"ORG"][10],
-            Id = @"ORG.10",
-            Type = @"Field",
-            Position = @"ORG.10",
-            Name = @"Employment Status Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0066",
-            TableName = @"Employment Status",
-            Description = @"This field contains a code indicating the working relationship of the practitioner at this organization unit. It may be different than the work status specified in STF-20. Refer to User-defined Table 0066 - Employment status for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (employmentStatusCode.field.FieldRepetitions != null && employmentStatusCode.field.FieldRepetitions.Count > 0)
+        if (_employmentStatusCode.field.FieldRepetitions != null && _employmentStatusCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(employmentStatusCode.Id));
-            employmentStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(employmentStatusCode, fieldData);
+            _employmentStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_employmentStatusCode, fieldData);
         }
 
-        return employmentStatusCode;
+        return _employmentStatusCode;
     } 
 }
 
-internal HL7V26Field boardApprovalIndicator;
+internal HL7V26Field _boardApprovalIndicator;
 
 public HL7V26Field BoardApprovalIndicator
 {
     get
     {
-        if (boardApprovalIndicator != null)
+        if (_boardApprovalIndicator != null)
         {
-            return boardApprovalIndicator;
+            return _boardApprovalIndicator;
         }
 
-        boardApprovalIndicator = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"ORG"][11],
             Id = @"ORG.11",
             Type = @"Field",
             Position = @"ORG.11",
@@ -2292,34 +2130,38 @@ public HL7V26Field BoardApprovalIndicator
             TableName = @"Yes/no indicator",
             Description = @"This field contains an indicator for whether this practice specialty requires board approval. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _boardApprovalIndicator = new HL7V26Field
+        {
+            field = message[@"ORG"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (boardApprovalIndicator.field.FieldRepetitions != null && boardApprovalIndicator.field.FieldRepetitions.Count > 0)
+        if (_boardApprovalIndicator.field.FieldRepetitions != null && _boardApprovalIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(boardApprovalIndicator.Id));
-            boardApprovalIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(boardApprovalIndicator, fieldData);
+            _boardApprovalIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_boardApprovalIndicator, fieldData);
         }
 
-        return boardApprovalIndicator;
+        return _boardApprovalIndicator;
     } 
 }
 
-internal HL7V26Field primaryCarePhysicianIndicator;
+internal HL7V26Field _primaryCarePhysicianIndicator;
 
 public HL7V26Field PrimaryCarePhysicianIndicator
 {
     get
     {
-        if (primaryCarePhysicianIndicator != null)
+        if (_primaryCarePhysicianIndicator != null)
         {
-            return primaryCarePhysicianIndicator;
+            return _primaryCarePhysicianIndicator;
         }
 
-        primaryCarePhysicianIndicator = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"ORG"][12],
             Id = @"ORG.12",
             Type = @"Field",
             Position = @"ORG.12",
@@ -2333,17 +2175,22 @@ public HL7V26Field PrimaryCarePhysicianIndicator
             TableName = @"Yes/no indicator",
             Description = @"This field contains an indicator for whether this practice specialty may act as a primary care physician (PCP). Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _primaryCarePhysicianIndicator = new HL7V26Field
+        {
+            field = message[@"ORG"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (primaryCarePhysicianIndicator.field.FieldRepetitions != null && primaryCarePhysicianIndicator.field.FieldRepetitions.Count > 0)
+        if (_primaryCarePhysicianIndicator.field.FieldRepetitions != null && _primaryCarePhysicianIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryCarePhysicianIndicator.Id));
-            primaryCarePhysicianIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(primaryCarePhysicianIndicator, fieldData);
+            _primaryCarePhysicianIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_primaryCarePhysicianIndicator, fieldData);
         }
 
-        return primaryCarePhysicianIndicator;
+        return _primaryCarePhysicianIndicator;
     } 
 }
     }

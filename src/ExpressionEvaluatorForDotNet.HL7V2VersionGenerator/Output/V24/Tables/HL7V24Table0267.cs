@@ -20,6 +20,7 @@ namespace ExpressionEvaluatorForDotNet
                     {
                         "CH_02",
 "CH_08",
+
                     };
             } 
         }
@@ -72,6 +73,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Wednesday",
                             Comment = null
                         },
+                        
                     };
             } 
         }

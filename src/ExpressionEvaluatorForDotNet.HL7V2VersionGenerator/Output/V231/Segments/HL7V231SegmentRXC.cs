@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V231SegmentRXC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V231Field _rXComponentType;
+
+public HL7V231Field RXComponentType
+{
+    get
+    {
+        if (_rXComponentType != null)
+        {
+            return _rXComponentType;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXC.1",
+            Type = @"Field",
+            Position = @"RXC.1",
+            Name = @"RX Component Type",
+            Length = 1,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0166",
+            TableName = @"RX component type",
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _rXComponentType = new HL7V231Field
+        {
+            field = message[@"RXC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rXComponentType.field.FieldRepetitions != null && _rXComponentType.field.FieldRepetitions.Count > 0)
+        {
+            _rXComponentType.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_rXComponentType, fieldData);
+        }
+
+        return _rXComponentType;
+    } 
+}
+
+internal HL7V231Field _componentCode;
+
+public HL7V231Field ComponentCode
+{
+    get
+    {
+        if (_componentCode != null)
+        {
+            return _componentCode;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXC.2",
+            Type = @"Field",
+            Position = @"RXC.2",
+            Name = @"Component Code",
+            Length = 100,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"RXC.1",
-                            Type = @"Field",
-                            Position = @"RXC.1",
-                            Name = @"RX Component Type",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0166",
-                            TableName = @"RX component type",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXC.2",
-                            Type = @"Field",
-                            Position = @"RXC.2",
-                            Name = @"Component Code",
-                            Length = 100,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXC.2.1",
                             Type = @"Component",
@@ -174,43 +213,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _componentCode = new HL7V231Field
+        {
+            field = message[@"RXC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_componentCode.field.FieldRepetitions != null && _componentCode.field.FieldRepetitions.Count > 0)
+        {
+            _componentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_componentCode, fieldData);
+        }
+
+        return _componentCode;
+    } 
+}
+
+internal HL7V231Field _componentAmount;
+
+public HL7V231Field ComponentAmount
+{
+    get
+    {
+        if (_componentAmount != null)
+        {
+            return _componentAmount;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXC.3",
+            Type = @"Field",
+            Position = @"RXC.3",
+            Name = @"Component Amount",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _componentAmount = new HL7V231Field
+        {
+            field = message[@"RXC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_componentAmount.field.FieldRepetitions != null && _componentAmount.field.FieldRepetitions.Count > 0)
+        {
+            _componentAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_componentAmount, fieldData);
+        }
+
+        return _componentAmount;
+    } 
+}
+
+internal HL7V231Field _componentUnits;
+
+public HL7V231Field ComponentUnits
+{
+    get
+    {
+        if (_componentUnits != null)
+        {
+            return _componentUnits;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXC.4",
+            Type = @"Field",
+            Position = @"RXC.4",
+            Name = @"Component Units",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXC.3",
-                            Type = @"Field",
-                            Position = @"RXC.3",
-                            Name = @"Component Amount",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXC.4",
-                            Type = @"Field",
-                            Position = @"RXC.4",
-                            Name = @"Component Units",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXC.4.1",
                             Type = @"Component",
@@ -316,43 +412,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _componentUnits = new HL7V231Field
+        {
+            field = message[@"RXC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_componentUnits.field.FieldRepetitions != null && _componentUnits.field.FieldRepetitions.Count > 0)
+        {
+            _componentUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_componentUnits, fieldData);
+        }
+
+        return _componentUnits;
+    } 
+}
+
+internal HL7V231Field _componentStrength;
+
+public HL7V231Field ComponentStrength
+{
+    get
+    {
+        if (_componentStrength != null)
+        {
+            return _componentStrength;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXC.5",
+            Type = @"Field",
+            Position = @"RXC.5",
+            Name = @"Component Strength",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _componentStrength = new HL7V231Field
+        {
+            field = message[@"RXC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_componentStrength.field.FieldRepetitions != null && _componentStrength.field.FieldRepetitions.Count > 0)
+        {
+            _componentStrength.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_componentStrength, fieldData);
+        }
+
+        return _componentStrength;
+    } 
+}
+
+internal HL7V231Field _componentStrengthUnits;
+
+public HL7V231Field ComponentStrengthUnits
+{
+    get
+    {
+        if (_componentStrengthUnits != null)
+        {
+            return _componentStrengthUnits;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXC.6",
+            Type = @"Field",
+            Position = @"RXC.6",
+            Name = @"Component Strength Units",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXC.5",
-                            Type = @"Field",
-                            Position = @"RXC.5",
-                            Name = @"Component Strength",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXC.6",
-                            Type = @"Field",
-                            Position = @"RXC.6",
-                            Name = @"Component Strength Units",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXC.6.1",
                             Type = @"Component",
@@ -458,260 +611,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V231SegmentRXC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V231Field rXComponentType;
-
-public HL7V231Field RXComponentType
-{
-    get
-    {
-        if (rXComponentType != null)
-        {
-            return rXComponentType;
-        }
-
-        rXComponentType = new HL7V231Field
-        {
-            field = message[@"RXC"][1],
-            Id = @"RXC.1",
-            Type = @"Field",
-            Position = @"RXC.1",
-            Name = @"RX Component Type",
-            Length = 1,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0166",
-            TableName = @"RX component type",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rXComponentType.field.FieldRepetitions != null && rXComponentType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rXComponentType.Id));
-            rXComponentType.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(rXComponentType, fieldData);
-        }
-
-        return rXComponentType;
-    } 
-}
-
-internal HL7V231Field componentCode;
-
-public HL7V231Field ComponentCode
-{
-    get
-    {
-        if (componentCode != null)
-        {
-            return componentCode;
-        }
-
-        componentCode = new HL7V231Field
-        {
-            field = message[@"RXC"][2],
-            Id = @"RXC.2",
-            Type = @"Field",
-            Position = @"RXC.2",
-            Name = @"Component Code",
-            Length = 100,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (componentCode.field.FieldRepetitions != null && componentCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(componentCode.Id));
-            componentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(componentCode, fieldData);
-        }
-
-        return componentCode;
-    } 
-}
-
-internal HL7V231Field componentAmount;
-
-public HL7V231Field ComponentAmount
-{
-    get
-    {
-        if (componentAmount != null)
-        {
-            return componentAmount;
-        }
-
-        componentAmount = new HL7V231Field
-        {
-            field = message[@"RXC"][3],
-            Id = @"RXC.3",
-            Type = @"Field",
-            Position = @"RXC.3",
-            Name = @"Component Amount",
-            Length = 20,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (componentAmount.field.FieldRepetitions != null && componentAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(componentAmount.Id));
-            componentAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(componentAmount, fieldData);
-        }
-
-        return componentAmount;
-    } 
-}
-
-internal HL7V231Field componentUnits;
-
-public HL7V231Field ComponentUnits
-{
-    get
-    {
-        if (componentUnits != null)
-        {
-            return componentUnits;
-        }
-
-        componentUnits = new HL7V231Field
-        {
-            field = message[@"RXC"][4],
-            Id = @"RXC.4",
-            Type = @"Field",
-            Position = @"RXC.4",
-            Name = @"Component Units",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (componentUnits.field.FieldRepetitions != null && componentUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(componentUnits.Id));
-            componentUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(componentUnits, fieldData);
-        }
-
-        return componentUnits;
-    } 
-}
-
-internal HL7V231Field componentStrength;
-
-public HL7V231Field ComponentStrength
-{
-    get
-    {
-        if (componentStrength != null)
-        {
-            return componentStrength;
-        }
-
-        componentStrength = new HL7V231Field
-        {
-            field = message[@"RXC"][5],
-            Id = @"RXC.5",
-            Type = @"Field",
-            Position = @"RXC.5",
-            Name = @"Component Strength",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (componentStrength.field.FieldRepetitions != null && componentStrength.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(componentStrength.Id));
-            componentStrength.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(componentStrength, fieldData);
-        }
-
-        return componentStrength;
-    } 
-}
-
-internal HL7V231Field componentStrengthUnits;
-
-public HL7V231Field ComponentStrengthUnits
-{
-    get
-    {
-        if (componentStrengthUnits != null)
-        {
-            return componentStrengthUnits;
-        }
-
-        componentStrengthUnits = new HL7V231Field
+        _componentStrengthUnits = new HL7V231Field
         {
             field = message[@"RXC"][6],
-            Id = @"RXC.6",
-            Type = @"Field",
-            Position = @"RXC.6",
-            Name = @"Component Strength Units",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (componentStrengthUnits.field.FieldRepetitions != null && componentStrengthUnits.field.FieldRepetitions.Count > 0)
+        if (_componentStrengthUnits.field.FieldRepetitions != null && _componentStrengthUnits.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(componentStrengthUnits.Id));
-            componentStrengthUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(componentStrengthUnits, fieldData);
+            _componentStrengthUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_componentStrengthUnits, fieldData);
         }
 
-        return componentStrengthUnits;
+        return _componentStrengthUnits;
     } 
 }
     }

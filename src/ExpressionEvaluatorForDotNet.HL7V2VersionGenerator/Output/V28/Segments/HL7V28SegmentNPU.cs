@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentNPU(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _bedLocation;
+
+public HL7V28Field BedLocation
+{
+    get
+    {
+        if (_bedLocation != null)
+        {
+            return _bedLocation;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"NPU.1",
+            Type = @"Field",
+            Position = @"NPU.1",
+            Name = @"Bed Location",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the bed location that is a valid bed location.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"NPU.1",
-                            Type = @"Field",
-                            Position = @"NPU.1",
-                            Name = @"Bed Location",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the bed location that is a valid bed location.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NPU.1.1",
                             Type = @"Component",
@@ -722,25 +734,55 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bedLocation = new HL7V28Field
+        {
+            field = message[@"NPU"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bedLocation.field.FieldRepetitions != null && _bedLocation.field.FieldRepetitions.Count > 0)
+        {
+            _bedLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_bedLocation, fieldData);
+        }
+
+        return _bedLocation;
+    } 
+}
+
+internal HL7V28Field _bedStatus;
+
+public HL7V28Field BedStatus
+{
+    get
+    {
+        if (_bedStatus != null)
+        {
+            return _bedStatus;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"NPU.2",
+            Type = @"Field",
+            Position = @"NPU.2",
+            Name = @"Bed Status",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0116",
+            TableName = @"Bed Status",
+            Description = @"This field contains the bed status. Refer to User-defined Table 0116 - Bed Status for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NPU.2",
-                            Type = @"Field",
-                            Position = @"NPU.2",
-                            Name = @"Bed Status",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0116",
-                            TableName = @"Bed Status",
-                            Description = @"This field contains the bed status. Refer to User-defined Table 0116 - Bed Status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NPU.2.1",
                             Type = @"Component",
@@ -1168,96 +1210,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentNPU(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field bedLocation;
-
-public HL7V28Field BedLocation
-{
-    get
-    {
-        if (bedLocation != null)
-        {
-            return bedLocation;
-        }
-
-        bedLocation = new HL7V28Field
-        {
-            field = message[@"NPU"][1],
-            Id = @"NPU.1",
-            Type = @"Field",
-            Position = @"NPU.1",
-            Name = @"Bed Location",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the bed location that is a valid bed location.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bedLocation.field.FieldRepetitions != null && bedLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bedLocation.Id));
-            bedLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(bedLocation, fieldData);
-        }
-
-        return bedLocation;
-    } 
-}
-
-internal HL7V28Field bedStatus;
-
-public HL7V28Field BedStatus
-{
-    get
-    {
-        if (bedStatus != null)
-        {
-            return bedStatus;
-        }
-
-        bedStatus = new HL7V28Field
+        _bedStatus = new HL7V28Field
         {
             field = message[@"NPU"][2],
-            Id = @"NPU.2",
-            Type = @"Field",
-            Position = @"NPU.2",
-            Name = @"Bed Status",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0116",
-            TableName = @"Bed Status",
-            Description = @"This field contains the bed status. Refer to User-defined Table 0116 - Bed Status for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (bedStatus.field.FieldRepetitions != null && bedStatus.field.FieldRepetitions.Count > 0)
+        if (_bedStatus.field.FieldRepetitions != null && _bedStatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bedStatus.Id));
-            bedStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(bedStatus, fieldData);
+            _bedStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_bedStatus, fieldData);
         }
 
-        return bedStatus;
+        return _bedStatus;
     } 
 }
     }

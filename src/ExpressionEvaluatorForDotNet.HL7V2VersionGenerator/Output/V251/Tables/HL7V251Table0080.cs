@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_07",
+
                     };
             } 
         }
@@ -71,6 +72,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Strain",
                             Comment = null
                         },
+                        
                     };
             } 
         }

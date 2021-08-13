@@ -25,160 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"URD.1",
-                            Type = @"Field",
-                            Position = @"URD.1",
-                            Name = @"R/U Date/Time",
-                            Length = 19,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URD.2",
-                            Type = @"Field",
-                            Position = @"URD.2",
-                            Name = @"Report Priority",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0109",
-                            TableName = @"REPORT PRIORITY",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URD.3",
-                            Type = @"Field",
-                            Position = @"URD.3",
-                            Name = @"R/U Who Subject Definition",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URD.4",
-                            Type = @"Field",
-                            Position = @"URD.4",
-                            Name = @"R/U What Subject Definition",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0048",
-                            TableName = @"WHAT SUBJECT FILTER",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URD.5",
-                            Type = @"Field",
-                            Position = @"URD.5",
-                            Name = @"R/U What Department Code",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URD.6",
-                            Type = @"Field",
-                            Position = @"URD.6",
-                            Name = @"R/U Display/Print Locations",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URD.7",
-                            Type = @"Field",
-                            Position = @"URD.7",
-                            Name = @"R/U Results Level",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0108",
-                            TableName = @"QUERY RESULTS LEVEL",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentURD(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field rUDateTime;
+        internal HL7V21Field _rUDateTime;
 
 public HL7V21Field RUDateTime
 {
     get
     {
-        if (rUDateTime != null)
+        if (_rUDateTime != null)
         {
-            return rUDateTime;
+            return _rUDateTime;
         }
 
-        rUDateTime = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"URD"][1],
             Id = @"URD.1",
             Type = @"Field",
             Position = @"URD.1",
@@ -192,34 +56,38 @@ public HL7V21Field RUDateTime
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _rUDateTime = new HL7V21Field
+        {
+            field = message[@"URD"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (rUDateTime.field.FieldRepetitions != null && rUDateTime.field.FieldRepetitions.Count > 0)
+        if (_rUDateTime.field.FieldRepetitions != null && _rUDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUDateTime.Id));
-            rUDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(rUDateTime, fieldData);
+            _rUDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_rUDateTime, fieldData);
         }
 
-        return rUDateTime;
+        return _rUDateTime;
     } 
 }
 
-internal HL7V21Field reportPriority;
+internal HL7V21Field _reportPriority;
 
 public HL7V21Field ReportPriority
 {
     get
     {
-        if (reportPriority != null)
+        if (_reportPriority != null)
         {
-            return reportPriority;
+            return _reportPriority;
         }
 
-        reportPriority = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"URD"][2],
             Id = @"URD.2",
             Type = @"Field",
             Position = @"URD.2",
@@ -233,34 +101,38 @@ public HL7V21Field ReportPriority
             TableName = @"REPORT PRIORITY",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _reportPriority = new HL7V21Field
+        {
+            field = message[@"URD"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (reportPriority.field.FieldRepetitions != null && reportPriority.field.FieldRepetitions.Count > 0)
+        if (_reportPriority.field.FieldRepetitions != null && _reportPriority.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reportPriority.Id));
-            reportPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(reportPriority, fieldData);
+            _reportPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_reportPriority, fieldData);
         }
 
-        return reportPriority;
+        return _reportPriority;
     } 
 }
 
-internal HL7V21Field rUWhoSubjectDefinition;
+internal HL7V21Field _rUWhoSubjectDefinition;
 
 public HL7V21Field RUWhoSubjectDefinition
 {
     get
     {
-        if (rUWhoSubjectDefinition != null)
+        if (_rUWhoSubjectDefinition != null)
         {
-            return rUWhoSubjectDefinition;
+            return _rUWhoSubjectDefinition;
         }
 
-        rUWhoSubjectDefinition = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"URD"][3],
             Id = @"URD.3",
             Type = @"Field",
             Position = @"URD.3",
@@ -274,34 +146,38 @@ public HL7V21Field RUWhoSubjectDefinition
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _rUWhoSubjectDefinition = new HL7V21Field
+        {
+            field = message[@"URD"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (rUWhoSubjectDefinition.field.FieldRepetitions != null && rUWhoSubjectDefinition.field.FieldRepetitions.Count > 0)
+        if (_rUWhoSubjectDefinition.field.FieldRepetitions != null && _rUWhoSubjectDefinition.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUWhoSubjectDefinition.Id));
-            rUWhoSubjectDefinition.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(rUWhoSubjectDefinition, fieldData);
+            _rUWhoSubjectDefinition.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_rUWhoSubjectDefinition, fieldData);
         }
 
-        return rUWhoSubjectDefinition;
+        return _rUWhoSubjectDefinition;
     } 
 }
 
-internal HL7V21Field rUWhatSubjectDefinition;
+internal HL7V21Field _rUWhatSubjectDefinition;
 
 public HL7V21Field RUWhatSubjectDefinition
 {
     get
     {
-        if (rUWhatSubjectDefinition != null)
+        if (_rUWhatSubjectDefinition != null)
         {
-            return rUWhatSubjectDefinition;
+            return _rUWhatSubjectDefinition;
         }
 
-        rUWhatSubjectDefinition = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"URD"][4],
             Id = @"URD.4",
             Type = @"Field",
             Position = @"URD.4",
@@ -315,34 +191,38 @@ public HL7V21Field RUWhatSubjectDefinition
             TableName = @"WHAT SUBJECT FILTER",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _rUWhatSubjectDefinition = new HL7V21Field
+        {
+            field = message[@"URD"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (rUWhatSubjectDefinition.field.FieldRepetitions != null && rUWhatSubjectDefinition.field.FieldRepetitions.Count > 0)
+        if (_rUWhatSubjectDefinition.field.FieldRepetitions != null && _rUWhatSubjectDefinition.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUWhatSubjectDefinition.Id));
-            rUWhatSubjectDefinition.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(rUWhatSubjectDefinition, fieldData);
+            _rUWhatSubjectDefinition.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_rUWhatSubjectDefinition, fieldData);
         }
 
-        return rUWhatSubjectDefinition;
+        return _rUWhatSubjectDefinition;
     } 
 }
 
-internal HL7V21Field rUWhatDepartmentCode;
+internal HL7V21Field _rUWhatDepartmentCode;
 
 public HL7V21Field RUWhatDepartmentCode
 {
     get
     {
-        if (rUWhatDepartmentCode != null)
+        if (_rUWhatDepartmentCode != null)
         {
-            return rUWhatDepartmentCode;
+            return _rUWhatDepartmentCode;
         }
 
-        rUWhatDepartmentCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"URD"][5],
             Id = @"URD.5",
             Type = @"Field",
             Position = @"URD.5",
@@ -356,34 +236,38 @@ public HL7V21Field RUWhatDepartmentCode
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _rUWhatDepartmentCode = new HL7V21Field
+        {
+            field = message[@"URD"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (rUWhatDepartmentCode.field.FieldRepetitions != null && rUWhatDepartmentCode.field.FieldRepetitions.Count > 0)
+        if (_rUWhatDepartmentCode.field.FieldRepetitions != null && _rUWhatDepartmentCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUWhatDepartmentCode.Id));
-            rUWhatDepartmentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(rUWhatDepartmentCode, fieldData);
+            _rUWhatDepartmentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_rUWhatDepartmentCode, fieldData);
         }
 
-        return rUWhatDepartmentCode;
+        return _rUWhatDepartmentCode;
     } 
 }
 
-internal HL7V21Field rUDisplayPrintLocations;
+internal HL7V21Field _rUDisplayPrintLocations;
 
 public HL7V21Field RUDisplayPrintLocations
 {
     get
     {
-        if (rUDisplayPrintLocations != null)
+        if (_rUDisplayPrintLocations != null)
         {
-            return rUDisplayPrintLocations;
+            return _rUDisplayPrintLocations;
         }
 
-        rUDisplayPrintLocations = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"URD"][6],
             Id = @"URD.6",
             Type = @"Field",
             Position = @"URD.6",
@@ -397,34 +281,38 @@ public HL7V21Field RUDisplayPrintLocations
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _rUDisplayPrintLocations = new HL7V21Field
+        {
+            field = message[@"URD"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (rUDisplayPrintLocations.field.FieldRepetitions != null && rUDisplayPrintLocations.field.FieldRepetitions.Count > 0)
+        if (_rUDisplayPrintLocations.field.FieldRepetitions != null && _rUDisplayPrintLocations.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUDisplayPrintLocations.Id));
-            rUDisplayPrintLocations.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(rUDisplayPrintLocations, fieldData);
+            _rUDisplayPrintLocations.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_rUDisplayPrintLocations, fieldData);
         }
 
-        return rUDisplayPrintLocations;
+        return _rUDisplayPrintLocations;
     } 
 }
 
-internal HL7V21Field rUResultsLevel;
+internal HL7V21Field _rUResultsLevel;
 
 public HL7V21Field RUResultsLevel
 {
     get
     {
-        if (rUResultsLevel != null)
+        if (_rUResultsLevel != null)
         {
-            return rUResultsLevel;
+            return _rUResultsLevel;
         }
 
-        rUResultsLevel = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"URD"][7],
             Id = @"URD.7",
             Type = @"Field",
             Position = @"URD.7",
@@ -438,17 +326,22 @@ public HL7V21Field RUResultsLevel
             TableName = @"QUERY RESULTS LEVEL",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _rUResultsLevel = new HL7V21Field
+        {
+            field = message[@"URD"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (rUResultsLevel.field.FieldRepetitions != null && rUResultsLevel.field.FieldRepetitions.Count > 0)
+        if (_rUResultsLevel.field.FieldRepetitions != null && _rUResultsLevel.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUResultsLevel.Id));
-            rUResultsLevel.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(rUResultsLevel, fieldData);
+            _rUResultsLevel.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_rUResultsLevel, fieldData);
         }
 
-        return rUResultsLevel;
+        return _rUResultsLevel;
     } 
 }
     }

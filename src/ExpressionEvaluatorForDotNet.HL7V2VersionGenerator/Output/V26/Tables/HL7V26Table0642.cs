@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_17",
+
                     };
             } 
         }
@@ -47,6 +48,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Override",
                             Comment = @"The quantity recommended is the Order Quantity, less the On Order Quantity.  The Order Amount is the amount to order when the On Hand reaches the Order Point."
                         },
+                        
                     };
             } 
         }

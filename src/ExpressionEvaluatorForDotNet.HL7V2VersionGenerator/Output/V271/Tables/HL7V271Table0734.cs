@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             } 
         }
@@ -89,6 +90,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Invalid field ""same day""",
                             Comment = null
                         },
+                        
                     };
             } 
         }

@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -53,6 +54,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"All values within the range returned in reverse chronological order",
                             Comment = null
                         },
+                        
                     };
             } 
         }

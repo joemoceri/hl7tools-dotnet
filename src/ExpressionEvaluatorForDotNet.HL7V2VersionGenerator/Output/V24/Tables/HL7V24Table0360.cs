@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -269,6 +270,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Trade School Graduate",
                             Comment = null
                         },
+                        
                     };
             } 
         }

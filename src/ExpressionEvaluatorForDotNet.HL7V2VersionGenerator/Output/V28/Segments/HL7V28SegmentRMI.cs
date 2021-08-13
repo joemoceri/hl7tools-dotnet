@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentRMI(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _riskManagementIncidentCode;
+
+public HL7V28Field RiskManagementIncidentCode
+{
+    get
+    {
+        if (_riskManagementIncidentCode != null)
+        {
+            return _riskManagementIncidentCode;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RMI.1",
+            Type = @"Field",
+            Position = @"RMI.1",
+            Name = @"Risk Management Incident Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0427",
+            TableName = @"Risk Management Incident Code",
+            Description = @"A code depicting the incident that occurred during a patient’s stay. Refer to User-defined Table 0427 - Risk Management Incident Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"RMI.1",
-                            Type = @"Field",
-                            Position = @"RMI.1",
-                            Name = @"Risk Management Incident Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0427",
-                            TableName = @"Risk Management Incident Code",
-                            Description = @"A code depicting the incident that occurred during a patient’s stay. Refer to User-defined Table 0427 - Risk Management Incident Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RMI.1.1",
                             Type = @"Component",
@@ -478,43 +490,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _riskManagementIncidentCode = new HL7V28Field
+        {
+            field = message[@"RMI"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_riskManagementIncidentCode.field.FieldRepetitions != null && _riskManagementIncidentCode.field.FieldRepetitions.Count > 0)
+        {
+            _riskManagementIncidentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_riskManagementIncidentCode, fieldData);
+        }
+
+        return _riskManagementIncidentCode;
+    } 
+}
+
+internal HL7V28Field _dateTimeIncident;
+
+public HL7V28Field DateTimeIncident
+{
+    get
+    {
+        if (_dateTimeIncident != null)
+        {
+            return _dateTimeIncident;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RMI.2",
+            Type = @"Field",
+            Position = @"RMI.2",
+            Name = @"Date/Time Incident",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time the Risk Management Incident identified in RMI-1 - Risk Management Incident Code occurred.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dateTimeIncident = new HL7V28Field
+        {
+            field = message[@"RMI"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeIncident.field.FieldRepetitions != null && _dateTimeIncident.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeIncident.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_dateTimeIncident, fieldData);
+        }
+
+        return _dateTimeIncident;
+    } 
+}
+
+internal HL7V28Field _incidentTypeCode;
+
+public HL7V28Field IncidentTypeCode
+{
+    get
+    {
+        if (_incidentTypeCode != null)
+        {
+            return _incidentTypeCode;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RMI.3",
+            Type = @"Field",
+            Position = @"RMI.3",
+            Name = @"Incident Type Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0428",
+            TableName = @"Incident Type Code",
+            Description = @"A code depicting a classification of the incident type. Refer to User-defined Table 0428 - Incident Type Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RMI.2",
-                            Type = @"Field",
-                            Position = @"RMI.2",
-                            Name = @"Date/Time Incident",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time the Risk Management Incident identified in RMI-1 - Risk Management Incident Code occurred.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RMI.3",
-                            Type = @"Field",
-                            Position = @"RMI.3",
-                            Name = @"Incident Type Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0428",
-                            TableName = @"Incident Type Code",
-                            Description = @"A code depicting a classification of the incident type. Refer to User-defined Table 0428 - Incident Type Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RMI.3.1",
                             Type = @"Component",
@@ -942,137 +1011,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentRMI(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field riskManagementIncidentCode;
-
-public HL7V28Field RiskManagementIncidentCode
-{
-    get
-    {
-        if (riskManagementIncidentCode != null)
-        {
-            return riskManagementIncidentCode;
-        }
-
-        riskManagementIncidentCode = new HL7V28Field
-        {
-            field = message[@"RMI"][1],
-            Id = @"RMI.1",
-            Type = @"Field",
-            Position = @"RMI.1",
-            Name = @"Risk Management Incident Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0427",
-            TableName = @"Risk Management Incident Code",
-            Description = @"A code depicting the incident that occurred during a patient’s stay. Refer to User-defined Table 0427 - Risk Management Incident Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (riskManagementIncidentCode.field.FieldRepetitions != null && riskManagementIncidentCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(riskManagementIncidentCode.Id));
-            riskManagementIncidentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(riskManagementIncidentCode, fieldData);
-        }
-
-        return riskManagementIncidentCode;
-    } 
-}
-
-internal HL7V28Field dateTimeIncident;
-
-public HL7V28Field DateTimeIncident
-{
-    get
-    {
-        if (dateTimeIncident != null)
-        {
-            return dateTimeIncident;
-        }
-
-        dateTimeIncident = new HL7V28Field
-        {
-            field = message[@"RMI"][2],
-            Id = @"RMI.2",
-            Type = @"Field",
-            Position = @"RMI.2",
-            Name = @"Date/Time Incident",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time the Risk Management Incident identified in RMI-1 - Risk Management Incident Code occurred.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeIncident.field.FieldRepetitions != null && dateTimeIncident.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeIncident.Id));
-            dateTimeIncident.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(dateTimeIncident, fieldData);
-        }
-
-        return dateTimeIncident;
-    } 
-}
-
-internal HL7V28Field incidentTypeCode;
-
-public HL7V28Field IncidentTypeCode
-{
-    get
-    {
-        if (incidentTypeCode != null)
-        {
-            return incidentTypeCode;
-        }
-
-        incidentTypeCode = new HL7V28Field
+        _incidentTypeCode = new HL7V28Field
         {
             field = message[@"RMI"][3],
-            Id = @"RMI.3",
-            Type = @"Field",
-            Position = @"RMI.3",
-            Name = @"Incident Type Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0428",
-            TableName = @"Incident Type Code",
-            Description = @"A code depicting a classification of the incident type. Refer to User-defined Table 0428 - Incident Type Code for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (incidentTypeCode.field.FieldRepetitions != null && incidentTypeCode.field.FieldRepetitions.Count > 0)
+        if (_incidentTypeCode.field.FieldRepetitions != null && _incidentTypeCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(incidentTypeCode.Id));
-            incidentTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(incidentTypeCode, fieldData);
+            _incidentTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_incidentTypeCode, fieldData);
         }
 
-        return incidentTypeCode;
+        return _incidentTypeCode;
     } 
 }
     }

@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentPES(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _senderOrganizationName;
+
+public HL7V27Field SenderOrganizationName
+{
+    get
+    {
+        if (_senderOrganizationName != null)
+        {
+            return _senderOrganizationName;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PES.1",
+            Type = @"Field",
+            Position = @"PES.1",
+            Name = @"Sender Organization Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the organization sending the message. Coded lists of manufacturers such as that from the World Health Organization database might be used in the component of the coded name to identify the source code type. If sent from an individual, this field may not be sent.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PES.1",
-                            Type = @"Field",
-                            Position = @"PES.1",
-                            Name = @"Sender Organization Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the organization sending the message. Coded lists of manufacturers such as that from the World Health Organization database might be used in the component of the coded name to identify the source code type. If sent from an individual, this field may not be sent.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PES.1.1",
                             Type = @"Component",
@@ -783,25 +795,55 @@ In general this component provides an indication of the representation provided 
 Note: The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _senderOrganizationName = new HL7V27Field
+        {
+            field = message[@"PES"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_senderOrganizationName.field.FieldRepetitions != null && _senderOrganizationName.field.FieldRepetitions.Count > 0)
+        {
+            _senderOrganizationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_senderOrganizationName, fieldData);
+        }
+
+        return _senderOrganizationName;
+    } 
+}
+
+internal HL7V27Field _senderIndividualName;
+
+public HL7V27Field SenderIndividualName
+{
+    get
+    {
+        if (_senderIndividualName != null)
+        {
+            return _senderIndividualName;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PES.2",
+            Type = @"Field",
+            Position = @"PES.2",
+            Name = @"Sender Individual Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the contact individual. If sent by an organization, the individuals in the organization who serve as primary contact points correspondence regarding this event.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PES.2",
-                            Type = @"Field",
-                            Position = @"PES.2",
-                            Name = @"Sender Individual Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the contact individual. If sent by an organization, the individuals in the organization who serve as primary contact points correspondence regarding this event.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PES.2.1",
                             Type = @"Component",
@@ -3200,25 +3242,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _senderIndividualName = new HL7V27Field
+        {
+            field = message[@"PES"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_senderIndividualName.field.FieldRepetitions != null && _senderIndividualName.field.FieldRepetitions.Count > 0)
+        {
+            _senderIndividualName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_senderIndividualName, fieldData);
+        }
+
+        return _senderIndividualName;
+    } 
+}
+
+internal HL7V27Field _senderAddress;
+
+public HL7V27Field SenderAddress
+{
+    get
+    {
+        if (_senderAddress != null)
+        {
+            return _senderAddress;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PES.3",
+            Type = @"Field",
+            Position = @"PES.3",
+            Name = @"Sender Address",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the postal address of the message sender to which correspondence regarding the experience being reported should be directed.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PES.3",
-                            Type = @"Field",
-                            Position = @"PES.3",
-                            Name = @"Sender Address",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the postal address of the message sender to which correspondence regarding the experience being reported should be directed.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PES.3.1",
                             Type = @"Component",
@@ -5484,25 +5556,55 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _senderAddress = new HL7V27Field
+        {
+            field = message[@"PES"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_senderAddress.field.FieldRepetitions != null && _senderAddress.field.FieldRepetitions.Count > 0)
+        {
+            _senderAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_senderAddress, fieldData);
+        }
+
+        return _senderAddress;
+    } 
+}
+
+internal HL7V27Field _senderTelephone;
+
+public HL7V27Field SenderTelephone
+{
+    get
+    {
+        if (_senderTelephone != null)
+        {
+            return _senderTelephone;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PES.4",
+            Type = @"Field",
+            Position = @"PES.4",
+            Name = @"Sender Telephone",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the telephone number of the message sender to which telephone communications regarding the experience being reported should be directed. An electronic mail address can be specified in this field.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PES.4",
-                            Type = @"Field",
-                            Position = @"PES.4",
-                            Name = @"Sender Telephone",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the telephone number of the message sender to which telephone communications regarding the experience being reported should be directed. An electronic mail address can be specified in this field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PES.4.1",
                             Type = @"Component",
@@ -6777,25 +6879,55 @@ If the preference order is unique across all usages for a given type, then it in
 Preference order numbers need not be sequential (i.e., three numbers with the priority orders of 0, 5 and 15 are legitimate).  The preference order numbers must be non-negative.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _senderTelephone = new HL7V27Field
+        {
+            field = message[@"PES"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_senderTelephone.field.FieldRepetitions != null && _senderTelephone.field.FieldRepetitions.Count > 0)
+        {
+            _senderTelephone.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_senderTelephone, fieldData);
+        }
+
+        return _senderTelephone;
+    } 
+}
+
+internal HL7V27Field _senderEventIdentifier;
+
+public HL7V27Field SenderEventIdentifier
+{
+    get
+    {
+        if (_senderEventIdentifier != null)
+        {
+            return _senderEventIdentifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PES.5",
+            Type = @"Field",
+            Position = @"PES.5",
+            Name = @"Sender Event Identifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The first component of this field contains the product manufacturer’s unique alphanumeric identifier for this specific event. This identifier will be used on all subsequent communications regarding this event. For events reported to the FDA, the identifier is: the FDA assigned manufacturer or distributor number; a hyphen; the 4-digit year; a hyphen; and a consecutive 5-digit sequence number for each report filled by the sender that year. For example, the event identifier for the third event reported in 1996 by a manufacturer whose FDA-assigned registration number is 1234567 would be 1234567-1993-3. Organizations without a FDA-assigned registration number should use 0000000 until assigned a number. Reports from other facilities should use the 10-digit HCFA number left padded with zeros in place of the FDA-assigned registration number. The second through fourth components are defined in exactly the same way as the three components of the hierarchic designator (HD) data type (Section 2.8.18, ""HD - hierarchic designator"").",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PES.5",
-                            Type = @"Field",
-                            Position = @"PES.5",
-                            Name = @"Sender Event Identifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The first component of this field contains the product manufacturer’s unique alphanumeric identifier for this specific event. This identifier will be used on all subsequent communications regarding this event. For events reported to the FDA, the identifier is: the FDA assigned manufacturer or distributor number; a hyphen; the 4-digit year; a hyphen; and a consecutive 5-digit sequence number for each report filled by the sender that year. For example, the event identifier for the third event reported in 1996 by a manufacturer whose FDA-assigned registration number is 1234567 would be 1234567-1993-3. Organizations without a FDA-assigned registration number should use 0000000 until assigned a number. Reports from other facilities should use the 10-digit HCFA number left padded with zeros in place of the FDA-assigned registration number. The second through fourth components are defined in exactly the same way as the three components of the hierarchic designator (HD) data type (Section 2.8.18, ""HD - hierarchic designator"").",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PES.5.1",
                             Type = @"Component",
@@ -6873,382 +7005,39 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PES.6",
-                            Type = @"Field",
-                            Position = @"PES.6",
-                            Name = @"Sender Sequence Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains sequentially assigned integer values which distinguish messages which share the same sender event identification element. 0 for initial report, 1 for second, and so on.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PES.7",
-                            Type = @"Field",
-                            Position = @"PES.7",
-                            Name = @"Sender Event Description",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the summary narrative text description of the event that occurred written by the sender, which may include a description of the nature of the event, how the product was involved, any environmental conditions that may have influenced the event, and patient follow-up or required treatment. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative. By representing clinical information in OBX segments rather than in the narrative, these data become much more useful and flexible.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PES.8",
-                            Type = @"Field",
-                            Position = @"PES.8",
-                            Name = @"Sender Comment",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the text commentary regarding the report being made, such as disclaimers, which is not necessarily part of the report.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PES.9",
-                            Type = @"Field",
-                            Position = @"PES.9",
-                            Name = @"Sender Aware Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the date the sender became aware of the event.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PES.10",
-                            Type = @"Field",
-                            Position = @"PES.10",
-                            Name = @"Event Report Date",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date the message was originally sent to the regulatory agency.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PES.11",
-                            Type = @"Field",
-                            Position = @"PES.11",
-                            Name = @"Event Report Timing/Type",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"2",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0234",
-                            TableName = @"Report Timing",
-                            Description = @"This field contains the timing type of report as required by regulatory agency. Refer to HL7 Table 0234 - Report Timing for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PES.12",
-                            Type = @"Field",
-                            Position = @"PES.12",
-                            Name = @"Event Report Source",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0235",
-                            TableName = @"Report Source",
-                            Description = @"This field identifies the source from which the sender learned about the event. Multiple sources may be reported by repeating the element.
-
-If the source of the report is a clinical trial, the CSR and CSP segments can be included to define the study. Refer to HL7 Table 0235 - Report Source for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PES.13",
-                            Type = @"Field",
-                            Position = @"PES.13",
-                            Name = @"Event Reported To",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0236",
-                            TableName = @"Event Reported To",
-                            Description = @"This field indicates all the entities to whom the entity submitting the report has reported the event. Repeat the element if the report was submitted to more than one entity. Refer to HL7 Table 0236 - Event reported to for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentPES(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field senderOrganizationName;
-
-public HL7V27Field SenderOrganizationName
-{
-    get
-    {
-        if (senderOrganizationName != null)
-        {
-            return senderOrganizationName;
-        }
-
-        senderOrganizationName = new HL7V27Field
-        {
-            field = message[@"PES"][1],
-            Id = @"PES.1",
-            Type = @"Field",
-            Position = @"PES.1",
-            Name = @"Sender Organization Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the organization sending the message. Coded lists of manufacturers such as that from the World Health Organization database might be used in the component of the coded name to identify the source code type. If sent from an individual, this field may not be sent.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (senderOrganizationName.field.FieldRepetitions != null && senderOrganizationName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(senderOrganizationName.Id));
-            senderOrganizationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(senderOrganizationName, fieldData);
-        }
-
-        return senderOrganizationName;
-    } 
-}
-
-internal HL7V27Field senderIndividualName;
-
-public HL7V27Field SenderIndividualName
-{
-    get
-    {
-        if (senderIndividualName != null)
-        {
-            return senderIndividualName;
-        }
-
-        senderIndividualName = new HL7V27Field
-        {
-            field = message[@"PES"][2],
-            Id = @"PES.2",
-            Type = @"Field",
-            Position = @"PES.2",
-            Name = @"Sender Individual Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the contact individual. If sent by an organization, the individuals in the organization who serve as primary contact points correspondence regarding this event.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (senderIndividualName.field.FieldRepetitions != null && senderIndividualName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(senderIndividualName.Id));
-            senderIndividualName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(senderIndividualName, fieldData);
-        }
-
-        return senderIndividualName;
-    } 
-}
-
-internal HL7V27Field senderAddress;
-
-public HL7V27Field SenderAddress
-{
-    get
-    {
-        if (senderAddress != null)
-        {
-            return senderAddress;
-        }
-
-        senderAddress = new HL7V27Field
-        {
-            field = message[@"PES"][3],
-            Id = @"PES.3",
-            Type = @"Field",
-            Position = @"PES.3",
-            Name = @"Sender Address",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the postal address of the message sender to which correspondence regarding the experience being reported should be directed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (senderAddress.field.FieldRepetitions != null && senderAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(senderAddress.Id));
-            senderAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(senderAddress, fieldData);
-        }
-
-        return senderAddress;
-    } 
-}
-
-internal HL7V27Field senderTelephone;
-
-public HL7V27Field SenderTelephone
-{
-    get
-    {
-        if (senderTelephone != null)
-        {
-            return senderTelephone;
-        }
-
-        senderTelephone = new HL7V27Field
-        {
-            field = message[@"PES"][4],
-            Id = @"PES.4",
-            Type = @"Field",
-            Position = @"PES.4",
-            Name = @"Sender Telephone",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the telephone number of the message sender to which telephone communications regarding the experience being reported should be directed. An electronic mail address can be specified in this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (senderTelephone.field.FieldRepetitions != null && senderTelephone.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(senderTelephone.Id));
-            senderTelephone.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(senderTelephone, fieldData);
-        }
-
-        return senderTelephone;
-    } 
-}
-
-internal HL7V27Field senderEventIdentifier;
-
-public HL7V27Field SenderEventIdentifier
-{
-    get
-    {
-        if (senderEventIdentifier != null)
-        {
-            return senderEventIdentifier;
-        }
-
-        senderEventIdentifier = new HL7V27Field
+        _senderEventIdentifier = new HL7V27Field
         {
             field = message[@"PES"][5],
-            Id = @"PES.5",
-            Type = @"Field",
-            Position = @"PES.5",
-            Name = @"Sender Event Identifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The first component of this field contains the product manufacturer’s unique alphanumeric identifier for this specific event. This identifier will be used on all subsequent communications regarding this event. For events reported to the FDA, the identifier is: the FDA assigned manufacturer or distributor number; a hyphen; the 4-digit year; a hyphen; and a consecutive 5-digit sequence number for each report filled by the sender that year. For example, the event identifier for the third event reported in 1996 by a manufacturer whose FDA-assigned registration number is 1234567 would be 1234567-1993-3. Organizations without a FDA-assigned registration number should use 0000000 until assigned a number. Reports from other facilities should use the 10-digit HCFA number left padded with zeros in place of the FDA-assigned registration number. The second through fourth components are defined in exactly the same way as the three components of the hierarchic designator (HD) data type (Section 2.8.18, ""HD - hierarchic designator"").",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (senderEventIdentifier.field.FieldRepetitions != null && senderEventIdentifier.field.FieldRepetitions.Count > 0)
+        if (_senderEventIdentifier.field.FieldRepetitions != null && _senderEventIdentifier.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(senderEventIdentifier.Id));
-            senderEventIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(senderEventIdentifier, fieldData);
+            _senderEventIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_senderEventIdentifier, fieldData);
         }
 
-        return senderEventIdentifier;
+        return _senderEventIdentifier;
     } 
 }
 
-internal HL7V27Field senderSequenceNumber;
+internal HL7V27Field _senderSequenceNumber;
 
 public HL7V27Field SenderSequenceNumber
 {
     get
     {
-        if (senderSequenceNumber != null)
+        if (_senderSequenceNumber != null)
         {
-            return senderSequenceNumber;
+            return _senderSequenceNumber;
         }
 
-        senderSequenceNumber = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"PES"][6],
             Id = @"PES.6",
             Type = @"Field",
             Position = @"PES.6",
@@ -7262,34 +7051,38 @@ public HL7V27Field SenderSequenceNumber
             TableName = null,
             Description = @"This field contains sequentially assigned integer values which distinguish messages which share the same sender event identification element. 0 for initial report, 1 for second, and so on.",
             Sample = @"",
+            Fields = null
+        }
+
+        _senderSequenceNumber = new HL7V27Field
+        {
+            field = message[@"PES"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (senderSequenceNumber.field.FieldRepetitions != null && senderSequenceNumber.field.FieldRepetitions.Count > 0)
+        if (_senderSequenceNumber.field.FieldRepetitions != null && _senderSequenceNumber.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(senderSequenceNumber.Id));
-            senderSequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(senderSequenceNumber, fieldData);
+            _senderSequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_senderSequenceNumber, fieldData);
         }
 
-        return senderSequenceNumber;
+        return _senderSequenceNumber;
     } 
 }
 
-internal HL7V27Field senderEventDescription;
+internal HL7V27Field _senderEventDescription;
 
 public HL7V27Field SenderEventDescription
 {
     get
     {
-        if (senderEventDescription != null)
+        if (_senderEventDescription != null)
         {
-            return senderEventDescription;
+            return _senderEventDescription;
         }
 
-        senderEventDescription = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"PES"][7],
             Id = @"PES.7",
             Type = @"Field",
             Position = @"PES.7",
@@ -7303,34 +7096,38 @@ public HL7V27Field SenderEventDescription
             TableName = null,
             Description = @"This field contains the summary narrative text description of the event that occurred written by the sender, which may include a description of the nature of the event, how the product was involved, any environmental conditions that may have influenced the event, and patient follow-up or required treatment. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative. By representing clinical information in OBX segments rather than in the narrative, these data become much more useful and flexible.",
             Sample = @"",
+            Fields = null
+        }
+
+        _senderEventDescription = new HL7V27Field
+        {
+            field = message[@"PES"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (senderEventDescription.field.FieldRepetitions != null && senderEventDescription.field.FieldRepetitions.Count > 0)
+        if (_senderEventDescription.field.FieldRepetitions != null && _senderEventDescription.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(senderEventDescription.Id));
-            senderEventDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(senderEventDescription, fieldData);
+            _senderEventDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_senderEventDescription, fieldData);
         }
 
-        return senderEventDescription;
+        return _senderEventDescription;
     } 
 }
 
-internal HL7V27Field senderComment;
+internal HL7V27Field _senderComment;
 
 public HL7V27Field SenderComment
 {
     get
     {
-        if (senderComment != null)
+        if (_senderComment != null)
         {
-            return senderComment;
+            return _senderComment;
         }
 
-        senderComment = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"PES"][8],
             Id = @"PES.8",
             Type = @"Field",
             Position = @"PES.8",
@@ -7344,34 +7141,38 @@ public HL7V27Field SenderComment
             TableName = null,
             Description = @"This field contains the text commentary regarding the report being made, such as disclaimers, which is not necessarily part of the report.",
             Sample = @"",
+            Fields = null
+        }
+
+        _senderComment = new HL7V27Field
+        {
+            field = message[@"PES"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (senderComment.field.FieldRepetitions != null && senderComment.field.FieldRepetitions.Count > 0)
+        if (_senderComment.field.FieldRepetitions != null && _senderComment.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(senderComment.Id));
-            senderComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(senderComment, fieldData);
+            _senderComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_senderComment, fieldData);
         }
 
-        return senderComment;
+        return _senderComment;
     } 
 }
 
-internal HL7V27Field senderAwareDateTime;
+internal HL7V27Field _senderAwareDateTime;
 
 public HL7V27Field SenderAwareDateTime
 {
     get
     {
-        if (senderAwareDateTime != null)
+        if (_senderAwareDateTime != null)
         {
-            return senderAwareDateTime;
+            return _senderAwareDateTime;
         }
 
-        senderAwareDateTime = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"PES"][9],
             Id = @"PES.9",
             Type = @"Field",
             Position = @"PES.9",
@@ -7385,34 +7186,38 @@ public HL7V27Field SenderAwareDateTime
             TableName = null,
             Description = @"This field identifies the date the sender became aware of the event.",
             Sample = @"",
+            Fields = null
+        }
+
+        _senderAwareDateTime = new HL7V27Field
+        {
+            field = message[@"PES"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (senderAwareDateTime.field.FieldRepetitions != null && senderAwareDateTime.field.FieldRepetitions.Count > 0)
+        if (_senderAwareDateTime.field.FieldRepetitions != null && _senderAwareDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(senderAwareDateTime.Id));
-            senderAwareDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(senderAwareDateTime, fieldData);
+            _senderAwareDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_senderAwareDateTime, fieldData);
         }
 
-        return senderAwareDateTime;
+        return _senderAwareDateTime;
     } 
 }
 
-internal HL7V27Field eventReportDate;
+internal HL7V27Field _eventReportDate;
 
 public HL7V27Field EventReportDate
 {
     get
     {
-        if (eventReportDate != null)
+        if (_eventReportDate != null)
         {
-            return eventReportDate;
+            return _eventReportDate;
         }
 
-        eventReportDate = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"PES"][10],
             Id = @"PES.10",
             Type = @"Field",
             Position = @"PES.10",
@@ -7426,34 +7231,38 @@ public HL7V27Field EventReportDate
             TableName = null,
             Description = @"This field contains the date the message was originally sent to the regulatory agency.",
             Sample = @"",
+            Fields = null
+        }
+
+        _eventReportDate = new HL7V27Field
+        {
+            field = message[@"PES"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (eventReportDate.field.FieldRepetitions != null && eventReportDate.field.FieldRepetitions.Count > 0)
+        if (_eventReportDate.field.FieldRepetitions != null && _eventReportDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventReportDate.Id));
-            eventReportDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(eventReportDate, fieldData);
+            _eventReportDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_eventReportDate, fieldData);
         }
 
-        return eventReportDate;
+        return _eventReportDate;
     } 
 }
 
-internal HL7V27Field eventReportTimingType;
+internal HL7V27Field _eventReportTimingType;
 
 public HL7V27Field EventReportTimingType
 {
     get
     {
-        if (eventReportTimingType != null)
+        if (_eventReportTimingType != null)
         {
-            return eventReportTimingType;
+            return _eventReportTimingType;
         }
 
-        eventReportTimingType = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"PES"][11],
             Id = @"PES.11",
             Type = @"Field",
             Position = @"PES.11",
@@ -7467,34 +7276,38 @@ public HL7V27Field EventReportTimingType
             TableName = @"Report Timing",
             Description = @"This field contains the timing type of report as required by regulatory agency. Refer to HL7 Table 0234 - Report Timing for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _eventReportTimingType = new HL7V27Field
+        {
+            field = message[@"PES"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (eventReportTimingType.field.FieldRepetitions != null && eventReportTimingType.field.FieldRepetitions.Count > 0)
+        if (_eventReportTimingType.field.FieldRepetitions != null && _eventReportTimingType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventReportTimingType.Id));
-            eventReportTimingType.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(eventReportTimingType, fieldData);
+            _eventReportTimingType.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_eventReportTimingType, fieldData);
         }
 
-        return eventReportTimingType;
+        return _eventReportTimingType;
     } 
 }
 
-internal HL7V27Field eventReportSource;
+internal HL7V27Field _eventReportSource;
 
 public HL7V27Field EventReportSource
 {
     get
     {
-        if (eventReportSource != null)
+        if (_eventReportSource != null)
         {
-            return eventReportSource;
+            return _eventReportSource;
         }
 
-        eventReportSource = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"PES"][12],
             Id = @"PES.12",
             Type = @"Field",
             Position = @"PES.12",
@@ -7510,34 +7323,38 @@ public HL7V27Field EventReportSource
 
 If the source of the report is a clinical trial, the CSR and CSP segments can be included to define the study. Refer to HL7 Table 0235 - Report Source for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _eventReportSource = new HL7V27Field
+        {
+            field = message[@"PES"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (eventReportSource.field.FieldRepetitions != null && eventReportSource.field.FieldRepetitions.Count > 0)
+        if (_eventReportSource.field.FieldRepetitions != null && _eventReportSource.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventReportSource.Id));
-            eventReportSource.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(eventReportSource, fieldData);
+            _eventReportSource.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_eventReportSource, fieldData);
         }
 
-        return eventReportSource;
+        return _eventReportSource;
     } 
 }
 
-internal HL7V27Field eventReportedTo;
+internal HL7V27Field _eventReportedTo;
 
 public HL7V27Field EventReportedTo
 {
     get
     {
-        if (eventReportedTo != null)
+        if (_eventReportedTo != null)
         {
-            return eventReportedTo;
+            return _eventReportedTo;
         }
 
-        eventReportedTo = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"PES"][13],
             Id = @"PES.13",
             Type = @"Field",
             Position = @"PES.13",
@@ -7551,17 +7368,22 @@ public HL7V27Field EventReportedTo
             TableName = @"Event Reported To",
             Description = @"This field indicates all the entities to whom the entity submitting the report has reported the event. Repeat the element if the report was submitted to more than one entity. Refer to HL7 Table 0236 - Event reported to for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _eventReportedTo = new HL7V27Field
+        {
+            field = message[@"PES"][13],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (eventReportedTo.field.FieldRepetitions != null && eventReportedTo.field.FieldRepetitions.Count > 0)
+        if (_eventReportedTo.field.FieldRepetitions != null && _eventReportedTo.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventReportedTo.Id));
-            eventReportedTo.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(eventReportedTo, fieldData);
+            _eventReportedTo.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_eventReportedTo, fieldData);
         }
 
-        return eventReportedTo;
+        return _eventReportedTo;
     } 
 }
     }

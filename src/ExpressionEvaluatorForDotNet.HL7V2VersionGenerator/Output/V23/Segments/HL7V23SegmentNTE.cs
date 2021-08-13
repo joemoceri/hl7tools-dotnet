@@ -29,90 +29,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"NTE.1",
-                            Type = @"Field",
-                            Position = @"NTE.1",
-                            Name = @"Set ID - Notes and Comments",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field may be used where multiple NTE segments are included in a message.  Their numbering must be described in the application message definition",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NTE.2",
-                            Type = @"Field",
-                            Position = @"NTE.2",
-                            Name = @"Source of Comment",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0105",
-                            TableName = @"Source of comment",
-                            Description = @"This field is used when source of comment must be identified.  This table may be extended locally during implementation",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NTE.3",
-                            Type = @"Field",
-                            Position = @"NTE.3",
-                            Name = @"Comment",
-                            Length = 65536,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the comment contained in the segment
-
-Note:  In the current HL7 version,  this is an FT rather than a TX data type.  Since there is no difference between an FT data type without any embedded formatting commands, and a TX data type, this change is compatible with the previous version",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V23SegmentNTE(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V23Field setIDNotesandComments;
+        internal HL7V23Field _setIDNotesandComments;
 
 public HL7V23Field SetIDNotesandComments
 {
     get
     {
-        if (setIDNotesandComments != null)
+        if (_setIDNotesandComments != null)
         {
-            return setIDNotesandComments;
+            return _setIDNotesandComments;
         }
 
-        setIDNotesandComments = new HL7V23Field
+        var fieldData = new HL7V23FieldData
         {
-            field = message[@"NTE"][1],
             Id = @"NTE.1",
             Type = @"Field",
             Position = @"NTE.1",
@@ -126,34 +60,38 @@ public HL7V23Field SetIDNotesandComments
             TableName = null,
             Description = @"This field may be used where multiple NTE segments are included in a message.  Their numbering must be described in the application message definition",
             Sample = @"",
+            Fields = null
+        }
+
+        _setIDNotesandComments = new HL7V23Field
+        {
+            field = message[@"NTE"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (setIDNotesandComments.field.FieldRepetitions != null && setIDNotesandComments.field.FieldRepetitions.Count > 0)
+        if (_setIDNotesandComments.field.FieldRepetitions != null && _setIDNotesandComments.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDNotesandComments.Id));
-            setIDNotesandComments.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(setIDNotesandComments, fieldData);
+            _setIDNotesandComments.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_setIDNotesandComments, fieldData);
         }
 
-        return setIDNotesandComments;
+        return _setIDNotesandComments;
     } 
 }
 
-internal HL7V23Field sourceofComment;
+internal HL7V23Field _sourceofComment;
 
 public HL7V23Field SourceofComment
 {
     get
     {
-        if (sourceofComment != null)
+        if (_sourceofComment != null)
         {
-            return sourceofComment;
+            return _sourceofComment;
         }
 
-        sourceofComment = new HL7V23Field
+        var fieldData = new HL7V23FieldData
         {
-            field = message[@"NTE"][2],
             Id = @"NTE.2",
             Type = @"Field",
             Position = @"NTE.2",
@@ -167,34 +105,38 @@ public HL7V23Field SourceofComment
             TableName = @"Source of comment",
             Description = @"This field is used when source of comment must be identified.  This table may be extended locally during implementation",
             Sample = @"",
+            Fields = null
+        }
+
+        _sourceofComment = new HL7V23Field
+        {
+            field = message[@"NTE"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (sourceofComment.field.FieldRepetitions != null && sourceofComment.field.FieldRepetitions.Count > 0)
+        if (_sourceofComment.field.FieldRepetitions != null && _sourceofComment.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sourceofComment.Id));
-            sourceofComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(sourceofComment, fieldData);
+            _sourceofComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_sourceofComment, fieldData);
         }
 
-        return sourceofComment;
+        return _sourceofComment;
     } 
 }
 
-internal HL7V23Field comment;
+internal HL7V23Field _comment;
 
 public HL7V23Field Comment
 {
     get
     {
-        if (comment != null)
+        if (_comment != null)
         {
-            return comment;
+            return _comment;
         }
 
-        comment = new HL7V23Field
+        var fieldData = new HL7V23FieldData
         {
-            field = message[@"NTE"][3],
             Id = @"NTE.3",
             Type = @"Field",
             Position = @"NTE.3",
@@ -210,17 +152,22 @@ public HL7V23Field Comment
 
 Note:  In the current HL7 version,  this is an FT rather than a TX data type.  Since there is no difference between an FT data type without any embedded formatting commands, and a TX data type, this change is compatible with the previous version",
             Sample = @"",
+            Fields = null
+        }
+
+        _comment = new HL7V23Field
+        {
+            field = message[@"NTE"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (comment.field.FieldRepetitions != null && comment.field.FieldRepetitions.Count > 0)
+        if (_comment.field.FieldRepetitions != null && _comment.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(comment.Id));
-            comment.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(comment, fieldData);
+            _comment.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_comment, fieldData);
         }
 
-        return comment;
+        return _comment;
     } 
 }
     }

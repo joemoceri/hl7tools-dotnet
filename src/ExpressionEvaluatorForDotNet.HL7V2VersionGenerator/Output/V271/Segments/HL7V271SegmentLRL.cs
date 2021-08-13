@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentLRL(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _primaryKeyValueLrl;
+
+public HL7V271Field PrimaryKeyValueLrl
+{
+    get
+    {
+        if (_primaryKeyValueLrl != null)
+        {
+            return _primaryKeyValueLrl;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"LRL.1",
+            Type = @"Field",
+            Position = @"LRL.1",
+            Name = @"Primary Key Value - Lrl",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the institution's identification code for the location.  The identifying key value.  This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here).  At least the first component of this field is required.  The contents of this field must exactly match the content of its preceding MFE (MFE-4 - Primary Key Value - MFE), its preceding LOC (LOC-1 - Primary Key Value - LOC), and its preceding LDP (LDP-1 - Primary Key Value - LDP).",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"LRL.1",
-                            Type = @"Field",
-                            Position = @"LRL.1",
-                            Name = @"Primary Key Value - Lrl",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the institution's identification code for the location.  The identifying key value.  This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here).  At least the first component of this field is required.  The contents of this field must exactly match the content of its preceding MFE (MFE-4 - Primary Key Value - MFE), its preceding LOC (LOC-1 - Primary Key Value - LOC), and its preceding LDP (LDP-1 - Primary Key Value - LDP).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LRL.1.1",
                             Type = @"Component",
@@ -726,43 +738,100 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primaryKeyValueLrl = new HL7V271Field
+        {
+            field = message[@"LRL"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryKeyValueLrl.field.FieldRepetitions != null && _primaryKeyValueLrl.field.FieldRepetitions.Count > 0)
+        {
+            _primaryKeyValueLrl.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_primaryKeyValueLrl, fieldData);
+        }
+
+        return _primaryKeyValueLrl;
+    } 
+}
+
+internal HL7V271Field _segmentActionCode;
+
+public HL7V271Field SegmentActionCode
+{
+    get
+    {
+        if (_segmentActionCode != null)
+        {
+            return _segmentActionCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"LRL.2",
+            Type = @"Field",
+            Position = @"LRL.2",
+            Name = @"Segment Action Code",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0206",
+            TableName = @"Segment action code",
+            Description = @"This field indicates whether this repetition of the segment is being added, changed or deleted.    The action code adds a validation check to indicate, from the point of view of the sending system, whether this repetition of a segment is being added, changed or deleted.  This and the following field are used to implement the ""unique key"" mode of updating repeating segments.  (See Chapter 2, section 2.23.4.2, ""Action code/unique identifier mode update definition."")  Refer to HL7 Table 0206 - Segment Action Code for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _segmentActionCode = new HL7V271Field
+        {
+            field = message[@"LRL"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_segmentActionCode.field.FieldRepetitions != null && _segmentActionCode.field.FieldRepetitions.Count > 0)
+        {
+            _segmentActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_segmentActionCode, fieldData);
+        }
+
+        return _segmentActionCode;
+    } 
+}
+
+internal HL7V271Field _segmentUniqueKey;
+
+public HL7V271Field SegmentUniqueKey
+{
+    get
+    {
+        if (_segmentUniqueKey != null)
+        {
+            return _segmentUniqueKey;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"LRL.3",
+            Type = @"Field",
+            Position = @"LRL.3",
+            Name = @"Segment Unique Key",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a unique identifier for one of the multiple repetitions of this segment, to be used in conjunction with the preceding field.  Each of the repetitions of the segment will be uniquely identified by this unique key field for the purposes of updates.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LRL.2",
-                            Type = @"Field",
-                            Position = @"LRL.2",
-                            Name = @"Segment Action Code",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0206",
-                            TableName = @"Segment action code",
-                            Description = @"This field indicates whether this repetition of the segment is being added, changed or deleted.    The action code adds a validation check to indicate, from the point of view of the sending system, whether this repetition of a segment is being added, changed or deleted.  This and the following field are used to implement the ""unique key"" mode of updating repeating segments.  (See Chapter 2, section 2.23.4.2, ""Action code/unique identifier mode update definition."")  Refer to HL7 Table 0206 - Segment Action Code for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LRL.3",
-                            Type = @"Field",
-                            Position = @"LRL.3",
-                            Name = @"Segment Unique Key",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a unique identifier for one of the multiple repetitions of this segment, to be used in conjunction with the preceding field.  Each of the repetitions of the segment will be uniquely identified by this unique key field for the purposes of updates.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LRL.3.1",
                             Type = @"Component",
@@ -840,25 +909,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _segmentUniqueKey = new HL7V271Field
+        {
+            field = message[@"LRL"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_segmentUniqueKey.field.FieldRepetitions != null && _segmentUniqueKey.field.FieldRepetitions.Count > 0)
+        {
+            _segmentUniqueKey.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_segmentUniqueKey, fieldData);
+        }
+
+        return _segmentUniqueKey;
+    } 
+}
+
+internal HL7V271Field _locationRelationshipId;
+
+public HL7V271Field LocationRelationshipId
+{
+    get
+    {
+        if (_locationRelationshipId != null)
+        {
+            return _locationRelationshipId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"LRL.4",
+            Type = @"Field",
+            Position = @"LRL.4",
+            Name = @"Location Relationship Id",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0325",
+            TableName = @"Location Relationship ID",
+            Description = @"This field contains an identifier code to show WHICH relationship is being communicated with this segment.  Refer to User-defined Table 0325 - Location Relationship ID for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LRL.4",
-                            Type = @"Field",
-                            Position = @"LRL.4",
-                            Name = @"Location Relationship Id",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0325",
-                            TableName = @"Location Relationship ID",
-                            Description = @"This field contains an identifier code to show WHICH relationship is being communicated with this segment.  Refer to User-defined Table 0325 - Location Relationship ID for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LRL.4.1",
                             Type = @"Component",
@@ -1284,25 +1383,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _locationRelationshipId = new HL7V271Field
+        {
+            field = message[@"LRL"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_locationRelationshipId.field.FieldRepetitions != null && _locationRelationshipId.field.FieldRepetitions.Count > 0)
+        {
+            _locationRelationshipId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_locationRelationshipId, fieldData);
+        }
+
+        return _locationRelationshipId;
+    } 
+}
+
+internal HL7V271Field _organizationalLocationRelationshipValue;
+
+public HL7V271Field OrganizationalLocationRelationshipValue
+{
+    get
+    {
+        if (_organizationalLocationRelationshipValue != null)
+        {
+            return _organizationalLocationRelationshipValue;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"LRL.5",
+            Type = @"Field",
+            Position = @"LRL.5",
+            Name = @"Organizational Location Relationship Value",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is conditional on the value of LRL-4 - Location Relationship ID.  When LRL-4 -Location Relationship ID contains ""RX""- Nearest Pharmacy, ""RX2""- Other Pharmacy, ""LAB""- Nearest Lab, ""LB2""- Other Lab, or ""DTY""- Dietary, this field holds that organization's extended name, i.e., the value of this field is conditional on the value of LRL-4 - Location Relationship ID.  For example, for an inpatient location, this could be an in-house department ID code using only the third component of this data type.  For an outpatient location, this could be the nearest external pharmacy.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LRL.5",
-                            Type = @"Field",
-                            Position = @"LRL.5",
-                            Name = @"Organizational Location Relationship Value",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is conditional on the value of LRL-4 - Location Relationship ID.  When LRL-4 -Location Relationship ID contains ""RX""- Nearest Pharmacy, ""RX2""- Other Pharmacy, ""LAB""- Nearest Lab, ""LB2""- Other Lab, or ""DTY""- Dietary, this field holds that organization's extended name, i.e., the value of this field is conditional on the value of LRL-4 - Location Relationship ID.  For example, for an inpatient location, this could be an in-house department ID code using only the third component of this data type.  For an outpatient location, this could be the nearest external pharmacy.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LRL.5.1",
                             Type = @"Component",
@@ -2035,27 +2164,57 @@ In general this component provides an indication of the representation provided 
 Note: The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LRL.6",
-                            Type = @"Field",
-                            Position = @"LRL.6",
-                            Name = @"Patient Location Relationship Value",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is conditional on the value of LRL-4 - Location Relationship ID.  When LRL-4 -Location Relationship ID contains ""ALI""- Location aliases or ""PAR""- Parent location this field holds the value of the associated patient location.
+                        }
+        }
+
+        _organizationalLocationRelationshipValue = new HL7V271Field
+        {
+            field = message[@"LRL"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_organizationalLocationRelationshipValue.field.FieldRepetitions != null && _organizationalLocationRelationshipValue.field.FieldRepetitions.Count > 0)
+        {
+            _organizationalLocationRelationshipValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_organizationalLocationRelationshipValue, fieldData);
+        }
+
+        return _organizationalLocationRelationshipValue;
+    } 
+}
+
+internal HL7V271Field _patientLocationRelationshipValue;
+
+public HL7V271Field PatientLocationRelationshipValue
+{
+    get
+    {
+        if (_patientLocationRelationshipValue != null)
+        {
+            return _patientLocationRelationshipValue;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"LRL.6",
+            Type = @"Field",
+            Position = @"LRL.6",
+            Name = @"Patient Location Relationship Value",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is conditional on the value of LRL-4 - Location Relationship ID.  When LRL-4 -Location Relationship ID contains ""ALI""- Location aliases or ""PAR""- Parent location this field holds the value of the associated patient location.
 
 When LRL-4 - Location Relationship ID contains ""PAR""- Parent, this field holds the value of the parent location to allow for nested entries. For example, a bed entry can point to its containing room or nurse unit.  The value for the parent location should match the LOC-1 - Primary Key Value - LOC of the parent entry.  Not intended to be used for multiple designations of the same physical location, but for identifying the larger physical locations (supersets) which include this physical location as a subset. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"LRL.6.1",
                             Type = @"Component",
@@ -2731,262 +2890,23 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentLRL(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field primaryKeyValueLrl;
-
-public HL7V271Field PrimaryKeyValueLrl
-{
-    get
-    {
-        if (primaryKeyValueLrl != null)
-        {
-            return primaryKeyValueLrl;
-        }
-
-        primaryKeyValueLrl = new HL7V271Field
-        {
-            field = message[@"LRL"][1],
-            Id = @"LRL.1",
-            Type = @"Field",
-            Position = @"LRL.1",
-            Name = @"Primary Key Value - Lrl",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the institution's identification code for the location.  The identifying key value.  This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here).  At least the first component of this field is required.  The contents of this field must exactly match the content of its preceding MFE (MFE-4 - Primary Key Value - MFE), its preceding LOC (LOC-1 - Primary Key Value - LOC), and its preceding LDP (LDP-1 - Primary Key Value - LDP).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryKeyValueLrl.field.FieldRepetitions != null && primaryKeyValueLrl.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryKeyValueLrl.Id));
-            primaryKeyValueLrl.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(primaryKeyValueLrl, fieldData);
-        }
-
-        return primaryKeyValueLrl;
-    } 
-}
-
-internal HL7V271Field segmentActionCode;
-
-public HL7V271Field SegmentActionCode
-{
-    get
-    {
-        if (segmentActionCode != null)
-        {
-            return segmentActionCode;
-        }
-
-        segmentActionCode = new HL7V271Field
-        {
-            field = message[@"LRL"][2],
-            Id = @"LRL.2",
-            Type = @"Field",
-            Position = @"LRL.2",
-            Name = @"Segment Action Code",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0206",
-            TableName = @"Segment action code",
-            Description = @"This field indicates whether this repetition of the segment is being added, changed or deleted.    The action code adds a validation check to indicate, from the point of view of the sending system, whether this repetition of a segment is being added, changed or deleted.  This and the following field are used to implement the ""unique key"" mode of updating repeating segments.  (See Chapter 2, section 2.23.4.2, ""Action code/unique identifier mode update definition."")  Refer to HL7 Table 0206 - Segment Action Code for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (segmentActionCode.field.FieldRepetitions != null && segmentActionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(segmentActionCode.Id));
-            segmentActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(segmentActionCode, fieldData);
-        }
-
-        return segmentActionCode;
-    } 
-}
-
-internal HL7V271Field segmentUniqueKey;
-
-public HL7V271Field SegmentUniqueKey
-{
-    get
-    {
-        if (segmentUniqueKey != null)
-        {
-            return segmentUniqueKey;
-        }
-
-        segmentUniqueKey = new HL7V271Field
-        {
-            field = message[@"LRL"][3],
-            Id = @"LRL.3",
-            Type = @"Field",
-            Position = @"LRL.3",
-            Name = @"Segment Unique Key",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a unique identifier for one of the multiple repetitions of this segment, to be used in conjunction with the preceding field.  Each of the repetitions of the segment will be uniquely identified by this unique key field for the purposes of updates.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (segmentUniqueKey.field.FieldRepetitions != null && segmentUniqueKey.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(segmentUniqueKey.Id));
-            segmentUniqueKey.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(segmentUniqueKey, fieldData);
-        }
-
-        return segmentUniqueKey;
-    } 
-}
-
-internal HL7V271Field locationRelationshipId;
-
-public HL7V271Field LocationRelationshipId
-{
-    get
-    {
-        if (locationRelationshipId != null)
-        {
-            return locationRelationshipId;
-        }
-
-        locationRelationshipId = new HL7V271Field
-        {
-            field = message[@"LRL"][4],
-            Id = @"LRL.4",
-            Type = @"Field",
-            Position = @"LRL.4",
-            Name = @"Location Relationship Id",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0325",
-            TableName = @"Location Relationship ID",
-            Description = @"This field contains an identifier code to show WHICH relationship is being communicated with this segment.  Refer to User-defined Table 0325 - Location Relationship ID for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (locationRelationshipId.field.FieldRepetitions != null && locationRelationshipId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(locationRelationshipId.Id));
-            locationRelationshipId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(locationRelationshipId, fieldData);
-        }
-
-        return locationRelationshipId;
-    } 
-}
-
-internal HL7V271Field organizationalLocationRelationshipValue;
-
-public HL7V271Field OrganizationalLocationRelationshipValue
-{
-    get
-    {
-        if (organizationalLocationRelationshipValue != null)
-        {
-            return organizationalLocationRelationshipValue;
-        }
-
-        organizationalLocationRelationshipValue = new HL7V271Field
-        {
-            field = message[@"LRL"][5],
-            Id = @"LRL.5",
-            Type = @"Field",
-            Position = @"LRL.5",
-            Name = @"Organizational Location Relationship Value",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is conditional on the value of LRL-4 - Location Relationship ID.  When LRL-4 -Location Relationship ID contains ""RX""- Nearest Pharmacy, ""RX2""- Other Pharmacy, ""LAB""- Nearest Lab, ""LB2""- Other Lab, or ""DTY""- Dietary, this field holds that organization's extended name, i.e., the value of this field is conditional on the value of LRL-4 - Location Relationship ID.  For example, for an inpatient location, this could be an in-house department ID code using only the third component of this data type.  For an outpatient location, this could be the nearest external pharmacy.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (organizationalLocationRelationshipValue.field.FieldRepetitions != null && organizationalLocationRelationshipValue.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(organizationalLocationRelationshipValue.Id));
-            organizationalLocationRelationshipValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(organizationalLocationRelationshipValue, fieldData);
-        }
-
-        return organizationalLocationRelationshipValue;
-    } 
-}
-
-internal HL7V271Field patientLocationRelationshipValue;
-
-public HL7V271Field PatientLocationRelationshipValue
-{
-    get
-    {
-        if (patientLocationRelationshipValue != null)
-        {
-            return patientLocationRelationshipValue;
-        }
-
-        patientLocationRelationshipValue = new HL7V271Field
+        _patientLocationRelationshipValue = new HL7V271Field
         {
             field = message[@"LRL"][6],
-            Id = @"LRL.6",
-            Type = @"Field",
-            Position = @"LRL.6",
-            Name = @"Patient Location Relationship Value",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is conditional on the value of LRL-4 - Location Relationship ID.  When LRL-4 -Location Relationship ID contains ""ALI""- Location aliases or ""PAR""- Parent location this field holds the value of the associated patient location.
-
-When LRL-4 - Location Relationship ID contains ""PAR""- Parent, this field holds the value of the parent location to allow for nested entries. For example, a bed entry can point to its containing room or nurse unit.  The value for the parent location should match the LOC-1 - Primary Key Value - LOC of the parent entry.  Not intended to be used for multiple designations of the same physical location, but for identifying the larger physical locations (supersets) which include this physical location as a subset. ",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientLocationRelationshipValue.field.FieldRepetitions != null && patientLocationRelationshipValue.field.FieldRepetitions.Count > 0)
+        if (_patientLocationRelationshipValue.field.FieldRepetitions != null && _patientLocationRelationshipValue.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientLocationRelationshipValue.Id));
-            patientLocationRelationshipValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(patientLocationRelationshipValue, fieldData);
+            _patientLocationRelationshipValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_patientLocationRelationshipValue, fieldData);
         }
 
-        return patientLocationRelationshipValue;
+        return _patientLocationRelationshipValue;
     } 
 }
     }

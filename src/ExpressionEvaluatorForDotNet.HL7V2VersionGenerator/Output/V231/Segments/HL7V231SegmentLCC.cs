@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V231SegmentLCC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V231Field _primaryKeyValueLCC;
+
+public HL7V231Field PrimaryKeyValueLCC
+{
+    get
+    {
+        if (_primaryKeyValueLCC != null)
+        {
+            return _primaryKeyValueLCC;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"LCC.1",
+            Type = @"Field",
+            Position = @"LCC.1",
+            Name = @"Primary Key Value - LCC",
+            Length = 200,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the institution's identification code for the location. The identifying key value. This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here). At least the first component of this field is required. The content of this field must exactly match the content of its preceding MFE (MFE-4-primary key value-MFE), its preceding LOC (LOC-1-LOC primary key value), and its preceding LDP ( LDP-1-primary key value-LDP ).",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"LCC.1",
-                            Type = @"Field",
-                            Position = @"LCC.1",
-                            Name = @"Primary Key Value - LCC",
-                            Length = 200,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the institution's identification code for the location. The identifying key value. This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here). At least the first component of this field is required. The content of this field must exactly match the content of its preceding MFE (MFE-4-primary key value-MFE), its preceding LOC (LOC-1-LOC primary key value), and its preceding LDP ( LDP-1-primary key value-LDP ).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LCC.1.1",
                             Type = @"Component",
@@ -262,43 +274,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"A free text description of the location.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primaryKeyValueLCC = new HL7V231Field
+        {
+            field = message[@"LCC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryKeyValueLCC.field.FieldRepetitions != null && _primaryKeyValueLCC.field.FieldRepetitions.Count > 0)
+        {
+            _primaryKeyValueLCC.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_primaryKeyValueLCC, fieldData);
+        }
+
+        return _primaryKeyValueLCC;
+    } 
+}
+
+internal HL7V231Field _locationDepartment;
+
+public HL7V231Field LocationDepartment
+{
+    get
+    {
+        if (_locationDepartment != null)
+        {
+            return _locationDepartment;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"LCC.2",
+            Type = @"Field",
+            Position = @"LCC.2",
+            Name = @"Location Department",
+            Length = 10,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0264",
+            TableName = @"Location department",
+            Description = @"This field contains the institution's department to which this location belongs, or its cost center. It must match the value in its preceding LDP (LDP-2-location department). User-defined table 0264 -Location department is used as the HL7 Identifier for the user-defined table of values for this field.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _locationDepartment = new HL7V231Field
+        {
+            field = message[@"LCC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_locationDepartment.field.FieldRepetitions != null && _locationDepartment.field.FieldRepetitions.Count > 0)
+        {
+            _locationDepartment.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_locationDepartment, fieldData);
+        }
+
+        return _locationDepartment;
+    } 
+}
+
+internal HL7V231Field _accommodationType;
+
+public HL7V231Field AccommodationType
+{
+    get
+    {
+        if (_accommodationType != null)
+        {
+            return _accommodationType;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"LCC.3",
+            Type = @"Field",
+            Position = @"LCC.3",
+            Name = @"Accommodation Type",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0129",
+            TableName = @"Accommodation code",
+            Description = @"This field contains the financial accommodation type of the bed or room which implies the rate to be used when occupied by a patient under specific medical conditions, which determines how it is billed. Not the same as specialty type. Used for general ledger categories. Specialty type is a physical accommodation type, whereas this field is a financial accommodation type. Repeating coded value. Site-defined codes. User-defined table 0129 - Accommodation code is used as the HL7 identifier for the user-defined table of values for this field .",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LCC.2",
-                            Type = @"Field",
-                            Position = @"LCC.2",
-                            Name = @"Location Department",
-                            Length = 10,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0264",
-                            TableName = @"Location department",
-                            Description = @"This field contains the institution's department to which this location belongs, or its cost center. It must match the value in its preceding LDP (LDP-2-location department). User-defined table 0264 -Location department is used as the HL7 Identifier for the user-defined table of values for this field.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LCC.3",
-                            Type = @"Field",
-                            Position = @"LCC.3",
-                            Name = @"Accommodation Type",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0129",
-                            TableName = @"Accommodation code",
-                            Description = @"This field contains the financial accommodation type of the bed or room which implies the rate to be used when occupied by a patient under specific medical conditions, which determines how it is billed. Not the same as specialty type. Used for general ledger categories. Specialty type is a physical accommodation type, whereas this field is a financial accommodation type. Repeating coded value. Site-defined codes. User-defined table 0129 - Accommodation code is used as the HL7 identifier for the user-defined table of values for this field .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LCC.3.1",
                             Type = @"Component",
@@ -404,25 +473,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _accommodationType = new HL7V231Field
+        {
+            field = message[@"LCC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accommodationType.field.FieldRepetitions != null && _accommodationType.field.FieldRepetitions.Count > 0)
+        {
+            _accommodationType.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_accommodationType, fieldData);
+        }
+
+        return _accommodationType;
+    } 
+}
+
+internal HL7V231Field _chargeCode;
+
+public HL7V231Field ChargeCode
+{
+    get
+    {
+        if (_chargeCode != null)
+        {
+            return _chargeCode;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"LCC.4",
+            Type = @"Field",
+            Position = @"LCC.4",
+            Name = @"Charge Code",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0132",
+            TableName = @"Transaction code",
+            Description = @"This field contains the repeating coded entry for codes identifying how the use of this location is to be charged. For cross-referencing beds master files with the charge master files, or for generating charges when a patient is assigned to a bed. These should be the same set of values used in FT1-7-transaction code. Values are site negotiated. User-defined table 0132 - Transaction code is used as the HL7 identifier for the user-defined table of values for this field.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LCC.4",
-                            Type = @"Field",
-                            Position = @"LCC.4",
-                            Name = @"Charge Code",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0132",
-                            TableName = @"Transaction code",
-                            Description = @"This field contains the repeating coded entry for codes identifying how the use of this location is to be charged. For cross-referencing beds master files with the charge master files, or for generating charges when a patient is assigned to a bed. These should be the same set of values used in FT1-7-transaction code. Values are site negotiated. User-defined table 0132 - Transaction code is used as the HL7 identifier for the user-defined table of values for this field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LCC.4.1",
                             Type = @"Component",
@@ -528,178 +627,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V231SegmentLCC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V231Field primaryKeyValueLCC;
-
-public HL7V231Field PrimaryKeyValueLCC
-{
-    get
-    {
-        if (primaryKeyValueLCC != null)
-        {
-            return primaryKeyValueLCC;
-        }
-
-        primaryKeyValueLCC = new HL7V231Field
-        {
-            field = message[@"LCC"][1],
-            Id = @"LCC.1",
-            Type = @"Field",
-            Position = @"LCC.1",
-            Name = @"Primary Key Value - LCC",
-            Length = 200,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the institution's identification code for the location. The identifying key value. This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here). At least the first component of this field is required. The content of this field must exactly match the content of its preceding MFE (MFE-4-primary key value-MFE), its preceding LOC (LOC-1-LOC primary key value), and its preceding LDP ( LDP-1-primary key value-LDP ).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryKeyValueLCC.field.FieldRepetitions != null && primaryKeyValueLCC.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryKeyValueLCC.Id));
-            primaryKeyValueLCC.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(primaryKeyValueLCC, fieldData);
-        }
-
-        return primaryKeyValueLCC;
-    } 
-}
-
-internal HL7V231Field locationDepartment;
-
-public HL7V231Field LocationDepartment
-{
-    get
-    {
-        if (locationDepartment != null)
-        {
-            return locationDepartment;
-        }
-
-        locationDepartment = new HL7V231Field
-        {
-            field = message[@"LCC"][2],
-            Id = @"LCC.2",
-            Type = @"Field",
-            Position = @"LCC.2",
-            Name = @"Location Department",
-            Length = 10,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0264",
-            TableName = @"Location department",
-            Description = @"This field contains the institution's department to which this location belongs, or its cost center. It must match the value in its preceding LDP (LDP-2-location department). User-defined table 0264 -Location department is used as the HL7 Identifier for the user-defined table of values for this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (locationDepartment.field.FieldRepetitions != null && locationDepartment.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(locationDepartment.Id));
-            locationDepartment.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(locationDepartment, fieldData);
-        }
-
-        return locationDepartment;
-    } 
-}
-
-internal HL7V231Field accommodationType;
-
-public HL7V231Field AccommodationType
-{
-    get
-    {
-        if (accommodationType != null)
-        {
-            return accommodationType;
-        }
-
-        accommodationType = new HL7V231Field
-        {
-            field = message[@"LCC"][3],
-            Id = @"LCC.3",
-            Type = @"Field",
-            Position = @"LCC.3",
-            Name = @"Accommodation Type",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0129",
-            TableName = @"Accommodation code",
-            Description = @"This field contains the financial accommodation type of the bed or room which implies the rate to be used when occupied by a patient under specific medical conditions, which determines how it is billed. Not the same as specialty type. Used for general ledger categories. Specialty type is a physical accommodation type, whereas this field is a financial accommodation type. Repeating coded value. Site-defined codes. User-defined table 0129 - Accommodation code is used as the HL7 identifier for the user-defined table of values for this field .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accommodationType.field.FieldRepetitions != null && accommodationType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accommodationType.Id));
-            accommodationType.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(accommodationType, fieldData);
-        }
-
-        return accommodationType;
-    } 
-}
-
-internal HL7V231Field chargeCode;
-
-public HL7V231Field ChargeCode
-{
-    get
-    {
-        if (chargeCode != null)
-        {
-            return chargeCode;
-        }
-
-        chargeCode = new HL7V231Field
+        _chargeCode = new HL7V231Field
         {
             field = message[@"LCC"][4],
-            Id = @"LCC.4",
-            Type = @"Field",
-            Position = @"LCC.4",
-            Name = @"Charge Code",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0132",
-            TableName = @"Transaction code",
-            Description = @"This field contains the repeating coded entry for codes identifying how the use of this location is to be charged. For cross-referencing beds master files with the charge master files, or for generating charges when a patient is assigned to a bed. These should be the same set of values used in FT1-7-transaction code. Values are site negotiated. User-defined table 0132 - Transaction code is used as the HL7 identifier for the user-defined table of values for this field.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (chargeCode.field.FieldRepetitions != null && chargeCode.field.FieldRepetitions.Count > 0)
+        if (_chargeCode.field.FieldRepetitions != null && _chargeCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(chargeCode.Id));
-            chargeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(chargeCode, fieldData);
+            _chargeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_chargeCode, fieldData);
         }
 
-        return chargeCode;
+        return _chargeCode;
     } 
 }
     }

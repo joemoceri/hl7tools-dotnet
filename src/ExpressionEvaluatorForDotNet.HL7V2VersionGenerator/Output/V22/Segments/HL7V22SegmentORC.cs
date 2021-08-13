@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V22SegmentORC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V22Field _orderControl;
+
+public HL7V22Field OrderControl
+{
+    get
+    {
+        if (_orderControl != null)
+        {
+            return _orderControl;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.1",
+            Type = @"Field",
+            Position = @"ORC.1",
+            Name = @"Order Control",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"0119",
+            TableName = @"ORDER CONTROL",
+            Description = @"determines the function of the order segment.  Refer to table 0119 - order control for valid entries.  Very detailed explanatory notes are given at the end of this section",
+            Sample = @"",
+            Fields = null
+        }
+
+        _orderControl = new HL7V22Field
+        {
+            field = message[@"ORC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_orderControl.field.FieldRepetitions != null && _orderControl.field.FieldRepetitions.Count > 0)
+        {
+            _orderControl.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_orderControl, fieldData);
+        }
+
+        return _orderControl;
+    } 
+}
+
+internal HL7V22Field _placerOrderNumber;
+
+public HL7V22Field PlacerOrderNumber
+{
+    get
+    {
+        if (_placerOrderNumber != null)
+        {
+            return _placerOrderNumber;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.2",
+            Type = @"Field",
+            Position = @"ORC.2",
+            Name = @"Placer Order Number",
+            Length = 75,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CM_PLACER",
+            DataTypeName = @"Order Number Of The Client / The Contracting Authority",
+            TableId = null,
+            TableName = null,
+            Description = @"placer application's order number",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ORC.1",
-                            Type = @"Field",
-                            Position = @"ORC.1",
-                            Name = @"Order Control",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0119",
-                            TableName = @"ORDER CONTROL",
-                            Description = @"determines the function of the order segment.  Refer to table 0119 - order control for valid entries.  Very detailed explanatory notes are given at the end of this section",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.2",
-                            Type = @"Field",
-                            Position = @"ORC.2",
-                            Name = @"Placer Order Number",
-                            Length = 75,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CM_PLACER",
-                            DataTypeName = @"Order Number Of The Client / The Contracting Authority",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"placer application's order number",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ORC.2.1",
                             Type = @"Component",
@@ -102,25 +141,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The second component contains the application ID of the placing application.  The application ID is a string of up to six (6) characters that will be uniquely associated with an application.  A given institution or group of intercommunicating institutions should establish a unique list of applications that may be potential placers and fillers and assign unique application ID's.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _placerOrderNumber = new HL7V22Field
+        {
+            field = message[@"ORC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_placerOrderNumber.field.FieldRepetitions != null && _placerOrderNumber.field.FieldRepetitions.Count > 0)
+        {
+            _placerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_placerOrderNumber, fieldData);
+        }
+
+        return _placerOrderNumber;
+    } 
+}
+
+internal HL7V22Field _fillerOrderNumber;
+
+public HL7V22Field FillerOrderNumber
+{
+    get
+    {
+        if (_fillerOrderNumber != null)
+        {
+            return _fillerOrderNumber;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.3",
+            Type = @"Field",
+            Position = @"ORC.3",
+            Name = @"Filler Order Number",
+            Length = 75,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CM_FILLER",
+            DataTypeName = @"Number Of Processing Power Point",
+            TableId = null,
+            TableName = null,
+            Description = @" order number associated with the filling application",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORC.3",
-                            Type = @"Field",
-                            Position = @"ORC.3",
-                            Name = @"Filler Order Number",
-                            Length = 75,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CM_FILLER",
-                            DataTypeName = @"Number Of Processing Power Point",
-                            TableId = null,
-                            TableName = null,
-                            Description = @" order number associated with the filling application",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORC.3.1",
                             Type = @"Component",
@@ -154,25 +223,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The second component contains the filler application ID.  The filler application ID is a string of up to six characters that uniquely defines the application from other applications on the network.  The second component of the filler order number always identifies the actual filler of an order. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _fillerOrderNumber = new HL7V22Field
+        {
+            field = message[@"ORC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fillerOrderNumber.field.FieldRepetitions != null && _fillerOrderNumber.field.FieldRepetitions.Count > 0)
+        {
+            _fillerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_fillerOrderNumber, fieldData);
+        }
+
+        return _fillerOrderNumber;
+    } 
+}
+
+internal HL7V22Field _placerGroupNumber;
+
+public HL7V22Field PlacerGroupNumber
+{
+    get
+    {
+        if (_placerGroupNumber != null)
+        {
+            return _placerGroupNumber;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.4",
+            Type = @"Field",
+            Position = @"ORC.4",
+            Name = @"Placer Group Number",
+            Length = 75,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CM_GROUP_ID",
+            DataTypeName = @"Order Group Number",
+            TableId = null,
+            TableName = null,
+            Description = @"allows an order placing application to group sets of orders together and subsequently identify them",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORC.4",
-                            Type = @"Field",
-                            Position = @"ORC.4",
-                            Name = @"Placer Group Number",
-                            Length = 75,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM_GROUP_ID",
-                            DataTypeName = @"Order Group Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"allows an order placing application to group sets of orders together and subsequently identify them",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORC.4.1",
                             Type = @"Component",
@@ -206,61 +305,145 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The second component is a placer application ID identical to the second component of ORC-2-placer order number.  Order groups and how to use them are described in detail at the end of the ORC section under ""Use Notes"" and in the Examples.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _placerGroupNumber = new HL7V22Field
+        {
+            field = message[@"ORC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_placerGroupNumber.field.FieldRepetitions != null && _placerGroupNumber.field.FieldRepetitions.Count > 0)
+        {
+            _placerGroupNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_placerGroupNumber, fieldData);
+        }
+
+        return _placerGroupNumber;
+    } 
+}
+
+internal HL7V22Field _orderStatus;
+
+public HL7V22Field OrderStatus
+{
+    get
+    {
+        if (_orderStatus != null)
+        {
+            return _orderStatus;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.5",
+            Type = @"Field",
+            Position = @"ORC.5",
+            Name = @"Order Status",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"0038",
+            TableName = @"ORDER STATUS",
+            Description = @"status of an order.  Refer to table 0038 - order status for valid entries.  The purpose of this field is to report the status of an order either upon request (solicited), or when the status changes (unsolicited).  It does not initiate action.  It is assumed that the order status always reflects the status as it is known to the sending application at the time that the message is sent.  Only the filler can originate the value of this field",
+            Sample = @"",
+            Fields = null
+        }
+
+        _orderStatus = new HL7V22Field
+        {
+            field = message[@"ORC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_orderStatus.field.FieldRepetitions != null && _orderStatus.field.FieldRepetitions.Count > 0)
+        {
+            _orderStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_orderStatus, fieldData);
+        }
+
+        return _orderStatus;
+    } 
+}
+
+internal HL7V22Field _responseFlag;
+
+public HL7V22Field ResponseFlag
+{
+    get
+    {
+        if (_responseFlag != null)
+        {
+            return _responseFlag;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.6",
+            Type = @"Field",
+            Position = @"ORC.6",
+            Name = @"Response Flag",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"0121",
+            TableName = @"RESPONSE FLAG",
+            Description = @"allows the placer (sending) application to determine the amount of information to be returned from the filler.  Sometimes the requested level of response may not be possible immediately, but when it is possible, the filler (receiving) application must send the information.  When the field is null, D is the default value of the field.  Refer to table 0121 - response flag for valid entries",
+            Sample = @"",
+            Fields = null
+        }
+
+        _responseFlag = new HL7V22Field
+        {
+            field = message[@"ORC"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_responseFlag.field.FieldRepetitions != null && _responseFlag.field.FieldRepetitions.Count > 0)
+        {
+            _responseFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_responseFlag, fieldData);
+        }
+
+        return _responseFlag;
+    } 
+}
+
+internal HL7V22Field _quantityTiming;
+
+public HL7V22Field QuantityTiming
+{
+    get
+    {
+        if (_quantityTiming != null)
+        {
+            return _quantityTiming;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.7",
+            Type = @"Field",
+            Position = @"ORC.7",
+            Name = @"Quantity / Timing",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"TQ",
+            DataTypeName = @"Timing Quantity",
+            TableId = null,
+            TableName = null,
+            Description = @"determines the priority, quantity, frequency, and timing of an atomic service.  Order segments should be thought of as describing an atomic service.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORC.5",
-                            Type = @"Field",
-                            Position = @"ORC.5",
-                            Name = @"Order Status",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0038",
-                            TableName = @"ORDER STATUS",
-                            Description = @"status of an order.  Refer to table 0038 - order status for valid entries.  The purpose of this field is to report the status of an order either upon request (solicited), or when the status changes (unsolicited).  It does not initiate action.  It is assumed that the order status always reflects the status as it is known to the sending application at the time that the message is sent.  Only the filler can originate the value of this field",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.6",
-                            Type = @"Field",
-                            Position = @"ORC.6",
-                            Name = @"Response Flag",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0121",
-                            TableName = @"RESPONSE FLAG",
-                            Description = @"allows the placer (sending) application to determine the amount of information to be returned from the filler.  Sometimes the requested level of response may not be possible immediately, but when it is possible, the filler (receiving) application must send the information.  When the field is null, D is the default value of the field.  Refer to table 0121 - response flag for valid entries",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.7",
-                            Type = @"Field",
-                            Position = @"ORC.7",
-                            Name = @"Quantity / Timing",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"TQ",
-                            DataTypeName = @"Timing Quantity",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"determines the priority, quantity, frequency, and timing of an atomic service.  Order segments should be thought of as describing an atomic service.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORC.7.1",
                             Type = @"Component",
@@ -710,25 +893,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _quantityTiming = new HL7V22Field
+        {
+            field = message[@"ORC"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_quantityTiming.field.FieldRepetitions != null && _quantityTiming.field.FieldRepetitions.Count > 0)
+        {
+            _quantityTiming.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_quantityTiming, fieldData);
+        }
+
+        return _quantityTiming;
+    } 
+}
+
+internal HL7V22Field _parent;
+
+public HL7V22Field Parent
+{
+    get
+    {
+        if (_parent != null)
+        {
+            return _parent;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.8",
+            Type = @"Field",
+            Position = @"ORC.8",
+            Name = @"Parent",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CM_EIP",
+            DataTypeName = @"Parent Order",
+            TableId = null,
+            TableName = null,
+            Description = @"relates a child to its parent when a parent-child relationship exists.  The parent-child mechanism is described under ORC-1-order control notes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORC.8",
-                            Type = @"Field",
-                            Position = @"ORC.8",
-                            Name = @"Parent",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM_EIP",
-                            DataTypeName = @"Parent Order",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"relates a child to its parent when a parent-child relationship exists.  The parent-child mechanism is described under ORC-1-order control notes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORC.8.1",
                             Type = @"Component",
@@ -762,25 +975,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = @"The second component contains the filler order number of the parent order.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _parent = new HL7V22Field
+        {
+            field = message[@"ORC"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_parent.field.FieldRepetitions != null && _parent.field.FieldRepetitions.Count > 0)
+        {
+            _parent.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_parent, fieldData);
+        }
+
+        return _parent;
+    } 
+}
+
+internal HL7V22Field _dateTimeOfTransaction;
+
+public HL7V22Field DateTimeOfTransaction
+{
+    get
+    {
+        if (_dateTimeOfTransaction != null)
+        {
+            return _dateTimeOfTransaction;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.9",
+            Type = @"Field",
+            Position = @"ORC.9",
+            Name = @"Date / Time Of Transaction",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"Date and time the current transaction enters the ordering application.  For messages creating new orders, this is the date and time the order was entered. For other messages, this is the date and time the current transaction (e.g., cancellation) enters the sending application.  This date and time is for the current transaction and is not a ""replacement"" time for a correction to the original order.  Similarly, ORC-10-entered by, ORC-11-verified by, and ORC-13-enterer's location of this segment relate to the current transaction, not the original order",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORC.9",
-                            Type = @"Field",
-                            Position = @"ORC.9",
-                            Name = @"Date / Time Of Transaction",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Date and time the current transaction enters the ordering application.  For messages creating new orders, this is the date and time the order was entered. For other messages, this is the date and time the current transaction (e.g., cancellation) enters the sending application.  This date and time is for the current transaction and is not a ""replacement"" time for a correction to the original order.  Similarly, ORC-10-entered by, ORC-11-verified by, and ORC-13-enterer's location of this segment relate to the current transaction, not the original order",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORC.9.1",
                             Type = @"Component",
@@ -814,25 +1057,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dateTimeOfTransaction = new HL7V22Field
+        {
+            field = message[@"ORC"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeOfTransaction.field.FieldRepetitions != null && _dateTimeOfTransaction.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeOfTransaction.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_dateTimeOfTransaction, fieldData);
+        }
+
+        return _dateTimeOfTransaction;
+    } 
+}
+
+internal HL7V22Field _enteredBy;
+
+public HL7V22Field EnteredBy
+{
+    get
+    {
+        if (_enteredBy != null)
+        {
+            return _enteredBy;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.10",
+            Type = @"Field",
+            Position = @"ORC.10",
+            Name = @"Entered By",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CN_PERSON",
+            DataTypeName = @"Cn For Person",
+            TableId = null,
+            TableName = null,
+            Description = @"identity of the person who actually keyed the request into the application.  It provides an audit trail in case the request is entered incorrectly and the ancillary department needs to clarify the request.  By local agreement, either the ID number or name component may be omitted",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORC.10",
-                            Type = @"Field",
-                            Position = @"ORC.10",
-                            Name = @"Entered By",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CN_PERSON",
-                            DataTypeName = @"Cn For Person",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"identity of the person who actually keyed the request into the application.  It provides an audit trail in case the request is entered incorrectly and the ancillary department needs to clarify the request.  By local agreement, either the ID number or name component may be omitted",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORC.10.1",
                             Type = @"Component",
@@ -974,25 +1247,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _enteredBy = new HL7V22Field
+        {
+            field = message[@"ORC"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_enteredBy.field.FieldRepetitions != null && _enteredBy.field.FieldRepetitions.Count > 0)
+        {
+            _enteredBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_enteredBy, fieldData);
+        }
+
+        return _enteredBy;
+    } 
+}
+
+internal HL7V22Field _verifiedBy;
+
+public HL7V22Field VerifiedBy
+{
+    get
+    {
+        if (_verifiedBy != null)
+        {
+            return _verifiedBy;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.11",
+            Type = @"Field",
+            Position = @"ORC.11",
+            Name = @"Verified By",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CN_PERSON",
+            DataTypeName = @"Cn For Person",
+            TableId = null,
+            TableName = null,
+            Description = @"identity of the person who verified the accuracy of the entered request.  It is used in cases where the request is entered by a technician and needs to be verified by a higher authority (e.g., a nurse).  By local agreement, either the ID number or name component may be omitted",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORC.11",
-                            Type = @"Field",
-                            Position = @"ORC.11",
-                            Name = @"Verified By",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CN_PERSON",
-                            DataTypeName = @"Cn For Person",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"identity of the person who verified the accuracy of the entered request.  It is used in cases where the request is entered by a technician and needs to be verified by a higher authority (e.g., a nurse).  By local agreement, either the ID number or name component may be omitted",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORC.11.1",
                             Type = @"Component",
@@ -1134,25 +1437,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _verifiedBy = new HL7V22Field
+        {
+            field = message[@"ORC"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_verifiedBy.field.FieldRepetitions != null && _verifiedBy.field.FieldRepetitions.Count > 0)
+        {
+            _verifiedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_verifiedBy, fieldData);
+        }
+
+        return _verifiedBy;
+    } 
+}
+
+internal HL7V22Field _orderingProvider;
+
+public HL7V22Field OrderingProvider
+{
+    get
+    {
+        if (_orderingProvider != null)
+        {
+            return _orderingProvider;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.12",
+            Type = @"Field",
+            Position = @"ORC.12",
+            Name = @"Ordering Provider",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CN_PERSON",
+            DataTypeName = @"Cn For Person",
+            TableId = null,
+            TableName = null,
+            Description = @"identity of the person who is responsible for creating the request (i.e., ordering physician).  ORC-12ordering provider is the same as OBR-16-ordering provider",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORC.12",
-                            Type = @"Field",
-                            Position = @"ORC.12",
-                            Name = @"Ordering Provider",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CN_PERSON",
-                            DataTypeName = @"Cn For Person",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"identity of the person who is responsible for creating the request (i.e., ordering physician).  ORC-12ordering provider is the same as OBR-16-ordering provider",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORC.12.1",
                             Type = @"Component",
@@ -1294,25 +1627,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _orderingProvider = new HL7V22Field
+        {
+            field = message[@"ORC"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_orderingProvider.field.FieldRepetitions != null && _orderingProvider.field.FieldRepetitions.Count > 0)
+        {
+            _orderingProvider.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_orderingProvider, fieldData);
+        }
+
+        return _orderingProvider;
+    } 
+}
+
+internal HL7V22Field _enterersLocation;
+
+public HL7V22Field EnterersLocation
+{
+    get
+    {
+        if (_enterersLocation != null)
+        {
+            return _enterersLocation;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.13",
+            Type = @"Field",
+            Position = @"ORC.13",
+            Name = @"Enterer's Location",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"location (e.g., department, floor) of the person who entered the request.  It is a composite field that may be used on a site-specific basis to include some subcategory of department.  For example, ICU4 might be the designation for a fourth-floor ICU location",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORC.13",
-                            Type = @"Field",
-                            Position = @"ORC.13",
-                            Name = @"Enterer's Location",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"location (e.g., department, floor) of the person who entered the request.  It is a composite field that may be used on a site-specific basis to include some subcategory of department.  For example, ICU4 might be the designation for a fourth-floor ICU location",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORC.13.1",
                             Type = @"Component",
@@ -1524,43 +1887,100 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = @"A free text description of the location",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _enterersLocation = new HL7V22Field
+        {
+            field = message[@"ORC"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_enterersLocation.field.FieldRepetitions != null && _enterersLocation.field.FieldRepetitions.Count > 0)
+        {
+            _enterersLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_enterersLocation, fieldData);
+        }
+
+        return _enterersLocation;
+    } 
+}
+
+internal HL7V22Field _callBackPhoneNumber;
+
+public HL7V22Field CallBackPhoneNumber
+{
+    get
+    {
+        if (_callBackPhoneNumber != null)
+        {
+            return _callBackPhoneNumber;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.14",
+            Type = @"Field",
+            Position = @"ORC.14",
+            Name = @"Call Back Phone Number",
+            Length = 40,
+            Usage = @"O",
+            Rpt = @"2",
+            DataType = @"TN",
+            DataTypeName = @"Telephone Number",
+            TableId = null,
+            TableName = null,
+            Description = @"telephone number to call for clarification of a request or other information regarding the order.  ORC14-call back phone number is the same as OBR-17-order call back phone number",
+            Sample = @"",
+            Fields = null
+        }
+
+        _callBackPhoneNumber = new HL7V22Field
+        {
+            field = message[@"ORC"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_callBackPhoneNumber.field.FieldRepetitions != null && _callBackPhoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            _callBackPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_callBackPhoneNumber, fieldData);
+        }
+
+        return _callBackPhoneNumber;
+    } 
+}
+
+internal HL7V22Field _orderEffectiveDateTime;
+
+public HL7V22Field OrderEffectiveDateTime
+{
+    get
+    {
+        if (_orderEffectiveDateTime != null)
+        {
+            return _orderEffectiveDateTime;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.15",
+            Type = @"Field",
+            Position = @"ORC.15",
+            Name = @"Order Effective Date / Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"date/time that the changes to the request took effect or are supposed to take effect",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORC.14",
-                            Type = @"Field",
-                            Position = @"ORC.14",
-                            Name = @"Call Back Phone Number",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"2",
-                            DataType = @"TN",
-                            DataTypeName = @"Telephone Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"telephone number to call for clarification of a request or other information regarding the order.  ORC14-call back phone number is the same as OBR-17-order call back phone number",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORC.15",
-                            Type = @"Field",
-                            Position = @"ORC.15",
-                            Name = @"Order Effective Date / Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"date/time that the changes to the request took effect or are supposed to take effect",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORC.15.1",
                             Type = @"Component",
@@ -1594,25 +2014,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _orderEffectiveDateTime = new HL7V22Field
+        {
+            field = message[@"ORC"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_orderEffectiveDateTime.field.FieldRepetitions != null && _orderEffectiveDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _orderEffectiveDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_orderEffectiveDateTime, fieldData);
+        }
+
+        return _orderEffectiveDateTime;
+    } 
+}
+
+internal HL7V22Field _orderControlCodeReason;
+
+public HL7V22Field OrderControlCodeReason
+{
+    get
+    {
+        if (_orderControlCodeReason != null)
+        {
+            return _orderControlCodeReason;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.16",
+            Type = @"Field",
+            Position = @"ORC.16",
+            Name = @"Order Control Code Reason",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0119",
+            TableName = @"ORDER CONTROL",
+            Description = @"explanation (either in coded or text form) of the reason for the order event described by the order control code (table 0119).  Whereas an NTE after the order specific segment (e.g., RXO, ORO, OBR) would provide a comment for that specific segment, the purpose of the order control code reason is only to expand on the reason for the order event",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORC.16",
-                            Type = @"Field",
-                            Position = @"ORC.16",
-                            Name = @"Order Control Code Reason",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0119",
-                            TableName = @"ORDER CONTROL",
-                            Description = @"explanation (either in coded or text form) of the reason for the order event described by the order control code (table 0119).  Whereas an NTE after the order specific segment (e.g., RXO, ORO, OBR) would provide a comment for that specific segment, the purpose of the order control code reason is only to expand on the reason for the order event",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORC.16.1",
                             Type = @"Component",
@@ -1718,25 +2168,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _orderControlCodeReason = new HL7V22Field
+        {
+            field = message[@"ORC"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_orderControlCodeReason.field.FieldRepetitions != null && _orderControlCodeReason.field.FieldRepetitions.Count > 0)
+        {
+            _orderControlCodeReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_orderControlCodeReason, fieldData);
+        }
+
+        return _orderControlCodeReason;
+    } 
+}
+
+internal HL7V22Field _enteringOrganization;
+
+public HL7V22Field EnteringOrganization
+{
+    get
+    {
+        if (_enteringOrganization != null)
+        {
+            return _enteringOrganization;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.17",
+            Type = @"Field",
+            Position = @"ORC.17",
+            Name = @"Entering Organization",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"organization that the enterer represents at the time he/she enters/maintains the order",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORC.17",
-                            Type = @"Field",
-                            Position = @"ORC.17",
-                            Name = @"Entering Organization",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"organization that the enterer represents at the time he/she enters/maintains the order",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORC.17.1",
                             Type = @"Component",
@@ -1842,25 +2322,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _enteringOrganization = new HL7V22Field
+        {
+            field = message[@"ORC"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_enteringOrganization.field.FieldRepetitions != null && _enteringOrganization.field.FieldRepetitions.Count > 0)
+        {
+            _enteringOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_enteringOrganization, fieldData);
+        }
+
+        return _enteringOrganization;
+    } 
+}
+
+internal HL7V22Field _enteringDevice;
+
+public HL7V22Field EnteringDevice
+{
+    get
+    {
+        if (_enteringDevice != null)
+        {
+            return _enteringDevice;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.18",
+            Type = @"Field",
+            Position = @"ORC.18",
+            Name = @"Entering Device",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"identifier of the physical device (terminal, PC) used to enter the order",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORC.18",
-                            Type = @"Field",
-                            Position = @"ORC.18",
-                            Name = @"Entering Device",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"identifier of the physical device (terminal, PC) used to enter the order",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORC.18.1",
                             Type = @"Component",
@@ -1966,25 +2476,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _enteringDevice = new HL7V22Field
+        {
+            field = message[@"ORC"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_enteringDevice.field.FieldRepetitions != null && _enteringDevice.field.FieldRepetitions.Count > 0)
+        {
+            _enteringDevice.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_enteringDevice, fieldData);
+        }
+
+        return _enteringDevice;
+    } 
+}
+
+internal HL7V22Field _actionBy;
+
+public HL7V22Field ActionBy
+{
+    get
+    {
+        if (_actionBy != null)
+        {
+            return _actionBy;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ORC.19",
+            Type = @"Field",
+            Position = @"ORC.19",
+            Name = @"Action By",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CN_PERSON",
+            DataTypeName = @"Cn For Person",
+            TableId = null,
+            TableName = null,
+            Description = @"Identity of the person who initiated the event represented by the corresponding order control code.  For example, if the order control code is CA (cancel order request), this field represents the person who requested the order cancellation",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ORC.19",
-                            Type = @"Field",
-                            Position = @"ORC.19",
-                            Name = @"Action By",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CN_PERSON",
-                            DataTypeName = @"Cn For Person",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identity of the person who initiated the event represented by the corresponding order control code.  For example, if the order control code is CA (cancel order request), this field represents the person who requested the order cancellation",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ORC.19.1",
                             Type = @"Component",
@@ -2126,793 +2666,23 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V22SegmentORC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V22Field orderControl;
-
-public HL7V22Field OrderControl
-{
-    get
-    {
-        if (orderControl != null)
-        {
-            return orderControl;
-        }
-
-        orderControl = new HL7V22Field
-        {
-            field = message[@"ORC"][1],
-            Id = @"ORC.1",
-            Type = @"Field",
-            Position = @"ORC.1",
-            Name = @"Order Control",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0119",
-            TableName = @"ORDER CONTROL",
-            Description = @"determines the function of the order segment.  Refer to table 0119 - order control for valid entries.  Very detailed explanatory notes are given at the end of this section",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (orderControl.field.FieldRepetitions != null && orderControl.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderControl.Id));
-            orderControl.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(orderControl, fieldData);
-        }
-
-        return orderControl;
-    } 
-}
-
-internal HL7V22Field placerOrderNumber;
-
-public HL7V22Field PlacerOrderNumber
-{
-    get
-    {
-        if (placerOrderNumber != null)
-        {
-            return placerOrderNumber;
-        }
-
-        placerOrderNumber = new HL7V22Field
-        {
-            field = message[@"ORC"][2],
-            Id = @"ORC.2",
-            Type = @"Field",
-            Position = @"ORC.2",
-            Name = @"Placer Order Number",
-            Length = 75,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CM_PLACER",
-            DataTypeName = @"Order Number Of The Client / The Contracting Authority",
-            TableId = null,
-            TableName = null,
-            Description = @"placer application's order number",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (placerOrderNumber.field.FieldRepetitions != null && placerOrderNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerOrderNumber.Id));
-            placerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(placerOrderNumber, fieldData);
-        }
-
-        return placerOrderNumber;
-    } 
-}
-
-internal HL7V22Field fillerOrderNumber;
-
-public HL7V22Field FillerOrderNumber
-{
-    get
-    {
-        if (fillerOrderNumber != null)
-        {
-            return fillerOrderNumber;
-        }
-
-        fillerOrderNumber = new HL7V22Field
-        {
-            field = message[@"ORC"][3],
-            Id = @"ORC.3",
-            Type = @"Field",
-            Position = @"ORC.3",
-            Name = @"Filler Order Number",
-            Length = 75,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CM_FILLER",
-            DataTypeName = @"Number Of Processing Power Point",
-            TableId = null,
-            TableName = null,
-            Description = @" order number associated with the filling application",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fillerOrderNumber.field.FieldRepetitions != null && fillerOrderNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerOrderNumber.Id));
-            fillerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(fillerOrderNumber, fieldData);
-        }
-
-        return fillerOrderNumber;
-    } 
-}
-
-internal HL7V22Field placerGroupNumber;
-
-public HL7V22Field PlacerGroupNumber
-{
-    get
-    {
-        if (placerGroupNumber != null)
-        {
-            return placerGroupNumber;
-        }
-
-        placerGroupNumber = new HL7V22Field
-        {
-            field = message[@"ORC"][4],
-            Id = @"ORC.4",
-            Type = @"Field",
-            Position = @"ORC.4",
-            Name = @"Placer Group Number",
-            Length = 75,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CM_GROUP_ID",
-            DataTypeName = @"Order Group Number",
-            TableId = null,
-            TableName = null,
-            Description = @"allows an order placing application to group sets of orders together and subsequently identify them",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (placerGroupNumber.field.FieldRepetitions != null && placerGroupNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerGroupNumber.Id));
-            placerGroupNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(placerGroupNumber, fieldData);
-        }
-
-        return placerGroupNumber;
-    } 
-}
-
-internal HL7V22Field orderStatus;
-
-public HL7V22Field OrderStatus
-{
-    get
-    {
-        if (orderStatus != null)
-        {
-            return orderStatus;
-        }
-
-        orderStatus = new HL7V22Field
-        {
-            field = message[@"ORC"][5],
-            Id = @"ORC.5",
-            Type = @"Field",
-            Position = @"ORC.5",
-            Name = @"Order Status",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0038",
-            TableName = @"ORDER STATUS",
-            Description = @"status of an order.  Refer to table 0038 - order status for valid entries.  The purpose of this field is to report the status of an order either upon request (solicited), or when the status changes (unsolicited).  It does not initiate action.  It is assumed that the order status always reflects the status as it is known to the sending application at the time that the message is sent.  Only the filler can originate the value of this field",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (orderStatus.field.FieldRepetitions != null && orderStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderStatus.Id));
-            orderStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(orderStatus, fieldData);
-        }
-
-        return orderStatus;
-    } 
-}
-
-internal HL7V22Field responseFlag;
-
-public HL7V22Field ResponseFlag
-{
-    get
-    {
-        if (responseFlag != null)
-        {
-            return responseFlag;
-        }
-
-        responseFlag = new HL7V22Field
-        {
-            field = message[@"ORC"][6],
-            Id = @"ORC.6",
-            Type = @"Field",
-            Position = @"ORC.6",
-            Name = @"Response Flag",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0121",
-            TableName = @"RESPONSE FLAG",
-            Description = @"allows the placer (sending) application to determine the amount of information to be returned from the filler.  Sometimes the requested level of response may not be possible immediately, but when it is possible, the filler (receiving) application must send the information.  When the field is null, D is the default value of the field.  Refer to table 0121 - response flag for valid entries",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (responseFlag.field.FieldRepetitions != null && responseFlag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(responseFlag.Id));
-            responseFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(responseFlag, fieldData);
-        }
-
-        return responseFlag;
-    } 
-}
-
-internal HL7V22Field quantityTiming;
-
-public HL7V22Field QuantityTiming
-{
-    get
-    {
-        if (quantityTiming != null)
-        {
-            return quantityTiming;
-        }
-
-        quantityTiming = new HL7V22Field
-        {
-            field = message[@"ORC"][7],
-            Id = @"ORC.7",
-            Type = @"Field",
-            Position = @"ORC.7",
-            Name = @"Quantity / Timing",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"TQ",
-            DataTypeName = @"Timing Quantity",
-            TableId = null,
-            TableName = null,
-            Description = @"determines the priority, quantity, frequency, and timing of an atomic service.  Order segments should be thought of as describing an atomic service.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (quantityTiming.field.FieldRepetitions != null && quantityTiming.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(quantityTiming.Id));
-            quantityTiming.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(quantityTiming, fieldData);
-        }
-
-        return quantityTiming;
-    } 
-}
-
-internal HL7V22Field parent;
-
-public HL7V22Field Parent
-{
-    get
-    {
-        if (parent != null)
-        {
-            return parent;
-        }
-
-        parent = new HL7V22Field
-        {
-            field = message[@"ORC"][8],
-            Id = @"ORC.8",
-            Type = @"Field",
-            Position = @"ORC.8",
-            Name = @"Parent",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CM_EIP",
-            DataTypeName = @"Parent Order",
-            TableId = null,
-            TableName = null,
-            Description = @"relates a child to its parent when a parent-child relationship exists.  The parent-child mechanism is described under ORC-1-order control notes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (parent.field.FieldRepetitions != null && parent.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(parent.Id));
-            parent.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(parent, fieldData);
-        }
-
-        return parent;
-    } 
-}
-
-internal HL7V22Field dateTimeOfTransaction;
-
-public HL7V22Field DateTimeOfTransaction
-{
-    get
-    {
-        if (dateTimeOfTransaction != null)
-        {
-            return dateTimeOfTransaction;
-        }
-
-        dateTimeOfTransaction = new HL7V22Field
-        {
-            field = message[@"ORC"][9],
-            Id = @"ORC.9",
-            Type = @"Field",
-            Position = @"ORC.9",
-            Name = @"Date / Time Of Transaction",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"Date and time the current transaction enters the ordering application.  For messages creating new orders, this is the date and time the order was entered. For other messages, this is the date and time the current transaction (e.g., cancellation) enters the sending application.  This date and time is for the current transaction and is not a ""replacement"" time for a correction to the original order.  Similarly, ORC-10-entered by, ORC-11-verified by, and ORC-13-enterer's location of this segment relate to the current transaction, not the original order",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeOfTransaction.field.FieldRepetitions != null && dateTimeOfTransaction.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeOfTransaction.Id));
-            dateTimeOfTransaction.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(dateTimeOfTransaction, fieldData);
-        }
-
-        return dateTimeOfTransaction;
-    } 
-}
-
-internal HL7V22Field enteredBy;
-
-public HL7V22Field EnteredBy
-{
-    get
-    {
-        if (enteredBy != null)
-        {
-            return enteredBy;
-        }
-
-        enteredBy = new HL7V22Field
-        {
-            field = message[@"ORC"][10],
-            Id = @"ORC.10",
-            Type = @"Field",
-            Position = @"ORC.10",
-            Name = @"Entered By",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CN_PERSON",
-            DataTypeName = @"Cn For Person",
-            TableId = null,
-            TableName = null,
-            Description = @"identity of the person who actually keyed the request into the application.  It provides an audit trail in case the request is entered incorrectly and the ancillary department needs to clarify the request.  By local agreement, either the ID number or name component may be omitted",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (enteredBy.field.FieldRepetitions != null && enteredBy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteredBy.Id));
-            enteredBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(enteredBy, fieldData);
-        }
-
-        return enteredBy;
-    } 
-}
-
-internal HL7V22Field verifiedBy;
-
-public HL7V22Field VerifiedBy
-{
-    get
-    {
-        if (verifiedBy != null)
-        {
-            return verifiedBy;
-        }
-
-        verifiedBy = new HL7V22Field
-        {
-            field = message[@"ORC"][11],
-            Id = @"ORC.11",
-            Type = @"Field",
-            Position = @"ORC.11",
-            Name = @"Verified By",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CN_PERSON",
-            DataTypeName = @"Cn For Person",
-            TableId = null,
-            TableName = null,
-            Description = @"identity of the person who verified the accuracy of the entered request.  It is used in cases where the request is entered by a technician and needs to be verified by a higher authority (e.g., a nurse).  By local agreement, either the ID number or name component may be omitted",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (verifiedBy.field.FieldRepetitions != null && verifiedBy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(verifiedBy.Id));
-            verifiedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(verifiedBy, fieldData);
-        }
-
-        return verifiedBy;
-    } 
-}
-
-internal HL7V22Field orderingProvider;
-
-public HL7V22Field OrderingProvider
-{
-    get
-    {
-        if (orderingProvider != null)
-        {
-            return orderingProvider;
-        }
-
-        orderingProvider = new HL7V22Field
-        {
-            field = message[@"ORC"][12],
-            Id = @"ORC.12",
-            Type = @"Field",
-            Position = @"ORC.12",
-            Name = @"Ordering Provider",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CN_PERSON",
-            DataTypeName = @"Cn For Person",
-            TableId = null,
-            TableName = null,
-            Description = @"identity of the person who is responsible for creating the request (i.e., ordering physician).  ORC-12ordering provider is the same as OBR-16-ordering provider",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (orderingProvider.field.FieldRepetitions != null && orderingProvider.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderingProvider.Id));
-            orderingProvider.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(orderingProvider, fieldData);
-        }
-
-        return orderingProvider;
-    } 
-}
-
-internal HL7V22Field enterersLocation;
-
-public HL7V22Field EnterersLocation
-{
-    get
-    {
-        if (enterersLocation != null)
-        {
-            return enterersLocation;
-        }
-
-        enterersLocation = new HL7V22Field
-        {
-            field = message[@"ORC"][13],
-            Id = @"ORC.13",
-            Type = @"Field",
-            Position = @"ORC.13",
-            Name = @"Enterer's Location",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"location (e.g., department, floor) of the person who entered the request.  It is a composite field that may be used on a site-specific basis to include some subcategory of department.  For example, ICU4 might be the designation for a fourth-floor ICU location",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (enterersLocation.field.FieldRepetitions != null && enterersLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enterersLocation.Id));
-            enterersLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(enterersLocation, fieldData);
-        }
-
-        return enterersLocation;
-    } 
-}
-
-internal HL7V22Field callBackPhoneNumber;
-
-public HL7V22Field CallBackPhoneNumber
-{
-    get
-    {
-        if (callBackPhoneNumber != null)
-        {
-            return callBackPhoneNumber;
-        }
-
-        callBackPhoneNumber = new HL7V22Field
-        {
-            field = message[@"ORC"][14],
-            Id = @"ORC.14",
-            Type = @"Field",
-            Position = @"ORC.14",
-            Name = @"Call Back Phone Number",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"2",
-            DataType = @"TN",
-            DataTypeName = @"Telephone Number",
-            TableId = null,
-            TableName = null,
-            Description = @"telephone number to call for clarification of a request or other information regarding the order.  ORC14-call back phone number is the same as OBR-17-order call back phone number",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (callBackPhoneNumber.field.FieldRepetitions != null && callBackPhoneNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(callBackPhoneNumber.Id));
-            callBackPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(callBackPhoneNumber, fieldData);
-        }
-
-        return callBackPhoneNumber;
-    } 
-}
-
-internal HL7V22Field orderEffectiveDateTime;
-
-public HL7V22Field OrderEffectiveDateTime
-{
-    get
-    {
-        if (orderEffectiveDateTime != null)
-        {
-            return orderEffectiveDateTime;
-        }
-
-        orderEffectiveDateTime = new HL7V22Field
-        {
-            field = message[@"ORC"][15],
-            Id = @"ORC.15",
-            Type = @"Field",
-            Position = @"ORC.15",
-            Name = @"Order Effective Date / Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"date/time that the changes to the request took effect or are supposed to take effect",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (orderEffectiveDateTime.field.FieldRepetitions != null && orderEffectiveDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderEffectiveDateTime.Id));
-            orderEffectiveDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(orderEffectiveDateTime, fieldData);
-        }
-
-        return orderEffectiveDateTime;
-    } 
-}
-
-internal HL7V22Field orderControlCodeReason;
-
-public HL7V22Field OrderControlCodeReason
-{
-    get
-    {
-        if (orderControlCodeReason != null)
-        {
-            return orderControlCodeReason;
-        }
-
-        orderControlCodeReason = new HL7V22Field
-        {
-            field = message[@"ORC"][16],
-            Id = @"ORC.16",
-            Type = @"Field",
-            Position = @"ORC.16",
-            Name = @"Order Control Code Reason",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0119",
-            TableName = @"ORDER CONTROL",
-            Description = @"explanation (either in coded or text form) of the reason for the order event described by the order control code (table 0119).  Whereas an NTE after the order specific segment (e.g., RXO, ORO, OBR) would provide a comment for that specific segment, the purpose of the order control code reason is only to expand on the reason for the order event",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (orderControlCodeReason.field.FieldRepetitions != null && orderControlCodeReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderControlCodeReason.Id));
-            orderControlCodeReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(orderControlCodeReason, fieldData);
-        }
-
-        return orderControlCodeReason;
-    } 
-}
-
-internal HL7V22Field enteringOrganization;
-
-public HL7V22Field EnteringOrganization
-{
-    get
-    {
-        if (enteringOrganization != null)
-        {
-            return enteringOrganization;
-        }
-
-        enteringOrganization = new HL7V22Field
-        {
-            field = message[@"ORC"][17],
-            Id = @"ORC.17",
-            Type = @"Field",
-            Position = @"ORC.17",
-            Name = @"Entering Organization",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"organization that the enterer represents at the time he/she enters/maintains the order",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (enteringOrganization.field.FieldRepetitions != null && enteringOrganization.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteringOrganization.Id));
-            enteringOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(enteringOrganization, fieldData);
-        }
-
-        return enteringOrganization;
-    } 
-}
-
-internal HL7V22Field enteringDevice;
-
-public HL7V22Field EnteringDevice
-{
-    get
-    {
-        if (enteringDevice != null)
-        {
-            return enteringDevice;
-        }
-
-        enteringDevice = new HL7V22Field
-        {
-            field = message[@"ORC"][18],
-            Id = @"ORC.18",
-            Type = @"Field",
-            Position = @"ORC.18",
-            Name = @"Entering Device",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"identifier of the physical device (terminal, PC) used to enter the order",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (enteringDevice.field.FieldRepetitions != null && enteringDevice.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteringDevice.Id));
-            enteringDevice.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(enteringDevice, fieldData);
-        }
-
-        return enteringDevice;
-    } 
-}
-
-internal HL7V22Field actionBy;
-
-public HL7V22Field ActionBy
-{
-    get
-    {
-        if (actionBy != null)
-        {
-            return actionBy;
-        }
-
-        actionBy = new HL7V22Field
+        _actionBy = new HL7V22Field
         {
             field = message[@"ORC"][19],
-            Id = @"ORC.19",
-            Type = @"Field",
-            Position = @"ORC.19",
-            Name = @"Action By",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CN_PERSON",
-            DataTypeName = @"Cn For Person",
-            TableId = null,
-            TableName = null,
-            Description = @"Identity of the person who initiated the event represented by the corresponding order control code.  For example, if the order control code is CA (cancel order request), this field represents the person who requested the order cancellation",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (actionBy.field.FieldRepetitions != null && actionBy.field.FieldRepetitions.Count > 0)
+        if (_actionBy.field.FieldRepetitions != null && _actionBy.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actionBy.Id));
-            actionBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(actionBy, fieldData);
+            _actionBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_actionBy, fieldData);
         }
 
-        return actionBy;
+        return _actionBy;
     } 
 }
     }

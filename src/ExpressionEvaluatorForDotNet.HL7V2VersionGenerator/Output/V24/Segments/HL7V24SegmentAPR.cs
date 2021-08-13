@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentAPR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _timeSelectionCriteria;
+
+public HL7V24Field TimeSelectionCriteria
+{
+    get
+    {
+        if (_timeSelectionCriteria != null)
+        {
+            return _timeSelectionCriteria;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"APR.1",
+            Type = @"Field",
+            Position = @"APR.1",
+            Name = @"Time Selection Criteria",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"SCV",
+            DataTypeName = @"Scheduling Class Value Pair",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate time slot for an appointment. The first component of this field is a code identifying the parameter or preference being passed to the filler application. The second component is the actual data value for that parameter.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"APR.1",
-                            Type = @"Field",
-                            Position = @"APR.1",
-                            Name = @"Time Selection Criteria",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"SCV",
-                            DataTypeName = @"Scheduling Class Value Pair",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate time slot for an appointment. The first component of this field is a code identifying the parameter or preference being passed to the filler application. The second component is the actual data value for that parameter.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"APR.1.1",
                             Type = @"Component",
@@ -84,25 +96,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The second component is the actual data value for that parameter.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _timeSelectionCriteria = new HL7V24Field
+        {
+            field = message[@"APR"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_timeSelectionCriteria.field.FieldRepetitions != null && _timeSelectionCriteria.field.FieldRepetitions.Count > 0)
+        {
+            _timeSelectionCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_timeSelectionCriteria, fieldData);
+        }
+
+        return _timeSelectionCriteria;
+    } 
+}
+
+internal HL7V24Field _resourceSelectionCriteria;
+
+public HL7V24Field ResourceSelectionCriteria
+{
+    get
+    {
+        if (_resourceSelectionCriteria != null)
+        {
+            return _resourceSelectionCriteria;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"APR.2",
+            Type = @"Field",
+            Position = @"APR.2",
+            Name = @"Resource Selection Criteria",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"SCV",
+            DataTypeName = @"Scheduling Class Value Pair",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate resource for an appointment. The first component of this field is a code identifying the parameter or preference being passed to the filler application. The second component is the actual data value for that parameter.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"APR.2",
-                            Type = @"Field",
-                            Position = @"APR.2",
-                            Name = @"Resource Selection Criteria",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"SCV",
-                            DataTypeName = @"Scheduling Class Value Pair",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate resource for an appointment. The first component of this field is a code identifying the parameter or preference being passed to the filler application. The second component is the actual data value for that parameter.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"APR.2.1",
                             Type = @"Component",
@@ -136,25 +178,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The second component is the actual data value for that parameter.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _resourceSelectionCriteria = new HL7V24Field
+        {
+            field = message[@"APR"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_resourceSelectionCriteria.field.FieldRepetitions != null && _resourceSelectionCriteria.field.FieldRepetitions.Count > 0)
+        {
+            _resourceSelectionCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_resourceSelectionCriteria, fieldData);
+        }
+
+        return _resourceSelectionCriteria;
+    } 
+}
+
+internal HL7V24Field _locationSelectionCriteria;
+
+public HL7V24Field LocationSelectionCriteria
+{
+    get
+    {
+        if (_locationSelectionCriteria != null)
+        {
+            return _locationSelectionCriteria;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"APR.3",
+            Type = @"Field",
+            Position = @"APR.3",
+            Name = @"Location Selection Criteria",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"SCV",
+            DataTypeName = @"Scheduling Class Value Pair",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate location for the appointment. The first component of this field is a code identifying the parameter or preference being passed to the filler application. The second component is the actual data value for that parameter.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"APR.3",
-                            Type = @"Field",
-                            Position = @"APR.3",
-                            Name = @"Location Selection Criteria",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"SCV",
-                            DataTypeName = @"Scheduling Class Value Pair",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate location for the appointment. The first component of this field is a code identifying the parameter or preference being passed to the filler application. The second component is the actual data value for that parameter.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"APR.3.1",
                             Type = @"Component",
@@ -188,43 +260,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The second component is the actual data value for that parameter.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _locationSelectionCriteria = new HL7V24Field
+        {
+            field = message[@"APR"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_locationSelectionCriteria.field.FieldRepetitions != null && _locationSelectionCriteria.field.FieldRepetitions.Count > 0)
+        {
+            _locationSelectionCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_locationSelectionCriteria, fieldData);
+        }
+
+        return _locationSelectionCriteria;
+    } 
+}
+
+internal HL7V24Field _slotSpacingCriteria;
+
+public HL7V24Field SlotSpacingCriteria
+{
+    get
+    {
+        if (_slotSpacingCriteria != null)
+        {
+            return _slotSpacingCriteria;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"APR.4",
+            Type = @"Field",
+            Position = @"APR.4",
+            Name = @"Slot Spacing Criteria",
+            Length = 5,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used in queries returning lists of possible appointment slots, or other lists of slots. If the filler application allows it, the querying application may indicate the spacing of the slots returned to the querying application, in relation to the requested start date/time in the ARQ segment. The value in this field should be a positive integer, representing the number of minutes between slot starting times that is returned in the query.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _slotSpacingCriteria = new HL7V24Field
+        {
+            field = message[@"APR"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_slotSpacingCriteria.field.FieldRepetitions != null && _slotSpacingCriteria.field.FieldRepetitions.Count > 0)
+        {
+            _slotSpacingCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_slotSpacingCriteria, fieldData);
+        }
+
+        return _slotSpacingCriteria;
+    } 
+}
+
+internal HL7V24Field _fillerOverrideCriteria;
+
+public HL7V24Field FillerOverrideCriteria
+{
+    get
+    {
+        if (_fillerOverrideCriteria != null)
+        {
+            return _fillerOverrideCriteria;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"APR.5",
+            Type = @"Field",
+            Position = @"APR.5",
+            Name = @"Filler Override Criteria",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"SCV",
+            DataTypeName = @"Scheduling Class Value Pair",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to communicate override parameters to the filler application. These override parameters allow placer applications to override specific features of filler applications such as conflict checking. It is assumed that the placer and filler applications will pass enough information to determine whether the requestor is allowed to override such features. This chapter does not provide any security or permission information.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"APR.4",
-                            Type = @"Field",
-                            Position = @"APR.4",
-                            Name = @"Slot Spacing Criteria",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used in queries returning lists of possible appointment slots, or other lists of slots. If the filler application allows it, the querying application may indicate the spacing of the slots returned to the querying application, in relation to the requested start date/time in the ARQ segment. The value in this field should be a positive integer, representing the number of minutes between slot starting times that is returned in the query.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"APR.5",
-                            Type = @"Field",
-                            Position = @"APR.5",
-                            Name = @"Filler Override Criteria",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"SCV",
-                            DataTypeName = @"Scheduling Class Value Pair",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to communicate override parameters to the filler application. These override parameters allow placer applications to override specific features of filler applications such as conflict checking. It is assumed that the placer and filler applications will pass enough information to determine whether the requestor is allowed to override such features. This chapter does not provide any security or permission information.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"APR.5.1",
                             Type = @"Component",
@@ -258,219 +387,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The second component is the actual data value for that parameter.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentAPR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field timeSelectionCriteria;
-
-public HL7V24Field TimeSelectionCriteria
-{
-    get
-    {
-        if (timeSelectionCriteria != null)
-        {
-            return timeSelectionCriteria;
-        }
-
-        timeSelectionCriteria = new HL7V24Field
-        {
-            field = message[@"APR"][1],
-            Id = @"APR.1",
-            Type = @"Field",
-            Position = @"APR.1",
-            Name = @"Time Selection Criteria",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"SCV",
-            DataTypeName = @"Scheduling Class Value Pair",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate time slot for an appointment. The first component of this field is a code identifying the parameter or preference being passed to the filler application. The second component is the actual data value for that parameter.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (timeSelectionCriteria.field.FieldRepetitions != null && timeSelectionCriteria.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(timeSelectionCriteria.Id));
-            timeSelectionCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(timeSelectionCriteria, fieldData);
-        }
-
-        return timeSelectionCriteria;
-    } 
-}
-
-internal HL7V24Field resourceSelectionCriteria;
-
-public HL7V24Field ResourceSelectionCriteria
-{
-    get
-    {
-        if (resourceSelectionCriteria != null)
-        {
-            return resourceSelectionCriteria;
-        }
-
-        resourceSelectionCriteria = new HL7V24Field
-        {
-            field = message[@"APR"][2],
-            Id = @"APR.2",
-            Type = @"Field",
-            Position = @"APR.2",
-            Name = @"Resource Selection Criteria",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"SCV",
-            DataTypeName = @"Scheduling Class Value Pair",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate resource for an appointment. The first component of this field is a code identifying the parameter or preference being passed to the filler application. The second component is the actual data value for that parameter.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (resourceSelectionCriteria.field.FieldRepetitions != null && resourceSelectionCriteria.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resourceSelectionCriteria.Id));
-            resourceSelectionCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(resourceSelectionCriteria, fieldData);
-        }
-
-        return resourceSelectionCriteria;
-    } 
-}
-
-internal HL7V24Field locationSelectionCriteria;
-
-public HL7V24Field LocationSelectionCriteria
-{
-    get
-    {
-        if (locationSelectionCriteria != null)
-        {
-            return locationSelectionCriteria;
-        }
-
-        locationSelectionCriteria = new HL7V24Field
-        {
-            field = message[@"APR"][3],
-            Id = @"APR.3",
-            Type = @"Field",
-            Position = @"APR.3",
-            Name = @"Location Selection Criteria",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"SCV",
-            DataTypeName = @"Scheduling Class Value Pair",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate location for the appointment. The first component of this field is a code identifying the parameter or preference being passed to the filler application. The second component is the actual data value for that parameter.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (locationSelectionCriteria.field.FieldRepetitions != null && locationSelectionCriteria.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(locationSelectionCriteria.Id));
-            locationSelectionCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(locationSelectionCriteria, fieldData);
-        }
-
-        return locationSelectionCriteria;
-    } 
-}
-
-internal HL7V24Field slotSpacingCriteria;
-
-public HL7V24Field SlotSpacingCriteria
-{
-    get
-    {
-        if (slotSpacingCriteria != null)
-        {
-            return slotSpacingCriteria;
-        }
-
-        slotSpacingCriteria = new HL7V24Field
-        {
-            field = message[@"APR"][4],
-            Id = @"APR.4",
-            Type = @"Field",
-            Position = @"APR.4",
-            Name = @"Slot Spacing Criteria",
-            Length = 5,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used in queries returning lists of possible appointment slots, or other lists of slots. If the filler application allows it, the querying application may indicate the spacing of the slots returned to the querying application, in relation to the requested start date/time in the ARQ segment. The value in this field should be a positive integer, representing the number of minutes between slot starting times that is returned in the query.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (slotSpacingCriteria.field.FieldRepetitions != null && slotSpacingCriteria.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(slotSpacingCriteria.Id));
-            slotSpacingCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(slotSpacingCriteria, fieldData);
-        }
-
-        return slotSpacingCriteria;
-    } 
-}
-
-internal HL7V24Field fillerOverrideCriteria;
-
-public HL7V24Field FillerOverrideCriteria
-{
-    get
-    {
-        if (fillerOverrideCriteria != null)
-        {
-            return fillerOverrideCriteria;
-        }
-
-        fillerOverrideCriteria = new HL7V24Field
+        _fillerOverrideCriteria = new HL7V24Field
         {
             field = message[@"APR"][5],
-            Id = @"APR.5",
-            Type = @"Field",
-            Position = @"APR.5",
-            Name = @"Filler Override Criteria",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"SCV",
-            DataTypeName = @"Scheduling Class Value Pair",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to communicate override parameters to the filler application. These override parameters allow placer applications to override specific features of filler applications such as conflict checking. It is assumed that the placer and filler applications will pass enough information to determine whether the requestor is allowed to override such features. This chapter does not provide any security or permission information.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fillerOverrideCriteria.field.FieldRepetitions != null && fillerOverrideCriteria.field.FieldRepetitions.Count > 0)
+        if (_fillerOverrideCriteria.field.FieldRepetitions != null && _fillerOverrideCriteria.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerOverrideCriteria.Id));
-            fillerOverrideCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(fillerOverrideCriteria, fieldData);
+            _fillerOverrideCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_fillerOverrideCriteria, fieldData);
         }
 
-        return fillerOverrideCriteria;
+        return _fillerOverrideCriteria;
     } 
 }
     }

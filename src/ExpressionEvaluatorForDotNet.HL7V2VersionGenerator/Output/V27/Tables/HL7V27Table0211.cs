@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -167,6 +168,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"UCS Transformation Format, 8-bit form",
                             Comment = null
                         },
+                        
                     };
             } 
         }

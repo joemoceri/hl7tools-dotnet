@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V231SegmentPID(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V231Field _setIDPID;
+
+public HL7V231Field SetIDPID
+{
+    get
+    {
+        if (_setIDPID != null)
+        {
+            return _setIDPID;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.1",
+            Type = @"Field",
+            Position = @"PID.1",
+            Name = @"Set ID - PID",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDPID = new HL7V231Field
+        {
+            field = message[@"PID"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDPID.field.FieldRepetitions != null && _setIDPID.field.FieldRepetitions.Count > 0)
+        {
+            _setIDPID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_setIDPID, fieldData);
+        }
+
+        return _setIDPID;
+    } 
+}
+
+internal HL7V231Field _patientID;
+
+public HL7V231Field PatientID
+{
+    get
+    {
+        if (_patientID != null)
+        {
+            return _patientID;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.2",
+            Type = @"Field",
+            Position = @"PID.2",
+            Name = @"Patient ID",
+            Length = 20,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has been retained for backward compatibility only. With HL7 v2.3.1, the arbitrary term of 'external ID' has been removed from the name of this field. The repetition, assigning authority, facility, and identifier type code attributes of PID-3-patient identifier list allow for distinctive identifier representation. This field remains for systems with a negotiated understanding of 'external.' It is recommended to use PID-3-patient identifier list for all patient identifiers.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PID.1",
-                            Type = @"Field",
-                            Position = @"PID.1",
-                            Name = @"Set ID - PID",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.2",
-                            Type = @"Field",
-                            Position = @"PID.2",
-                            Name = @"Patient ID",
-                            Length = 20,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has been retained for backward compatibility only. With HL7 v2.3.1, the arbitrary term of 'external ID' has been removed from the name of this field. The repetition, assigning authority, facility, and identifier type code attributes of PID-3-patient identifier list allow for distinctive identifier representation. This field remains for systems with a negotiated understanding of 'external.' It is recommended to use PID-3-patient identifier list for all patient identifiers.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PID.2.1",
                             Type = @"Component",
@@ -278,25 +317,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _patientID = new HL7V231Field
+        {
+            field = message[@"PID"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientID.field.FieldRepetitions != null && _patientID.field.FieldRepetitions.Count > 0)
+        {
+            _patientID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_patientID, fieldData);
+        }
+
+        return _patientID;
+    } 
+}
+
+internal HL7V231Field _patientIdentifierList;
+
+public HL7V231Field PatientIdentifierList
+{
+    get
+    {
+        if (_patientIdentifierList != null)
+        {
+            return _patientIdentifierList;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.3",
+            Type = @"Field",
+            Position = @"PID.3",
+            Name = @"Patient Identifier List",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the list of identifiers (one or more) used by the facility to uniquely identify a patient (e.g., medical record number, billing number, birth registry, national unique individual identifier, etc.). Refer to HL7 table 0061 - Check digit scheme for valid values. With HL7 v2.3.1, the arbitrary term of 'internal ID' has been removed from the name of this field for clarity.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.3",
-                            Type = @"Field",
-                            Position = @"PID.3",
-                            Name = @"Patient Identifier List",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the list of identifiers (one or more) used by the facility to uniquely identify a patient (e.g., medical record number, billing number, birth registry, national unique individual identifier, etc.). Refer to HL7 table 0061 - Check digit scheme for valid values. With HL7 v2.3.1, the arbitrary term of 'internal ID' has been removed from the name of this field for clarity.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.3.1",
                             Type = @"Component",
@@ -506,25 +575,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _patientIdentifierList = new HL7V231Field
+        {
+            field = message[@"PID"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientIdentifierList.field.FieldRepetitions != null && _patientIdentifierList.field.FieldRepetitions.Count > 0)
+        {
+            _patientIdentifierList.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_patientIdentifierList, fieldData);
+        }
+
+        return _patientIdentifierList;
+    } 
+}
+
+internal HL7V231Field _alternatePatientIDPID;
+
+public HL7V231Field AlternatePatientIDPID
+{
+    get
+    {
+        if (_alternatePatientIDPID != null)
+        {
+            return _alternatePatientIDPID;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.4",
+            Type = @"Field",
+            Position = @"PID.4",
+            Name = @"Alternate Patient ID - PID",
+            Length = 20,
+            Usage = @"B",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has been retained for backward compatibility only. It is recommended to use PID-3-patient identifier list for all patient identifiers. When used for backward compatibility, this field contains the alternate, temporary, or pending optional patient identifier to be used if needed - or additional numbers that may be required to identify a patient. This field may be used to convey multiple patient IDs when more than one exist for a patient. Possible contents might include a visit number, a visit date, or a Social Security Number.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.4",
-                            Type = @"Field",
-                            Position = @"PID.4",
-                            Name = @"Alternate Patient ID - PID",
-                            Length = 20,
-                            Usage = @"B",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has been retained for backward compatibility only. It is recommended to use PID-3-patient identifier list for all patient identifiers. When used for backward compatibility, this field contains the alternate, temporary, or pending optional patient identifier to be used if needed - or additional numbers that may be required to identify a patient. This field may be used to convey multiple patient IDs when more than one exist for a patient. Possible contents might include a visit number, a visit date, or a Social Security Number.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.4.1",
                             Type = @"Component",
@@ -734,25 +833,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _alternatePatientIDPID = new HL7V231Field
+        {
+            field = message[@"PID"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_alternatePatientIDPID.field.FieldRepetitions != null && _alternatePatientIDPID.field.FieldRepetitions.Count > 0)
+        {
+            _alternatePatientIDPID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_alternatePatientIDPID, fieldData);
+        }
+
+        return _alternatePatientIDPID;
+    } 
+}
+
+internal HL7V231Field _patientName;
+
+public HL7V231Field PatientName
+{
+    get
+    {
+        if (_patientName != null)
+        {
+            return _patientName;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.5",
+            Type = @"Field",
+            Position = @"PID.5",
+            Name = @"Patient Name",
+            Length = 48,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the legal name of the patient. All other names for the patient should be sent in PID-9-patient alias . Therefore, the name type code in this field should be 'L - Legal.' Refer to HL7 table 0200 - Name type for valid values. Repetition of this field is allowed for representing the same name in different character sets. Please refer to the PN data type.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.5",
-                            Type = @"Field",
-                            Position = @"PID.5",
-                            Name = @"Patient Name",
-                            Length = 48,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the legal name of the patient. All other names for the patient should be sent in PID-9-patient alias . Therefore, the name type code in this field should be 'L - Legal.' Refer to HL7 table 0200 - Name type for valid values. Repetition of this field is allowed for representing the same name in different character sets. Please refer to the PN data type.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.5.1",
                             Type = @"Component",
@@ -928,25 +1057,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Different <name/address types> and representations of the same <name/address> should be described by repeating of this field, with different values of the <name/address type> and/or <name/address representation> component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _patientName = new HL7V231Field
+        {
+            field = message[@"PID"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientName.field.FieldRepetitions != null && _patientName.field.FieldRepetitions.Count > 0)
+        {
+            _patientName.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_patientName, fieldData);
+        }
+
+        return _patientName;
+    } 
+}
+
+internal HL7V231Field _mothersMaidenName;
+
+public HL7V231Field MothersMaidenName
+{
+    get
+    {
+        if (_mothersMaidenName != null)
+        {
+            return _mothersMaidenName;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.6",
+            Type = @"Field",
+            Position = @"PID.6",
+            Name = @"Mother s Maiden Name",
+            Length = 48,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the family name under which the mother was born (i.e., before marriage). It is used to distinguish between patients with the same last name.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.6",
-                            Type = @"Field",
-                            Position = @"PID.6",
-                            Name = @"Mother s Maiden Name",
-                            Length = 48,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the family name under which the mother was born (i.e., before marriage). It is used to distinguish between patients with the same last name.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.6.1",
                             Type = @"Component",
@@ -1122,25 +1281,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Different <name/address types> and representations of the same <name/address> should be described by repeating of this field, with different values of the <name/address type> and/or <name/address representation> component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _mothersMaidenName = new HL7V231Field
+        {
+            field = message[@"PID"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_mothersMaidenName.field.FieldRepetitions != null && _mothersMaidenName.field.FieldRepetitions.Count > 0)
+        {
+            _mothersMaidenName.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_mothersMaidenName, fieldData);
+        }
+
+        return _mothersMaidenName;
+    } 
+}
+
+internal HL7V231Field _dateTimeOfBirth;
+
+public HL7V231Field DateTimeOfBirth
+{
+    get
+    {
+        if (_dateTimeOfBirth != null)
+        {
+            return _dateTimeOfBirth;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.7",
+            Type = @"Field",
+            Position = @"PID.7",
+            Name = @"Date/Time Of Birth",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the patient's date and time of birth.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.7",
-                            Type = @"Field",
-                            Position = @"PID.7",
-                            Name = @"Date/Time Of Birth",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the patient's date and time of birth.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.7.1",
                             Type = @"Component",
@@ -1156,43 +1345,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dateTimeOfBirth = new HL7V231Field
+        {
+            field = message[@"PID"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeOfBirth.field.FieldRepetitions != null && _dateTimeOfBirth.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeOfBirth.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_dateTimeOfBirth, fieldData);
+        }
+
+        return _dateTimeOfBirth;
+    } 
+}
+
+internal HL7V231Field _sex;
+
+public HL7V231Field Sex
+{
+    get
+    {
+        if (_sex != null)
+        {
+            return _sex;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.8",
+            Type = @"Field",
+            Position = @"PID.8",
+            Name = @"Sex",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0001",
+            TableName = @"Sex",
+            Description = @"This field contains the patient's sex. Refer to user-definedtable 0001 - Sex for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sex = new HL7V231Field
+        {
+            field = message[@"PID"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sex.field.FieldRepetitions != null && _sex.field.FieldRepetitions.Count > 0)
+        {
+            _sex.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_sex, fieldData);
+        }
+
+        return _sex;
+    } 
+}
+
+internal HL7V231Field _patientAlias;
+
+public HL7V231Field PatientAlias
+{
+    get
+    {
+        if (_patientAlias != null)
+        {
+            return _patientAlias;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.9",
+            Type = @"Field",
+            Position = @"PID.9",
+            Name = @"Patient Alias",
+            Length = 48,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name(s) by which the patient has been known at some time. Refer to HL7 table 0200 - Name type for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.8",
-                            Type = @"Field",
-                            Position = @"PID.8",
-                            Name = @"Sex",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0001",
-                            TableName = @"Sex",
-                            Description = @"This field contains the patient's sex. Refer to user-definedtable 0001 - Sex for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.9",
-                            Type = @"Field",
-                            Position = @"PID.9",
-                            Name = @"Patient Alias",
-                            Length = 48,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name(s) by which the patient has been known at some time. Refer to HL7 table 0200 - Name type for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.9.1",
                             Type = @"Component",
@@ -1368,25 +1614,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Different <name/address types> and representations of the same <name/address> should be described by repeating of this field, with different values of the <name/address type> and/or <name/address representation> component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _patientAlias = new HL7V231Field
+        {
+            field = message[@"PID"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientAlias.field.FieldRepetitions != null && _patientAlias.field.FieldRepetitions.Count > 0)
+        {
+            _patientAlias.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_patientAlias, fieldData);
+        }
+
+        return _patientAlias;
+    } 
+}
+
+internal HL7V231Field _race;
+
+public HL7V231Field Race
+{
+    get
+    {
+        if (_race != null)
+        {
+            return _race;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.10",
+            Type = @"Field",
+            Position = @"PID.10",
+            Name = @"Race",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0005",
+            TableName = @"Race",
+            Description = @"This field refers to the patient's race. User-defined table 0005 - Race is used as the HL7 identifier or the user-defined table of values for this field. The second triplet of the CE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.10",
-                            Type = @"Field",
-                            Position = @"PID.10",
-                            Name = @"Race",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0005",
-                            TableName = @"Race",
-                            Description = @"This field refers to the patient's race. User-defined table 0005 - Race is used as the HL7 identifier or the user-defined table of values for this field. The second triplet of the CE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.10.1",
                             Type = @"Component",
@@ -1492,25 +1768,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _race = new HL7V231Field
+        {
+            field = message[@"PID"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_race.field.FieldRepetitions != null && _race.field.FieldRepetitions.Count > 0)
+        {
+            _race.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_race, fieldData);
+        }
+
+        return _race;
+    } 
+}
+
+internal HL7V231Field _patientAddress;
+
+public HL7V231Field PatientAddress
+{
+    get
+    {
+        if (_patientAddress != null)
+        {
+            return _patientAddress;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.11",
+            Type = @"Field",
+            Position = @"PID.11",
+            Name = @"Patient Address",
+            Length = 106,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the mailing address of the patient. Address type codes are defined by HL7; see HL7 table 0190 - Address type . Multiple addresses for the same person may be sent in the following sequence: The primary mailing address must be sent first in the sequence (for backward compatibility); if the mailing address is not sent, then a repeat delimiter must be sent in the first sequence.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.11",
-                            Type = @"Field",
-                            Position = @"PID.11",
-                            Name = @"Patient Address",
-                            Length = 106,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the mailing address of the patient. Address type codes are defined by HL7; see HL7 table 0190 - Address type . Multiple addresses for the same person may be sent in the following sequence: The primary mailing address must be sent first in the sequence (for backward compatibility); if the mailing address is not sent, then a repeat delimiter must be sent in the first sequence.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.11.1",
                             Type = @"Component",
@@ -1706,43 +2012,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Different <name/address types> and representations of the same name/address should be described by repeating of this field, with different values of the <name/address type> and/or <name/address representation> component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _patientAddress = new HL7V231Field
+        {
+            field = message[@"PID"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientAddress.field.FieldRepetitions != null && _patientAddress.field.FieldRepetitions.Count > 0)
+        {
+            _patientAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_patientAddress, fieldData);
+        }
+
+        return _patientAddress;
+    } 
+}
+
+internal HL7V231Field _countyCode;
+
+public HL7V231Field CountyCode
+{
+    get
+    {
+        if (_countyCode != null)
+        {
+            return _countyCode;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.12",
+            Type = @"Field",
+            Position = @"PID.12",
+            Name = @"County Code",
+            Length = 4,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0289",
+            TableName = @"County code",
+            Description = @"This field has been retained for backward compatibility. This field contains the patient's county code. The county can now be supported in the county/parish code component of the XAD data type (PID-11-patient address). User-defined table 0289 - County/parish is used as the HL7 identifier for the user-defined table of values for this field.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _countyCode = new HL7V231Field
+        {
+            field = message[@"PID"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_countyCode.field.FieldRepetitions != null && _countyCode.field.FieldRepetitions.Count > 0)
+        {
+            _countyCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_countyCode, fieldData);
+        }
+
+        return _countyCode;
+    } 
+}
+
+internal HL7V231Field _phoneNumberHome;
+
+public HL7V231Field PhoneNumberHome
+{
+    get
+    {
+        if (_phoneNumberHome != null)
+        {
+            return _phoneNumberHome;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.13",
+            Type = @"Field",
+            Position = @"PID.13",
+            Name = @"Phone Number - Home",
+            Length = 40,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the patient's personal phone numbers. All personal phone numbers for the patient are sent in the following sequence. The first sequence is considered the primary number (for backward compatibility). If the primary number is not sent, then a repeat delimiter is sent in the first sequence. Refer to HL7 tables 0201 - Telecommunication use code and 0202 - Telecommunication equipment type for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.12",
-                            Type = @"Field",
-                            Position = @"PID.12",
-                            Name = @"County Code",
-                            Length = 4,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0289",
-                            TableName = @"County code",
-                            Description = @"This field has been retained for backward compatibility. This field contains the patient's county code. The county can now be supported in the county/parish code component of the XAD data type (PID-11-patient address). User-defined table 0289 - County/parish is used as the HL7 identifier for the user-defined table of values for this field.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.13",
-                            Type = @"Field",
-                            Position = @"PID.13",
-                            Name = @"Phone Number - Home",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the patient's personal phone numbers. All personal phone numbers for the patient are sent in the following sequence. The first sequence is considered the primary number (for backward compatibility). If the primary number is not sent, then a repeat delimiter is sent in the first sequence. Refer to HL7 tables 0201 - Telecommunication use code and 0202 - Telecommunication equipment type for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.13.1",
                             Type = @"Component",
@@ -1902,25 +2265,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _phoneNumberHome = new HL7V231Field
+        {
+            field = message[@"PID"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_phoneNumberHome.field.FieldRepetitions != null && _phoneNumberHome.field.FieldRepetitions.Count > 0)
+        {
+            _phoneNumberHome.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_phoneNumberHome, fieldData);
+        }
+
+        return _phoneNumberHome;
+    } 
+}
+
+internal HL7V231Field _phoneNumberBusiness;
+
+public HL7V231Field PhoneNumberBusiness
+{
+    get
+    {
+        if (_phoneNumberBusiness != null)
+        {
+            return _phoneNumberBusiness;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.14",
+            Type = @"Field",
+            Position = @"PID.14",
+            Name = @"Phone Number - Business",
+            Length = 40,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the patient's business telephone numbers. All business numbers for the patient are sent in the following sequence. The first sequence is considered the patient's primary business phone number (for backward compatibility). If the primary business phone number is not sent, then a repeat delimiter must be sent in the first sequence. Refer to HL7 tables 0201 - Telecommunication use code and 0202 - Telecommunication equipment type for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.14",
-                            Type = @"Field",
-                            Position = @"PID.14",
-                            Name = @"Phone Number - Business",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the patient's business telephone numbers. All business numbers for the patient are sent in the following sequence. The first sequence is considered the patient's primary business phone number (for backward compatibility). If the primary business phone number is not sent, then a repeat delimiter must be sent in the first sequence. Refer to HL7 tables 0201 - Telecommunication use code and 0202 - Telecommunication equipment type for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.14.1",
                             Type = @"Component",
@@ -2080,25 +2473,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _phoneNumberBusiness = new HL7V231Field
+        {
+            field = message[@"PID"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_phoneNumberBusiness.field.FieldRepetitions != null && _phoneNumberBusiness.field.FieldRepetitions.Count > 0)
+        {
+            _phoneNumberBusiness.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_phoneNumberBusiness, fieldData);
+        }
+
+        return _phoneNumberBusiness;
+    } 
+}
+
+internal HL7V231Field _primaryLanguage;
+
+public HL7V231Field PrimaryLanguage
+{
+    get
+    {
+        if (_primaryLanguage != null)
+        {
+            return _primaryLanguage;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.15",
+            Type = @"Field",
+            Position = @"PID.15",
+            Name = @"Primary Language",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0296",
+            TableName = @"Primary language",
+            Description = @"This field contains the patient's primary language. HL7 recommends using ISO table 639 as the suggested values in user-defined table 0296 - Language.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.15",
-                            Type = @"Field",
-                            Position = @"PID.15",
-                            Name = @"Primary Language",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0296",
-                            TableName = @"Primary language",
-                            Description = @"This field contains the patient's primary language. HL7 recommends using ISO table 639 as the suggested values in user-defined table 0296 - Language.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.15.1",
                             Type = @"Component",
@@ -2204,25 +2627,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primaryLanguage = new HL7V231Field
+        {
+            field = message[@"PID"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryLanguage.field.FieldRepetitions != null && _primaryLanguage.field.FieldRepetitions.Count > 0)
+        {
+            _primaryLanguage.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_primaryLanguage, fieldData);
+        }
+
+        return _primaryLanguage;
+    } 
+}
+
+internal HL7V231Field _maritalStatus;
+
+public HL7V231Field MaritalStatus
+{
+    get
+    {
+        if (_maritalStatus != null)
+        {
+            return _maritalStatus;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.16",
+            Type = @"Field",
+            Position = @"PID.16",
+            Name = @"Marital Status",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0002",
+            TableName = @"Marital status",
+            Description = @"This field contains the patient's marital status. Refer to user-defined table 0002 - Marital status for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.16",
-                            Type = @"Field",
-                            Position = @"PID.16",
-                            Name = @"Marital Status",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0002",
-                            TableName = @"Marital status",
-                            Description = @"This field contains the patient's marital status. Refer to user-defined table 0002 - Marital status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.16.1",
                             Type = @"Component",
@@ -2328,25 +2781,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _maritalStatus = new HL7V231Field
+        {
+            field = message[@"PID"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_maritalStatus.field.FieldRepetitions != null && _maritalStatus.field.FieldRepetitions.Count > 0)
+        {
+            _maritalStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_maritalStatus, fieldData);
+        }
+
+        return _maritalStatus;
+    } 
+}
+
+internal HL7V231Field _religion;
+
+public HL7V231Field Religion
+{
+    get
+    {
+        if (_religion != null)
+        {
+            return _religion;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.17",
+            Type = @"Field",
+            Position = @"PID.17",
+            Name = @"Religion",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0006",
+            TableName = @"Religion",
+            Description = @"This field contains the patient's religion, for example, Baptist, Catholic, Methodist, etc. User-defined table 0006 - Religion is used as the HL7 identifier for the user-defined table of values for this field..",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.17",
-                            Type = @"Field",
-                            Position = @"PID.17",
-                            Name = @"Religion",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0006",
-                            TableName = @"Religion",
-                            Description = @"This field contains the patient's religion, for example, Baptist, Catholic, Methodist, etc. User-defined table 0006 - Religion is used as the HL7 identifier for the user-defined table of values for this field..",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.17.1",
                             Type = @"Component",
@@ -2452,25 +2935,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _religion = new HL7V231Field
+        {
+            field = message[@"PID"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_religion.field.FieldRepetitions != null && _religion.field.FieldRepetitions.Count > 0)
+        {
+            _religion.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_religion, fieldData);
+        }
+
+        return _religion;
+    } 
+}
+
+internal HL7V231Field _patientAccountNumber;
+
+public HL7V231Field PatientAccountNumber
+{
+    get
+    {
+        if (_patientAccountNumber != null)
+        {
+            return _patientAccountNumber;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.18",
+            Type = @"Field",
+            Position = @"PID.18",
+            Name = @"Patient Account Number",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the patient account number assigned by accounting to which all charges, payments, etc., are recorded. It is used to identify the patient's account. Refer to HL7 table 0061 - Check digit scheme in Chapter 2.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.18",
-                            Type = @"Field",
-                            Position = @"PID.18",
-                            Name = @"Patient Account Number",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the patient account number assigned by accounting to which all charges, payments, etc., are recorded. It is used to identify the patient's account. Refer to HL7 table 0061 - Check digit scheme in Chapter 2.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.18.1",
                             Type = @"Component",
@@ -2680,43 +3193,100 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _patientAccountNumber = new HL7V231Field
+        {
+            field = message[@"PID"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientAccountNumber.field.FieldRepetitions != null && _patientAccountNumber.field.FieldRepetitions.Count > 0)
+        {
+            _patientAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_patientAccountNumber, fieldData);
+        }
+
+        return _patientAccountNumber;
+    } 
+}
+
+internal HL7V231Field _sSNNumberPatient;
+
+public HL7V231Field SSNNumberPatient
+{
+    get
+    {
+        if (_sSNNumberPatient != null)
+        {
+            return _sSNNumberPatient;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.19",
+            Type = @"Field",
+            Position = @"PID.19",
+            Name = @"SSN Number - Patient",
+            Length = 16,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has been retained for backward compatibility only. It is recommended to use PID-3-patient identifier list for all patient identifiers. However, in order to maintain backward compatibility, this field should also be populated. You may additionally report the SSN number in PID-3 patient identifier list. When used for backward compatibility, this field contains the patient's social security number. This number may also be a RR retirement number.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sSNNumberPatient = new HL7V231Field
+        {
+            field = message[@"PID"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sSNNumberPatient.field.FieldRepetitions != null && _sSNNumberPatient.field.FieldRepetitions.Count > 0)
+        {
+            _sSNNumberPatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_sSNNumberPatient, fieldData);
+        }
+
+        return _sSNNumberPatient;
+    } 
+}
+
+internal HL7V231Field _driversLicenseNumberPatient;
+
+public HL7V231Field DriversLicenseNumberPatient
+{
+    get
+    {
+        if (_driversLicenseNumberPatient != null)
+        {
+            return _driversLicenseNumberPatient;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.20",
+            Type = @"Field",
+            Position = @"PID.20",
+            Name = @"Driver's License Number - Patient",
+            Length = 25,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DLN",
+            DataTypeName = @"Driver's License Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the patient's driver's license number. Some sites may use this number as a unique identifier of the patient. The default of the second component is the state in which the patient's license is registered.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.19",
-                            Type = @"Field",
-                            Position = @"PID.19",
-                            Name = @"SSN Number - Patient",
-                            Length = 16,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has been retained for backward compatibility only. It is recommended to use PID-3-patient identifier list for all patient identifiers. However, in order to maintain backward compatibility, this field should also be populated. You may additionally report the SSN number in PID-3 patient identifier list. When used for backward compatibility, this field contains the patient's social security number. This number may also be a RR retirement number.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.20",
-                            Type = @"Field",
-                            Position = @"PID.20",
-                            Name = @"Driver's License Number - Patient",
-                            Length = 25,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DLN",
-                            DataTypeName = @"Driver's License Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the patient's driver's license number. Some sites may use this number as a unique identifier of the patient. The default of the second component is the state in which the patient's license is registered.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.20.1",
                             Type = @"Component",
@@ -2768,25 +3338,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Expiration date (DT) for drivers license.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _driversLicenseNumberPatient = new HL7V231Field
+        {
+            field = message[@"PID"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_driversLicenseNumberPatient.field.FieldRepetitions != null && _driversLicenseNumberPatient.field.FieldRepetitions.Count > 0)
+        {
+            _driversLicenseNumberPatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_driversLicenseNumberPatient, fieldData);
+        }
+
+        return _driversLicenseNumberPatient;
+    } 
+}
+
+internal HL7V231Field _mothersIdentifier;
+
+public HL7V231Field MothersIdentifier
+{
+    get
+    {
+        if (_mothersIdentifier != null)
+        {
+            return _mothersIdentifier;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.21",
+            Type = @"Field",
+            Position = @"PID.21",
+            Name = @"Mother's Identifier",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used, for example, as a link field for newborns. Typically a patient ID or account number may be used. This field can contain multiple identifiers for the same mother. Refer to HL7 table 0061 - Check digit scheme as defined in Chapter 2.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.21",
-                            Type = @"Field",
-                            Position = @"PID.21",
-                            Name = @"Mother's Identifier",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used, for example, as a link field for newborns. Typically a patient ID or account number may be used. This field can contain multiple identifiers for the same mother. Refer to HL7 table 0061 - Check digit scheme as defined in Chapter 2.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.21.1",
                             Type = @"Component",
@@ -2996,25 +3596,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _mothersIdentifier = new HL7V231Field
+        {
+            field = message[@"PID"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_mothersIdentifier.field.FieldRepetitions != null && _mothersIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _mothersIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_mothersIdentifier, fieldData);
+        }
+
+        return _mothersIdentifier;
+    } 
+}
+
+internal HL7V231Field _ethnicGroup;
+
+public HL7V231Field EthnicGroup
+{
+    get
+    {
+        if (_ethnicGroup != null)
+        {
+            return _ethnicGroup;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.22",
+            Type = @"Field",
+            Position = @"PID.22",
+            Name = @"Ethnic Group",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0189",
+            TableName = @"Ethnic group",
+            Description = @"This field further defines the patient's ancestry. User-definedtable 0189 - Ethnic group is used as the HL7 identifier for the user-defined table of values for this field. ERISA has a published list of ethnic classifications that may be used by local agreement at a site. The second triplet of the CE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.22",
-                            Type = @"Field",
-                            Position = @"PID.22",
-                            Name = @"Ethnic Group",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0189",
-                            TableName = @"Ethnic group",
-                            Description = @"This field further defines the patient's ancestry. User-definedtable 0189 - Ethnic group is used as the HL7 identifier for the user-defined table of values for this field. ERISA has a published list of ethnic classifications that may be used by local agreement at a site. The second triplet of the CE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.22.1",
                             Type = @"Component",
@@ -3120,79 +3750,190 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _ethnicGroup = new HL7V231Field
+        {
+            field = message[@"PID"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_ethnicGroup.field.FieldRepetitions != null && _ethnicGroup.field.FieldRepetitions.Count > 0)
+        {
+            _ethnicGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_ethnicGroup, fieldData);
+        }
+
+        return _ethnicGroup;
+    } 
+}
+
+internal HL7V231Field _birthPlace;
+
+public HL7V231Field BirthPlace
+{
+    get
+    {
+        if (_birthPlace != null)
+        {
+            return _birthPlace;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.23",
+            Type = @"Field",
+            Position = @"PID.23",
+            Name = @"Birth Place",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the location of the patient's birth.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _birthPlace = new HL7V231Field
+        {
+            field = message[@"PID"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_birthPlace.field.FieldRepetitions != null && _birthPlace.field.FieldRepetitions.Count > 0)
+        {
+            _birthPlace.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_birthPlace, fieldData);
+        }
+
+        return _birthPlace;
+    } 
+}
+
+internal HL7V231Field _multipleBirthIndicator;
+
+public HL7V231Field MultipleBirthIndicator
+{
+    get
+    {
+        if (_multipleBirthIndicator != null)
+        {
+            return _multipleBirthIndicator;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.24",
+            Type = @"Field",
+            Position = @"PID.24",
+            Name = @"Multiple Birth Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field indicates whether the patient was part of a multiple birth. Refer to HL7 table 0136 - Yes/No indicator as described in Chapter 2.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _multipleBirthIndicator = new HL7V231Field
+        {
+            field = message[@"PID"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_multipleBirthIndicator.field.FieldRepetitions != null && _multipleBirthIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _multipleBirthIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_multipleBirthIndicator, fieldData);
+        }
+
+        return _multipleBirthIndicator;
+    } 
+}
+
+internal HL7V231Field _birthOrder;
+
+public HL7V231Field BirthOrder
+{
+    get
+    {
+        if (_birthOrder != null)
+        {
+            return _birthOrder;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.25",
+            Type = @"Field",
+            Position = @"PID.25",
+            Name = @"Birth Order",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"When a patient was part of a multiple birth, a value (number) indicating the patient's birth order is entered in this field.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _birthOrder = new HL7V231Field
+        {
+            field = message[@"PID"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_birthOrder.field.FieldRepetitions != null && _birthOrder.field.FieldRepetitions.Count > 0)
+        {
+            _birthOrder.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_birthOrder, fieldData);
+        }
+
+        return _birthOrder;
+    } 
+}
+
+internal HL7V231Field _citizenship;
+
+public HL7V231Field Citizenship
+{
+    get
+    {
+        if (_citizenship != null)
+        {
+            return _citizenship;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.26",
+            Type = @"Field",
+            Position = @"PID.26",
+            Name = @"Citizenship",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0171",
+            TableName = @"Citizenship",
+            Description = @"This field contains the patient's country of citizenship. HL7 recommends using ISO table 3166 as the suggested values in user-defined table 0171 - Citizenship.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.23",
-                            Type = @"Field",
-                            Position = @"PID.23",
-                            Name = @"Birth Place",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the location of the patient's birth.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.24",
-                            Type = @"Field",
-                            Position = @"PID.24",
-                            Name = @"Multiple Birth Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates whether the patient was part of a multiple birth. Refer to HL7 table 0136 - Yes/No indicator as described in Chapter 2.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.25",
-                            Type = @"Field",
-                            Position = @"PID.25",
-                            Name = @"Birth Order",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"When a patient was part of a multiple birth, a value (number) indicating the patient's birth order is entered in this field.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.26",
-                            Type = @"Field",
-                            Position = @"PID.26",
-                            Name = @"Citizenship",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0171",
-                            TableName = @"Citizenship",
-                            Description = @"This field contains the patient's country of citizenship. HL7 recommends using ISO table 3166 as the suggested values in user-defined table 0171 - Citizenship.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.26.1",
                             Type = @"Component",
@@ -3298,25 +4039,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _citizenship = new HL7V231Field
+        {
+            field = message[@"PID"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_citizenship.field.FieldRepetitions != null && _citizenship.field.FieldRepetitions.Count > 0)
+        {
+            _citizenship.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_citizenship, fieldData);
+        }
+
+        return _citizenship;
+    } 
+}
+
+internal HL7V231Field _veteransMilitaryStatus;
+
+public HL7V231Field VeteransMilitaryStatus
+{
+    get
+    {
+        if (_veteransMilitaryStatus != null)
+        {
+            return _veteransMilitaryStatus;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.27",
+            Type = @"Field",
+            Position = @"PID.27",
+            Name = @"Veterans Military Status",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0172",
+            TableName = @"Veterans military status",
+            Description = @"This field contains the military status assigned to a veteran. User-defined table 0172 - Veterans military status is used as the HL7 identifier for the user-defined table of values for this field.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.27",
-                            Type = @"Field",
-                            Position = @"PID.27",
-                            Name = @"Veterans Military Status",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0172",
-                            TableName = @"Veterans military status",
-                            Description = @"This field contains the military status assigned to a veteran. User-defined table 0172 - Veterans military status is used as the HL7 identifier for the user-defined table of values for this field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.27.1",
                             Type = @"Component",
@@ -3422,25 +4193,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _veteransMilitaryStatus = new HL7V231Field
+        {
+            field = message[@"PID"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_veteransMilitaryStatus.field.FieldRepetitions != null && _veteransMilitaryStatus.field.FieldRepetitions.Count > 0)
+        {
+            _veteransMilitaryStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_veteransMilitaryStatus, fieldData);
+        }
+
+        return _veteransMilitaryStatus;
+    } 
+}
+
+internal HL7V231Field _nationality;
+
+public HL7V231Field Nationality
+{
+    get
+    {
+        if (_nationality != null)
+        {
+            return _nationality;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.28",
+            Type = @"Field",
+            Position = @"PID.28",
+            Name = @"Nationality",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0212",
+            TableName = @"Nationality",
+            Description = @"This field contains a code that identifies the nation or national grouping to which the person belongs. This information may be different from a person's citizenship in countries in which multiple nationalities are recognized (for example, Spain: Basque, Catalan, etc.). HL7 recommends using ISO table 3166 as the suggested values in user-defined table 0212 - Nationality .",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.28",
-                            Type = @"Field",
-                            Position = @"PID.28",
-                            Name = @"Nationality",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0212",
-                            TableName = @"Nationality",
-                            Description = @"This field contains a code that identifies the nation or national grouping to which the person belongs. This information may be different from a person's citizenship in countries in which multiple nationalities are recognized (for example, Spain: Basque, Catalan, etc.). HL7 recommends using ISO table 3166 as the suggested values in user-defined table 0212 - Nationality .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.28.1",
                             Type = @"Component",
@@ -3546,25 +4347,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _nationality = new HL7V231Field
+        {
+            field = message[@"PID"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_nationality.field.FieldRepetitions != null && _nationality.field.FieldRepetitions.Count > 0)
+        {
+            _nationality.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_nationality, fieldData);
+        }
+
+        return _nationality;
+    } 
+}
+
+internal HL7V231Field _patientDeathDateandTime;
+
+public HL7V231Field PatientDeathDateandTime
+{
+    get
+    {
+        if (_patientDeathDateandTime != null)
+        {
+            return _patientDeathDateandTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"PID.29",
+            Type = @"Field",
+            Position = @"PID.29",
+            Name = @"Patient Death Date and Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time at which the patient death occurred.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.29",
-                            Type = @"Field",
-                            Position = @"PID.29",
-                            Name = @"Patient Death Date and Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time at which the patient death occurred.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.29.1",
                             Type = @"Component",
@@ -3580,1238 +4411,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.30",
-                            Type = @"Field",
-                            Position = @"PID.30",
-                            Name = @"Patient Death Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates whether or not the patient is deceased. Refer to Chapter 2, HL7 table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V231SegmentPID(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V231Field setIDPID;
-
-public HL7V231Field SetIDPID
-{
-    get
-    {
-        if (setIDPID != null)
-        {
-            return setIDPID;
-        }
-
-        setIDPID = new HL7V231Field
-        {
-            field = message[@"PID"][1],
-            Id = @"PID.1",
-            Type = @"Field",
-            Position = @"PID.1",
-            Name = @"Set ID - PID",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDPID.field.FieldRepetitions != null && setIDPID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDPID.Id));
-            setIDPID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(setIDPID, fieldData);
-        }
-
-        return setIDPID;
-    } 
-}
-
-internal HL7V231Field patientID;
-
-public HL7V231Field PatientID
-{
-    get
-    {
-        if (patientID != null)
-        {
-            return patientID;
-        }
-
-        patientID = new HL7V231Field
-        {
-            field = message[@"PID"][2],
-            Id = @"PID.2",
-            Type = @"Field",
-            Position = @"PID.2",
-            Name = @"Patient ID",
-            Length = 20,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has been retained for backward compatibility only. With HL7 v2.3.1, the arbitrary term of 'external ID' has been removed from the name of this field. The repetition, assigning authority, facility, and identifier type code attributes of PID-3-patient identifier list allow for distinctive identifier representation. This field remains for systems with a negotiated understanding of 'external.' It is recommended to use PID-3-patient identifier list for all patient identifiers.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientID.field.FieldRepetitions != null && patientID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientID.Id));
-            patientID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(patientID, fieldData);
-        }
-
-        return patientID;
-    } 
-}
-
-internal HL7V231Field patientIdentifierList;
-
-public HL7V231Field PatientIdentifierList
-{
-    get
-    {
-        if (patientIdentifierList != null)
-        {
-            return patientIdentifierList;
-        }
-
-        patientIdentifierList = new HL7V231Field
-        {
-            field = message[@"PID"][3],
-            Id = @"PID.3",
-            Type = @"Field",
-            Position = @"PID.3",
-            Name = @"Patient Identifier List",
-            Length = 20,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the list of identifiers (one or more) used by the facility to uniquely identify a patient (e.g., medical record number, billing number, birth registry, national unique individual identifier, etc.). Refer to HL7 table 0061 - Check digit scheme for valid values. With HL7 v2.3.1, the arbitrary term of 'internal ID' has been removed from the name of this field for clarity.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientIdentifierList.field.FieldRepetitions != null && patientIdentifierList.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientIdentifierList.Id));
-            patientIdentifierList.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(patientIdentifierList, fieldData);
-        }
-
-        return patientIdentifierList;
-    } 
-}
-
-internal HL7V231Field alternatePatientIDPID;
-
-public HL7V231Field AlternatePatientIDPID
-{
-    get
-    {
-        if (alternatePatientIDPID != null)
-        {
-            return alternatePatientIDPID;
-        }
-
-        alternatePatientIDPID = new HL7V231Field
-        {
-            field = message[@"PID"][4],
-            Id = @"PID.4",
-            Type = @"Field",
-            Position = @"PID.4",
-            Name = @"Alternate Patient ID - PID",
-            Length = 20,
-            Usage = @"B",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has been retained for backward compatibility only. It is recommended to use PID-3-patient identifier list for all patient identifiers. When used for backward compatibility, this field contains the alternate, temporary, or pending optional patient identifier to be used if needed - or additional numbers that may be required to identify a patient. This field may be used to convey multiple patient IDs when more than one exist for a patient. Possible contents might include a visit number, a visit date, or a Social Security Number.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (alternatePatientIDPID.field.FieldRepetitions != null && alternatePatientIDPID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(alternatePatientIDPID.Id));
-            alternatePatientIDPID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(alternatePatientIDPID, fieldData);
-        }
-
-        return alternatePatientIDPID;
-    } 
-}
-
-internal HL7V231Field patientName;
-
-public HL7V231Field PatientName
-{
-    get
-    {
-        if (patientName != null)
-        {
-            return patientName;
-        }
-
-        patientName = new HL7V231Field
-        {
-            field = message[@"PID"][5],
-            Id = @"PID.5",
-            Type = @"Field",
-            Position = @"PID.5",
-            Name = @"Patient Name",
-            Length = 48,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the legal name of the patient. All other names for the patient should be sent in PID-9-patient alias . Therefore, the name type code in this field should be 'L - Legal.' Refer to HL7 table 0200 - Name type for valid values. Repetition of this field is allowed for representing the same name in different character sets. Please refer to the PN data type.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientName.field.FieldRepetitions != null && patientName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientName.Id));
-            patientName.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(patientName, fieldData);
-        }
-
-        return patientName;
-    } 
-}
-
-internal HL7V231Field mothersMaidenName;
-
-public HL7V231Field MothersMaidenName
-{
-    get
-    {
-        if (mothersMaidenName != null)
-        {
-            return mothersMaidenName;
-        }
-
-        mothersMaidenName = new HL7V231Field
-        {
-            field = message[@"PID"][6],
-            Id = @"PID.6",
-            Type = @"Field",
-            Position = @"PID.6",
-            Name = @"Mother s Maiden Name",
-            Length = 48,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the family name under which the mother was born (i.e., before marriage). It is used to distinguish between patients with the same last name.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (mothersMaidenName.field.FieldRepetitions != null && mothersMaidenName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mothersMaidenName.Id));
-            mothersMaidenName.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(mothersMaidenName, fieldData);
-        }
-
-        return mothersMaidenName;
-    } 
-}
-
-internal HL7V231Field dateTimeOfBirth;
-
-public HL7V231Field DateTimeOfBirth
-{
-    get
-    {
-        if (dateTimeOfBirth != null)
-        {
-            return dateTimeOfBirth;
-        }
-
-        dateTimeOfBirth = new HL7V231Field
-        {
-            field = message[@"PID"][7],
-            Id = @"PID.7",
-            Type = @"Field",
-            Position = @"PID.7",
-            Name = @"Date/Time Of Birth",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the patient's date and time of birth.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeOfBirth.field.FieldRepetitions != null && dateTimeOfBirth.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeOfBirth.Id));
-            dateTimeOfBirth.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(dateTimeOfBirth, fieldData);
-        }
-
-        return dateTimeOfBirth;
-    } 
-}
-
-internal HL7V231Field sex;
-
-public HL7V231Field Sex
-{
-    get
-    {
-        if (sex != null)
-        {
-            return sex;
-        }
-
-        sex = new HL7V231Field
-        {
-            field = message[@"PID"][8],
-            Id = @"PID.8",
-            Type = @"Field",
-            Position = @"PID.8",
-            Name = @"Sex",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0001",
-            TableName = @"Sex",
-            Description = @"This field contains the patient's sex. Refer to user-definedtable 0001 - Sex for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sex.field.FieldRepetitions != null && sex.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sex.Id));
-            sex.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(sex, fieldData);
-        }
-
-        return sex;
-    } 
-}
-
-internal HL7V231Field patientAlias;
-
-public HL7V231Field PatientAlias
-{
-    get
-    {
-        if (patientAlias != null)
-        {
-            return patientAlias;
-        }
-
-        patientAlias = new HL7V231Field
-        {
-            field = message[@"PID"][9],
-            Id = @"PID.9",
-            Type = @"Field",
-            Position = @"PID.9",
-            Name = @"Patient Alias",
-            Length = 48,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name(s) by which the patient has been known at some time. Refer to HL7 table 0200 - Name type for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientAlias.field.FieldRepetitions != null && patientAlias.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientAlias.Id));
-            patientAlias.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(patientAlias, fieldData);
-        }
-
-        return patientAlias;
-    } 
-}
-
-internal HL7V231Field race;
-
-public HL7V231Field Race
-{
-    get
-    {
-        if (race != null)
-        {
-            return race;
-        }
-
-        race = new HL7V231Field
-        {
-            field = message[@"PID"][10],
-            Id = @"PID.10",
-            Type = @"Field",
-            Position = @"PID.10",
-            Name = @"Race",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0005",
-            TableName = @"Race",
-            Description = @"This field refers to the patient's race. User-defined table 0005 - Race is used as the HL7 identifier or the user-defined table of values for this field. The second triplet of the CE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (race.field.FieldRepetitions != null && race.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(race.Id));
-            race.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(race, fieldData);
-        }
-
-        return race;
-    } 
-}
-
-internal HL7V231Field patientAddress;
-
-public HL7V231Field PatientAddress
-{
-    get
-    {
-        if (patientAddress != null)
-        {
-            return patientAddress;
-        }
-
-        patientAddress = new HL7V231Field
-        {
-            field = message[@"PID"][11],
-            Id = @"PID.11",
-            Type = @"Field",
-            Position = @"PID.11",
-            Name = @"Patient Address",
-            Length = 106,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the mailing address of the patient. Address type codes are defined by HL7; see HL7 table 0190 - Address type . Multiple addresses for the same person may be sent in the following sequence: The primary mailing address must be sent first in the sequence (for backward compatibility); if the mailing address is not sent, then a repeat delimiter must be sent in the first sequence.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientAddress.field.FieldRepetitions != null && patientAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientAddress.Id));
-            patientAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(patientAddress, fieldData);
-        }
-
-        return patientAddress;
-    } 
-}
-
-internal HL7V231Field countyCode;
-
-public HL7V231Field CountyCode
-{
-    get
-    {
-        if (countyCode != null)
-        {
-            return countyCode;
-        }
-
-        countyCode = new HL7V231Field
-        {
-            field = message[@"PID"][12],
-            Id = @"PID.12",
-            Type = @"Field",
-            Position = @"PID.12",
-            Name = @"County Code",
-            Length = 4,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0289",
-            TableName = @"County code",
-            Description = @"This field has been retained for backward compatibility. This field contains the patient's county code. The county can now be supported in the county/parish code component of the XAD data type (PID-11-patient address). User-defined table 0289 - County/parish is used as the HL7 identifier for the user-defined table of values for this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (countyCode.field.FieldRepetitions != null && countyCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(countyCode.Id));
-            countyCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(countyCode, fieldData);
-        }
-
-        return countyCode;
-    } 
-}
-
-internal HL7V231Field phoneNumberHome;
-
-public HL7V231Field PhoneNumberHome
-{
-    get
-    {
-        if (phoneNumberHome != null)
-        {
-            return phoneNumberHome;
-        }
-
-        phoneNumberHome = new HL7V231Field
-        {
-            field = message[@"PID"][13],
-            Id = @"PID.13",
-            Type = @"Field",
-            Position = @"PID.13",
-            Name = @"Phone Number - Home",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the patient's personal phone numbers. All personal phone numbers for the patient are sent in the following sequence. The first sequence is considered the primary number (for backward compatibility). If the primary number is not sent, then a repeat delimiter is sent in the first sequence. Refer to HL7 tables 0201 - Telecommunication use code and 0202 - Telecommunication equipment type for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phoneNumberHome.field.FieldRepetitions != null && phoneNumberHome.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phoneNumberHome.Id));
-            phoneNumberHome.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(phoneNumberHome, fieldData);
-        }
-
-        return phoneNumberHome;
-    } 
-}
-
-internal HL7V231Field phoneNumberBusiness;
-
-public HL7V231Field PhoneNumberBusiness
-{
-    get
-    {
-        if (phoneNumberBusiness != null)
-        {
-            return phoneNumberBusiness;
-        }
-
-        phoneNumberBusiness = new HL7V231Field
-        {
-            field = message[@"PID"][14],
-            Id = @"PID.14",
-            Type = @"Field",
-            Position = @"PID.14",
-            Name = @"Phone Number - Business",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the patient's business telephone numbers. All business numbers for the patient are sent in the following sequence. The first sequence is considered the patient's primary business phone number (for backward compatibility). If the primary business phone number is not sent, then a repeat delimiter must be sent in the first sequence. Refer to HL7 tables 0201 - Telecommunication use code and 0202 - Telecommunication equipment type for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phoneNumberBusiness.field.FieldRepetitions != null && phoneNumberBusiness.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phoneNumberBusiness.Id));
-            phoneNumberBusiness.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(phoneNumberBusiness, fieldData);
-        }
-
-        return phoneNumberBusiness;
-    } 
-}
-
-internal HL7V231Field primaryLanguage;
-
-public HL7V231Field PrimaryLanguage
-{
-    get
-    {
-        if (primaryLanguage != null)
-        {
-            return primaryLanguage;
-        }
-
-        primaryLanguage = new HL7V231Field
-        {
-            field = message[@"PID"][15],
-            Id = @"PID.15",
-            Type = @"Field",
-            Position = @"PID.15",
-            Name = @"Primary Language",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0296",
-            TableName = @"Primary language",
-            Description = @"This field contains the patient's primary language. HL7 recommends using ISO table 639 as the suggested values in user-defined table 0296 - Language.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryLanguage.field.FieldRepetitions != null && primaryLanguage.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryLanguage.Id));
-            primaryLanguage.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(primaryLanguage, fieldData);
-        }
-
-        return primaryLanguage;
-    } 
-}
-
-internal HL7V231Field maritalStatus;
-
-public HL7V231Field MaritalStatus
-{
-    get
-    {
-        if (maritalStatus != null)
-        {
-            return maritalStatus;
-        }
-
-        maritalStatus = new HL7V231Field
-        {
-            field = message[@"PID"][16],
-            Id = @"PID.16",
-            Type = @"Field",
-            Position = @"PID.16",
-            Name = @"Marital Status",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0002",
-            TableName = @"Marital status",
-            Description = @"This field contains the patient's marital status. Refer to user-defined table 0002 - Marital status for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (maritalStatus.field.FieldRepetitions != null && maritalStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maritalStatus.Id));
-            maritalStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(maritalStatus, fieldData);
-        }
-
-        return maritalStatus;
-    } 
-}
-
-internal HL7V231Field religion;
-
-public HL7V231Field Religion
-{
-    get
-    {
-        if (religion != null)
-        {
-            return religion;
-        }
-
-        religion = new HL7V231Field
-        {
-            field = message[@"PID"][17],
-            Id = @"PID.17",
-            Type = @"Field",
-            Position = @"PID.17",
-            Name = @"Religion",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0006",
-            TableName = @"Religion",
-            Description = @"This field contains the patient's religion, for example, Baptist, Catholic, Methodist, etc. User-defined table 0006 - Religion is used as the HL7 identifier for the user-defined table of values for this field..",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (religion.field.FieldRepetitions != null && religion.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(religion.Id));
-            religion.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(religion, fieldData);
-        }
-
-        return religion;
-    } 
-}
-
-internal HL7V231Field patientAccountNumber;
-
-public HL7V231Field PatientAccountNumber
-{
-    get
-    {
-        if (patientAccountNumber != null)
-        {
-            return patientAccountNumber;
-        }
-
-        patientAccountNumber = new HL7V231Field
-        {
-            field = message[@"PID"][18],
-            Id = @"PID.18",
-            Type = @"Field",
-            Position = @"PID.18",
-            Name = @"Patient Account Number",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the patient account number assigned by accounting to which all charges, payments, etc., are recorded. It is used to identify the patient's account. Refer to HL7 table 0061 - Check digit scheme in Chapter 2.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientAccountNumber.field.FieldRepetitions != null && patientAccountNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientAccountNumber.Id));
-            patientAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(patientAccountNumber, fieldData);
-        }
-
-        return patientAccountNumber;
-    } 
-}
-
-internal HL7V231Field sSNNumberPatient;
-
-public HL7V231Field SSNNumberPatient
-{
-    get
-    {
-        if (sSNNumberPatient != null)
-        {
-            return sSNNumberPatient;
-        }
-
-        sSNNumberPatient = new HL7V231Field
-        {
-            field = message[@"PID"][19],
-            Id = @"PID.19",
-            Type = @"Field",
-            Position = @"PID.19",
-            Name = @"SSN Number - Patient",
-            Length = 16,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has been retained for backward compatibility only. It is recommended to use PID-3-patient identifier list for all patient identifiers. However, in order to maintain backward compatibility, this field should also be populated. You may additionally report the SSN number in PID-3 patient identifier list. When used for backward compatibility, this field contains the patient's social security number. This number may also be a RR retirement number.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sSNNumberPatient.field.FieldRepetitions != null && sSNNumberPatient.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sSNNumberPatient.Id));
-            sSNNumberPatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(sSNNumberPatient, fieldData);
-        }
-
-        return sSNNumberPatient;
-    } 
-}
-
-internal HL7V231Field driversLicenseNumberPatient;
-
-public HL7V231Field DriversLicenseNumberPatient
-{
-    get
-    {
-        if (driversLicenseNumberPatient != null)
-        {
-            return driversLicenseNumberPatient;
-        }
-
-        driversLicenseNumberPatient = new HL7V231Field
-        {
-            field = message[@"PID"][20],
-            Id = @"PID.20",
-            Type = @"Field",
-            Position = @"PID.20",
-            Name = @"Driver's License Number - Patient",
-            Length = 25,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DLN",
-            DataTypeName = @"Driver's License Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the patient's driver's license number. Some sites may use this number as a unique identifier of the patient. The default of the second component is the state in which the patient's license is registered.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (driversLicenseNumberPatient.field.FieldRepetitions != null && driversLicenseNumberPatient.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(driversLicenseNumberPatient.Id));
-            driversLicenseNumberPatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(driversLicenseNumberPatient, fieldData);
-        }
-
-        return driversLicenseNumberPatient;
-    } 
-}
-
-internal HL7V231Field mothersIdentifier;
-
-public HL7V231Field MothersIdentifier
-{
-    get
-    {
-        if (mothersIdentifier != null)
-        {
-            return mothersIdentifier;
-        }
-
-        mothersIdentifier = new HL7V231Field
-        {
-            field = message[@"PID"][21],
-            Id = @"PID.21",
-            Type = @"Field",
-            Position = @"PID.21",
-            Name = @"Mother's Identifier",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used, for example, as a link field for newborns. Typically a patient ID or account number may be used. This field can contain multiple identifiers for the same mother. Refer to HL7 table 0061 - Check digit scheme as defined in Chapter 2.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (mothersIdentifier.field.FieldRepetitions != null && mothersIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mothersIdentifier.Id));
-            mothersIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(mothersIdentifier, fieldData);
-        }
-
-        return mothersIdentifier;
-    } 
-}
-
-internal HL7V231Field ethnicGroup;
-
-public HL7V231Field EthnicGroup
-{
-    get
-    {
-        if (ethnicGroup != null)
-        {
-            return ethnicGroup;
-        }
-
-        ethnicGroup = new HL7V231Field
-        {
-            field = message[@"PID"][22],
-            Id = @"PID.22",
-            Type = @"Field",
-            Position = @"PID.22",
-            Name = @"Ethnic Group",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0189",
-            TableName = @"Ethnic group",
-            Description = @"This field further defines the patient's ancestry. User-definedtable 0189 - Ethnic group is used as the HL7 identifier for the user-defined table of values for this field. ERISA has a published list of ethnic classifications that may be used by local agreement at a site. The second triplet of the CE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (ethnicGroup.field.FieldRepetitions != null && ethnicGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ethnicGroup.Id));
-            ethnicGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(ethnicGroup, fieldData);
-        }
-
-        return ethnicGroup;
-    } 
-}
-
-internal HL7V231Field birthPlace;
-
-public HL7V231Field BirthPlace
-{
-    get
-    {
-        if (birthPlace != null)
-        {
-            return birthPlace;
-        }
-
-        birthPlace = new HL7V231Field
-        {
-            field = message[@"PID"][23],
-            Id = @"PID.23",
-            Type = @"Field",
-            Position = @"PID.23",
-            Name = @"Birth Place",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the location of the patient's birth.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (birthPlace.field.FieldRepetitions != null && birthPlace.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(birthPlace.Id));
-            birthPlace.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(birthPlace, fieldData);
-        }
-
-        return birthPlace;
-    } 
-}
-
-internal HL7V231Field multipleBirthIndicator;
-
-public HL7V231Field MultipleBirthIndicator
-{
-    get
-    {
-        if (multipleBirthIndicator != null)
-        {
-            return multipleBirthIndicator;
-        }
-
-        multipleBirthIndicator = new HL7V231Field
-        {
-            field = message[@"PID"][24],
-            Id = @"PID.24",
-            Type = @"Field",
-            Position = @"PID.24",
-            Name = @"Multiple Birth Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field indicates whether the patient was part of a multiple birth. Refer to HL7 table 0136 - Yes/No indicator as described in Chapter 2.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (multipleBirthIndicator.field.FieldRepetitions != null && multipleBirthIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(multipleBirthIndicator.Id));
-            multipleBirthIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(multipleBirthIndicator, fieldData);
-        }
-
-        return multipleBirthIndicator;
-    } 
-}
-
-internal HL7V231Field birthOrder;
-
-public HL7V231Field BirthOrder
-{
-    get
-    {
-        if (birthOrder != null)
-        {
-            return birthOrder;
-        }
-
-        birthOrder = new HL7V231Field
-        {
-            field = message[@"PID"][25],
-            Id = @"PID.25",
-            Type = @"Field",
-            Position = @"PID.25",
-            Name = @"Birth Order",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"When a patient was part of a multiple birth, a value (number) indicating the patient's birth order is entered in this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (birthOrder.field.FieldRepetitions != null && birthOrder.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(birthOrder.Id));
-            birthOrder.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(birthOrder, fieldData);
-        }
-
-        return birthOrder;
-    } 
-}
-
-internal HL7V231Field citizenship;
-
-public HL7V231Field Citizenship
-{
-    get
-    {
-        if (citizenship != null)
-        {
-            return citizenship;
-        }
-
-        citizenship = new HL7V231Field
-        {
-            field = message[@"PID"][26],
-            Id = @"PID.26",
-            Type = @"Field",
-            Position = @"PID.26",
-            Name = @"Citizenship",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0171",
-            TableName = @"Citizenship",
-            Description = @"This field contains the patient's country of citizenship. HL7 recommends using ISO table 3166 as the suggested values in user-defined table 0171 - Citizenship.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (citizenship.field.FieldRepetitions != null && citizenship.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(citizenship.Id));
-            citizenship.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(citizenship, fieldData);
-        }
-
-        return citizenship;
-    } 
-}
-
-internal HL7V231Field veteransMilitaryStatus;
-
-public HL7V231Field VeteransMilitaryStatus
-{
-    get
-    {
-        if (veteransMilitaryStatus != null)
-        {
-            return veteransMilitaryStatus;
-        }
-
-        veteransMilitaryStatus = new HL7V231Field
-        {
-            field = message[@"PID"][27],
-            Id = @"PID.27",
-            Type = @"Field",
-            Position = @"PID.27",
-            Name = @"Veterans Military Status",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0172",
-            TableName = @"Veterans military status",
-            Description = @"This field contains the military status assigned to a veteran. User-defined table 0172 - Veterans military status is used as the HL7 identifier for the user-defined table of values for this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (veteransMilitaryStatus.field.FieldRepetitions != null && veteransMilitaryStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(veteransMilitaryStatus.Id));
-            veteransMilitaryStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(veteransMilitaryStatus, fieldData);
-        }
-
-        return veteransMilitaryStatus;
-    } 
-}
-
-internal HL7V231Field nationality;
-
-public HL7V231Field Nationality
-{
-    get
-    {
-        if (nationality != null)
-        {
-            return nationality;
-        }
-
-        nationality = new HL7V231Field
-        {
-            field = message[@"PID"][28],
-            Id = @"PID.28",
-            Type = @"Field",
-            Position = @"PID.28",
-            Name = @"Nationality",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0212",
-            TableName = @"Nationality",
-            Description = @"This field contains a code that identifies the nation or national grouping to which the person belongs. This information may be different from a person's citizenship in countries in which multiple nationalities are recognized (for example, Spain: Basque, Catalan, etc.). HL7 recommends using ISO table 3166 as the suggested values in user-defined table 0212 - Nationality .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (nationality.field.FieldRepetitions != null && nationality.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nationality.Id));
-            nationality.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(nationality, fieldData);
-        }
-
-        return nationality;
-    } 
-}
-
-internal HL7V231Field patientDeathDateandTime;
-
-public HL7V231Field PatientDeathDateandTime
-{
-    get
-    {
-        if (patientDeathDateandTime != null)
-        {
-            return patientDeathDateandTime;
-        }
-
-        patientDeathDateandTime = new HL7V231Field
+        _patientDeathDateandTime = new HL7V231Field
         {
             field = message[@"PID"][29],
-            Id = @"PID.29",
-            Type = @"Field",
-            Position = @"PID.29",
-            Name = @"Patient Death Date and Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time at which the patient death occurred.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientDeathDateandTime.field.FieldRepetitions != null && patientDeathDateandTime.field.FieldRepetitions.Count > 0)
+        if (_patientDeathDateandTime.field.FieldRepetitions != null && _patientDeathDateandTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientDeathDateandTime.Id));
-            patientDeathDateandTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(patientDeathDateandTime, fieldData);
+            _patientDeathDateandTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_patientDeathDateandTime, fieldData);
         }
 
-        return patientDeathDateandTime;
+        return _patientDeathDateandTime;
     } 
 }
 
-internal HL7V231Field patientDeathIndicator;
+internal HL7V231Field _patientDeathIndicator;
 
 public HL7V231Field PatientDeathIndicator
 {
     get
     {
-        if (patientDeathIndicator != null)
+        if (_patientDeathIndicator != null)
         {
-            return patientDeathIndicator;
+            return _patientDeathIndicator;
         }
 
-        patientDeathIndicator = new HL7V231Field
+        var fieldData = new HL7V231FieldData
         {
-            field = message[@"PID"][30],
             Id = @"PID.30",
             Type = @"Field",
             Position = @"PID.30",
@@ -4825,17 +4457,22 @@ public HL7V231Field PatientDeathIndicator
             TableName = @"Yes/no indicator",
             Description = @"This field indicates whether or not the patient is deceased. Refer to Chapter 2, HL7 table 0136 - Yes/no indicator for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _patientDeathIndicator = new HL7V231Field
+        {
+            field = message[@"PID"][30],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientDeathIndicator.field.FieldRepetitions != null && patientDeathIndicator.field.FieldRepetitions.Count > 0)
+        if (_patientDeathIndicator.field.FieldRepetitions != null && _patientDeathIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientDeathIndicator.Id));
-            patientDeathIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(patientDeathIndicator, fieldData);
+            _patientDeathIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_patientDeathIndicator, fieldData);
         }
 
-        return patientDeathIndicator;
+        return _patientDeathIndicator;
     } 
 }
     }

@@ -29,85 +29,178 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"RXV.1",
-                            Type = @"Field",
-                            Position = @"RXV.1",
-                            Name = @"Set ID - RXV",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"For the first timing specification transmitted, the sequence number shall be 1; for the second timing specification, it shall be 2; and so on",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.2",
-                            Type = @"Field",
-                            Position = @"RXV.2",
-                            Name = @"Bolus Type",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0917",
-                            TableName = @"Bolus Type",
-                            Description = @"This field identifies the type of bolus being ordered.  See HL7 Defined Table 0917 – Bolus Type in Chapter 2C, Code Tables, for example values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.3",
-                            Type = @"Field",
-                            Position = @"RXV.3",
-                            Name = @"Bolus Dose Amount",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the ordered bolus amount.  For example, if the ordered bolus is 50 mg, this field contains the value of 50",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.4",
-                            Type = @"Field",
-                            Position = @"RXV.4",
-                            Name = @"Bolus Dose Amount Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the amount units associated with the bolus dose amount.  The preferred coding system is MDC; UCUM are also acceptable.
+        public HL7V28SegmentRXV(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _setIDRXV;
+
+public HL7V28Field SetIDRXV
+{
+    get
+    {
+        if (_setIDRXV != null)
+        {
+            return _setIDRXV;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.1",
+            Type = @"Field",
+            Position = @"RXV.1",
+            Name = @"Set ID - RXV",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"For the first timing specification transmitted, the sequence number shall be 1; for the second timing specification, it shall be 2; and so on",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDRXV = new HL7V28Field
+        {
+            field = message[@"RXV"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDRXV.field.FieldRepetitions != null && _setIDRXV.field.FieldRepetitions.Count > 0)
+        {
+            _setIDRXV.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_setIDRXV, fieldData);
+        }
+
+        return _setIDRXV;
+    } 
+}
+
+internal HL7V28Field _bolusType;
+
+public HL7V28Field BolusType
+{
+    get
+    {
+        if (_bolusType != null)
+        {
+            return _bolusType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.2",
+            Type = @"Field",
+            Position = @"RXV.2",
+            Name = @"Bolus Type",
+            Length = 1,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0917",
+            TableName = @"Bolus Type",
+            Description = @"This field identifies the type of bolus being ordered.  See HL7 Defined Table 0917 – Bolus Type in Chapter 2C, Code Tables, for example values",
+            Sample = @"",
+            Fields = null
+        }
+
+        _bolusType = new HL7V28Field
+        {
+            field = message[@"RXV"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bolusType.field.FieldRepetitions != null && _bolusType.field.FieldRepetitions.Count > 0)
+        {
+            _bolusType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_bolusType, fieldData);
+        }
+
+        return _bolusType;
+    } 
+}
+
+internal HL7V28Field _bolusDoseAmount;
+
+public HL7V28Field BolusDoseAmount
+{
+    get
+    {
+        if (_bolusDoseAmount != null)
+        {
+            return _bolusDoseAmount;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.3",
+            Type = @"Field",
+            Position = @"RXV.3",
+            Name = @"Bolus Dose Amount",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the ordered bolus amount.  For example, if the ordered bolus is 50 mg, this field contains the value of 50",
+            Sample = @"",
+            Fields = null
+        }
+
+        _bolusDoseAmount = new HL7V28Field
+        {
+            field = message[@"RXV"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bolusDoseAmount.field.FieldRepetitions != null && _bolusDoseAmount.field.FieldRepetitions.Count > 0)
+        {
+            _bolusDoseAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_bolusDoseAmount, fieldData);
+        }
+
+        return _bolusDoseAmount;
+    } 
+}
+
+internal HL7V28Field _bolusDoseAmountUnits;
+
+public HL7V28Field BolusDoseAmountUnits
+{
+    get
+    {
+        if (_bolusDoseAmountUnits != null)
+        {
+            return _bolusDoseAmountUnits;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.4",
+            Type = @"Field",
+            Position = @"RXV.4",
+            Name = @"Bolus Dose Amount Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the amount units associated with the bolus dose amount.  The preferred coding system is MDC; UCUM are also acceptable.
 Examples:	
 263890^MDC_DIM_MILLI_G^MDC
 mg^milligram^UCUM",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXV.4.1",
                             Type = @"Component",
@@ -535,46 +628,103 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.5",
-                            Type = @"Field",
-                            Position = @"RXV.5",
-                            Name = @"Bolus Dose Volume",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field defines the volume measurement for the ordered bolus amount.  For example, if the ordered bolus is 5 ml, this field contains the value of 5.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.6",
-                            Type = @"Field",
-                            Position = @"RXV.6",
-                            Name = @"Bolus Dose Volume Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the amount units associated with the bolus dose volume.  The preferred coding system is MDC; UCUM are also acceptable.
+                        }
+        }
+
+        _bolusDoseAmountUnits = new HL7V28Field
+        {
+            field = message[@"RXV"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bolusDoseAmountUnits.field.FieldRepetitions != null && _bolusDoseAmountUnits.field.FieldRepetitions.Count > 0)
+        {
+            _bolusDoseAmountUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_bolusDoseAmountUnits, fieldData);
+        }
+
+        return _bolusDoseAmountUnits;
+    } 
+}
+
+internal HL7V28Field _bolusDoseVolume;
+
+public HL7V28Field BolusDoseVolume
+{
+    get
+    {
+        if (_bolusDoseVolume != null)
+        {
+            return _bolusDoseVolume;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.5",
+            Type = @"Field",
+            Position = @"RXV.5",
+            Name = @"Bolus Dose Volume",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field defines the volume measurement for the ordered bolus amount.  For example, if the ordered bolus is 5 ml, this field contains the value of 5.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _bolusDoseVolume = new HL7V28Field
+        {
+            field = message[@"RXV"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bolusDoseVolume.field.FieldRepetitions != null && _bolusDoseVolume.field.FieldRepetitions.Count > 0)
+        {
+            _bolusDoseVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_bolusDoseVolume, fieldData);
+        }
+
+        return _bolusDoseVolume;
+    } 
+}
+
+internal HL7V28Field _bolusDoseVolumeUnits;
+
+public HL7V28Field BolusDoseVolumeUnits
+{
+    get
+    {
+        if (_bolusDoseVolumeUnits != null)
+        {
+            return _bolusDoseVolumeUnits;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.6",
+            Type = @"Field",
+            Position = @"RXV.6",
+            Name = @"Bolus Dose Volume Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the amount units associated with the bolus dose volume.  The preferred coding system is MDC; UCUM are also acceptable.
 Examples:
 263890^MDC_DIM_MILLI_G^MDC
 mg^milligram^UCUM",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXV.6.1",
                             Type = @"Component",
@@ -1002,64 +1152,148 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.7",
-                            Type = @"Field",
-                            Position = @"RXV.7",
-                            Name = @"PCA Type",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0918",
-                            TableName = @"PCA Type",
-                            Description = @"This field identifies the type of bolus being ordered. See HL7 Defined Table 0918 – PCA Type in Chapter 2C, Code Tables, for example values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.8",
-                            Type = @"Field",
-                            Position = @"RXV.8",
-                            Name = @"PCA Dose Amount",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the order’s PCA dose amount.   Example:  if the ordered bolus is 3 mg, this field contains the value of 3",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.9",
-                            Type = @"Field",
-                            Position = @"RXV.9",
-                            Name = @"PCA Dose Amount Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the amount units associated with the PCA dose amount.  The preferred coding system is MDC; UCUM are also acceptable.
+                        }
+        }
+
+        _bolusDoseVolumeUnits = new HL7V28Field
+        {
+            field = message[@"RXV"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bolusDoseVolumeUnits.field.FieldRepetitions != null && _bolusDoseVolumeUnits.field.FieldRepetitions.Count > 0)
+        {
+            _bolusDoseVolumeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_bolusDoseVolumeUnits, fieldData);
+        }
+
+        return _bolusDoseVolumeUnits;
+    } 
+}
+
+internal HL7V28Field _pCAType;
+
+public HL7V28Field PCAType
+{
+    get
+    {
+        if (_pCAType != null)
+        {
+            return _pCAType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.7",
+            Type = @"Field",
+            Position = @"RXV.7",
+            Name = @"PCA Type",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0918",
+            TableName = @"PCA Type",
+            Description = @"This field identifies the type of bolus being ordered. See HL7 Defined Table 0918 – PCA Type in Chapter 2C, Code Tables, for example values",
+            Sample = @"",
+            Fields = null
+        }
+
+        _pCAType = new HL7V28Field
+        {
+            field = message[@"RXV"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_pCAType.field.FieldRepetitions != null && _pCAType.field.FieldRepetitions.Count > 0)
+        {
+            _pCAType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_pCAType, fieldData);
+        }
+
+        return _pCAType;
+    } 
+}
+
+internal HL7V28Field _pCADoseAmount;
+
+public HL7V28Field PCADoseAmount
+{
+    get
+    {
+        if (_pCADoseAmount != null)
+        {
+            return _pCADoseAmount;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.8",
+            Type = @"Field",
+            Position = @"RXV.8",
+            Name = @"PCA Dose Amount",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the order’s PCA dose amount.   Example:  if the ordered bolus is 3 mg, this field contains the value of 3",
+            Sample = @"",
+            Fields = null
+        }
+
+        _pCADoseAmount = new HL7V28Field
+        {
+            field = message[@"RXV"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_pCADoseAmount.field.FieldRepetitions != null && _pCADoseAmount.field.FieldRepetitions.Count > 0)
+        {
+            _pCADoseAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_pCADoseAmount, fieldData);
+        }
+
+        return _pCADoseAmount;
+    } 
+}
+
+internal HL7V28Field _pCADoseAmountUnits;
+
+public HL7V28Field PCADoseAmountUnits
+{
+    get
+    {
+        if (_pCADoseAmountUnits != null)
+        {
+            return _pCADoseAmountUnits;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.9",
+            Type = @"Field",
+            Position = @"RXV.9",
+            Name = @"PCA Dose Amount Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the amount units associated with the PCA dose amount.  The preferred coding system is MDC; UCUM are also acceptable.
 Examples:
 263890^MDC_DIM_MILLI_G^MDC
 mg^milligram^UCUM  ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXV.9.1",
                             Type = @"Component",
@@ -1487,46 +1721,103 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.10",
-                            Type = @"Field",
-                            Position = @"RXV.10",
-                            Name = @"PCA Dose Amount Volume",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field defines the volume measurement for the ordered PCA amount volume.   For example, if the ordered bolus is 5 ml, this field contains the value of 5",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.11",
-                            Type = @"Field",
-                            Position = @"RXV.11",
-                            Name = @"PCA Dose Amount Volume Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the amount units associated with the PCA dose volume.  The preferred coding system is MDC; UCUM are also acceptable.
+                        }
+        }
+
+        _pCADoseAmountUnits = new HL7V28Field
+        {
+            field = message[@"RXV"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_pCADoseAmountUnits.field.FieldRepetitions != null && _pCADoseAmountUnits.field.FieldRepetitions.Count > 0)
+        {
+            _pCADoseAmountUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_pCADoseAmountUnits, fieldData);
+        }
+
+        return _pCADoseAmountUnits;
+    } 
+}
+
+internal HL7V28Field _pCADoseAmountVolume;
+
+public HL7V28Field PCADoseAmountVolume
+{
+    get
+    {
+        if (_pCADoseAmountVolume != null)
+        {
+            return _pCADoseAmountVolume;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.10",
+            Type = @"Field",
+            Position = @"RXV.10",
+            Name = @"PCA Dose Amount Volume",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field defines the volume measurement for the ordered PCA amount volume.   For example, if the ordered bolus is 5 ml, this field contains the value of 5",
+            Sample = @"",
+            Fields = null
+        }
+
+        _pCADoseAmountVolume = new HL7V28Field
+        {
+            field = message[@"RXV"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_pCADoseAmountVolume.field.FieldRepetitions != null && _pCADoseAmountVolume.field.FieldRepetitions.Count > 0)
+        {
+            _pCADoseAmountVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_pCADoseAmountVolume, fieldData);
+        }
+
+        return _pCADoseAmountVolume;
+    } 
+}
+
+internal HL7V28Field _pCADoseAmountVolumeUnits;
+
+public HL7V28Field PCADoseAmountVolumeUnits
+{
+    get
+    {
+        if (_pCADoseAmountVolumeUnits != null)
+        {
+            return _pCADoseAmountVolumeUnits;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.11",
+            Type = @"Field",
+            Position = @"RXV.11",
+            Name = @"PCA Dose Amount Volume Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the amount units associated with the PCA dose volume.  The preferred coding system is MDC; UCUM are also acceptable.
 Examples:
 263890^MDC_DIM_MILLI_G^MDC
 mg^milligram^UCUM  ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXV.11.1",
                             Type = @"Component",
@@ -1954,46 +2245,103 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.12",
-                            Type = @"Field",
-                            Position = @"RXV.12",
-                            Name = @"Max Dose Amount",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the order’s maximum dose amount.  For example, if the ordered bolus is 50 mg, this field contains the value of 50.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.13",
-                            Type = @"Field",
-                            Position = @"RXV.13",
-                            Name = @"Max Dose Amount Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the amount units associated with the maximum dose volume.  The preferred coding system is MDC; UCUM are also acceptable.
+                        }
+        }
+
+        _pCADoseAmountVolumeUnits = new HL7V28Field
+        {
+            field = message[@"RXV"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_pCADoseAmountVolumeUnits.field.FieldRepetitions != null && _pCADoseAmountVolumeUnits.field.FieldRepetitions.Count > 0)
+        {
+            _pCADoseAmountVolumeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_pCADoseAmountVolumeUnits, fieldData);
+        }
+
+        return _pCADoseAmountVolumeUnits;
+    } 
+}
+
+internal HL7V28Field _maxDoseAmount;
+
+public HL7V28Field MaxDoseAmount
+{
+    get
+    {
+        if (_maxDoseAmount != null)
+        {
+            return _maxDoseAmount;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.12",
+            Type = @"Field",
+            Position = @"RXV.12",
+            Name = @"Max Dose Amount",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the order’s maximum dose amount.  For example, if the ordered bolus is 50 mg, this field contains the value of 50.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _maxDoseAmount = new HL7V28Field
+        {
+            field = message[@"RXV"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_maxDoseAmount.field.FieldRepetitions != null && _maxDoseAmount.field.FieldRepetitions.Count > 0)
+        {
+            _maxDoseAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_maxDoseAmount, fieldData);
+        }
+
+        return _maxDoseAmount;
+    } 
+}
+
+internal HL7V28Field _maxDoseAmountUnits;
+
+public HL7V28Field MaxDoseAmountUnits
+{
+    get
+    {
+        if (_maxDoseAmountUnits != null)
+        {
+            return _maxDoseAmountUnits;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.13",
+            Type = @"Field",
+            Position = @"RXV.13",
+            Name = @"Max Dose Amount Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the amount units associated with the maximum dose volume.  The preferred coding system is MDC; UCUM are also acceptable.
 Examples:
 263890^MDC_DIM_MILLI_G^MDC
 mg^milligram^UCUM  ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXV.13.1",
                             Type = @"Component",
@@ -2421,46 +2769,103 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.14",
-                            Type = @"Field",
-                            Position = @"RXV.14",
-                            Name = @"Max Dose Amount Volume",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field defines the volume measurement for the ordered max dose amount.  For example, if the ordered bolus is 5 ml, this field contains the value of 5.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.15",
-                            Type = @"Field",
-                            Position = @"RXV.15",
-                            Name = @"Max Dose Amount Volume Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the amount units associated with the maximum dose volume.  The preferred coding system is MDC; UCUM are also acceptable.
+                        }
+        }
+
+        _maxDoseAmountUnits = new HL7V28Field
+        {
+            field = message[@"RXV"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_maxDoseAmountUnits.field.FieldRepetitions != null && _maxDoseAmountUnits.field.FieldRepetitions.Count > 0)
+        {
+            _maxDoseAmountUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_maxDoseAmountUnits, fieldData);
+        }
+
+        return _maxDoseAmountUnits;
+    } 
+}
+
+internal HL7V28Field _maxDoseAmountVolume;
+
+public HL7V28Field MaxDoseAmountVolume
+{
+    get
+    {
+        if (_maxDoseAmountVolume != null)
+        {
+            return _maxDoseAmountVolume;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.14",
+            Type = @"Field",
+            Position = @"RXV.14",
+            Name = @"Max Dose Amount Volume",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field defines the volume measurement for the ordered max dose amount.  For example, if the ordered bolus is 5 ml, this field contains the value of 5.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _maxDoseAmountVolume = new HL7V28Field
+        {
+            field = message[@"RXV"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_maxDoseAmountVolume.field.FieldRepetitions != null && _maxDoseAmountVolume.field.FieldRepetitions.Count > 0)
+        {
+            _maxDoseAmountVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_maxDoseAmountVolume, fieldData);
+        }
+
+        return _maxDoseAmountVolume;
+    } 
+}
+
+internal HL7V28Field _maxDoseAmountVolumeUnits;
+
+public HL7V28Field MaxDoseAmountVolumeUnits
+{
+    get
+    {
+        if (_maxDoseAmountVolumeUnits != null)
+        {
+            return _maxDoseAmountVolumeUnits;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.15",
+            Type = @"Field",
+            Position = @"RXV.15",
+            Name = @"Max Dose Amount Volume Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the amount units associated with the maximum dose volume.  The preferred coding system is MDC; UCUM are also acceptable.
 Examples:
 263890^MDC_DIM_MILLI_G^MDC
 mg^milligram^UCUM",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXV.15.1",
                             Type = @"Component",
@@ -2888,25 +3293,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _maxDoseAmountVolumeUnits = new HL7V28Field
+        {
+            field = message[@"RXV"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_maxDoseAmountVolumeUnits.field.FieldRepetitions != null && _maxDoseAmountVolumeUnits.field.FieldRepetitions.Count > 0)
+        {
+            _maxDoseAmountVolumeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_maxDoseAmountVolumeUnits, fieldData);
+        }
+
+        return _maxDoseAmountVolumeUnits;
+    } 
+}
+
+internal HL7V28Field _maxDoseperTime;
+
+public HL7V28Field MaxDoseperTime
+{
+    get
+    {
+        if (_maxDoseperTime != null)
+        {
+            return _maxDoseperTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.16",
+            Type = @"Field",
+            Position = @"RXV.16",
+            Name = @"Max Dose per Time",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the time unit expression of the lock out parameter.  For example, if the ordered max dose per time is 4 hours, this field format is ""4^h&hours&UCUM"".",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXV.16",
-                            Type = @"Field",
-                            Position = @"RXV.16",
-                            Name = @"Max Dose per Time",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the time unit expression of the lock out parameter.  For example, if the ordered max dose per time is 4 hours, this field format is ""4^h&hours&UCUM"".",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXV.16.1",
                             Type = @"Component",
@@ -3368,25 +3803,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _maxDoseperTime = new HL7V28Field
+        {
+            field = message[@"RXV"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_maxDoseperTime.field.FieldRepetitions != null && _maxDoseperTime.field.FieldRepetitions.Count > 0)
+        {
+            _maxDoseperTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_maxDoseperTime, fieldData);
+        }
+
+        return _maxDoseperTime;
+    } 
+}
+
+internal HL7V28Field _lockoutInterval;
+
+public HL7V28Field LockoutInterval
+{
+    get
+    {
+        if (_lockoutInterval != null)
+        {
+            return _lockoutInterval;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.17",
+            Type = @"Field",
+            Position = @"RXV.17",
+            Name = @"Lockout Interval",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the length of time that must expire between deliveries of PCA doses. For example, if the ordered max dose per time is 10 minutes, this field format is ""10^min&minute&UCUM"".",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXV.17",
-                            Type = @"Field",
-                            Position = @"RXV.17",
-                            Name = @"Lockout Interval",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the length of time that must expire between deliveries of PCA doses. For example, if the ordered max dose per time is 10 minutes, this field format is ""10^min&minute&UCUM"".",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXV.17.1",
                             Type = @"Component",
@@ -3848,25 +4313,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _lockoutInterval = new HL7V28Field
+        {
+            field = message[@"RXV"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_lockoutInterval.field.FieldRepetitions != null && _lockoutInterval.field.FieldRepetitions.Count > 0)
+        {
+            _lockoutInterval.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_lockoutInterval, fieldData);
+        }
+
+        return _lockoutInterval;
+    } 
+}
+
+internal HL7V28Field _syringeManufacturer;
+
+public HL7V28Field SyringeManufacturer
+{
+    get
+    {
+        if (_syringeManufacturer != null)
+        {
+            return _syringeManufacturer;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.18",
+            Type = @"Field",
+            Position = @"RXV.18",
+            Name = @"Syringe Manufacturer",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the manufacturer of the syringe containing the ordered medication",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXV.18",
-                            Type = @"Field",
-                            Position = @"RXV.18",
-                            Name = @"Syringe Manufacturer",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the manufacturer of the syringe containing the ordered medication",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXV.18.1",
                             Type = @"Component",
@@ -4294,25 +4789,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _syringeManufacturer = new HL7V28Field
+        {
+            field = message[@"RXV"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_syringeManufacturer.field.FieldRepetitions != null && _syringeManufacturer.field.FieldRepetitions.Count > 0)
+        {
+            _syringeManufacturer.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_syringeManufacturer, fieldData);
+        }
+
+        return _syringeManufacturer;
+    } 
+}
+
+internal HL7V28Field _syringeModelNumber;
+
+public HL7V28Field SyringeModelNumber
+{
+    get
+    {
+        if (_syringeModelNumber != null)
+        {
+            return _syringeModelNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.19",
+            Type = @"Field",
+            Position = @"RXV.19",
+            Name = @"Syringe Model Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the model number of the syringe containing the ordered medication",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXV.19",
-                            Type = @"Field",
-                            Position = @"RXV.19",
-                            Name = @"Syringe Model Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the model number of the syringe containing the ordered medication",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXV.19.1",
                             Type = @"Component",
@@ -4740,43 +5265,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _syringeModelNumber = new HL7V28Field
+        {
+            field = message[@"RXV"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_syringeModelNumber.field.FieldRepetitions != null && _syringeModelNumber.field.FieldRepetitions.Count > 0)
+        {
+            _syringeModelNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_syringeModelNumber, fieldData);
+        }
+
+        return _syringeModelNumber;
+    } 
+}
+
+internal HL7V28Field _syringeSize;
+
+public HL7V28Field SyringeSize
+{
+    get
+    {
+        if (_syringeSize != null)
+        {
+            return _syringeSize;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.20",
+            Type = @"Field",
+            Position = @"RXV.20",
+            Name = @"Syringe Size",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the syringe’s numeric total volume size.  ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _syringeSize = new HL7V28Field
+        {
+            field = message[@"RXV"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_syringeSize.field.FieldRepetitions != null && _syringeSize.field.FieldRepetitions.Count > 0)
+        {
+            _syringeSize.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_syringeSize, fieldData);
+        }
+
+        return _syringeSize;
+    } 
+}
+
+internal HL7V28Field _syringeSizeUnits;
+
+public HL7V28Field SyringeSizeUnits
+{
+    get
+    {
+        if (_syringeSizeUnits != null)
+        {
+            return _syringeSizeUnits;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RXV.21",
+            Type = @"Field",
+            Position = @"RXV.21",
+            Name = @"Syringe Size Units",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the amount units associated with the syringe size.  The preferred coding system is MDC; UCUM are also acceptable",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXV.20",
-                            Type = @"Field",
-                            Position = @"RXV.20",
-                            Name = @"Syringe Size",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the syringe’s numeric total volume size.  ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.21",
-                            Type = @"Field",
-                            Position = @"RXV.21",
-                            Name = @"Syringe Size Units",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the amount units associated with the syringe size.  The preferred coding system is MDC; UCUM are also acceptable",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXV.21.1",
                             Type = @"Component",
@@ -5204,928 +5786,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXV.22",
-                            Type = @"Field",
-                            Position = @"RXV.22",
-                            Name = @"Action Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0206",
-                            TableName = @"Segment action code",
-                            Description = @"The intended handling by the receiver of the infusion order is represented by this segment.  Refer to HL7 Table 0206 – Segment Action Code in Chapter 2C, Code Tables, for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentRXV(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field setIDRXV;
-
-public HL7V28Field SetIDRXV
-{
-    get
-    {
-        if (setIDRXV != null)
-        {
-            return setIDRXV;
-        }
-
-        setIDRXV = new HL7V28Field
-        {
-            field = message[@"RXV"][1],
-            Id = @"RXV.1",
-            Type = @"Field",
-            Position = @"RXV.1",
-            Name = @"Set ID - RXV",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"For the first timing specification transmitted, the sequence number shall be 1; for the second timing specification, it shall be 2; and so on",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDRXV.field.FieldRepetitions != null && setIDRXV.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDRXV.Id));
-            setIDRXV.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(setIDRXV, fieldData);
-        }
-
-        return setIDRXV;
-    } 
-}
-
-internal HL7V28Field bolusType;
-
-public HL7V28Field BolusType
-{
-    get
-    {
-        if (bolusType != null)
-        {
-            return bolusType;
-        }
-
-        bolusType = new HL7V28Field
-        {
-            field = message[@"RXV"][2],
-            Id = @"RXV.2",
-            Type = @"Field",
-            Position = @"RXV.2",
-            Name = @"Bolus Type",
-            Length = 1,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0917",
-            TableName = @"Bolus Type",
-            Description = @"This field identifies the type of bolus being ordered.  See HL7 Defined Table 0917 – Bolus Type in Chapter 2C, Code Tables, for example values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bolusType.field.FieldRepetitions != null && bolusType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bolusType.Id));
-            bolusType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(bolusType, fieldData);
-        }
-
-        return bolusType;
-    } 
-}
-
-internal HL7V28Field bolusDoseAmount;
-
-public HL7V28Field BolusDoseAmount
-{
-    get
-    {
-        if (bolusDoseAmount != null)
-        {
-            return bolusDoseAmount;
-        }
-
-        bolusDoseAmount = new HL7V28Field
-        {
-            field = message[@"RXV"][3],
-            Id = @"RXV.3",
-            Type = @"Field",
-            Position = @"RXV.3",
-            Name = @"Bolus Dose Amount",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the ordered bolus amount.  For example, if the ordered bolus is 50 mg, this field contains the value of 50",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bolusDoseAmount.field.FieldRepetitions != null && bolusDoseAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bolusDoseAmount.Id));
-            bolusDoseAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(bolusDoseAmount, fieldData);
-        }
-
-        return bolusDoseAmount;
-    } 
-}
-
-internal HL7V28Field bolusDoseAmountUnits;
-
-public HL7V28Field BolusDoseAmountUnits
-{
-    get
-    {
-        if (bolusDoseAmountUnits != null)
-        {
-            return bolusDoseAmountUnits;
-        }
-
-        bolusDoseAmountUnits = new HL7V28Field
-        {
-            field = message[@"RXV"][4],
-            Id = @"RXV.4",
-            Type = @"Field",
-            Position = @"RXV.4",
-            Name = @"Bolus Dose Amount Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the amount units associated with the bolus dose amount.  The preferred coding system is MDC; UCUM are also acceptable.
-Examples:	
-263890^MDC_DIM_MILLI_G^MDC
-mg^milligram^UCUM",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bolusDoseAmountUnits.field.FieldRepetitions != null && bolusDoseAmountUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bolusDoseAmountUnits.Id));
-            bolusDoseAmountUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(bolusDoseAmountUnits, fieldData);
-        }
-
-        return bolusDoseAmountUnits;
-    } 
-}
-
-internal HL7V28Field bolusDoseVolume;
-
-public HL7V28Field BolusDoseVolume
-{
-    get
-    {
-        if (bolusDoseVolume != null)
-        {
-            return bolusDoseVolume;
-        }
-
-        bolusDoseVolume = new HL7V28Field
-        {
-            field = message[@"RXV"][5],
-            Id = @"RXV.5",
-            Type = @"Field",
-            Position = @"RXV.5",
-            Name = @"Bolus Dose Volume",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field defines the volume measurement for the ordered bolus amount.  For example, if the ordered bolus is 5 ml, this field contains the value of 5.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bolusDoseVolume.field.FieldRepetitions != null && bolusDoseVolume.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bolusDoseVolume.Id));
-            bolusDoseVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(bolusDoseVolume, fieldData);
-        }
-
-        return bolusDoseVolume;
-    } 
-}
-
-internal HL7V28Field bolusDoseVolumeUnits;
-
-public HL7V28Field BolusDoseVolumeUnits
-{
-    get
-    {
-        if (bolusDoseVolumeUnits != null)
-        {
-            return bolusDoseVolumeUnits;
-        }
-
-        bolusDoseVolumeUnits = new HL7V28Field
-        {
-            field = message[@"RXV"][6],
-            Id = @"RXV.6",
-            Type = @"Field",
-            Position = @"RXV.6",
-            Name = @"Bolus Dose Volume Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the amount units associated with the bolus dose volume.  The preferred coding system is MDC; UCUM are also acceptable.
-Examples:
-263890^MDC_DIM_MILLI_G^MDC
-mg^milligram^UCUM",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bolusDoseVolumeUnits.field.FieldRepetitions != null && bolusDoseVolumeUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bolusDoseVolumeUnits.Id));
-            bolusDoseVolumeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(bolusDoseVolumeUnits, fieldData);
-        }
-
-        return bolusDoseVolumeUnits;
-    } 
-}
-
-internal HL7V28Field pCAType;
-
-public HL7V28Field PCAType
-{
-    get
-    {
-        if (pCAType != null)
-        {
-            return pCAType;
-        }
-
-        pCAType = new HL7V28Field
-        {
-            field = message[@"RXV"][7],
-            Id = @"RXV.7",
-            Type = @"Field",
-            Position = @"RXV.7",
-            Name = @"PCA Type",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0918",
-            TableName = @"PCA Type",
-            Description = @"This field identifies the type of bolus being ordered. See HL7 Defined Table 0918 – PCA Type in Chapter 2C, Code Tables, for example values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (pCAType.field.FieldRepetitions != null && pCAType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pCAType.Id));
-            pCAType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(pCAType, fieldData);
-        }
-
-        return pCAType;
-    } 
-}
-
-internal HL7V28Field pCADoseAmount;
-
-public HL7V28Field PCADoseAmount
-{
-    get
-    {
-        if (pCADoseAmount != null)
-        {
-            return pCADoseAmount;
-        }
-
-        pCADoseAmount = new HL7V28Field
-        {
-            field = message[@"RXV"][8],
-            Id = @"RXV.8",
-            Type = @"Field",
-            Position = @"RXV.8",
-            Name = @"PCA Dose Amount",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the order’s PCA dose amount.   Example:  if the ordered bolus is 3 mg, this field contains the value of 3",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (pCADoseAmount.field.FieldRepetitions != null && pCADoseAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pCADoseAmount.Id));
-            pCADoseAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(pCADoseAmount, fieldData);
-        }
-
-        return pCADoseAmount;
-    } 
-}
-
-internal HL7V28Field pCADoseAmountUnits;
-
-public HL7V28Field PCADoseAmountUnits
-{
-    get
-    {
-        if (pCADoseAmountUnits != null)
-        {
-            return pCADoseAmountUnits;
-        }
-
-        pCADoseAmountUnits = new HL7V28Field
-        {
-            field = message[@"RXV"][9],
-            Id = @"RXV.9",
-            Type = @"Field",
-            Position = @"RXV.9",
-            Name = @"PCA Dose Amount Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the amount units associated with the PCA dose amount.  The preferred coding system is MDC; UCUM are also acceptable.
-Examples:
-263890^MDC_DIM_MILLI_G^MDC
-mg^milligram^UCUM  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (pCADoseAmountUnits.field.FieldRepetitions != null && pCADoseAmountUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pCADoseAmountUnits.Id));
-            pCADoseAmountUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(pCADoseAmountUnits, fieldData);
-        }
-
-        return pCADoseAmountUnits;
-    } 
-}
-
-internal HL7V28Field pCADoseAmountVolume;
-
-public HL7V28Field PCADoseAmountVolume
-{
-    get
-    {
-        if (pCADoseAmountVolume != null)
-        {
-            return pCADoseAmountVolume;
-        }
-
-        pCADoseAmountVolume = new HL7V28Field
-        {
-            field = message[@"RXV"][10],
-            Id = @"RXV.10",
-            Type = @"Field",
-            Position = @"RXV.10",
-            Name = @"PCA Dose Amount Volume",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field defines the volume measurement for the ordered PCA amount volume.   For example, if the ordered bolus is 5 ml, this field contains the value of 5",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (pCADoseAmountVolume.field.FieldRepetitions != null && pCADoseAmountVolume.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pCADoseAmountVolume.Id));
-            pCADoseAmountVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(pCADoseAmountVolume, fieldData);
-        }
-
-        return pCADoseAmountVolume;
-    } 
-}
-
-internal HL7V28Field pCADoseAmountVolumeUnits;
-
-public HL7V28Field PCADoseAmountVolumeUnits
-{
-    get
-    {
-        if (pCADoseAmountVolumeUnits != null)
-        {
-            return pCADoseAmountVolumeUnits;
-        }
-
-        pCADoseAmountVolumeUnits = new HL7V28Field
-        {
-            field = message[@"RXV"][11],
-            Id = @"RXV.11",
-            Type = @"Field",
-            Position = @"RXV.11",
-            Name = @"PCA Dose Amount Volume Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the amount units associated with the PCA dose volume.  The preferred coding system is MDC; UCUM are also acceptable.
-Examples:
-263890^MDC_DIM_MILLI_G^MDC
-mg^milligram^UCUM  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (pCADoseAmountVolumeUnits.field.FieldRepetitions != null && pCADoseAmountVolumeUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pCADoseAmountVolumeUnits.Id));
-            pCADoseAmountVolumeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(pCADoseAmountVolumeUnits, fieldData);
-        }
-
-        return pCADoseAmountVolumeUnits;
-    } 
-}
-
-internal HL7V28Field maxDoseAmount;
-
-public HL7V28Field MaxDoseAmount
-{
-    get
-    {
-        if (maxDoseAmount != null)
-        {
-            return maxDoseAmount;
-        }
-
-        maxDoseAmount = new HL7V28Field
-        {
-            field = message[@"RXV"][12],
-            Id = @"RXV.12",
-            Type = @"Field",
-            Position = @"RXV.12",
-            Name = @"Max Dose Amount",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the order’s maximum dose amount.  For example, if the ordered bolus is 50 mg, this field contains the value of 50.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (maxDoseAmount.field.FieldRepetitions != null && maxDoseAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maxDoseAmount.Id));
-            maxDoseAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(maxDoseAmount, fieldData);
-        }
-
-        return maxDoseAmount;
-    } 
-}
-
-internal HL7V28Field maxDoseAmountUnits;
-
-public HL7V28Field MaxDoseAmountUnits
-{
-    get
-    {
-        if (maxDoseAmountUnits != null)
-        {
-            return maxDoseAmountUnits;
-        }
-
-        maxDoseAmountUnits = new HL7V28Field
-        {
-            field = message[@"RXV"][13],
-            Id = @"RXV.13",
-            Type = @"Field",
-            Position = @"RXV.13",
-            Name = @"Max Dose Amount Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the amount units associated with the maximum dose volume.  The preferred coding system is MDC; UCUM are also acceptable.
-Examples:
-263890^MDC_DIM_MILLI_G^MDC
-mg^milligram^UCUM  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (maxDoseAmountUnits.field.FieldRepetitions != null && maxDoseAmountUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maxDoseAmountUnits.Id));
-            maxDoseAmountUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(maxDoseAmountUnits, fieldData);
-        }
-
-        return maxDoseAmountUnits;
-    } 
-}
-
-internal HL7V28Field maxDoseAmountVolume;
-
-public HL7V28Field MaxDoseAmountVolume
-{
-    get
-    {
-        if (maxDoseAmountVolume != null)
-        {
-            return maxDoseAmountVolume;
-        }
-
-        maxDoseAmountVolume = new HL7V28Field
-        {
-            field = message[@"RXV"][14],
-            Id = @"RXV.14",
-            Type = @"Field",
-            Position = @"RXV.14",
-            Name = @"Max Dose Amount Volume",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field defines the volume measurement for the ordered max dose amount.  For example, if the ordered bolus is 5 ml, this field contains the value of 5.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (maxDoseAmountVolume.field.FieldRepetitions != null && maxDoseAmountVolume.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maxDoseAmountVolume.Id));
-            maxDoseAmountVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(maxDoseAmountVolume, fieldData);
-        }
-
-        return maxDoseAmountVolume;
-    } 
-}
-
-internal HL7V28Field maxDoseAmountVolumeUnits;
-
-public HL7V28Field MaxDoseAmountVolumeUnits
-{
-    get
-    {
-        if (maxDoseAmountVolumeUnits != null)
-        {
-            return maxDoseAmountVolumeUnits;
-        }
-
-        maxDoseAmountVolumeUnits = new HL7V28Field
-        {
-            field = message[@"RXV"][15],
-            Id = @"RXV.15",
-            Type = @"Field",
-            Position = @"RXV.15",
-            Name = @"Max Dose Amount Volume Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the amount units associated with the maximum dose volume.  The preferred coding system is MDC; UCUM are also acceptable.
-Examples:
-263890^MDC_DIM_MILLI_G^MDC
-mg^milligram^UCUM",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (maxDoseAmountVolumeUnits.field.FieldRepetitions != null && maxDoseAmountVolumeUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maxDoseAmountVolumeUnits.Id));
-            maxDoseAmountVolumeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(maxDoseAmountVolumeUnits, fieldData);
-        }
-
-        return maxDoseAmountVolumeUnits;
-    } 
-}
-
-internal HL7V28Field maxDoseperTime;
-
-public HL7V28Field MaxDoseperTime
-{
-    get
-    {
-        if (maxDoseperTime != null)
-        {
-            return maxDoseperTime;
-        }
-
-        maxDoseperTime = new HL7V28Field
-        {
-            field = message[@"RXV"][16],
-            Id = @"RXV.16",
-            Type = @"Field",
-            Position = @"RXV.16",
-            Name = @"Max Dose per Time",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the time unit expression of the lock out parameter.  For example, if the ordered max dose per time is 4 hours, this field format is ""4^h&hours&UCUM"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (maxDoseperTime.field.FieldRepetitions != null && maxDoseperTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maxDoseperTime.Id));
-            maxDoseperTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(maxDoseperTime, fieldData);
-        }
-
-        return maxDoseperTime;
-    } 
-}
-
-internal HL7V28Field lockoutInterval;
-
-public HL7V28Field LockoutInterval
-{
-    get
-    {
-        if (lockoutInterval != null)
-        {
-            return lockoutInterval;
-        }
-
-        lockoutInterval = new HL7V28Field
-        {
-            field = message[@"RXV"][17],
-            Id = @"RXV.17",
-            Type = @"Field",
-            Position = @"RXV.17",
-            Name = @"Lockout Interval",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the length of time that must expire between deliveries of PCA doses. For example, if the ordered max dose per time is 10 minutes, this field format is ""10^min&minute&UCUM"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (lockoutInterval.field.FieldRepetitions != null && lockoutInterval.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(lockoutInterval.Id));
-            lockoutInterval.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(lockoutInterval, fieldData);
-        }
-
-        return lockoutInterval;
-    } 
-}
-
-internal HL7V28Field syringeManufacturer;
-
-public HL7V28Field SyringeManufacturer
-{
-    get
-    {
-        if (syringeManufacturer != null)
-        {
-            return syringeManufacturer;
-        }
-
-        syringeManufacturer = new HL7V28Field
-        {
-            field = message[@"RXV"][18],
-            Id = @"RXV.18",
-            Type = @"Field",
-            Position = @"RXV.18",
-            Name = @"Syringe Manufacturer",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the manufacturer of the syringe containing the ordered medication",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (syringeManufacturer.field.FieldRepetitions != null && syringeManufacturer.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(syringeManufacturer.Id));
-            syringeManufacturer.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(syringeManufacturer, fieldData);
-        }
-
-        return syringeManufacturer;
-    } 
-}
-
-internal HL7V28Field syringeModelNumber;
-
-public HL7V28Field SyringeModelNumber
-{
-    get
-    {
-        if (syringeModelNumber != null)
-        {
-            return syringeModelNumber;
-        }
-
-        syringeModelNumber = new HL7V28Field
-        {
-            field = message[@"RXV"][19],
-            Id = @"RXV.19",
-            Type = @"Field",
-            Position = @"RXV.19",
-            Name = @"Syringe Model Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the model number of the syringe containing the ordered medication",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (syringeModelNumber.field.FieldRepetitions != null && syringeModelNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(syringeModelNumber.Id));
-            syringeModelNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(syringeModelNumber, fieldData);
-        }
-
-        return syringeModelNumber;
-    } 
-}
-
-internal HL7V28Field syringeSize;
-
-public HL7V28Field SyringeSize
-{
-    get
-    {
-        if (syringeSize != null)
-        {
-            return syringeSize;
-        }
-
-        syringeSize = new HL7V28Field
-        {
-            field = message[@"RXV"][20],
-            Id = @"RXV.20",
-            Type = @"Field",
-            Position = @"RXV.20",
-            Name = @"Syringe Size",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the syringe’s numeric total volume size.  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (syringeSize.field.FieldRepetitions != null && syringeSize.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(syringeSize.Id));
-            syringeSize.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(syringeSize, fieldData);
-        }
-
-        return syringeSize;
-    } 
-}
-
-internal HL7V28Field syringeSizeUnits;
-
-public HL7V28Field SyringeSizeUnits
-{
-    get
-    {
-        if (syringeSizeUnits != null)
-        {
-            return syringeSizeUnits;
-        }
-
-        syringeSizeUnits = new HL7V28Field
+        _syringeSizeUnits = new HL7V28Field
         {
             field = message[@"RXV"][21],
-            Id = @"RXV.21",
-            Type = @"Field",
-            Position = @"RXV.21",
-            Name = @"Syringe Size Units",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the amount units associated with the syringe size.  The preferred coding system is MDC; UCUM are also acceptable",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (syringeSizeUnits.field.FieldRepetitions != null && syringeSizeUnits.field.FieldRepetitions.Count > 0)
+        if (_syringeSizeUnits.field.FieldRepetitions != null && _syringeSizeUnits.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(syringeSizeUnits.Id));
-            syringeSizeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(syringeSizeUnits, fieldData);
+            _syringeSizeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_syringeSizeUnits, fieldData);
         }
 
-        return syringeSizeUnits;
+        return _syringeSizeUnits;
     } 
 }
 
-internal HL7V28Field actionCode;
+internal HL7V28Field _actionCode;
 
 public HL7V28Field ActionCode
 {
     get
     {
-        if (actionCode != null)
+        if (_actionCode != null)
         {
-            return actionCode;
+            return _actionCode;
         }
 
-        actionCode = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"RXV"][22],
             Id = @"RXV.22",
             Type = @"Field",
             Position = @"RXV.22",
@@ -6139,17 +5832,22 @@ public HL7V28Field ActionCode
             TableName = @"Segment action code",
             Description = @"The intended handling by the receiver of the infusion order is represented by this segment.  Refer to HL7 Table 0206 – Segment Action Code in Chapter 2C, Code Tables, for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _actionCode = new HL7V28Field
+        {
+            field = message[@"RXV"][22],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (actionCode.field.FieldRepetitions != null && actionCode.field.FieldRepetitions.Count > 0)
+        if (_actionCode.field.FieldRepetitions != null && _actionCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actionCode.Id));
-            actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(actionCode, fieldData);
+            _actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_actionCode, fieldData);
         }
 
-        return actionCode;
+        return _actionCode;
     } 
 }
     }

@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             } 
         }
@@ -311,6 +312,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Wyeth-Ayerst",
                             Comment = @"(includes Weyth-Lederle Vaccines and Pediatrics, Wyeth Laboratories, Lederle Laboratories, and Praxis Biologics)"
                         },
+                        
                     };
             } 
         }

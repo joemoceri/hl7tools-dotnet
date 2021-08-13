@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             } 
         }
@@ -71,6 +72,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"No relative weight found for department (type)",
                             Comment = null
                         },
+                        
                     };
             } 
         }

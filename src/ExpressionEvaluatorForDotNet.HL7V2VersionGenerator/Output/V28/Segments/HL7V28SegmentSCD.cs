@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentSCD(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _cycleStartTime;
+
+public HL7V28Field CycleStartTime
+{
+    get
+    {
+        if (_cycleStartTime != null)
+        {
+            return _cycleStartTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.1",
+            Type = @"Field",
+            Position = @"SCD.1",
+            Name = @"Cycle Start Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TM",
+            DataTypeName = @"Time",
+            TableId = null,
+            TableName = null,
+            Description = @"The time that the load cycle begins.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _cycleStartTime = new HL7V28Field
+        {
+            field = message[@"SCD"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_cycleStartTime.field.FieldRepetitions != null && _cycleStartTime.field.FieldRepetitions.Count > 0)
+        {
+            _cycleStartTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_cycleStartTime, fieldData);
+        }
+
+        return _cycleStartTime;
+    } 
+}
+
+internal HL7V28Field _cycleCount;
+
+public HL7V28Field CycleCount
+{
+    get
+    {
+        if (_cycleCount != null)
+        {
+            return _cycleCount;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.2",
+            Type = @"Field",
+            Position = @"SCD.2",
+            Name = @"Cycle Count",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"The number of cycles that have been completed.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _cycleCount = new HL7V28Field
+        {
+            field = message[@"SCD"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_cycleCount.field.FieldRepetitions != null && _cycleCount.field.FieldRepetitions.Count > 0)
+        {
+            _cycleCount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_cycleCount, fieldData);
+        }
+
+        return _cycleCount;
+    } 
+}
+
+internal HL7V28Field _tempMax;
+
+public HL7V28Field TempMax
+{
+    get
+    {
+        if (_tempMax != null)
+        {
+            return _tempMax;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.3",
+            Type = @"Field",
+            Position = @"SCD.3",
+            Name = @"Temp Max",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The maximum temperature achieved during a specific cycle.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"SCD.1",
-                            Type = @"Field",
-                            Position = @"SCD.1",
-                            Name = @"Cycle Start Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TM",
-                            DataTypeName = @"Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The time that the load cycle begins.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SCD.2",
-                            Type = @"Field",
-                            Position = @"SCD.2",
-                            Name = @"Cycle Count",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The number of cycles that have been completed.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SCD.3",
-                            Type = @"Field",
-                            Position = @"SCD.3",
-                            Name = @"Temp Max",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The maximum temperature achieved during a specific cycle.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SCD.3.1",
                             Type = @"Component",
@@ -548,25 +614,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _tempMax = new HL7V28Field
+        {
+            field = message[@"SCD"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_tempMax.field.FieldRepetitions != null && _tempMax.field.FieldRepetitions.Count > 0)
+        {
+            _tempMax.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_tempMax, fieldData);
+        }
+
+        return _tempMax;
+    } 
+}
+
+internal HL7V28Field _tempMin;
+
+public HL7V28Field TempMin
+{
+    get
+    {
+        if (_tempMin != null)
+        {
+            return _tempMin;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.4",
+            Type = @"Field",
+            Position = @"SCD.4",
+            Name = @"Temp Min",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The minimum temperature achieved during a specific cycle.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.4",
-                            Type = @"Field",
-                            Position = @"SCD.4",
-                            Name = @"Temp Min",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The minimum temperature achieved during a specific cycle.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.4.1",
                             Type = @"Component",
@@ -1028,43 +1124,100 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _tempMin = new HL7V28Field
+        {
+            field = message[@"SCD"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_tempMin.field.FieldRepetitions != null && _tempMin.field.FieldRepetitions.Count > 0)
+        {
+            _tempMin.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_tempMin, fieldData);
+        }
+
+        return _tempMin;
+    } 
+}
+
+internal HL7V28Field _loadNumber;
+
+public HL7V28Field LoadNumber
+{
+    get
+    {
+        if (_loadNumber != null)
+        {
+            return _loadNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.5",
+            Type = @"Field",
+            Position = @"SCD.5",
+            Name = @"Load Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"A number assigned to the load by the anti-microbial device.  This number is incremented by the machine per cycle during the day and reset at midnight.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _loadNumber = new HL7V28Field
+        {
+            field = message[@"SCD"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_loadNumber.field.FieldRepetitions != null && _loadNumber.field.FieldRepetitions.Count > 0)
+        {
+            _loadNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_loadNumber, fieldData);
+        }
+
+        return _loadNumber;
+    } 
+}
+
+internal HL7V28Field _conditionTime;
+
+public HL7V28Field ConditionTime
+{
+    get
+    {
+        if (_conditionTime != null)
+        {
+            return _conditionTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.6",
+            Type = @"Field",
+            Position = @"SCD.6",
+            Name = @"Condition Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The actual amount of cycle time spent in the conditioning phase.  For example, in a pre-vac sterilizer the condition phase is achieved by pulsing the machine six times to create a vacuum.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.5",
-                            Type = @"Field",
-                            Position = @"SCD.5",
-                            Name = @"Load Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A number assigned to the load by the anti-microbial device.  This number is incremented by the machine per cycle during the day and reset at midnight.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SCD.6",
-                            Type = @"Field",
-                            Position = @"SCD.6",
-                            Name = @"Condition Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The actual amount of cycle time spent in the conditioning phase.  For example, in a pre-vac sterilizer the condition phase is achieved by pulsing the machine six times to create a vacuum.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.6.1",
                             Type = @"Component",
@@ -1526,25 +1679,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _conditionTime = new HL7V28Field
+        {
+            field = message[@"SCD"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_conditionTime.field.FieldRepetitions != null && _conditionTime.field.FieldRepetitions.Count > 0)
+        {
+            _conditionTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_conditionTime, fieldData);
+        }
+
+        return _conditionTime;
+    } 
+}
+
+internal HL7V28Field _sterilizeTime;
+
+public HL7V28Field SterilizeTime
+{
+    get
+    {
+        if (_sterilizeTime != null)
+        {
+            return _sterilizeTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.7",
+            Type = @"Field",
+            Position = @"SCD.7",
+            Name = @"Sterilize Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The actual amount of cycle time spent sterilizing supplies.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.7",
-                            Type = @"Field",
-                            Position = @"SCD.7",
-                            Name = @"Sterilize Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The actual amount of cycle time spent sterilizing supplies.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.7.1",
                             Type = @"Component",
@@ -2006,25 +2189,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _sterilizeTime = new HL7V28Field
+        {
+            field = message[@"SCD"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sterilizeTime.field.FieldRepetitions != null && _sterilizeTime.field.FieldRepetitions.Count > 0)
+        {
+            _sterilizeTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_sterilizeTime, fieldData);
+        }
+
+        return _sterilizeTime;
+    } 
+}
+
+internal HL7V28Field _exhaustTime;
+
+public HL7V28Field ExhaustTime
+{
+    get
+    {
+        if (_exhaustTime != null)
+        {
+            return _exhaustTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.8",
+            Type = @"Field",
+            Position = @"SCD.8",
+            Name = @"Exhaust Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The actual amount of cycle time spent draining pressure from the sterilizer chamber.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.8",
-                            Type = @"Field",
-                            Position = @"SCD.8",
-                            Name = @"Exhaust Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The actual amount of cycle time spent draining pressure from the sterilizer chamber.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.8.1",
                             Type = @"Component",
@@ -2486,25 +2699,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _exhaustTime = new HL7V28Field
+        {
+            field = message[@"SCD"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_exhaustTime.field.FieldRepetitions != null && _exhaustTime.field.FieldRepetitions.Count > 0)
+        {
+            _exhaustTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_exhaustTime, fieldData);
+        }
+
+        return _exhaustTime;
+    } 
+}
+
+internal HL7V28Field _totalCycleTime;
+
+public HL7V28Field TotalCycleTime
+{
+    get
+    {
+        if (_totalCycleTime != null)
+        {
+            return _totalCycleTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.9",
+            Type = @"Field",
+            Position = @"SCD.9",
+            Name = @"Total Cycle Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The sum of time spent in all phases of a cycle.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.9",
-                            Type = @"Field",
-                            Position = @"SCD.9",
-                            Name = @"Total Cycle Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The sum of time spent in all phases of a cycle.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.9.1",
                             Type = @"Component",
@@ -2966,25 +3209,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _totalCycleTime = new HL7V28Field
+        {
+            field = message[@"SCD"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_totalCycleTime.field.FieldRepetitions != null && _totalCycleTime.field.FieldRepetitions.Count > 0)
+        {
+            _totalCycleTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_totalCycleTime, fieldData);
+        }
+
+        return _totalCycleTime;
+    } 
+}
+
+internal HL7V28Field _deviceStatus;
+
+public HL7V28Field DeviceStatus
+{
+    get
+    {
+        if (_deviceStatus != null)
+        {
+            return _deviceStatus;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.10",
+            Type = @"Field",
+            Position = @"SCD.10",
+            Name = @"Device Status",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0682",
+            TableName = @"Device Status-",
+            Description = @"The status of a device. Refer to User-defined Table 0682 – Device Status in Chapter 2C, Code Tables, for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.10",
-                            Type = @"Field",
-                            Position = @"SCD.10",
-                            Name = @"Device Status",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0682",
-                            TableName = @"Device Status-",
-                            Description = @"The status of a device. Refer to User-defined Table 0682 – Device Status in Chapter 2C, Code Tables, for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.10.1",
                             Type = @"Component",
@@ -3412,43 +3685,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _deviceStatus = new HL7V28Field
+        {
+            field = message[@"SCD"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_deviceStatus.field.FieldRepetitions != null && _deviceStatus.field.FieldRepetitions.Count > 0)
+        {
+            _deviceStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_deviceStatus, fieldData);
+        }
+
+        return _deviceStatus;
+    } 
+}
+
+internal HL7V28Field _cycleStartDateTime;
+
+public HL7V28Field CycleStartDateTime
+{
+    get
+    {
+        if (_cycleStartDateTime != null)
+        {
+            return _cycleStartDateTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.11",
+            Type = @"Field",
+            Position = @"SCD.11",
+            Name = @"Cycle Start Date/Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"The date and time that the cycle started.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _cycleStartDateTime = new HL7V28Field
+        {
+            field = message[@"SCD"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_cycleStartDateTime.field.FieldRepetitions != null && _cycleStartDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _cycleStartDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_cycleStartDateTime, fieldData);
+        }
+
+        return _cycleStartDateTime;
+    } 
+}
+
+internal HL7V28Field _dryTime;
+
+public HL7V28Field DryTime
+{
+    get
+    {
+        if (_dryTime != null)
+        {
+            return _dryTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.12",
+            Type = @"Field",
+            Position = @"SCD.12",
+            Name = @"Dry Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The amount of cycle time spent drying the load.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.11",
-                            Type = @"Field",
-                            Position = @"SCD.11",
-                            Name = @"Cycle Start Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The date and time that the cycle started.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SCD.12",
-                            Type = @"Field",
-                            Position = @"SCD.12",
-                            Name = @"Dry Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The amount of cycle time spent drying the load.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.12.1",
                             Type = @"Component",
@@ -3910,25 +4240,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dryTime = new HL7V28Field
+        {
+            field = message[@"SCD"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dryTime.field.FieldRepetitions != null && _dryTime.field.FieldRepetitions.Count > 0)
+        {
+            _dryTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_dryTime, fieldData);
+        }
+
+        return _dryTime;
+    } 
+}
+
+internal HL7V28Field _leakRate;
+
+public HL7V28Field LeakRate
+{
+    get
+    {
+        if (_leakRate != null)
+        {
+            return _leakRate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.13",
+            Type = @"Field",
+            Position = @"SCD.13",
+            Name = @"Leak Rate",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The amount of pressure that the chamber can hold expressed as barometric pressure.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.13",
-                            Type = @"Field",
-                            Position = @"SCD.13",
-                            Name = @"Leak Rate",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The amount of pressure that the chamber can hold expressed as barometric pressure.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.13.1",
                             Type = @"Component",
@@ -4390,25 +4750,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _leakRate = new HL7V28Field
+        {
+            field = message[@"SCD"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_leakRate.field.FieldRepetitions != null && _leakRate.field.FieldRepetitions.Count > 0)
+        {
+            _leakRate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_leakRate, fieldData);
+        }
+
+        return _leakRate;
+    } 
+}
+
+internal HL7V28Field _controlTemperature;
+
+public HL7V28Field ControlTemperature
+{
+    get
+    {
+        if (_controlTemperature != null)
+        {
+            return _controlTemperature;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.14",
+            Type = @"Field",
+            Position = @"SCD.14",
+            Name = @"Control Temperature",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"Amount of overdrive above the sterilize temperature.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.14",
-                            Type = @"Field",
-                            Position = @"SCD.14",
-                            Name = @"Control Temperature",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Amount of overdrive above the sterilize temperature.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.14.1",
                             Type = @"Component",
@@ -4870,25 +5260,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _controlTemperature = new HL7V28Field
+        {
+            field = message[@"SCD"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_controlTemperature.field.FieldRepetitions != null && _controlTemperature.field.FieldRepetitions.Count > 0)
+        {
+            _controlTemperature.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_controlTemperature, fieldData);
+        }
+
+        return _controlTemperature;
+    } 
+}
+
+internal HL7V28Field _sterilizerTemperature;
+
+public HL7V28Field SterilizerTemperature
+{
+    get
+    {
+        if (_sterilizerTemperature != null)
+        {
+            return _sterilizerTemperature;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.15",
+            Type = @"Field",
+            Position = @"SCD.15",
+            Name = @"Sterilizer Temperature",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The current temperature in the anti-microbial device.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.15",
-                            Type = @"Field",
-                            Position = @"SCD.15",
-                            Name = @"Sterilizer Temperature",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The current temperature in the anti-microbial device.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.15.1",
                             Type = @"Component",
@@ -5350,43 +5770,100 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _sterilizerTemperature = new HL7V28Field
+        {
+            field = message[@"SCD"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sterilizerTemperature.field.FieldRepetitions != null && _sterilizerTemperature.field.FieldRepetitions.Count > 0)
+        {
+            _sterilizerTemperature.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_sterilizerTemperature, fieldData);
+        }
+
+        return _sterilizerTemperature;
+    } 
+}
+
+internal HL7V28Field _cycleCompleteTime;
+
+public HL7V28Field CycleCompleteTime
+{
+    get
+    {
+        if (_cycleCompleteTime != null)
+        {
+            return _cycleCompleteTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.16",
+            Type = @"Field",
+            Position = @"SCD.16",
+            Name = @"Cycle Complete Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TM",
+            DataTypeName = @"Time",
+            TableId = null,
+            TableName = null,
+            Description = @"The time of day that the cycle completed.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _cycleCompleteTime = new HL7V28Field
+        {
+            field = message[@"SCD"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_cycleCompleteTime.field.FieldRepetitions != null && _cycleCompleteTime.field.FieldRepetitions.Count > 0)
+        {
+            _cycleCompleteTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_cycleCompleteTime, fieldData);
+        }
+
+        return _cycleCompleteTime;
+    } 
+}
+
+internal HL7V28Field _underTemperature;
+
+public HL7V28Field UnderTemperature
+{
+    get
+    {
+        if (_underTemperature != null)
+        {
+            return _underTemperature;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.17",
+            Type = @"Field",
+            Position = @"SCD.17",
+            Name = @"Under Temperature",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The temperature reached during a cycle, which fell below the required temperature range.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.16",
-                            Type = @"Field",
-                            Position = @"SCD.16",
-                            Name = @"Cycle Complete Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TM",
-                            DataTypeName = @"Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The time of day that the cycle completed.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SCD.17",
-                            Type = @"Field",
-                            Position = @"SCD.17",
-                            Name = @"Under Temperature",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The temperature reached during a cycle, which fell below the required temperature range.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.17.1",
                             Type = @"Component",
@@ -5848,25 +6325,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _underTemperature = new HL7V28Field
+        {
+            field = message[@"SCD"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_underTemperature.field.FieldRepetitions != null && _underTemperature.field.FieldRepetitions.Count > 0)
+        {
+            _underTemperature.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_underTemperature, fieldData);
+        }
+
+        return _underTemperature;
+    } 
+}
+
+internal HL7V28Field _overTemperature;
+
+public HL7V28Field OverTemperature
+{
+    get
+    {
+        if (_overTemperature != null)
+        {
+            return _overTemperature;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.18",
+            Type = @"Field",
+            Position = @"SCD.18",
+            Name = @"Over Temperature",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The temperature reached during a cycle, which exceeded the required temperature.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.18",
-                            Type = @"Field",
-                            Position = @"SCD.18",
-                            Name = @"Over Temperature",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The temperature reached during a cycle, which exceeded the required temperature.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.18.1",
                             Type = @"Component",
@@ -6328,25 +6835,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _overTemperature = new HL7V28Field
+        {
+            field = message[@"SCD"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_overTemperature.field.FieldRepetitions != null && _overTemperature.field.FieldRepetitions.Count > 0)
+        {
+            _overTemperature.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_overTemperature, fieldData);
+        }
+
+        return _overTemperature;
+    } 
+}
+
+internal HL7V28Field _abortCycle;
+
+public HL7V28Field AbortCycle
+{
+    get
+    {
+        if (_abortCycle != null)
+        {
+            return _abortCycle;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.19",
+            Type = @"Field",
+            Position = @"SCD.19",
+            Name = @"Abort Cycle",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"A notification that the cycle was aborted.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.19",
-                            Type = @"Field",
-                            Position = @"SCD.19",
-                            Name = @"Abort Cycle",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"A notification that the cycle was aborted.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.19.1",
                             Type = @"Component",
@@ -6783,25 +7320,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _abortCycle = new HL7V28Field
+        {
+            field = message[@"SCD"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_abortCycle.field.FieldRepetitions != null && _abortCycle.field.FieldRepetitions.Count > 0)
+        {
+            _abortCycle.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_abortCycle, fieldData);
+        }
+
+        return _abortCycle;
+    } 
+}
+
+internal HL7V28Field _alarm;
+
+public HL7V28Field Alarm
+{
+    get
+    {
+        if (_alarm != null)
+        {
+            return _alarm;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.20",
+            Type = @"Field",
+            Position = @"SCD.20",
+            Name = @"Alarm",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"A notification that the time, temperature, or pressure reached is invalid for a specific phase of a cycle.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.20",
-                            Type = @"Field",
-                            Position = @"SCD.20",
-                            Name = @"Alarm",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"A notification that the time, temperature, or pressure reached is invalid for a specific phase of a cycle.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.20.1",
                             Type = @"Component",
@@ -7238,25 +7805,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _alarm = new HL7V28Field
+        {
+            field = message[@"SCD"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_alarm.field.FieldRepetitions != null && _alarm.field.FieldRepetitions.Count > 0)
+        {
+            _alarm.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_alarm, fieldData);
+        }
+
+        return _alarm;
+    } 
+}
+
+internal HL7V28Field _longInChargePhase;
+
+public HL7V28Field LongInChargePhase
+{
+    get
+    {
+        if (_longInChargePhase != null)
+        {
+            return _longInChargePhase;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.21",
+            Type = @"Field",
+            Position = @"SCD.21",
+            Name = @"Long In Charge Phase",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"A notification that the charge phase in the cycle has exceeded the maximum time allowed.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.21",
-                            Type = @"Field",
-                            Position = @"SCD.21",
-                            Name = @"Long In Charge Phase",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"A notification that the charge phase in the cycle has exceeded the maximum time allowed.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.21.1",
                             Type = @"Component",
@@ -7693,25 +8290,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _longInChargePhase = new HL7V28Field
+        {
+            field = message[@"SCD"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_longInChargePhase.field.FieldRepetitions != null && _longInChargePhase.field.FieldRepetitions.Count > 0)
+        {
+            _longInChargePhase.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_longInChargePhase, fieldData);
+        }
+
+        return _longInChargePhase;
+    } 
+}
+
+internal HL7V28Field _longInExhaustPhase;
+
+public HL7V28Field LongInExhaustPhase
+{
+    get
+    {
+        if (_longInExhaustPhase != null)
+        {
+            return _longInExhaustPhase;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.22",
+            Type = @"Field",
+            Position = @"SCD.22",
+            Name = @"Long In Exhaust Phase",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"A notification that the exhaust phase in the cycle has exceeded the maximum time allowed.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.22",
-                            Type = @"Field",
-                            Position = @"SCD.22",
-                            Name = @"Long In Exhaust Phase",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"A notification that the exhaust phase in the cycle has exceeded the maximum time allowed.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.22.1",
                             Type = @"Component",
@@ -8148,25 +8775,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _longInExhaustPhase = new HL7V28Field
+        {
+            field = message[@"SCD"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_longInExhaustPhase.field.FieldRepetitions != null && _longInExhaustPhase.field.FieldRepetitions.Count > 0)
+        {
+            _longInExhaustPhase.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_longInExhaustPhase, fieldData);
+        }
+
+        return _longInExhaustPhase;
+    } 
+}
+
+internal HL7V28Field _longInFastExhaustPhase;
+
+public HL7V28Field LongInFastExhaustPhase
+{
+    get
+    {
+        if (_longInFastExhaustPhase != null)
+        {
+            return _longInFastExhaustPhase;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.23",
+            Type = @"Field",
+            Position = @"SCD.23",
+            Name = @"Long In Fast Exhaust Phase",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"A notification that the fast exhaust phase in the cycle has exceeded the maximum time allowed.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.23",
-                            Type = @"Field",
-                            Position = @"SCD.23",
-                            Name = @"Long In Fast Exhaust Phase",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"A notification that the fast exhaust phase in the cycle has exceeded the maximum time allowed.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.23.1",
                             Type = @"Component",
@@ -8603,25 +9260,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _longInFastExhaustPhase = new HL7V28Field
+        {
+            field = message[@"SCD"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_longInFastExhaustPhase.field.FieldRepetitions != null && _longInFastExhaustPhase.field.FieldRepetitions.Count > 0)
+        {
+            _longInFastExhaustPhase.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_longInFastExhaustPhase, fieldData);
+        }
+
+        return _longInFastExhaustPhase;
+    } 
+}
+
+internal HL7V28Field _reset;
+
+public HL7V28Field Reset
+{
+    get
+    {
+        if (_reset != null)
+        {
+            return _reset;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.24",
+            Type = @"Field",
+            Position = @"SCD.24",
+            Name = @"Reset",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"An indicator that specific anti-microbial device parameters have been set to system defaults.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.24",
-                            Type = @"Field",
-                            Position = @"SCD.24",
-                            Name = @"Reset",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"An indicator that specific anti-microbial device parameters have been set to system defaults.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.24.1",
                             Type = @"Component",
@@ -9058,25 +9745,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _reset = new HL7V28Field
+        {
+            field = message[@"SCD"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reset.field.FieldRepetitions != null && _reset.field.FieldRepetitions.Count > 0)
+        {
+            _reset.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_reset, fieldData);
+        }
+
+        return _reset;
+    } 
+}
+
+internal HL7V28Field _operatorUnload;
+
+public HL7V28Field OperatorUnload
+{
+    get
+    {
+        if (_operatorUnload != null)
+        {
+            return _operatorUnload;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.25",
+            Type = @"Field",
+            Position = @"SCD.25",
+            Name = @"Operator - Unload",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"The name of the operator that unloaded the anti-microbial device.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.25",
-                            Type = @"Field",
-                            Position = @"SCD.25",
-                            Name = @"Operator - Unload",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The name of the operator that unloaded the anti-microbial device.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.25.1",
                             Type = @"Component",
@@ -11482,25 +12199,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _operatorUnload = new HL7V28Field
+        {
+            field = message[@"SCD"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_operatorUnload.field.FieldRepetitions != null && _operatorUnload.field.FieldRepetitions.Count > 0)
+        {
+            _operatorUnload.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_operatorUnload, fieldData);
+        }
+
+        return _operatorUnload;
+    } 
+}
+
+internal HL7V28Field _doorOpen;
+
+public HL7V28Field DoorOpen
+{
+    get
+    {
+        if (_doorOpen != null)
+        {
+            return _doorOpen;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.26",
+            Type = @"Field",
+            Position = @"SCD.26",
+            Name = @"Door Open",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"An indicator that the door is open.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.26",
-                            Type = @"Field",
-                            Position = @"SCD.26",
-                            Name = @"Door Open",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"An indicator that the door is open.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.26.1",
                             Type = @"Component",
@@ -11937,25 +12684,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _doorOpen = new HL7V28Field
+        {
+            field = message[@"SCD"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_doorOpen.field.FieldRepetitions != null && _doorOpen.field.FieldRepetitions.Count > 0)
+        {
+            _doorOpen.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_doorOpen, fieldData);
+        }
+
+        return _doorOpen;
+    } 
+}
+
+internal HL7V28Field _readingFailure;
+
+public HL7V28Field ReadingFailure
+{
+    get
+    {
+        if (_readingFailure != null)
+        {
+            return _readingFailure;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.27",
+            Type = @"Field",
+            Position = @"SCD.27",
+            Name = @"Reading Failure",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"A notification that an error was encountered while reading the cycle data for a specific cycle.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.27",
-                            Type = @"Field",
-                            Position = @"SCD.27",
-                            Name = @"Reading Failure",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"A notification that an error was encountered while reading the cycle data for a specific cycle.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.27.1",
                             Type = @"Component",
@@ -12392,25 +13169,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _readingFailure = new HL7V28Field
+        {
+            field = message[@"SCD"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_readingFailure.field.FieldRepetitions != null && _readingFailure.field.FieldRepetitions.Count > 0)
+        {
+            _readingFailure.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_readingFailure, fieldData);
+        }
+
+        return _readingFailure;
+    } 
+}
+
+internal HL7V28Field _cycleType;
+
+public HL7V28Field CycleType
+{
+    get
+    {
+        if (_cycleType != null)
+        {
+            return _cycleType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.28",
+            Type = @"Field",
+            Position = @"SCD.28",
+            Name = @"Cycle Type",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0702",
+            TableName = @"Cycle Type-",
+            Description = @"The type of cycle that is being executed.  A cycle type is a specific sterilization method used for a specific type of supply item.  Refer to User-defined Table 0702 – Cycle Type in Chapter 2C, Code Tables, for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.28",
-                            Type = @"Field",
-                            Position = @"SCD.28",
-                            Name = @"Cycle Type",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0702",
-                            TableName = @"Cycle Type-",
-                            Description = @"The type of cycle that is being executed.  A cycle type is a specific sterilization method used for a specific type of supply item.  Refer to User-defined Table 0702 – Cycle Type in Chapter 2C, Code Tables, for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.28.1",
                             Type = @"Component",
@@ -12838,25 +13645,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _cycleType = new HL7V28Field
+        {
+            field = message[@"SCD"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_cycleType.field.FieldRepetitions != null && _cycleType.field.FieldRepetitions.Count > 0)
+        {
+            _cycleType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_cycleType, fieldData);
+        }
+
+        return _cycleType;
+    } 
+}
+
+internal HL7V28Field _thermalRinseTime;
+
+public HL7V28Field ThermalRinseTime
+{
+    get
+    {
+        if (_thermalRinseTime != null)
+        {
+            return _thermalRinseTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.29",
+            Type = @"Field",
+            Position = @"SCD.29",
+            Name = @"Thermal Rinse Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The amount of time spent in the thermal rinse phase of a decontamination cycle.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.29",
-                            Type = @"Field",
-                            Position = @"SCD.29",
-                            Name = @"Thermal Rinse Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The amount of time spent in the thermal rinse phase of a decontamination cycle.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.29.1",
                             Type = @"Component",
@@ -13318,25 +14155,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _thermalRinseTime = new HL7V28Field
+        {
+            field = message[@"SCD"][29],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_thermalRinseTime.field.FieldRepetitions != null && _thermalRinseTime.field.FieldRepetitions.Count > 0)
+        {
+            _thermalRinseTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_thermalRinseTime, fieldData);
+        }
+
+        return _thermalRinseTime;
+    } 
+}
+
+internal HL7V28Field _washTime;
+
+public HL7V28Field WashTime
+{
+    get
+    {
+        if (_washTime != null)
+        {
+            return _washTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.30",
+            Type = @"Field",
+            Position = @"SCD.30",
+            Name = @"Wash Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The amount of time spent in the wash phase of a decontamination cycle.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.30",
-                            Type = @"Field",
-                            Position = @"SCD.30",
-                            Name = @"Wash Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The amount of time spent in the wash phase of a decontamination cycle.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.30.1",
                             Type = @"Component",
@@ -13798,25 +14665,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _washTime = new HL7V28Field
+        {
+            field = message[@"SCD"][30],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_washTime.field.FieldRepetitions != null && _washTime.field.FieldRepetitions.Count > 0)
+        {
+            _washTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_washTime, fieldData);
+        }
+
+        return _washTime;
+    } 
+}
+
+internal HL7V28Field _injectionRate;
+
+public HL7V28Field InjectionRate
+{
+    get
+    {
+        if (_injectionRate != null)
+        {
+            return _injectionRate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.31",
+            Type = @"Field",
+            Position = @"SCD.31",
+            Name = @"Injection Rate",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The injection rate of a wash or dry agent.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.31",
-                            Type = @"Field",
-                            Position = @"SCD.31",
-                            Name = @"Injection Rate",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The injection rate of a wash or dry agent.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.31.1",
                             Type = @"Component",
@@ -14278,29 +15175,59 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SCD.32",
-                            Type = @"Field",
-                            Position = @"SCD.32",
-                            Name = @"Procedure Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0088",
-                            TableName = @"Procedure Code",
-                            Description = @"The unique identifier indicating the type of procedure performed on the patient with the supplies being sterilized. 
+                        }
+        }
+
+        _injectionRate = new HL7V28Field
+        {
+            field = message[@"SCD"][31],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_injectionRate.field.FieldRepetitions != null && _injectionRate.field.FieldRepetitions.Count > 0)
+        {
+            _injectionRate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_injectionRate, fieldData);
+        }
+
+        return _injectionRate;
+    } 
+}
+
+internal HL7V28Field _procedureCode;
+
+public HL7V28Field ProcedureCode
+{
+    get
+    {
+        if (_procedureCode != null)
+        {
+            return _procedureCode;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.32",
+            Type = @"Field",
+            Position = @"SCD.32",
+            Name = @"Procedure Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0088",
+            TableName = @"Procedure Code",
+            Description = @"The unique identifier indicating the type of procedure performed on the patient with the supplies being sterilized. 
 
 Refer to HL7 Table 0088 – Procedure Code in Chapter 2C, Code Tables, for suggested values.
 
 As of v2.6, the known applicable external coding systems include those in the referenced table. If the code set you are using is in this table, then you must use that designation.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.32.1",
                             Type = @"Component",
@@ -14737,25 +15664,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _procedureCode = new HL7V28Field
+        {
+            field = message[@"SCD"][32],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedureCode.field.FieldRepetitions != null && _procedureCode.field.FieldRepetitions.Count > 0)
+        {
+            _procedureCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_procedureCode, fieldData);
+        }
+
+        return _procedureCode;
+    } 
+}
+
+internal HL7V28Field _patientIdentifierList;
+
+public HL7V28Field PatientIdentifierList
+{
+    get
+    {
+        if (_patientIdentifierList != null)
+        {
+            return _patientIdentifierList;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.33",
+            Type = @"Field",
+            Position = @"SCD.33",
+            Name = @"Patient Identifier List",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"The unique identifier associating the patient with the supplies being sterilized.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.33",
-                            Type = @"Field",
-                            Position = @"SCD.33",
-                            Name = @"Patient Identifier List",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The unique identifier associating the patient with the supplies being sterilized.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.33.1",
                             Type = @"Component",
@@ -15968,25 +16925,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _patientIdentifierList = new HL7V28Field
+        {
+            field = message[@"SCD"][33],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientIdentifierList.field.FieldRepetitions != null && _patientIdentifierList.field.FieldRepetitions.Count > 0)
+        {
+            _patientIdentifierList.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_patientIdentifierList, fieldData);
+        }
+
+        return _patientIdentifierList;
+    } 
+}
+
+internal HL7V28Field _attendingDoctor;
+
+public HL7V28Field AttendingDoctor
+{
+    get
+    {
+        if (_attendingDoctor != null)
+        {
+            return _attendingDoctor;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.34",
+            Type = @"Field",
+            Position = @"SCD.34",
+            Name = @"Attending Doctor",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = @"0010",
+            TableName = @"Physician ID",
+            Description = @"The unique identifier associating the physician with the supplies being sterilized, used for the procedure and patient identified in this message.  Refer to User-defined Table 0010 - Physician ID in Chapter 2C, Code Tables, for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.34",
-                            Type = @"Field",
-                            Position = @"SCD.34",
-                            Name = @"Attending Doctor",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = @"0010",
-                            TableName = @"Physician ID",
-                            Description = @"The unique identifier associating the physician with the supplies being sterilized, used for the procedure and patient identified in this message.  Refer to User-defined Table 0010 - Physician ID in Chapter 2C, Code Tables, for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.34.1",
                             Type = @"Component",
@@ -18392,25 +19379,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _attendingDoctor = new HL7V28Field
+        {
+            field = message[@"SCD"][34],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_attendingDoctor.field.FieldRepetitions != null && _attendingDoctor.field.FieldRepetitions.Count > 0)
+        {
+            _attendingDoctor.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_attendingDoctor, fieldData);
+        }
+
+        return _attendingDoctor;
+    } 
+}
+
+internal HL7V28Field _dilutionFactor;
+
+public HL7V28Field DilutionFactor
+{
+    get
+    {
+        if (_dilutionFactor != null)
+        {
+            return _dilutionFactor;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.35",
+            Type = @"Field",
+            Position = @"SCD.35",
+            Name = @"Dilution Factor",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SN",
+            DataTypeName = @"Structured Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"The dilution ratio of peracetic acid to water.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.35",
-                            Type = @"Field",
-                            Position = @"SCD.35",
-                            Name = @"Dilution Factor",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SN",
-                            DataTypeName = @"Structured Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The dilution ratio of peracetic acid to water.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.35.1",
                             Type = @"Component",
@@ -18488,25 +19505,55 @@ Examples:
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dilutionFactor = new HL7V28Field
+        {
+            field = message[@"SCD"][35],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dilutionFactor.field.FieldRepetitions != null && _dilutionFactor.field.FieldRepetitions.Count > 0)
+        {
+            _dilutionFactor.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_dilutionFactor, fieldData);
+        }
+
+        return _dilutionFactor;
+    } 
+}
+
+internal HL7V28Field _fillTime;
+
+public HL7V28Field FillTime
+{
+    get
+    {
+        if (_fillTime != null)
+        {
+            return _fillTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.36",
+            Type = @"Field",
+            Position = @"SCD.36",
+            Name = @"Fill Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The amount of time spent in filling the sterilizer chamber with dilutant.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.36",
-                            Type = @"Field",
-                            Position = @"SCD.36",
-                            Name = @"Fill Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The amount of time spent in filling the sterilizer chamber with dilutant.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.36.1",
                             Type = @"Component",
@@ -18968,25 +20015,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _fillTime = new HL7V28Field
+        {
+            field = message[@"SCD"][36],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fillTime.field.FieldRepetitions != null && _fillTime.field.FieldRepetitions.Count > 0)
+        {
+            _fillTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_fillTime, fieldData);
+        }
+
+        return _fillTime;
+    } 
+}
+
+internal HL7V28Field _inletTemperature;
+
+public HL7V28Field InletTemperature
+{
+    get
+    {
+        if (_inletTemperature != null)
+        {
+            return _inletTemperature;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"SCD.37",
+            Type = @"Field",
+            Position = @"SCD.37",
+            Name = @"Inlet Temperature",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The temperature of the dilutant upon entering the sterilizer chamber.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCD.37",
-                            Type = @"Field",
-                            Position = @"SCD.37",
-                            Name = @"Inlet Temperature",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The temperature of the dilutant upon entering the sterilizer chamber.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCD.37.1",
                             Type = @"Component",
@@ -19448,1535 +20525,23 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentSCD(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field cycleStartTime;
-
-public HL7V28Field CycleStartTime
-{
-    get
-    {
-        if (cycleStartTime != null)
-        {
-            return cycleStartTime;
-        }
-
-        cycleStartTime = new HL7V28Field
-        {
-            field = message[@"SCD"][1],
-            Id = @"SCD.1",
-            Type = @"Field",
-            Position = @"SCD.1",
-            Name = @"Cycle Start Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TM",
-            DataTypeName = @"Time",
-            TableId = null,
-            TableName = null,
-            Description = @"The time that the load cycle begins.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (cycleStartTime.field.FieldRepetitions != null && cycleStartTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(cycleStartTime.Id));
-            cycleStartTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(cycleStartTime, fieldData);
-        }
-
-        return cycleStartTime;
-    } 
-}
-
-internal HL7V28Field cycleCount;
-
-public HL7V28Field CycleCount
-{
-    get
-    {
-        if (cycleCount != null)
-        {
-            return cycleCount;
-        }
-
-        cycleCount = new HL7V28Field
-        {
-            field = message[@"SCD"][2],
-            Id = @"SCD.2",
-            Type = @"Field",
-            Position = @"SCD.2",
-            Name = @"Cycle Count",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"The number of cycles that have been completed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (cycleCount.field.FieldRepetitions != null && cycleCount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(cycleCount.Id));
-            cycleCount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(cycleCount, fieldData);
-        }
-
-        return cycleCount;
-    } 
-}
-
-internal HL7V28Field tempMax;
-
-public HL7V28Field TempMax
-{
-    get
-    {
-        if (tempMax != null)
-        {
-            return tempMax;
-        }
-
-        tempMax = new HL7V28Field
-        {
-            field = message[@"SCD"][3],
-            Id = @"SCD.3",
-            Type = @"Field",
-            Position = @"SCD.3",
-            Name = @"Temp Max",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The maximum temperature achieved during a specific cycle.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (tempMax.field.FieldRepetitions != null && tempMax.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(tempMax.Id));
-            tempMax.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(tempMax, fieldData);
-        }
-
-        return tempMax;
-    } 
-}
-
-internal HL7V28Field tempMin;
-
-public HL7V28Field TempMin
-{
-    get
-    {
-        if (tempMin != null)
-        {
-            return tempMin;
-        }
-
-        tempMin = new HL7V28Field
-        {
-            field = message[@"SCD"][4],
-            Id = @"SCD.4",
-            Type = @"Field",
-            Position = @"SCD.4",
-            Name = @"Temp Min",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The minimum temperature achieved during a specific cycle.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (tempMin.field.FieldRepetitions != null && tempMin.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(tempMin.Id));
-            tempMin.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(tempMin, fieldData);
-        }
-
-        return tempMin;
-    } 
-}
-
-internal HL7V28Field loadNumber;
-
-public HL7V28Field LoadNumber
-{
-    get
-    {
-        if (loadNumber != null)
-        {
-            return loadNumber;
-        }
-
-        loadNumber = new HL7V28Field
-        {
-            field = message[@"SCD"][5],
-            Id = @"SCD.5",
-            Type = @"Field",
-            Position = @"SCD.5",
-            Name = @"Load Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"A number assigned to the load by the anti-microbial device.  This number is incremented by the machine per cycle during the day and reset at midnight.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (loadNumber.field.FieldRepetitions != null && loadNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(loadNumber.Id));
-            loadNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(loadNumber, fieldData);
-        }
-
-        return loadNumber;
-    } 
-}
-
-internal HL7V28Field conditionTime;
-
-public HL7V28Field ConditionTime
-{
-    get
-    {
-        if (conditionTime != null)
-        {
-            return conditionTime;
-        }
-
-        conditionTime = new HL7V28Field
-        {
-            field = message[@"SCD"][6],
-            Id = @"SCD.6",
-            Type = @"Field",
-            Position = @"SCD.6",
-            Name = @"Condition Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The actual amount of cycle time spent in the conditioning phase.  For example, in a pre-vac sterilizer the condition phase is achieved by pulsing the machine six times to create a vacuum.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (conditionTime.field.FieldRepetitions != null && conditionTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(conditionTime.Id));
-            conditionTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(conditionTime, fieldData);
-        }
-
-        return conditionTime;
-    } 
-}
-
-internal HL7V28Field sterilizeTime;
-
-public HL7V28Field SterilizeTime
-{
-    get
-    {
-        if (sterilizeTime != null)
-        {
-            return sterilizeTime;
-        }
-
-        sterilizeTime = new HL7V28Field
-        {
-            field = message[@"SCD"][7],
-            Id = @"SCD.7",
-            Type = @"Field",
-            Position = @"SCD.7",
-            Name = @"Sterilize Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The actual amount of cycle time spent sterilizing supplies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sterilizeTime.field.FieldRepetitions != null && sterilizeTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sterilizeTime.Id));
-            sterilizeTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(sterilizeTime, fieldData);
-        }
-
-        return sterilizeTime;
-    } 
-}
-
-internal HL7V28Field exhaustTime;
-
-public HL7V28Field ExhaustTime
-{
-    get
-    {
-        if (exhaustTime != null)
-        {
-            return exhaustTime;
-        }
-
-        exhaustTime = new HL7V28Field
-        {
-            field = message[@"SCD"][8],
-            Id = @"SCD.8",
-            Type = @"Field",
-            Position = @"SCD.8",
-            Name = @"Exhaust Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The actual amount of cycle time spent draining pressure from the sterilizer chamber.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (exhaustTime.field.FieldRepetitions != null && exhaustTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(exhaustTime.Id));
-            exhaustTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(exhaustTime, fieldData);
-        }
-
-        return exhaustTime;
-    } 
-}
-
-internal HL7V28Field totalCycleTime;
-
-public HL7V28Field TotalCycleTime
-{
-    get
-    {
-        if (totalCycleTime != null)
-        {
-            return totalCycleTime;
-        }
-
-        totalCycleTime = new HL7V28Field
-        {
-            field = message[@"SCD"][9],
-            Id = @"SCD.9",
-            Type = @"Field",
-            Position = @"SCD.9",
-            Name = @"Total Cycle Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The sum of time spent in all phases of a cycle.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (totalCycleTime.field.FieldRepetitions != null && totalCycleTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(totalCycleTime.Id));
-            totalCycleTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(totalCycleTime, fieldData);
-        }
-
-        return totalCycleTime;
-    } 
-}
-
-internal HL7V28Field deviceStatus;
-
-public HL7V28Field DeviceStatus
-{
-    get
-    {
-        if (deviceStatus != null)
-        {
-            return deviceStatus;
-        }
-
-        deviceStatus = new HL7V28Field
-        {
-            field = message[@"SCD"][10],
-            Id = @"SCD.10",
-            Type = @"Field",
-            Position = @"SCD.10",
-            Name = @"Device Status",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0682",
-            TableName = @"Device Status-",
-            Description = @"The status of a device. Refer to User-defined Table 0682 – Device Status in Chapter 2C, Code Tables, for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (deviceStatus.field.FieldRepetitions != null && deviceStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deviceStatus.Id));
-            deviceStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(deviceStatus, fieldData);
-        }
-
-        return deviceStatus;
-    } 
-}
-
-internal HL7V28Field cycleStartDateTime;
-
-public HL7V28Field CycleStartDateTime
-{
-    get
-    {
-        if (cycleStartDateTime != null)
-        {
-            return cycleStartDateTime;
-        }
-
-        cycleStartDateTime = new HL7V28Field
-        {
-            field = message[@"SCD"][11],
-            Id = @"SCD.11",
-            Type = @"Field",
-            Position = @"SCD.11",
-            Name = @"Cycle Start Date/Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"The date and time that the cycle started.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (cycleStartDateTime.field.FieldRepetitions != null && cycleStartDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(cycleStartDateTime.Id));
-            cycleStartDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(cycleStartDateTime, fieldData);
-        }
-
-        return cycleStartDateTime;
-    } 
-}
-
-internal HL7V28Field dryTime;
-
-public HL7V28Field DryTime
-{
-    get
-    {
-        if (dryTime != null)
-        {
-            return dryTime;
-        }
-
-        dryTime = new HL7V28Field
-        {
-            field = message[@"SCD"][12],
-            Id = @"SCD.12",
-            Type = @"Field",
-            Position = @"SCD.12",
-            Name = @"Dry Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The amount of cycle time spent drying the load.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dryTime.field.FieldRepetitions != null && dryTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dryTime.Id));
-            dryTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(dryTime, fieldData);
-        }
-
-        return dryTime;
-    } 
-}
-
-internal HL7V28Field leakRate;
-
-public HL7V28Field LeakRate
-{
-    get
-    {
-        if (leakRate != null)
-        {
-            return leakRate;
-        }
-
-        leakRate = new HL7V28Field
-        {
-            field = message[@"SCD"][13],
-            Id = @"SCD.13",
-            Type = @"Field",
-            Position = @"SCD.13",
-            Name = @"Leak Rate",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The amount of pressure that the chamber can hold expressed as barometric pressure.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (leakRate.field.FieldRepetitions != null && leakRate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(leakRate.Id));
-            leakRate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(leakRate, fieldData);
-        }
-
-        return leakRate;
-    } 
-}
-
-internal HL7V28Field controlTemperature;
-
-public HL7V28Field ControlTemperature
-{
-    get
-    {
-        if (controlTemperature != null)
-        {
-            return controlTemperature;
-        }
-
-        controlTemperature = new HL7V28Field
-        {
-            field = message[@"SCD"][14],
-            Id = @"SCD.14",
-            Type = @"Field",
-            Position = @"SCD.14",
-            Name = @"Control Temperature",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"Amount of overdrive above the sterilize temperature.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (controlTemperature.field.FieldRepetitions != null && controlTemperature.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(controlTemperature.Id));
-            controlTemperature.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(controlTemperature, fieldData);
-        }
-
-        return controlTemperature;
-    } 
-}
-
-internal HL7V28Field sterilizerTemperature;
-
-public HL7V28Field SterilizerTemperature
-{
-    get
-    {
-        if (sterilizerTemperature != null)
-        {
-            return sterilizerTemperature;
-        }
-
-        sterilizerTemperature = new HL7V28Field
-        {
-            field = message[@"SCD"][15],
-            Id = @"SCD.15",
-            Type = @"Field",
-            Position = @"SCD.15",
-            Name = @"Sterilizer Temperature",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The current temperature in the anti-microbial device.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sterilizerTemperature.field.FieldRepetitions != null && sterilizerTemperature.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sterilizerTemperature.Id));
-            sterilizerTemperature.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(sterilizerTemperature, fieldData);
-        }
-
-        return sterilizerTemperature;
-    } 
-}
-
-internal HL7V28Field cycleCompleteTime;
-
-public HL7V28Field CycleCompleteTime
-{
-    get
-    {
-        if (cycleCompleteTime != null)
-        {
-            return cycleCompleteTime;
-        }
-
-        cycleCompleteTime = new HL7V28Field
-        {
-            field = message[@"SCD"][16],
-            Id = @"SCD.16",
-            Type = @"Field",
-            Position = @"SCD.16",
-            Name = @"Cycle Complete Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TM",
-            DataTypeName = @"Time",
-            TableId = null,
-            TableName = null,
-            Description = @"The time of day that the cycle completed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (cycleCompleteTime.field.FieldRepetitions != null && cycleCompleteTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(cycleCompleteTime.Id));
-            cycleCompleteTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(cycleCompleteTime, fieldData);
-        }
-
-        return cycleCompleteTime;
-    } 
-}
-
-internal HL7V28Field underTemperature;
-
-public HL7V28Field UnderTemperature
-{
-    get
-    {
-        if (underTemperature != null)
-        {
-            return underTemperature;
-        }
-
-        underTemperature = new HL7V28Field
-        {
-            field = message[@"SCD"][17],
-            Id = @"SCD.17",
-            Type = @"Field",
-            Position = @"SCD.17",
-            Name = @"Under Temperature",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The temperature reached during a cycle, which fell below the required temperature range.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (underTemperature.field.FieldRepetitions != null && underTemperature.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(underTemperature.Id));
-            underTemperature.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(underTemperature, fieldData);
-        }
-
-        return underTemperature;
-    } 
-}
-
-internal HL7V28Field overTemperature;
-
-public HL7V28Field OverTemperature
-{
-    get
-    {
-        if (overTemperature != null)
-        {
-            return overTemperature;
-        }
-
-        overTemperature = new HL7V28Field
-        {
-            field = message[@"SCD"][18],
-            Id = @"SCD.18",
-            Type = @"Field",
-            Position = @"SCD.18",
-            Name = @"Over Temperature",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The temperature reached during a cycle, which exceeded the required temperature.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (overTemperature.field.FieldRepetitions != null && overTemperature.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(overTemperature.Id));
-            overTemperature.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(overTemperature, fieldData);
-        }
-
-        return overTemperature;
-    } 
-}
-
-internal HL7V28Field abortCycle;
-
-public HL7V28Field AbortCycle
-{
-    get
-    {
-        if (abortCycle != null)
-        {
-            return abortCycle;
-        }
-
-        abortCycle = new HL7V28Field
-        {
-            field = message[@"SCD"][19],
-            Id = @"SCD.19",
-            Type = @"Field",
-            Position = @"SCD.19",
-            Name = @"Abort Cycle",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"A notification that the cycle was aborted.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (abortCycle.field.FieldRepetitions != null && abortCycle.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(abortCycle.Id));
-            abortCycle.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(abortCycle, fieldData);
-        }
-
-        return abortCycle;
-    } 
-}
-
-internal HL7V28Field alarm;
-
-public HL7V28Field Alarm
-{
-    get
-    {
-        if (alarm != null)
-        {
-            return alarm;
-        }
-
-        alarm = new HL7V28Field
-        {
-            field = message[@"SCD"][20],
-            Id = @"SCD.20",
-            Type = @"Field",
-            Position = @"SCD.20",
-            Name = @"Alarm",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"A notification that the time, temperature, or pressure reached is invalid for a specific phase of a cycle.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (alarm.field.FieldRepetitions != null && alarm.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(alarm.Id));
-            alarm.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(alarm, fieldData);
-        }
-
-        return alarm;
-    } 
-}
-
-internal HL7V28Field longInChargePhase;
-
-public HL7V28Field LongInChargePhase
-{
-    get
-    {
-        if (longInChargePhase != null)
-        {
-            return longInChargePhase;
-        }
-
-        longInChargePhase = new HL7V28Field
-        {
-            field = message[@"SCD"][21],
-            Id = @"SCD.21",
-            Type = @"Field",
-            Position = @"SCD.21",
-            Name = @"Long In Charge Phase",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"A notification that the charge phase in the cycle has exceeded the maximum time allowed.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (longInChargePhase.field.FieldRepetitions != null && longInChargePhase.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(longInChargePhase.Id));
-            longInChargePhase.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(longInChargePhase, fieldData);
-        }
-
-        return longInChargePhase;
-    } 
-}
-
-internal HL7V28Field longInExhaustPhase;
-
-public HL7V28Field LongInExhaustPhase
-{
-    get
-    {
-        if (longInExhaustPhase != null)
-        {
-            return longInExhaustPhase;
-        }
-
-        longInExhaustPhase = new HL7V28Field
-        {
-            field = message[@"SCD"][22],
-            Id = @"SCD.22",
-            Type = @"Field",
-            Position = @"SCD.22",
-            Name = @"Long In Exhaust Phase",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"A notification that the exhaust phase in the cycle has exceeded the maximum time allowed.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (longInExhaustPhase.field.FieldRepetitions != null && longInExhaustPhase.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(longInExhaustPhase.Id));
-            longInExhaustPhase.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(longInExhaustPhase, fieldData);
-        }
-
-        return longInExhaustPhase;
-    } 
-}
-
-internal HL7V28Field longInFastExhaustPhase;
-
-public HL7V28Field LongInFastExhaustPhase
-{
-    get
-    {
-        if (longInFastExhaustPhase != null)
-        {
-            return longInFastExhaustPhase;
-        }
-
-        longInFastExhaustPhase = new HL7V28Field
-        {
-            field = message[@"SCD"][23],
-            Id = @"SCD.23",
-            Type = @"Field",
-            Position = @"SCD.23",
-            Name = @"Long In Fast Exhaust Phase",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"A notification that the fast exhaust phase in the cycle has exceeded the maximum time allowed.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (longInFastExhaustPhase.field.FieldRepetitions != null && longInFastExhaustPhase.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(longInFastExhaustPhase.Id));
-            longInFastExhaustPhase.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(longInFastExhaustPhase, fieldData);
-        }
-
-        return longInFastExhaustPhase;
-    } 
-}
-
-internal HL7V28Field reset;
-
-public HL7V28Field Reset
-{
-    get
-    {
-        if (reset != null)
-        {
-            return reset;
-        }
-
-        reset = new HL7V28Field
-        {
-            field = message[@"SCD"][24],
-            Id = @"SCD.24",
-            Type = @"Field",
-            Position = @"SCD.24",
-            Name = @"Reset",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"An indicator that specific anti-microbial device parameters have been set to system defaults.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reset.field.FieldRepetitions != null && reset.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reset.Id));
-            reset.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(reset, fieldData);
-        }
-
-        return reset;
-    } 
-}
-
-internal HL7V28Field operatorUnload;
-
-public HL7V28Field OperatorUnload
-{
-    get
-    {
-        if (operatorUnload != null)
-        {
-            return operatorUnload;
-        }
-
-        operatorUnload = new HL7V28Field
-        {
-            field = message[@"SCD"][25],
-            Id = @"SCD.25",
-            Type = @"Field",
-            Position = @"SCD.25",
-            Name = @"Operator - Unload",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"The name of the operator that unloaded the anti-microbial device.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (operatorUnload.field.FieldRepetitions != null && operatorUnload.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(operatorUnload.Id));
-            operatorUnload.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(operatorUnload, fieldData);
-        }
-
-        return operatorUnload;
-    } 
-}
-
-internal HL7V28Field doorOpen;
-
-public HL7V28Field DoorOpen
-{
-    get
-    {
-        if (doorOpen != null)
-        {
-            return doorOpen;
-        }
-
-        doorOpen = new HL7V28Field
-        {
-            field = message[@"SCD"][26],
-            Id = @"SCD.26",
-            Type = @"Field",
-            Position = @"SCD.26",
-            Name = @"Door Open",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"An indicator that the door is open.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (doorOpen.field.FieldRepetitions != null && doorOpen.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(doorOpen.Id));
-            doorOpen.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(doorOpen, fieldData);
-        }
-
-        return doorOpen;
-    } 
-}
-
-internal HL7V28Field readingFailure;
-
-public HL7V28Field ReadingFailure
-{
-    get
-    {
-        if (readingFailure != null)
-        {
-            return readingFailure;
-        }
-
-        readingFailure = new HL7V28Field
-        {
-            field = message[@"SCD"][27],
-            Id = @"SCD.27",
-            Type = @"Field",
-            Position = @"SCD.27",
-            Name = @"Reading Failure",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"A notification that an error was encountered while reading the cycle data for a specific cycle.  Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (readingFailure.field.FieldRepetitions != null && readingFailure.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(readingFailure.Id));
-            readingFailure.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(readingFailure, fieldData);
-        }
-
-        return readingFailure;
-    } 
-}
-
-internal HL7V28Field cycleType;
-
-public HL7V28Field CycleType
-{
-    get
-    {
-        if (cycleType != null)
-        {
-            return cycleType;
-        }
-
-        cycleType = new HL7V28Field
-        {
-            field = message[@"SCD"][28],
-            Id = @"SCD.28",
-            Type = @"Field",
-            Position = @"SCD.28",
-            Name = @"Cycle Type",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0702",
-            TableName = @"Cycle Type-",
-            Description = @"The type of cycle that is being executed.  A cycle type is a specific sterilization method used for a specific type of supply item.  Refer to User-defined Table 0702 – Cycle Type in Chapter 2C, Code Tables, for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (cycleType.field.FieldRepetitions != null && cycleType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(cycleType.Id));
-            cycleType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(cycleType, fieldData);
-        }
-
-        return cycleType;
-    } 
-}
-
-internal HL7V28Field thermalRinseTime;
-
-public HL7V28Field ThermalRinseTime
-{
-    get
-    {
-        if (thermalRinseTime != null)
-        {
-            return thermalRinseTime;
-        }
-
-        thermalRinseTime = new HL7V28Field
-        {
-            field = message[@"SCD"][29],
-            Id = @"SCD.29",
-            Type = @"Field",
-            Position = @"SCD.29",
-            Name = @"Thermal Rinse Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The amount of time spent in the thermal rinse phase of a decontamination cycle.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (thermalRinseTime.field.FieldRepetitions != null && thermalRinseTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(thermalRinseTime.Id));
-            thermalRinseTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(thermalRinseTime, fieldData);
-        }
-
-        return thermalRinseTime;
-    } 
-}
-
-internal HL7V28Field washTime;
-
-public HL7V28Field WashTime
-{
-    get
-    {
-        if (washTime != null)
-        {
-            return washTime;
-        }
-
-        washTime = new HL7V28Field
-        {
-            field = message[@"SCD"][30],
-            Id = @"SCD.30",
-            Type = @"Field",
-            Position = @"SCD.30",
-            Name = @"Wash Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The amount of time spent in the wash phase of a decontamination cycle.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (washTime.field.FieldRepetitions != null && washTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(washTime.Id));
-            washTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(washTime, fieldData);
-        }
-
-        return washTime;
-    } 
-}
-
-internal HL7V28Field injectionRate;
-
-public HL7V28Field InjectionRate
-{
-    get
-    {
-        if (injectionRate != null)
-        {
-            return injectionRate;
-        }
-
-        injectionRate = new HL7V28Field
-        {
-            field = message[@"SCD"][31],
-            Id = @"SCD.31",
-            Type = @"Field",
-            Position = @"SCD.31",
-            Name = @"Injection Rate",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The injection rate of a wash or dry agent.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (injectionRate.field.FieldRepetitions != null && injectionRate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(injectionRate.Id));
-            injectionRate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(injectionRate, fieldData);
-        }
-
-        return injectionRate;
-    } 
-}
-
-internal HL7V28Field procedureCode;
-
-public HL7V28Field ProcedureCode
-{
-    get
-    {
-        if (procedureCode != null)
-        {
-            return procedureCode;
-        }
-
-        procedureCode = new HL7V28Field
-        {
-            field = message[@"SCD"][32],
-            Id = @"SCD.32",
-            Type = @"Field",
-            Position = @"SCD.32",
-            Name = @"Procedure Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0088",
-            TableName = @"Procedure Code",
-            Description = @"The unique identifier indicating the type of procedure performed on the patient with the supplies being sterilized. 
-
-Refer to HL7 Table 0088 – Procedure Code in Chapter 2C, Code Tables, for suggested values.
-
-As of v2.6, the known applicable external coding systems include those in the referenced table. If the code set you are using is in this table, then you must use that designation.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedureCode.field.FieldRepetitions != null && procedureCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureCode.Id));
-            procedureCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(procedureCode, fieldData);
-        }
-
-        return procedureCode;
-    } 
-}
-
-internal HL7V28Field patientIdentifierList;
-
-public HL7V28Field PatientIdentifierList
-{
-    get
-    {
-        if (patientIdentifierList != null)
-        {
-            return patientIdentifierList;
-        }
-
-        patientIdentifierList = new HL7V28Field
-        {
-            field = message[@"SCD"][33],
-            Id = @"SCD.33",
-            Type = @"Field",
-            Position = @"SCD.33",
-            Name = @"Patient Identifier List",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"The unique identifier associating the patient with the supplies being sterilized.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientIdentifierList.field.FieldRepetitions != null && patientIdentifierList.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientIdentifierList.Id));
-            patientIdentifierList.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(patientIdentifierList, fieldData);
-        }
-
-        return patientIdentifierList;
-    } 
-}
-
-internal HL7V28Field attendingDoctor;
-
-public HL7V28Field AttendingDoctor
-{
-    get
-    {
-        if (attendingDoctor != null)
-        {
-            return attendingDoctor;
-        }
-
-        attendingDoctor = new HL7V28Field
-        {
-            field = message[@"SCD"][34],
-            Id = @"SCD.34",
-            Type = @"Field",
-            Position = @"SCD.34",
-            Name = @"Attending Doctor",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = @"0010",
-            TableName = @"Physician ID",
-            Description = @"The unique identifier associating the physician with the supplies being sterilized, used for the procedure and patient identified in this message.  Refer to User-defined Table 0010 - Physician ID in Chapter 2C, Code Tables, for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (attendingDoctor.field.FieldRepetitions != null && attendingDoctor.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(attendingDoctor.Id));
-            attendingDoctor.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(attendingDoctor, fieldData);
-        }
-
-        return attendingDoctor;
-    } 
-}
-
-internal HL7V28Field dilutionFactor;
-
-public HL7V28Field DilutionFactor
-{
-    get
-    {
-        if (dilutionFactor != null)
-        {
-            return dilutionFactor;
-        }
-
-        dilutionFactor = new HL7V28Field
-        {
-            field = message[@"SCD"][35],
-            Id = @"SCD.35",
-            Type = @"Field",
-            Position = @"SCD.35",
-            Name = @"Dilution Factor",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SN",
-            DataTypeName = @"Structured Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"The dilution ratio of peracetic acid to water.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dilutionFactor.field.FieldRepetitions != null && dilutionFactor.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dilutionFactor.Id));
-            dilutionFactor.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(dilutionFactor, fieldData);
-        }
-
-        return dilutionFactor;
-    } 
-}
-
-internal HL7V28Field fillTime;
-
-public HL7V28Field FillTime
-{
-    get
-    {
-        if (fillTime != null)
-        {
-            return fillTime;
-        }
-
-        fillTime = new HL7V28Field
-        {
-            field = message[@"SCD"][36],
-            Id = @"SCD.36",
-            Type = @"Field",
-            Position = @"SCD.36",
-            Name = @"Fill Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The amount of time spent in filling the sterilizer chamber with dilutant.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fillTime.field.FieldRepetitions != null && fillTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillTime.Id));
-            fillTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(fillTime, fieldData);
-        }
-
-        return fillTime;
-    } 
-}
-
-internal HL7V28Field inletTemperature;
-
-public HL7V28Field InletTemperature
-{
-    get
-    {
-        if (inletTemperature != null)
-        {
-            return inletTemperature;
-        }
-
-        inletTemperature = new HL7V28Field
+        _inletTemperature = new HL7V28Field
         {
             field = message[@"SCD"][37],
-            Id = @"SCD.37",
-            Type = @"Field",
-            Position = @"SCD.37",
-            Name = @"Inlet Temperature",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The temperature of the dilutant upon entering the sterilizer chamber.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (inletTemperature.field.FieldRepetitions != null && inletTemperature.field.FieldRepetitions.Count > 0)
+        if (_inletTemperature.field.FieldRepetitions != null && _inletTemperature.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inletTemperature.Id));
-            inletTemperature.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(inletTemperature, fieldData);
+            _inletTemperature.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_inletTemperature, fieldData);
         }
 
-        return inletTemperature;
+        return _inletTemperature;
     } 
 }
     }

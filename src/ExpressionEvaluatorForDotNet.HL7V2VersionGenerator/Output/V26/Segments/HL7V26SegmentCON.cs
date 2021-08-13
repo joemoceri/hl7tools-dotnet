@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentCON(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _setIDCON;
+
+public HL7V26Field SetIDCON
+{
+    get
+    {
+        if (_setIDCON != null)
+        {
+            return _setIDCON;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.1",
+            Type = @"Field",
+            Position = @"CON.1",
+            Name = @"Set ID - CON",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this segment instance within the message. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDCON = new HL7V26Field
+        {
+            field = message[@"CON"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDCON.field.FieldRepetitions != null && _setIDCON.field.FieldRepetitions.Count > 0)
+        {
+            _setIDCON.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_setIDCON, fieldData);
+        }
+
+        return _setIDCON;
+    } 
+}
+
+internal HL7V26Field _consentType;
+
+public HL7V26Field ConsentType
+{
+    get
+    {
+        if (_consentType != null)
+        {
+            return _consentType;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.2",
+            Type = @"Field",
+            Position = @"CON.2",
+            Name = @"Consent Type",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0496",
+            TableName = @"Consent Type",
+            Description = @"This field describes what the subject is consenting to, i.e., what type of service, surgical procedure, information access/release or other event. For values see User-Defined Table 0496 - Consent Type.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"CON.1",
-                            Type = @"Field",
-                            Position = @"CON.1",
-                            Name = @"Set ID - CON",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this segment instance within the message. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.2",
-                            Type = @"Field",
-                            Position = @"CON.2",
-                            Name = @"Consent Type",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0496",
-                            TableName = @"Consent Type",
-                            Description = @"This field describes what the subject is consenting to, i.e., what type of service, surgical procedure, information access/release or other event. For values see User-Defined Table 0496 - Consent Type.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CON.2.1",
                             Type = @"Component",
@@ -228,43 +267,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _consentType = new HL7V26Field
+        {
+            field = message[@"CON"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentType.field.FieldRepetitions != null && _consentType.field.FieldRepetitions.Count > 0)
+        {
+            _consentType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentType, fieldData);
+        }
+
+        return _consentType;
+    } 
+}
+
+internal HL7V26Field _consentFormIDandVersion;
+
+public HL7V26Field ConsentFormIDandVersion
+{
+    get
+    {
+        if (_consentFormIDandVersion != null)
+        {
+            return _consentFormIDandVersion;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.3",
+            Type = @"Field",
+            Position = @"CON.3",
+            Name = @"Consent Form ID and Version",
+            Length = 40,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Identifies a specific version of a consent form used to record the consent. A given version of a consent form implies a particular set of wording that appears on the form.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consentFormIDandVersion = new HL7V26Field
+        {
+            field = message[@"CON"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentFormIDandVersion.field.FieldRepetitions != null && _consentFormIDandVersion.field.FieldRepetitions.Count > 0)
+        {
+            _consentFormIDandVersion.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentFormIDandVersion, fieldData);
+        }
+
+        return _consentFormIDandVersion;
+    } 
+}
+
+internal HL7V26Field _consentFormNumber;
+
+public HL7V26Field ConsentFormNumber
+{
+    get
+    {
+        if (_consentFormNumber != null)
+        {
+            return _consentFormNumber;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.4",
+            Type = @"Field",
+            Position = @"CON.4",
+            Name = @"Consent Form Number",
+            Length = 427,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Uniquely identifies a specific recorded consent. This may be the number assigned to an electronic consent, or may be the number on a printed consent form.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CON.3",
-                            Type = @"Field",
-                            Position = @"CON.3",
-                            Name = @"Consent Form ID and Version",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identifies a specific version of a consent form used to record the consent. A given version of a consent form implies a particular set of wording that appears on the form.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.4",
-                            Type = @"Field",
-                            Position = @"CON.4",
-                            Name = @"Consent Form Number",
-                            Length = 427,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Uniquely identifies a specific recorded consent. This may be the number assigned to an electronic consent, or may be the number on a printed consent form.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CON.4.1",
                             Type = @"Component",
@@ -334,115 +430,280 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _consentFormNumber = new HL7V26Field
+        {
+            field = message[@"CON"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentFormNumber.field.FieldRepetitions != null && _consentFormNumber.field.FieldRepetitions.Count > 0)
+        {
+            _consentFormNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentFormNumber, fieldData);
+        }
+
+        return _consentFormNumber;
+    } 
+}
+
+internal HL7V26Field _consentText;
+
+public HL7V26Field ConsentText
+{
+    get
+    {
+        if (_consentText != null)
+        {
+            return _consentText;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.5",
+            Type = @"Field",
+            Position = @"CON.5",
+            Name = @"Consent Text",
+            Length = 65536,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"FT",
+            DataTypeName = @"Formatted Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Describes the specific procedures/information releases/events the subject is consenting to.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consentText = new HL7V26Field
+        {
+            field = message[@"CON"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentText.field.FieldRepetitions != null && _consentText.field.FieldRepetitions.Count > 0)
+        {
+            _consentText.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentText, fieldData);
+        }
+
+        return _consentText;
+    } 
+}
+
+internal HL7V26Field _subjectspecificConsentText;
+
+public HL7V26Field SubjectspecificConsentText
+{
+    get
+    {
+        if (_subjectspecificConsentText != null)
+        {
+            return _subjectspecificConsentText;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.6",
+            Type = @"Field",
+            Position = @"CON.6",
+            Name = @"Subject-specific Consent Text",
+            Length = 65536,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"FT",
+            DataTypeName = @"Formatted Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Describes any additions or variations to the standard procedures/information releases/events from a standard consent that are applicable to the subject whose consent is sought.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _subjectspecificConsentText = new HL7V26Field
+        {
+            field = message[@"CON"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_subjectspecificConsentText.field.FieldRepetitions != null && _subjectspecificConsentText.field.FieldRepetitions.Count > 0)
+        {
+            _subjectspecificConsentText.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_subjectspecificConsentText, fieldData);
+        }
+
+        return _subjectspecificConsentText;
+    } 
+}
+
+internal HL7V26Field _consentBackgroundInformation;
+
+public HL7V26Field ConsentBackgroundInformation
+{
+    get
+    {
+        if (_consentBackgroundInformation != null)
+        {
+            return _consentBackgroundInformation;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.7",
+            Type = @"Field",
+            Position = @"CON.7",
+            Name = @"Consent Background Information",
+            Length = 65535,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"FT",
+            DataTypeName = @"Formatted Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Describes any additional information relating to the procedure/information release/event that needs to be understood by the subject for informed consent. May include the reason for the service, the expected benefit, risks, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consentBackgroundInformation = new HL7V26Field
+        {
+            field = message[@"CON"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentBackgroundInformation.field.FieldRepetitions != null && _consentBackgroundInformation.field.FieldRepetitions.Count > 0)
+        {
+            _consentBackgroundInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentBackgroundInformation, fieldData);
+        }
+
+        return _consentBackgroundInformation;
+    } 
+}
+
+internal HL7V26Field _subjectspecificConsentBackgroundText;
+
+public HL7V26Field SubjectspecificConsentBackgroundText
+{
+    get
+    {
+        if (_subjectspecificConsentBackgroundText != null)
+        {
+            return _subjectspecificConsentBackgroundText;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.8",
+            Type = @"Field",
+            Position = @"CON.8",
+            Name = @"Subject-specific Consent Background Text",
+            Length = 65535,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"FT",
+            DataTypeName = @"Formatted Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Describes any additions or variations to the standard additional information that needs to be understood by the patient for informed consent. May include a description of benefits and risks that are specific to the subject from whom consent is sought. May also include an indication that there are no subject-specific risks/benefits.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _subjectspecificConsentBackgroundText = new HL7V26Field
+        {
+            field = message[@"CON"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_subjectspecificConsentBackgroundText.field.FieldRepetitions != null && _subjectspecificConsentBackgroundText.field.FieldRepetitions.Count > 0)
+        {
+            _subjectspecificConsentBackgroundText.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_subjectspecificConsentBackgroundText, fieldData);
+        }
+
+        return _subjectspecificConsentBackgroundText;
+    } 
+}
+
+internal HL7V26Field _consenterimposedlimitations;
+
+public HL7V26Field Consenterimposedlimitations
+{
+    get
+    {
+        if (_consenterimposedlimitations != null)
+        {
+            return _consenterimposedlimitations;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.9",
+            Type = @"Field",
+            Position = @"CON.9",
+            Name = @"Consenter-imposed limitations",
+            Length = 65535,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"FT",
+            DataTypeName = @"Formatted Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Describes any restrictions or limitations placed on their consent by the subject.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consenterimposedlimitations = new HL7V26Field
+        {
+            field = message[@"CON"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consenterimposedlimitations.field.FieldRepetitions != null && _consenterimposedlimitations.field.FieldRepetitions.Count > 0)
+        {
+            _consenterimposedlimitations.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consenterimposedlimitations, fieldData);
+        }
+
+        return _consenterimposedlimitations;
+    } 
+}
+
+internal HL7V26Field _consentMode;
+
+public HL7V26Field ConsentMode
+{
+    get
+    {
+        if (_consentMode != null)
+        {
+            return _consentMode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.10",
+            Type = @"Field",
+            Position = @"CON.10",
+            Name = @"Consent Mode",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = @"0497",
+            TableName = @"Consent Mode",
+            Description = @"The method in which a subject provides consent.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CON.5",
-                            Type = @"Field",
-                            Position = @"CON.5",
-                            Name = @"Consent Text",
-                            Length = 65536,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Describes the specific procedures/information releases/events the subject is consenting to.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.6",
-                            Type = @"Field",
-                            Position = @"CON.6",
-                            Name = @"Subject-specific Consent Text",
-                            Length = 65536,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Describes any additions or variations to the standard procedures/information releases/events from a standard consent that are applicable to the subject whose consent is sought.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.7",
-                            Type = @"Field",
-                            Position = @"CON.7",
-                            Name = @"Consent Background Information",
-                            Length = 65535,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Describes any additional information relating to the procedure/information release/event that needs to be understood by the subject for informed consent. May include the reason for the service, the expected benefit, risks, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.8",
-                            Type = @"Field",
-                            Position = @"CON.8",
-                            Name = @"Subject-specific Consent Background Text",
-                            Length = 65535,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Describes any additions or variations to the standard additional information that needs to be understood by the patient for informed consent. May include a description of benefits and risks that are specific to the subject from whom consent is sought. May also include an indication that there are no subject-specific risks/benefits.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.9",
-                            Type = @"Field",
-                            Position = @"CON.9",
-                            Name = @"Consenter-imposed limitations",
-                            Length = 65535,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Describes any restrictions or limitations placed on their consent by the subject.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.10",
-                            Type = @"Field",
-                            Position = @"CON.10",
-                            Name = @"Consent Mode",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = @"0497",
-                            TableName = @"Consent Mode",
-                            Description = @"The method in which a subject provides consent.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CON.10.1",
                             Type = @"Component",
@@ -602,25 +863,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _consentMode = new HL7V26Field
+        {
+            field = message[@"CON"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentMode.field.FieldRepetitions != null && _consentMode.field.FieldRepetitions.Count > 0)
+        {
+            _consentMode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentMode, fieldData);
+        }
+
+        return _consentMode;
+    } 
+}
+
+internal HL7V26Field _consentStatus;
+
+public HL7V26Field ConsentStatus
+{
+    get
+    {
+        if (_consentStatus != null)
+        {
+            return _consentStatus;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.11",
+            Type = @"Field",
+            Position = @"CON.11",
+            Name = @"Consent Status",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = @"0498",
+            TableName = @"Consent Status",
+            Description = @"Indicates whether consent has been sought and granted.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CON.11",
-                            Type = @"Field",
-                            Position = @"CON.11",
-                            Name = @"Consent Status",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = @"0498",
-                            TableName = @"Consent Status",
-                            Description = @"Indicates whether consent has been sought and granted.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CON.11.1",
                             Type = @"Component",
@@ -780,133 +1071,325 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _consentStatus = new HL7V26Field
+        {
+            field = message[@"CON"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentStatus.field.FieldRepetitions != null && _consentStatus.field.FieldRepetitions.Count > 0)
+        {
+            _consentStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentStatus, fieldData);
+        }
+
+        return _consentStatus;
+    } 
+}
+
+internal HL7V26Field _consentDiscussionDateTime;
+
+public HL7V26Field ConsentDiscussionDateTime
+{
+    get
+    {
+        if (_consentDiscussionDateTime != null)
+        {
+            return _consentDiscussionDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.12",
+            Type = @"Field",
+            Position = @"CON.12",
+            Name = @"Consent Discussion Date/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"Identifies the time when consent was discussed with the subject. This should only be specified if this differs from the time the consent decision is made.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consentDiscussionDateTime = new HL7V26Field
+        {
+            field = message[@"CON"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentDiscussionDateTime.field.FieldRepetitions != null && _consentDiscussionDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _consentDiscussionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentDiscussionDateTime, fieldData);
+        }
+
+        return _consentDiscussionDateTime;
+    } 
+}
+
+internal HL7V26Field _consentDecisionDateTime;
+
+public HL7V26Field ConsentDecisionDateTime
+{
+    get
+    {
+        if (_consentDecisionDateTime != null)
+        {
+            return _consentDecisionDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.13",
+            Type = @"Field",
+            Position = @"CON.13",
+            Name = @"Consent Decision Date/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"Identifies the time when the decision to grant/refuse consent was made. In the case of written consent, this is the time the consent form is signed.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consentDecisionDateTime = new HL7V26Field
+        {
+            field = message[@"CON"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentDecisionDateTime.field.FieldRepetitions != null && _consentDecisionDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _consentDecisionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentDecisionDateTime, fieldData);
+        }
+
+        return _consentDecisionDateTime;
+    } 
+}
+
+internal HL7V26Field _consentEffectiveDateTime;
+
+public HL7V26Field ConsentEffectiveDateTime
+{
+    get
+    {
+        if (_consentEffectiveDateTime != null)
+        {
+            return _consentEffectiveDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.14",
+            Type = @"Field",
+            Position = @"CON.14",
+            Name = @"Consent Effective Date/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"The time the consent becomes/became effective. This only needs to be specified if the time differs from the Consent Decision Date/Time",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consentEffectiveDateTime = new HL7V26Field
+        {
+            field = message[@"CON"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentEffectiveDateTime.field.FieldRepetitions != null && _consentEffectiveDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _consentEffectiveDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentEffectiveDateTime, fieldData);
+        }
+
+        return _consentEffectiveDateTime;
+    } 
+}
+
+internal HL7V26Field _consentEndDateTime;
+
+public HL7V26Field ConsentEndDateTime
+{
+    get
+    {
+        if (_consentEndDateTime != null)
+        {
+            return _consentEndDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.15",
+            Type = @"Field",
+            Position = @"CON.15",
+            Name = @"Consent End Date/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"The time the consent becomes ineffective. If not specified, the consent is assumed to be indefinite. For consents relating to information release, the end date/time is the date by which the released information must be returned/destroyed.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consentEndDateTime = new HL7V26Field
+        {
+            field = message[@"CON"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentEndDateTime.field.FieldRepetitions != null && _consentEndDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _consentEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentEndDateTime, fieldData);
+        }
+
+        return _consentEndDateTime;
+    } 
+}
+
+internal HL7V26Field _subjectCompetenceIndicator;
+
+public HL7V26Field SubjectCompetenceIndicator
+{
+    get
+    {
+        if (_subjectCompetenceIndicator != null)
+        {
+            return _subjectCompetenceIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.16",
+            Type = @"Field",
+            Position = @"CON.16",
+            Name = @"Subject Competence Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"Identifies whether the subject was deemed competent to provide consent. Refer to table HL7 table 0136 - Yes/No Indicator .",
+            Sample = @"",
+            Fields = null
+        }
+
+        _subjectCompetenceIndicator = new HL7V26Field
+        {
+            field = message[@"CON"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_subjectCompetenceIndicator.field.FieldRepetitions != null && _subjectCompetenceIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _subjectCompetenceIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_subjectCompetenceIndicator, fieldData);
+        }
+
+        return _subjectCompetenceIndicator;
+    } 
+}
+
+internal HL7V26Field _translatorAssistanceIndicator;
+
+public HL7V26Field TranslatorAssistanceIndicator
+{
+    get
+    {
+        if (_translatorAssistanceIndicator != null)
+        {
+            return _translatorAssistanceIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.17",
+            Type = @"Field",
+            Position = @"CON.17",
+            Name = @"Translator Assistance Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"Identifies whether translation was (or will be) required to obtain informed consent from the subject. Refer to table HL7 table 0136 - Yes/No Indicator.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _translatorAssistanceIndicator = new HL7V26Field
+        {
+            field = message[@"CON"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_translatorAssistanceIndicator.field.FieldRepetitions != null && _translatorAssistanceIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _translatorAssistanceIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_translatorAssistanceIndicator, fieldData);
+        }
+
+        return _translatorAssistanceIndicator;
+    } 
+}
+
+internal HL7V26Field _languageTranslatedTo;
+
+public HL7V26Field LanguageTranslatedTo
+{
+    get
+    {
+        if (_languageTranslatedTo != null)
+        {
+            return _languageTranslatedTo;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.18",
+            Type = @"Field",
+            Position = @"CON.18",
+            Name = @"Language Translated To",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0296",
+            TableName = @"Primary Language",
+            Description = @"Identifies the language the consent material must be translated to. Refer to User-Defined Table 0296 - Language Translated Tofor values. This table may be populated with values similar to those that may be found in ISO table 639 - Language Codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CON.12",
-                            Type = @"Field",
-                            Position = @"CON.12",
-                            Name = @"Consent Discussion Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identifies the time when consent was discussed with the subject. This should only be specified if this differs from the time the consent decision is made.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.13",
-                            Type = @"Field",
-                            Position = @"CON.13",
-                            Name = @"Consent Decision Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identifies the time when the decision to grant/refuse consent was made. In the case of written consent, this is the time the consent form is signed.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.14",
-                            Type = @"Field",
-                            Position = @"CON.14",
-                            Name = @"Consent Effective Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The time the consent becomes/became effective. This only needs to be specified if the time differs from the Consent Decision Date/Time",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.15",
-                            Type = @"Field",
-                            Position = @"CON.15",
-                            Name = @"Consent End Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The time the consent becomes ineffective. If not specified, the consent is assumed to be indefinite. For consents relating to information release, the end date/time is the date by which the released information must be returned/destroyed.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.16",
-                            Type = @"Field",
-                            Position = @"CON.16",
-                            Name = @"Subject Competence Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"Identifies whether the subject was deemed competent to provide consent. Refer to table HL7 table 0136 - Yes/No Indicator .",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.17",
-                            Type = @"Field",
-                            Position = @"CON.17",
-                            Name = @"Translator Assistance Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"Identifies whether translation was (or will be) required to obtain informed consent from the subject. Refer to table HL7 table 0136 - Yes/No Indicator.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.18",
-                            Type = @"Field",
-                            Position = @"CON.18",
-                            Name = @"Language Translated To",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0296",
-                            TableName = @"Primary Language",
-                            Description = @"Identifies the language the consent material must be translated to. Refer to User-Defined Table 0296 - Language Translated Tofor values. This table may be populated with values similar to those that may be found in ISO table 639 - Language Codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CON.18.1",
                             Type = @"Component",
@@ -1066,43 +1549,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _languageTranslatedTo = new HL7V26Field
+        {
+            field = message[@"CON"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_languageTranslatedTo.field.FieldRepetitions != null && _languageTranslatedTo.field.FieldRepetitions.Count > 0)
+        {
+            _languageTranslatedTo.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_languageTranslatedTo, fieldData);
+        }
+
+        return _languageTranslatedTo;
+    } 
+}
+
+internal HL7V26Field _informationalMaterialSuppliedIndicator;
+
+public HL7V26Field InformationalMaterialSuppliedIndicator
+{
+    get
+    {
+        if (_informationalMaterialSuppliedIndicator != null)
+        {
+            return _informationalMaterialSuppliedIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.19",
+            Type = @"Field",
+            Position = @"CON.19",
+            Name = @"Informational Material Supplied Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"Identifies whether additional educational or reference material was provided to the subject as part of the consent process. Refer to table HL7 table 0136 - Yes/No Indicator .",
+            Sample = @"",
+            Fields = null
+        }
+
+        _informationalMaterialSuppliedIndicator = new HL7V26Field
+        {
+            field = message[@"CON"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_informationalMaterialSuppliedIndicator.field.FieldRepetitions != null && _informationalMaterialSuppliedIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _informationalMaterialSuppliedIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_informationalMaterialSuppliedIndicator, fieldData);
+        }
+
+        return _informationalMaterialSuppliedIndicator;
+    } 
+}
+
+internal HL7V26Field _consentBypassReason;
+
+public HL7V26Field ConsentBypassReason
+{
+    get
+    {
+        if (_consentBypassReason != null)
+        {
+            return _consentBypassReason;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.20",
+            Type = @"Field",
+            Position = @"CON.20",
+            Name = @"Consent Bypass Reason",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0499",
+            TableName = @"Consent Bypass Reason",
+            Description = @"Identifies why the subjects consent was not sought. This field must be populated when CON-11 - Consent Status is B - Bypassed.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CON.19",
-                            Type = @"Field",
-                            Position = @"CON.19",
-                            Name = @"Informational Material Supplied Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"Identifies whether additional educational or reference material was provided to the subject as part of the consent process. Refer to table HL7 table 0136 - Yes/No Indicator .",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.20",
-                            Type = @"Field",
-                            Position = @"CON.20",
-                            Name = @"Consent Bypass Reason",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0499",
-                            TableName = @"Consent Bypass Reason",
-                            Description = @"Identifies why the subjects consent was not sought. This field must be populated when CON-11 - Consent Status is B - Bypassed.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CON.20.1",
                             Type = @"Component",
@@ -1262,43 +1802,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _consentBypassReason = new HL7V26Field
+        {
+            field = message[@"CON"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentBypassReason.field.FieldRepetitions != null && _consentBypassReason.field.FieldRepetitions.Count > 0)
+        {
+            _consentBypassReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentBypassReason, fieldData);
+        }
+
+        return _consentBypassReason;
+    } 
+}
+
+internal HL7V26Field _consentDisclosureLevel;
+
+public HL7V26Field ConsentDisclosureLevel
+{
+    get
+    {
+        if (_consentDisclosureLevel != null)
+        {
+            return _consentDisclosureLevel;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.21",
+            Type = @"Field",
+            Position = @"CON.21",
+            Name = @"Consent Disclosure Level",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0500",
+            TableName = @"Consent Disclosure Level",
+            Description = @"Identifies how much information was disclosed to the subject as part of the informed consent process.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consentDisclosureLevel = new HL7V26Field
+        {
+            field = message[@"CON"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentDisclosureLevel.field.FieldRepetitions != null && _consentDisclosureLevel.field.FieldRepetitions.Count > 0)
+        {
+            _consentDisclosureLevel.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentDisclosureLevel, fieldData);
+        }
+
+        return _consentDisclosureLevel;
+    } 
+}
+
+internal HL7V26Field _consentNondisclosureReason;
+
+public HL7V26Field ConsentNondisclosureReason
+{
+    get
+    {
+        if (_consentNondisclosureReason != null)
+        {
+            return _consentNondisclosureReason;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.22",
+            Type = @"Field",
+            Position = @"CON.22",
+            Name = @"Consent Non-disclosure Reason",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0501",
+            TableName = @"Consent Non-Disclosure Reason",
+            Description = @"Identifies why the subject did not receive full disclosure. .",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CON.21",
-                            Type = @"Field",
-                            Position = @"CON.21",
-                            Name = @"Consent Disclosure Level",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0500",
-                            TableName = @"Consent Disclosure Level",
-                            Description = @"Identifies how much information was disclosed to the subject as part of the informed consent process.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.22",
-                            Type = @"Field",
-                            Position = @"CON.22",
-                            Name = @"Consent Non-disclosure Reason",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0501",
-                            TableName = @"Consent Non-Disclosure Reason",
-                            Description = @"Identifies why the subject did not receive full disclosure. .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CON.22.1",
                             Type = @"Component",
@@ -1458,25 +2055,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _consentNondisclosureReason = new HL7V26Field
+        {
+            field = message[@"CON"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentNondisclosureReason.field.FieldRepetitions != null && _consentNondisclosureReason.field.FieldRepetitions.Count > 0)
+        {
+            _consentNondisclosureReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentNondisclosureReason, fieldData);
+        }
+
+        return _consentNondisclosureReason;
+    } 
+}
+
+internal HL7V26Field _nonsubjectConsenterReason;
+
+public HL7V26Field NonsubjectConsenterReason
+{
+    get
+    {
+        if (_nonsubjectConsenterReason != null)
+        {
+            return _nonsubjectConsenterReason;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.23",
+            Type = @"Field",
+            Position = @"CON.23",
+            Name = @"Non-subject Consenter Reason",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0502",
+            TableName = @"Non-Subject Consenter Reason",
+            Description = @"Identifies why consent was granted by a person other than the subject of the consent.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CON.23",
-                            Type = @"Field",
-                            Position = @"CON.23",
-                            Name = @"Non-subject Consenter Reason",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0502",
-                            TableName = @"Non-Subject Consenter Reason",
-                            Description = @"Identifies why consent was granted by a person other than the subject of the consent.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CON.23.1",
                             Type = @"Component",
@@ -1636,25 +2263,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _nonsubjectConsenterReason = new HL7V26Field
+        {
+            field = message[@"CON"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_nonsubjectConsenterReason.field.FieldRepetitions != null && _nonsubjectConsenterReason.field.FieldRepetitions.Count > 0)
+        {
+            _nonsubjectConsenterReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_nonsubjectConsenterReason, fieldData);
+        }
+
+        return _nonsubjectConsenterReason;
+    } 
+}
+
+internal HL7V26Field _consenterID;
+
+public HL7V26Field ConsenterID
+{
+    get
+    {
+        if (_consenterID != null)
+        {
+            return _consenterID;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CON.24",
+            Type = @"Field",
+            Position = @"CON.24",
+            Name = @"Consenter ID",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"Identification of the individual(s) who are consenting.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CON.24",
-                            Type = @"Field",
-                            Position = @"CON.24",
-                            Name = @"Consenter ID",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identification of the individual(s) who are consenting.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CON.24.1",
                             Type = @"Component",
@@ -2186,1033 +2843,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Used to specify an abbreviation, or a string of abbreviations denoting qualifications that support the persons profession, (e.g., licenses, certificates, degrees, affiliations with professional societies, etc.). The Professional Suffix normally follows the Family Name when the Person Name is used for display purposes. Please note that this component is an unformatted string and is used for display purposes only. Detailed information regarding the contents of Professional Suffix is obtained using appropriate segments in Chapter 15, Personnel Management.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CON.25",
-                            Type = @"Field",
-                            Position = @"CON.25",
-                            Name = @"Relationship to Subject",
-                            Length = 100,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0548",
-                            TableName = @"Signatory’s Relationship to Subject",
-                            Description = @"Identification of the relationship of the consenter to the subject.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentCON(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field setIDCON;
-
-public HL7V26Field SetIDCON
-{
-    get
-    {
-        if (setIDCON != null)
-        {
-            return setIDCON;
-        }
-
-        setIDCON = new HL7V26Field
-        {
-            field = message[@"CON"][1],
-            Id = @"CON.1",
-            Type = @"Field",
-            Position = @"CON.1",
-            Name = @"Set ID - CON",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this segment instance within the message. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDCON.field.FieldRepetitions != null && setIDCON.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDCON.Id));
-            setIDCON.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(setIDCON, fieldData);
-        }
-
-        return setIDCON;
-    } 
-}
-
-internal HL7V26Field consentType;
-
-public HL7V26Field ConsentType
-{
-    get
-    {
-        if (consentType != null)
-        {
-            return consentType;
-        }
-
-        consentType = new HL7V26Field
-        {
-            field = message[@"CON"][2],
-            Id = @"CON.2",
-            Type = @"Field",
-            Position = @"CON.2",
-            Name = @"Consent Type",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0496",
-            TableName = @"Consent Type",
-            Description = @"This field describes what the subject is consenting to, i.e., what type of service, surgical procedure, information access/release or other event. For values see User-Defined Table 0496 - Consent Type.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentType.field.FieldRepetitions != null && consentType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentType.Id));
-            consentType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentType, fieldData);
-        }
-
-        return consentType;
-    } 
-}
-
-internal HL7V26Field consentFormIDandVersion;
-
-public HL7V26Field ConsentFormIDandVersion
-{
-    get
-    {
-        if (consentFormIDandVersion != null)
-        {
-            return consentFormIDandVersion;
-        }
-
-        consentFormIDandVersion = new HL7V26Field
-        {
-            field = message[@"CON"][3],
-            Id = @"CON.3",
-            Type = @"Field",
-            Position = @"CON.3",
-            Name = @"Consent Form ID and Version",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Identifies a specific version of a consent form used to record the consent. A given version of a consent form implies a particular set of wording that appears on the form.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentFormIDandVersion.field.FieldRepetitions != null && consentFormIDandVersion.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentFormIDandVersion.Id));
-            consentFormIDandVersion.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentFormIDandVersion, fieldData);
-        }
-
-        return consentFormIDandVersion;
-    } 
-}
-
-internal HL7V26Field consentFormNumber;
-
-public HL7V26Field ConsentFormNumber
-{
-    get
-    {
-        if (consentFormNumber != null)
-        {
-            return consentFormNumber;
-        }
-
-        consentFormNumber = new HL7V26Field
-        {
-            field = message[@"CON"][4],
-            Id = @"CON.4",
-            Type = @"Field",
-            Position = @"CON.4",
-            Name = @"Consent Form Number",
-            Length = 427,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Uniquely identifies a specific recorded consent. This may be the number assigned to an electronic consent, or may be the number on a printed consent form.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentFormNumber.field.FieldRepetitions != null && consentFormNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentFormNumber.Id));
-            consentFormNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentFormNumber, fieldData);
-        }
-
-        return consentFormNumber;
-    } 
-}
-
-internal HL7V26Field consentText;
-
-public HL7V26Field ConsentText
-{
-    get
-    {
-        if (consentText != null)
-        {
-            return consentText;
-        }
-
-        consentText = new HL7V26Field
-        {
-            field = message[@"CON"][5],
-            Id = @"CON.5",
-            Type = @"Field",
-            Position = @"CON.5",
-            Name = @"Consent Text",
-            Length = 65536,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"FT",
-            DataTypeName = @"Formatted Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Describes the specific procedures/information releases/events the subject is consenting to.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentText.field.FieldRepetitions != null && consentText.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentText.Id));
-            consentText.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentText, fieldData);
-        }
-
-        return consentText;
-    } 
-}
-
-internal HL7V26Field subjectspecificConsentText;
-
-public HL7V26Field SubjectspecificConsentText
-{
-    get
-    {
-        if (subjectspecificConsentText != null)
-        {
-            return subjectspecificConsentText;
-        }
-
-        subjectspecificConsentText = new HL7V26Field
-        {
-            field = message[@"CON"][6],
-            Id = @"CON.6",
-            Type = @"Field",
-            Position = @"CON.6",
-            Name = @"Subject-specific Consent Text",
-            Length = 65536,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"FT",
-            DataTypeName = @"Formatted Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Describes any additions or variations to the standard procedures/information releases/events from a standard consent that are applicable to the subject whose consent is sought.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (subjectspecificConsentText.field.FieldRepetitions != null && subjectspecificConsentText.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(subjectspecificConsentText.Id));
-            subjectspecificConsentText.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(subjectspecificConsentText, fieldData);
-        }
-
-        return subjectspecificConsentText;
-    } 
-}
-
-internal HL7V26Field consentBackgroundInformation;
-
-public HL7V26Field ConsentBackgroundInformation
-{
-    get
-    {
-        if (consentBackgroundInformation != null)
-        {
-            return consentBackgroundInformation;
-        }
-
-        consentBackgroundInformation = new HL7V26Field
-        {
-            field = message[@"CON"][7],
-            Id = @"CON.7",
-            Type = @"Field",
-            Position = @"CON.7",
-            Name = @"Consent Background Information",
-            Length = 65535,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"FT",
-            DataTypeName = @"Formatted Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Describes any additional information relating to the procedure/information release/event that needs to be understood by the subject for informed consent. May include the reason for the service, the expected benefit, risks, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentBackgroundInformation.field.FieldRepetitions != null && consentBackgroundInformation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentBackgroundInformation.Id));
-            consentBackgroundInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentBackgroundInformation, fieldData);
-        }
-
-        return consentBackgroundInformation;
-    } 
-}
-
-internal HL7V26Field subjectspecificConsentBackgroundText;
-
-public HL7V26Field SubjectspecificConsentBackgroundText
-{
-    get
-    {
-        if (subjectspecificConsentBackgroundText != null)
-        {
-            return subjectspecificConsentBackgroundText;
-        }
-
-        subjectspecificConsentBackgroundText = new HL7V26Field
-        {
-            field = message[@"CON"][8],
-            Id = @"CON.8",
-            Type = @"Field",
-            Position = @"CON.8",
-            Name = @"Subject-specific Consent Background Text",
-            Length = 65535,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"FT",
-            DataTypeName = @"Formatted Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Describes any additions or variations to the standard additional information that needs to be understood by the patient for informed consent. May include a description of benefits and risks that are specific to the subject from whom consent is sought. May also include an indication that there are no subject-specific risks/benefits.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (subjectspecificConsentBackgroundText.field.FieldRepetitions != null && subjectspecificConsentBackgroundText.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(subjectspecificConsentBackgroundText.Id));
-            subjectspecificConsentBackgroundText.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(subjectspecificConsentBackgroundText, fieldData);
-        }
-
-        return subjectspecificConsentBackgroundText;
-    } 
-}
-
-internal HL7V26Field consenterimposedlimitations;
-
-public HL7V26Field Consenterimposedlimitations
-{
-    get
-    {
-        if (consenterimposedlimitations != null)
-        {
-            return consenterimposedlimitations;
-        }
-
-        consenterimposedlimitations = new HL7V26Field
-        {
-            field = message[@"CON"][9],
-            Id = @"CON.9",
-            Type = @"Field",
-            Position = @"CON.9",
-            Name = @"Consenter-imposed limitations",
-            Length = 65535,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"FT",
-            DataTypeName = @"Formatted Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Describes any restrictions or limitations placed on their consent by the subject.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consenterimposedlimitations.field.FieldRepetitions != null && consenterimposedlimitations.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consenterimposedlimitations.Id));
-            consenterimposedlimitations.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consenterimposedlimitations, fieldData);
-        }
-
-        return consenterimposedlimitations;
-    } 
-}
-
-internal HL7V26Field consentMode;
-
-public HL7V26Field ConsentMode
-{
-    get
-    {
-        if (consentMode != null)
-        {
-            return consentMode;
-        }
-
-        consentMode = new HL7V26Field
-        {
-            field = message[@"CON"][10],
-            Id = @"CON.10",
-            Type = @"Field",
-            Position = @"CON.10",
-            Name = @"Consent Mode",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = @"0497",
-            TableName = @"Consent Mode",
-            Description = @"The method in which a subject provides consent.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentMode.field.FieldRepetitions != null && consentMode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentMode.Id));
-            consentMode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentMode, fieldData);
-        }
-
-        return consentMode;
-    } 
-}
-
-internal HL7V26Field consentStatus;
-
-public HL7V26Field ConsentStatus
-{
-    get
-    {
-        if (consentStatus != null)
-        {
-            return consentStatus;
-        }
-
-        consentStatus = new HL7V26Field
-        {
-            field = message[@"CON"][11],
-            Id = @"CON.11",
-            Type = @"Field",
-            Position = @"CON.11",
-            Name = @"Consent Status",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = @"0498",
-            TableName = @"Consent Status",
-            Description = @"Indicates whether consent has been sought and granted.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentStatus.field.FieldRepetitions != null && consentStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentStatus.Id));
-            consentStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentStatus, fieldData);
-        }
-
-        return consentStatus;
-    } 
-}
-
-internal HL7V26Field consentDiscussionDateTime;
-
-public HL7V26Field ConsentDiscussionDateTime
-{
-    get
-    {
-        if (consentDiscussionDateTime != null)
-        {
-            return consentDiscussionDateTime;
-        }
-
-        consentDiscussionDateTime = new HL7V26Field
-        {
-            field = message[@"CON"][12],
-            Id = @"CON.12",
-            Type = @"Field",
-            Position = @"CON.12",
-            Name = @"Consent Discussion Date/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"Identifies the time when consent was discussed with the subject. This should only be specified if this differs from the time the consent decision is made.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentDiscussionDateTime.field.FieldRepetitions != null && consentDiscussionDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentDiscussionDateTime.Id));
-            consentDiscussionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentDiscussionDateTime, fieldData);
-        }
-
-        return consentDiscussionDateTime;
-    } 
-}
-
-internal HL7V26Field consentDecisionDateTime;
-
-public HL7V26Field ConsentDecisionDateTime
-{
-    get
-    {
-        if (consentDecisionDateTime != null)
-        {
-            return consentDecisionDateTime;
-        }
-
-        consentDecisionDateTime = new HL7V26Field
-        {
-            field = message[@"CON"][13],
-            Id = @"CON.13",
-            Type = @"Field",
-            Position = @"CON.13",
-            Name = @"Consent Decision Date/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"Identifies the time when the decision to grant/refuse consent was made. In the case of written consent, this is the time the consent form is signed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentDecisionDateTime.field.FieldRepetitions != null && consentDecisionDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentDecisionDateTime.Id));
-            consentDecisionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentDecisionDateTime, fieldData);
-        }
-
-        return consentDecisionDateTime;
-    } 
-}
-
-internal HL7V26Field consentEffectiveDateTime;
-
-public HL7V26Field ConsentEffectiveDateTime
-{
-    get
-    {
-        if (consentEffectiveDateTime != null)
-        {
-            return consentEffectiveDateTime;
-        }
-
-        consentEffectiveDateTime = new HL7V26Field
-        {
-            field = message[@"CON"][14],
-            Id = @"CON.14",
-            Type = @"Field",
-            Position = @"CON.14",
-            Name = @"Consent Effective Date/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"The time the consent becomes/became effective. This only needs to be specified if the time differs from the Consent Decision Date/Time",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentEffectiveDateTime.field.FieldRepetitions != null && consentEffectiveDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentEffectiveDateTime.Id));
-            consentEffectiveDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentEffectiveDateTime, fieldData);
-        }
-
-        return consentEffectiveDateTime;
-    } 
-}
-
-internal HL7V26Field consentEndDateTime;
-
-public HL7V26Field ConsentEndDateTime
-{
-    get
-    {
-        if (consentEndDateTime != null)
-        {
-            return consentEndDateTime;
-        }
-
-        consentEndDateTime = new HL7V26Field
-        {
-            field = message[@"CON"][15],
-            Id = @"CON.15",
-            Type = @"Field",
-            Position = @"CON.15",
-            Name = @"Consent End Date/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"The time the consent becomes ineffective. If not specified, the consent is assumed to be indefinite. For consents relating to information release, the end date/time is the date by which the released information must be returned/destroyed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentEndDateTime.field.FieldRepetitions != null && consentEndDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentEndDateTime.Id));
-            consentEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentEndDateTime, fieldData);
-        }
-
-        return consentEndDateTime;
-    } 
-}
-
-internal HL7V26Field subjectCompetenceIndicator;
-
-public HL7V26Field SubjectCompetenceIndicator
-{
-    get
-    {
-        if (subjectCompetenceIndicator != null)
-        {
-            return subjectCompetenceIndicator;
-        }
-
-        subjectCompetenceIndicator = new HL7V26Field
-        {
-            field = message[@"CON"][16],
-            Id = @"CON.16",
-            Type = @"Field",
-            Position = @"CON.16",
-            Name = @"Subject Competence Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"Identifies whether the subject was deemed competent to provide consent. Refer to table HL7 table 0136 - Yes/No Indicator .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (subjectCompetenceIndicator.field.FieldRepetitions != null && subjectCompetenceIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(subjectCompetenceIndicator.Id));
-            subjectCompetenceIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(subjectCompetenceIndicator, fieldData);
-        }
-
-        return subjectCompetenceIndicator;
-    } 
-}
-
-internal HL7V26Field translatorAssistanceIndicator;
-
-public HL7V26Field TranslatorAssistanceIndicator
-{
-    get
-    {
-        if (translatorAssistanceIndicator != null)
-        {
-            return translatorAssistanceIndicator;
-        }
-
-        translatorAssistanceIndicator = new HL7V26Field
-        {
-            field = message[@"CON"][17],
-            Id = @"CON.17",
-            Type = @"Field",
-            Position = @"CON.17",
-            Name = @"Translator Assistance Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"Identifies whether translation was (or will be) required to obtain informed consent from the subject. Refer to table HL7 table 0136 - Yes/No Indicator.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (translatorAssistanceIndicator.field.FieldRepetitions != null && translatorAssistanceIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(translatorAssistanceIndicator.Id));
-            translatorAssistanceIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(translatorAssistanceIndicator, fieldData);
-        }
-
-        return translatorAssistanceIndicator;
-    } 
-}
-
-internal HL7V26Field languageTranslatedTo;
-
-public HL7V26Field LanguageTranslatedTo
-{
-    get
-    {
-        if (languageTranslatedTo != null)
-        {
-            return languageTranslatedTo;
-        }
-
-        languageTranslatedTo = new HL7V26Field
-        {
-            field = message[@"CON"][18],
-            Id = @"CON.18",
-            Type = @"Field",
-            Position = @"CON.18",
-            Name = @"Language Translated To",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0296",
-            TableName = @"Primary Language",
-            Description = @"Identifies the language the consent material must be translated to. Refer to User-Defined Table 0296 - Language Translated Tofor values. This table may be populated with values similar to those that may be found in ISO table 639 - Language Codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (languageTranslatedTo.field.FieldRepetitions != null && languageTranslatedTo.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(languageTranslatedTo.Id));
-            languageTranslatedTo.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(languageTranslatedTo, fieldData);
-        }
-
-        return languageTranslatedTo;
-    } 
-}
-
-internal HL7V26Field informationalMaterialSuppliedIndicator;
-
-public HL7V26Field InformationalMaterialSuppliedIndicator
-{
-    get
-    {
-        if (informationalMaterialSuppliedIndicator != null)
-        {
-            return informationalMaterialSuppliedIndicator;
-        }
-
-        informationalMaterialSuppliedIndicator = new HL7V26Field
-        {
-            field = message[@"CON"][19],
-            Id = @"CON.19",
-            Type = @"Field",
-            Position = @"CON.19",
-            Name = @"Informational Material Supplied Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"Identifies whether additional educational or reference material was provided to the subject as part of the consent process. Refer to table HL7 table 0136 - Yes/No Indicator .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (informationalMaterialSuppliedIndicator.field.FieldRepetitions != null && informationalMaterialSuppliedIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(informationalMaterialSuppliedIndicator.Id));
-            informationalMaterialSuppliedIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(informationalMaterialSuppliedIndicator, fieldData);
-        }
-
-        return informationalMaterialSuppliedIndicator;
-    } 
-}
-
-internal HL7V26Field consentBypassReason;
-
-public HL7V26Field ConsentBypassReason
-{
-    get
-    {
-        if (consentBypassReason != null)
-        {
-            return consentBypassReason;
-        }
-
-        consentBypassReason = new HL7V26Field
-        {
-            field = message[@"CON"][20],
-            Id = @"CON.20",
-            Type = @"Field",
-            Position = @"CON.20",
-            Name = @"Consent Bypass Reason",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0499",
-            TableName = @"Consent Bypass Reason",
-            Description = @"Identifies why the subjects consent was not sought. This field must be populated when CON-11 - Consent Status is B - Bypassed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentBypassReason.field.FieldRepetitions != null && consentBypassReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentBypassReason.Id));
-            consentBypassReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentBypassReason, fieldData);
-        }
-
-        return consentBypassReason;
-    } 
-}
-
-internal HL7V26Field consentDisclosureLevel;
-
-public HL7V26Field ConsentDisclosureLevel
-{
-    get
-    {
-        if (consentDisclosureLevel != null)
-        {
-            return consentDisclosureLevel;
-        }
-
-        consentDisclosureLevel = new HL7V26Field
-        {
-            field = message[@"CON"][21],
-            Id = @"CON.21",
-            Type = @"Field",
-            Position = @"CON.21",
-            Name = @"Consent Disclosure Level",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0500",
-            TableName = @"Consent Disclosure Level",
-            Description = @"Identifies how much information was disclosed to the subject as part of the informed consent process.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentDisclosureLevel.field.FieldRepetitions != null && consentDisclosureLevel.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentDisclosureLevel.Id));
-            consentDisclosureLevel.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentDisclosureLevel, fieldData);
-        }
-
-        return consentDisclosureLevel;
-    } 
-}
-
-internal HL7V26Field consentNondisclosureReason;
-
-public HL7V26Field ConsentNondisclosureReason
-{
-    get
-    {
-        if (consentNondisclosureReason != null)
-        {
-            return consentNondisclosureReason;
-        }
-
-        consentNondisclosureReason = new HL7V26Field
-        {
-            field = message[@"CON"][22],
-            Id = @"CON.22",
-            Type = @"Field",
-            Position = @"CON.22",
-            Name = @"Consent Non-disclosure Reason",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0501",
-            TableName = @"Consent Non-Disclosure Reason",
-            Description = @"Identifies why the subject did not receive full disclosure. .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentNondisclosureReason.field.FieldRepetitions != null && consentNondisclosureReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentNondisclosureReason.Id));
-            consentNondisclosureReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentNondisclosureReason, fieldData);
-        }
-
-        return consentNondisclosureReason;
-    } 
-}
-
-internal HL7V26Field nonsubjectConsenterReason;
-
-public HL7V26Field NonsubjectConsenterReason
-{
-    get
-    {
-        if (nonsubjectConsenterReason != null)
-        {
-            return nonsubjectConsenterReason;
-        }
-
-        nonsubjectConsenterReason = new HL7V26Field
-        {
-            field = message[@"CON"][23],
-            Id = @"CON.23",
-            Type = @"Field",
-            Position = @"CON.23",
-            Name = @"Non-subject Consenter Reason",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0502",
-            TableName = @"Non-Subject Consenter Reason",
-            Description = @"Identifies why consent was granted by a person other than the subject of the consent.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (nonsubjectConsenterReason.field.FieldRepetitions != null && nonsubjectConsenterReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nonsubjectConsenterReason.Id));
-            nonsubjectConsenterReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(nonsubjectConsenterReason, fieldData);
-        }
-
-        return nonsubjectConsenterReason;
-    } 
-}
-
-internal HL7V26Field consenterID;
-
-public HL7V26Field ConsenterID
-{
-    get
-    {
-        if (consenterID != null)
-        {
-            return consenterID;
-        }
-
-        consenterID = new HL7V26Field
+        _consenterID = new HL7V26Field
         {
             field = message[@"CON"][24],
-            Id = @"CON.24",
-            Type = @"Field",
-            Position = @"CON.24",
-            Name = @"Consenter ID",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"Identification of the individual(s) who are consenting.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (consenterID.field.FieldRepetitions != null && consenterID.field.FieldRepetitions.Count > 0)
+        if (_consenterID.field.FieldRepetitions != null && _consenterID.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consenterID.Id));
-            consenterID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consenterID, fieldData);
+            _consenterID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consenterID, fieldData);
         }
 
-        return consenterID;
+        return _consenterID;
     } 
 }
 
-internal HL7V26Field relationshiptoSubject;
+internal HL7V26Field _relationshiptoSubject;
 
 public HL7V26Field RelationshiptoSubject
 {
     get
     {
-        if (relationshiptoSubject != null)
+        if (_relationshiptoSubject != null)
         {
-            return relationshiptoSubject;
+            return _relationshiptoSubject;
         }
 
-        relationshiptoSubject = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"CON"][25],
             Id = @"CON.25",
             Type = @"Field",
             Position = @"CON.25",
@@ -3226,17 +2889,22 @@ public HL7V26Field RelationshiptoSubject
             TableName = @"Signatory’s Relationship to Subject",
             Description = @"Identification of the relationship of the consenter to the subject.",
             Sample = @"",
+            Fields = null
+        }
+
+        _relationshiptoSubject = new HL7V26Field
+        {
+            field = message[@"CON"][25],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (relationshiptoSubject.field.FieldRepetitions != null && relationshiptoSubject.field.FieldRepetitions.Count > 0)
+        if (_relationshiptoSubject.field.FieldRepetitions != null && _relationshiptoSubject.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(relationshiptoSubject.Id));
-            relationshiptoSubject.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(relationshiptoSubject, fieldData);
+            _relationshiptoSubject.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_relationshiptoSubject, fieldData);
         }
 
-        return relationshiptoSubject;
+        return _relationshiptoSubject;
     } 
 }
     }

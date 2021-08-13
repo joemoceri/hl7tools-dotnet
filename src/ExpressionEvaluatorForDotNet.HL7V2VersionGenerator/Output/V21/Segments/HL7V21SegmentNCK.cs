@@ -25,52 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"NCK.1",
-                            Type = @"Field",
-                            Position = @"NCK.1",
-                            Name = @"System Date/Time",
-                            Length = 19,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentNCK(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field systemDateTime;
+        internal HL7V21Field _systemDateTime;
 
 public HL7V21Field SystemDateTime
 {
     get
     {
-        if (systemDateTime != null)
+        if (_systemDateTime != null)
         {
-            return systemDateTime;
+            return _systemDateTime;
         }
 
-        systemDateTime = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"NCK"][1],
             Id = @"NCK.1",
             Type = @"Field",
             Position = @"NCK.1",
@@ -84,17 +56,22 @@ public HL7V21Field SystemDateTime
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _systemDateTime = new HL7V21Field
+        {
+            field = message[@"NCK"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (systemDateTime.field.FieldRepetitions != null && systemDateTime.field.FieldRepetitions.Count > 0)
+        if (_systemDateTime.field.FieldRepetitions != null && _systemDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(systemDateTime.Id));
-            systemDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(systemDateTime, fieldData);
+            _systemDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_systemDateTime, fieldData);
         }
 
-        return systemDateTime;
+        return _systemDateTime;
     } 
 }
     }

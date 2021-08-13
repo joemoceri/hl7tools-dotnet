@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentOM3(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _sequenceNumberTestObservationMasterFile;
+
+public HL7V28Field SequenceNumberTestObservationMasterFile
+{
+    get
+    {
+        if (_sequenceNumberTestObservationMasterFile != null)
+        {
+            return _sequenceNumberTestObservationMasterFile;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OM3.1",
+            Type = @"Field",
+            Position = @"OM3.1",
+            Name = @"Sequence Number - Test/Observation Master File",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sequenceNumberTestObservationMasterFile = new HL7V28Field
+        {
+            field = message[@"OM3"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sequenceNumberTestObservationMasterFile.field.FieldRepetitions != null && _sequenceNumberTestObservationMasterFile.field.FieldRepetitions.Count > 0)
+        {
+            _sequenceNumberTestObservationMasterFile.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_sequenceNumberTestObservationMasterFile, fieldData);
+        }
+
+        return _sequenceNumberTestObservationMasterFile;
+    } 
+}
+
+internal HL7V28Field _preferredCodingSystem;
+
+public HL7V28Field PreferredCodingSystem
+{
+    get
+    {
+        if (_preferredCodingSystem != null)
+        {
+            return _preferredCodingSystem;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OM3.2",
+            Type = @"Field",
+            Position = @"OM3.2",
+            Name = @"Preferred Coding System",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the observations whose categorical responses are taken from a specified table of codes (e.g., CWE data types).  Record the preferred coding system for this observation (e.g., ICD9, SNOMED III).  Take the codes from ASTM Table 3 or 5, or specify a local code.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"OM3.1",
-                            Type = @"Field",
-                            Position = @"OM3.1",
-                            Name = @"Sequence Number - Test/Observation Master File",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM3.2",
-                            Type = @"Field",
-                            Position = @"OM3.2",
-                            Name = @"Preferred Coding System",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the observations whose categorical responses are taken from a specified table of codes (e.g., CWE data types).  Record the preferred coding system for this observation (e.g., ICD9, SNOMED III).  Take the codes from ASTM Table 3 or 5, or specify a local code.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM3.2.1",
                             Type = @"Component",
@@ -496,25 +535,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _preferredCodingSystem = new HL7V28Field
+        {
+            field = message[@"OM3"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_preferredCodingSystem.field.FieldRepetitions != null && _preferredCodingSystem.field.FieldRepetitions.Count > 0)
+        {
+            _preferredCodingSystem.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_preferredCodingSystem, fieldData);
+        }
+
+        return _preferredCodingSystem;
+    } 
+}
+
+internal HL7V28Field _validCodedanswers;
+
+public HL7V28Field ValidCodedanswers
+{
+    get
+    {
+        if (_validCodedanswers != null)
+        {
+            return _validCodedanswers;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OM3.3",
+            Type = @"Field",
+            Position = @"OM3.3",
+            Name = @"Valid Coded ""answers""",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains a list of valid coded answers.  In the case that the list of coded answers is easily enumerated, list the valid coded answers for this observation here using the preferred coding system given in OM3-2 - Preferred Coding System.  If, for example, the given observation was VDRL, the valid answers might be ""non-reactive"", ""86^ intermediate"", and ""87^ reactive"".",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM3.3",
-                            Type = @"Field",
-                            Position = @"OM3.3",
-                            Name = @"Valid Coded ""answers""",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains a list of valid coded answers.  In the case that the list of coded answers is easily enumerated, list the valid coded answers for this observation here using the preferred coding system given in OM3-2 - Preferred Coding System.  If, for example, the given observation was VDRL, the valid answers might be ""non-reactive"", ""86^ intermediate"", and ""87^ reactive"".",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM3.3.1",
                             Type = @"Component",
@@ -942,31 +1011,61 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM3.4",
-                            Type = @"Field",
-                            Position = @"OM3.4",
-                            Name = @"Normal Text/Codes For Categorical Observations",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"The first component is a code taken from a standard code source list.  The second component is the text associated with the code.  The third component is the identification of the code table source.  When only a text description of a possible answer is available, it is recorded as ^<text>.
+                        }
+        }
+
+        _validCodedanswers = new HL7V28Field
+        {
+            field = message[@"OM3"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_validCodedanswers.field.FieldRepetitions != null && _validCodedanswers.field.FieldRepetitions.Count > 0)
+        {
+            _validCodedanswers.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_validCodedanswers, fieldData);
+        }
+
+        return _validCodedanswers;
+    } 
+}
+
+internal HL7V28Field _normalTextCodesForCategoricalObservations;
+
+public HL7V28Field NormalTextCodesForCategoricalObservations
+{
+    get
+    {
+        if (_normalTextCodesForCategoricalObservations != null)
+        {
+            return _normalTextCodesForCategoricalObservations;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OM3.4",
+            Type = @"Field",
+            Position = @"OM3.4",
+            Name = @"Normal Text/Codes For Categorical Observations",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"The first component is a code taken from a standard code source list.  The second component is the text associated with the code.  The third component is the identification of the code table source.  When only a text description of a possible answer is available, it is recorded as ^<text>.
 
 Care should be taken to transmit only those results that are considered normal for that test.  A drug screen may have possible results of ""negative"" and ""positive.""  However, only a result of ""negative"" is considered to be normal.  When an observation has more than one ""normal"" result, multiple values in this field should be separated with a repeat delimiter.
 
 The format of this field is:
 
   Certain observations/tests with a nature code of A or C (see OM1-18 - Nature of Service/Test/Observation) have text (alpha) results (e.g., reactive, nonreactive).  Alpha normals for those tests should be entered in this field (e.g., ""nonreactive"").",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OM3.4.1",
                             Type = @"Component",
@@ -1394,25 +1493,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _normalTextCodesForCategoricalObservations = new HL7V28Field
+        {
+            field = message[@"OM3"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_normalTextCodesForCategoricalObservations.field.FieldRepetitions != null && _normalTextCodesForCategoricalObservations.field.FieldRepetitions.Count > 0)
+        {
+            _normalTextCodesForCategoricalObservations.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_normalTextCodesForCategoricalObservations, fieldData);
+        }
+
+        return _normalTextCodesForCategoricalObservations;
+    } 
+}
+
+internal HL7V28Field _abnormalTextCodesForCategoricalObservations;
+
+public HL7V28Field AbnormalTextCodesForCategoricalObservations
+{
+    get
+    {
+        if (_abnormalTextCodesForCategoricalObservations != null)
+        {
+            return _abnormalTextCodesForCategoricalObservations;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OM3.5",
+            Type = @"Field",
+            Position = @"OM3.5",
+            Name = @"Abnormal Text/Codes For Categorical Observations",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the list of the text answers that are abnormal for the test.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM3.5",
-                            Type = @"Field",
-                            Position = @"OM3.5",
-                            Name = @"Abnormal Text/Codes For Categorical Observations",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the list of the text answers that are abnormal for the test.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM3.5.1",
                             Type = @"Component",
@@ -1840,25 +1969,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _abnormalTextCodesForCategoricalObservations = new HL7V28Field
+        {
+            field = message[@"OM3"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_abnormalTextCodesForCategoricalObservations.field.FieldRepetitions != null && _abnormalTextCodesForCategoricalObservations.field.FieldRepetitions.Count > 0)
+        {
+            _abnormalTextCodesForCategoricalObservations.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_abnormalTextCodesForCategoricalObservations, fieldData);
+        }
+
+        return _abnormalTextCodesForCategoricalObservations;
+    } 
+}
+
+internal HL7V28Field _criticalTextCodesForCategoricalObservations;
+
+public HL7V28Field CriticalTextCodesForCategoricalObservations
+{
+    get
+    {
+        if (_criticalTextCodesForCategoricalObservations != null)
+        {
+            return _criticalTextCodesForCategoricalObservations;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"OM3.6",
+            Type = @"Field",
+            Position = @"OM3.6",
+            Name = @"Critical Text/Codes For Categorical Observations",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the list of coded results that are critically abnormal for this observation.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM3.6",
-                            Type = @"Field",
-                            Position = @"OM3.6",
-                            Name = @"Critical Text/Codes For Categorical Observations",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the list of coded results that are critically abnormal for this observation.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM3.6.1",
                             Type = @"Component",
@@ -2286,301 +2445,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM3.7",
-                            Type = @"Field",
-                            Position = @"OM3.7",
-                            Name = @"Value Type",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0125",
-                            TableName = @"Value Type",
-                            Description = @"This field contains the allowed data type for a single categorical observation (code A or C in OM1-18 - Nature of Observation).  Refer to HL7 Table 0125 - Value Type for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentOM3(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field sequenceNumberTestObservationMasterFile;
-
-public HL7V28Field SequenceNumberTestObservationMasterFile
-{
-    get
-    {
-        if (sequenceNumberTestObservationMasterFile != null)
-        {
-            return sequenceNumberTestObservationMasterFile;
-        }
-
-        sequenceNumberTestObservationMasterFile = new HL7V28Field
-        {
-            field = message[@"OM3"][1],
-            Id = @"OM3.1",
-            Type = @"Field",
-            Position = @"OM3.1",
-            Name = @"Sequence Number - Test/Observation Master File",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sequenceNumberTestObservationMasterFile.field.FieldRepetitions != null && sequenceNumberTestObservationMasterFile.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sequenceNumberTestObservationMasterFile.Id));
-            sequenceNumberTestObservationMasterFile.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(sequenceNumberTestObservationMasterFile, fieldData);
-        }
-
-        return sequenceNumberTestObservationMasterFile;
-    } 
-}
-
-internal HL7V28Field preferredCodingSystem;
-
-public HL7V28Field PreferredCodingSystem
-{
-    get
-    {
-        if (preferredCodingSystem != null)
-        {
-            return preferredCodingSystem;
-        }
-
-        preferredCodingSystem = new HL7V28Field
-        {
-            field = message[@"OM3"][2],
-            Id = @"OM3.2",
-            Type = @"Field",
-            Position = @"OM3.2",
-            Name = @"Preferred Coding System",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the observations whose categorical responses are taken from a specified table of codes (e.g., CWE data types).  Record the preferred coding system for this observation (e.g., ICD9, SNOMED III).  Take the codes from ASTM Table 3 or 5, or specify a local code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (preferredCodingSystem.field.FieldRepetitions != null && preferredCodingSystem.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(preferredCodingSystem.Id));
-            preferredCodingSystem.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(preferredCodingSystem, fieldData);
-        }
-
-        return preferredCodingSystem;
-    } 
-}
-
-internal HL7V28Field validCodedanswers;
-
-public HL7V28Field ValidCodedanswers
-{
-    get
-    {
-        if (validCodedanswers != null)
-        {
-            return validCodedanswers;
-        }
-
-        validCodedanswers = new HL7V28Field
-        {
-            field = message[@"OM3"][3],
-            Id = @"OM3.3",
-            Type = @"Field",
-            Position = @"OM3.3",
-            Name = @"Valid Coded ""answers""",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains a list of valid coded answers.  In the case that the list of coded answers is easily enumerated, list the valid coded answers for this observation here using the preferred coding system given in OM3-2 - Preferred Coding System.  If, for example, the given observation was VDRL, the valid answers might be ""non-reactive"", ""86^ intermediate"", and ""87^ reactive"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (validCodedanswers.field.FieldRepetitions != null && validCodedanswers.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(validCodedanswers.Id));
-            validCodedanswers.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(validCodedanswers, fieldData);
-        }
-
-        return validCodedanswers;
-    } 
-}
-
-internal HL7V28Field normalTextCodesForCategoricalObservations;
-
-public HL7V28Field NormalTextCodesForCategoricalObservations
-{
-    get
-    {
-        if (normalTextCodesForCategoricalObservations != null)
-        {
-            return normalTextCodesForCategoricalObservations;
-        }
-
-        normalTextCodesForCategoricalObservations = new HL7V28Field
-        {
-            field = message[@"OM3"][4],
-            Id = @"OM3.4",
-            Type = @"Field",
-            Position = @"OM3.4",
-            Name = @"Normal Text/Codes For Categorical Observations",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"The first component is a code taken from a standard code source list.  The second component is the text associated with the code.  The third component is the identification of the code table source.  When only a text description of a possible answer is available, it is recorded as ^<text>.
-
-Care should be taken to transmit only those results that are considered normal for that test.  A drug screen may have possible results of ""negative"" and ""positive.""  However, only a result of ""negative"" is considered to be normal.  When an observation has more than one ""normal"" result, multiple values in this field should be separated with a repeat delimiter.
-
-The format of this field is:
-
-  Certain observations/tests with a nature code of A or C (see OM1-18 - Nature of Service/Test/Observation) have text (alpha) results (e.g., reactive, nonreactive).  Alpha normals for those tests should be entered in this field (e.g., ""nonreactive"").",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (normalTextCodesForCategoricalObservations.field.FieldRepetitions != null && normalTextCodesForCategoricalObservations.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(normalTextCodesForCategoricalObservations.Id));
-            normalTextCodesForCategoricalObservations.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(normalTextCodesForCategoricalObservations, fieldData);
-        }
-
-        return normalTextCodesForCategoricalObservations;
-    } 
-}
-
-internal HL7V28Field abnormalTextCodesForCategoricalObservations;
-
-public HL7V28Field AbnormalTextCodesForCategoricalObservations
-{
-    get
-    {
-        if (abnormalTextCodesForCategoricalObservations != null)
-        {
-            return abnormalTextCodesForCategoricalObservations;
-        }
-
-        abnormalTextCodesForCategoricalObservations = new HL7V28Field
-        {
-            field = message[@"OM3"][5],
-            Id = @"OM3.5",
-            Type = @"Field",
-            Position = @"OM3.5",
-            Name = @"Abnormal Text/Codes For Categorical Observations",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the list of the text answers that are abnormal for the test.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (abnormalTextCodesForCategoricalObservations.field.FieldRepetitions != null && abnormalTextCodesForCategoricalObservations.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(abnormalTextCodesForCategoricalObservations.Id));
-            abnormalTextCodesForCategoricalObservations.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(abnormalTextCodesForCategoricalObservations, fieldData);
-        }
-
-        return abnormalTextCodesForCategoricalObservations;
-    } 
-}
-
-internal HL7V28Field criticalTextCodesForCategoricalObservations;
-
-public HL7V28Field CriticalTextCodesForCategoricalObservations
-{
-    get
-    {
-        if (criticalTextCodesForCategoricalObservations != null)
-        {
-            return criticalTextCodesForCategoricalObservations;
-        }
-
-        criticalTextCodesForCategoricalObservations = new HL7V28Field
+        _criticalTextCodesForCategoricalObservations = new HL7V28Field
         {
             field = message[@"OM3"][6],
-            Id = @"OM3.6",
-            Type = @"Field",
-            Position = @"OM3.6",
-            Name = @"Critical Text/Codes For Categorical Observations",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the list of coded results that are critically abnormal for this observation.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (criticalTextCodesForCategoricalObservations.field.FieldRepetitions != null && criticalTextCodesForCategoricalObservations.field.FieldRepetitions.Count > 0)
+        if (_criticalTextCodesForCategoricalObservations.field.FieldRepetitions != null && _criticalTextCodesForCategoricalObservations.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(criticalTextCodesForCategoricalObservations.Id));
-            criticalTextCodesForCategoricalObservations.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(criticalTextCodesForCategoricalObservations, fieldData);
+            _criticalTextCodesForCategoricalObservations.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_criticalTextCodesForCategoricalObservations, fieldData);
         }
 
-        return criticalTextCodesForCategoricalObservations;
+        return _criticalTextCodesForCategoricalObservations;
     } 
 }
 
-internal HL7V28Field valueType;
+internal HL7V28Field _valueType;
 
 public HL7V28Field ValueType
 {
     get
     {
-        if (valueType != null)
+        if (_valueType != null)
         {
-            return valueType;
+            return _valueType;
         }
 
-        valueType = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"OM3"][7],
             Id = @"OM3.7",
             Type = @"Field",
             Position = @"OM3.7",
@@ -2594,17 +2491,22 @@ public HL7V28Field ValueType
             TableName = @"Value Type",
             Description = @"This field contains the allowed data type for a single categorical observation (code A or C in OM1-18 - Nature of Observation).  Refer to HL7 Table 0125 - Value Type for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _valueType = new HL7V28Field
+        {
+            field = message[@"OM3"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (valueType.field.FieldRepetitions != null && valueType.field.FieldRepetitions.Count > 0)
+        if (_valueType.field.FieldRepetitions != null && _valueType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(valueType.Id));
-            valueType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(valueType, fieldData);
+            _valueType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_valueType, fieldData);
         }
 
-        return valueType;
+        return _valueType;
     } 
 }
     }

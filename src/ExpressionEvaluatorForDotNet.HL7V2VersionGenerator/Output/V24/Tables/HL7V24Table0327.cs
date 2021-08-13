@@ -20,6 +20,7 @@ namespace ExpressionEvaluatorForDotNet
                     {
                         "CH_02",
 "CH_06",
+
                     };
             } 
         }

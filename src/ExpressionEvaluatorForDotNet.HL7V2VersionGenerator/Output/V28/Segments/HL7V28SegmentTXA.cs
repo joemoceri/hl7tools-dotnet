@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentTXA(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _setIdTxa;
+
+public HL7V28Field SetIdTxa
+{
+    get
+    {
+        if (_setIdTxa != null)
+        {
+            return _setIdTxa;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.1",
+            Type = @"Field",
+            Position = @"TXA.1",
+            Name = @"Set Id- Txa",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a number that uniquely identifies this transaction for the purpose of adding, changing, or deleting the transaction.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdTxa = new HL7V28Field
+        {
+            field = message[@"TXA"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdTxa.field.FieldRepetitions != null && _setIdTxa.field.FieldRepetitions.Count > 0)
+        {
+            _setIdTxa.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_setIdTxa, fieldData);
+        }
+
+        return _setIdTxa;
+    } 
+}
+
+internal HL7V28Field _documentType;
+
+public HL7V28Field DocumentType
+{
+    get
+    {
+        if (_documentType != null)
+        {
+            return _documentType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.2",
+            Type = @"Field",
+            Position = @"TXA.2",
+            Name = @"Document Type",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0270",
+            TableName = @"Document Type",
+            Description = @"This field identifies the type of document (as defined in the transcription system).  Refer to User-Defined Table 0270 - Document Type for suggested values.  The organization is free to add more entries.  Receivers are required to inspect the Coding System component of the CWE data type to accurately interpret the meaning of the code. Senders transmitting messages to Receivers on earlier version of the standard may elect to negotiate business rules to ensure that expected data is not lost. HL7 does not assign positional meaning to user-defined codes.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"TXA.1",
-                            Type = @"Field",
-                            Position = @"TXA.1",
-                            Name = @"Set Id- Txa",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a number that uniquely identifies this transaction for the purpose of adding, changing, or deleting the transaction.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.2",
-                            Type = @"Field",
-                            Position = @"TXA.2",
-                            Name = @"Document Type",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0270",
-                            TableName = @"Document Type",
-                            Description = @"This field identifies the type of document (as defined in the transcription system).  Refer to User-Defined Table 0270 - Document Type for suggested values.  The organization is free to add more entries.  Receivers are required to inspect the Coding System component of the CWE data type to accurately interpret the meaning of the code. Senders transmitting messages to Receivers on earlier version of the standard may elect to negotiate business rules to ensure that expected data is not lost. HL7 does not assign positional meaning to user-defined codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TXA.2.1",
                             Type = @"Component",
@@ -496,61 +535,145 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _documentType = new HL7V28Field
+        {
+            field = message[@"TXA"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_documentType.field.FieldRepetitions != null && _documentType.field.FieldRepetitions.Count > 0)
+        {
+            _documentType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_documentType, fieldData);
+        }
+
+        return _documentType;
+    } 
+}
+
+internal HL7V28Field _documentContentPresentation;
+
+public HL7V28Field DocumentContentPresentation
+{
+    get
+    {
+        if (_documentContentPresentation != null)
+        {
+            return _documentContentPresentation;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.3",
+            Type = @"Field",
+            Position = @"TXA.3",
+            Name = @"Document Content Presentation",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0191",
+            TableName = @"Type of Referenced Data",
+            Description = @"This is a conditional field which is required whenever the message contains content as presented in one or more OBX segments.  This field identifies the method by which this document was obtained or originated.  Refer to HL7 Table 0191 – Type of Referenced Data for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _documentContentPresentation = new HL7V28Field
+        {
+            field = message[@"TXA"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_documentContentPresentation.field.FieldRepetitions != null && _documentContentPresentation.field.FieldRepetitions.Count > 0)
+        {
+            _documentContentPresentation.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_documentContentPresentation, fieldData);
+        }
+
+        return _documentContentPresentation;
+    } 
+}
+
+internal HL7V28Field _activityDateTime;
+
+public HL7V28Field ActivityDateTime
+{
+    get
+    {
+        if (_activityDateTime != null)
+        {
+            return _activityDateTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.4",
+            Type = @"Field",
+            Position = @"TXA.4",
+            Name = @"Activity Date/Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time identified in the document as the date a procedure or activity was performed.  This date can identify date of surgery, non-invasive procedure, consultation, examination, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _activityDateTime = new HL7V28Field
+        {
+            field = message[@"TXA"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_activityDateTime.field.FieldRepetitions != null && _activityDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _activityDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_activityDateTime, fieldData);
+        }
+
+        return _activityDateTime;
+    } 
+}
+
+internal HL7V28Field _primaryActivityProviderCodeName;
+
+public HL7V28Field PrimaryActivityProviderCodeName
+{
+    get
+    {
+        if (_primaryActivityProviderCodeName != null)
+        {
+            return _primaryActivityProviderCodeName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.5",
+            Type = @"Field",
+            Position = @"TXA.5",
+            Name = @"Primary Activity Provider Code/Name",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the person identified in the document as being responsible for performing the procedure or activity.  This field includes the code and name (if available) of the caregiver. This field is conditional based upon the presence of a value in TXA-4-Activity Date/Time.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TXA.3",
-                            Type = @"Field",
-                            Position = @"TXA.3",
-                            Name = @"Document Content Presentation",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0191",
-                            TableName = @"Type of Referenced Data",
-                            Description = @"This is a conditional field which is required whenever the message contains content as presented in one or more OBX segments.  This field identifies the method by which this document was obtained or originated.  Refer to HL7 Table 0191 – Type of Referenced Data for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.4",
-                            Type = @"Field",
-                            Position = @"TXA.4",
-                            Name = @"Activity Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time identified in the document as the date a procedure or activity was performed.  This date can identify date of surgery, non-invasive procedure, consultation, examination, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.5",
-                            Type = @"Field",
-                            Position = @"TXA.5",
-                            Name = @"Primary Activity Provider Code/Name",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the person identified in the document as being responsible for performing the procedure or activity.  This field includes the code and name (if available) of the caregiver. This field is conditional based upon the presence of a value in TXA-4-Activity Date/Time.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TXA.5.1",
                             Type = @"Component",
@@ -2956,79 +3079,190 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primaryActivityProviderCodeName = new HL7V28Field
+        {
+            field = message[@"TXA"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryActivityProviderCodeName.field.FieldRepetitions != null && _primaryActivityProviderCodeName.field.FieldRepetitions.Count > 0)
+        {
+            _primaryActivityProviderCodeName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_primaryActivityProviderCodeName, fieldData);
+        }
+
+        return _primaryActivityProviderCodeName;
+    } 
+}
+
+internal HL7V28Field _originationDateTime;
+
+public HL7V28Field OriginationDateTime
+{
+    get
+    {
+        if (_originationDateTime != null)
+        {
+            return _originationDateTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.6",
+            Type = @"Field",
+            Position = @"TXA.6",
+            Name = @"Origination Date/Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time the document was created (i.e., dictated, recorded, etc.).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _originationDateTime = new HL7V28Field
+        {
+            field = message[@"TXA"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_originationDateTime.field.FieldRepetitions != null && _originationDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _originationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_originationDateTime, fieldData);
+        }
+
+        return _originationDateTime;
+    } 
+}
+
+internal HL7V28Field _transcriptionDateTime;
+
+public HL7V28Field TranscriptionDateTime
+{
+    get
+    {
+        if (_transcriptionDateTime != null)
+        {
+            return _transcriptionDateTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.7",
+            Type = @"Field",
+            Position = @"TXA.7",
+            Name = @"Transcription Date/Time",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time the input was actually transcribed.  This field is conditional based upon the presence of a value in TXA-17-Document Completion Status of anything except ""dictated.""",
+            Sample = @"",
+            Fields = null
+        }
+
+        _transcriptionDateTime = new HL7V28Field
+        {
+            field = message[@"TXA"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transcriptionDateTime.field.FieldRepetitions != null && _transcriptionDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _transcriptionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_transcriptionDateTime, fieldData);
+        }
+
+        return _transcriptionDateTime;
+    } 
+}
+
+internal HL7V28Field _editDateTime;
+
+public HL7V28Field EditDateTime
+{
+    get
+    {
+        if (_editDateTime != null)
+        {
+            return _editDateTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.8",
+            Type = @"Field",
+            Position = @"TXA.8",
+            Name = @"Edit Date/Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time the document was edited.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _editDateTime = new HL7V28Field
+        {
+            field = message[@"TXA"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_editDateTime.field.FieldRepetitions != null && _editDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _editDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_editDateTime, fieldData);
+        }
+
+        return _editDateTime;
+    } 
+}
+
+internal HL7V28Field _originatorCodeName;
+
+public HL7V28Field OriginatorCodeName
+{
+    get
+    {
+        if (_originatorCodeName != null)
+        {
+            return _originatorCodeName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.9",
+            Type = @"Field",
+            Position = @"TXA.9",
+            Name = @"Originator Code/Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the person who originated (i.e., dictated) the document.  The document originator may differ from the person responsible for authenticating the document.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TXA.6",
-                            Type = @"Field",
-                            Position = @"TXA.6",
-                            Name = @"Origination Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time the document was created (i.e., dictated, recorded, etc.).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.7",
-                            Type = @"Field",
-                            Position = @"TXA.7",
-                            Name = @"Transcription Date/Time",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time the input was actually transcribed.  This field is conditional based upon the presence of a value in TXA-17-Document Completion Status of anything except ""dictated.""",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.8",
-                            Type = @"Field",
-                            Position = @"TXA.8",
-                            Name = @"Edit Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time the document was edited.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.9",
-                            Type = @"Field",
-                            Position = @"TXA.9",
-                            Name = @"Originator Code/Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the person who originated (i.e., dictated) the document.  The document originator may differ from the person responsible for authenticating the document.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TXA.9.1",
                             Type = @"Component",
@@ -5434,25 +5668,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _originatorCodeName = new HL7V28Field
+        {
+            field = message[@"TXA"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_originatorCodeName.field.FieldRepetitions != null && _originatorCodeName.field.FieldRepetitions.Count > 0)
+        {
+            _originatorCodeName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_originatorCodeName, fieldData);
+        }
+
+        return _originatorCodeName;
+    } 
+}
+
+internal HL7V28Field _assignedDocumentAuthenticator;
+
+public HL7V28Field AssignedDocumentAuthenticator
+{
+    get
+    {
+        if (_assignedDocumentAuthenticator != null)
+        {
+            return _assignedDocumentAuthenticator;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.10",
+            Type = @"Field",
+            Position = @"TXA.10",
+            Name = @"Assigned Document Authenticator",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the person(s) responsible for authenticating the document, who may differ from the originator.  Multiple persons may be responsible for authentication, especially in teaching facilities.  This field is allowed to repeat an undefined number of times.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TXA.10",
-                            Type = @"Field",
-                            Position = @"TXA.10",
-                            Name = @"Assigned Document Authenticator",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the person(s) responsible for authenticating the document, who may differ from the originator.  Multiple persons may be responsible for authentication, especially in teaching facilities.  This field is allowed to repeat an undefined number of times.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TXA.10.1",
                             Type = @"Component",
@@ -7858,26 +8122,56 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.11",
-                            Type = @"Field",
-                            Position = @"TXA.11",
-                            Name = @"Transcriptionist Code/Name",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the person transcribing the document. This is a conditional value; it is required on all transcribed documents.
+                        }
+        }
+
+        _assignedDocumentAuthenticator = new HL7V28Field
+        {
+            field = message[@"TXA"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_assignedDocumentAuthenticator.field.FieldRepetitions != null && _assignedDocumentAuthenticator.field.FieldRepetitions.Count > 0)
+        {
+            _assignedDocumentAuthenticator.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_assignedDocumentAuthenticator, fieldData);
+        }
+
+        return _assignedDocumentAuthenticator;
+    } 
+}
+
+internal HL7V28Field _transcriptionistCodeName;
+
+public HL7V28Field TranscriptionistCodeName
+{
+    get
+    {
+        if (_transcriptionistCodeName != null)
+        {
+            return _transcriptionistCodeName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.11",
+            Type = @"Field",
+            Position = @"TXA.11",
+            Name = @"Transcriptionist Code/Name",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the person transcribing the document. This is a conditional value; it is required on all transcribed documents.
 TXA-11 - Condition: If TXA-11 is valued and the corresponding OBR segment is present in the message OBR-35 must be blank.  If OBR-35 is valued while TXA-11 is valued,  OBR-35 shall be ignored.  See message definitions including TXA for further guidanceon which ORC/OBR pairs to consider.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"TXA.11.1",
                             Type = @"Component",
@@ -10283,25 +10577,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transcriptionistCodeName = new HL7V28Field
+        {
+            field = message[@"TXA"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transcriptionistCodeName.field.FieldRepetitions != null && _transcriptionistCodeName.field.FieldRepetitions.Count > 0)
+        {
+            _transcriptionistCodeName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_transcriptionistCodeName, fieldData);
+        }
+
+        return _transcriptionistCodeName;
+    } 
+}
+
+internal HL7V28Field _uniqueDocumentNumber;
+
+public HL7V28Field UniqueDocumentNumber
+{
+    get
+    {
+        if (_uniqueDocumentNumber != null)
+        {
+            return _uniqueDocumentNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.12",
+            Type = @"Field",
+            Position = @"TXA.12",
+            Name = @"Unique Document Number",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a unique document identification number assigned by the sending system. This document number is used to assist the receiving system in matching future updates to the document, as well as to identify the document in a query.  When the vendor does not provide a unique document ID number, some type of document identifier should be entered here, or the Unique Document File name should be utilized.  See Chapter 2A, section 2.A.89, ""XTN - extended telecommunication number.""  Where the system does not customarily have a document filler number, this number could serve as that value, as well.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TXA.12",
-                            Type = @"Field",
-                            Position = @"TXA.12",
-                            Name = @"Unique Document Number",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a unique document identification number assigned by the sending system. This document number is used to assist the receiving system in matching future updates to the document, as well as to identify the document in a query.  When the vendor does not provide a unique document ID number, some type of document identifier should be entered here, or the Unique Document File name should be utilized.  See Chapter 2A, section 2.A.89, ""XTN - extended telecommunication number.""  Where the system does not customarily have a document filler number, this number could serve as that value, as well.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TXA.12.1",
                             Type = @"Component",
@@ -10377,25 +10701,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _uniqueDocumentNumber = new HL7V28Field
+        {
+            field = message[@"TXA"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_uniqueDocumentNumber.field.FieldRepetitions != null && _uniqueDocumentNumber.field.FieldRepetitions.Count > 0)
+        {
+            _uniqueDocumentNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_uniqueDocumentNumber, fieldData);
+        }
+
+        return _uniqueDocumentNumber;
+    } 
+}
+
+internal HL7V28Field _parentDocumentNumber;
+
+public HL7V28Field ParentDocumentNumber
+{
+    get
+    {
+        if (_parentDocumentNumber != null)
+        {
+            return _parentDocumentNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.13",
+            Type = @"Field",
+            Position = @"TXA.13",
+            Name = @"Parent Document Number",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a document number that identifies the parent document to which this document belongs.  The parent document number can be used to assist the receiving system in matching future updates to this document.  This is a conditional field that is always required on T05 (document addendum notification), T06 (document addendum notification and content), T09 (document replacement notification), and T10 (document replacement notification and content) events.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TXA.13",
-                            Type = @"Field",
-                            Position = @"TXA.13",
-                            Name = @"Parent Document Number",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a document number that identifies the parent document to which this document belongs.  The parent document number can be used to assist the receiving system in matching future updates to this document.  This is a conditional field that is always required on T05 (document addendum notification), T06 (document addendum notification and content), T09 (document replacement notification), and T10 (document replacement notification and content) events.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TXA.13.1",
                             Type = @"Component",
@@ -10471,29 +10825,59 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.14",
-                            Type = @"Field",
-                            Position = @"TXA.14",
-                            Name = @"Placer Order Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the placer application's order number.
+                        }
+        }
+
+        _parentDocumentNumber = new HL7V28Field
+        {
+            field = message[@"TXA"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_parentDocumentNumber.field.FieldRepetitions != null && _parentDocumentNumber.field.FieldRepetitions.Count > 0)
+        {
+            _parentDocumentNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_parentDocumentNumber, fieldData);
+        }
+
+        return _parentDocumentNumber;
+    } 
+}
+
+internal HL7V28Field _placerOrderNumber;
+
+public HL7V28Field PlacerOrderNumber
+{
+    get
+    {
+        if (_placerOrderNumber != null)
+        {
+            return _placerOrderNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.14",
+            Type = @"Field",
+            Position = @"TXA.14",
+            Name = @"Placer Order Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the placer application's order number.
 
 This is a composite field.  The first component is a string of characters that identifies an individual order (i.e., OBR).  It is assigned by the placer (ordering application).  It identifies an order uniquely among all orders from a particular ordering application.  The second through fourth components contain the (filler) assigning authority of the placing application.  The (filler) assigning authority is a string of characters that will be uniquely associated with an application.  A given institution or group of intercommunicating institutions should establish a unique list of applications that may be potential placers and fillers and assign unique entity identifiers.  The components are separated by component delimiters.
 
 TXA-14 - Condition: If corresponding ORC and/or OBR segments are present in the message and ORC-2 or OBR-2 is valued, this field must be blank.  If TXA-14 is valued while ORC-2 or OBR-2 is valued it shall be ignored.  See message definitions including TXA for further guidance on which ORC/OBR pairs to consider.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"TXA.14.1",
                             Type = @"Component",
@@ -10569,31 +10953,61 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.15",
-                            Type = @"Field",
-                            Position = @"TXA.15",
-                            Name = @"Filler Order Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the order number associated with the filling application.  Where a transcription service or similar organization creates the document and uses an internally unique identifier, that number should be inserted in this field.  Its first component is a string of characters that identifies an order detail segment (i.e., OBR).  This string must uniquely identify the order (as specified in the order detail segment) from other orders in a particular filling application (i.e., transcription service).  This uniqueness must persist over time.  Where a number is reused over time, a date can be affixed to the non-unique number to make it unique.
+                        }
+        }
+
+        _placerOrderNumber = new HL7V28Field
+        {
+            field = message[@"TXA"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_placerOrderNumber.field.FieldRepetitions != null && _placerOrderNumber.field.FieldRepetitions.Count > 0)
+        {
+            _placerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_placerOrderNumber, fieldData);
+        }
+
+        return _placerOrderNumber;
+    } 
+}
+
+internal HL7V28Field _fillerOrderNumber;
+
+public HL7V28Field FillerOrderNumber
+{
+    get
+    {
+        if (_fillerOrderNumber != null)
+        {
+            return _fillerOrderNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.15",
+            Type = @"Field",
+            Position = @"TXA.15",
+            Name = @"Filler Order Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the order number associated with the filling application.  Where a transcription service or similar organization creates the document and uses an internally unique identifier, that number should be inserted in this field.  Its first component is a string of characters that identifies an order detail segment (i.e., OBR).  This string must uniquely identify the order (as specified in the order detail segment) from other orders in a particular filling application (i.e., transcription service).  This uniqueness must persist over time.  Where a number is reused over time, a date can be affixed to the non-unique number to make it unique.
 
 The second through fourth components contains the (filler) assigning authority.  The (filler) assigning authority is a string of characters that uniquely defines the application from other applications on the network.  The second through fourth components of the filler order number always identify the actual filler of an order.
 
 TXA-15 - Condition: If corresponding ORC and/or OBR segments are present in the message and ORC-3 or OBR-3 is valued, this field must be blank.  If TXA-14 is valued while ORC-3 or OBR-3 is valued it shall be ignored.  See message definitions including TXA for further guidanceon which ORC/OBR pairs to consider
 
  For further details, please see the definitions provided in Chapter 4, ""Orders"".",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"TXA.15.1",
                             Type = @"Component",
@@ -10669,135 +11083,327 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.16",
-                            Type = @"Field",
-                            Position = @"TXA.16",
-                            Name = @"Unique Document File Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a unique name assigned to a document by the sending system.  The file name is used to assist the receiving system in matching future updates to the document.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.17",
-                            Type = @"Field",
-                            Position = @"TXA.17",
-                            Name = @"Document Completion Status",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0271",
-                            TableName = @"Document Completion Status",
-                            Description = @"This field identifies the current completion state of the document.  This is a required, table-driven field.  Refer to HL7 Table 0271 - Document Completion Status for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.18",
-                            Type = @"Field",
-                            Position = @"TXA.18",
-                            Name = @"Document Confidentiality Status",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0272",
-                            TableName = @"Document Confidentiality Status",
-                            Description = @"This is an optional field which identifies the degree to which special confidentiality protection should be applied to this information.  The assignment of data elements to these categories is left to the discretion of the healthcare organization.  Refer to HL7 Table 0272 - Document Confidentiality Status for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.19",
-                            Type = @"Field",
-                            Position = @"TXA.19",
-                            Name = @"Document Availability Status",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0273",
-                            TableName = @"Document Availability Status",
-                            Description = @"This is an optional field which identifies a document's availability for use in patient care.  If an organization's business rules allow a document to be used for patient care before it is authenticated, the value of this field should be set to ""AV.""  If a document has been made available for patient care, it cannot be changed or deleted.  If an erroneous document has been made available at any point in time and a replacement is not appropriate, then it may be marked as ""Canceled"" and removed, as in the case of a document being assigned to the wrong patient.  Additional information must be provided via an addendum, which is separately authenticated and date/time stamped.  If the content of a document whose status is ""Available"" must be revised, this is done by issuing a replacement, which is separately authenticated and date/time stamped.  Refer to HL7 Table 0273 - Document Availability Status for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.20",
-                            Type = @"Field",
-                            Position = @"TXA.20",
-                            Name = @"Document Storage Status",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0275",
-                            TableName = @"Document Storage Status",
-                            Description = @"This optional field identifies the storage status of the document.  Refer to HL7 Table 0275 - Document Storage Status for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.21",
-                            Type = @"Field",
-                            Position = @"TXA.21",
-                            Name = @"Document Change Reason",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This free text field (limited to 30 characters) contains the reason for document status change.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.22",
-                            Type = @"Field",
-                            Position = @"TXA.22",
-                            Name = @"Authentication Person, Time Stamp (set)",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"PPN",
-                            DataTypeName = @"Performing Person Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a set of components describing by whom and when authentication was performed (either manually or electronically).  The Date/Time Action Performed component describes the date/time of the authentication (Authentication Time Stamp).  The remaining components identify the person performing the authentication (Authentication Person).  If either of the Authenticating Person or the Authentication Time Stamp is valued as non-null, then both must be valued as non-null.
+                        }
+        }
+
+        _fillerOrderNumber = new HL7V28Field
+        {
+            field = message[@"TXA"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fillerOrderNumber.field.FieldRepetitions != null && _fillerOrderNumber.field.FieldRepetitions.Count > 0)
+        {
+            _fillerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_fillerOrderNumber, fieldData);
+        }
+
+        return _fillerOrderNumber;
+    } 
+}
+
+internal HL7V28Field _uniqueDocumentFileName;
+
+public HL7V28Field UniqueDocumentFileName
+{
+    get
+    {
+        if (_uniqueDocumentFileName != null)
+        {
+            return _uniqueDocumentFileName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.16",
+            Type = @"Field",
+            Position = @"TXA.16",
+            Name = @"Unique Document File Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a unique name assigned to a document by the sending system.  The file name is used to assist the receiving system in matching future updates to the document.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _uniqueDocumentFileName = new HL7V28Field
+        {
+            field = message[@"TXA"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_uniqueDocumentFileName.field.FieldRepetitions != null && _uniqueDocumentFileName.field.FieldRepetitions.Count > 0)
+        {
+            _uniqueDocumentFileName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_uniqueDocumentFileName, fieldData);
+        }
+
+        return _uniqueDocumentFileName;
+    } 
+}
+
+internal HL7V28Field _documentCompletionStatus;
+
+public HL7V28Field DocumentCompletionStatus
+{
+    get
+    {
+        if (_documentCompletionStatus != null)
+        {
+            return _documentCompletionStatus;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.17",
+            Type = @"Field",
+            Position = @"TXA.17",
+            Name = @"Document Completion Status",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0271",
+            TableName = @"Document Completion Status",
+            Description = @"This field identifies the current completion state of the document.  This is a required, table-driven field.  Refer to HL7 Table 0271 - Document Completion Status for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _documentCompletionStatus = new HL7V28Field
+        {
+            field = message[@"TXA"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_documentCompletionStatus.field.FieldRepetitions != null && _documentCompletionStatus.field.FieldRepetitions.Count > 0)
+        {
+            _documentCompletionStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_documentCompletionStatus, fieldData);
+        }
+
+        return _documentCompletionStatus;
+    } 
+}
+
+internal HL7V28Field _documentConfidentialityStatus;
+
+public HL7V28Field DocumentConfidentialityStatus
+{
+    get
+    {
+        if (_documentConfidentialityStatus != null)
+        {
+            return _documentConfidentialityStatus;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.18",
+            Type = @"Field",
+            Position = @"TXA.18",
+            Name = @"Document Confidentiality Status",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0272",
+            TableName = @"Document Confidentiality Status",
+            Description = @"This is an optional field which identifies the degree to which special confidentiality protection should be applied to this information.  The assignment of data elements to these categories is left to the discretion of the healthcare organization.  Refer to HL7 Table 0272 - Document Confidentiality Status for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _documentConfidentialityStatus = new HL7V28Field
+        {
+            field = message[@"TXA"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_documentConfidentialityStatus.field.FieldRepetitions != null && _documentConfidentialityStatus.field.FieldRepetitions.Count > 0)
+        {
+            _documentConfidentialityStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_documentConfidentialityStatus, fieldData);
+        }
+
+        return _documentConfidentialityStatus;
+    } 
+}
+
+internal HL7V28Field _documentAvailabilityStatus;
+
+public HL7V28Field DocumentAvailabilityStatus
+{
+    get
+    {
+        if (_documentAvailabilityStatus != null)
+        {
+            return _documentAvailabilityStatus;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.19",
+            Type = @"Field",
+            Position = @"TXA.19",
+            Name = @"Document Availability Status",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0273",
+            TableName = @"Document Availability Status",
+            Description = @"This is an optional field which identifies a document's availability for use in patient care.  If an organization's business rules allow a document to be used for patient care before it is authenticated, the value of this field should be set to ""AV.""  If a document has been made available for patient care, it cannot be changed or deleted.  If an erroneous document has been made available at any point in time and a replacement is not appropriate, then it may be marked as ""Canceled"" and removed, as in the case of a document being assigned to the wrong patient.  Additional information must be provided via an addendum, which is separately authenticated and date/time stamped.  If the content of a document whose status is ""Available"" must be revised, this is done by issuing a replacement, which is separately authenticated and date/time stamped.  Refer to HL7 Table 0273 - Document Availability Status for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _documentAvailabilityStatus = new HL7V28Field
+        {
+            field = message[@"TXA"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_documentAvailabilityStatus.field.FieldRepetitions != null && _documentAvailabilityStatus.field.FieldRepetitions.Count > 0)
+        {
+            _documentAvailabilityStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_documentAvailabilityStatus, fieldData);
+        }
+
+        return _documentAvailabilityStatus;
+    } 
+}
+
+internal HL7V28Field _documentStorageStatus;
+
+public HL7V28Field DocumentStorageStatus
+{
+    get
+    {
+        if (_documentStorageStatus != null)
+        {
+            return _documentStorageStatus;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.20",
+            Type = @"Field",
+            Position = @"TXA.20",
+            Name = @"Document Storage Status",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0275",
+            TableName = @"Document Storage Status",
+            Description = @"This optional field identifies the storage status of the document.  Refer to HL7 Table 0275 - Document Storage Status for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _documentStorageStatus = new HL7V28Field
+        {
+            field = message[@"TXA"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_documentStorageStatus.field.FieldRepetitions != null && _documentStorageStatus.field.FieldRepetitions.Count > 0)
+        {
+            _documentStorageStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_documentStorageStatus, fieldData);
+        }
+
+        return _documentStorageStatus;
+    } 
+}
+
+internal HL7V28Field _documentChangeReason;
+
+public HL7V28Field DocumentChangeReason
+{
+    get
+    {
+        if (_documentChangeReason != null)
+        {
+            return _documentChangeReason;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.21",
+            Type = @"Field",
+            Position = @"TXA.21",
+            Name = @"Document Change Reason",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This free text field (limited to 30 characters) contains the reason for document status change.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _documentChangeReason = new HL7V28Field
+        {
+            field = message[@"TXA"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_documentChangeReason.field.FieldRepetitions != null && _documentChangeReason.field.FieldRepetitions.Count > 0)
+        {
+            _documentChangeReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_documentChangeReason, fieldData);
+        }
+
+        return _documentChangeReason;
+    } 
+}
+
+internal HL7V28Field _authenticationPersonTimeStampset;
+
+public HL7V28Field AuthenticationPersonTimeStampset
+{
+    get
+    {
+        if (_authenticationPersonTimeStampset != null)
+        {
+            return _authenticationPersonTimeStampset;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.22",
+            Type = @"Field",
+            Position = @"TXA.22",
+            Name = @"Authentication Person, Time Stamp (set)",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"PPN",
+            DataTypeName = @"Performing Person Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a set of components describing by whom and when authentication was performed (either manually or electronically).  The Date/Time Action Performed component describes the date/time of the authentication (Authentication Time Stamp).  The remaining components identify the person performing the authentication (Authentication Person).  If either of the Authenticating Person or the Authentication Time Stamp is valued as non-null, then both must be valued as non-null.
 
 TXA-22 - Condition: If TXA-22 is valued and the corresponding OBR segment is present in the message OBR-32 must be blank.  If OBR-32 is valued while TXA-22 is valued,  OBR-32 shall be ignored.  See message definitions including TXA for further guidanceon which ORC/OBR pairs to consider.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"TXA.22.1",
                             Type = @"Component",
@@ -13208,25 +13814,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _authenticationPersonTimeStampset = new HL7V28Field
+        {
+            field = message[@"TXA"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_authenticationPersonTimeStampset.field.FieldRepetitions != null && _authenticationPersonTimeStampset.field.FieldRepetitions.Count > 0)
+        {
+            _authenticationPersonTimeStampset.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_authenticationPersonTimeStampset, fieldData);
+        }
+
+        return _authenticationPersonTimeStampset;
+    } 
+}
+
+internal HL7V28Field _distributedCopiescodeAndNameOfRecipients;
+
+public HL7V28Field DistributedCopiescodeAndNameOfRecipients
+{
+    get
+    {
+        if (_distributedCopiescodeAndNameOfRecipients != null)
+        {
+            return _distributedCopiescodeAndNameOfRecipients;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.23",
+            Type = @"Field",
+            Position = @"TXA.23",
+            Name = @"Distributed Copies (code And Name Of Recipient(s) )",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the persons who received a copy of this document.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TXA.23",
-                            Type = @"Field",
-                            Position = @"TXA.23",
-                            Name = @"Distributed Copies (code And Name Of Recipient(s) )",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the persons who received a copy of this document.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TXA.23.1",
                             Type = @"Component",
@@ -15632,25 +16268,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _distributedCopiescodeAndNameOfRecipients = new HL7V28Field
+        {
+            field = message[@"TXA"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_distributedCopiescodeAndNameOfRecipients.field.FieldRepetitions != null && _distributedCopiescodeAndNameOfRecipients.field.FieldRepetitions.Count > 0)
+        {
+            _distributedCopiescodeAndNameOfRecipients.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_distributedCopiescodeAndNameOfRecipients, fieldData);
+        }
+
+        return _distributedCopiescodeAndNameOfRecipients;
+    } 
+}
+
+internal HL7V28Field _folderAssignment;
+
+public HL7V28Field FolderAssignment
+{
+    get
+    {
+        if (_folderAssignment != null)
+        {
+            return _folderAssignment;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"TXA.24",
+            Type = @"Field",
+            Position = @"TXA.24",
+            Name = @"Folder Assignment",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to assign documents to folders.  These folders are not nested; a document may either be part of none or several folders. In practice this can be used to separate the documents into domain specific types (e.g., cardiology reports, radiology reports), organizational types (e.g., administrational document, billing document), body region types (e.g., chest CT, leg CT), or something else. Furthermore, this information can be combined. This usually depends on the system involved and therefore it must be up to the user to define it. The systems can use the information to define workflows or manage access to the document.  Receivers are required to inspect the Coding System component of the CWE data type to accurately interpret the meaning of the code. Senders transmitting messages to Receivers on earlier version of the standard may elect to negotiate business rules to ensure that expected data is not lost. HL7 does not assign positional meaning to user-defined codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TXA.24",
-                            Type = @"Field",
-                            Position = @"TXA.24",
-                            Name = @"Folder Assignment",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to assign documents to folders.  These folders are not nested; a document may either be part of none or several folders. In practice this can be used to separate the documents into domain specific types (e.g., cardiology reports, radiology reports), organizational types (e.g., administrational document, billing document), body region types (e.g., chest CT, leg CT), or something else. Furthermore, this information can be combined. This usually depends on the system involved and therefore it must be up to the user to define it. The systems can use the information to define workflows or manage access to the document.  Receivers are required to inspect the Coding System component of the CWE data type to accurately interpret the meaning of the code. Senders transmitting messages to Receivers on earlier version of the standard may elect to negotiate business rules to ensure that expected data is not lost. HL7 does not assign positional meaning to user-defined codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TXA.24.1",
                             Type = @"Component",
@@ -16078,1064 +16744,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.25",
-                            Type = @"Field",
-                            Position = @"TXA.25",
-                            Name = @"Document Title",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field supports the identification of the document title. When communicating the meta information without the document contents you may submit the document title as well.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TXA.26",
-                            Type = @"Field",
-                            Position = @"TXA.26",
-                            Name = @"Agreed Due Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time the document is or will be due back to the original author or dictator from the transcriptionist.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentTXA(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field setIdTxa;
-
-public HL7V28Field SetIdTxa
-{
-    get
-    {
-        if (setIdTxa != null)
-        {
-            return setIdTxa;
-        }
-
-        setIdTxa = new HL7V28Field
-        {
-            field = message[@"TXA"][1],
-            Id = @"TXA.1",
-            Type = @"Field",
-            Position = @"TXA.1",
-            Name = @"Set Id- Txa",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a number that uniquely identifies this transaction for the purpose of adding, changing, or deleting the transaction.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdTxa.field.FieldRepetitions != null && setIdTxa.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdTxa.Id));
-            setIdTxa.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(setIdTxa, fieldData);
-        }
-
-        return setIdTxa;
-    } 
-}
-
-internal HL7V28Field documentType;
-
-public HL7V28Field DocumentType
-{
-    get
-    {
-        if (documentType != null)
-        {
-            return documentType;
-        }
-
-        documentType = new HL7V28Field
-        {
-            field = message[@"TXA"][2],
-            Id = @"TXA.2",
-            Type = @"Field",
-            Position = @"TXA.2",
-            Name = @"Document Type",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0270",
-            TableName = @"Document Type",
-            Description = @"This field identifies the type of document (as defined in the transcription system).  Refer to User-Defined Table 0270 - Document Type for suggested values.  The organization is free to add more entries.  Receivers are required to inspect the Coding System component of the CWE data type to accurately interpret the meaning of the code. Senders transmitting messages to Receivers on earlier version of the standard may elect to negotiate business rules to ensure that expected data is not lost. HL7 does not assign positional meaning to user-defined codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (documentType.field.FieldRepetitions != null && documentType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(documentType.Id));
-            documentType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(documentType, fieldData);
-        }
-
-        return documentType;
-    } 
-}
-
-internal HL7V28Field documentContentPresentation;
-
-public HL7V28Field DocumentContentPresentation
-{
-    get
-    {
-        if (documentContentPresentation != null)
-        {
-            return documentContentPresentation;
-        }
-
-        documentContentPresentation = new HL7V28Field
-        {
-            field = message[@"TXA"][3],
-            Id = @"TXA.3",
-            Type = @"Field",
-            Position = @"TXA.3",
-            Name = @"Document Content Presentation",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0191",
-            TableName = @"Type of Referenced Data",
-            Description = @"This is a conditional field which is required whenever the message contains content as presented in one or more OBX segments.  This field identifies the method by which this document was obtained or originated.  Refer to HL7 Table 0191 – Type of Referenced Data for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (documentContentPresentation.field.FieldRepetitions != null && documentContentPresentation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(documentContentPresentation.Id));
-            documentContentPresentation.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(documentContentPresentation, fieldData);
-        }
-
-        return documentContentPresentation;
-    } 
-}
-
-internal HL7V28Field activityDateTime;
-
-public HL7V28Field ActivityDateTime
-{
-    get
-    {
-        if (activityDateTime != null)
-        {
-            return activityDateTime;
-        }
-
-        activityDateTime = new HL7V28Field
-        {
-            field = message[@"TXA"][4],
-            Id = @"TXA.4",
-            Type = @"Field",
-            Position = @"TXA.4",
-            Name = @"Activity Date/Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time identified in the document as the date a procedure or activity was performed.  This date can identify date of surgery, non-invasive procedure, consultation, examination, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (activityDateTime.field.FieldRepetitions != null && activityDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(activityDateTime.Id));
-            activityDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(activityDateTime, fieldData);
-        }
-
-        return activityDateTime;
-    } 
-}
-
-internal HL7V28Field primaryActivityProviderCodeName;
-
-public HL7V28Field PrimaryActivityProviderCodeName
-{
-    get
-    {
-        if (primaryActivityProviderCodeName != null)
-        {
-            return primaryActivityProviderCodeName;
-        }
-
-        primaryActivityProviderCodeName = new HL7V28Field
-        {
-            field = message[@"TXA"][5],
-            Id = @"TXA.5",
-            Type = @"Field",
-            Position = @"TXA.5",
-            Name = @"Primary Activity Provider Code/Name",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the person identified in the document as being responsible for performing the procedure or activity.  This field includes the code and name (if available) of the caregiver. This field is conditional based upon the presence of a value in TXA-4-Activity Date/Time.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryActivityProviderCodeName.field.FieldRepetitions != null && primaryActivityProviderCodeName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryActivityProviderCodeName.Id));
-            primaryActivityProviderCodeName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(primaryActivityProviderCodeName, fieldData);
-        }
-
-        return primaryActivityProviderCodeName;
-    } 
-}
-
-internal HL7V28Field originationDateTime;
-
-public HL7V28Field OriginationDateTime
-{
-    get
-    {
-        if (originationDateTime != null)
-        {
-            return originationDateTime;
-        }
-
-        originationDateTime = new HL7V28Field
-        {
-            field = message[@"TXA"][6],
-            Id = @"TXA.6",
-            Type = @"Field",
-            Position = @"TXA.6",
-            Name = @"Origination Date/Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time the document was created (i.e., dictated, recorded, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (originationDateTime.field.FieldRepetitions != null && originationDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(originationDateTime.Id));
-            originationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(originationDateTime, fieldData);
-        }
-
-        return originationDateTime;
-    } 
-}
-
-internal HL7V28Field transcriptionDateTime;
-
-public HL7V28Field TranscriptionDateTime
-{
-    get
-    {
-        if (transcriptionDateTime != null)
-        {
-            return transcriptionDateTime;
-        }
-
-        transcriptionDateTime = new HL7V28Field
-        {
-            field = message[@"TXA"][7],
-            Id = @"TXA.7",
-            Type = @"Field",
-            Position = @"TXA.7",
-            Name = @"Transcription Date/Time",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time the input was actually transcribed.  This field is conditional based upon the presence of a value in TXA-17-Document Completion Status of anything except ""dictated.""",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transcriptionDateTime.field.FieldRepetitions != null && transcriptionDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transcriptionDateTime.Id));
-            transcriptionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(transcriptionDateTime, fieldData);
-        }
-
-        return transcriptionDateTime;
-    } 
-}
-
-internal HL7V28Field editDateTime;
-
-public HL7V28Field EditDateTime
-{
-    get
-    {
-        if (editDateTime != null)
-        {
-            return editDateTime;
-        }
-
-        editDateTime = new HL7V28Field
-        {
-            field = message[@"TXA"][8],
-            Id = @"TXA.8",
-            Type = @"Field",
-            Position = @"TXA.8",
-            Name = @"Edit Date/Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time the document was edited.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (editDateTime.field.FieldRepetitions != null && editDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(editDateTime.Id));
-            editDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(editDateTime, fieldData);
-        }
-
-        return editDateTime;
-    } 
-}
-
-internal HL7V28Field originatorCodeName;
-
-public HL7V28Field OriginatorCodeName
-{
-    get
-    {
-        if (originatorCodeName != null)
-        {
-            return originatorCodeName;
-        }
-
-        originatorCodeName = new HL7V28Field
-        {
-            field = message[@"TXA"][9],
-            Id = @"TXA.9",
-            Type = @"Field",
-            Position = @"TXA.9",
-            Name = @"Originator Code/Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the person who originated (i.e., dictated) the document.  The document originator may differ from the person responsible for authenticating the document.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (originatorCodeName.field.FieldRepetitions != null && originatorCodeName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(originatorCodeName.Id));
-            originatorCodeName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(originatorCodeName, fieldData);
-        }
-
-        return originatorCodeName;
-    } 
-}
-
-internal HL7V28Field assignedDocumentAuthenticator;
-
-public HL7V28Field AssignedDocumentAuthenticator
-{
-    get
-    {
-        if (assignedDocumentAuthenticator != null)
-        {
-            return assignedDocumentAuthenticator;
-        }
-
-        assignedDocumentAuthenticator = new HL7V28Field
-        {
-            field = message[@"TXA"][10],
-            Id = @"TXA.10",
-            Type = @"Field",
-            Position = @"TXA.10",
-            Name = @"Assigned Document Authenticator",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the person(s) responsible for authenticating the document, who may differ from the originator.  Multiple persons may be responsible for authentication, especially in teaching facilities.  This field is allowed to repeat an undefined number of times.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (assignedDocumentAuthenticator.field.FieldRepetitions != null && assignedDocumentAuthenticator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(assignedDocumentAuthenticator.Id));
-            assignedDocumentAuthenticator.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(assignedDocumentAuthenticator, fieldData);
-        }
-
-        return assignedDocumentAuthenticator;
-    } 
-}
-
-internal HL7V28Field transcriptionistCodeName;
-
-public HL7V28Field TranscriptionistCodeName
-{
-    get
-    {
-        if (transcriptionistCodeName != null)
-        {
-            return transcriptionistCodeName;
-        }
-
-        transcriptionistCodeName = new HL7V28Field
-        {
-            field = message[@"TXA"][11],
-            Id = @"TXA.11",
-            Type = @"Field",
-            Position = @"TXA.11",
-            Name = @"Transcriptionist Code/Name",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the person transcribing the document. This is a conditional value; it is required on all transcribed documents.
-TXA-11 - Condition: If TXA-11 is valued and the corresponding OBR segment is present in the message OBR-35 must be blank.  If OBR-35 is valued while TXA-11 is valued,  OBR-35 shall be ignored.  See message definitions including TXA for further guidanceon which ORC/OBR pairs to consider.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transcriptionistCodeName.field.FieldRepetitions != null && transcriptionistCodeName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transcriptionistCodeName.Id));
-            transcriptionistCodeName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(transcriptionistCodeName, fieldData);
-        }
-
-        return transcriptionistCodeName;
-    } 
-}
-
-internal HL7V28Field uniqueDocumentNumber;
-
-public HL7V28Field UniqueDocumentNumber
-{
-    get
-    {
-        if (uniqueDocumentNumber != null)
-        {
-            return uniqueDocumentNumber;
-        }
-
-        uniqueDocumentNumber = new HL7V28Field
-        {
-            field = message[@"TXA"][12],
-            Id = @"TXA.12",
-            Type = @"Field",
-            Position = @"TXA.12",
-            Name = @"Unique Document Number",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a unique document identification number assigned by the sending system. This document number is used to assist the receiving system in matching future updates to the document, as well as to identify the document in a query.  When the vendor does not provide a unique document ID number, some type of document identifier should be entered here, or the Unique Document File name should be utilized.  See Chapter 2A, section 2.A.89, ""XTN - extended telecommunication number.""  Where the system does not customarily have a document filler number, this number could serve as that value, as well.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (uniqueDocumentNumber.field.FieldRepetitions != null && uniqueDocumentNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uniqueDocumentNumber.Id));
-            uniqueDocumentNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(uniqueDocumentNumber, fieldData);
-        }
-
-        return uniqueDocumentNumber;
-    } 
-}
-
-internal HL7V28Field parentDocumentNumber;
-
-public HL7V28Field ParentDocumentNumber
-{
-    get
-    {
-        if (parentDocumentNumber != null)
-        {
-            return parentDocumentNumber;
-        }
-
-        parentDocumentNumber = new HL7V28Field
-        {
-            field = message[@"TXA"][13],
-            Id = @"TXA.13",
-            Type = @"Field",
-            Position = @"TXA.13",
-            Name = @"Parent Document Number",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a document number that identifies the parent document to which this document belongs.  The parent document number can be used to assist the receiving system in matching future updates to this document.  This is a conditional field that is always required on T05 (document addendum notification), T06 (document addendum notification and content), T09 (document replacement notification), and T10 (document replacement notification and content) events.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (parentDocumentNumber.field.FieldRepetitions != null && parentDocumentNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(parentDocumentNumber.Id));
-            parentDocumentNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(parentDocumentNumber, fieldData);
-        }
-
-        return parentDocumentNumber;
-    } 
-}
-
-internal HL7V28Field placerOrderNumber;
-
-public HL7V28Field PlacerOrderNumber
-{
-    get
-    {
-        if (placerOrderNumber != null)
-        {
-            return placerOrderNumber;
-        }
-
-        placerOrderNumber = new HL7V28Field
-        {
-            field = message[@"TXA"][14],
-            Id = @"TXA.14",
-            Type = @"Field",
-            Position = @"TXA.14",
-            Name = @"Placer Order Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the placer application's order number.
-
-This is a composite field.  The first component is a string of characters that identifies an individual order (i.e., OBR).  It is assigned by the placer (ordering application).  It identifies an order uniquely among all orders from a particular ordering application.  The second through fourth components contain the (filler) assigning authority of the placing application.  The (filler) assigning authority is a string of characters that will be uniquely associated with an application.  A given institution or group of intercommunicating institutions should establish a unique list of applications that may be potential placers and fillers and assign unique entity identifiers.  The components are separated by component delimiters.
-
-TXA-14 - Condition: If corresponding ORC and/or OBR segments are present in the message and ORC-2 or OBR-2 is valued, this field must be blank.  If TXA-14 is valued while ORC-2 or OBR-2 is valued it shall be ignored.  See message definitions including TXA for further guidance on which ORC/OBR pairs to consider.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (placerOrderNumber.field.FieldRepetitions != null && placerOrderNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerOrderNumber.Id));
-            placerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(placerOrderNumber, fieldData);
-        }
-
-        return placerOrderNumber;
-    } 
-}
-
-internal HL7V28Field fillerOrderNumber;
-
-public HL7V28Field FillerOrderNumber
-{
-    get
-    {
-        if (fillerOrderNumber != null)
-        {
-            return fillerOrderNumber;
-        }
-
-        fillerOrderNumber = new HL7V28Field
-        {
-            field = message[@"TXA"][15],
-            Id = @"TXA.15",
-            Type = @"Field",
-            Position = @"TXA.15",
-            Name = @"Filler Order Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the order number associated with the filling application.  Where a transcription service or similar organization creates the document and uses an internally unique identifier, that number should be inserted in this field.  Its first component is a string of characters that identifies an order detail segment (i.e., OBR).  This string must uniquely identify the order (as specified in the order detail segment) from other orders in a particular filling application (i.e., transcription service).  This uniqueness must persist over time.  Where a number is reused over time, a date can be affixed to the non-unique number to make it unique.
-
-The second through fourth components contains the (filler) assigning authority.  The (filler) assigning authority is a string of characters that uniquely defines the application from other applications on the network.  The second through fourth components of the filler order number always identify the actual filler of an order.
-
-TXA-15 - Condition: If corresponding ORC and/or OBR segments are present in the message and ORC-3 or OBR-3 is valued, this field must be blank.  If TXA-14 is valued while ORC-3 or OBR-3 is valued it shall be ignored.  See message definitions including TXA for further guidanceon which ORC/OBR pairs to consider
-
- For further details, please see the definitions provided in Chapter 4, ""Orders"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fillerOrderNumber.field.FieldRepetitions != null && fillerOrderNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerOrderNumber.Id));
-            fillerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(fillerOrderNumber, fieldData);
-        }
-
-        return fillerOrderNumber;
-    } 
-}
-
-internal HL7V28Field uniqueDocumentFileName;
-
-public HL7V28Field UniqueDocumentFileName
-{
-    get
-    {
-        if (uniqueDocumentFileName != null)
-        {
-            return uniqueDocumentFileName;
-        }
-
-        uniqueDocumentFileName = new HL7V28Field
-        {
-            field = message[@"TXA"][16],
-            Id = @"TXA.16",
-            Type = @"Field",
-            Position = @"TXA.16",
-            Name = @"Unique Document File Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a unique name assigned to a document by the sending system.  The file name is used to assist the receiving system in matching future updates to the document.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (uniqueDocumentFileName.field.FieldRepetitions != null && uniqueDocumentFileName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uniqueDocumentFileName.Id));
-            uniqueDocumentFileName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(uniqueDocumentFileName, fieldData);
-        }
-
-        return uniqueDocumentFileName;
-    } 
-}
-
-internal HL7V28Field documentCompletionStatus;
-
-public HL7V28Field DocumentCompletionStatus
-{
-    get
-    {
-        if (documentCompletionStatus != null)
-        {
-            return documentCompletionStatus;
-        }
-
-        documentCompletionStatus = new HL7V28Field
-        {
-            field = message[@"TXA"][17],
-            Id = @"TXA.17",
-            Type = @"Field",
-            Position = @"TXA.17",
-            Name = @"Document Completion Status",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0271",
-            TableName = @"Document Completion Status",
-            Description = @"This field identifies the current completion state of the document.  This is a required, table-driven field.  Refer to HL7 Table 0271 - Document Completion Status for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (documentCompletionStatus.field.FieldRepetitions != null && documentCompletionStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(documentCompletionStatus.Id));
-            documentCompletionStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(documentCompletionStatus, fieldData);
-        }
-
-        return documentCompletionStatus;
-    } 
-}
-
-internal HL7V28Field documentConfidentialityStatus;
-
-public HL7V28Field DocumentConfidentialityStatus
-{
-    get
-    {
-        if (documentConfidentialityStatus != null)
-        {
-            return documentConfidentialityStatus;
-        }
-
-        documentConfidentialityStatus = new HL7V28Field
-        {
-            field = message[@"TXA"][18],
-            Id = @"TXA.18",
-            Type = @"Field",
-            Position = @"TXA.18",
-            Name = @"Document Confidentiality Status",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0272",
-            TableName = @"Document Confidentiality Status",
-            Description = @"This is an optional field which identifies the degree to which special confidentiality protection should be applied to this information.  The assignment of data elements to these categories is left to the discretion of the healthcare organization.  Refer to HL7 Table 0272 - Document Confidentiality Status for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (documentConfidentialityStatus.field.FieldRepetitions != null && documentConfidentialityStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(documentConfidentialityStatus.Id));
-            documentConfidentialityStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(documentConfidentialityStatus, fieldData);
-        }
-
-        return documentConfidentialityStatus;
-    } 
-}
-
-internal HL7V28Field documentAvailabilityStatus;
-
-public HL7V28Field DocumentAvailabilityStatus
-{
-    get
-    {
-        if (documentAvailabilityStatus != null)
-        {
-            return documentAvailabilityStatus;
-        }
-
-        documentAvailabilityStatus = new HL7V28Field
-        {
-            field = message[@"TXA"][19],
-            Id = @"TXA.19",
-            Type = @"Field",
-            Position = @"TXA.19",
-            Name = @"Document Availability Status",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0273",
-            TableName = @"Document Availability Status",
-            Description = @"This is an optional field which identifies a document's availability for use in patient care.  If an organization's business rules allow a document to be used for patient care before it is authenticated, the value of this field should be set to ""AV.""  If a document has been made available for patient care, it cannot be changed or deleted.  If an erroneous document has been made available at any point in time and a replacement is not appropriate, then it may be marked as ""Canceled"" and removed, as in the case of a document being assigned to the wrong patient.  Additional information must be provided via an addendum, which is separately authenticated and date/time stamped.  If the content of a document whose status is ""Available"" must be revised, this is done by issuing a replacement, which is separately authenticated and date/time stamped.  Refer to HL7 Table 0273 - Document Availability Status for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (documentAvailabilityStatus.field.FieldRepetitions != null && documentAvailabilityStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(documentAvailabilityStatus.Id));
-            documentAvailabilityStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(documentAvailabilityStatus, fieldData);
-        }
-
-        return documentAvailabilityStatus;
-    } 
-}
-
-internal HL7V28Field documentStorageStatus;
-
-public HL7V28Field DocumentStorageStatus
-{
-    get
-    {
-        if (documentStorageStatus != null)
-        {
-            return documentStorageStatus;
-        }
-
-        documentStorageStatus = new HL7V28Field
-        {
-            field = message[@"TXA"][20],
-            Id = @"TXA.20",
-            Type = @"Field",
-            Position = @"TXA.20",
-            Name = @"Document Storage Status",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0275",
-            TableName = @"Document Storage Status",
-            Description = @"This optional field identifies the storage status of the document.  Refer to HL7 Table 0275 - Document Storage Status for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (documentStorageStatus.field.FieldRepetitions != null && documentStorageStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(documentStorageStatus.Id));
-            documentStorageStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(documentStorageStatus, fieldData);
-        }
-
-        return documentStorageStatus;
-    } 
-}
-
-internal HL7V28Field documentChangeReason;
-
-public HL7V28Field DocumentChangeReason
-{
-    get
-    {
-        if (documentChangeReason != null)
-        {
-            return documentChangeReason;
-        }
-
-        documentChangeReason = new HL7V28Field
-        {
-            field = message[@"TXA"][21],
-            Id = @"TXA.21",
-            Type = @"Field",
-            Position = @"TXA.21",
-            Name = @"Document Change Reason",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This free text field (limited to 30 characters) contains the reason for document status change.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (documentChangeReason.field.FieldRepetitions != null && documentChangeReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(documentChangeReason.Id));
-            documentChangeReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(documentChangeReason, fieldData);
-        }
-
-        return documentChangeReason;
-    } 
-}
-
-internal HL7V28Field authenticationPersonTimeStampset;
-
-public HL7V28Field AuthenticationPersonTimeStampset
-{
-    get
-    {
-        if (authenticationPersonTimeStampset != null)
-        {
-            return authenticationPersonTimeStampset;
-        }
-
-        authenticationPersonTimeStampset = new HL7V28Field
-        {
-            field = message[@"TXA"][22],
-            Id = @"TXA.22",
-            Type = @"Field",
-            Position = @"TXA.22",
-            Name = @"Authentication Person, Time Stamp (set)",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"PPN",
-            DataTypeName = @"Performing Person Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a set of components describing by whom and when authentication was performed (either manually or electronically).  The Date/Time Action Performed component describes the date/time of the authentication (Authentication Time Stamp).  The remaining components identify the person performing the authentication (Authentication Person).  If either of the Authenticating Person or the Authentication Time Stamp is valued as non-null, then both must be valued as non-null.
-
-TXA-22 - Condition: If TXA-22 is valued and the corresponding OBR segment is present in the message OBR-32 must be blank.  If OBR-32 is valued while TXA-22 is valued,  OBR-32 shall be ignored.  See message definitions including TXA for further guidanceon which ORC/OBR pairs to consider.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (authenticationPersonTimeStampset.field.FieldRepetitions != null && authenticationPersonTimeStampset.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authenticationPersonTimeStampset.Id));
-            authenticationPersonTimeStampset.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(authenticationPersonTimeStampset, fieldData);
-        }
-
-        return authenticationPersonTimeStampset;
-    } 
-}
-
-internal HL7V28Field distributedCopiescodeAndNameOfRecipients;
-
-public HL7V28Field DistributedCopiescodeAndNameOfRecipients
-{
-    get
-    {
-        if (distributedCopiescodeAndNameOfRecipients != null)
-        {
-            return distributedCopiescodeAndNameOfRecipients;
-        }
-
-        distributedCopiescodeAndNameOfRecipients = new HL7V28Field
-        {
-            field = message[@"TXA"][23],
-            Id = @"TXA.23",
-            Type = @"Field",
-            Position = @"TXA.23",
-            Name = @"Distributed Copies (code And Name Of Recipient(s) )",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the persons who received a copy of this document.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (distributedCopiescodeAndNameOfRecipients.field.FieldRepetitions != null && distributedCopiescodeAndNameOfRecipients.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(distributedCopiescodeAndNameOfRecipients.Id));
-            distributedCopiescodeAndNameOfRecipients.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(distributedCopiescodeAndNameOfRecipients, fieldData);
-        }
-
-        return distributedCopiescodeAndNameOfRecipients;
-    } 
-}
-
-internal HL7V28Field folderAssignment;
-
-public HL7V28Field FolderAssignment
-{
-    get
-    {
-        if (folderAssignment != null)
-        {
-            return folderAssignment;
-        }
-
-        folderAssignment = new HL7V28Field
+        _folderAssignment = new HL7V28Field
         {
             field = message[@"TXA"][24],
-            Id = @"TXA.24",
-            Type = @"Field",
-            Position = @"TXA.24",
-            Name = @"Folder Assignment",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to assign documents to folders.  These folders are not nested; a document may either be part of none or several folders. In practice this can be used to separate the documents into domain specific types (e.g., cardiology reports, radiology reports), organizational types (e.g., administrational document, billing document), body region types (e.g., chest CT, leg CT), or something else. Furthermore, this information can be combined. This usually depends on the system involved and therefore it must be up to the user to define it. The systems can use the information to define workflows or manage access to the document.  Receivers are required to inspect the Coding System component of the CWE data type to accurately interpret the meaning of the code. Senders transmitting messages to Receivers on earlier version of the standard may elect to negotiate business rules to ensure that expected data is not lost. HL7 does not assign positional meaning to user-defined codes.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (folderAssignment.field.FieldRepetitions != null && folderAssignment.field.FieldRepetitions.Count > 0)
+        if (_folderAssignment.field.FieldRepetitions != null && _folderAssignment.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(folderAssignment.Id));
-            folderAssignment.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(folderAssignment, fieldData);
+            _folderAssignment.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_folderAssignment, fieldData);
         }
 
-        return folderAssignment;
+        return _folderAssignment;
     } 
 }
 
-internal HL7V28Field documentTitle;
+internal HL7V28Field _documentTitle;
 
 public HL7V28Field DocumentTitle
 {
     get
     {
-        if (documentTitle != null)
+        if (_documentTitle != null)
         {
-            return documentTitle;
+            return _documentTitle;
         }
 
-        documentTitle = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"TXA"][25],
             Id = @"TXA.25",
             Type = @"Field",
             Position = @"TXA.25",
@@ -17149,34 +16790,38 @@ public HL7V28Field DocumentTitle
             TableName = null,
             Description = @"This field supports the identification of the document title. When communicating the meta information without the document contents you may submit the document title as well.",
             Sample = @"",
+            Fields = null
+        }
+
+        _documentTitle = new HL7V28Field
+        {
+            field = message[@"TXA"][25],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (documentTitle.field.FieldRepetitions != null && documentTitle.field.FieldRepetitions.Count > 0)
+        if (_documentTitle.field.FieldRepetitions != null && _documentTitle.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(documentTitle.Id));
-            documentTitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(documentTitle, fieldData);
+            _documentTitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_documentTitle, fieldData);
         }
 
-        return documentTitle;
+        return _documentTitle;
     } 
 }
 
-internal HL7V28Field agreedDueDateTime;
+internal HL7V28Field _agreedDueDateTime;
 
 public HL7V28Field AgreedDueDateTime
 {
     get
     {
-        if (agreedDueDateTime != null)
+        if (_agreedDueDateTime != null)
         {
-            return agreedDueDateTime;
+            return _agreedDueDateTime;
         }
 
-        agreedDueDateTime = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"TXA"][26],
             Id = @"TXA.26",
             Type = @"Field",
             Position = @"TXA.26",
@@ -17190,17 +16835,22 @@ public HL7V28Field AgreedDueDateTime
             TableName = null,
             Description = @"This field contains the date and time the document is or will be due back to the original author or dictator from the transcriptionist.",
             Sample = @"",
+            Fields = null
+        }
+
+        _agreedDueDateTime = new HL7V28Field
+        {
+            field = message[@"TXA"][26],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (agreedDueDateTime.field.FieldRepetitions != null && agreedDueDateTime.field.FieldRepetitions.Count > 0)
+        if (_agreedDueDateTime.field.FieldRepetitions != null && _agreedDueDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(agreedDueDateTime.Id));
-            agreedDueDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(agreedDueDateTime, fieldData);
+            _agreedDueDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_agreedDueDateTime, fieldData);
         }
 
-        return agreedDueDateTime;
+        return _agreedDueDateTime;
     } 
 }
     }

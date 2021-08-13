@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentPSG(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _providerProductServiceGroupNumber;
+
+public HL7V28Field ProviderProductServiceGroupNumber
+{
+    get
+    {
+        if (_providerProductServiceGroupNumber != null)
+        {
+            return _providerProductServiceGroupNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"PSG.1",
+            Type = @"Field",
+            Position = @"PSG.1",
+            Name = @"Provider Product/Service Group Number",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique Product/Service Group Number assigned by the Provider Application.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PSG.1",
-                            Type = @"Field",
-                            Position = @"PSG.1",
-                            Name = @"Provider Product/Service Group Number",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique Product/Service Group Number assigned by the Provider Application.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PSG.1.1",
                             Type = @"Component",
@@ -126,25 +138,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerProductServiceGroupNumber = new HL7V28Field
+        {
+            field = message[@"PSG"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerProductServiceGroupNumber.field.FieldRepetitions != null && _providerProductServiceGroupNumber.field.FieldRepetitions.Count > 0)
+        {
+            _providerProductServiceGroupNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_providerProductServiceGroupNumber, fieldData);
+        }
+
+        return _providerProductServiceGroupNumber;
+    } 
+}
+
+internal HL7V28Field _payerProductServiceGroupNumber;
+
+public HL7V28Field PayerProductServiceGroupNumber
+{
+    get
+    {
+        if (_payerProductServiceGroupNumber != null)
+        {
+            return _payerProductServiceGroupNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"PSG.2",
+            Type = @"Field",
+            Position = @"PSG.2",
+            Name = @"Payer Product/Service Group Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique Product/Service Group Number assigned by the Payer Application",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSG.2",
-                            Type = @"Field",
-                            Position = @"PSG.2",
-                            Name = @"Payer Product/Service Group Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique Product/Service Group Number assigned by the Payer Application",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSG.2.1",
                             Type = @"Component",
@@ -220,61 +262,145 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _payerProductServiceGroupNumber = new HL7V28Field
+        {
+            field = message[@"PSG"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payerProductServiceGroupNumber.field.FieldRepetitions != null && _payerProductServiceGroupNumber.field.FieldRepetitions.Count > 0)
+        {
+            _payerProductServiceGroupNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_payerProductServiceGroupNumber, fieldData);
+        }
+
+        return _payerProductServiceGroupNumber;
+    } 
+}
+
+internal HL7V28Field _productServiceGroupSequenceNumber;
+
+public HL7V28Field ProductServiceGroupSequenceNumber
+{
+    get
+    {
+        if (_productServiceGroupSequenceNumber != null)
+        {
+            return _productServiceGroupSequenceNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"PSG.3",
+            Type = @"Field",
+            Position = @"PSG.3",
+            Name = @"Product/Service Group Sequence Number",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique sequence number for the Product/Service Group (3) – starts with 1, then 2, etc. for each unique Product/Service Group in this Invoice.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _productServiceGroupSequenceNumber = new HL7V28Field
+        {
+            field = message[@"PSG"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceGroupSequenceNumber.field.FieldRepetitions != null && _productServiceGroupSequenceNumber.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceGroupSequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_productServiceGroupSequenceNumber, fieldData);
+        }
+
+        return _productServiceGroupSequenceNumber;
+    } 
+}
+
+internal HL7V28Field _adjudicateAsGroup;
+
+public HL7V28Field AdjudicateAsGroup
+{
+    get
+    {
+        if (_adjudicateAsGroup != null)
+        {
+            return _adjudicateAsGroup;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"PSG.4",
+            Type = @"Field",
+            Position = @"PSG.4",
+            Name = @"Adjudicate As Group",
+            Length = 1,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"Adjudicate all Product/Service Line Items together as a group (IPRs will be reported against the Product/Service Group).  Refer to HL7 Table 0136 – Yes/No Indicator in Chapter 2C, Code Tables, for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _adjudicateAsGroup = new HL7V28Field
+        {
+            field = message[@"PSG"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_adjudicateAsGroup.field.FieldRepetitions != null && _adjudicateAsGroup.field.FieldRepetitions.Count > 0)
+        {
+            _adjudicateAsGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_adjudicateAsGroup, fieldData);
+        }
+
+        return _adjudicateAsGroup;
+    } 
+}
+
+internal HL7V28Field _productServiceGroupBilledAmount;
+
+public HL7V28Field ProductServiceGroupBilledAmount
+{
+    get
+    {
+        if (_productServiceGroupBilledAmount != null)
+        {
+            return _productServiceGroupBilledAmount;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"PSG.5",
+            Type = @"Field",
+            Position = @"PSG.5",
+            Name = @"Product/Service Group Billed Amount",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Sum of all Product/Service Billed Amounts for all Product/Service Line Items for this Product/Service Group.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSG.3",
-                            Type = @"Field",
-                            Position = @"PSG.3",
-                            Name = @"Product/Service Group Sequence Number",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique sequence number for the Product/Service Group (3) – starts with 1, then 2, etc. for each unique Product/Service Group in this Invoice.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSG.4",
-                            Type = @"Field",
-                            Position = @"PSG.4",
-                            Name = @"Adjudicate As Group",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"Adjudicate all Product/Service Line Items together as a group (IPRs will be reported against the Product/Service Group).  Refer to HL7 Table 0136 – Yes/No Indicator in Chapter 2C, Code Tables, for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSG.5",
-                            Type = @"Field",
-                            Position = @"PSG.5",
-                            Name = @"Product/Service Group Billed Amount",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Sum of all Product/Service Billed Amounts for all Product/Service Line Items for this Product/Service Group.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSG.5.1",
                             Type = @"Component",
@@ -851,254 +977,39 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSG.6",
-                            Type = @"Field",
-                            Position = @"PSG.6",
-                            Name = @"Product/Service Group Description",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Product/Service Group description or heading",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentPSG(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field providerProductServiceGroupNumber;
-
-public HL7V28Field ProviderProductServiceGroupNumber
-{
-    get
-    {
-        if (providerProductServiceGroupNumber != null)
-        {
-            return providerProductServiceGroupNumber;
-        }
-
-        providerProductServiceGroupNumber = new HL7V28Field
-        {
-            field = message[@"PSG"][1],
-            Id = @"PSG.1",
-            Type = @"Field",
-            Position = @"PSG.1",
-            Name = @"Provider Product/Service Group Number",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique Product/Service Group Number assigned by the Provider Application.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerProductServiceGroupNumber.field.FieldRepetitions != null && providerProductServiceGroupNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerProductServiceGroupNumber.Id));
-            providerProductServiceGroupNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(providerProductServiceGroupNumber, fieldData);
-        }
-
-        return providerProductServiceGroupNumber;
-    } 
-}
-
-internal HL7V28Field payerProductServiceGroupNumber;
-
-public HL7V28Field PayerProductServiceGroupNumber
-{
-    get
-    {
-        if (payerProductServiceGroupNumber != null)
-        {
-            return payerProductServiceGroupNumber;
-        }
-
-        payerProductServiceGroupNumber = new HL7V28Field
-        {
-            field = message[@"PSG"][2],
-            Id = @"PSG.2",
-            Type = @"Field",
-            Position = @"PSG.2",
-            Name = @"Payer Product/Service Group Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique Product/Service Group Number assigned by the Payer Application",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payerProductServiceGroupNumber.field.FieldRepetitions != null && payerProductServiceGroupNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payerProductServiceGroupNumber.Id));
-            payerProductServiceGroupNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(payerProductServiceGroupNumber, fieldData);
-        }
-
-        return payerProductServiceGroupNumber;
-    } 
-}
-
-internal HL7V28Field productServiceGroupSequenceNumber;
-
-public HL7V28Field ProductServiceGroupSequenceNumber
-{
-    get
-    {
-        if (productServiceGroupSequenceNumber != null)
-        {
-            return productServiceGroupSequenceNumber;
-        }
-
-        productServiceGroupSequenceNumber = new HL7V28Field
-        {
-            field = message[@"PSG"][3],
-            Id = @"PSG.3",
-            Type = @"Field",
-            Position = @"PSG.3",
-            Name = @"Product/Service Group Sequence Number",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique sequence number for the Product/Service Group (3) – starts with 1, then 2, etc. for each unique Product/Service Group in this Invoice.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceGroupSequenceNumber.field.FieldRepetitions != null && productServiceGroupSequenceNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceGroupSequenceNumber.Id));
-            productServiceGroupSequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(productServiceGroupSequenceNumber, fieldData);
-        }
-
-        return productServiceGroupSequenceNumber;
-    } 
-}
-
-internal HL7V28Field adjudicateAsGroup;
-
-public HL7V28Field AdjudicateAsGroup
-{
-    get
-    {
-        if (adjudicateAsGroup != null)
-        {
-            return adjudicateAsGroup;
-        }
-
-        adjudicateAsGroup = new HL7V28Field
-        {
-            field = message[@"PSG"][4],
-            Id = @"PSG.4",
-            Type = @"Field",
-            Position = @"PSG.4",
-            Name = @"Adjudicate As Group",
-            Length = 1,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"Adjudicate all Product/Service Line Items together as a group (IPRs will be reported against the Product/Service Group).  Refer to HL7 Table 0136 – Yes/No Indicator in Chapter 2C, Code Tables, for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (adjudicateAsGroup.field.FieldRepetitions != null && adjudicateAsGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(adjudicateAsGroup.Id));
-            adjudicateAsGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(adjudicateAsGroup, fieldData);
-        }
-
-        return adjudicateAsGroup;
-    } 
-}
-
-internal HL7V28Field productServiceGroupBilledAmount;
-
-public HL7V28Field ProductServiceGroupBilledAmount
-{
-    get
-    {
-        if (productServiceGroupBilledAmount != null)
-        {
-            return productServiceGroupBilledAmount;
-        }
-
-        productServiceGroupBilledAmount = new HL7V28Field
+        _productServiceGroupBilledAmount = new HL7V28Field
         {
             field = message[@"PSG"][5],
-            Id = @"PSG.5",
-            Type = @"Field",
-            Position = @"PSG.5",
-            Name = @"Product/Service Group Billed Amount",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Sum of all Product/Service Billed Amounts for all Product/Service Line Items for this Product/Service Group.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (productServiceGroupBilledAmount.field.FieldRepetitions != null && productServiceGroupBilledAmount.field.FieldRepetitions.Count > 0)
+        if (_productServiceGroupBilledAmount.field.FieldRepetitions != null && _productServiceGroupBilledAmount.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceGroupBilledAmount.Id));
-            productServiceGroupBilledAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(productServiceGroupBilledAmount, fieldData);
+            _productServiceGroupBilledAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_productServiceGroupBilledAmount, fieldData);
         }
 
-        return productServiceGroupBilledAmount;
+        return _productServiceGroupBilledAmount;
     } 
 }
 
-internal HL7V28Field productServiceGroupDescription;
+internal HL7V28Field _productServiceGroupDescription;
 
 public HL7V28Field ProductServiceGroupDescription
 {
     get
     {
-        if (productServiceGroupDescription != null)
+        if (_productServiceGroupDescription != null)
         {
-            return productServiceGroupDescription;
+            return _productServiceGroupDescription;
         }
 
-        productServiceGroupDescription = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"PSG"][6],
             Id = @"PSG.6",
             Type = @"Field",
             Position = @"PSG.6",
@@ -1112,17 +1023,22 @@ public HL7V28Field ProductServiceGroupDescription
             TableName = null,
             Description = @"Product/Service Group description or heading",
             Sample = @"",
+            Fields = null
+        }
+
+        _productServiceGroupDescription = new HL7V28Field
+        {
+            field = message[@"PSG"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (productServiceGroupDescription.field.FieldRepetitions != null && productServiceGroupDescription.field.FieldRepetitions.Count > 0)
+        if (_productServiceGroupDescription.field.FieldRepetitions != null && _productServiceGroupDescription.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceGroupDescription.Id));
-            productServiceGroupDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(productServiceGroupDescription, fieldData);
+            _productServiceGroupDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_productServiceGroupDescription, fieldData);
         }
 
-        return productServiceGroupDescription;
+        return _productServiceGroupDescription;
     } 
 }
     }

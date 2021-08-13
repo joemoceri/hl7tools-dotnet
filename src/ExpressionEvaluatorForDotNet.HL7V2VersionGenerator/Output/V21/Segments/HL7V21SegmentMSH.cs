@@ -25,286 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"MSH.1",
-                            Type = @"Field",
-                            Position = @"MSH.1",
-                            Name = @"Field Separator",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.2",
-                            Type = @"Field",
-                            Position = @"MSH.2",
-                            Name = @"Encoding Characters",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.3",
-                            Type = @"Field",
-                            Position = @"MSH.3",
-                            Name = @"Sending Application",
-                            Length = 15,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.4",
-                            Type = @"Field",
-                            Position = @"MSH.4",
-                            Name = @"Sending Facility",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.5",
-                            Type = @"Field",
-                            Position = @"MSH.5",
-                            Name = @"Receiving Application",
-                            Length = 15,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.6",
-                            Type = @"Field",
-                            Position = @"MSH.6",
-                            Name = @"Receiving Facility",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.7",
-                            Type = @"Field",
-                            Position = @"MSH.7",
-                            Name = @"Date/Time Of Message",
-                            Length = 19,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.8",
-                            Type = @"Field",
-                            Position = @"MSH.8",
-                            Name = @"Security",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.9",
-                            Type = @"Field",
-                            Position = @"MSH.9",
-                            Name = @"Message Type",
-                            Length = 7,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0076",
-                            TableName = @"MESSAGE TYPE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.10",
-                            Type = @"Field",
-                            Position = @"MSH.10",
-                            Name = @"Message Control Id",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.11",
-                            Type = @"Field",
-                            Position = @"MSH.11",
-                            Name = @"Processing Id",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0103",
-                            TableName = @"PROCESSING ID",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.12",
-                            Type = @"Field",
-                            Position = @"MSH.12",
-                            Name = @"Version Id",
-                            Length = 8,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = @"0104",
-                            TableName = @"VERSION CONTROL TABLE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.13",
-                            Type = @"Field",
-                            Position = @"MSH.13",
-                            Name = @"Sequence Number",
-                            Length = 15,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.14",
-                            Type = @"Field",
-                            Position = @"MSH.14",
-                            Name = @"Continuation Pointer",
-                            Length = 180,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentMSH(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field fieldSeparator;
+        internal HL7V21Field _fieldSeparator;
 
 public HL7V21Field FieldSeparator
 {
     get
     {
-        if (fieldSeparator != null)
+        if (_fieldSeparator != null)
         {
-            return fieldSeparator;
+            return _fieldSeparator;
         }
 
-        fieldSeparator = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSH"][1],
             Id = @"MSH.1",
             Type = @"Field",
             Position = @"MSH.1",
@@ -318,34 +56,38 @@ public HL7V21Field FieldSeparator
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _fieldSeparator = new HL7V21Field
+        {
+            field = message[@"MSH"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fieldSeparator.field.FieldRepetitions != null && fieldSeparator.field.FieldRepetitions.Count > 0)
+        if (_fieldSeparator.field.FieldRepetitions != null && _fieldSeparator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fieldSeparator.Id));
-            fieldSeparator.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(fieldSeparator, fieldData);
+            _fieldSeparator.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_fieldSeparator, fieldData);
         }
 
-        return fieldSeparator;
+        return _fieldSeparator;
     } 
 }
 
-internal HL7V21Field encodingCharacters;
+internal HL7V21Field _encodingCharacters;
 
 public HL7V21Field EncodingCharacters
 {
     get
     {
-        if (encodingCharacters != null)
+        if (_encodingCharacters != null)
         {
-            return encodingCharacters;
+            return _encodingCharacters;
         }
 
-        encodingCharacters = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSH"][2],
             Id = @"MSH.2",
             Type = @"Field",
             Position = @"MSH.2",
@@ -359,34 +101,38 @@ public HL7V21Field EncodingCharacters
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _encodingCharacters = new HL7V21Field
+        {
+            field = message[@"MSH"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (encodingCharacters.field.FieldRepetitions != null && encodingCharacters.field.FieldRepetitions.Count > 0)
+        if (_encodingCharacters.field.FieldRepetitions != null && _encodingCharacters.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(encodingCharacters.Id));
-            encodingCharacters.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(encodingCharacters, fieldData);
+            _encodingCharacters.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_encodingCharacters, fieldData);
         }
 
-        return encodingCharacters;
+        return _encodingCharacters;
     } 
 }
 
-internal HL7V21Field sendingApplication;
+internal HL7V21Field _sendingApplication;
 
 public HL7V21Field SendingApplication
 {
     get
     {
-        if (sendingApplication != null)
+        if (_sendingApplication != null)
         {
-            return sendingApplication;
+            return _sendingApplication;
         }
 
-        sendingApplication = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSH"][3],
             Id = @"MSH.3",
             Type = @"Field",
             Position = @"MSH.3",
@@ -400,34 +146,38 @@ public HL7V21Field SendingApplication
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _sendingApplication = new HL7V21Field
+        {
+            field = message[@"MSH"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (sendingApplication.field.FieldRepetitions != null && sendingApplication.field.FieldRepetitions.Count > 0)
+        if (_sendingApplication.field.FieldRepetitions != null && _sendingApplication.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sendingApplication.Id));
-            sendingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(sendingApplication, fieldData);
+            _sendingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_sendingApplication, fieldData);
         }
 
-        return sendingApplication;
+        return _sendingApplication;
     } 
 }
 
-internal HL7V21Field sendingFacility;
+internal HL7V21Field _sendingFacility;
 
 public HL7V21Field SendingFacility
 {
     get
     {
-        if (sendingFacility != null)
+        if (_sendingFacility != null)
         {
-            return sendingFacility;
+            return _sendingFacility;
         }
 
-        sendingFacility = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSH"][4],
             Id = @"MSH.4",
             Type = @"Field",
             Position = @"MSH.4",
@@ -441,34 +191,38 @@ public HL7V21Field SendingFacility
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _sendingFacility = new HL7V21Field
+        {
+            field = message[@"MSH"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (sendingFacility.field.FieldRepetitions != null && sendingFacility.field.FieldRepetitions.Count > 0)
+        if (_sendingFacility.field.FieldRepetitions != null && _sendingFacility.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sendingFacility.Id));
-            sendingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(sendingFacility, fieldData);
+            _sendingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_sendingFacility, fieldData);
         }
 
-        return sendingFacility;
+        return _sendingFacility;
     } 
 }
 
-internal HL7V21Field receivingApplication;
+internal HL7V21Field _receivingApplication;
 
 public HL7V21Field ReceivingApplication
 {
     get
     {
-        if (receivingApplication != null)
+        if (_receivingApplication != null)
         {
-            return receivingApplication;
+            return _receivingApplication;
         }
 
-        receivingApplication = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSH"][5],
             Id = @"MSH.5",
             Type = @"Field",
             Position = @"MSH.5",
@@ -482,34 +236,38 @@ public HL7V21Field ReceivingApplication
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _receivingApplication = new HL7V21Field
+        {
+            field = message[@"MSH"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (receivingApplication.field.FieldRepetitions != null && receivingApplication.field.FieldRepetitions.Count > 0)
+        if (_receivingApplication.field.FieldRepetitions != null && _receivingApplication.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(receivingApplication.Id));
-            receivingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(receivingApplication, fieldData);
+            _receivingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_receivingApplication, fieldData);
         }
 
-        return receivingApplication;
+        return _receivingApplication;
     } 
 }
 
-internal HL7V21Field receivingFacility;
+internal HL7V21Field _receivingFacility;
 
 public HL7V21Field ReceivingFacility
 {
     get
     {
-        if (receivingFacility != null)
+        if (_receivingFacility != null)
         {
-            return receivingFacility;
+            return _receivingFacility;
         }
 
-        receivingFacility = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSH"][6],
             Id = @"MSH.6",
             Type = @"Field",
             Position = @"MSH.6",
@@ -523,34 +281,38 @@ public HL7V21Field ReceivingFacility
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _receivingFacility = new HL7V21Field
+        {
+            field = message[@"MSH"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (receivingFacility.field.FieldRepetitions != null && receivingFacility.field.FieldRepetitions.Count > 0)
+        if (_receivingFacility.field.FieldRepetitions != null && _receivingFacility.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(receivingFacility.Id));
-            receivingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(receivingFacility, fieldData);
+            _receivingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_receivingFacility, fieldData);
         }
 
-        return receivingFacility;
+        return _receivingFacility;
     } 
 }
 
-internal HL7V21Field dateTimeOfMessage;
+internal HL7V21Field _dateTimeOfMessage;
 
 public HL7V21Field DateTimeOfMessage
 {
     get
     {
-        if (dateTimeOfMessage != null)
+        if (_dateTimeOfMessage != null)
         {
-            return dateTimeOfMessage;
+            return _dateTimeOfMessage;
         }
 
-        dateTimeOfMessage = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSH"][7],
             Id = @"MSH.7",
             Type = @"Field",
             Position = @"MSH.7",
@@ -564,34 +326,38 @@ public HL7V21Field DateTimeOfMessage
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _dateTimeOfMessage = new HL7V21Field
+        {
+            field = message[@"MSH"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dateTimeOfMessage.field.FieldRepetitions != null && dateTimeOfMessage.field.FieldRepetitions.Count > 0)
+        if (_dateTimeOfMessage.field.FieldRepetitions != null && _dateTimeOfMessage.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeOfMessage.Id));
-            dateTimeOfMessage.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(dateTimeOfMessage, fieldData);
+            _dateTimeOfMessage.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_dateTimeOfMessage, fieldData);
         }
 
-        return dateTimeOfMessage;
+        return _dateTimeOfMessage;
     } 
 }
 
-internal HL7V21Field security;
+internal HL7V21Field _security;
 
 public HL7V21Field Security
 {
     get
     {
-        if (security != null)
+        if (_security != null)
         {
-            return security;
+            return _security;
         }
 
-        security = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSH"][8],
             Id = @"MSH.8",
             Type = @"Field",
             Position = @"MSH.8",
@@ -605,34 +371,38 @@ public HL7V21Field Security
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _security = new HL7V21Field
+        {
+            field = message[@"MSH"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (security.field.FieldRepetitions != null && security.field.FieldRepetitions.Count > 0)
+        if (_security.field.FieldRepetitions != null && _security.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(security.Id));
-            security.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(security, fieldData);
+            _security.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_security, fieldData);
         }
 
-        return security;
+        return _security;
     } 
 }
 
-internal HL7V21Field messageType;
+internal HL7V21Field _messageType;
 
 public HL7V21Field MessageType
 {
     get
     {
-        if (messageType != null)
+        if (_messageType != null)
         {
-            return messageType;
+            return _messageType;
         }
 
-        messageType = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSH"][9],
             Id = @"MSH.9",
             Type = @"Field",
             Position = @"MSH.9",
@@ -646,34 +416,38 @@ public HL7V21Field MessageType
             TableName = @"MESSAGE TYPE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _messageType = new HL7V21Field
+        {
+            field = message[@"MSH"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (messageType.field.FieldRepetitions != null && messageType.field.FieldRepetitions.Count > 0)
+        if (_messageType.field.FieldRepetitions != null && _messageType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(messageType.Id));
-            messageType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(messageType, fieldData);
+            _messageType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_messageType, fieldData);
         }
 
-        return messageType;
+        return _messageType;
     } 
 }
 
-internal HL7V21Field messageControlId;
+internal HL7V21Field _messageControlId;
 
 public HL7V21Field MessageControlId
 {
     get
     {
-        if (messageControlId != null)
+        if (_messageControlId != null)
         {
-            return messageControlId;
+            return _messageControlId;
         }
 
-        messageControlId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSH"][10],
             Id = @"MSH.10",
             Type = @"Field",
             Position = @"MSH.10",
@@ -687,34 +461,38 @@ public HL7V21Field MessageControlId
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _messageControlId = new HL7V21Field
+        {
+            field = message[@"MSH"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (messageControlId.field.FieldRepetitions != null && messageControlId.field.FieldRepetitions.Count > 0)
+        if (_messageControlId.field.FieldRepetitions != null && _messageControlId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(messageControlId.Id));
-            messageControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(messageControlId, fieldData);
+            _messageControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_messageControlId, fieldData);
         }
 
-        return messageControlId;
+        return _messageControlId;
     } 
 }
 
-internal HL7V21Field processingId;
+internal HL7V21Field _processingId;
 
 public HL7V21Field ProcessingId
 {
     get
     {
-        if (processingId != null)
+        if (_processingId != null)
         {
-            return processingId;
+            return _processingId;
         }
 
-        processingId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSH"][11],
             Id = @"MSH.11",
             Type = @"Field",
             Position = @"MSH.11",
@@ -728,34 +506,38 @@ public HL7V21Field ProcessingId
             TableName = @"PROCESSING ID",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _processingId = new HL7V21Field
+        {
+            field = message[@"MSH"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (processingId.field.FieldRepetitions != null && processingId.field.FieldRepetitions.Count > 0)
+        if (_processingId.field.FieldRepetitions != null && _processingId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(processingId.Id));
-            processingId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(processingId, fieldData);
+            _processingId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_processingId, fieldData);
         }
 
-        return processingId;
+        return _processingId;
     } 
 }
 
-internal HL7V21Field versionId;
+internal HL7V21Field _versionId;
 
 public HL7V21Field VersionId
 {
     get
     {
-        if (versionId != null)
+        if (_versionId != null)
         {
-            return versionId;
+            return _versionId;
         }
 
-        versionId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSH"][12],
             Id = @"MSH.12",
             Type = @"Field",
             Position = @"MSH.12",
@@ -769,34 +551,38 @@ public HL7V21Field VersionId
             TableName = @"VERSION CONTROL TABLE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _versionId = new HL7V21Field
+        {
+            field = message[@"MSH"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (versionId.field.FieldRepetitions != null && versionId.field.FieldRepetitions.Count > 0)
+        if (_versionId.field.FieldRepetitions != null && _versionId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(versionId.Id));
-            versionId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(versionId, fieldData);
+            _versionId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_versionId, fieldData);
         }
 
-        return versionId;
+        return _versionId;
     } 
 }
 
-internal HL7V21Field sequenceNumber;
+internal HL7V21Field _sequenceNumber;
 
 public HL7V21Field SequenceNumber
 {
     get
     {
-        if (sequenceNumber != null)
+        if (_sequenceNumber != null)
         {
-            return sequenceNumber;
+            return _sequenceNumber;
         }
 
-        sequenceNumber = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSH"][13],
             Id = @"MSH.13",
             Type = @"Field",
             Position = @"MSH.13",
@@ -810,34 +596,38 @@ public HL7V21Field SequenceNumber
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _sequenceNumber = new HL7V21Field
+        {
+            field = message[@"MSH"][13],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (sequenceNumber.field.FieldRepetitions != null && sequenceNumber.field.FieldRepetitions.Count > 0)
+        if (_sequenceNumber.field.FieldRepetitions != null && _sequenceNumber.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sequenceNumber.Id));
-            sequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(sequenceNumber, fieldData);
+            _sequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_sequenceNumber, fieldData);
         }
 
-        return sequenceNumber;
+        return _sequenceNumber;
     } 
 }
 
-internal HL7V21Field continuationPointer;
+internal HL7V21Field _continuationPointer;
 
 public HL7V21Field ContinuationPointer
 {
     get
     {
-        if (continuationPointer != null)
+        if (_continuationPointer != null)
         {
-            return continuationPointer;
+            return _continuationPointer;
         }
 
-        continuationPointer = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"MSH"][14],
             Id = @"MSH.14",
             Type = @"Field",
             Position = @"MSH.14",
@@ -851,17 +641,22 @@ public HL7V21Field ContinuationPointer
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _continuationPointer = new HL7V21Field
+        {
+            field = message[@"MSH"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (continuationPointer.field.FieldRepetitions != null && continuationPointer.field.FieldRepetitions.Count > 0)
+        if (_continuationPointer.field.FieldRepetitions != null && _continuationPointer.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(continuationPointer.Id));
-            continuationPointer.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(continuationPointer, fieldData);
+            _continuationPointer.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_continuationPointer, fieldData);
         }
 
-        return continuationPointer;
+        return _continuationPointer;
     } 
 }
     }

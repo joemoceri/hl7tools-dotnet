@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentCTI(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _sponsorStudyId;
+
+public HL7V28Field SponsorStudyId
+{
+    get
+    {
+        if (_sponsorStudyId != null)
+        {
+            return _sponsorStudyId;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"CTI.1",
+            Type = @"Field",
+            Position = @"CTI.1",
+            Name = @"Sponsor Study Id",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the universal identifier for the clinical trial. The coding system is as described in CSR-1 Sponsor Study ID.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"CTI.1",
-                            Type = @"Field",
-                            Position = @"CTI.1",
-                            Name = @"Sponsor Study Id",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the universal identifier for the clinical trial. The coding system is as described in CSR-1 Sponsor Study ID.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CTI.1.1",
                             Type = @"Component",
@@ -126,25 +138,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _sponsorStudyId = new HL7V28Field
+        {
+            field = message[@"CTI"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sponsorStudyId.field.FieldRepetitions != null && _sponsorStudyId.field.FieldRepetitions.Count > 0)
+        {
+            _sponsorStudyId.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_sponsorStudyId, fieldData);
+        }
+
+        return _sponsorStudyId;
+    } 
+}
+
+internal HL7V28Field _studyPhaseIdentifier;
+
+public HL7V28Field StudyPhaseIdentifier
+{
+    get
+    {
+        if (_studyPhaseIdentifier != null)
+        {
+            return _studyPhaseIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"CTI.2",
+            Type = @"Field",
+            Position = @"CTI.2",
+            Name = @"Study Phase Identifier",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the phase of the study that a patient has entered. See CSP-1 Study Phase Identifier for details of coding systems.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CTI.2",
-                            Type = @"Field",
-                            Position = @"CTI.2",
-                            Name = @"Study Phase Identifier",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the phase of the study that a patient has entered. See CSP-1 Study Phase Identifier for details of coding systems.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CTI.2.1",
                             Type = @"Component",
@@ -572,25 +614,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _studyPhaseIdentifier = new HL7V28Field
+        {
+            field = message[@"CTI"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_studyPhaseIdentifier.field.FieldRepetitions != null && _studyPhaseIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _studyPhaseIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_studyPhaseIdentifier, fieldData);
+        }
+
+        return _studyPhaseIdentifier;
+    } 
+}
+
+internal HL7V28Field _studyScheduledTimePoint;
+
+public HL7V28Field StudyScheduledTimePoint
+{
+    get
+    {
+        if (_studyScheduledTimePoint != null)
+        {
+            return _studyScheduledTimePoint;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"CTI.3",
+            Type = @"Field",
+            Position = @"CTI.3",
+            Name = @"Study Scheduled Time Point",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field identifies a time point in the clinical trial phase. CTI-2 Study Phase Identifier must be valued if CTI-3 Study Scheduled Time Point is valued. Should correspond to CSS-1 Study Scheduled Time Point.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CTI.3",
-                            Type = @"Field",
-                            Position = @"CTI.3",
-                            Name = @"Study Scheduled Time Point",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field identifies a time point in the clinical trial phase. CTI-2 Study Phase Identifier must be valued if CTI-3 Study Scheduled Time Point is valued. Should correspond to CSS-1 Study Scheduled Time Point.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CTI.3.1",
                             Type = @"Component",
@@ -1018,137 +1090,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentCTI(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field sponsorStudyId;
-
-public HL7V28Field SponsorStudyId
-{
-    get
-    {
-        if (sponsorStudyId != null)
-        {
-            return sponsorStudyId;
-        }
-
-        sponsorStudyId = new HL7V28Field
-        {
-            field = message[@"CTI"][1],
-            Id = @"CTI.1",
-            Type = @"Field",
-            Position = @"CTI.1",
-            Name = @"Sponsor Study Id",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the universal identifier for the clinical trial. The coding system is as described in CSR-1 Sponsor Study ID.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sponsorStudyId.field.FieldRepetitions != null && sponsorStudyId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sponsorStudyId.Id));
-            sponsorStudyId.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(sponsorStudyId, fieldData);
-        }
-
-        return sponsorStudyId;
-    } 
-}
-
-internal HL7V28Field studyPhaseIdentifier;
-
-public HL7V28Field StudyPhaseIdentifier
-{
-    get
-    {
-        if (studyPhaseIdentifier != null)
-        {
-            return studyPhaseIdentifier;
-        }
-
-        studyPhaseIdentifier = new HL7V28Field
-        {
-            field = message[@"CTI"][2],
-            Id = @"CTI.2",
-            Type = @"Field",
-            Position = @"CTI.2",
-            Name = @"Study Phase Identifier",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the phase of the study that a patient has entered. See CSP-1 Study Phase Identifier for details of coding systems.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (studyPhaseIdentifier.field.FieldRepetitions != null && studyPhaseIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studyPhaseIdentifier.Id));
-            studyPhaseIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(studyPhaseIdentifier, fieldData);
-        }
-
-        return studyPhaseIdentifier;
-    } 
-}
-
-internal HL7V28Field studyScheduledTimePoint;
-
-public HL7V28Field StudyScheduledTimePoint
-{
-    get
-    {
-        if (studyScheduledTimePoint != null)
-        {
-            return studyScheduledTimePoint;
-        }
-
-        studyScheduledTimePoint = new HL7V28Field
+        _studyScheduledTimePoint = new HL7V28Field
         {
             field = message[@"CTI"][3],
-            Id = @"CTI.3",
-            Type = @"Field",
-            Position = @"CTI.3",
-            Name = @"Study Scheduled Time Point",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field identifies a time point in the clinical trial phase. CTI-2 Study Phase Identifier must be valued if CTI-3 Study Scheduled Time Point is valued. Should correspond to CSS-1 Study Scheduled Time Point.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (studyScheduledTimePoint.field.FieldRepetitions != null && studyScheduledTimePoint.field.FieldRepetitions.Count > 0)
+        if (_studyScheduledTimePoint.field.FieldRepetitions != null && _studyScheduledTimePoint.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studyScheduledTimePoint.Id));
-            studyScheduledTimePoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(studyScheduledTimePoint, fieldData);
+            _studyScheduledTimePoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_studyScheduledTimePoint, fieldData);
         }
 
-        return studyScheduledTimePoint;
+        return _studyScheduledTimePoint;
     } 
 }
     }

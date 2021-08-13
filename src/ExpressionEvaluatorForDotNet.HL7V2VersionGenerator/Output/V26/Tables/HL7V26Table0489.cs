@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_07",
+
                     };
             } 
         }
@@ -95,6 +96,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Radioactive",
                             Comment = @"Material is a source for ionizing radiation and must be handled with special care to avoid injury of those who handle it and to avoid environmental hazards."
                         },
+                        
                     };
             } 
         }

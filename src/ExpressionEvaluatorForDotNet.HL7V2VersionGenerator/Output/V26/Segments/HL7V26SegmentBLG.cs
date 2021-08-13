@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentBLG(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _whentoCharge;
+
+public HL7V26Field WhentoCharge
+{
+    get
+    {
+        if (_whentoCharge != null)
+        {
+            return _whentoCharge;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"BLG.1",
+            Type = @"Field",
+            Position = @"BLG.1",
+            Name = @"When to Charge",
+            Length = 40,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CCD",
+            DataTypeName = @"Charge Code and Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies when to charge for the ordered service. Refer to HL7 Table 0100 - Invocation event for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"BLG.1",
-                            Type = @"Field",
-                            Position = @"BLG.1",
-                            Name = @"When to Charge",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CCD",
-                            DataTypeName = @"Charge Code and Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies when to charge for the ordered service. Refer to HL7 Table 0100 - Invocation event for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"BLG.1.1",
                             Type = @"Component",
@@ -84,43 +96,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The second component is used to express the exact time to charge for the ordered service; it is used only when the CCD.1 value is T. When used, it is expressed as a DTM data type.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _whentoCharge = new HL7V26Field
+        {
+            field = message[@"BLG"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_whentoCharge.field.FieldRepetitions != null && _whentoCharge.field.FieldRepetitions.Count > 0)
+        {
+            _whentoCharge.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_whentoCharge, fieldData);
+        }
+
+        return _whentoCharge;
+    } 
+}
+
+internal HL7V26Field _chargeType;
+
+public HL7V26Field ChargeType
+{
+    get
+    {
+        if (_chargeType != null)
+        {
+            return _chargeType;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"BLG.2",
+            Type = @"Field",
+            Position = @"BLG.2",
+            Name = @"Charge Type",
+            Length = 50,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0122",
+            TableName = @"Charge type",
+            Description = @"This field identifies someone or something other than the patient to be billed for this service. It is used in conjunction with BLG-3-account ID. Refer to HL7 Table 0122 - Charge Type for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _chargeType = new HL7V26Field
+        {
+            field = message[@"BLG"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_chargeType.field.FieldRepetitions != null && _chargeType.field.FieldRepetitions.Count > 0)
+        {
+            _chargeType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_chargeType, fieldData);
+        }
+
+        return _chargeType;
+    } 
+}
+
+internal HL7V26Field _accountID;
+
+public HL7V26Field AccountID
+{
+    get
+    {
+        if (_accountID != null)
+        {
+            return _accountID;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"BLG.3",
+            Type = @"Field",
+            Position = @"BLG.3",
+            Name = @"Account ID",
+            Length = 100,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID with Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the account to be billed. It is used in conjunction with BLG-2-charge type . Refer to HL7 table 0061 - Check digit scheme in Chapter 2.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BLG.2",
-                            Type = @"Field",
-                            Position = @"BLG.2",
-                            Name = @"Charge Type",
-                            Length = 50,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0122",
-                            TableName = @"Charge type",
-                            Description = @"This field identifies someone or something other than the patient to be billed for this service. It is used in conjunction with BLG-3-account ID. Refer to HL7 Table 0122 - Charge Type for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BLG.3",
-                            Type = @"Field",
-                            Position = @"BLG.3",
-                            Name = @"Account ID",
-                            Length = 100,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID with Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the account to be billed. It is used in conjunction with BLG-2-charge type . Refer to HL7 table 0061 - Check digit scheme in Chapter 2.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BLG.3.1",
                             Type = @"Component",
@@ -722,25 +791,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _accountID = new HL7V26Field
+        {
+            field = message[@"BLG"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accountID.field.FieldRepetitions != null && _accountID.field.FieldRepetitions.Count > 0)
+        {
+            _accountID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_accountID, fieldData);
+        }
+
+        return _accountID;
+    } 
+}
+
+internal HL7V26Field _chargeTypeReason;
+
+public HL7V26Field ChargeTypeReason
+{
+    get
+    {
+        if (_chargeTypeReason != null)
+        {
+            return _chargeTypeReason;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"BLG.4",
+            Type = @"Field",
+            Position = @"BLG.4",
+            Name = @"Charge Type Reason",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0475",
+            TableName = @"Charge Type Reason",
+            Description = @"This field explains the choice of and provides the clinical rationale for the selected charge type identified in BLG-2. Refer to User-defined Table 0475 - Charge Type Reason for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BLG.4",
-                            Type = @"Field",
-                            Position = @"BLG.4",
-                            Name = @"Charge Type Reason",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0475",
-                            TableName = @"Charge Type Reason",
-                            Description = @"This field explains the choice of and provides the clinical rationale for the selected charge type identified in BLG-2. Refer to User-defined Table 0475 - Charge Type Reason for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BLG.4.1",
                             Type = @"Component",
@@ -900,178 +999,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentBLG(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field whentoCharge;
-
-public HL7V26Field WhentoCharge
-{
-    get
-    {
-        if (whentoCharge != null)
-        {
-            return whentoCharge;
-        }
-
-        whentoCharge = new HL7V26Field
-        {
-            field = message[@"BLG"][1],
-            Id = @"BLG.1",
-            Type = @"Field",
-            Position = @"BLG.1",
-            Name = @"When to Charge",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CCD",
-            DataTypeName = @"Charge Code and Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies when to charge for the ordered service. Refer to HL7 Table 0100 - Invocation event for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (whentoCharge.field.FieldRepetitions != null && whentoCharge.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(whentoCharge.Id));
-            whentoCharge.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(whentoCharge, fieldData);
-        }
-
-        return whentoCharge;
-    } 
-}
-
-internal HL7V26Field chargeType;
-
-public HL7V26Field ChargeType
-{
-    get
-    {
-        if (chargeType != null)
-        {
-            return chargeType;
-        }
-
-        chargeType = new HL7V26Field
-        {
-            field = message[@"BLG"][2],
-            Id = @"BLG.2",
-            Type = @"Field",
-            Position = @"BLG.2",
-            Name = @"Charge Type",
-            Length = 50,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0122",
-            TableName = @"Charge type",
-            Description = @"This field identifies someone or something other than the patient to be billed for this service. It is used in conjunction with BLG-3-account ID. Refer to HL7 Table 0122 - Charge Type for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (chargeType.field.FieldRepetitions != null && chargeType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(chargeType.Id));
-            chargeType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(chargeType, fieldData);
-        }
-
-        return chargeType;
-    } 
-}
-
-internal HL7V26Field accountID;
-
-public HL7V26Field AccountID
-{
-    get
-    {
-        if (accountID != null)
-        {
-            return accountID;
-        }
-
-        accountID = new HL7V26Field
-        {
-            field = message[@"BLG"][3],
-            Id = @"BLG.3",
-            Type = @"Field",
-            Position = @"BLG.3",
-            Name = @"Account ID",
-            Length = 100,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID with Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the account to be billed. It is used in conjunction with BLG-2-charge type . Refer to HL7 table 0061 - Check digit scheme in Chapter 2.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accountID.field.FieldRepetitions != null && accountID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accountID.Id));
-            accountID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(accountID, fieldData);
-        }
-
-        return accountID;
-    } 
-}
-
-internal HL7V26Field chargeTypeReason;
-
-public HL7V26Field ChargeTypeReason
-{
-    get
-    {
-        if (chargeTypeReason != null)
-        {
-            return chargeTypeReason;
-        }
-
-        chargeTypeReason = new HL7V26Field
+        _chargeTypeReason = new HL7V26Field
         {
             field = message[@"BLG"][4],
-            Id = @"BLG.4",
-            Type = @"Field",
-            Position = @"BLG.4",
-            Name = @"Charge Type Reason",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0475",
-            TableName = @"Charge Type Reason",
-            Description = @"This field explains the choice of and provides the clinical rationale for the selected charge type identified in BLG-2. Refer to User-defined Table 0475 - Charge Type Reason for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (chargeTypeReason.field.FieldRepetitions != null && chargeTypeReason.field.FieldRepetitions.Count > 0)
+        if (_chargeTypeReason.field.FieldRepetitions != null && _chargeTypeReason.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(chargeTypeReason.Id));
-            chargeTypeReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(chargeTypeReason, fieldData);
+            _chargeTypeReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_chargeTypeReason, fieldData);
         }
 
-        return chargeTypeReason;
+        return _chargeTypeReason;
     } 
 }
     }

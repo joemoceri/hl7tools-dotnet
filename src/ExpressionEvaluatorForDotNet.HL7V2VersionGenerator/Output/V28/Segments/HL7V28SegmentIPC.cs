@@ -31,26 +31,36 @@ Note: References, field names and definitions in this section were developed in 
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"IPC.1",
-                            Type = @"Field",
-                            Position = @"IPC.1",
-                            Name = @"Accession Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A workflow-management IDIS generated number that identifies the Filler Order for an Imaging Service (Imaging Service Request). This identifier corresponds one-to-one to the Order Filler number but is used in internal tracking of the work by the IDIS and in communication between IDIS within the department. It also has specific requirements to assure its compatibility with DICOM. It is a case of the Entity Identifier data type (section 2.A.28). Its first component is a string that identifies the Imaging Service Request. A limit of sixteen (16) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0008,0050) that conveys information identical to the component one of this field.
+        public HL7V28SegmentIPC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _accessionIdentifier;
+
+public HL7V28Field AccessionIdentifier
+{
+    get
+    {
+        if (_accessionIdentifier != null)
+        {
+            return _accessionIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"IPC.1",
+            Type = @"Field",
+            Position = @"IPC.1",
+            Name = @"Accession Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"A workflow-management IDIS generated number that identifies the Filler Order for an Imaging Service (Imaging Service Request). This identifier corresponds one-to-one to the Order Filler number but is used in internal tracking of the work by the IDIS and in communication between IDIS within the department. It also has specific requirements to assure its compatibility with DICOM. It is a case of the Entity Identifier data type (section 2.A.28). Its first component is a string that identifies the Imaging Service Request. A limit of sixteen (16) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0008,0050) that conveys information identical to the component one of this field.
 
 An IDIS that performs functions of the workflow management for a department may accept a single Placer Order that gives rise to one or more Filler Orders-Imaging Service Requests. For example, an IDIS may receive an order for an X-ray examination of the patient daily at 8 am for the next three days. For the purposes of fulfilling the Placer Order, it will identify each of the daily exams either as a separate Filler Order or parts of a single Filler Order. Correspondingly, it will assign one or more Filler Order numbers associated with the order. For each of the Filler Order numbers, it will assign a unique Accession Number.
 
@@ -59,8 +69,10 @@ Each of the Imaging Service Requests may contain one or more Requested Procedure
 To support communication with the instances of equipment in a department (acquisition modalities), IDIS will also generate the Study Instance UID, a globally unique identifier for each Requested Procedure. This identifier will be used by acquisition modalities to identify all generated images and other DICOM objects related to this Requested Procedure. Note that, unlike the Study Instance UID, the Requested Procedure ID must only be unique within the scope of the encompassing Imaging Service Request identified by an Accession Number.
 
 Each of the Requested Procedures may be further broken down by the IDIS into the Scheduled Procedure Steps based on the timing and equipment requirements. Each step is identified with the Scheduled Procedure Step ID. A single Procedure Step may only be performed on a single type and instance of the equipment. Thus, while the Requested Procedure may identify multi-modality examination (such as ones common in Nuclear Medicine), a single Procedure Step shall correspond to the operations performed on a single modality.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.1.1",
                             Type = @"Component",
@@ -136,31 +148,61 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IPC.2",
-                            Type = @"Field",
-                            Position = @"IPC.2",
-                            Name = @"Requested Procedure Id",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the identifier of the Requested Procedure that the workflow management IDIS selected to perform as a part of the order for the imaging service. It is a case of the Entity Identifier data type (section 2.A.28). The first component of this field is a string that identifies the Requested Procedure. A limit of sixteen (16) characters is required to allow compatibility with DICOM. This string must uniquely identify the Requested Procedure within the scope of the order (as specified by accession number). This uniqueness must persist over time. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0001) that conveys information identical to the component one of this field.
+                        }
+        }
+
+        _accessionIdentifier = new HL7V28Field
+        {
+            field = message[@"IPC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accessionIdentifier.field.FieldRepetitions != null && _accessionIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _accessionIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_accessionIdentifier, fieldData);
+        }
+
+        return _accessionIdentifier;
+    } 
+}
+
+internal HL7V28Field _requestedProcedureId;
+
+public HL7V28Field RequestedProcedureId
+{
+    get
+    {
+        if (_requestedProcedureId != null)
+        {
+            return _requestedProcedureId;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"IPC.2",
+            Type = @"Field",
+            Position = @"IPC.2",
+            Name = @"Requested Procedure Id",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the identifier of the Requested Procedure that the workflow management IDIS selected to perform as a part of the order for the imaging service. It is a case of the Entity Identifier data type (section 2.A.28). The first component of this field is a string that identifies the Requested Procedure. A limit of sixteen (16) characters is required to allow compatibility with DICOM. This string must uniquely identify the Requested Procedure within the scope of the order (as specified by accession number). This uniqueness must persist over time. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0001) that conveys information identical to the component one of this field.
 
 The second through fourth components contain the ID of the workflow management IDIS, in the form of the HD data type (see section 2.A.36, ""HD - hierarchic designator""). The second component is a user-defined coded value that uniquely defines the application from other applications on the network. A limit of five (5) characters is suggested but not required. The second component of the Requested Procedure number always identifies the actual filler of an order.
 
 A Requested Procedure is an instance of a Procedure of a given Procedure Type. An instance of a Requested Procedure includes all of the items of information that are specified by an instance of a Procedure Plan that is selected for the Requested Procedure by the imaging service provider. This Procedure Plan is defined by the imaging service provider on the basis of the Procedure Plan templates associated with the considered Procedure Type. An Imaging Service Request may include requests for several different Requested Procedures. The purpose of this entity is to establish the association between Imaging Service Requests and Procedure Types, to convey the information that belongs to this association and to establish the relationships between Requested Procedures and the other entities that are needed to describe them. A single Requested Procedure of one Procedure Type is the smallest unit of service that can be requested, reported, coded and billed. Performance of one instance of a Requested Procedure is specified by exactly one Procedure Plan. A Requested Procedure leads to one or more Scheduled Procedure Steps involving Protocols as specified by a Procedure Plan. A Requested Procedure may involve one or more pieces of equipment.
 
 Each OMI message shall convey information about Requested Procedure(s) pertaining to one order. Pair of Segments ORC/OBR shall correspond to each requested procedure. If the Requested Procedure is comprised of multiple Procedure Steps, multiple IPC segments shall be included for each ORC/OBR pair in the message. In this case, the value of the IPC-2 field shall be identical in all IPC segments related to the same Requested Procedure.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.2.1",
                             Type = @"Component",
@@ -236,30 +278,60 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IPC.3",
-                            Type = @"Field",
-                            Position = @"IPC.3",
-                            Name = @"Study Instance Uid",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Globally unique identifier assigned by the workflow management IDIS to the Imaging Study under which all images and other DICOM objects produced in the course of the Requested Procedure shall be collected. It is a case of the Entity Identifier data type (section 2.A.28). Its first component is a string that identifies the Study. A limit of sixty-four (64) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0020,000D) that conveys information identical to component one of this field. The second through fourth components contain the ID of the workflow management IDIS, in the form of the HD data type (see section 2.A.36, ""HD - hierarchic designator""). The second component is a user-defined coded value that uniquely defines the application from other applications on the network. A limit of five (5) characters is suggested but not required. The second component of the Study Instance UID always identifies the actual filler of an order.
+                        }
+        }
+
+        _requestedProcedureId = new HL7V28Field
+        {
+            field = message[@"IPC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedProcedureId.field.FieldRepetitions != null && _requestedProcedureId.field.FieldRepetitions.Count > 0)
+        {
+            _requestedProcedureId.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_requestedProcedureId, fieldData);
+        }
+
+        return _requestedProcedureId;
+    } 
+}
+
+internal HL7V28Field _studyInstanceUid;
+
+public HL7V28Field StudyInstanceUid
+{
+    get
+    {
+        if (_studyInstanceUid != null)
+        {
+            return _studyInstanceUid;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"IPC.3",
+            Type = @"Field",
+            Position = @"IPC.3",
+            Name = @"Study Instance Uid",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Globally unique identifier assigned by the workflow management IDIS to the Imaging Study under which all images and other DICOM objects produced in the course of the Requested Procedure shall be collected. It is a case of the Entity Identifier data type (section 2.A.28). Its first component is a string that identifies the Study. A limit of sixty-four (64) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0020,000D) that conveys information identical to component one of this field. The second through fourth components contain the ID of the workflow management IDIS, in the form of the HD data type (see section 2.A.36, ""HD - hierarchic designator""). The second component is a user-defined coded value that uniquely defines the application from other applications on the network. A limit of five (5) characters is suggested but not required. The second component of the Study Instance UID always identifies the actual filler of an order.
 
 Each OMI message shall convey information about Requested Procedure(s) pertaining to one order. Pair of Segments ORC/OBR shall correspond to each requested procedure. If the Requested Procedure is comprised of multiple Procedure Steps, multiple IPC segments shall be included for each ORC/OBR pair in the message. In this case, the value of the IPC-3 field shall be identical in all IPC segments related to the same Requested Procedure.
 The second through fourth components contain the ID of the workflow management IDIS, in the form of the HD data type (see section 2.A.36, ""HD - hierarchic designator""). The second component is a user-defined coded value that uniquely defines the application from other applications on the network.  A limit of five (5) characters is suggested but not required.  The second component of the Requested Procedure number always identifies the actual filler of an order.
 
 A Procedure Step is an arbitrarily defined scheduled unit of service, which is specified by the Procedure Plan for a Requested Procedure. A Procedure Step prescribes Protocol that may be identified by one or more protocol codes. A Procedure Step involves equipment (e.g., imaging Modality equipment, anesthesia equipment, surgical equipment, transportation equipment), human resources, consumable supplies, location, and time (e.g., start time, stop time, duration). While in the context of Imaging Service request the scheduling of a Procedure Step might include only a general designation of imaging Modality that could be satisfied by multiple pieces of the same equipment type, the performance of one instance of a Procedure Step involves one and only one piece of imaging Modality equipment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.3.1",
                             Type = @"Component",
@@ -335,29 +407,59 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IPC.4",
-                            Type = @"Field",
-                            Position = @"IPC.4",
-                            Name = @"Scheduled Procedure Step Id",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the identifier of a particular Procedure Step (sub-procedure) of the Requested Procedure that the workflow management IDIS selected to perform as a part of the order for imaging service. It is a case of the Entity Identifier data type (section 2.A.28). Its first component is a string that identifies the Procedure Step. A limit of sixteen (16) characters is required to allow compatibility with DICOM. This string must uniquely identify the Procedure Step within the scope of the Requested Procedure. This uniqueness must persist over time. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0009) that conveys information identical to the component one of this field.
+                        }
+        }
+
+        _studyInstanceUid = new HL7V28Field
+        {
+            field = message[@"IPC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_studyInstanceUid.field.FieldRepetitions != null && _studyInstanceUid.field.FieldRepetitions.Count > 0)
+        {
+            _studyInstanceUid.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_studyInstanceUid, fieldData);
+        }
+
+        return _studyInstanceUid;
+    } 
+}
+
+internal HL7V28Field _scheduledProcedureStepId;
+
+public HL7V28Field ScheduledProcedureStepId
+{
+    get
+    {
+        if (_scheduledProcedureStepId != null)
+        {
+            return _scheduledProcedureStepId;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"IPC.4",
+            Type = @"Field",
+            Position = @"IPC.4",
+            Name = @"Scheduled Procedure Step Id",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the identifier of a particular Procedure Step (sub-procedure) of the Requested Procedure that the workflow management IDIS selected to perform as a part of the order for imaging service. It is a case of the Entity Identifier data type (section 2.A.28). Its first component is a string that identifies the Procedure Step. A limit of sixteen (16) characters is required to allow compatibility with DICOM. This string must uniquely identify the Procedure Step within the scope of the Requested Procedure. This uniqueness must persist over time. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0009) that conveys information identical to the component one of this field.
 
 The second through fourth components contain the ID of the workflow management IDIS, in the form of the HD data type (see section 2.A.36, ""HD - hierarchic designator""). The second component is a user-defined coded value that uniquely defines the application from other applications on the network. A limit of five (5) characters is suggested but not required. The second component of the Requested Procedure number always identifies the actual filler of an order.
 
 A Procedure Step is an arbitrarily defined scheduled unit of service, which is specified by the Procedure Plan for a Requested Procedure. A Procedure Step prescribes Protocol that may be identified by one or more protocol codes. A Procedure Step involves equipment (e.g., imaging Modality equipment, anesthesia equipment, surgical equipment, transportation equipment), human resources, consumable supplies, location, and time (e.g., start time, stop time, duration). While in the context of Imaging Service request the scheduling of a Procedure Step might include only a general designation of imaging Modality that could be satisfied by multiple pieces of the same equipment type, the performance of one instance of a Procedure Step involves one and only one piece of imaging Modality equipment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.4.1",
                             Type = @"Component",
@@ -433,29 +535,59 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IPC.5",
-                            Type = @"Field",
-                            Position = @"IPC.5",
-                            Name = @"Modality",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"The type of equipment requested to acquire data during performance of a Procedure Step. The acquired data will be used to create the images for the Imaging Study corresponding to the Requested Procedure.
+                        }
+        }
+
+        _scheduledProcedureStepId = new HL7V28Field
+        {
+            field = message[@"IPC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_scheduledProcedureStepId.field.FieldRepetitions != null && _scheduledProcedureStepId.field.FieldRepetitions.Count > 0)
+        {
+            _scheduledProcedureStepId.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_scheduledProcedureStepId, fieldData);
+        }
+
+        return _scheduledProcedureStepId;
+    } 
+}
+
+internal HL7V28Field _modality;
+
+public HL7V28Field Modality
+{
+    get
+    {
+        if (_modality != null)
+        {
+            return _modality;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"IPC.5",
+            Type = @"Field",
+            Position = @"IPC.5",
+            Name = @"Modality",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"The type of equipment requested to acquire data during performance of a Procedure Step. The acquired data will be used to create the images for the Imaging Study corresponding to the Requested Procedure.
 
 This field is a case of the CE data type. Refer to External Table 0910 – Acquisition Modality for valid values, and to DICOM Standard Part 3 for further details on DICOM Attribute (0008,0060) that conveys information identical to component one of this field.
 
 A limit of sixteen (16) characters for the first component is required to allow compatibility with DICOM. The third component of this field, if present, shall have the value of ""DCM"" (see HL7 Table 0396 – Coding Systems).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.5.1",
                             Type = @"Component",
@@ -883,29 +1015,59 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IPC.6",
-                            Type = @"Field",
-                            Position = @"IPC.6",
-                            Name = @"Protocol Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"One or more coded entries identifying the protocol according to which the Scheduled Procedure Step shall be performed. Protocol Code(s) may identify particular equipment settings as well as operator's manipulations.
+                        }
+        }
+
+        _modality = new HL7V28Field
+        {
+            field = message[@"IPC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_modality.field.FieldRepetitions != null && _modality.field.FieldRepetitions.Count > 0)
+        {
+            _modality.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_modality, fieldData);
+        }
+
+        return _modality;
+    } 
+}
+
+internal HL7V28Field _protocolCode;
+
+public HL7V28Field ProtocolCode
+{
+    get
+    {
+        if (_protocolCode != null)
+        {
+            return _protocolCode;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"IPC.6",
+            Type = @"Field",
+            Position = @"IPC.6",
+            Name = @"Protocol Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"One or more coded entries identifying the protocol according to which the Scheduled Procedure Step shall be performed. Protocol Code(s) may identify particular equipment settings as well as operator's manipulations.
 
 A Protocol is a specification of actions prescribed by a Procedure Plan to perform a specific Procedure Step. A Scheduled Procedure Step contains only one Protocol that may be conveyed by one or more Protocol Codes. Typically, the code or codes identifying Protocol instance would be selected from a catalog of protocols established locally or provided by equipment manufacturers or professional organizations. Multiple Protocols may not exist in one Scheduled Procedure Step. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0008) that conveys information identical to components one through three of this field.
 
 A limit of sixteen (16) characters for the first component and sixty-four (64) characters for the second component is required to allow compatibility with DICOM.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.6.1",
                             Type = @"Component",
@@ -1333,29 +1495,59 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IPC.7",
-                            Type = @"Field",
-                            Position = @"IPC.7",
-                            Name = @"Scheduled Station Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the instance of the modality resource being requested for the performance of a particular Scheduled Procedure Step. It is a case of the Entity Identifier data type (section 2.A.28). The first component of this field is a string that identifies the particular piece of equipment. A limit of sixteen (16) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0010) that conveys information identical to the component one of this field.
+                        }
+        }
+
+        _protocolCode = new HL7V28Field
+        {
+            field = message[@"IPC"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_protocolCode.field.FieldRepetitions != null && _protocolCode.field.FieldRepetitions.Count > 0)
+        {
+            _protocolCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_protocolCode, fieldData);
+        }
+
+        return _protocolCode;
+    } 
+}
+
+internal HL7V28Field _scheduledStationName;
+
+public HL7V28Field ScheduledStationName
+{
+    get
+    {
+        if (_scheduledStationName != null)
+        {
+            return _scheduledStationName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"IPC.7",
+            Type = @"Field",
+            Position = @"IPC.7",
+            Name = @"Scheduled Station Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the instance of the modality resource being requested for the performance of a particular Scheduled Procedure Step. It is a case of the Entity Identifier data type (section 2.A.28). The first component of this field is a string that identifies the particular piece of equipment. A limit of sixteen (16) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0010) that conveys information identical to the component one of this field.
 
 The second through fourth components identify the organization, in the form of the HD data type (see section 2.A.36, ""HD - hierarchic designator"").
 
 If the Scheduled Procedure Step is to be performed by an unspecified member of a pool of resources, this field shall be empty and IPC-8 Scheduled Procedure Step Location is used to identify the site-specific resource pool. See section 4.5.6.8, ""IPC-8 Scheduled Procedure Step Location (CWE) 01664,"" for explanation of the resource pool.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.7.1",
                             Type = @"Component",
@@ -1431,23 +1623,51 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IPC.8",
-                            Type = @"Field",
-                            Position = @"IPC.8",
-                            Name = @"Scheduled Procedure Step Location",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field specifies a locally defined physical location of the modality resource being requested for performance of particular Scheduled Procedure Step. Although location is usually defined geographically (such as identification of a campus, building, floor, etc.) it may be used for identification of a pool of equipment (resources) formed by any other means. Values for the field shall be drawn from a locally defined coding scheme.
+                        }
+        }
+
+        _scheduledStationName = new HL7V28Field
+        {
+            field = message[@"IPC"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_scheduledStationName.field.FieldRepetitions != null && _scheduledStationName.field.FieldRepetitions.Count > 0)
+        {
+            _scheduledStationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_scheduledStationName, fieldData);
+        }
+
+        return _scheduledStationName;
+    } 
+}
+
+internal HL7V28Field _scheduledProcedureStepLocation;
+
+public HL7V28Field ScheduledProcedureStepLocation
+{
+    get
+    {
+        if (_scheduledProcedureStepLocation != null)
+        {
+            return _scheduledProcedureStepLocation;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"IPC.8",
+            Type = @"Field",
+            Position = @"IPC.8",
+            Name = @"Scheduled Procedure Step Location",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field specifies a locally defined physical location of the modality resource being requested for performance of particular Scheduled Procedure Step. Although location is usually defined geographically (such as identification of a campus, building, floor, etc.) it may be used for identification of a pool of equipment (resources) formed by any other means. Values for the field shall be drawn from a locally defined coding scheme.
 
 For example, the pool may be defined as a set of three CT scanners belonging to an imaging center within a hospital. Two of these scanners may also be grouped into another pool based on their location at a building A, whereas the third scanner may be in a pool by itself due to its location in a building B.
 
@@ -1456,8 +1676,10 @@ If this field contains more than one location code, the equipment may be drawn f
 If this field is empty and the fields IPC-7 and IPC-9 are also empty, it is assumed that a particular Procedure Step may be performed by any instance of equipment of a particular type within an organization.
 
 See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0011) that conveys information identical to component one of this field. A limit of sixteen (16) characters for the first component is required to allow compatibility with DICOM.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.8.1",
                             Type = @"Component",
@@ -1885,422 +2107,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IPC.9",
-                            Type = @"Field",
-                            Position = @"IPC.9",
-                            Name = @"Scheduled Station Ae Title",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the Application Entity Title of the modality resource being requested for performance of a particular Scheduled Procedure Step. Application Entity Title is the identifier that identifies an instance of DICOM-compatible equipment for the purpose of addressing during communication. See DICOM Standard, Part 3 for further details on the DICOM Attribute (0040,0001) that conveys equivalent information. A limit of sixteen (16) characters is required to allow compatibility with DICOM.
-
-If the Scheduled Procedure Step is to be performed by an unspecified member of a pool of resources, this field shall be empty and IPC-8 Scheduled Procedure Step Location is used to identify the site-specific resource pool. See section 4.5.6.8 for explanation of the resource pool.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentIPC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field accessionIdentifier;
-
-public HL7V28Field AccessionIdentifier
-{
-    get
-    {
-        if (accessionIdentifier != null)
-        {
-            return accessionIdentifier;
-        }
-
-        accessionIdentifier = new HL7V28Field
-        {
-            field = message[@"IPC"][1],
-            Id = @"IPC.1",
-            Type = @"Field",
-            Position = @"IPC.1",
-            Name = @"Accession Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"A workflow-management IDIS generated number that identifies the Filler Order for an Imaging Service (Imaging Service Request). This identifier corresponds one-to-one to the Order Filler number but is used in internal tracking of the work by the IDIS and in communication between IDIS within the department. It also has specific requirements to assure its compatibility with DICOM. It is a case of the Entity Identifier data type (section 2.A.28). Its first component is a string that identifies the Imaging Service Request. A limit of sixteen (16) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0008,0050) that conveys information identical to the component one of this field.
-
-An IDIS that performs functions of the workflow management for a department may accept a single Placer Order that gives rise to one or more Filler Orders-Imaging Service Requests. For example, an IDIS may receive an order for an X-ray examination of the patient daily at 8 am for the next three days. For the purposes of fulfilling the Placer Order, it will identify each of the daily exams either as a separate Filler Order or parts of a single Filler Order. Correspondingly, it will assign one or more Filler Order numbers associated with the order. For each of the Filler Order numbers, it will assign a unique Accession Number.
-
-Each of the Imaging Service Requests may contain one or more Requested Procedures that it will identify with the Requested Procedure ID. The Requested Procedure is the most granular unit of work that may lead to the creation of the procedure report. Each procedure report contributes to the results for the order. In the example mentioned above, each of the daily examinations will require a separate diagnostic report, hence each of them will be treated as a separate Requested Procedure. Depending on the treatment of the order by the IDIS, it will either link all Requested Procedures to a single Filler Order-Imaging Service Request, or link each Requested Procedure to its own Imaging Service Request. Exact type of requested procedure is conveyed by the coded values in OBR-44 Procedure Code and OBR-45 Procedure Code modifier for each procedure. Note that in case of multiple Requested Procedures corresponding to one order, each procedure may have different code.
-
-To support communication with the instances of equipment in a department (acquisition modalities), IDIS will also generate the Study Instance UID, a globally unique identifier for each Requested Procedure. This identifier will be used by acquisition modalities to identify all generated images and other DICOM objects related to this Requested Procedure. Note that, unlike the Study Instance UID, the Requested Procedure ID must only be unique within the scope of the encompassing Imaging Service Request identified by an Accession Number.
-
-Each of the Requested Procedures may be further broken down by the IDIS into the Scheduled Procedure Steps based on the timing and equipment requirements. Each step is identified with the Scheduled Procedure Step ID. A single Procedure Step may only be performed on a single type and instance of the equipment. Thus, while the Requested Procedure may identify multi-modality examination (such as ones common in Nuclear Medicine), a single Procedure Step shall correspond to the operations performed on a single modality.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accessionIdentifier.field.FieldRepetitions != null && accessionIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accessionIdentifier.Id));
-            accessionIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(accessionIdentifier, fieldData);
-        }
-
-        return accessionIdentifier;
-    } 
-}
-
-internal HL7V28Field requestedProcedureId;
-
-public HL7V28Field RequestedProcedureId
-{
-    get
-    {
-        if (requestedProcedureId != null)
-        {
-            return requestedProcedureId;
-        }
-
-        requestedProcedureId = new HL7V28Field
-        {
-            field = message[@"IPC"][2],
-            Id = @"IPC.2",
-            Type = @"Field",
-            Position = @"IPC.2",
-            Name = @"Requested Procedure Id",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the identifier of the Requested Procedure that the workflow management IDIS selected to perform as a part of the order for the imaging service. It is a case of the Entity Identifier data type (section 2.A.28). The first component of this field is a string that identifies the Requested Procedure. A limit of sixteen (16) characters is required to allow compatibility with DICOM. This string must uniquely identify the Requested Procedure within the scope of the order (as specified by accession number). This uniqueness must persist over time. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0001) that conveys information identical to the component one of this field.
-
-The second through fourth components contain the ID of the workflow management IDIS, in the form of the HD data type (see section 2.A.36, ""HD - hierarchic designator""). The second component is a user-defined coded value that uniquely defines the application from other applications on the network. A limit of five (5) characters is suggested but not required. The second component of the Requested Procedure number always identifies the actual filler of an order.
-
-A Requested Procedure is an instance of a Procedure of a given Procedure Type. An instance of a Requested Procedure includes all of the items of information that are specified by an instance of a Procedure Plan that is selected for the Requested Procedure by the imaging service provider. This Procedure Plan is defined by the imaging service provider on the basis of the Procedure Plan templates associated with the considered Procedure Type. An Imaging Service Request may include requests for several different Requested Procedures. The purpose of this entity is to establish the association between Imaging Service Requests and Procedure Types, to convey the information that belongs to this association and to establish the relationships between Requested Procedures and the other entities that are needed to describe them. A single Requested Procedure of one Procedure Type is the smallest unit of service that can be requested, reported, coded and billed. Performance of one instance of a Requested Procedure is specified by exactly one Procedure Plan. A Requested Procedure leads to one or more Scheduled Procedure Steps involving Protocols as specified by a Procedure Plan. A Requested Procedure may involve one or more pieces of equipment.
-
-Each OMI message shall convey information about Requested Procedure(s) pertaining to one order. Pair of Segments ORC/OBR shall correspond to each requested procedure. If the Requested Procedure is comprised of multiple Procedure Steps, multiple IPC segments shall be included for each ORC/OBR pair in the message. In this case, the value of the IPC-2 field shall be identical in all IPC segments related to the same Requested Procedure.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedProcedureId.field.FieldRepetitions != null && requestedProcedureId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedProcedureId.Id));
-            requestedProcedureId.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(requestedProcedureId, fieldData);
-        }
-
-        return requestedProcedureId;
-    } 
-}
-
-internal HL7V28Field studyInstanceUid;
-
-public HL7V28Field StudyInstanceUid
-{
-    get
-    {
-        if (studyInstanceUid != null)
-        {
-            return studyInstanceUid;
-        }
-
-        studyInstanceUid = new HL7V28Field
-        {
-            field = message[@"IPC"][3],
-            Id = @"IPC.3",
-            Type = @"Field",
-            Position = @"IPC.3",
-            Name = @"Study Instance Uid",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Globally unique identifier assigned by the workflow management IDIS to the Imaging Study under which all images and other DICOM objects produced in the course of the Requested Procedure shall be collected. It is a case of the Entity Identifier data type (section 2.A.28). Its first component is a string that identifies the Study. A limit of sixty-four (64) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0020,000D) that conveys information identical to component one of this field. The second through fourth components contain the ID of the workflow management IDIS, in the form of the HD data type (see section 2.A.36, ""HD - hierarchic designator""). The second component is a user-defined coded value that uniquely defines the application from other applications on the network. A limit of five (5) characters is suggested but not required. The second component of the Study Instance UID always identifies the actual filler of an order.
-
-Each OMI message shall convey information about Requested Procedure(s) pertaining to one order. Pair of Segments ORC/OBR shall correspond to each requested procedure. If the Requested Procedure is comprised of multiple Procedure Steps, multiple IPC segments shall be included for each ORC/OBR pair in the message. In this case, the value of the IPC-3 field shall be identical in all IPC segments related to the same Requested Procedure.
-The second through fourth components contain the ID of the workflow management IDIS, in the form of the HD data type (see section 2.A.36, ""HD - hierarchic designator""). The second component is a user-defined coded value that uniquely defines the application from other applications on the network.  A limit of five (5) characters is suggested but not required.  The second component of the Requested Procedure number always identifies the actual filler of an order.
-
-A Procedure Step is an arbitrarily defined scheduled unit of service, which is specified by the Procedure Plan for a Requested Procedure. A Procedure Step prescribes Protocol that may be identified by one or more protocol codes. A Procedure Step involves equipment (e.g., imaging Modality equipment, anesthesia equipment, surgical equipment, transportation equipment), human resources, consumable supplies, location, and time (e.g., start time, stop time, duration). While in the context of Imaging Service request the scheduling of a Procedure Step might include only a general designation of imaging Modality that could be satisfied by multiple pieces of the same equipment type, the performance of one instance of a Procedure Step involves one and only one piece of imaging Modality equipment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (studyInstanceUid.field.FieldRepetitions != null && studyInstanceUid.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studyInstanceUid.Id));
-            studyInstanceUid.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(studyInstanceUid, fieldData);
-        }
-
-        return studyInstanceUid;
-    } 
-}
-
-internal HL7V28Field scheduledProcedureStepId;
-
-public HL7V28Field ScheduledProcedureStepId
-{
-    get
-    {
-        if (scheduledProcedureStepId != null)
-        {
-            return scheduledProcedureStepId;
-        }
-
-        scheduledProcedureStepId = new HL7V28Field
-        {
-            field = message[@"IPC"][4],
-            Id = @"IPC.4",
-            Type = @"Field",
-            Position = @"IPC.4",
-            Name = @"Scheduled Procedure Step Id",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the identifier of a particular Procedure Step (sub-procedure) of the Requested Procedure that the workflow management IDIS selected to perform as a part of the order for imaging service. It is a case of the Entity Identifier data type (section 2.A.28). Its first component is a string that identifies the Procedure Step. A limit of sixteen (16) characters is required to allow compatibility with DICOM. This string must uniquely identify the Procedure Step within the scope of the Requested Procedure. This uniqueness must persist over time. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0009) that conveys information identical to the component one of this field.
-
-The second through fourth components contain the ID of the workflow management IDIS, in the form of the HD data type (see section 2.A.36, ""HD - hierarchic designator""). The second component is a user-defined coded value that uniquely defines the application from other applications on the network. A limit of five (5) characters is suggested but not required. The second component of the Requested Procedure number always identifies the actual filler of an order.
-
-A Procedure Step is an arbitrarily defined scheduled unit of service, which is specified by the Procedure Plan for a Requested Procedure. A Procedure Step prescribes Protocol that may be identified by one or more protocol codes. A Procedure Step involves equipment (e.g., imaging Modality equipment, anesthesia equipment, surgical equipment, transportation equipment), human resources, consumable supplies, location, and time (e.g., start time, stop time, duration). While in the context of Imaging Service request the scheduling of a Procedure Step might include only a general designation of imaging Modality that could be satisfied by multiple pieces of the same equipment type, the performance of one instance of a Procedure Step involves one and only one piece of imaging Modality equipment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (scheduledProcedureStepId.field.FieldRepetitions != null && scheduledProcedureStepId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(scheduledProcedureStepId.Id));
-            scheduledProcedureStepId.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(scheduledProcedureStepId, fieldData);
-        }
-
-        return scheduledProcedureStepId;
-    } 
-}
-
-internal HL7V28Field modality;
-
-public HL7V28Field Modality
-{
-    get
-    {
-        if (modality != null)
-        {
-            return modality;
-        }
-
-        modality = new HL7V28Field
-        {
-            field = message[@"IPC"][5],
-            Id = @"IPC.5",
-            Type = @"Field",
-            Position = @"IPC.5",
-            Name = @"Modality",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"The type of equipment requested to acquire data during performance of a Procedure Step. The acquired data will be used to create the images for the Imaging Study corresponding to the Requested Procedure.
-
-This field is a case of the CE data type. Refer to External Table 0910 – Acquisition Modality for valid values, and to DICOM Standard Part 3 for further details on DICOM Attribute (0008,0060) that conveys information identical to component one of this field.
-
-A limit of sixteen (16) characters for the first component is required to allow compatibility with DICOM. The third component of this field, if present, shall have the value of ""DCM"" (see HL7 Table 0396 – Coding Systems).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (modality.field.FieldRepetitions != null && modality.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(modality.Id));
-            modality.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(modality, fieldData);
-        }
-
-        return modality;
-    } 
-}
-
-internal HL7V28Field protocolCode;
-
-public HL7V28Field ProtocolCode
-{
-    get
-    {
-        if (protocolCode != null)
-        {
-            return protocolCode;
-        }
-
-        protocolCode = new HL7V28Field
-        {
-            field = message[@"IPC"][6],
-            Id = @"IPC.6",
-            Type = @"Field",
-            Position = @"IPC.6",
-            Name = @"Protocol Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"One or more coded entries identifying the protocol according to which the Scheduled Procedure Step shall be performed. Protocol Code(s) may identify particular equipment settings as well as operator's manipulations.
-
-A Protocol is a specification of actions prescribed by a Procedure Plan to perform a specific Procedure Step. A Scheduled Procedure Step contains only one Protocol that may be conveyed by one or more Protocol Codes. Typically, the code or codes identifying Protocol instance would be selected from a catalog of protocols established locally or provided by equipment manufacturers or professional organizations. Multiple Protocols may not exist in one Scheduled Procedure Step. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0008) that conveys information identical to components one through three of this field.
-
-A limit of sixteen (16) characters for the first component and sixty-four (64) characters for the second component is required to allow compatibility with DICOM.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (protocolCode.field.FieldRepetitions != null && protocolCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(protocolCode.Id));
-            protocolCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(protocolCode, fieldData);
-        }
-
-        return protocolCode;
-    } 
-}
-
-internal HL7V28Field scheduledStationName;
-
-public HL7V28Field ScheduledStationName
-{
-    get
-    {
-        if (scheduledStationName != null)
-        {
-            return scheduledStationName;
-        }
-
-        scheduledStationName = new HL7V28Field
-        {
-            field = message[@"IPC"][7],
-            Id = @"IPC.7",
-            Type = @"Field",
-            Position = @"IPC.7",
-            Name = @"Scheduled Station Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the instance of the modality resource being requested for the performance of a particular Scheduled Procedure Step. It is a case of the Entity Identifier data type (section 2.A.28). The first component of this field is a string that identifies the particular piece of equipment. A limit of sixteen (16) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0010) that conveys information identical to the component one of this field.
-
-The second through fourth components identify the organization, in the form of the HD data type (see section 2.A.36, ""HD - hierarchic designator"").
-
-If the Scheduled Procedure Step is to be performed by an unspecified member of a pool of resources, this field shall be empty and IPC-8 Scheduled Procedure Step Location is used to identify the site-specific resource pool. See section 4.5.6.8, ""IPC-8 Scheduled Procedure Step Location (CWE) 01664,"" for explanation of the resource pool.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (scheduledStationName.field.FieldRepetitions != null && scheduledStationName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(scheduledStationName.Id));
-            scheduledStationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(scheduledStationName, fieldData);
-        }
-
-        return scheduledStationName;
-    } 
-}
-
-internal HL7V28Field scheduledProcedureStepLocation;
-
-public HL7V28Field ScheduledProcedureStepLocation
-{
-    get
-    {
-        if (scheduledProcedureStepLocation != null)
-        {
-            return scheduledProcedureStepLocation;
-        }
-
-        scheduledProcedureStepLocation = new HL7V28Field
+        _scheduledProcedureStepLocation = new HL7V28Field
         {
             field = message[@"IPC"][8],
-            Id = @"IPC.8",
-            Type = @"Field",
-            Position = @"IPC.8",
-            Name = @"Scheduled Procedure Step Location",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field specifies a locally defined physical location of the modality resource being requested for performance of particular Scheduled Procedure Step. Although location is usually defined geographically (such as identification of a campus, building, floor, etc.) it may be used for identification of a pool of equipment (resources) formed by any other means. Values for the field shall be drawn from a locally defined coding scheme.
-
-For example, the pool may be defined as a set of three CT scanners belonging to an imaging center within a hospital. Two of these scanners may also be grouped into another pool based on their location at a building A, whereas the third scanner may be in a pool by itself due to its location in a building B.
-
-If this field contains more than one location code, the equipment may be drawn from several resource pools.
-
-If this field is empty and the fields IPC-7 and IPC-9 are also empty, it is assumed that a particular Procedure Step may be performed by any instance of equipment of a particular type within an organization.
-
-See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0011) that conveys information identical to component one of this field. A limit of sixteen (16) characters for the first component is required to allow compatibility with DICOM.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (scheduledProcedureStepLocation.field.FieldRepetitions != null && scheduledProcedureStepLocation.field.FieldRepetitions.Count > 0)
+        if (_scheduledProcedureStepLocation.field.FieldRepetitions != null && _scheduledProcedureStepLocation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(scheduledProcedureStepLocation.Id));
-            scheduledProcedureStepLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(scheduledProcedureStepLocation, fieldData);
+            _scheduledProcedureStepLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_scheduledProcedureStepLocation, fieldData);
         }
 
-        return scheduledProcedureStepLocation;
+        return _scheduledProcedureStepLocation;
     } 
 }
 
-internal HL7V28Field scheduledStationAeTitle;
+internal HL7V28Field _scheduledStationAeTitle;
 
 public HL7V28Field ScheduledStationAeTitle
 {
     get
     {
-        if (scheduledStationAeTitle != null)
+        if (_scheduledStationAeTitle != null)
         {
-            return scheduledStationAeTitle;
+            return _scheduledStationAeTitle;
         }
 
-        scheduledStationAeTitle = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"IPC"][9],
             Id = @"IPC.9",
             Type = @"Field",
             Position = @"IPC.9",
@@ -2316,17 +2155,22 @@ public HL7V28Field ScheduledStationAeTitle
 
 If the Scheduled Procedure Step is to be performed by an unspecified member of a pool of resources, this field shall be empty and IPC-8 Scheduled Procedure Step Location is used to identify the site-specific resource pool. See section 4.5.6.8 for explanation of the resource pool.",
             Sample = @"",
+            Fields = null
+        }
+
+        _scheduledStationAeTitle = new HL7V28Field
+        {
+            field = message[@"IPC"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (scheduledStationAeTitle.field.FieldRepetitions != null && scheduledStationAeTitle.field.FieldRepetitions.Count > 0)
+        if (_scheduledStationAeTitle.field.FieldRepetitions != null && _scheduledStationAeTitle.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(scheduledStationAeTitle.Id));
-            scheduledStationAeTitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(scheduledStationAeTitle, fieldData);
+            _scheduledStationAeTitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_scheduledStationAeTitle, fieldData);
         }
 
-        return scheduledStationAeTitle;
+        return _scheduledStationAeTitle;
     } 
 }
     }

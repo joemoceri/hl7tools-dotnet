@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentOBX(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _setIDOBX;
+
+public HL7V24Field SetIDOBX
+{
+    get
+    {
+        if (_setIDOBX != null)
+        {
+            return _setIDOBX;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.1",
+            Type = @"Field",
+            Position = @"OBX.1",
+            Name = @"Set ID - OBX",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the sequence number. For compatibility with ASTM.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDOBX = new HL7V24Field
+        {
+            field = message[@"OBX"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDOBX.field.FieldRepetitions != null && _setIDOBX.field.FieldRepetitions.Count > 0)
+        {
+            _setIDOBX.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_setIDOBX, fieldData);
+        }
+
+        return _setIDOBX;
+    } 
+}
+
+internal HL7V24Field _valueType;
+
+public HL7V24Field ValueType
+{
+    get
+    {
+        if (_valueType != null)
+        {
+            return _valueType;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.2",
+            Type = @"Field",
+            Position = @"OBX.2",
+            Name = @"Value Type",
+            Length = 2,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0125",
+            TableName = @"Value type",
+            Description = @"This field contains the format of the observation value in OBX. It must be valued if OBX-11-Observ result status is not valued with an X. If the value is CE then the result must be a coded entry. When the value type is TX or FT then the results are bulk text. The valid values for the value type of an observation are listed in HL7 Table 0125 - Value type.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _valueType = new HL7V24Field
+        {
+            field = message[@"OBX"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_valueType.field.FieldRepetitions != null && _valueType.field.FieldRepetitions.Count > 0)
+        {
+            _valueType.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_valueType, fieldData);
+        }
+
+        return _valueType;
+    } 
+}
+
+internal HL7V24Field _observationIdentifier;
+
+public HL7V24Field ObservationIdentifier
+{
+    get
+    {
+        if (_observationIdentifier != null)
+        {
+            return _observationIdentifier;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.3",
+            Type = @"Field",
+            Position = @"OBX.3",
+            Name = @"Observation Identifier",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a unique identifier for the observation. The format is that of the Coded Element (CE). Example: 8625-6^P-R interval^LN.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"OBX.1",
-                            Type = @"Field",
-                            Position = @"OBX.1",
-                            Name = @"Set ID - OBX",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the sequence number. For compatibility with ASTM.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.2",
-                            Type = @"Field",
-                            Position = @"OBX.2",
-                            Name = @"Value Type",
-                            Length = 2,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0125",
-                            TableName = @"Value type",
-                            Description = @"This field contains the format of the observation value in OBX. It must be valued if OBX-11-Observ result status is not valued with an X. If the value is CE then the result must be a coded entry. When the value type is TX or FT then the results are bulk text. The valid values for the value type of an observation are listed in HL7 Table 0125 - Value type.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.3",
-                            Type = @"Field",
-                            Position = @"OBX.3",
-                            Name = @"Observation Identifier",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a unique identifier for the observation. The format is that of the Coded Element (CE). Example: 8625-6^P-R interval^LN.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBX.3.1",
                             Type = @"Component",
@@ -196,65 +262,149 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.4",
-                            Type = @"Field",
-                            Position = @"OBX.4",
-                            Name = @"Observation Sub-Id",
-                            Length = 20,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to distinguish between multiple OBX segments with the same observation ID organized under one OBR. For example, a chest X-ray report might include three separate diagnostic impressions. The standard requires three OBX segments, one for each impression. By putting a 1 in the Sub-ID of the first of these OBX segments, 2 in the second, and 3 in the third, we can uniquely identify each OBX segment for editing or replacement.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.5",
-                            Type = @"Field",
-                            Position = @"OBX.5",
-                            Name = @"Observation Value",
-                            Length = 65536,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"VARIES",
-                            DataTypeName = @"Variable Datatype",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the value observed by the observation producer. OBX-2-value type contains the data type for this field according to which observation value is formatted. It is not a required field because some systems will report only the normalcy/abnormalcy (OBX-8), especially in product experience reporting.
+                        }
+        }
+
+        _observationIdentifier = new HL7V24Field
+        {
+            field = message[@"OBX"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationIdentifier.field.FieldRepetitions != null && _observationIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _observationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_observationIdentifier, fieldData);
+        }
+
+        return _observationIdentifier;
+    } 
+}
+
+internal HL7V24Field _observationSubId;
+
+public HL7V24Field ObservationSubId
+{
+    get
+    {
+        if (_observationSubId != null)
+        {
+            return _observationSubId;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.4",
+            Type = @"Field",
+            Position = @"OBX.4",
+            Name = @"Observation Sub-Id",
+            Length = 20,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to distinguish between multiple OBX segments with the same observation ID organized under one OBR. For example, a chest X-ray report might include three separate diagnostic impressions. The standard requires three OBX segments, one for each impression. By putting a 1 in the Sub-ID of the first of these OBX segments, 2 in the second, and 3 in the third, we can uniquely identify each OBX segment for editing or replacement.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _observationSubId = new HL7V24Field
+        {
+            field = message[@"OBX"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationSubId.field.FieldRepetitions != null && _observationSubId.field.FieldRepetitions.Count > 0)
+        {
+            _observationSubId.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_observationSubId, fieldData);
+        }
+
+        return _observationSubId;
+    } 
+}
+
+internal HL7V24Field _observationValue;
+
+public HL7V24Field ObservationValue
+{
+    get
+    {
+        if (_observationValue != null)
+        {
+            return _observationValue;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.5",
+            Type = @"Field",
+            Position = @"OBX.5",
+            Name = @"Observation Value",
+            Length = 65536,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"VARIES",
+            DataTypeName = @"Variable Datatype",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the value observed by the observation producer. OBX-2-value type contains the data type for this field according to which observation value is formatted. It is not a required field because some systems will report only the normalcy/abnormalcy (OBX-8), especially in product experience reporting.
 
 The length of the observation field is variable, depending upon value type.  See OBX-2 value type.
 
 May repeat for multipart, single answer results with appropriate data types, e.g., CE, TX, and FT data types.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _observationValue = new HL7V24Field
+        {
+            field = message[@"OBX"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationValue.field.FieldRepetitions != null && _observationValue.field.FieldRepetitions.Count > 0)
+        {
+            _observationValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_observationValue, fieldData);
+        }
+
+        return _observationValue;
+    } 
+}
+
+internal HL7V24Field _units;
+
+public HL7V24Field Units
+{
+    get
+    {
+        if (_units != null)
+        {
+            return _units;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.6",
+            Type = @"Field",
+            Position = @"OBX.6",
+            Name = @"Units",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBX.6",
-                            Type = @"Field",
-                            Position = @"OBX.6",
-                            Name = @"Units",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.6.1",
                             Type = @"Component",
@@ -364,115 +514,280 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _units = new HL7V24Field
+        {
+            field = message[@"OBX"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_units.field.FieldRepetitions != null && _units.field.FieldRepetitions.Count > 0)
+        {
+            _units.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_units, fieldData);
+        }
+
+        return _units;
+    } 
+}
+
+internal HL7V24Field _referencesRange;
+
+public HL7V24Field ReferencesRange
+{
+    get
+    {
+        if (_referencesRange != null)
+        {
+            return _referencesRange;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.7",
+            Type = @"Field",
+            Position = @"OBX.7",
+            Name = @"References Range",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"When the observation quantifies the amount of a toxic substance, then the upper limit of the range identifies the toxic limit. If the observation quantifies a drug, the lower limits identify the lower therapeutic bounds and the upper limits represent the upper therapeutic bounds above which toxic side effects are common.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _referencesRange = new HL7V24Field
+        {
+            field = message[@"OBX"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_referencesRange.field.FieldRepetitions != null && _referencesRange.field.FieldRepetitions.Count > 0)
+        {
+            _referencesRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_referencesRange, fieldData);
+        }
+
+        return _referencesRange;
+    } 
+}
+
+internal HL7V24Field _abnormalFlags;
+
+public HL7V24Field AbnormalFlags
+{
+    get
+    {
+        if (_abnormalFlags != null)
+        {
+            return _abnormalFlags;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.8",
+            Type = @"Field",
+            Position = @"OBX.8",
+            Name = @"Abnormal Flags",
+            Length = 5,
+            Usage = @"O",
+            Rpt = @"5",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0078",
+            TableName = @"Abnormal flags",
+            Description = @"This field contains a table lookup indicating the normalcy status of the result. We strongly recommend sending this value when applicable. (See ASTM 1238 - review for more details). Refer to User-defined Table 0078 - Abnormal flags for valid entries.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _abnormalFlags = new HL7V24Field
+        {
+            field = message[@"OBX"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_abnormalFlags.field.FieldRepetitions != null && _abnormalFlags.field.FieldRepetitions.Count > 0)
+        {
+            _abnormalFlags.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_abnormalFlags, fieldData);
+        }
+
+        return _abnormalFlags;
+    } 
+}
+
+internal HL7V24Field _probability;
+
+public HL7V24Field Probability
+{
+    get
+    {
+        if (_probability != null)
+        {
+            return _probability;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.9",
+            Type = @"Field",
+            Position = @"OBX.9",
+            Name = @"Probability",
+            Length = 5,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the probability of a result being true for results with categorical values. It mainly applies to discrete coded results. It is a decimal number represented as an ASCII string that must be between 0 and 1, inclusive.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _probability = new HL7V24Field
+        {
+            field = message[@"OBX"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_probability.field.FieldRepetitions != null && _probability.field.FieldRepetitions.Count > 0)
+        {
+            _probability.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_probability, fieldData);
+        }
+
+        return _probability;
+    } 
+}
+
+internal HL7V24Field _natureofAbnormalTest;
+
+public HL7V24Field NatureofAbnormalTest
+{
+    get
+    {
+        if (_natureofAbnormalTest != null)
+        {
+            return _natureofAbnormalTest;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.10",
+            Type = @"Field",
+            Position = @"OBX.10",
+            Name = @"Nature of Abnormal Test",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0080",
+            TableName = @"Nature of abnormal testing",
+            Description = @"This field contains the nature of the abnormal test. Refer to HL7 Table 0080 - Nature of abnormal testing for valid values. As many of the codes as apply may be included, separated by repeat delimiters. For example, normal values based on age, sex, and race would be codes as A~S~R.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _natureofAbnormalTest = new HL7V24Field
+        {
+            field = message[@"OBX"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_natureofAbnormalTest.field.FieldRepetitions != null && _natureofAbnormalTest.field.FieldRepetitions.Count > 0)
+        {
+            _natureofAbnormalTest.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_natureofAbnormalTest, fieldData);
+        }
+
+        return _natureofAbnormalTest;
+    } 
+}
+
+internal HL7V24Field _observationResultStatus;
+
+public HL7V24Field ObservationResultStatus
+{
+    get
+    {
+        if (_observationResultStatus != null)
+        {
+            return _observationResultStatus;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.11",
+            Type = @"Field",
+            Position = @"OBX.11",
+            Name = @"Observation Result Status",
+            Length = 1,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0085",
+            TableName = @"Observation result status codes interpretation",
+            Description = @"This field contains the observation result status. Refer to HL7 table 0085 - Observation result status codes interpretation for valid values. This field reflects the current completion status of the results for one Observation Identifier.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _observationResultStatus = new HL7V24Field
+        {
+            field = message[@"OBX"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationResultStatus.field.FieldRepetitions != null && _observationResultStatus.field.FieldRepetitions.Count > 0)
+        {
+            _observationResultStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_observationResultStatus, fieldData);
+        }
+
+        return _observationResultStatus;
+    } 
+}
+
+internal HL7V24Field _dateLastObservationNormalValue;
+
+public HL7V24Field DateLastObservationNormalValue
+{
+    get
+    {
+        if (_dateLastObservationNormalValue != null)
+        {
+            return _dateLastObservationNormalValue;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.12",
+            Type = @"Field",
+            Position = @"OBX.12",
+            Name = @"Date Last Observation Normal Value",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the changes in the observation methods that would make values obtained from the old method not comparable with those obtained from the new method.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBX.7",
-                            Type = @"Field",
-                            Position = @"OBX.7",
-                            Name = @"References Range",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"When the observation quantifies the amount of a toxic substance, then the upper limit of the range identifies the toxic limit. If the observation quantifies a drug, the lower limits identify the lower therapeutic bounds and the upper limits represent the upper therapeutic bounds above which toxic side effects are common.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.8",
-                            Type = @"Field",
-                            Position = @"OBX.8",
-                            Name = @"Abnormal Flags",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"5",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0078",
-                            TableName = @"Abnormal flags",
-                            Description = @"This field contains a table lookup indicating the normalcy status of the result. We strongly recommend sending this value when applicable. (See ASTM 1238 - review for more details). Refer to User-defined Table 0078 - Abnormal flags for valid entries.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.9",
-                            Type = @"Field",
-                            Position = @"OBX.9",
-                            Name = @"Probability",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the probability of a result being true for results with categorical values. It mainly applies to discrete coded results. It is a decimal number represented as an ASCII string that must be between 0 and 1, inclusive.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.10",
-                            Type = @"Field",
-                            Position = @"OBX.10",
-                            Name = @"Nature of Abnormal Test",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0080",
-                            TableName = @"Nature of abnormal testing",
-                            Description = @"This field contains the nature of the abnormal test. Refer to HL7 Table 0080 - Nature of abnormal testing for valid values. As many of the codes as apply may be included, separated by repeat delimiters. For example, normal values based on age, sex, and race would be codes as A~S~R.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.11",
-                            Type = @"Field",
-                            Position = @"OBX.11",
-                            Name = @"Observation Result Status",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0085",
-                            TableName = @"Observation result status codes interpretation",
-                            Description = @"This field contains the observation result status. Refer to HL7 table 0085 - Observation result status codes interpretation for valid values. This field reflects the current completion status of the results for one Observation Identifier.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.12",
-                            Type = @"Field",
-                            Position = @"OBX.12",
-                            Name = @"Date Last Observation Normal Value",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the changes in the observation methods that would make values obtained from the old method not comparable with those obtained from the new method.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.12.1",
                             Type = @"Component",
@@ -506,43 +821,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dateLastObservationNormalValue = new HL7V24Field
+        {
+            field = message[@"OBX"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateLastObservationNormalValue.field.FieldRepetitions != null && _dateLastObservationNormalValue.field.FieldRepetitions.Count > 0)
+        {
+            _dateLastObservationNormalValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_dateLastObservationNormalValue, fieldData);
+        }
+
+        return _dateLastObservationNormalValue;
+    } 
+}
+
+internal HL7V24Field _userDefinedAccessChecks;
+
+public HL7V24Field UserDefinedAccessChecks
+{
+    get
+    {
+        if (_userDefinedAccessChecks != null)
+        {
+            return _userDefinedAccessChecks;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.13",
+            Type = @"Field",
+            Position = @"OBX.13",
+            Name = @"User Defined Access Checks",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field permits the producer to record results-dependent codes for classifying the observation at the receiving system. This field should be needed only rarely, because most classifications are fixed attributes of the observation ID and can be defined in the associated observation master file (see description in Chapter 8).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _userDefinedAccessChecks = new HL7V24Field
+        {
+            field = message[@"OBX"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_userDefinedAccessChecks.field.FieldRepetitions != null && _userDefinedAccessChecks.field.FieldRepetitions.Count > 0)
+        {
+            _userDefinedAccessChecks.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_userDefinedAccessChecks, fieldData);
+        }
+
+        return _userDefinedAccessChecks;
+    } 
+}
+
+internal HL7V24Field _dateTimeoftheObservation;
+
+public HL7V24Field DateTimeoftheObservation
+{
+    get
+    {
+        if (_dateTimeoftheObservation != null)
+        {
+            return _dateTimeoftheObservation;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.14",
+            Type = @"Field",
+            Position = @"OBX.14",
+            Name = @"Date/Time of the Observation",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is required in two circumstances. The first is when the observations reported beneath one report header (OBR) have different dates/times. This could occur in the case of queries, timed test sequences, or clearance studies where one measurement within a battery may have a different time than another measurement.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBX.13",
-                            Type = @"Field",
-                            Position = @"OBX.13",
-                            Name = @"User Defined Access Checks",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field permits the producer to record results-dependent codes for classifying the observation at the receiving system. This field should be needed only rarely, because most classifications are fixed attributes of the observation ID and can be defined in the associated observation master file (see description in Chapter 8).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.14",
-                            Type = @"Field",
-                            Position = @"OBX.14",
-                            Name = @"Date/Time of the Observation",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is required in two circumstances. The first is when the observations reported beneath one report header (OBR) have different dates/times. This could occur in the case of queries, timed test sequences, or clearance studies where one measurement within a battery may have a different time than another measurement.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.14.1",
                             Type = @"Component",
@@ -576,25 +948,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dateTimeoftheObservation = new HL7V24Field
+        {
+            field = message[@"OBX"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeoftheObservation.field.FieldRepetitions != null && _dateTimeoftheObservation.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeoftheObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_dateTimeoftheObservation, fieldData);
+        }
+
+        return _dateTimeoftheObservation;
+    } 
+}
+
+internal HL7V24Field _producersID;
+
+public HL7V24Field ProducersID
+{
+    get
+    {
+        if (_producersID != null)
+        {
+            return _producersID;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.15",
+            Type = @"Field",
+            Position = @"OBX.15",
+            Name = @"Producer's ID",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a unique identifier of the responsible producing service. It should be reported explicitly when the test results are produced at outside laboratories, for example. When this field is null, the receiving system assumes that the observations were produced by the sending organization. This information supports CLIA regulations in the US. The code for producer ID is recorded as a CE data type. In the US, the Medicare number of the producing service is suggested as the identifier.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBX.15",
-                            Type = @"Field",
-                            Position = @"OBX.15",
-                            Name = @"Producer's ID",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a unique identifier of the responsible producing service. It should be reported explicitly when the test results are produced at outside laboratories, for example. When this field is null, the receiving system assumes that the observations were produced by the sending organization. This information supports CLIA regulations in the US. The code for producer ID is recorded as a CE data type. In the US, the Medicare number of the producing service is suggested as the identifier.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.15.1",
                             Type = @"Component",
@@ -704,25 +1106,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _producersID = new HL7V24Field
+        {
+            field = message[@"OBX"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_producersID.field.FieldRepetitions != null && _producersID.field.FieldRepetitions.Count > 0)
+        {
+            _producersID.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_producersID, fieldData);
+        }
+
+        return _producersID;
+    } 
+}
+
+internal HL7V24Field _responsibleObserver;
+
+public HL7V24Field ResponsibleObserver
+{
+    get
+    {
+        if (_responsibleObserver != null)
+        {
+            return _responsibleObserver;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.16",
+            Type = @"Field",
+            Position = @"OBX.16",
+            Name = @"Responsible Observer",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"When required, this field contains the identifier of the individual directly responsible for the observation (i.e., the person who either performed or verified it). In a nursing service, the observer is usually the professional who performed the observation (e.g., took the blood pressure). In a laboratory, the observer is the technician who performed or verified the analysis. The code for the observer is recorded as a CE data type. If the code is sent as a local code, it should be unique and unambiguous when combined with OBX-15-producer ID.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBX.16",
-                            Type = @"Field",
-                            Position = @"OBX.16",
-                            Name = @"Responsible Observer",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"When required, this field contains the identifier of the individual directly responsible for the observation (i.e., the person who either performed or verified it). In a nursing service, the observer is usually the professional who performed the observation (e.g., took the blood pressure). In a laboratory, the observer is the technician who performed or verified the analysis. The code for the observer is recorded as a CE data type. If the code is sent as a local code, it should be unique and unambiguous when combined with OBX-15-producer ID.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.16.1",
                             Type = @"Component",
@@ -1448,25 +1880,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 Table 0444 - Name assembly orde r for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _responsibleObserver = new HL7V24Field
+        {
+            field = message[@"OBX"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_responsibleObserver.field.FieldRepetitions != null && _responsibleObserver.field.FieldRepetitions.Count > 0)
+        {
+            _responsibleObserver.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_responsibleObserver, fieldData);
+        }
+
+        return _responsibleObserver;
+    } 
+}
+
+internal HL7V24Field _observationMethod;
+
+public HL7V24Field ObservationMethod
+{
+    get
+    {
+        if (_observationMethod != null)
+        {
+            return _observationMethod;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.17",
+            Type = @"Field",
+            Position = @"OBX.17",
+            Name = @"Observation Method",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBX.17",
-                            Type = @"Field",
-                            Position = @"OBX.17",
-                            Name = @"Observation Method",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.17.1",
                             Type = @"Component",
@@ -1576,25 +2038,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _observationMethod = new HL7V24Field
+        {
+            field = message[@"OBX"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationMethod.field.FieldRepetitions != null && _observationMethod.field.FieldRepetitions.Count > 0)
+        {
+            _observationMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_observationMethod, fieldData);
+        }
+
+        return _observationMethod;
+    } 
+}
+
+internal HL7V24Field _equipmentInstanceIdentifier;
+
+public HL7V24Field EquipmentInstanceIdentifier
+{
+    get
+    {
+        if (_equipmentInstanceIdentifier != null)
+        {
+            return _equipmentInstanceIdentifier;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.18",
+            Type = @"Field",
+            Position = @"OBX.18",
+            Name = @"Equipment Instance Identifier",
+            Length = 22,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the Equipment Instance (e.g., Analyzer, Analyzer module, group of Analyzers,...) responsible for the production of the observation. This is the identifier from an institution's master list of equipment, where the institution is specified by the namespace ID or if it is blank, then by the Producers ID (OBX-15). It should be possible to retrieve from this master list the equipment type, serial number, etc., however it is not planned to transfer this information with every OBX. The repeating of this field allows for the hierarchical representation of the equipment (lowest level first), e.g., module of an instrument, instrument consisting of modules, cluster of multiple instruments, etc.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBX.18",
-                            Type = @"Field",
-                            Position = @"OBX.18",
-                            Name = @"Equipment Instance Identifier",
-                            Length = 22,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the Equipment Instance (e.g., Analyzer, Analyzer module, group of Analyzers,...) responsible for the production of the observation. This is the identifier from an institution's master list of equipment, where the institution is specified by the namespace ID or if it is blank, then by the Producers ID (OBX-15). It should be possible to retrieve from this master list the equipment type, serial number, etc., however it is not planned to transfer this information with every OBX. The repeating of this field allows for the hierarchical representation of the equipment (lowest level first), e.g., module of an instrument, instrument consisting of modules, cluster of multiple instruments, etc.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.18.1",
                             Type = @"Component",
@@ -1664,25 +2156,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"This component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _equipmentInstanceIdentifier = new HL7V24Field
+        {
+            field = message[@"OBX"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_equipmentInstanceIdentifier.field.FieldRepetitions != null && _equipmentInstanceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _equipmentInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_equipmentInstanceIdentifier, fieldData);
+        }
+
+        return _equipmentInstanceIdentifier;
+    } 
+}
+
+internal HL7V24Field _dateTimeoftheAnalysis;
+
+public HL7V24Field DateTimeoftheAnalysis
+{
+    get
+    {
+        if (_dateTimeoftheAnalysis != null)
+        {
+            return _dateTimeoftheAnalysis;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"OBX.19",
+            Type = @"Field",
+            Position = @"OBX.19",
+            Name = @"Date/Time of the Analysis",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to transfer the time stamp associated with generation of the analytical result by the instrument specified in Equipment Instance Identifier (see above).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBX.19",
-                            Type = @"Field",
-                            Position = @"OBX.19",
-                            Name = @"Date/Time of the Analysis",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to transfer the time stamp associated with generation of the analytical result by the instrument specified in Equipment Instance Identifier (see above).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBX.19.1",
                             Type = @"Component",
@@ -1716,797 +2238,23 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentOBX(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field setIDOBX;
-
-public HL7V24Field SetIDOBX
-{
-    get
-    {
-        if (setIDOBX != null)
-        {
-            return setIDOBX;
-        }
-
-        setIDOBX = new HL7V24Field
-        {
-            field = message[@"OBX"][1],
-            Id = @"OBX.1",
-            Type = @"Field",
-            Position = @"OBX.1",
-            Name = @"Set ID - OBX",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the sequence number. For compatibility with ASTM.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDOBX.field.FieldRepetitions != null && setIDOBX.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDOBX.Id));
-            setIDOBX.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(setIDOBX, fieldData);
-        }
-
-        return setIDOBX;
-    } 
-}
-
-internal HL7V24Field valueType;
-
-public HL7V24Field ValueType
-{
-    get
-    {
-        if (valueType != null)
-        {
-            return valueType;
-        }
-
-        valueType = new HL7V24Field
-        {
-            field = message[@"OBX"][2],
-            Id = @"OBX.2",
-            Type = @"Field",
-            Position = @"OBX.2",
-            Name = @"Value Type",
-            Length = 2,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0125",
-            TableName = @"Value type",
-            Description = @"This field contains the format of the observation value in OBX. It must be valued if OBX-11-Observ result status is not valued with an X. If the value is CE then the result must be a coded entry. When the value type is TX or FT then the results are bulk text. The valid values for the value type of an observation are listed in HL7 Table 0125 - Value type.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (valueType.field.FieldRepetitions != null && valueType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(valueType.Id));
-            valueType.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(valueType, fieldData);
-        }
-
-        return valueType;
-    } 
-}
-
-internal HL7V24Field observationIdentifier;
-
-public HL7V24Field ObservationIdentifier
-{
-    get
-    {
-        if (observationIdentifier != null)
-        {
-            return observationIdentifier;
-        }
-
-        observationIdentifier = new HL7V24Field
-        {
-            field = message[@"OBX"][3],
-            Id = @"OBX.3",
-            Type = @"Field",
-            Position = @"OBX.3",
-            Name = @"Observation Identifier",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a unique identifier for the observation. The format is that of the Coded Element (CE). Example: 8625-6^P-R interval^LN.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationIdentifier.field.FieldRepetitions != null && observationIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationIdentifier.Id));
-            observationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(observationIdentifier, fieldData);
-        }
-
-        return observationIdentifier;
-    } 
-}
-
-internal HL7V24Field observationSubId;
-
-public HL7V24Field ObservationSubId
-{
-    get
-    {
-        if (observationSubId != null)
-        {
-            return observationSubId;
-        }
-
-        observationSubId = new HL7V24Field
-        {
-            field = message[@"OBX"][4],
-            Id = @"OBX.4",
-            Type = @"Field",
-            Position = @"OBX.4",
-            Name = @"Observation Sub-Id",
-            Length = 20,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to distinguish between multiple OBX segments with the same observation ID organized under one OBR. For example, a chest X-ray report might include three separate diagnostic impressions. The standard requires three OBX segments, one for each impression. By putting a 1 in the Sub-ID of the first of these OBX segments, 2 in the second, and 3 in the third, we can uniquely identify each OBX segment for editing or replacement.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationSubId.field.FieldRepetitions != null && observationSubId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationSubId.Id));
-            observationSubId.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(observationSubId, fieldData);
-        }
-
-        return observationSubId;
-    } 
-}
-
-internal HL7V24Field observationValue;
-
-public HL7V24Field ObservationValue
-{
-    get
-    {
-        if (observationValue != null)
-        {
-            return observationValue;
-        }
-
-        observationValue = new HL7V24Field
-        {
-            field = message[@"OBX"][5],
-            Id = @"OBX.5",
-            Type = @"Field",
-            Position = @"OBX.5",
-            Name = @"Observation Value",
-            Length = 65536,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"VARIES",
-            DataTypeName = @"Variable Datatype",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the value observed by the observation producer. OBX-2-value type contains the data type for this field according to which observation value is formatted. It is not a required field because some systems will report only the normalcy/abnormalcy (OBX-8), especially in product experience reporting.
-
-The length of the observation field is variable, depending upon value type.  See OBX-2 value type.
-
-May repeat for multipart, single answer results with appropriate data types, e.g., CE, TX, and FT data types.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationValue.field.FieldRepetitions != null && observationValue.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationValue.Id));
-            observationValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(observationValue, fieldData);
-        }
-
-        return observationValue;
-    } 
-}
-
-internal HL7V24Field units;
-
-public HL7V24Field Units
-{
-    get
-    {
-        if (units != null)
-        {
-            return units;
-        }
-
-        units = new HL7V24Field
-        {
-            field = message[@"OBX"][6],
-            Id = @"OBX.6",
-            Type = @"Field",
-            Position = @"OBX.6",
-            Name = @"Units",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (units.field.FieldRepetitions != null && units.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(units.Id));
-            units.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(units, fieldData);
-        }
-
-        return units;
-    } 
-}
-
-internal HL7V24Field referencesRange;
-
-public HL7V24Field ReferencesRange
-{
-    get
-    {
-        if (referencesRange != null)
-        {
-            return referencesRange;
-        }
-
-        referencesRange = new HL7V24Field
-        {
-            field = message[@"OBX"][7],
-            Id = @"OBX.7",
-            Type = @"Field",
-            Position = @"OBX.7",
-            Name = @"References Range",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"When the observation quantifies the amount of a toxic substance, then the upper limit of the range identifies the toxic limit. If the observation quantifies a drug, the lower limits identify the lower therapeutic bounds and the upper limits represent the upper therapeutic bounds above which toxic side effects are common.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (referencesRange.field.FieldRepetitions != null && referencesRange.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(referencesRange.Id));
-            referencesRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(referencesRange, fieldData);
-        }
-
-        return referencesRange;
-    } 
-}
-
-internal HL7V24Field abnormalFlags;
-
-public HL7V24Field AbnormalFlags
-{
-    get
-    {
-        if (abnormalFlags != null)
-        {
-            return abnormalFlags;
-        }
-
-        abnormalFlags = new HL7V24Field
-        {
-            field = message[@"OBX"][8],
-            Id = @"OBX.8",
-            Type = @"Field",
-            Position = @"OBX.8",
-            Name = @"Abnormal Flags",
-            Length = 5,
-            Usage = @"O",
-            Rpt = @"5",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0078",
-            TableName = @"Abnormal flags",
-            Description = @"This field contains a table lookup indicating the normalcy status of the result. We strongly recommend sending this value when applicable. (See ASTM 1238 - review for more details). Refer to User-defined Table 0078 - Abnormal flags for valid entries.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (abnormalFlags.field.FieldRepetitions != null && abnormalFlags.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(abnormalFlags.Id));
-            abnormalFlags.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(abnormalFlags, fieldData);
-        }
-
-        return abnormalFlags;
-    } 
-}
-
-internal HL7V24Field probability;
-
-public HL7V24Field Probability
-{
-    get
-    {
-        if (probability != null)
-        {
-            return probability;
-        }
-
-        probability = new HL7V24Field
-        {
-            field = message[@"OBX"][9],
-            Id = @"OBX.9",
-            Type = @"Field",
-            Position = @"OBX.9",
-            Name = @"Probability",
-            Length = 5,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the probability of a result being true for results with categorical values. It mainly applies to discrete coded results. It is a decimal number represented as an ASCII string that must be between 0 and 1, inclusive.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (probability.field.FieldRepetitions != null && probability.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(probability.Id));
-            probability.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(probability, fieldData);
-        }
-
-        return probability;
-    } 
-}
-
-internal HL7V24Field natureofAbnormalTest;
-
-public HL7V24Field NatureofAbnormalTest
-{
-    get
-    {
-        if (natureofAbnormalTest != null)
-        {
-            return natureofAbnormalTest;
-        }
-
-        natureofAbnormalTest = new HL7V24Field
-        {
-            field = message[@"OBX"][10],
-            Id = @"OBX.10",
-            Type = @"Field",
-            Position = @"OBX.10",
-            Name = @"Nature of Abnormal Test",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0080",
-            TableName = @"Nature of abnormal testing",
-            Description = @"This field contains the nature of the abnormal test. Refer to HL7 Table 0080 - Nature of abnormal testing for valid values. As many of the codes as apply may be included, separated by repeat delimiters. For example, normal values based on age, sex, and race would be codes as A~S~R.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (natureofAbnormalTest.field.FieldRepetitions != null && natureofAbnormalTest.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(natureofAbnormalTest.Id));
-            natureofAbnormalTest.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(natureofAbnormalTest, fieldData);
-        }
-
-        return natureofAbnormalTest;
-    } 
-}
-
-internal HL7V24Field observationResultStatus;
-
-public HL7V24Field ObservationResultStatus
-{
-    get
-    {
-        if (observationResultStatus != null)
-        {
-            return observationResultStatus;
-        }
-
-        observationResultStatus = new HL7V24Field
-        {
-            field = message[@"OBX"][11],
-            Id = @"OBX.11",
-            Type = @"Field",
-            Position = @"OBX.11",
-            Name = @"Observation Result Status",
-            Length = 1,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0085",
-            TableName = @"Observation result status codes interpretation",
-            Description = @"This field contains the observation result status. Refer to HL7 table 0085 - Observation result status codes interpretation for valid values. This field reflects the current completion status of the results for one Observation Identifier.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationResultStatus.field.FieldRepetitions != null && observationResultStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationResultStatus.Id));
-            observationResultStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(observationResultStatus, fieldData);
-        }
-
-        return observationResultStatus;
-    } 
-}
-
-internal HL7V24Field dateLastObservationNormalValue;
-
-public HL7V24Field DateLastObservationNormalValue
-{
-    get
-    {
-        if (dateLastObservationNormalValue != null)
-        {
-            return dateLastObservationNormalValue;
-        }
-
-        dateLastObservationNormalValue = new HL7V24Field
-        {
-            field = message[@"OBX"][12],
-            Id = @"OBX.12",
-            Type = @"Field",
-            Position = @"OBX.12",
-            Name = @"Date Last Observation Normal Value",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the changes in the observation methods that would make values obtained from the old method not comparable with those obtained from the new method.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateLastObservationNormalValue.field.FieldRepetitions != null && dateLastObservationNormalValue.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateLastObservationNormalValue.Id));
-            dateLastObservationNormalValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(dateLastObservationNormalValue, fieldData);
-        }
-
-        return dateLastObservationNormalValue;
-    } 
-}
-
-internal HL7V24Field userDefinedAccessChecks;
-
-public HL7V24Field UserDefinedAccessChecks
-{
-    get
-    {
-        if (userDefinedAccessChecks != null)
-        {
-            return userDefinedAccessChecks;
-        }
-
-        userDefinedAccessChecks = new HL7V24Field
-        {
-            field = message[@"OBX"][13],
-            Id = @"OBX.13",
-            Type = @"Field",
-            Position = @"OBX.13",
-            Name = @"User Defined Access Checks",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field permits the producer to record results-dependent codes for classifying the observation at the receiving system. This field should be needed only rarely, because most classifications are fixed attributes of the observation ID and can be defined in the associated observation master file (see description in Chapter 8).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (userDefinedAccessChecks.field.FieldRepetitions != null && userDefinedAccessChecks.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(userDefinedAccessChecks.Id));
-            userDefinedAccessChecks.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(userDefinedAccessChecks, fieldData);
-        }
-
-        return userDefinedAccessChecks;
-    } 
-}
-
-internal HL7V24Field dateTimeoftheObservation;
-
-public HL7V24Field DateTimeoftheObservation
-{
-    get
-    {
-        if (dateTimeoftheObservation != null)
-        {
-            return dateTimeoftheObservation;
-        }
-
-        dateTimeoftheObservation = new HL7V24Field
-        {
-            field = message[@"OBX"][14],
-            Id = @"OBX.14",
-            Type = @"Field",
-            Position = @"OBX.14",
-            Name = @"Date/Time of the Observation",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is required in two circumstances. The first is when the observations reported beneath one report header (OBR) have different dates/times. This could occur in the case of queries, timed test sequences, or clearance studies where one measurement within a battery may have a different time than another measurement.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeoftheObservation.field.FieldRepetitions != null && dateTimeoftheObservation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeoftheObservation.Id));
-            dateTimeoftheObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(dateTimeoftheObservation, fieldData);
-        }
-
-        return dateTimeoftheObservation;
-    } 
-}
-
-internal HL7V24Field producersID;
-
-public HL7V24Field ProducersID
-{
-    get
-    {
-        if (producersID != null)
-        {
-            return producersID;
-        }
-
-        producersID = new HL7V24Field
-        {
-            field = message[@"OBX"][15],
-            Id = @"OBX.15",
-            Type = @"Field",
-            Position = @"OBX.15",
-            Name = @"Producer's ID",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a unique identifier of the responsible producing service. It should be reported explicitly when the test results are produced at outside laboratories, for example. When this field is null, the receiving system assumes that the observations were produced by the sending organization. This information supports CLIA regulations in the US. The code for producer ID is recorded as a CE data type. In the US, the Medicare number of the producing service is suggested as the identifier.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (producersID.field.FieldRepetitions != null && producersID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(producersID.Id));
-            producersID.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(producersID, fieldData);
-        }
-
-        return producersID;
-    } 
-}
-
-internal HL7V24Field responsibleObserver;
-
-public HL7V24Field ResponsibleObserver
-{
-    get
-    {
-        if (responsibleObserver != null)
-        {
-            return responsibleObserver;
-        }
-
-        responsibleObserver = new HL7V24Field
-        {
-            field = message[@"OBX"][16],
-            Id = @"OBX.16",
-            Type = @"Field",
-            Position = @"OBX.16",
-            Name = @"Responsible Observer",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"When required, this field contains the identifier of the individual directly responsible for the observation (i.e., the person who either performed or verified it). In a nursing service, the observer is usually the professional who performed the observation (e.g., took the blood pressure). In a laboratory, the observer is the technician who performed or verified the analysis. The code for the observer is recorded as a CE data type. If the code is sent as a local code, it should be unique and unambiguous when combined with OBX-15-producer ID.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (responsibleObserver.field.FieldRepetitions != null && responsibleObserver.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(responsibleObserver.Id));
-            responsibleObserver.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(responsibleObserver, fieldData);
-        }
-
-        return responsibleObserver;
-    } 
-}
-
-internal HL7V24Field observationMethod;
-
-public HL7V24Field ObservationMethod
-{
-    get
-    {
-        if (observationMethod != null)
-        {
-            return observationMethod;
-        }
-
-        observationMethod = new HL7V24Field
-        {
-            field = message[@"OBX"][17],
-            Id = @"OBX.17",
-            Type = @"Field",
-            Position = @"OBX.17",
-            Name = @"Observation Method",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationMethod.field.FieldRepetitions != null && observationMethod.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationMethod.Id));
-            observationMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(observationMethod, fieldData);
-        }
-
-        return observationMethod;
-    } 
-}
-
-internal HL7V24Field equipmentInstanceIdentifier;
-
-public HL7V24Field EquipmentInstanceIdentifier
-{
-    get
-    {
-        if (equipmentInstanceIdentifier != null)
-        {
-            return equipmentInstanceIdentifier;
-        }
-
-        equipmentInstanceIdentifier = new HL7V24Field
-        {
-            field = message[@"OBX"][18],
-            Id = @"OBX.18",
-            Type = @"Field",
-            Position = @"OBX.18",
-            Name = @"Equipment Instance Identifier",
-            Length = 22,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the Equipment Instance (e.g., Analyzer, Analyzer module, group of Analyzers,...) responsible for the production of the observation. This is the identifier from an institution's master list of equipment, where the institution is specified by the namespace ID or if it is blank, then by the Producers ID (OBX-15). It should be possible to retrieve from this master list the equipment type, serial number, etc., however it is not planned to transfer this information with every OBX. The repeating of this field allows for the hierarchical representation of the equipment (lowest level first), e.g., module of an instrument, instrument consisting of modules, cluster of multiple instruments, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (equipmentInstanceIdentifier.field.FieldRepetitions != null && equipmentInstanceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(equipmentInstanceIdentifier.Id));
-            equipmentInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(equipmentInstanceIdentifier, fieldData);
-        }
-
-        return equipmentInstanceIdentifier;
-    } 
-}
-
-internal HL7V24Field dateTimeoftheAnalysis;
-
-public HL7V24Field DateTimeoftheAnalysis
-{
-    get
-    {
-        if (dateTimeoftheAnalysis != null)
-        {
-            return dateTimeoftheAnalysis;
-        }
-
-        dateTimeoftheAnalysis = new HL7V24Field
+        _dateTimeoftheAnalysis = new HL7V24Field
         {
             field = message[@"OBX"][19],
-            Id = @"OBX.19",
-            Type = @"Field",
-            Position = @"OBX.19",
-            Name = @"Date/Time of the Analysis",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to transfer the time stamp associated with generation of the analytical result by the instrument specified in Equipment Instance Identifier (see above).",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dateTimeoftheAnalysis.field.FieldRepetitions != null && dateTimeoftheAnalysis.field.FieldRepetitions.Count > 0)
+        if (_dateTimeoftheAnalysis.field.FieldRepetitions != null && _dateTimeoftheAnalysis.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeoftheAnalysis.Id));
-            dateTimeoftheAnalysis.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(dateTimeoftheAnalysis, fieldData);
+            _dateTimeoftheAnalysis.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_dateTimeoftheAnalysis, fieldData);
         }
 
-        return dateTimeoftheAnalysis;
+        return _dateTimeoftheAnalysis;
     } 
 }
     }

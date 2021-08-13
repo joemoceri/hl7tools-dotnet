@@ -25,64 +25,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V21SegmentOBX(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V21Field _setIdObservationSimple;
+
+public HL7V21Field SetIdObservationSimple
+{
+    get
+    {
+        if (_setIdObservationSimple != null)
+        {
+            return _setIdObservationSimple;
+        }
+
+        var fieldData = new HL7V21FieldData
+        {
+            Id = @"OBX.1",
+            Type = @"Field",
+            Position = @"OBX.1",
+            Name = @"Set Id - Observation Simple",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Set Id",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdObservationSimple = new HL7V21Field
+        {
+            field = message[@"OBX"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdObservationSimple.field.FieldRepetitions != null && _setIdObservationSimple.field.FieldRepetitions.Count > 0)
+        {
+            _setIdObservationSimple.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_setIdObservationSimple, fieldData);
+        }
+
+        return _setIdObservationSimple;
+    } 
+}
+
+internal HL7V21Field _valueType;
+
+public HL7V21Field ValueType
+{
+    get
+    {
+        if (_valueType != null)
+        {
+            return _valueType;
+        }
+
+        var fieldData = new HL7V21FieldData
+        {
+            Id = @"OBX.2",
+            Type = @"Field",
+            Position = @"OBX.2",
+            Name = @"Value Type",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"0125",
+            TableName = @"VALUE TYPE",
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _valueType = new HL7V21Field
+        {
+            field = message[@"OBX"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_valueType.field.FieldRepetitions != null && _valueType.field.FieldRepetitions.Count > 0)
+        {
+            _valueType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_valueType, fieldData);
+        }
+
+        return _valueType;
+    } 
+}
+
+internal HL7V21Field _observationIdentifier;
+
+public HL7V21Field ObservationIdentifier
+{
+    get
+    {
+        if (_observationIdentifier != null)
+        {
+            return _observationIdentifier;
+        }
+
+        var fieldData = new HL7V21FieldData
+        {
+            Id = @"OBX.3",
+            Type = @"Field",
+            Position = @"OBX.3",
+            Name = @"Observation Identifier",
+            Length = 80,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"OBX.1",
-                            Type = @"Field",
-                            Position = @"OBX.1",
-                            Name = @"Set Id - Observation Simple",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Set Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.2",
-                            Type = @"Field",
-                            Position = @"OBX.2",
-                            Name = @"Value Type",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0125",
-                            TableName = @"VALUE TYPE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.3",
-                            Type = @"Field",
-                            Position = @"OBX.3",
-                            Name = @"Observation Identifier",
-                            Length = 80,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OBX.3.1",
                             Type = @"Component",
@@ -188,316 +254,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.4",
-                            Type = @"Field",
-                            Position = @"OBX.4",
-                            Name = @"Observation Sub-id",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.5",
-                            Type = @"Field",
-                            Position = @"OBX.5",
-                            Name = @"Observation Results",
-                            Length = 65,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.6",
-                            Type = @"Field",
-                            Position = @"OBX.6",
-                            Name = @"Units",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.7",
-                            Type = @"Field",
-                            Position = @"OBX.7",
-                            Name = @"References Range",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.8",
-                            Type = @"Field",
-                            Position = @"OBX.8",
-                            Name = @"Abnormal Flags",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"5",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = @"0078",
-                            TableName = @"ABNORMAL FLAGS",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.9",
-                            Type = @"Field",
-                            Position = @"OBX.9",
-                            Name = @"Probability",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.10",
-                            Type = @"Field",
-                            Position = @"OBX.10",
-                            Name = @"Nature Of Abnormal Test",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0080",
-                            TableName = @"NATURE OF ABNORMAL TESTING",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.11",
-                            Type = @"Field",
-                            Position = @"OBX.11",
-                            Name = @"Observ Result Status",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0085",
-                            TableName = @"OBSERVATION RESULT STATUS",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBX.12",
-                            Type = @"Field",
-                            Position = @"OBX.12",
-                            Name = @"Date Last Obs Normal Values",
-                            Length = 19,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V21SegmentOBX(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V21Field setIdObservationSimple;
-
-public HL7V21Field SetIdObservationSimple
-{
-    get
-    {
-        if (setIdObservationSimple != null)
-        {
-            return setIdObservationSimple;
-        }
-
-        setIdObservationSimple = new HL7V21Field
-        {
-            field = message[@"OBX"][1],
-            Id = @"OBX.1",
-            Type = @"Field",
-            Position = @"OBX.1",
-            Name = @"Set Id - Observation Simple",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Set Id",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdObservationSimple.field.FieldRepetitions != null && setIdObservationSimple.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdObservationSimple.Id));
-            setIdObservationSimple.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(setIdObservationSimple, fieldData);
-        }
-
-        return setIdObservationSimple;
-    } 
-}
-
-internal HL7V21Field valueType;
-
-public HL7V21Field ValueType
-{
-    get
-    {
-        if (valueType != null)
-        {
-            return valueType;
-        }
-
-        valueType = new HL7V21Field
-        {
-            field = message[@"OBX"][2],
-            Id = @"OBX.2",
-            Type = @"Field",
-            Position = @"OBX.2",
-            Name = @"Value Type",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0125",
-            TableName = @"VALUE TYPE",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (valueType.field.FieldRepetitions != null && valueType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(valueType.Id));
-            valueType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(valueType, fieldData);
-        }
-
-        return valueType;
-    } 
-}
-
-internal HL7V21Field observationIdentifier;
-
-public HL7V21Field ObservationIdentifier
-{
-    get
-    {
-        if (observationIdentifier != null)
-        {
-            return observationIdentifier;
-        }
-
-        observationIdentifier = new HL7V21Field
+        _observationIdentifier = new HL7V21Field
         {
             field = message[@"OBX"][3],
-            Id = @"OBX.3",
-            Type = @"Field",
-            Position = @"OBX.3",
-            Name = @"Observation Identifier",
-            Length = 80,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (observationIdentifier.field.FieldRepetitions != null && observationIdentifier.field.FieldRepetitions.Count > 0)
+        if (_observationIdentifier.field.FieldRepetitions != null && _observationIdentifier.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationIdentifier.Id));
-            observationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(observationIdentifier, fieldData);
+            _observationIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_observationIdentifier, fieldData);
         }
 
-        return observationIdentifier;
+        return _observationIdentifier;
     } 
 }
 
-internal HL7V21Field observationSubid;
+internal HL7V21Field _observationSubid;
 
 public HL7V21Field ObservationSubid
 {
     get
     {
-        if (observationSubid != null)
+        if (_observationSubid != null)
         {
-            return observationSubid;
+            return _observationSubid;
         }
 
-        observationSubid = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"OBX"][4],
             Id = @"OBX.4",
             Type = @"Field",
             Position = @"OBX.4",
@@ -511,34 +300,38 @@ public HL7V21Field ObservationSubid
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _observationSubid = new HL7V21Field
+        {
+            field = message[@"OBX"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (observationSubid.field.FieldRepetitions != null && observationSubid.field.FieldRepetitions.Count > 0)
+        if (_observationSubid.field.FieldRepetitions != null && _observationSubid.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationSubid.Id));
-            observationSubid.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(observationSubid, fieldData);
+            _observationSubid.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_observationSubid, fieldData);
         }
 
-        return observationSubid;
+        return _observationSubid;
     } 
 }
 
-internal HL7V21Field observationResults;
+internal HL7V21Field _observationResults;
 
 public HL7V21Field ObservationResults
 {
     get
     {
-        if (observationResults != null)
+        if (_observationResults != null)
         {
-            return observationResults;
+            return _observationResults;
         }
 
-        observationResults = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"OBX"][5],
             Id = @"OBX.5",
             Type = @"Field",
             Position = @"OBX.5",
@@ -552,34 +345,38 @@ public HL7V21Field ObservationResults
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _observationResults = new HL7V21Field
+        {
+            field = message[@"OBX"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (observationResults.field.FieldRepetitions != null && observationResults.field.FieldRepetitions.Count > 0)
+        if (_observationResults.field.FieldRepetitions != null && _observationResults.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationResults.Id));
-            observationResults.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(observationResults, fieldData);
+            _observationResults.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_observationResults, fieldData);
         }
 
-        return observationResults;
+        return _observationResults;
     } 
 }
 
-internal HL7V21Field units;
+internal HL7V21Field _units;
 
 public HL7V21Field Units
 {
     get
     {
-        if (units != null)
+        if (_units != null)
         {
-            return units;
+            return _units;
         }
 
-        units = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"OBX"][6],
             Id = @"OBX.6",
             Type = @"Field",
             Position = @"OBX.6",
@@ -593,34 +390,38 @@ public HL7V21Field Units
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _units = new HL7V21Field
+        {
+            field = message[@"OBX"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (units.field.FieldRepetitions != null && units.field.FieldRepetitions.Count > 0)
+        if (_units.field.FieldRepetitions != null && _units.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(units.Id));
-            units.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(units, fieldData);
+            _units.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_units, fieldData);
         }
 
-        return units;
+        return _units;
     } 
 }
 
-internal HL7V21Field referencesRange;
+internal HL7V21Field _referencesRange;
 
 public HL7V21Field ReferencesRange
 {
     get
     {
-        if (referencesRange != null)
+        if (_referencesRange != null)
         {
-            return referencesRange;
+            return _referencesRange;
         }
 
-        referencesRange = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"OBX"][7],
             Id = @"OBX.7",
             Type = @"Field",
             Position = @"OBX.7",
@@ -634,34 +435,38 @@ public HL7V21Field ReferencesRange
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _referencesRange = new HL7V21Field
+        {
+            field = message[@"OBX"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (referencesRange.field.FieldRepetitions != null && referencesRange.field.FieldRepetitions.Count > 0)
+        if (_referencesRange.field.FieldRepetitions != null && _referencesRange.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(referencesRange.Id));
-            referencesRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(referencesRange, fieldData);
+            _referencesRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_referencesRange, fieldData);
         }
 
-        return referencesRange;
+        return _referencesRange;
     } 
 }
 
-internal HL7V21Field abnormalFlags;
+internal HL7V21Field _abnormalFlags;
 
 public HL7V21Field AbnormalFlags
 {
     get
     {
-        if (abnormalFlags != null)
+        if (_abnormalFlags != null)
         {
-            return abnormalFlags;
+            return _abnormalFlags;
         }
 
-        abnormalFlags = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"OBX"][8],
             Id = @"OBX.8",
             Type = @"Field",
             Position = @"OBX.8",
@@ -675,34 +480,38 @@ public HL7V21Field AbnormalFlags
             TableName = @"ABNORMAL FLAGS",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _abnormalFlags = new HL7V21Field
+        {
+            field = message[@"OBX"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (abnormalFlags.field.FieldRepetitions != null && abnormalFlags.field.FieldRepetitions.Count > 0)
+        if (_abnormalFlags.field.FieldRepetitions != null && _abnormalFlags.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(abnormalFlags.Id));
-            abnormalFlags.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(abnormalFlags, fieldData);
+            _abnormalFlags.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_abnormalFlags, fieldData);
         }
 
-        return abnormalFlags;
+        return _abnormalFlags;
     } 
 }
 
-internal HL7V21Field probability;
+internal HL7V21Field _probability;
 
 public HL7V21Field Probability
 {
     get
     {
-        if (probability != null)
+        if (_probability != null)
         {
-            return probability;
+            return _probability;
         }
 
-        probability = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"OBX"][9],
             Id = @"OBX.9",
             Type = @"Field",
             Position = @"OBX.9",
@@ -716,34 +525,38 @@ public HL7V21Field Probability
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _probability = new HL7V21Field
+        {
+            field = message[@"OBX"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (probability.field.FieldRepetitions != null && probability.field.FieldRepetitions.Count > 0)
+        if (_probability.field.FieldRepetitions != null && _probability.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(probability.Id));
-            probability.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(probability, fieldData);
+            _probability.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_probability, fieldData);
         }
 
-        return probability;
+        return _probability;
     } 
 }
 
-internal HL7V21Field natureOfAbnormalTest;
+internal HL7V21Field _natureOfAbnormalTest;
 
 public HL7V21Field NatureOfAbnormalTest
 {
     get
     {
-        if (natureOfAbnormalTest != null)
+        if (_natureOfAbnormalTest != null)
         {
-            return natureOfAbnormalTest;
+            return _natureOfAbnormalTest;
         }
 
-        natureOfAbnormalTest = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"OBX"][10],
             Id = @"OBX.10",
             Type = @"Field",
             Position = @"OBX.10",
@@ -757,34 +570,38 @@ public HL7V21Field NatureOfAbnormalTest
             TableName = @"NATURE OF ABNORMAL TESTING",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _natureOfAbnormalTest = new HL7V21Field
+        {
+            field = message[@"OBX"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (natureOfAbnormalTest.field.FieldRepetitions != null && natureOfAbnormalTest.field.FieldRepetitions.Count > 0)
+        if (_natureOfAbnormalTest.field.FieldRepetitions != null && _natureOfAbnormalTest.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(natureOfAbnormalTest.Id));
-            natureOfAbnormalTest.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(natureOfAbnormalTest, fieldData);
+            _natureOfAbnormalTest.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_natureOfAbnormalTest, fieldData);
         }
 
-        return natureOfAbnormalTest;
+        return _natureOfAbnormalTest;
     } 
 }
 
-internal HL7V21Field observResultStatus;
+internal HL7V21Field _observResultStatus;
 
 public HL7V21Field ObservResultStatus
 {
     get
     {
-        if (observResultStatus != null)
+        if (_observResultStatus != null)
         {
-            return observResultStatus;
+            return _observResultStatus;
         }
 
-        observResultStatus = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"OBX"][11],
             Id = @"OBX.11",
             Type = @"Field",
             Position = @"OBX.11",
@@ -798,34 +615,38 @@ public HL7V21Field ObservResultStatus
             TableName = @"OBSERVATION RESULT STATUS",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _observResultStatus = new HL7V21Field
+        {
+            field = message[@"OBX"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (observResultStatus.field.FieldRepetitions != null && observResultStatus.field.FieldRepetitions.Count > 0)
+        if (_observResultStatus.field.FieldRepetitions != null && _observResultStatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observResultStatus.Id));
-            observResultStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(observResultStatus, fieldData);
+            _observResultStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_observResultStatus, fieldData);
         }
 
-        return observResultStatus;
+        return _observResultStatus;
     } 
 }
 
-internal HL7V21Field dateLastObsNormalValues;
+internal HL7V21Field _dateLastObsNormalValues;
 
 public HL7V21Field DateLastObsNormalValues
 {
     get
     {
-        if (dateLastObsNormalValues != null)
+        if (_dateLastObsNormalValues != null)
         {
-            return dateLastObsNormalValues;
+            return _dateLastObsNormalValues;
         }
 
-        dateLastObsNormalValues = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"OBX"][12],
             Id = @"OBX.12",
             Type = @"Field",
             Position = @"OBX.12",
@@ -839,17 +660,22 @@ public HL7V21Field DateLastObsNormalValues
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _dateLastObsNormalValues = new HL7V21Field
+        {
+            field = message[@"OBX"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dateLastObsNormalValues.field.FieldRepetitions != null && dateLastObsNormalValues.field.FieldRepetitions.Count > 0)
+        if (_dateLastObsNormalValues.field.FieldRepetitions != null && _dateLastObsNormalValues.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateLastObsNormalValues.Id));
-            dateLastObsNormalValues.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(dateLastObsNormalValues, fieldData);
+            _dateLastObsNormalValues.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_dateLastObsNormalValues, fieldData);
         }
 
-        return dateLastObsNormalValues;
+        return _dateLastObsNormalValues;
     } 
 }
     }

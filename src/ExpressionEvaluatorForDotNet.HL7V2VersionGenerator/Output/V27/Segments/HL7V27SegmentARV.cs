@@ -47,46 +47,85 @@ System implementers should carefully control access to the restriction codes and
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentARV(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _setId;
+
+public HL7V27Field SetId
+{
+    get
+    {
+        if (_setId != null)
+        {
+            return _setId;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ARV.1",
+            Type = @"Field",
+            Position = @"ARV.1",
+            Name = @"Set Id",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this segment. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setId = new HL7V27Field
+        {
+            field = message[@"ARV"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setId.field.FieldRepetitions != null && _setId.field.FieldRepetitions.Count > 0)
+        {
+            _setId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_setId, fieldData);
+        }
+
+        return _setId;
+    } 
+}
+
+internal HL7V27Field _accessRestrictionActionCode;
+
+public HL7V27Field AccessRestrictionActionCode
+{
+    get
+    {
+        if (_accessRestrictionActionCode != null)
+        {
+            return _accessRestrictionActionCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ARV.2",
+            Type = @"Field",
+            Position = @"ARV.2",
+            Name = @"Access Restriction Action Code",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0206",
+            TableName = @"Segment action code",
+            Description = @"This field contains a code defining the action to be taken for this segment. It allows access restriction information to be sent to delete or update previously sent access restrictions. Refer to HL7 Table 0206 - Segment Action Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ARV.1",
-                            Type = @"Field",
-                            Position = @"ARV.1",
-                            Name = @"Set Id",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this segment. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ARV.2",
-                            Type = @"Field",
-                            Position = @"ARV.2",
-                            Name = @"Access Restriction Action Code",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0206",
-                            TableName = @"Segment action code",
-                            Description = @"This field contains a code defining the action to be taken for this segment. It allows access restriction information to be sent to delete or update previously sent access restrictions. Refer to HL7 Table 0206 - Segment Action Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ARV.2.1",
                             Type = @"Component",
@@ -523,25 +562,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _accessRestrictionActionCode = new HL7V27Field
+        {
+            field = message[@"ARV"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accessRestrictionActionCode.field.FieldRepetitions != null && _accessRestrictionActionCode.field.FieldRepetitions.Count > 0)
+        {
+            _accessRestrictionActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_accessRestrictionActionCode, fieldData);
+        }
+
+        return _accessRestrictionActionCode;
+    } 
+}
+
+internal HL7V27Field _accessRestrictionValue;
+
+public HL7V27Field AccessRestrictionValue
+{
+    get
+    {
+        if (_accessRestrictionValue != null)
+        {
+            return _accessRestrictionValue;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ARV.3",
+            Type = @"Field",
+            Position = @"ARV.3",
+            Name = @"Access Restriction Value",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0717",
+            TableName = @"Access Restriction Value",
+            Description = @"This field specifies the information to which access is restricted. This access may be restricted at a field level by employing the specific HL7 field identifiers or may be otherwise determined by user-defined coded values. Refer to User-defined Table 0717 – Access Restriction Value for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ARV.3",
-                            Type = @"Field",
-                            Position = @"ARV.3",
-                            Name = @"Access Restriction Value",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0717",
-                            TableName = @"Access Restriction Value",
-                            Description = @"This field specifies the information to which access is restricted. This access may be restricted at a field level by employing the specific HL7 field identifiers or may be otherwise determined by user-defined coded values. Refer to User-defined Table 0717 – Access Restriction Value for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ARV.3.1",
                             Type = @"Component",
@@ -967,25 +1036,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _accessRestrictionValue = new HL7V27Field
+        {
+            field = message[@"ARV"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accessRestrictionValue.field.FieldRepetitions != null && _accessRestrictionValue.field.FieldRepetitions.Count > 0)
+        {
+            _accessRestrictionValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_accessRestrictionValue, fieldData);
+        }
+
+        return _accessRestrictionValue;
+    } 
+}
+
+internal HL7V27Field _accessRestrictionReason;
+
+public HL7V27Field AccessRestrictionReason
+{
+    get
+    {
+        if (_accessRestrictionReason != null)
+        {
+            return _accessRestrictionReason;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ARV.4",
+            Type = @"Field",
+            Position = @"ARV.4",
+            Name = @"Access Restriction Reason",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0719",
+            TableName = @"Access Restriction Reason Code",
+            Description = @"This field is used to convey the reason for the restricted access. Repeat of the Access Restriction Reason is allowed to accommodate communication of multiple reasons for an access restriction. Refer to User-defined Table 0719 – Access Restriction Reason Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ARV.4",
-                            Type = @"Field",
-                            Position = @"ARV.4",
-                            Name = @"Access Restriction Reason",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0719",
-                            TableName = @"Access Restriction Reason Code",
-                            Description = @"This field is used to convey the reason for the restricted access. Repeat of the Access Restriction Reason is allowed to accommodate communication of multiple reasons for an access restriction. Refer to User-defined Table 0719 – Access Restriction Reason Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ARV.4.1",
                             Type = @"Component",
@@ -1411,43 +1510,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _accessRestrictionReason = new HL7V27Field
+        {
+            field = message[@"ARV"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accessRestrictionReason.field.FieldRepetitions != null && _accessRestrictionReason.field.FieldRepetitions.Count > 0)
+        {
+            _accessRestrictionReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_accessRestrictionReason, fieldData);
+        }
+
+        return _accessRestrictionReason;
+    } 
+}
+
+internal HL7V27Field _specialAccessRestrictionInstructions;
+
+public HL7V27Field SpecialAccessRestrictionInstructions
+{
+    get
+    {
+        if (_specialAccessRestrictionInstructions != null)
+        {
+            return _specialAccessRestrictionInstructions;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ARV.5",
+            Type = @"Field",
+            Position = @"ARV.5",
+            Name = @"Special Access Restriction Instructions",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Used to convey specific instructions about the protection of the patient's data (e.g., ""Always refer to the patient as Mr. Everyman""). This field may also be used to specify instructions about the release of information to family and friends (e.g., ""Do not release information to patient's brother, Adam Everyman""). These instructions may be in conjunction with other fields (as elected by the system).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _specialAccessRestrictionInstructions = new HL7V27Field
+        {
+            field = message[@"ARV"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specialAccessRestrictionInstructions.field.FieldRepetitions != null && _specialAccessRestrictionInstructions.field.FieldRepetitions.Count > 0)
+        {
+            _specialAccessRestrictionInstructions.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specialAccessRestrictionInstructions, fieldData);
+        }
+
+        return _specialAccessRestrictionInstructions;
+    } 
+}
+
+internal HL7V27Field _accessRestrictionDateRange;
+
+public HL7V27Field AccessRestrictionDateRange
+{
+    get
+    {
+        if (_accessRestrictionDateRange != null)
+        {
+            return _accessRestrictionDateRange;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ARV.6",
+            Type = @"Field",
+            Position = @"ARV.6",
+            Name = @"Access Restriction Date Range",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DR",
+            DataTypeName = @"Date/time Range",
+            TableId = null,
+            TableName = null,
+            Description = @"This element defines the date from which an access restriction commences until the date it is specifically rescinded.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ARV.5",
-                            Type = @"Field",
-                            Position = @"ARV.5",
-                            Name = @"Special Access Restriction Instructions",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Used to convey specific instructions about the protection of the patient's data (e.g., ""Always refer to the patient as Mr. Everyman""). This field may also be used to specify instructions about the release of information to family and friends (e.g., ""Do not release information to patient's brother, Adam Everyman""). These instructions may be in conjunction with other fields (as elected by the system).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ARV.6",
-                            Type = @"Field",
-                            Position = @"ARV.6",
-                            Name = @"Access Restriction Date Range",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DR",
-                            DataTypeName = @"Date/time Range",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This element defines the date from which an access restriction commences until the date it is specifically rescinded.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ARV.6.1",
                             Type = @"Component",
@@ -1481,260 +1637,23 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentARV(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field setId;
-
-public HL7V27Field SetId
-{
-    get
-    {
-        if (setId != null)
-        {
-            return setId;
-        }
-
-        setId = new HL7V27Field
-        {
-            field = message[@"ARV"][1],
-            Id = @"ARV.1",
-            Type = @"Field",
-            Position = @"ARV.1",
-            Name = @"Set Id",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this segment. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setId.field.FieldRepetitions != null && setId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setId.Id));
-            setId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(setId, fieldData);
-        }
-
-        return setId;
-    } 
-}
-
-internal HL7V27Field accessRestrictionActionCode;
-
-public HL7V27Field AccessRestrictionActionCode
-{
-    get
-    {
-        if (accessRestrictionActionCode != null)
-        {
-            return accessRestrictionActionCode;
-        }
-
-        accessRestrictionActionCode = new HL7V27Field
-        {
-            field = message[@"ARV"][2],
-            Id = @"ARV.2",
-            Type = @"Field",
-            Position = @"ARV.2",
-            Name = @"Access Restriction Action Code",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0206",
-            TableName = @"Segment action code",
-            Description = @"This field contains a code defining the action to be taken for this segment. It allows access restriction information to be sent to delete or update previously sent access restrictions. Refer to HL7 Table 0206 - Segment Action Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accessRestrictionActionCode.field.FieldRepetitions != null && accessRestrictionActionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accessRestrictionActionCode.Id));
-            accessRestrictionActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(accessRestrictionActionCode, fieldData);
-        }
-
-        return accessRestrictionActionCode;
-    } 
-}
-
-internal HL7V27Field accessRestrictionValue;
-
-public HL7V27Field AccessRestrictionValue
-{
-    get
-    {
-        if (accessRestrictionValue != null)
-        {
-            return accessRestrictionValue;
-        }
-
-        accessRestrictionValue = new HL7V27Field
-        {
-            field = message[@"ARV"][3],
-            Id = @"ARV.3",
-            Type = @"Field",
-            Position = @"ARV.3",
-            Name = @"Access Restriction Value",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0717",
-            TableName = @"Access Restriction Value",
-            Description = @"This field specifies the information to which access is restricted. This access may be restricted at a field level by employing the specific HL7 field identifiers or may be otherwise determined by user-defined coded values. Refer to User-defined Table 0717 – Access Restriction Value for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accessRestrictionValue.field.FieldRepetitions != null && accessRestrictionValue.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accessRestrictionValue.Id));
-            accessRestrictionValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(accessRestrictionValue, fieldData);
-        }
-
-        return accessRestrictionValue;
-    } 
-}
-
-internal HL7V27Field accessRestrictionReason;
-
-public HL7V27Field AccessRestrictionReason
-{
-    get
-    {
-        if (accessRestrictionReason != null)
-        {
-            return accessRestrictionReason;
-        }
-
-        accessRestrictionReason = new HL7V27Field
-        {
-            field = message[@"ARV"][4],
-            Id = @"ARV.4",
-            Type = @"Field",
-            Position = @"ARV.4",
-            Name = @"Access Restriction Reason",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0719",
-            TableName = @"Access Restriction Reason Code",
-            Description = @"This field is used to convey the reason for the restricted access. Repeat of the Access Restriction Reason is allowed to accommodate communication of multiple reasons for an access restriction. Refer to User-defined Table 0719 – Access Restriction Reason Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accessRestrictionReason.field.FieldRepetitions != null && accessRestrictionReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accessRestrictionReason.Id));
-            accessRestrictionReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(accessRestrictionReason, fieldData);
-        }
-
-        return accessRestrictionReason;
-    } 
-}
-
-internal HL7V27Field specialAccessRestrictionInstructions;
-
-public HL7V27Field SpecialAccessRestrictionInstructions
-{
-    get
-    {
-        if (specialAccessRestrictionInstructions != null)
-        {
-            return specialAccessRestrictionInstructions;
-        }
-
-        specialAccessRestrictionInstructions = new HL7V27Field
-        {
-            field = message[@"ARV"][5],
-            Id = @"ARV.5",
-            Type = @"Field",
-            Position = @"ARV.5",
-            Name = @"Special Access Restriction Instructions",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Used to convey specific instructions about the protection of the patient's data (e.g., ""Always refer to the patient as Mr. Everyman""). This field may also be used to specify instructions about the release of information to family and friends (e.g., ""Do not release information to patient's brother, Adam Everyman""). These instructions may be in conjunction with other fields (as elected by the system).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specialAccessRestrictionInstructions.field.FieldRepetitions != null && specialAccessRestrictionInstructions.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specialAccessRestrictionInstructions.Id));
-            specialAccessRestrictionInstructions.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specialAccessRestrictionInstructions, fieldData);
-        }
-
-        return specialAccessRestrictionInstructions;
-    } 
-}
-
-internal HL7V27Field accessRestrictionDateRange;
-
-public HL7V27Field AccessRestrictionDateRange
-{
-    get
-    {
-        if (accessRestrictionDateRange != null)
-        {
-            return accessRestrictionDateRange;
-        }
-
-        accessRestrictionDateRange = new HL7V27Field
+        _accessRestrictionDateRange = new HL7V27Field
         {
             field = message[@"ARV"][6],
-            Id = @"ARV.6",
-            Type = @"Field",
-            Position = @"ARV.6",
-            Name = @"Access Restriction Date Range",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DR",
-            DataTypeName = @"Date/time Range",
-            TableId = null,
-            TableName = null,
-            Description = @"This element defines the date from which an access restriction commences until the date it is specifically rescinded.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (accessRestrictionDateRange.field.FieldRepetitions != null && accessRestrictionDateRange.field.FieldRepetitions.Count > 0)
+        if (_accessRestrictionDateRange.field.FieldRepetitions != null && _accessRestrictionDateRange.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accessRestrictionDateRange.Id));
-            accessRestrictionDateRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(accessRestrictionDateRange, fieldData);
+            _accessRestrictionDateRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_accessRestrictionDateRange, fieldData);
         }
 
-        return accessRestrictionDateRange;
+        return _accessRestrictionDateRange;
     } 
 }
     }

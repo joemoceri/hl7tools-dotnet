@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentNK1(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _setIDNK1;
+
+public HL7V24Field SetIDNK1
+{
+    get
+    {
+        if (_setIDNK1 != null)
+        {
+            return _setIDNK1;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.1",
+            Type = @"Field",
+            Position = @"NK1.1",
+            Name = @"Set ID - NK1",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDNK1 = new HL7V24Field
+        {
+            field = message[@"NK1"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDNK1.field.FieldRepetitions != null && _setIDNK1.field.FieldRepetitions.Count > 0)
+        {
+            _setIDNK1.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_setIDNK1, fieldData);
+        }
+
+        return _setIDNK1;
+    } 
+}
+
+internal HL7V24Field _nKName;
+
+public HL7V24Field NKName
+{
+    get
+    {
+        if (_nKName != null)
+        {
+            return _nKName;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.2",
+            Type = @"Field",
+            Position = @"NK1.2",
+            Name = @"NK Name",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the next of kin or associated party. Multiple names for the same person are allowed, but the legal name must be sent in the first sequence. If the legal name is not sent, then the repeat delimiter must be sent in the first sequence. Refer to HL7 Table 0200 - Name type for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"NK1.1",
-                            Type = @"Field",
-                            Position = @"NK1.1",
-                            Name = @"Set ID - NK1",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.2",
-                            Type = @"Field",
-                            Position = @"NK1.2",
-                            Name = @"NK Name",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the next of kin or associated party. Multiple names for the same person are allowed, but the legal name must be sent in the first sequence. If the legal name is not sent, then the repeat delimiter must be sent in the first sequence. Refer to HL7 Table 0200 - Name type for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NK1.2.1",
                             Type = @"Component",
@@ -564,25 +603,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 0444 - Name assembly order for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _nKName = new HL7V24Field
+        {
+            field = message[@"NK1"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_nKName.field.FieldRepetitions != null && _nKName.field.FieldRepetitions.Count > 0)
+        {
+            _nKName.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_nKName, fieldData);
+        }
+
+        return _nKName;
+    } 
+}
+
+internal HL7V24Field _relationship;
+
+public HL7V24Field Relationship
+{
+    get
+    {
+        if (_relationship != null)
+        {
+            return _relationship;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.3",
+            Type = @"Field",
+            Position = @"NK1.3",
+            Name = @"Relationship",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0063",
+            TableName = @"Relationship",
+            Description = @"This field contains the actual personal relationship that the next of kin/associated party has to the patient. Refer to User-defined Table 0063 - Relationship for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.3",
-                            Type = @"Field",
-                            Position = @"NK1.3",
-                            Name = @"Relationship",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0063",
-                            TableName = @"Relationship",
-                            Description = @"This field contains the actual personal relationship that the next of kin/associated party has to the patient. Refer to User-defined Table 0063 - Relationship for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.3.1",
                             Type = @"Component",
@@ -692,25 +761,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _relationship = new HL7V24Field
+        {
+            field = message[@"NK1"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_relationship.field.FieldRepetitions != null && _relationship.field.FieldRepetitions.Count > 0)
+        {
+            _relationship.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_relationship, fieldData);
+        }
+
+        return _relationship;
+    } 
+}
+
+internal HL7V24Field _address;
+
+public HL7V24Field Address
+{
+    get
+    {
+        if (_address != null)
+        {
+            return _address;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.4",
+            Type = @"Field",
+            Position = @"NK1.4",
+            Name = @"Address",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the address of the next of kin/associated party. Multiple addresses are allowed for the same person. The mailing address must be sent in the first sequence. If the mailing address is not sent, then the repeat delimiter must be sent in the first sequence.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.4",
-                            Type = @"Field",
-                            Position = @"NK1.4",
-                            Name = @"Address",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the address of the next of kin/associated party. Multiple addresses are allowed for the same person. The mailing address must be sent in the first sequence. If the mailing address is not sent, then the repeat delimiter must be sent in the first sequence.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.4.1",
                             Type = @"Component",
@@ -1078,25 +1177,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             FieldDatas = null
                         },}
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _address = new HL7V24Field
+        {
+            field = message[@"NK1"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_address.field.FieldRepetitions != null && _address.field.FieldRepetitions.Count > 0)
+        {
+            _address.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_address, fieldData);
+        }
+
+        return _address;
+    } 
+}
+
+internal HL7V24Field _phoneNumber;
+
+public HL7V24Field PhoneNumber
+{
+    get
+    {
+        if (_phoneNumber != null)
+        {
+            return _phoneNumber;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.5",
+            Type = @"Field",
+            Position = @"NK1.5",
+            Name = @"Phone Number",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the telephone number of the next of kin/associated party. Multiple phone numbers are allowed for the same person. The primary telephone number must be sent in the first sequence. If the primary telephone number is not sent, then the repeat delimiter must be sent in the first sequence. Refer to HL7 Table 0201 - Telecommunication use code and HL7 Table 0202 - Telecommunication equipment type for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.5",
-                            Type = @"Field",
-                            Position = @"NK1.5",
-                            Name = @"Phone Number",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the telephone number of the next of kin/associated party. Multiple phone numbers are allowed for the same person. The primary telephone number must be sent in the first sequence. If the primary telephone number is not sent, then the repeat delimiter must be sent in the first sequence. Refer to HL7 Table 0201 - Telecommunication use code and HL7 Table 0202 - Telecommunication equipment type for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.5.1",
                             Type = @"Component",
@@ -1256,25 +1385,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _phoneNumber = new HL7V24Field
+        {
+            field = message[@"NK1"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_phoneNumber.field.FieldRepetitions != null && _phoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            _phoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_phoneNumber, fieldData);
+        }
+
+        return _phoneNumber;
+    } 
+}
+
+internal HL7V24Field _businessPhoneNumber;
+
+public HL7V24Field BusinessPhoneNumber
+{
+    get
+    {
+        if (_businessPhoneNumber != null)
+        {
+            return _businessPhoneNumber;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.6",
+            Type = @"Field",
+            Position = @"NK1.6",
+            Name = @"Business Phone Number",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the business telephone number of the next of kin/associated party. Multiple phone numbers are allowed for the same person. The primary business telephone number must be sent in the first sequence. If the primary business telephone number is not sent, then the repeat delimiter must be sent in the first sequence. Refer to HL7 Table 0201 - Telecommunication use code and HL7 Table 0202 - Telecommunication equipment type for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.6",
-                            Type = @"Field",
-                            Position = @"NK1.6",
-                            Name = @"Business Phone Number",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the business telephone number of the next of kin/associated party. Multiple phone numbers are allowed for the same person. The primary business telephone number must be sent in the first sequence. If the primary business telephone number is not sent, then the repeat delimiter must be sent in the first sequence. Refer to HL7 Table 0201 - Telecommunication use code and HL7 Table 0202 - Telecommunication equipment type for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.6.1",
                             Type = @"Component",
@@ -1434,25 +1593,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _businessPhoneNumber = new HL7V24Field
+        {
+            field = message[@"NK1"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_businessPhoneNumber.field.FieldRepetitions != null && _businessPhoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            _businessPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_businessPhoneNumber, fieldData);
+        }
+
+        return _businessPhoneNumber;
+    } 
+}
+
+internal HL7V24Field _contactRole;
+
+public HL7V24Field ContactRole
+{
+    get
+    {
+        if (_contactRole != null)
+        {
+            return _contactRole;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.7",
+            Type = @"Field",
+            Position = @"NK1.7",
+            Name = @"Contact Role",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0131",
+            TableName = @"Contact role",
+            Description = @"This field indicates the specific relationship role (next of kin, employer, emergency contact, etc.). Refer to User-defined Table 0131 - Contact role for suggested values. This field specifies the role that the next of kin/associated parties plays with regard to the patient. Examples might include an employer, emergency contact, next of kin, insurance company, state agency, federal agency, etc.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.7",
-                            Type = @"Field",
-                            Position = @"NK1.7",
-                            Name = @"Contact Role",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0131",
-                            TableName = @"Contact role",
-                            Description = @"This field indicates the specific relationship role (next of kin, employer, emergency contact, etc.). Refer to User-defined Table 0131 - Contact role for suggested values. This field specifies the role that the next of kin/associated parties plays with regard to the patient. Examples might include an employer, emergency contact, next of kin, insurance company, state agency, federal agency, etc.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.7.1",
                             Type = @"Component",
@@ -1562,79 +1751,190 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactRole = new HL7V24Field
+        {
+            field = message[@"NK1"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactRole.field.FieldRepetitions != null && _contactRole.field.FieldRepetitions.Count > 0)
+        {
+            _contactRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_contactRole, fieldData);
+        }
+
+        return _contactRole;
+    } 
+}
+
+internal HL7V24Field _startDate;
+
+public HL7V24Field StartDate
+{
+    get
+    {
+        if (_startDate != null)
+        {
+            return _startDate;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.8",
+            Type = @"Field",
+            Position = @"NK1.8",
+            Name = @"Start Date",
+            Length = 8,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the start date of the contact role.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _startDate = new HL7V24Field
+        {
+            field = message[@"NK1"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_startDate.field.FieldRepetitions != null && _startDate.field.FieldRepetitions.Count > 0)
+        {
+            _startDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_startDate, fieldData);
+        }
+
+        return _startDate;
+    } 
+}
+
+internal HL7V24Field _endDate;
+
+public HL7V24Field EndDate
+{
+    get
+    {
+        if (_endDate != null)
+        {
+            return _endDate;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.9",
+            Type = @"Field",
+            Position = @"NK1.9",
+            Name = @"End Date",
+            Length = 8,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the end date of the contact role.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _endDate = new HL7V24Field
+        {
+            field = message[@"NK1"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_endDate.field.FieldRepetitions != null && _endDate.field.FieldRepetitions.Count > 0)
+        {
+            _endDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_endDate, fieldData);
+        }
+
+        return _endDate;
+    } 
+}
+
+internal HL7V24Field _nextofKinAssociatedPartiesJobTitle;
+
+public HL7V24Field NextofKinAssociatedPartiesJobTitle
+{
+    get
+    {
+        if (_nextofKinAssociatedPartiesJobTitle != null)
+        {
+            return _nextofKinAssociatedPartiesJobTitle;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.10",
+            Type = @"Field",
+            Position = @"NK1.10",
+            Name = @"Next of Kin / Associated Parties Job Title",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the title of the next of kin/associated parties at their place of employment. However, if the contact role is the patients employer, this field contains the title of the patient at their place of employment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _nextofKinAssociatedPartiesJobTitle = new HL7V24Field
+        {
+            field = message[@"NK1"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_nextofKinAssociatedPartiesJobTitle.field.FieldRepetitions != null && _nextofKinAssociatedPartiesJobTitle.field.FieldRepetitions.Count > 0)
+        {
+            _nextofKinAssociatedPartiesJobTitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_nextofKinAssociatedPartiesJobTitle, fieldData);
+        }
+
+        return _nextofKinAssociatedPartiesJobTitle;
+    } 
+}
+
+internal HL7V24Field _nextofKinAssociatedPartiesJobCodeClass;
+
+public HL7V24Field NextofKinAssociatedPartiesJobCodeClass
+{
+    get
+    {
+        if (_nextofKinAssociatedPartiesJobCodeClass != null)
+        {
+            return _nextofKinAssociatedPartiesJobCodeClass;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.11",
+            Type = @"Field",
+            Position = @"NK1.11",
+            Name = @"Next of Kin / Associated Parties Job Code/Class",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"JCC",
+            DataTypeName = @"Job Code/class",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the employers job code and the employee classification used for the next of kin/associated parties at their place of employment. However, if the contact role is the patients employer, this field contains the job code/class of the patient at their place of employment. Refer to User-defined Table 0327 - Job code and User-defined Table 0328 - Employee classification for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.8",
-                            Type = @"Field",
-                            Position = @"NK1.8",
-                            Name = @"Start Date",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the start date of the contact role.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.9",
-                            Type = @"Field",
-                            Position = @"NK1.9",
-                            Name = @"End Date",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the end date of the contact role.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.10",
-                            Type = @"Field",
-                            Position = @"NK1.10",
-                            Name = @"Next of Kin / Associated Parties Job Title",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the title of the next of kin/associated parties at their place of employment. However, if the contact role is the patients employer, this field contains the title of the patient at their place of employment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.11",
-                            Type = @"Field",
-                            Position = @"NK1.11",
-                            Name = @"Next of Kin / Associated Parties Job Code/Class",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"JCC",
-                            DataTypeName = @"Job Code/class",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the employers job code and the employee classification used for the next of kin/associated parties at their place of employment. However, if the contact role is the patients employer, this field contains the job code/class of the patient at their place of employment. Refer to User-defined Table 0327 - Job code and User-defined Table 0328 - Employee classification for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.11.1",
                             Type = @"Component",
@@ -1668,25 +1968,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"This component contains the persons employee classification . User-defined Table 0328 - Employee classificationis used as the HL7 identifier for the user-defined table of values for this component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _nextofKinAssociatedPartiesJobCodeClass = new HL7V24Field
+        {
+            field = message[@"NK1"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_nextofKinAssociatedPartiesJobCodeClass.field.FieldRepetitions != null && _nextofKinAssociatedPartiesJobCodeClass.field.FieldRepetitions.Count > 0)
+        {
+            _nextofKinAssociatedPartiesJobCodeClass.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_nextofKinAssociatedPartiesJobCodeClass, fieldData);
+        }
+
+        return _nextofKinAssociatedPartiesJobCodeClass;
+    } 
+}
+
+internal HL7V24Field _nextofKinAssociatedPartiesEmployeeNumber;
+
+public HL7V24Field NextofKinAssociatedPartiesEmployeeNumber
+{
+    get
+    {
+        if (_nextofKinAssociatedPartiesEmployeeNumber != null)
+        {
+            return _nextofKinAssociatedPartiesEmployeeNumber;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.12",
+            Type = @"Field",
+            Position = @"NK1.12",
+            Name = @"Next of Kin / Associated Parties Employee Number",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"For backward compatibility, the ST data type can be sent; however HL7 recommends that the CX data type be used for new implementations. This field contains the number that the employer assigns to the employee that is acting as next of kin/associated parties. However, if the contact role is the patients employer, this field contains the employee number of the patient at their place of employment. The assigning authority and identifier type code are strongly recommended for all CX data types.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.12",
-                            Type = @"Field",
-                            Position = @"NK1.12",
-                            Name = @"Next of Kin / Associated Parties Employee Number",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"For backward compatibility, the ST data type can be sent; however HL7 recommends that the CX data type be used for new implementations. This field contains the number that the employer assigns to the employee that is acting as next of kin/associated parties. However, if the contact role is the patients employer, this field contains the employee number of the patient at their place of employment. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.12.1",
                             Type = @"Component",
@@ -1932,25 +2262,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"The last date, if known, on which the identifier is valid and active.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _nextofKinAssociatedPartiesEmployeeNumber = new HL7V24Field
+        {
+            field = message[@"NK1"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_nextofKinAssociatedPartiesEmployeeNumber.field.FieldRepetitions != null && _nextofKinAssociatedPartiesEmployeeNumber.field.FieldRepetitions.Count > 0)
+        {
+            _nextofKinAssociatedPartiesEmployeeNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_nextofKinAssociatedPartiesEmployeeNumber, fieldData);
+        }
+
+        return _nextofKinAssociatedPartiesEmployeeNumber;
+    } 
+}
+
+internal HL7V24Field _organizationNameNK1;
+
+public HL7V24Field OrganizationNameNK1
+{
+    get
+    {
+        if (_organizationNameNK1 != null)
+        {
+            return _organizationNameNK1;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.13",
+            Type = @"Field",
+            Position = @"NK1.13",
+            Name = @"Organization Name - NK1",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the organization that serves as a next of kin/associated party or as the next of kin of the patient. This field may also be used to communicate the name of the organization at which the associated party works. Multiple names for the same organization may be sent. If multiple names are sent, the legal name must be sent in the first sequence. If the legal name is not sent, then a repeat delimiter must be sent in the first sequence.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.13",
-                            Type = @"Field",
-                            Position = @"NK1.13",
-                            Name = @"Organization Name - NK1",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the organization that serves as a next of kin/associated party or as the next of kin of the patient. This field may also be used to communicate the name of the organization at which the associated party works. Multiple names for the same organization may be sent. If multiple names are sent, the legal name must be sent in the first sequence. If the legal name is not sent, then a repeat delimiter must be sent in the first sequence.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.13.1",
                             Type = @"Component",
@@ -2214,25 +2574,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Different <name/address types> and representations of the same <name/address> should be described by repeating of this field, with different values of the <name/address type> and/or <name/address representation> component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _organizationNameNK1 = new HL7V24Field
+        {
+            field = message[@"NK1"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_organizationNameNK1.field.FieldRepetitions != null && _organizationNameNK1.field.FieldRepetitions.Count > 0)
+        {
+            _organizationNameNK1.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_organizationNameNK1, fieldData);
+        }
+
+        return _organizationNameNK1;
+    } 
+}
+
+internal HL7V24Field _maritalStatus;
+
+public HL7V24Field MaritalStatus
+{
+    get
+    {
+        if (_maritalStatus != null)
+        {
+            return _maritalStatus;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.14",
+            Type = @"Field",
+            Position = @"NK1.14",
+            Name = @"Marital Status",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0002",
+            TableName = @"Marital status",
+            Description = @"This field contains the next of kin/associated partys marital status. Refer to User-defined Table 0002 - Marital status for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.14",
-                            Type = @"Field",
-                            Position = @"NK1.14",
-                            Name = @"Marital Status",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0002",
-                            TableName = @"Marital status",
-                            Description = @"This field contains the next of kin/associated partys marital status. Refer to User-defined Table 0002 - Marital status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.14.1",
                             Type = @"Component",
@@ -2342,43 +2732,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _maritalStatus = new HL7V24Field
+        {
+            field = message[@"NK1"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_maritalStatus.field.FieldRepetitions != null && _maritalStatus.field.FieldRepetitions.Count > 0)
+        {
+            _maritalStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_maritalStatus, fieldData);
+        }
+
+        return _maritalStatus;
+    } 
+}
+
+internal HL7V24Field _administrativeSex;
+
+public HL7V24Field AdministrativeSex
+{
+    get
+    {
+        if (_administrativeSex != null)
+        {
+            return _administrativeSex;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.15",
+            Type = @"Field",
+            Position = @"NK1.15",
+            Name = @"Administrative Sex",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0001",
+            TableName = @"Administrative sex",
+            Description = @"This field contains the next of kin/associated partys sex. Refer to User-defined Table 0001 - Administrative sex for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _administrativeSex = new HL7V24Field
+        {
+            field = message[@"NK1"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_administrativeSex.field.FieldRepetitions != null && _administrativeSex.field.FieldRepetitions.Count > 0)
+        {
+            _administrativeSex.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_administrativeSex, fieldData);
+        }
+
+        return _administrativeSex;
+    } 
+}
+
+internal HL7V24Field _dateTimeOfBirth;
+
+public HL7V24Field DateTimeOfBirth
+{
+    get
+    {
+        if (_dateTimeOfBirth != null)
+        {
+            return _dateTimeOfBirth;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.16",
+            Type = @"Field",
+            Position = @"NK1.16",
+            Name = @"Date/Time Of Birth",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the next of kin/associated partys birth date and time.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.15",
-                            Type = @"Field",
-                            Position = @"NK1.15",
-                            Name = @"Administrative Sex",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0001",
-                            TableName = @"Administrative sex",
-                            Description = @"This field contains the next of kin/associated partys sex. Refer to User-defined Table 0001 - Administrative sex for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.16",
-                            Type = @"Field",
-                            Position = @"NK1.16",
-                            Name = @"Date/Time Of Birth",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the next of kin/associated partys birth date and time.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.16.1",
                             Type = @"Component",
@@ -2412,61 +2859,145 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dateTimeOfBirth = new HL7V24Field
+        {
+            field = message[@"NK1"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeOfBirth.field.FieldRepetitions != null && _dateTimeOfBirth.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeOfBirth.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_dateTimeOfBirth, fieldData);
+        }
+
+        return _dateTimeOfBirth;
+    } 
+}
+
+internal HL7V24Field _livingDependency;
+
+public HL7V24Field LivingDependency
+{
+    get
+    {
+        if (_livingDependency != null)
+        {
+            return _livingDependency;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.17",
+            Type = @"Field",
+            Position = @"NK1.17",
+            Name = @"Living Dependency",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0223",
+            TableName = @"Living dependency",
+            Description = @"This field identifies specific living conditions (e.g., spouse dependent on patient, walk-up) that are relevant to an evaluation of the patients healthcare needs. This information can be used for discharge planning. Examples might include Spouse Dependent, Medical Supervision Required, Small Children Dependent. This field repeats because, for example, ""spouse dependent"" and ""medical supervision required"" can apply at the same time. Refer to User-defined Table 0223 - Living dependency for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _livingDependency = new HL7V24Field
+        {
+            field = message[@"NK1"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_livingDependency.field.FieldRepetitions != null && _livingDependency.field.FieldRepetitions.Count > 0)
+        {
+            _livingDependency.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_livingDependency, fieldData);
+        }
+
+        return _livingDependency;
+    } 
+}
+
+internal HL7V24Field _ambulatoryStatus;
+
+public HL7V24Field AmbulatoryStatus
+{
+    get
+    {
+        if (_ambulatoryStatus != null)
+        {
+            return _ambulatoryStatus;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.18",
+            Type = @"Field",
+            Position = @"NK1.18",
+            Name = @"Ambulatory Status",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0009",
+            TableName = @"Ambulatory status",
+            Description = @"This field identifies the transient rate of mobility for the next of kin/associated party. Refer to User-defined Table 0009 - Ambulatory status for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _ambulatoryStatus = new HL7V24Field
+        {
+            field = message[@"NK1"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_ambulatoryStatus.field.FieldRepetitions != null && _ambulatoryStatus.field.FieldRepetitions.Count > 0)
+        {
+            _ambulatoryStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_ambulatoryStatus, fieldData);
+        }
+
+        return _ambulatoryStatus;
+    } 
+}
+
+internal HL7V24Field _citizenship;
+
+public HL7V24Field Citizenship
+{
+    get
+    {
+        if (_citizenship != null)
+        {
+            return _citizenship;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.19",
+            Type = @"Field",
+            Position = @"NK1.19",
+            Name = @"Citizenship",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0171",
+            TableName = @"Citizenship",
+            Description = @"This field contains the code to identify the next of kin/associated partys citizenship. HL7 recommends using ISO 3166 as the suggested values in User-defined Table 0171 - Citizenship.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.17",
-                            Type = @"Field",
-                            Position = @"NK1.17",
-                            Name = @"Living Dependency",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0223",
-                            TableName = @"Living dependency",
-                            Description = @"This field identifies specific living conditions (e.g., spouse dependent on patient, walk-up) that are relevant to an evaluation of the patients healthcare needs. This information can be used for discharge planning. Examples might include Spouse Dependent, Medical Supervision Required, Small Children Dependent. This field repeats because, for example, ""spouse dependent"" and ""medical supervision required"" can apply at the same time. Refer to User-defined Table 0223 - Living dependency for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.18",
-                            Type = @"Field",
-                            Position = @"NK1.18",
-                            Name = @"Ambulatory Status",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0009",
-                            TableName = @"Ambulatory status",
-                            Description = @"This field identifies the transient rate of mobility for the next of kin/associated party. Refer to User-defined Table 0009 - Ambulatory status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.19",
-                            Type = @"Field",
-                            Position = @"NK1.19",
-                            Name = @"Citizenship",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0171",
-                            TableName = @"Citizenship",
-                            Description = @"This field contains the code to identify the next of kin/associated partys citizenship. HL7 recommends using ISO 3166 as the suggested values in User-defined Table 0171 - Citizenship.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.19.1",
                             Type = @"Component",
@@ -2576,25 +3107,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _citizenship = new HL7V24Field
+        {
+            field = message[@"NK1"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_citizenship.field.FieldRepetitions != null && _citizenship.field.FieldRepetitions.Count > 0)
+        {
+            _citizenship.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_citizenship, fieldData);
+        }
+
+        return _citizenship;
+    } 
+}
+
+internal HL7V24Field _primaryLanguage;
+
+public HL7V24Field PrimaryLanguage
+{
+    get
+    {
+        if (_primaryLanguage != null)
+        {
+            return _primaryLanguage;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.20",
+            Type = @"Field",
+            Position = @"NK1.20",
+            Name = @"Primary Language",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0296",
+            TableName = @"Primary language",
+            Description = @"This field identifies the next of kin/associated partys primary speaking language. HL7 recommends using ISO 639 as the suggested values in User-defined Table 0296 - Language.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.20",
-                            Type = @"Field",
-                            Position = @"NK1.20",
-                            Name = @"Primary Language",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0296",
-                            TableName = @"Primary language",
-                            Description = @"This field identifies the next of kin/associated partys primary speaking language. HL7 recommends using ISO 639 as the suggested values in User-defined Table 0296 - Language.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.20.1",
                             Type = @"Component",
@@ -2704,43 +3265,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primaryLanguage = new HL7V24Field
+        {
+            field = message[@"NK1"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryLanguage.field.FieldRepetitions != null && _primaryLanguage.field.FieldRepetitions.Count > 0)
+        {
+            _primaryLanguage.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_primaryLanguage, fieldData);
+        }
+
+        return _primaryLanguage;
+    } 
+}
+
+internal HL7V24Field _livingArrangement;
+
+public HL7V24Field LivingArrangement
+{
+    get
+    {
+        if (_livingArrangement != null)
+        {
+            return _livingArrangement;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.21",
+            Type = @"Field",
+            Position = @"NK1.21",
+            Name = @"Living Arrangement",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0220",
+            TableName = @"Living arrangement",
+            Description = @"This field identifies the situation that the associated party lives in at his/her residential address. Refer to User-defined Table 0220 - Living arrangement for suggested values. Examples of living arrangements might include Alone, Family, Institution, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _livingArrangement = new HL7V24Field
+        {
+            field = message[@"NK1"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_livingArrangement.field.FieldRepetitions != null && _livingArrangement.field.FieldRepetitions.Count > 0)
+        {
+            _livingArrangement.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_livingArrangement, fieldData);
+        }
+
+        return _livingArrangement;
+    } 
+}
+
+internal HL7V24Field _publicityCode;
+
+public HL7V24Field PublicityCode
+{
+    get
+    {
+        if (_publicityCode != null)
+        {
+            return _publicityCode;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.22",
+            Type = @"Field",
+            Position = @"NK1.22",
+            Name = @"Publicity Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0215",
+            TableName = @"Publicity code",
+            Description = @"This field indicates what level of publicity is allowed (e.g., No Publicity, Family Only) for the next of kin/associated party. Refer to User-defined Table 0215 - Publicity code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.21",
-                            Type = @"Field",
-                            Position = @"NK1.21",
-                            Name = @"Living Arrangement",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0220",
-                            TableName = @"Living arrangement",
-                            Description = @"This field identifies the situation that the associated party lives in at his/her residential address. Refer to User-defined Table 0220 - Living arrangement for suggested values. Examples of living arrangements might include Alone, Family, Institution, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.22",
-                            Type = @"Field",
-                            Position = @"NK1.22",
-                            Name = @"Publicity Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0215",
-                            TableName = @"Publicity code",
-                            Description = @"This field indicates what level of publicity is allowed (e.g., No Publicity, Family Only) for the next of kin/associated party. Refer to User-defined Table 0215 - Publicity code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.22.1",
                             Type = @"Component",
@@ -2850,61 +3468,145 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _publicityCode = new HL7V24Field
+        {
+            field = message[@"NK1"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_publicityCode.field.FieldRepetitions != null && _publicityCode.field.FieldRepetitions.Count > 0)
+        {
+            _publicityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_publicityCode, fieldData);
+        }
+
+        return _publicityCode;
+    } 
+}
+
+internal HL7V24Field _protectionIndicator;
+
+public HL7V24Field ProtectionIndicator
+{
+    get
+    {
+        if (_protectionIndicator != null)
+        {
+            return _protectionIndicator;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.23",
+            Type = @"Field",
+            Position = @"NK1.23",
+            Name = @"Protection Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field identifies that next of kin/associated partys protection that determines, in turn, whether access to information about this person should be kept from users who do not have adequate authority. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _protectionIndicator = new HL7V24Field
+        {
+            field = message[@"NK1"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_protectionIndicator.field.FieldRepetitions != null && _protectionIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _protectionIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_protectionIndicator, fieldData);
+        }
+
+        return _protectionIndicator;
+    } 
+}
+
+internal HL7V24Field _studentIndicator;
+
+public HL7V24Field StudentIndicator
+{
+    get
+    {
+        if (_studentIndicator != null)
+        {
+            return _studentIndicator;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.24",
+            Type = @"Field",
+            Position = @"NK1.24",
+            Name = @"Student Indicator",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0231",
+            TableName = @"Student status",
+            Description = @"This field identifies whether the next of kin/associated party is currently a student or not, and whether the next of kin/associated party is a full- or a part-time student. This field does not indicate the degree (high school, college) of the student or the field of study. Refer to User-defined Table 0231 - Student status for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _studentIndicator = new HL7V24Field
+        {
+            field = message[@"NK1"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_studentIndicator.field.FieldRepetitions != null && _studentIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _studentIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_studentIndicator, fieldData);
+        }
+
+        return _studentIndicator;
+    } 
+}
+
+internal HL7V24Field _religion;
+
+public HL7V24Field Religion
+{
+    get
+    {
+        if (_religion != null)
+        {
+            return _religion;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.25",
+            Type = @"Field",
+            Position = @"NK1.25",
+            Name = @"Religion",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0006",
+            TableName = @"Religion",
+            Description = @"This field indicates the type of religion practiced by the next of kin/associated party. Refer to User-defined Table 0006 - Religion for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.23",
-                            Type = @"Field",
-                            Position = @"NK1.23",
-                            Name = @"Protection Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field identifies that next of kin/associated partys protection that determines, in turn, whether access to information about this person should be kept from users who do not have adequate authority. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.24",
-                            Type = @"Field",
-                            Position = @"NK1.24",
-                            Name = @"Student Indicator",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0231",
-                            TableName = @"Student status",
-                            Description = @"This field identifies whether the next of kin/associated party is currently a student or not, and whether the next of kin/associated party is a full- or a part-time student. This field does not indicate the degree (high school, college) of the student or the field of study. Refer to User-defined Table 0231 - Student status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.25",
-                            Type = @"Field",
-                            Position = @"NK1.25",
-                            Name = @"Religion",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0006",
-                            TableName = @"Religion",
-                            Description = @"This field indicates the type of religion practiced by the next of kin/associated party. Refer to User-defined Table 0006 - Religion for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.25.1",
                             Type = @"Component",
@@ -3014,25 +3716,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _religion = new HL7V24Field
+        {
+            field = message[@"NK1"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_religion.field.FieldRepetitions != null && _religion.field.FieldRepetitions.Count > 0)
+        {
+            _religion.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_religion, fieldData);
+        }
+
+        return _religion;
+    } 
+}
+
+internal HL7V24Field _mothersMaidenName;
+
+public HL7V24Field MothersMaidenName
+{
+    get
+    {
+        if (_mothersMaidenName != null)
+        {
+            return _mothersMaidenName;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.26",
+            Type = @"Field",
+            Position = @"NK1.26",
+            Name = @"Mother's Maiden Name",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the maiden name of the next of kin/associated partys mother.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.26",
-                            Type = @"Field",
-                            Position = @"NK1.26",
-                            Name = @"Mother's Maiden Name",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the maiden name of the next of kin/associated partys mother.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.26.1",
                             Type = @"Component",
@@ -3528,25 +4260,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 0444 - Name assembly order for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _mothersMaidenName = new HL7V24Field
+        {
+            field = message[@"NK1"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_mothersMaidenName.field.FieldRepetitions != null && _mothersMaidenName.field.FieldRepetitions.Count > 0)
+        {
+            _mothersMaidenName.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_mothersMaidenName, fieldData);
+        }
+
+        return _mothersMaidenName;
+    } 
+}
+
+internal HL7V24Field _nationality;
+
+public HL7V24Field Nationality
+{
+    get
+    {
+        if (_nationality != null)
+        {
+            return _nationality;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.27",
+            Type = @"Field",
+            Position = @"NK1.27",
+            Name = @"Nationality",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0212",
+            TableName = @"Nationality",
+            Description = @"This field identifies the nation or national group to which the next of kin/associated party belongs. This information may be different than the persons citizenship in countries in which multiple nationalities are recognized (e.g., Spain: Basque, Catalan, etc.). Refer to User-defined Table 0212 - Nationality for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.27",
-                            Type = @"Field",
-                            Position = @"NK1.27",
-                            Name = @"Nationality",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0212",
-                            TableName = @"Nationality",
-                            Description = @"This field identifies the nation or national group to which the next of kin/associated party belongs. This information may be different than the persons citizenship in countries in which multiple nationalities are recognized (e.g., Spain: Basque, Catalan, etc.). Refer to User-defined Table 0212 - Nationality for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.27.1",
                             Type = @"Component",
@@ -3656,25 +4418,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _nationality = new HL7V24Field
+        {
+            field = message[@"NK1"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_nationality.field.FieldRepetitions != null && _nationality.field.FieldRepetitions.Count > 0)
+        {
+            _nationality.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_nationality, fieldData);
+        }
+
+        return _nationality;
+    } 
+}
+
+internal HL7V24Field _ethnicGroup;
+
+public HL7V24Field EthnicGroup
+{
+    get
+    {
+        if (_ethnicGroup != null)
+        {
+            return _ethnicGroup;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.28",
+            Type = @"Field",
+            Position = @"NK1.28",
+            Name = @"Ethnic Group",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0189",
+            TableName = @"Ethnic group",
+            Description = @"This field contains the next of kin/associated partys ethnic group. Refer to User-defined Table 0189 - Ethnic group for suggested values. The second triplet of the CE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes. In the US, a current use is to report ethnicity in line with US federal standards for Hispanic origin.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.28",
-                            Type = @"Field",
-                            Position = @"NK1.28",
-                            Name = @"Ethnic Group",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0189",
-                            TableName = @"Ethnic group",
-                            Description = @"This field contains the next of kin/associated partys ethnic group. Refer to User-defined Table 0189 - Ethnic group for suggested values. The second triplet of the CE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes. In the US, a current use is to report ethnicity in line with US federal standards for Hispanic origin.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.28.1",
                             Type = @"Component",
@@ -3784,25 +4576,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _ethnicGroup = new HL7V24Field
+        {
+            field = message[@"NK1"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_ethnicGroup.field.FieldRepetitions != null && _ethnicGroup.field.FieldRepetitions.Count > 0)
+        {
+            _ethnicGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_ethnicGroup, fieldData);
+        }
+
+        return _ethnicGroup;
+    } 
+}
+
+internal HL7V24Field _contactReason;
+
+public HL7V24Field ContactReason
+{
+    get
+    {
+        if (_contactReason != null)
+        {
+            return _contactReason;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.29",
+            Type = @"Field",
+            Position = @"NK1.29",
+            Name = @"Contact Reason",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0222",
+            TableName = @"Contact reason",
+            Description = @"This field identifies how the contact should be used (e.g., contact employer if patient is unable to work). Refer to User-defined Table 0222 - Contact reason for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.29",
-                            Type = @"Field",
-                            Position = @"NK1.29",
-                            Name = @"Contact Reason",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0222",
-                            TableName = @"Contact reason",
-                            Description = @"This field identifies how the contact should be used (e.g., contact employer if patient is unable to work). Refer to User-defined Table 0222 - Contact reason for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.29.1",
                             Type = @"Component",
@@ -3912,25 +4734,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactReason = new HL7V24Field
+        {
+            field = message[@"NK1"][29],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactReason.field.FieldRepetitions != null && _contactReason.field.FieldRepetitions.Count > 0)
+        {
+            _contactReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_contactReason, fieldData);
+        }
+
+        return _contactReason;
+    } 
+}
+
+internal HL7V24Field _contactPersonsName;
+
+public HL7V24Field ContactPersonsName
+{
+    get
+    {
+        if (_contactPersonsName != null)
+        {
+            return _contactPersonsName;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.30",
+            Type = @"Field",
+            Position = @"NK1.30",
+            Name = @"Contact Person's Name",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the names of the people to contact, depending on the value of the relationship defined in NK1-3 - relationship. This field is typically needed when the NK1 is an organization. The legal name should be sent first in the sequence. Refer to HL7 Table 0200 - Name type for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.30",
-                            Type = @"Field",
-                            Position = @"NK1.30",
-                            Name = @"Contact Person's Name",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the names of the people to contact, depending on the value of the relationship defined in NK1-3 - relationship. This field is typically needed when the NK1 is an organization. The legal name should be sent first in the sequence. Refer to HL7 Table 0200 - Name type for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.30.1",
                             Type = @"Component",
@@ -4426,25 +5278,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 0444 - Name assembly order for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactPersonsName = new HL7V24Field
+        {
+            field = message[@"NK1"][30],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactPersonsName.field.FieldRepetitions != null && _contactPersonsName.field.FieldRepetitions.Count > 0)
+        {
+            _contactPersonsName.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_contactPersonsName, fieldData);
+        }
+
+        return _contactPersonsName;
+    } 
+}
+
+internal HL7V24Field _contactPersonsTelephoneNumber;
+
+public HL7V24Field ContactPersonsTelephoneNumber
+{
+    get
+    {
+        if (_contactPersonsTelephoneNumber != null)
+        {
+            return _contactPersonsTelephoneNumber;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.31",
+            Type = @"Field",
+            Position = @"NK1.31",
+            Name = @"Contact Person's Telephone Number",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the telephone numbers of the contact person depending on the value of the relationship defined in NK1-3 - relationship. This field is typically needed when the NK1 is an organization. The primary telephone number must be sent in the first sequence. If the primary telephone number is not sent, then a repeat delimiter must be sent in the first sequence. Refer to HL7 Table 0201 -Telecommunication use code and HL7 Table 0202 - Telecommunication equipment type for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.31",
-                            Type = @"Field",
-                            Position = @"NK1.31",
-                            Name = @"Contact Person's Telephone Number",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the telephone numbers of the contact person depending on the value of the relationship defined in NK1-3 - relationship. This field is typically needed when the NK1 is an organization. The primary telephone number must be sent in the first sequence. If the primary telephone number is not sent, then a repeat delimiter must be sent in the first sequence. Refer to HL7 Table 0201 -Telecommunication use code and HL7 Table 0202 - Telecommunication equipment type for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.31.1",
                             Type = @"Component",
@@ -4604,25 +5486,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactPersonsTelephoneNumber = new HL7V24Field
+        {
+            field = message[@"NK1"][31],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactPersonsTelephoneNumber.field.FieldRepetitions != null && _contactPersonsTelephoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            _contactPersonsTelephoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_contactPersonsTelephoneNumber, fieldData);
+        }
+
+        return _contactPersonsTelephoneNumber;
+    } 
+}
+
+internal HL7V24Field _contactPersonsAddress;
+
+public HL7V24Field ContactPersonsAddress
+{
+    get
+    {
+        if (_contactPersonsAddress != null)
+        {
+            return _contactPersonsAddress;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.32",
+            Type = @"Field",
+            Position = @"NK1.32",
+            Name = @"Contact Person's Address",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the addresses of the contact person depending on the value of the relationship defined in NK1-3 - relationship. This field is typically used when the NK1 is an organization. When multiple addresses are sent, the mailing address must be sent first in the sequence.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.32",
-                            Type = @"Field",
-                            Position = @"NK1.32",
-                            Name = @"Contact Person's Address",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the addresses of the contact person depending on the value of the relationship defined in NK1-3 - relationship. This field is typically used when the NK1 is an organization. When multiple addresses are sent, the mailing address must be sent first in the sequence.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.32.1",
                             Type = @"Component",
@@ -4990,25 +5902,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             FieldDatas = null
                         },}
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactPersonsAddress = new HL7V24Field
+        {
+            field = message[@"NK1"][32],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactPersonsAddress.field.FieldRepetitions != null && _contactPersonsAddress.field.FieldRepetitions.Count > 0)
+        {
+            _contactPersonsAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_contactPersonsAddress, fieldData);
+        }
+
+        return _contactPersonsAddress;
+    } 
+}
+
+internal HL7V24Field _nextofKinAssociatedPartysIdentifiers;
+
+public HL7V24Field NextofKinAssociatedPartysIdentifiers
+{
+    get
+    {
+        if (_nextofKinAssociatedPartysIdentifiers != null)
+        {
+            return _nextofKinAssociatedPartysIdentifiers;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.33",
+            Type = @"Field",
+            Position = @"NK1.33",
+            Name = @"Next of Kin/Associated Party's Identifiers",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identifiers for the next of kin/associated party, for example, Social Security Number, drivers license, etc. The assigning authority and identifier type code are strongly recommended for all CX data types.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.33",
-                            Type = @"Field",
-                            Position = @"NK1.33",
-                            Name = @"Next of Kin/Associated Party's Identifiers",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the identifiers for the next of kin/associated party, for example, Social Security Number, drivers license, etc. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.33.1",
                             Type = @"Component",
@@ -5254,43 +6196,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"The last date, if known, on which the identifier is valid and active.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _nextofKinAssociatedPartysIdentifiers = new HL7V24Field
+        {
+            field = message[@"NK1"][33],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_nextofKinAssociatedPartysIdentifiers.field.FieldRepetitions != null && _nextofKinAssociatedPartysIdentifiers.field.FieldRepetitions.Count > 0)
+        {
+            _nextofKinAssociatedPartysIdentifiers.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_nextofKinAssociatedPartysIdentifiers, fieldData);
+        }
+
+        return _nextofKinAssociatedPartysIdentifiers;
+    } 
+}
+
+internal HL7V24Field _jobStatus;
+
+public HL7V24Field JobStatus
+{
+    get
+    {
+        if (_jobStatus != null)
+        {
+            return _jobStatus;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.34",
+            Type = @"Field",
+            Position = @"NK1.34",
+            Name = @"Job Status",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0311",
+            TableName = @"Job status",
+            Description = @"This field identifies the next of kin/associated partys job status. Refer to User-defined Table 0311 - Job status for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _jobStatus = new HL7V24Field
+        {
+            field = message[@"NK1"][34],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_jobStatus.field.FieldRepetitions != null && _jobStatus.field.FieldRepetitions.Count > 0)
+        {
+            _jobStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_jobStatus, fieldData);
+        }
+
+        return _jobStatus;
+    } 
+}
+
+internal HL7V24Field _race;
+
+public HL7V24Field Race
+{
+    get
+    {
+        if (_race != null)
+        {
+            return _race;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"NK1.35",
+            Type = @"Field",
+            Position = @"NK1.35",
+            Name = @"Race",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0005",
+            TableName = @"Race",
+            Description = @"This field identifies the race of the next of kin/associated party. Refer to User-defined Table 0005 - Race for suggested values. The second triplet of the CE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NK1.34",
-                            Type = @"Field",
-                            Position = @"NK1.34",
-                            Name = @"Job Status",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0311",
-                            TableName = @"Job status",
-                            Description = @"This field identifies the next of kin/associated partys job status. Refer to User-defined Table 0311 - Job status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.35",
-                            Type = @"Field",
-                            Position = @"NK1.35",
-                            Name = @"Race",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0005",
-                            TableName = @"Race",
-                            Description = @"This field identifies the race of the next of kin/associated party. Refer to User-defined Table 0005 - Race for suggested values. The second triplet of the CE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NK1.35.1",
                             Type = @"Component",
@@ -5400,1502 +6399,39 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.36",
-                            Type = @"Field",
-                            Position = @"NK1.36",
-                            Name = @"Handicap",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0295",
-                            TableName = @"Handicap",
-                            Description = @"This field contains the code that describes an associated partys disability. Refer to User-defined Table 0295 - Handicap for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.37",
-                            Type = @"Field",
-                            Position = @"NK1.37",
-                            Name = @"Contact Person Social Security Number",
-                            Length = 16,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"In the US, this field contains the contact persons social security number. This number may also be a RR retirement number. For the Social Security number of the associated party, see NK1-33 - next of kin/associated party s identifiers.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentNK1(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field setIDNK1;
-
-public HL7V24Field SetIDNK1
-{
-    get
-    {
-        if (setIDNK1 != null)
-        {
-            return setIDNK1;
-        }
-
-        setIDNK1 = new HL7V24Field
-        {
-            field = message[@"NK1"][1],
-            Id = @"NK1.1",
-            Type = @"Field",
-            Position = @"NK1.1",
-            Name = @"Set ID - NK1",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDNK1.field.FieldRepetitions != null && setIDNK1.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDNK1.Id));
-            setIDNK1.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(setIDNK1, fieldData);
-        }
-
-        return setIDNK1;
-    } 
-}
-
-internal HL7V24Field nKName;
-
-public HL7V24Field NKName
-{
-    get
-    {
-        if (nKName != null)
-        {
-            return nKName;
-        }
-
-        nKName = new HL7V24Field
-        {
-            field = message[@"NK1"][2],
-            Id = @"NK1.2",
-            Type = @"Field",
-            Position = @"NK1.2",
-            Name = @"NK Name",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the next of kin or associated party. Multiple names for the same person are allowed, but the legal name must be sent in the first sequence. If the legal name is not sent, then the repeat delimiter must be sent in the first sequence. Refer to HL7 Table 0200 - Name type for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (nKName.field.FieldRepetitions != null && nKName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nKName.Id));
-            nKName.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(nKName, fieldData);
-        }
-
-        return nKName;
-    } 
-}
-
-internal HL7V24Field relationship;
-
-public HL7V24Field Relationship
-{
-    get
-    {
-        if (relationship != null)
-        {
-            return relationship;
-        }
-
-        relationship = new HL7V24Field
-        {
-            field = message[@"NK1"][3],
-            Id = @"NK1.3",
-            Type = @"Field",
-            Position = @"NK1.3",
-            Name = @"Relationship",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0063",
-            TableName = @"Relationship",
-            Description = @"This field contains the actual personal relationship that the next of kin/associated party has to the patient. Refer to User-defined Table 0063 - Relationship for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (relationship.field.FieldRepetitions != null && relationship.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(relationship.Id));
-            relationship.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(relationship, fieldData);
-        }
-
-        return relationship;
-    } 
-}
-
-internal HL7V24Field address;
-
-public HL7V24Field Address
-{
-    get
-    {
-        if (address != null)
-        {
-            return address;
-        }
-
-        address = new HL7V24Field
-        {
-            field = message[@"NK1"][4],
-            Id = @"NK1.4",
-            Type = @"Field",
-            Position = @"NK1.4",
-            Name = @"Address",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the address of the next of kin/associated party. Multiple addresses are allowed for the same person. The mailing address must be sent in the first sequence. If the mailing address is not sent, then the repeat delimiter must be sent in the first sequence.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (address.field.FieldRepetitions != null && address.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(address.Id));
-            address.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(address, fieldData);
-        }
-
-        return address;
-    } 
-}
-
-internal HL7V24Field phoneNumber;
-
-public HL7V24Field PhoneNumber
-{
-    get
-    {
-        if (phoneNumber != null)
-        {
-            return phoneNumber;
-        }
-
-        phoneNumber = new HL7V24Field
-        {
-            field = message[@"NK1"][5],
-            Id = @"NK1.5",
-            Type = @"Field",
-            Position = @"NK1.5",
-            Name = @"Phone Number",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the telephone number of the next of kin/associated party. Multiple phone numbers are allowed for the same person. The primary telephone number must be sent in the first sequence. If the primary telephone number is not sent, then the repeat delimiter must be sent in the first sequence. Refer to HL7 Table 0201 - Telecommunication use code and HL7 Table 0202 - Telecommunication equipment type for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phoneNumber.field.FieldRepetitions != null && phoneNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phoneNumber.Id));
-            phoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(phoneNumber, fieldData);
-        }
-
-        return phoneNumber;
-    } 
-}
-
-internal HL7V24Field businessPhoneNumber;
-
-public HL7V24Field BusinessPhoneNumber
-{
-    get
-    {
-        if (businessPhoneNumber != null)
-        {
-            return businessPhoneNumber;
-        }
-
-        businessPhoneNumber = new HL7V24Field
-        {
-            field = message[@"NK1"][6],
-            Id = @"NK1.6",
-            Type = @"Field",
-            Position = @"NK1.6",
-            Name = @"Business Phone Number",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the business telephone number of the next of kin/associated party. Multiple phone numbers are allowed for the same person. The primary business telephone number must be sent in the first sequence. If the primary business telephone number is not sent, then the repeat delimiter must be sent in the first sequence. Refer to HL7 Table 0201 - Telecommunication use code and HL7 Table 0202 - Telecommunication equipment type for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (businessPhoneNumber.field.FieldRepetitions != null && businessPhoneNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(businessPhoneNumber.Id));
-            businessPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(businessPhoneNumber, fieldData);
-        }
-
-        return businessPhoneNumber;
-    } 
-}
-
-internal HL7V24Field contactRole;
-
-public HL7V24Field ContactRole
-{
-    get
-    {
-        if (contactRole != null)
-        {
-            return contactRole;
-        }
-
-        contactRole = new HL7V24Field
-        {
-            field = message[@"NK1"][7],
-            Id = @"NK1.7",
-            Type = @"Field",
-            Position = @"NK1.7",
-            Name = @"Contact Role",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0131",
-            TableName = @"Contact role",
-            Description = @"This field indicates the specific relationship role (next of kin, employer, emergency contact, etc.). Refer to User-defined Table 0131 - Contact role for suggested values. This field specifies the role that the next of kin/associated parties plays with regard to the patient. Examples might include an employer, emergency contact, next of kin, insurance company, state agency, federal agency, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactRole.field.FieldRepetitions != null && contactRole.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactRole.Id));
-            contactRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(contactRole, fieldData);
-        }
-
-        return contactRole;
-    } 
-}
-
-internal HL7V24Field startDate;
-
-public HL7V24Field StartDate
-{
-    get
-    {
-        if (startDate != null)
-        {
-            return startDate;
-        }
-
-        startDate = new HL7V24Field
-        {
-            field = message[@"NK1"][8],
-            Id = @"NK1.8",
-            Type = @"Field",
-            Position = @"NK1.8",
-            Name = @"Start Date",
-            Length = 8,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the start date of the contact role.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (startDate.field.FieldRepetitions != null && startDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(startDate.Id));
-            startDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(startDate, fieldData);
-        }
-
-        return startDate;
-    } 
-}
-
-internal HL7V24Field endDate;
-
-public HL7V24Field EndDate
-{
-    get
-    {
-        if (endDate != null)
-        {
-            return endDate;
-        }
-
-        endDate = new HL7V24Field
-        {
-            field = message[@"NK1"][9],
-            Id = @"NK1.9",
-            Type = @"Field",
-            Position = @"NK1.9",
-            Name = @"End Date",
-            Length = 8,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the end date of the contact role.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (endDate.field.FieldRepetitions != null && endDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(endDate.Id));
-            endDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(endDate, fieldData);
-        }
-
-        return endDate;
-    } 
-}
-
-internal HL7V24Field nextofKinAssociatedPartiesJobTitle;
-
-public HL7V24Field NextofKinAssociatedPartiesJobTitle
-{
-    get
-    {
-        if (nextofKinAssociatedPartiesJobTitle != null)
-        {
-            return nextofKinAssociatedPartiesJobTitle;
-        }
-
-        nextofKinAssociatedPartiesJobTitle = new HL7V24Field
-        {
-            field = message[@"NK1"][10],
-            Id = @"NK1.10",
-            Type = @"Field",
-            Position = @"NK1.10",
-            Name = @"Next of Kin / Associated Parties Job Title",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the title of the next of kin/associated parties at their place of employment. However, if the contact role is the patients employer, this field contains the title of the patient at their place of employment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (nextofKinAssociatedPartiesJobTitle.field.FieldRepetitions != null && nextofKinAssociatedPartiesJobTitle.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nextofKinAssociatedPartiesJobTitle.Id));
-            nextofKinAssociatedPartiesJobTitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(nextofKinAssociatedPartiesJobTitle, fieldData);
-        }
-
-        return nextofKinAssociatedPartiesJobTitle;
-    } 
-}
-
-internal HL7V24Field nextofKinAssociatedPartiesJobCodeClass;
-
-public HL7V24Field NextofKinAssociatedPartiesJobCodeClass
-{
-    get
-    {
-        if (nextofKinAssociatedPartiesJobCodeClass != null)
-        {
-            return nextofKinAssociatedPartiesJobCodeClass;
-        }
-
-        nextofKinAssociatedPartiesJobCodeClass = new HL7V24Field
-        {
-            field = message[@"NK1"][11],
-            Id = @"NK1.11",
-            Type = @"Field",
-            Position = @"NK1.11",
-            Name = @"Next of Kin / Associated Parties Job Code/Class",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"JCC",
-            DataTypeName = @"Job Code/class",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the employers job code and the employee classification used for the next of kin/associated parties at their place of employment. However, if the contact role is the patients employer, this field contains the job code/class of the patient at their place of employment. Refer to User-defined Table 0327 - Job code and User-defined Table 0328 - Employee classification for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (nextofKinAssociatedPartiesJobCodeClass.field.FieldRepetitions != null && nextofKinAssociatedPartiesJobCodeClass.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nextofKinAssociatedPartiesJobCodeClass.Id));
-            nextofKinAssociatedPartiesJobCodeClass.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(nextofKinAssociatedPartiesJobCodeClass, fieldData);
-        }
-
-        return nextofKinAssociatedPartiesJobCodeClass;
-    } 
-}
-
-internal HL7V24Field nextofKinAssociatedPartiesEmployeeNumber;
-
-public HL7V24Field NextofKinAssociatedPartiesEmployeeNumber
-{
-    get
-    {
-        if (nextofKinAssociatedPartiesEmployeeNumber != null)
-        {
-            return nextofKinAssociatedPartiesEmployeeNumber;
-        }
-
-        nextofKinAssociatedPartiesEmployeeNumber = new HL7V24Field
-        {
-            field = message[@"NK1"][12],
-            Id = @"NK1.12",
-            Type = @"Field",
-            Position = @"NK1.12",
-            Name = @"Next of Kin / Associated Parties Employee Number",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"For backward compatibility, the ST data type can be sent; however HL7 recommends that the CX data type be used for new implementations. This field contains the number that the employer assigns to the employee that is acting as next of kin/associated parties. However, if the contact role is the patients employer, this field contains the employee number of the patient at their place of employment. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (nextofKinAssociatedPartiesEmployeeNumber.field.FieldRepetitions != null && nextofKinAssociatedPartiesEmployeeNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nextofKinAssociatedPartiesEmployeeNumber.Id));
-            nextofKinAssociatedPartiesEmployeeNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(nextofKinAssociatedPartiesEmployeeNumber, fieldData);
-        }
-
-        return nextofKinAssociatedPartiesEmployeeNumber;
-    } 
-}
-
-internal HL7V24Field organizationNameNK1;
-
-public HL7V24Field OrganizationNameNK1
-{
-    get
-    {
-        if (organizationNameNK1 != null)
-        {
-            return organizationNameNK1;
-        }
-
-        organizationNameNK1 = new HL7V24Field
-        {
-            field = message[@"NK1"][13],
-            Id = @"NK1.13",
-            Type = @"Field",
-            Position = @"NK1.13",
-            Name = @"Organization Name - NK1",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the organization that serves as a next of kin/associated party or as the next of kin of the patient. This field may also be used to communicate the name of the organization at which the associated party works. Multiple names for the same organization may be sent. If multiple names are sent, the legal name must be sent in the first sequence. If the legal name is not sent, then a repeat delimiter must be sent in the first sequence.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (organizationNameNK1.field.FieldRepetitions != null && organizationNameNK1.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(organizationNameNK1.Id));
-            organizationNameNK1.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(organizationNameNK1, fieldData);
-        }
-
-        return organizationNameNK1;
-    } 
-}
-
-internal HL7V24Field maritalStatus;
-
-public HL7V24Field MaritalStatus
-{
-    get
-    {
-        if (maritalStatus != null)
-        {
-            return maritalStatus;
-        }
-
-        maritalStatus = new HL7V24Field
-        {
-            field = message[@"NK1"][14],
-            Id = @"NK1.14",
-            Type = @"Field",
-            Position = @"NK1.14",
-            Name = @"Marital Status",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0002",
-            TableName = @"Marital status",
-            Description = @"This field contains the next of kin/associated partys marital status. Refer to User-defined Table 0002 - Marital status for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (maritalStatus.field.FieldRepetitions != null && maritalStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maritalStatus.Id));
-            maritalStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(maritalStatus, fieldData);
-        }
-
-        return maritalStatus;
-    } 
-}
-
-internal HL7V24Field administrativeSex;
-
-public HL7V24Field AdministrativeSex
-{
-    get
-    {
-        if (administrativeSex != null)
-        {
-            return administrativeSex;
-        }
-
-        administrativeSex = new HL7V24Field
-        {
-            field = message[@"NK1"][15],
-            Id = @"NK1.15",
-            Type = @"Field",
-            Position = @"NK1.15",
-            Name = @"Administrative Sex",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0001",
-            TableName = @"Administrative sex",
-            Description = @"This field contains the next of kin/associated partys sex. Refer to User-defined Table 0001 - Administrative sex for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (administrativeSex.field.FieldRepetitions != null && administrativeSex.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(administrativeSex.Id));
-            administrativeSex.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(administrativeSex, fieldData);
-        }
-
-        return administrativeSex;
-    } 
-}
-
-internal HL7V24Field dateTimeOfBirth;
-
-public HL7V24Field DateTimeOfBirth
-{
-    get
-    {
-        if (dateTimeOfBirth != null)
-        {
-            return dateTimeOfBirth;
-        }
-
-        dateTimeOfBirth = new HL7V24Field
-        {
-            field = message[@"NK1"][16],
-            Id = @"NK1.16",
-            Type = @"Field",
-            Position = @"NK1.16",
-            Name = @"Date/Time Of Birth",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the next of kin/associated partys birth date and time.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeOfBirth.field.FieldRepetitions != null && dateTimeOfBirth.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeOfBirth.Id));
-            dateTimeOfBirth.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(dateTimeOfBirth, fieldData);
-        }
-
-        return dateTimeOfBirth;
-    } 
-}
-
-internal HL7V24Field livingDependency;
-
-public HL7V24Field LivingDependency
-{
-    get
-    {
-        if (livingDependency != null)
-        {
-            return livingDependency;
-        }
-
-        livingDependency = new HL7V24Field
-        {
-            field = message[@"NK1"][17],
-            Id = @"NK1.17",
-            Type = @"Field",
-            Position = @"NK1.17",
-            Name = @"Living Dependency",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0223",
-            TableName = @"Living dependency",
-            Description = @"This field identifies specific living conditions (e.g., spouse dependent on patient, walk-up) that are relevant to an evaluation of the patients healthcare needs. This information can be used for discharge planning. Examples might include Spouse Dependent, Medical Supervision Required, Small Children Dependent. This field repeats because, for example, ""spouse dependent"" and ""medical supervision required"" can apply at the same time. Refer to User-defined Table 0223 - Living dependency for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (livingDependency.field.FieldRepetitions != null && livingDependency.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(livingDependency.Id));
-            livingDependency.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(livingDependency, fieldData);
-        }
-
-        return livingDependency;
-    } 
-}
-
-internal HL7V24Field ambulatoryStatus;
-
-public HL7V24Field AmbulatoryStatus
-{
-    get
-    {
-        if (ambulatoryStatus != null)
-        {
-            return ambulatoryStatus;
-        }
-
-        ambulatoryStatus = new HL7V24Field
-        {
-            field = message[@"NK1"][18],
-            Id = @"NK1.18",
-            Type = @"Field",
-            Position = @"NK1.18",
-            Name = @"Ambulatory Status",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0009",
-            TableName = @"Ambulatory status",
-            Description = @"This field identifies the transient rate of mobility for the next of kin/associated party. Refer to User-defined Table 0009 - Ambulatory status for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (ambulatoryStatus.field.FieldRepetitions != null && ambulatoryStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ambulatoryStatus.Id));
-            ambulatoryStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(ambulatoryStatus, fieldData);
-        }
-
-        return ambulatoryStatus;
-    } 
-}
-
-internal HL7V24Field citizenship;
-
-public HL7V24Field Citizenship
-{
-    get
-    {
-        if (citizenship != null)
-        {
-            return citizenship;
-        }
-
-        citizenship = new HL7V24Field
-        {
-            field = message[@"NK1"][19],
-            Id = @"NK1.19",
-            Type = @"Field",
-            Position = @"NK1.19",
-            Name = @"Citizenship",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0171",
-            TableName = @"Citizenship",
-            Description = @"This field contains the code to identify the next of kin/associated partys citizenship. HL7 recommends using ISO 3166 as the suggested values in User-defined Table 0171 - Citizenship.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (citizenship.field.FieldRepetitions != null && citizenship.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(citizenship.Id));
-            citizenship.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(citizenship, fieldData);
-        }
-
-        return citizenship;
-    } 
-}
-
-internal HL7V24Field primaryLanguage;
-
-public HL7V24Field PrimaryLanguage
-{
-    get
-    {
-        if (primaryLanguage != null)
-        {
-            return primaryLanguage;
-        }
-
-        primaryLanguage = new HL7V24Field
-        {
-            field = message[@"NK1"][20],
-            Id = @"NK1.20",
-            Type = @"Field",
-            Position = @"NK1.20",
-            Name = @"Primary Language",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0296",
-            TableName = @"Primary language",
-            Description = @"This field identifies the next of kin/associated partys primary speaking language. HL7 recommends using ISO 639 as the suggested values in User-defined Table 0296 - Language.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryLanguage.field.FieldRepetitions != null && primaryLanguage.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryLanguage.Id));
-            primaryLanguage.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(primaryLanguage, fieldData);
-        }
-
-        return primaryLanguage;
-    } 
-}
-
-internal HL7V24Field livingArrangement;
-
-public HL7V24Field LivingArrangement
-{
-    get
-    {
-        if (livingArrangement != null)
-        {
-            return livingArrangement;
-        }
-
-        livingArrangement = new HL7V24Field
-        {
-            field = message[@"NK1"][21],
-            Id = @"NK1.21",
-            Type = @"Field",
-            Position = @"NK1.21",
-            Name = @"Living Arrangement",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0220",
-            TableName = @"Living arrangement",
-            Description = @"This field identifies the situation that the associated party lives in at his/her residential address. Refer to User-defined Table 0220 - Living arrangement for suggested values. Examples of living arrangements might include Alone, Family, Institution, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (livingArrangement.field.FieldRepetitions != null && livingArrangement.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(livingArrangement.Id));
-            livingArrangement.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(livingArrangement, fieldData);
-        }
-
-        return livingArrangement;
-    } 
-}
-
-internal HL7V24Field publicityCode;
-
-public HL7V24Field PublicityCode
-{
-    get
-    {
-        if (publicityCode != null)
-        {
-            return publicityCode;
-        }
-
-        publicityCode = new HL7V24Field
-        {
-            field = message[@"NK1"][22],
-            Id = @"NK1.22",
-            Type = @"Field",
-            Position = @"NK1.22",
-            Name = @"Publicity Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0215",
-            TableName = @"Publicity code",
-            Description = @"This field indicates what level of publicity is allowed (e.g., No Publicity, Family Only) for the next of kin/associated party. Refer to User-defined Table 0215 - Publicity code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (publicityCode.field.FieldRepetitions != null && publicityCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(publicityCode.Id));
-            publicityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(publicityCode, fieldData);
-        }
-
-        return publicityCode;
-    } 
-}
-
-internal HL7V24Field protectionIndicator;
-
-public HL7V24Field ProtectionIndicator
-{
-    get
-    {
-        if (protectionIndicator != null)
-        {
-            return protectionIndicator;
-        }
-
-        protectionIndicator = new HL7V24Field
-        {
-            field = message[@"NK1"][23],
-            Id = @"NK1.23",
-            Type = @"Field",
-            Position = @"NK1.23",
-            Name = @"Protection Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field identifies that next of kin/associated partys protection that determines, in turn, whether access to information about this person should be kept from users who do not have adequate authority. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (protectionIndicator.field.FieldRepetitions != null && protectionIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(protectionIndicator.Id));
-            protectionIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(protectionIndicator, fieldData);
-        }
-
-        return protectionIndicator;
-    } 
-}
-
-internal HL7V24Field studentIndicator;
-
-public HL7V24Field StudentIndicator
-{
-    get
-    {
-        if (studentIndicator != null)
-        {
-            return studentIndicator;
-        }
-
-        studentIndicator = new HL7V24Field
-        {
-            field = message[@"NK1"][24],
-            Id = @"NK1.24",
-            Type = @"Field",
-            Position = @"NK1.24",
-            Name = @"Student Indicator",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0231",
-            TableName = @"Student status",
-            Description = @"This field identifies whether the next of kin/associated party is currently a student or not, and whether the next of kin/associated party is a full- or a part-time student. This field does not indicate the degree (high school, college) of the student or the field of study. Refer to User-defined Table 0231 - Student status for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (studentIndicator.field.FieldRepetitions != null && studentIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studentIndicator.Id));
-            studentIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(studentIndicator, fieldData);
-        }
-
-        return studentIndicator;
-    } 
-}
-
-internal HL7V24Field religion;
-
-public HL7V24Field Religion
-{
-    get
-    {
-        if (religion != null)
-        {
-            return religion;
-        }
-
-        religion = new HL7V24Field
-        {
-            field = message[@"NK1"][25],
-            Id = @"NK1.25",
-            Type = @"Field",
-            Position = @"NK1.25",
-            Name = @"Religion",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0006",
-            TableName = @"Religion",
-            Description = @"This field indicates the type of religion practiced by the next of kin/associated party. Refer to User-defined Table 0006 - Religion for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (religion.field.FieldRepetitions != null && religion.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(religion.Id));
-            religion.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(religion, fieldData);
-        }
-
-        return religion;
-    } 
-}
-
-internal HL7V24Field mothersMaidenName;
-
-public HL7V24Field MothersMaidenName
-{
-    get
-    {
-        if (mothersMaidenName != null)
-        {
-            return mothersMaidenName;
-        }
-
-        mothersMaidenName = new HL7V24Field
-        {
-            field = message[@"NK1"][26],
-            Id = @"NK1.26",
-            Type = @"Field",
-            Position = @"NK1.26",
-            Name = @"Mother's Maiden Name",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the maiden name of the next of kin/associated partys mother.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (mothersMaidenName.field.FieldRepetitions != null && mothersMaidenName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mothersMaidenName.Id));
-            mothersMaidenName.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(mothersMaidenName, fieldData);
-        }
-
-        return mothersMaidenName;
-    } 
-}
-
-internal HL7V24Field nationality;
-
-public HL7V24Field Nationality
-{
-    get
-    {
-        if (nationality != null)
-        {
-            return nationality;
-        }
-
-        nationality = new HL7V24Field
-        {
-            field = message[@"NK1"][27],
-            Id = @"NK1.27",
-            Type = @"Field",
-            Position = @"NK1.27",
-            Name = @"Nationality",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0212",
-            TableName = @"Nationality",
-            Description = @"This field identifies the nation or national group to which the next of kin/associated party belongs. This information may be different than the persons citizenship in countries in which multiple nationalities are recognized (e.g., Spain: Basque, Catalan, etc.). Refer to User-defined Table 0212 - Nationality for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (nationality.field.FieldRepetitions != null && nationality.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nationality.Id));
-            nationality.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(nationality, fieldData);
-        }
-
-        return nationality;
-    } 
-}
-
-internal HL7V24Field ethnicGroup;
-
-public HL7V24Field EthnicGroup
-{
-    get
-    {
-        if (ethnicGroup != null)
-        {
-            return ethnicGroup;
-        }
-
-        ethnicGroup = new HL7V24Field
-        {
-            field = message[@"NK1"][28],
-            Id = @"NK1.28",
-            Type = @"Field",
-            Position = @"NK1.28",
-            Name = @"Ethnic Group",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0189",
-            TableName = @"Ethnic group",
-            Description = @"This field contains the next of kin/associated partys ethnic group. Refer to User-defined Table 0189 - Ethnic group for suggested values. The second triplet of the CE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes. In the US, a current use is to report ethnicity in line with US federal standards for Hispanic origin.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (ethnicGroup.field.FieldRepetitions != null && ethnicGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ethnicGroup.Id));
-            ethnicGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(ethnicGroup, fieldData);
-        }
-
-        return ethnicGroup;
-    } 
-}
-
-internal HL7V24Field contactReason;
-
-public HL7V24Field ContactReason
-{
-    get
-    {
-        if (contactReason != null)
-        {
-            return contactReason;
-        }
-
-        contactReason = new HL7V24Field
-        {
-            field = message[@"NK1"][29],
-            Id = @"NK1.29",
-            Type = @"Field",
-            Position = @"NK1.29",
-            Name = @"Contact Reason",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0222",
-            TableName = @"Contact reason",
-            Description = @"This field identifies how the contact should be used (e.g., contact employer if patient is unable to work). Refer to User-defined Table 0222 - Contact reason for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactReason.field.FieldRepetitions != null && contactReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactReason.Id));
-            contactReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(contactReason, fieldData);
-        }
-
-        return contactReason;
-    } 
-}
-
-internal HL7V24Field contactPersonsName;
-
-public HL7V24Field ContactPersonsName
-{
-    get
-    {
-        if (contactPersonsName != null)
-        {
-            return contactPersonsName;
-        }
-
-        contactPersonsName = new HL7V24Field
-        {
-            field = message[@"NK1"][30],
-            Id = @"NK1.30",
-            Type = @"Field",
-            Position = @"NK1.30",
-            Name = @"Contact Person's Name",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the names of the people to contact, depending on the value of the relationship defined in NK1-3 - relationship. This field is typically needed when the NK1 is an organization. The legal name should be sent first in the sequence. Refer to HL7 Table 0200 - Name type for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactPersonsName.field.FieldRepetitions != null && contactPersonsName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactPersonsName.Id));
-            contactPersonsName.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(contactPersonsName, fieldData);
-        }
-
-        return contactPersonsName;
-    } 
-}
-
-internal HL7V24Field contactPersonsTelephoneNumber;
-
-public HL7V24Field ContactPersonsTelephoneNumber
-{
-    get
-    {
-        if (contactPersonsTelephoneNumber != null)
-        {
-            return contactPersonsTelephoneNumber;
-        }
-
-        contactPersonsTelephoneNumber = new HL7V24Field
-        {
-            field = message[@"NK1"][31],
-            Id = @"NK1.31",
-            Type = @"Field",
-            Position = @"NK1.31",
-            Name = @"Contact Person's Telephone Number",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the telephone numbers of the contact person depending on the value of the relationship defined in NK1-3 - relationship. This field is typically needed when the NK1 is an organization. The primary telephone number must be sent in the first sequence. If the primary telephone number is not sent, then a repeat delimiter must be sent in the first sequence. Refer to HL7 Table 0201 -Telecommunication use code and HL7 Table 0202 - Telecommunication equipment type for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactPersonsTelephoneNumber.field.FieldRepetitions != null && contactPersonsTelephoneNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactPersonsTelephoneNumber.Id));
-            contactPersonsTelephoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(contactPersonsTelephoneNumber, fieldData);
-        }
-
-        return contactPersonsTelephoneNumber;
-    } 
-}
-
-internal HL7V24Field contactPersonsAddress;
-
-public HL7V24Field ContactPersonsAddress
-{
-    get
-    {
-        if (contactPersonsAddress != null)
-        {
-            return contactPersonsAddress;
-        }
-
-        contactPersonsAddress = new HL7V24Field
-        {
-            field = message[@"NK1"][32],
-            Id = @"NK1.32",
-            Type = @"Field",
-            Position = @"NK1.32",
-            Name = @"Contact Person's Address",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the addresses of the contact person depending on the value of the relationship defined in NK1-3 - relationship. This field is typically used when the NK1 is an organization. When multiple addresses are sent, the mailing address must be sent first in the sequence.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactPersonsAddress.field.FieldRepetitions != null && contactPersonsAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactPersonsAddress.Id));
-            contactPersonsAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(contactPersonsAddress, fieldData);
-        }
-
-        return contactPersonsAddress;
-    } 
-}
-
-internal HL7V24Field nextofKinAssociatedPartysIdentifiers;
-
-public HL7V24Field NextofKinAssociatedPartysIdentifiers
-{
-    get
-    {
-        if (nextofKinAssociatedPartysIdentifiers != null)
-        {
-            return nextofKinAssociatedPartysIdentifiers;
-        }
-
-        nextofKinAssociatedPartysIdentifiers = new HL7V24Field
-        {
-            field = message[@"NK1"][33],
-            Id = @"NK1.33",
-            Type = @"Field",
-            Position = @"NK1.33",
-            Name = @"Next of Kin/Associated Party's Identifiers",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the identifiers for the next of kin/associated party, for example, Social Security Number, drivers license, etc. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (nextofKinAssociatedPartysIdentifiers.field.FieldRepetitions != null && nextofKinAssociatedPartysIdentifiers.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nextofKinAssociatedPartysIdentifiers.Id));
-            nextofKinAssociatedPartysIdentifiers.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(nextofKinAssociatedPartysIdentifiers, fieldData);
-        }
-
-        return nextofKinAssociatedPartysIdentifiers;
-    } 
-}
-
-internal HL7V24Field jobStatus;
-
-public HL7V24Field JobStatus
-{
-    get
-    {
-        if (jobStatus != null)
-        {
-            return jobStatus;
-        }
-
-        jobStatus = new HL7V24Field
-        {
-            field = message[@"NK1"][34],
-            Id = @"NK1.34",
-            Type = @"Field",
-            Position = @"NK1.34",
-            Name = @"Job Status",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0311",
-            TableName = @"Job status",
-            Description = @"This field identifies the next of kin/associated partys job status. Refer to User-defined Table 0311 - Job status for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (jobStatus.field.FieldRepetitions != null && jobStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(jobStatus.Id));
-            jobStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(jobStatus, fieldData);
-        }
-
-        return jobStatus;
-    } 
-}
-
-internal HL7V24Field race;
-
-public HL7V24Field Race
-{
-    get
-    {
-        if (race != null)
-        {
-            return race;
-        }
-
-        race = new HL7V24Field
+        _race = new HL7V24Field
         {
             field = message[@"NK1"][35],
-            Id = @"NK1.35",
-            Type = @"Field",
-            Position = @"NK1.35",
-            Name = @"Race",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0005",
-            TableName = @"Race",
-            Description = @"This field identifies the race of the next of kin/associated party. Refer to User-defined Table 0005 - Race for suggested values. The second triplet of the CE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (race.field.FieldRepetitions != null && race.field.FieldRepetitions.Count > 0)
+        if (_race.field.FieldRepetitions != null && _race.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(race.Id));
-            race.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(race, fieldData);
+            _race.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_race, fieldData);
         }
 
-        return race;
+        return _race;
     } 
 }
 
-internal HL7V24Field handicap;
+internal HL7V24Field _handicap;
 
 public HL7V24Field Handicap
 {
     get
     {
-        if (handicap != null)
+        if (_handicap != null)
         {
-            return handicap;
+            return _handicap;
         }
 
-        handicap = new HL7V24Field
+        var fieldData = new HL7V24FieldData
         {
-            field = message[@"NK1"][36],
             Id = @"NK1.36",
             Type = @"Field",
             Position = @"NK1.36",
@@ -6909,34 +6445,38 @@ public HL7V24Field Handicap
             TableName = @"Handicap",
             Description = @"This field contains the code that describes an associated partys disability. Refer to User-defined Table 0295 - Handicap for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _handicap = new HL7V24Field
+        {
+            field = message[@"NK1"][36],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (handicap.field.FieldRepetitions != null && handicap.field.FieldRepetitions.Count > 0)
+        if (_handicap.field.FieldRepetitions != null && _handicap.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(handicap.Id));
-            handicap.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(handicap, fieldData);
+            _handicap.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_handicap, fieldData);
         }
 
-        return handicap;
+        return _handicap;
     } 
 }
 
-internal HL7V24Field contactPersonSocialSecurityNumber;
+internal HL7V24Field _contactPersonSocialSecurityNumber;
 
 public HL7V24Field ContactPersonSocialSecurityNumber
 {
     get
     {
-        if (contactPersonSocialSecurityNumber != null)
+        if (_contactPersonSocialSecurityNumber != null)
         {
-            return contactPersonSocialSecurityNumber;
+            return _contactPersonSocialSecurityNumber;
         }
 
-        contactPersonSocialSecurityNumber = new HL7V24Field
+        var fieldData = new HL7V24FieldData
         {
-            field = message[@"NK1"][37],
             Id = @"NK1.37",
             Type = @"Field",
             Position = @"NK1.37",
@@ -6950,17 +6490,22 @@ public HL7V24Field ContactPersonSocialSecurityNumber
             TableName = null,
             Description = @"In the US, this field contains the contact persons social security number. This number may also be a RR retirement number. For the Social Security number of the associated party, see NK1-33 - next of kin/associated party s identifiers.",
             Sample = @"",
+            Fields = null
+        }
+
+        _contactPersonSocialSecurityNumber = new HL7V24Field
+        {
+            field = message[@"NK1"][37],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (contactPersonSocialSecurityNumber.field.FieldRepetitions != null && contactPersonSocialSecurityNumber.field.FieldRepetitions.Count > 0)
+        if (_contactPersonSocialSecurityNumber.field.FieldRepetitions != null && _contactPersonSocialSecurityNumber.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactPersonSocialSecurityNumber.Id));
-            contactPersonSocialSecurityNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(contactPersonSocialSecurityNumber, fieldData);
+            _contactPersonSocialSecurityNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_contactPersonSocialSecurityNumber, fieldData);
         }
 
-        return contactPersonSocialSecurityNumber;
+        return _contactPersonSocialSecurityNumber;
     } 
 }
     }

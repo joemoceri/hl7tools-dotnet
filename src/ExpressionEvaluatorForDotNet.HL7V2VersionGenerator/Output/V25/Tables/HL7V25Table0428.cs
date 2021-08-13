@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             } 
         }
@@ -47,6 +48,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"User Error",
                             Comment = null
                         },
+                        
                     };
             } 
         }

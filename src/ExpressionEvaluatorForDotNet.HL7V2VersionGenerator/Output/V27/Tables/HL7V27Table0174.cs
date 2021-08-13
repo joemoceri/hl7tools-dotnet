@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -59,6 +60,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Superset-a set of batteries or procedures ordered under a single code unit but processed as separate batteries (e.g., routines = CBC, UA, electrolytes)<p>This set indicates that the code being described is used to order multiple service/test/observation b",
                             Comment = null
                         },
+                        
                     };
             } 
         }

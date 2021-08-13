@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_05",
+
                     };
             } 
         }
@@ -41,6 +42,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Stat",
                             Comment = null
                         },
+                        
                     };
             } 
         }

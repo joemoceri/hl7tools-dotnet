@@ -25,124 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"NK1.1",
-                            Type = @"Field",
-                            Position = @"NK1.1",
-                            Name = @"Set Id - Next Of Kin",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Set Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.2",
-                            Type = @"Field",
-                            Position = @"NK1.2",
-                            Name = @"Next Of Kin Name",
-                            Length = 48,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"PN",
-                            DataTypeName = @"Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.3",
-                            Type = @"Field",
-                            Position = @"NK1.3",
-                            Name = @"Next Of Kin Relationship",
-                            Length = 15,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = @"0063",
-                            TableName = @"RELATIONSHIP",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.4",
-                            Type = @"Field",
-                            Position = @"NK1.4",
-                            Name = @"Next Of Kin - Address",
-                            Length = 106,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"AD",
-                            DataTypeName = @"Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NK1.5",
-                            Type = @"Field",
-                            Position = @"NK1.5",
-                            Name = @"Next Of Kin - Phone Number",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"TN",
-                            DataTypeName = @"Telephone Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentNK1(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field setIdNextOfKin;
+        internal HL7V21Field _setIdNextOfKin;
 
 public HL7V21Field SetIdNextOfKin
 {
     get
     {
-        if (setIdNextOfKin != null)
+        if (_setIdNextOfKin != null)
         {
-            return setIdNextOfKin;
+            return _setIdNextOfKin;
         }
 
-        setIdNextOfKin = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"NK1"][1],
             Id = @"NK1.1",
             Type = @"Field",
             Position = @"NK1.1",
@@ -156,34 +56,38 @@ public HL7V21Field SetIdNextOfKin
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _setIdNextOfKin = new HL7V21Field
+        {
+            field = message[@"NK1"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (setIdNextOfKin.field.FieldRepetitions != null && setIdNextOfKin.field.FieldRepetitions.Count > 0)
+        if (_setIdNextOfKin.field.FieldRepetitions != null && _setIdNextOfKin.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdNextOfKin.Id));
-            setIdNextOfKin.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(setIdNextOfKin, fieldData);
+            _setIdNextOfKin.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_setIdNextOfKin, fieldData);
         }
 
-        return setIdNextOfKin;
+        return _setIdNextOfKin;
     } 
 }
 
-internal HL7V21Field nextOfKinName;
+internal HL7V21Field _nextOfKinName;
 
 public HL7V21Field NextOfKinName
 {
     get
     {
-        if (nextOfKinName != null)
+        if (_nextOfKinName != null)
         {
-            return nextOfKinName;
+            return _nextOfKinName;
         }
 
-        nextOfKinName = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"NK1"][2],
             Id = @"NK1.2",
             Type = @"Field",
             Position = @"NK1.2",
@@ -197,34 +101,38 @@ public HL7V21Field NextOfKinName
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _nextOfKinName = new HL7V21Field
+        {
+            field = message[@"NK1"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (nextOfKinName.field.FieldRepetitions != null && nextOfKinName.field.FieldRepetitions.Count > 0)
+        if (_nextOfKinName.field.FieldRepetitions != null && _nextOfKinName.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nextOfKinName.Id));
-            nextOfKinName.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(nextOfKinName, fieldData);
+            _nextOfKinName.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_nextOfKinName, fieldData);
         }
 
-        return nextOfKinName;
+        return _nextOfKinName;
     } 
 }
 
-internal HL7V21Field nextOfKinRelationship;
+internal HL7V21Field _nextOfKinRelationship;
 
 public HL7V21Field NextOfKinRelationship
 {
     get
     {
-        if (nextOfKinRelationship != null)
+        if (_nextOfKinRelationship != null)
         {
-            return nextOfKinRelationship;
+            return _nextOfKinRelationship;
         }
 
-        nextOfKinRelationship = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"NK1"][3],
             Id = @"NK1.3",
             Type = @"Field",
             Position = @"NK1.3",
@@ -238,34 +146,38 @@ public HL7V21Field NextOfKinRelationship
             TableName = @"RELATIONSHIP",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _nextOfKinRelationship = new HL7V21Field
+        {
+            field = message[@"NK1"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (nextOfKinRelationship.field.FieldRepetitions != null && nextOfKinRelationship.field.FieldRepetitions.Count > 0)
+        if (_nextOfKinRelationship.field.FieldRepetitions != null && _nextOfKinRelationship.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nextOfKinRelationship.Id));
-            nextOfKinRelationship.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(nextOfKinRelationship, fieldData);
+            _nextOfKinRelationship.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_nextOfKinRelationship, fieldData);
         }
 
-        return nextOfKinRelationship;
+        return _nextOfKinRelationship;
     } 
 }
 
-internal HL7V21Field nextOfKinAddress;
+internal HL7V21Field _nextOfKinAddress;
 
 public HL7V21Field NextOfKinAddress
 {
     get
     {
-        if (nextOfKinAddress != null)
+        if (_nextOfKinAddress != null)
         {
-            return nextOfKinAddress;
+            return _nextOfKinAddress;
         }
 
-        nextOfKinAddress = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"NK1"][4],
             Id = @"NK1.4",
             Type = @"Field",
             Position = @"NK1.4",
@@ -279,34 +191,38 @@ public HL7V21Field NextOfKinAddress
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _nextOfKinAddress = new HL7V21Field
+        {
+            field = message[@"NK1"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (nextOfKinAddress.field.FieldRepetitions != null && nextOfKinAddress.field.FieldRepetitions.Count > 0)
+        if (_nextOfKinAddress.field.FieldRepetitions != null && _nextOfKinAddress.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nextOfKinAddress.Id));
-            nextOfKinAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(nextOfKinAddress, fieldData);
+            _nextOfKinAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_nextOfKinAddress, fieldData);
         }
 
-        return nextOfKinAddress;
+        return _nextOfKinAddress;
     } 
 }
 
-internal HL7V21Field nextOfKinPhoneNumber;
+internal HL7V21Field _nextOfKinPhoneNumber;
 
 public HL7V21Field NextOfKinPhoneNumber
 {
     get
     {
-        if (nextOfKinPhoneNumber != null)
+        if (_nextOfKinPhoneNumber != null)
         {
-            return nextOfKinPhoneNumber;
+            return _nextOfKinPhoneNumber;
         }
 
-        nextOfKinPhoneNumber = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"NK1"][5],
             Id = @"NK1.5",
             Type = @"Field",
             Position = @"NK1.5",
@@ -320,17 +236,22 @@ public HL7V21Field NextOfKinPhoneNumber
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _nextOfKinPhoneNumber = new HL7V21Field
+        {
+            field = message[@"NK1"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (nextOfKinPhoneNumber.field.FieldRepetitions != null && nextOfKinPhoneNumber.field.FieldRepetitions.Count > 0)
+        if (_nextOfKinPhoneNumber.field.FieldRepetitions != null && _nextOfKinPhoneNumber.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nextOfKinPhoneNumber.Id));
-            nextOfKinPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(nextOfKinPhoneNumber, fieldData);
+            _nextOfKinPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_nextOfKinPhoneNumber, fieldData);
         }
 
-        return nextOfKinPhoneNumber;
+        return _nextOfKinPhoneNumber;
     } 
 }
     }

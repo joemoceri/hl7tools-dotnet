@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_10",
+
                     };
             } 
         }
@@ -53,6 +54,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Substitution of this resource is allowed",
                             Comment = null
                         },
+                        
                     };
             } 
         }

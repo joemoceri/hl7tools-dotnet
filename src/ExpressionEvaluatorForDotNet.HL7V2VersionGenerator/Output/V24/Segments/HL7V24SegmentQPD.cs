@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentQPD(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _messageQueryName;
+
+public HL7V24Field MessageQueryName
+{
+    get
+    {
+        if (_messageQueryName != null)
+        {
+            return _messageQueryName;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"QPD.1",
+            Type = @"Field",
+            Position = @"QPD.1",
+            Name = @"Message Query Name",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0471",
+            TableName = @"Query name",
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"QPD.1",
-                            Type = @"Field",
-                            Position = @"QPD.1",
-                            Name = @"Message Query Name",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0471",
-                            TableName = @"Query name",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QPD.1.1",
                             Type = @"Component",
@@ -160,108 +172,39 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QPD.2",
-                            Type = @"Field",
-                            Position = @"QPD.2",
-                            Name = @"Query Tag",
-                            Length = 32,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QPD.3",
-                            Type = @"Field",
-                            Position = @"QPD.3",
-                            Name = @"User Parameters",
-                            Length = 256,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"VARIES",
-                            DataTypeName = @"Variable Datatype",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentQPD(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field messageQueryName;
-
-public HL7V24Field MessageQueryName
-{
-    get
-    {
-        if (messageQueryName != null)
-        {
-            return messageQueryName;
-        }
-
-        messageQueryName = new HL7V24Field
+        _messageQueryName = new HL7V24Field
         {
             field = message[@"QPD"][1],
-            Id = @"QPD.1",
-            Type = @"Field",
-            Position = @"QPD.1",
-            Name = @"Message Query Name",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0471",
-            TableName = @"Query name",
-            Description = null,
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (messageQueryName.field.FieldRepetitions != null && messageQueryName.field.FieldRepetitions.Count > 0)
+        if (_messageQueryName.field.FieldRepetitions != null && _messageQueryName.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(messageQueryName.Id));
-            messageQueryName.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(messageQueryName, fieldData);
+            _messageQueryName.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_messageQueryName, fieldData);
         }
 
-        return messageQueryName;
+        return _messageQueryName;
     } 
 }
 
-internal HL7V24Field queryTag;
+internal HL7V24Field _queryTag;
 
 public HL7V24Field QueryTag
 {
     get
     {
-        if (queryTag != null)
+        if (_queryTag != null)
         {
-            return queryTag;
+            return _queryTag;
         }
 
-        queryTag = new HL7V24Field
+        var fieldData = new HL7V24FieldData
         {
-            field = message[@"QPD"][2],
             Id = @"QPD.2",
             Type = @"Field",
             Position = @"QPD.2",
@@ -275,34 +218,38 @@ public HL7V24Field QueryTag
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _queryTag = new HL7V24Field
+        {
+            field = message[@"QPD"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (queryTag.field.FieldRepetitions != null && queryTag.field.FieldRepetitions.Count > 0)
+        if (_queryTag.field.FieldRepetitions != null && _queryTag.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(queryTag.Id));
-            queryTag.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(queryTag, fieldData);
+            _queryTag.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_queryTag, fieldData);
         }
 
-        return queryTag;
+        return _queryTag;
     } 
 }
 
-internal HL7V24Field userParameters;
+internal HL7V24Field _userParameters;
 
 public HL7V24Field UserParameters
 {
     get
     {
-        if (userParameters != null)
+        if (_userParameters != null)
         {
-            return userParameters;
+            return _userParameters;
         }
 
-        userParameters = new HL7V24Field
+        var fieldData = new HL7V24FieldData
         {
-            field = message[@"QPD"][3],
             Id = @"QPD.3",
             Type = @"Field",
             Position = @"QPD.3",
@@ -316,17 +263,22 @@ public HL7V24Field UserParameters
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _userParameters = new HL7V24Field
+        {
+            field = message[@"QPD"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (userParameters.field.FieldRepetitions != null && userParameters.field.FieldRepetitions.Count > 0)
+        if (_userParameters.field.FieldRepetitions != null && _userParameters.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(userParameters.Id));
-            userParameters.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(userParameters, fieldData);
+            _userParameters.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_userParameters, fieldData);
         }
 
-        return userParameters;
+        return _userParameters;
     } 
 }
     }

@@ -25,250 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"BHS.1",
-                            Type = @"Field",
-                            Position = @"BHS.1",
-                            Name = @"Batch Field Separator",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BHS.2",
-                            Type = @"Field",
-                            Position = @"BHS.2",
-                            Name = @"Batch Encoding Characters",
-                            Length = 3,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BHS.3",
-                            Type = @"Field",
-                            Position = @"BHS.3",
-                            Name = @"Batch Sending Application",
-                            Length = 15,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BHS.4",
-                            Type = @"Field",
-                            Position = @"BHS.4",
-                            Name = @"Batch Sending Facility",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BHS.5",
-                            Type = @"Field",
-                            Position = @"BHS.5",
-                            Name = @"Batch Receiving Application",
-                            Length = 15,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BHS.6",
-                            Type = @"Field",
-                            Position = @"BHS.6",
-                            Name = @"Batch Receiving Facility",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BHS.7",
-                            Type = @"Field",
-                            Position = @"BHS.7",
-                            Name = @"Batch Creation Date/Time",
-                            Length = 19,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BHS.8",
-                            Type = @"Field",
-                            Position = @"BHS.8",
-                            Name = @"Batch Security",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BHS.9",
-                            Type = @"Field",
-                            Position = @"BHS.9",
-                            Name = @"Batch Name/Id/Type",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BHS.10",
-                            Type = @"Field",
-                            Position = @"BHS.10",
-                            Name = @"Batch Comment",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BHS.11",
-                            Type = @"Field",
-                            Position = @"BHS.11",
-                            Name = @"Batch Control Id",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BHS.12",
-                            Type = @"Field",
-                            Position = @"BHS.12",
-                            Name = @"Reference Batch Control Id",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentBHS(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field batchFieldSeparator;
+        internal HL7V21Field _batchFieldSeparator;
 
 public HL7V21Field BatchFieldSeparator
 {
     get
     {
-        if (batchFieldSeparator != null)
+        if (_batchFieldSeparator != null)
         {
-            return batchFieldSeparator;
+            return _batchFieldSeparator;
         }
 
-        batchFieldSeparator = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"BHS"][1],
             Id = @"BHS.1",
             Type = @"Field",
             Position = @"BHS.1",
@@ -282,34 +56,38 @@ public HL7V21Field BatchFieldSeparator
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _batchFieldSeparator = new HL7V21Field
+        {
+            field = message[@"BHS"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (batchFieldSeparator.field.FieldRepetitions != null && batchFieldSeparator.field.FieldRepetitions.Count > 0)
+        if (_batchFieldSeparator.field.FieldRepetitions != null && _batchFieldSeparator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(batchFieldSeparator.Id));
-            batchFieldSeparator.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(batchFieldSeparator, fieldData);
+            _batchFieldSeparator.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_batchFieldSeparator, fieldData);
         }
 
-        return batchFieldSeparator;
+        return _batchFieldSeparator;
     } 
 }
 
-internal HL7V21Field batchEncodingCharacters;
+internal HL7V21Field _batchEncodingCharacters;
 
 public HL7V21Field BatchEncodingCharacters
 {
     get
     {
-        if (batchEncodingCharacters != null)
+        if (_batchEncodingCharacters != null)
         {
-            return batchEncodingCharacters;
+            return _batchEncodingCharacters;
         }
 
-        batchEncodingCharacters = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"BHS"][2],
             Id = @"BHS.2",
             Type = @"Field",
             Position = @"BHS.2",
@@ -323,34 +101,38 @@ public HL7V21Field BatchEncodingCharacters
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _batchEncodingCharacters = new HL7V21Field
+        {
+            field = message[@"BHS"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (batchEncodingCharacters.field.FieldRepetitions != null && batchEncodingCharacters.field.FieldRepetitions.Count > 0)
+        if (_batchEncodingCharacters.field.FieldRepetitions != null && _batchEncodingCharacters.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(batchEncodingCharacters.Id));
-            batchEncodingCharacters.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(batchEncodingCharacters, fieldData);
+            _batchEncodingCharacters.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_batchEncodingCharacters, fieldData);
         }
 
-        return batchEncodingCharacters;
+        return _batchEncodingCharacters;
     } 
 }
 
-internal HL7V21Field batchSendingApplication;
+internal HL7V21Field _batchSendingApplication;
 
 public HL7V21Field BatchSendingApplication
 {
     get
     {
-        if (batchSendingApplication != null)
+        if (_batchSendingApplication != null)
         {
-            return batchSendingApplication;
+            return _batchSendingApplication;
         }
 
-        batchSendingApplication = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"BHS"][3],
             Id = @"BHS.3",
             Type = @"Field",
             Position = @"BHS.3",
@@ -364,34 +146,38 @@ public HL7V21Field BatchSendingApplication
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _batchSendingApplication = new HL7V21Field
+        {
+            field = message[@"BHS"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (batchSendingApplication.field.FieldRepetitions != null && batchSendingApplication.field.FieldRepetitions.Count > 0)
+        if (_batchSendingApplication.field.FieldRepetitions != null && _batchSendingApplication.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(batchSendingApplication.Id));
-            batchSendingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(batchSendingApplication, fieldData);
+            _batchSendingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_batchSendingApplication, fieldData);
         }
 
-        return batchSendingApplication;
+        return _batchSendingApplication;
     } 
 }
 
-internal HL7V21Field batchSendingFacility;
+internal HL7V21Field _batchSendingFacility;
 
 public HL7V21Field BatchSendingFacility
 {
     get
     {
-        if (batchSendingFacility != null)
+        if (_batchSendingFacility != null)
         {
-            return batchSendingFacility;
+            return _batchSendingFacility;
         }
 
-        batchSendingFacility = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"BHS"][4],
             Id = @"BHS.4",
             Type = @"Field",
             Position = @"BHS.4",
@@ -405,34 +191,38 @@ public HL7V21Field BatchSendingFacility
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _batchSendingFacility = new HL7V21Field
+        {
+            field = message[@"BHS"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (batchSendingFacility.field.FieldRepetitions != null && batchSendingFacility.field.FieldRepetitions.Count > 0)
+        if (_batchSendingFacility.field.FieldRepetitions != null && _batchSendingFacility.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(batchSendingFacility.Id));
-            batchSendingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(batchSendingFacility, fieldData);
+            _batchSendingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_batchSendingFacility, fieldData);
         }
 
-        return batchSendingFacility;
+        return _batchSendingFacility;
     } 
 }
 
-internal HL7V21Field batchReceivingApplication;
+internal HL7V21Field _batchReceivingApplication;
 
 public HL7V21Field BatchReceivingApplication
 {
     get
     {
-        if (batchReceivingApplication != null)
+        if (_batchReceivingApplication != null)
         {
-            return batchReceivingApplication;
+            return _batchReceivingApplication;
         }
 
-        batchReceivingApplication = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"BHS"][5],
             Id = @"BHS.5",
             Type = @"Field",
             Position = @"BHS.5",
@@ -446,34 +236,38 @@ public HL7V21Field BatchReceivingApplication
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _batchReceivingApplication = new HL7V21Field
+        {
+            field = message[@"BHS"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (batchReceivingApplication.field.FieldRepetitions != null && batchReceivingApplication.field.FieldRepetitions.Count > 0)
+        if (_batchReceivingApplication.field.FieldRepetitions != null && _batchReceivingApplication.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(batchReceivingApplication.Id));
-            batchReceivingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(batchReceivingApplication, fieldData);
+            _batchReceivingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_batchReceivingApplication, fieldData);
         }
 
-        return batchReceivingApplication;
+        return _batchReceivingApplication;
     } 
 }
 
-internal HL7V21Field batchReceivingFacility;
+internal HL7V21Field _batchReceivingFacility;
 
 public HL7V21Field BatchReceivingFacility
 {
     get
     {
-        if (batchReceivingFacility != null)
+        if (_batchReceivingFacility != null)
         {
-            return batchReceivingFacility;
+            return _batchReceivingFacility;
         }
 
-        batchReceivingFacility = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"BHS"][6],
             Id = @"BHS.6",
             Type = @"Field",
             Position = @"BHS.6",
@@ -487,34 +281,38 @@ public HL7V21Field BatchReceivingFacility
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _batchReceivingFacility = new HL7V21Field
+        {
+            field = message[@"BHS"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (batchReceivingFacility.field.FieldRepetitions != null && batchReceivingFacility.field.FieldRepetitions.Count > 0)
+        if (_batchReceivingFacility.field.FieldRepetitions != null && _batchReceivingFacility.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(batchReceivingFacility.Id));
-            batchReceivingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(batchReceivingFacility, fieldData);
+            _batchReceivingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_batchReceivingFacility, fieldData);
         }
 
-        return batchReceivingFacility;
+        return _batchReceivingFacility;
     } 
 }
 
-internal HL7V21Field batchCreationDateTime;
+internal HL7V21Field _batchCreationDateTime;
 
 public HL7V21Field BatchCreationDateTime
 {
     get
     {
-        if (batchCreationDateTime != null)
+        if (_batchCreationDateTime != null)
         {
-            return batchCreationDateTime;
+            return _batchCreationDateTime;
         }
 
-        batchCreationDateTime = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"BHS"][7],
             Id = @"BHS.7",
             Type = @"Field",
             Position = @"BHS.7",
@@ -528,34 +326,38 @@ public HL7V21Field BatchCreationDateTime
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _batchCreationDateTime = new HL7V21Field
+        {
+            field = message[@"BHS"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (batchCreationDateTime.field.FieldRepetitions != null && batchCreationDateTime.field.FieldRepetitions.Count > 0)
+        if (_batchCreationDateTime.field.FieldRepetitions != null && _batchCreationDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(batchCreationDateTime.Id));
-            batchCreationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(batchCreationDateTime, fieldData);
+            _batchCreationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_batchCreationDateTime, fieldData);
         }
 
-        return batchCreationDateTime;
+        return _batchCreationDateTime;
     } 
 }
 
-internal HL7V21Field batchSecurity;
+internal HL7V21Field _batchSecurity;
 
 public HL7V21Field BatchSecurity
 {
     get
     {
-        if (batchSecurity != null)
+        if (_batchSecurity != null)
         {
-            return batchSecurity;
+            return _batchSecurity;
         }
 
-        batchSecurity = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"BHS"][8],
             Id = @"BHS.8",
             Type = @"Field",
             Position = @"BHS.8",
@@ -569,34 +371,38 @@ public HL7V21Field BatchSecurity
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _batchSecurity = new HL7V21Field
+        {
+            field = message[@"BHS"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (batchSecurity.field.FieldRepetitions != null && batchSecurity.field.FieldRepetitions.Count > 0)
+        if (_batchSecurity.field.FieldRepetitions != null && _batchSecurity.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(batchSecurity.Id));
-            batchSecurity.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(batchSecurity, fieldData);
+            _batchSecurity.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_batchSecurity, fieldData);
         }
 
-        return batchSecurity;
+        return _batchSecurity;
     } 
 }
 
-internal HL7V21Field batchNameIdType;
+internal HL7V21Field _batchNameIdType;
 
 public HL7V21Field BatchNameIdType
 {
     get
     {
-        if (batchNameIdType != null)
+        if (_batchNameIdType != null)
         {
-            return batchNameIdType;
+            return _batchNameIdType;
         }
 
-        batchNameIdType = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"BHS"][9],
             Id = @"BHS.9",
             Type = @"Field",
             Position = @"BHS.9",
@@ -610,34 +416,38 @@ public HL7V21Field BatchNameIdType
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _batchNameIdType = new HL7V21Field
+        {
+            field = message[@"BHS"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (batchNameIdType.field.FieldRepetitions != null && batchNameIdType.field.FieldRepetitions.Count > 0)
+        if (_batchNameIdType.field.FieldRepetitions != null && _batchNameIdType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(batchNameIdType.Id));
-            batchNameIdType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(batchNameIdType, fieldData);
+            _batchNameIdType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_batchNameIdType, fieldData);
         }
 
-        return batchNameIdType;
+        return _batchNameIdType;
     } 
 }
 
-internal HL7V21Field batchComment;
+internal HL7V21Field _batchComment;
 
 public HL7V21Field BatchComment
 {
     get
     {
-        if (batchComment != null)
+        if (_batchComment != null)
         {
-            return batchComment;
+            return _batchComment;
         }
 
-        batchComment = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"BHS"][10],
             Id = @"BHS.10",
             Type = @"Field",
             Position = @"BHS.10",
@@ -651,34 +461,38 @@ public HL7V21Field BatchComment
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _batchComment = new HL7V21Field
+        {
+            field = message[@"BHS"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (batchComment.field.FieldRepetitions != null && batchComment.field.FieldRepetitions.Count > 0)
+        if (_batchComment.field.FieldRepetitions != null && _batchComment.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(batchComment.Id));
-            batchComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(batchComment, fieldData);
+            _batchComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_batchComment, fieldData);
         }
 
-        return batchComment;
+        return _batchComment;
     } 
 }
 
-internal HL7V21Field batchControlId;
+internal HL7V21Field _batchControlId;
 
 public HL7V21Field BatchControlId
 {
     get
     {
-        if (batchControlId != null)
+        if (_batchControlId != null)
         {
-            return batchControlId;
+            return _batchControlId;
         }
 
-        batchControlId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"BHS"][11],
             Id = @"BHS.11",
             Type = @"Field",
             Position = @"BHS.11",
@@ -692,34 +506,38 @@ public HL7V21Field BatchControlId
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _batchControlId = new HL7V21Field
+        {
+            field = message[@"BHS"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (batchControlId.field.FieldRepetitions != null && batchControlId.field.FieldRepetitions.Count > 0)
+        if (_batchControlId.field.FieldRepetitions != null && _batchControlId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(batchControlId.Id));
-            batchControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(batchControlId, fieldData);
+            _batchControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_batchControlId, fieldData);
         }
 
-        return batchControlId;
+        return _batchControlId;
     } 
 }
 
-internal HL7V21Field referenceBatchControlId;
+internal HL7V21Field _referenceBatchControlId;
 
 public HL7V21Field ReferenceBatchControlId
 {
     get
     {
-        if (referenceBatchControlId != null)
+        if (_referenceBatchControlId != null)
         {
-            return referenceBatchControlId;
+            return _referenceBatchControlId;
         }
 
-        referenceBatchControlId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"BHS"][12],
             Id = @"BHS.12",
             Type = @"Field",
             Position = @"BHS.12",
@@ -733,17 +551,22 @@ public HL7V21Field ReferenceBatchControlId
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _referenceBatchControlId = new HL7V21Field
+        {
+            field = message[@"BHS"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (referenceBatchControlId.field.FieldRepetitions != null && referenceBatchControlId.field.FieldRepetitions.Count > 0)
+        if (_referenceBatchControlId.field.FieldRepetitions != null && _referenceBatchControlId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(referenceBatchControlId.Id));
-            referenceBatchControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(referenceBatchControlId, fieldData);
+            _referenceBatchControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_referenceBatchControlId, fieldData);
         }
 
-        return referenceBatchControlId;
+        return _referenceBatchControlId;
     } 
 }
     }

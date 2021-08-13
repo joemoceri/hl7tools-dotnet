@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             } 
         }
@@ -59,6 +60,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Replicate (of patient sample as a control)",
                             Comment = null
                         },
+                        
                     };
             } 
         }

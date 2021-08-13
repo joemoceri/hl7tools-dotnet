@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V22SegmentMRG(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V22Field _priorPatientIdInternal;
+
+public HL7V22Field PriorPatientIdInternal
+{
+    get
+    {
+        if (_priorPatientIdInternal != null)
+        {
+            return _priorPatientIdInternal;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MRG.1",
+            Type = @"Field",
+            Position = @"MRG.1",
+            Name = @"Prior Patient Id - Internal",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CM_PAT_ID",
+            DataTypeName = @"Patient Id",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"MRG.1",
-                            Type = @"Field",
-                            Position = @"MRG.1",
-                            Name = @"Prior Patient Id - Internal",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CM_PAT_ID",
-                            DataTypeName = @"Patient Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MRG.1.1",
                             Type = @"Component",
@@ -138,25 +150,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _priorPatientIdInternal = new HL7V22Field
+        {
+            field = message[@"MRG"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorPatientIdInternal.field.FieldRepetitions != null && _priorPatientIdInternal.field.FieldRepetitions.Count > 0)
+        {
+            _priorPatientIdInternal.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_priorPatientIdInternal, fieldData);
+        }
+
+        return _priorPatientIdInternal;
+    } 
+}
+
+internal HL7V22Field _priorAlternatePatientId;
+
+public HL7V22Field PriorAlternatePatientId
+{
+    get
+    {
+        if (_priorAlternatePatientId != null)
+        {
+            return _priorAlternatePatientId;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MRG.2",
+            Type = @"Field",
+            Position = @"MRG.2",
+            Name = @"Prior Alternate Patient Id",
+            Length = 16,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CM_PAT_ID",
+            DataTypeName = @"Patient Id",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MRG.2",
-                            Type = @"Field",
-                            Position = @"MRG.2",
-                            Name = @"Prior Alternate Patient Id",
-                            Length = 16,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM_PAT_ID",
-                            DataTypeName = @"Patient Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MRG.2.1",
                             Type = @"Component",
@@ -244,25 +286,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _priorAlternatePatientId = new HL7V22Field
+        {
+            field = message[@"MRG"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorAlternatePatientId.field.FieldRepetitions != null && _priorAlternatePatientId.field.FieldRepetitions.Count > 0)
+        {
+            _priorAlternatePatientId.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_priorAlternatePatientId, fieldData);
+        }
+
+        return _priorAlternatePatientId;
+    } 
+}
+
+internal HL7V22Field _priorPatientAccountNumber;
+
+public HL7V22Field PriorPatientAccountNumber
+{
+    get
+    {
+        if (_priorPatientAccountNumber != null)
+        {
+            return _priorPatientAccountNumber;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MRG.3",
+            Type = @"Field",
+            Position = @"MRG.3",
+            Name = @"Prior Patient Account Number",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CK",
+            DataTypeName = @"Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MRG.3",
-                            Type = @"Field",
-                            Position = @"MRG.3",
-                            Name = @"Prior Patient Account Number",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CK",
-                            DataTypeName = @"Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MRG.3.1",
                             Type = @"Component",
@@ -332,25 +404,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The assigning facility ID is a unique name (up to six characters in length) of the system that stores the data.  It is an ST data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning facility ID's are unique across a given HL7 implementation.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _priorPatientAccountNumber = new HL7V22Field
+        {
+            field = message[@"MRG"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorPatientAccountNumber.field.FieldRepetitions != null && _priorPatientAccountNumber.field.FieldRepetitions.Count > 0)
+        {
+            _priorPatientAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_priorPatientAccountNumber, fieldData);
+        }
+
+        return _priorPatientAccountNumber;
+    } 
+}
+
+internal HL7V22Field _priorPatientIdExternal;
+
+public HL7V22Field PriorPatientIdExternal
+{
+    get
+    {
+        if (_priorPatientIdExternal != null)
+        {
+            return _priorPatientIdExternal;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MRG.4",
+            Type = @"Field",
+            Position = @"MRG.4",
+            Name = @"Prior Patient Id - External",
+            Length = 16,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CK",
+            DataTypeName = @"Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MRG.4",
-                            Type = @"Field",
-                            Position = @"MRG.4",
-                            Name = @"Prior Patient Id - External",
-                            Length = 16,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CK",
-                            DataTypeName = @"Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MRG.4.1",
                             Type = @"Component",
@@ -420,178 +522,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The assigning facility ID is a unique name (up to six characters in length) of the system that stores the data.  It is an ST data type.  It is equivalent to the application ID of the placer or filler order number (see Chapter 4).  Assigning facility ID's are unique across a given HL7 implementation.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V22SegmentMRG(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V22Field priorPatientIdInternal;
-
-public HL7V22Field PriorPatientIdInternal
-{
-    get
-    {
-        if (priorPatientIdInternal != null)
-        {
-            return priorPatientIdInternal;
-        }
-
-        priorPatientIdInternal = new HL7V22Field
-        {
-            field = message[@"MRG"][1],
-            Id = @"MRG.1",
-            Type = @"Field",
-            Position = @"MRG.1",
-            Name = @"Prior Patient Id - Internal",
-            Length = 20,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CM_PAT_ID",
-            DataTypeName = @"Patient Id",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorPatientIdInternal.field.FieldRepetitions != null && priorPatientIdInternal.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientIdInternal.Id));
-            priorPatientIdInternal.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(priorPatientIdInternal, fieldData);
-        }
-
-        return priorPatientIdInternal;
-    } 
-}
-
-internal HL7V22Field priorAlternatePatientId;
-
-public HL7V22Field PriorAlternatePatientId
-{
-    get
-    {
-        if (priorAlternatePatientId != null)
-        {
-            return priorAlternatePatientId;
-        }
-
-        priorAlternatePatientId = new HL7V22Field
-        {
-            field = message[@"MRG"][2],
-            Id = @"MRG.2",
-            Type = @"Field",
-            Position = @"MRG.2",
-            Name = @"Prior Alternate Patient Id",
-            Length = 16,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CM_PAT_ID",
-            DataTypeName = @"Patient Id",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorAlternatePatientId.field.FieldRepetitions != null && priorAlternatePatientId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorAlternatePatientId.Id));
-            priorAlternatePatientId.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(priorAlternatePatientId, fieldData);
-        }
-
-        return priorAlternatePatientId;
-    } 
-}
-
-internal HL7V22Field priorPatientAccountNumber;
-
-public HL7V22Field PriorPatientAccountNumber
-{
-    get
-    {
-        if (priorPatientAccountNumber != null)
-        {
-            return priorPatientAccountNumber;
-        }
-
-        priorPatientAccountNumber = new HL7V22Field
-        {
-            field = message[@"MRG"][3],
-            Id = @"MRG.3",
-            Type = @"Field",
-            Position = @"MRG.3",
-            Name = @"Prior Patient Account Number",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CK",
-            DataTypeName = @"Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorPatientAccountNumber.field.FieldRepetitions != null && priorPatientAccountNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientAccountNumber.Id));
-            priorPatientAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(priorPatientAccountNumber, fieldData);
-        }
-
-        return priorPatientAccountNumber;
-    } 
-}
-
-internal HL7V22Field priorPatientIdExternal;
-
-public HL7V22Field PriorPatientIdExternal
-{
-    get
-    {
-        if (priorPatientIdExternal != null)
-        {
-            return priorPatientIdExternal;
-        }
-
-        priorPatientIdExternal = new HL7V22Field
+        _priorPatientIdExternal = new HL7V22Field
         {
             field = message[@"MRG"][4],
-            Id = @"MRG.4",
-            Type = @"Field",
-            Position = @"MRG.4",
-            Name = @"Prior Patient Id - External",
-            Length = 16,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CK",
-            DataTypeName = @"Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (priorPatientIdExternal.field.FieldRepetitions != null && priorPatientIdExternal.field.FieldRepetitions.Count > 0)
+        if (_priorPatientIdExternal.field.FieldRepetitions != null && _priorPatientIdExternal.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorPatientIdExternal.Id));
-            priorPatientIdExternal.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(priorPatientIdExternal, fieldData);
+            _priorPatientIdExternal.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_priorPatientIdExternal, fieldData);
         }
 
-        return priorPatientIdExternal;
+        return _priorPatientIdExternal;
     } 
 }
     }

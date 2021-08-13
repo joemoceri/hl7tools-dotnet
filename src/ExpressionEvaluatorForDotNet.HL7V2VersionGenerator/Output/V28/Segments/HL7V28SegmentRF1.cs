@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentRF1(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _referralStatus;
+
+public HL7V28Field ReferralStatus
+{
+    get
+    {
+        if (_referralStatus != null)
+        {
+            return _referralStatus;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.1",
+            Type = @"Field",
+            Position = @"RF1.1",
+            Name = @"Referral Status",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0283",
+            TableName = @"Referral Status",
+            Description = @"This field contains the status of the referral as defined by either the referred-to or the referred-by provider.  Refer to User-defined Table 0283 - Referral Status in Chapter 2C, Code Tables, for suggested values. ",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"RF1.1",
-                            Type = @"Field",
-                            Position = @"RF1.1",
-                            Name = @"Referral Status",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0283",
-                            TableName = @"Referral Status",
-                            Description = @"This field contains the status of the referral as defined by either the referred-to or the referred-by provider.  Refer to User-defined Table 0283 - Referral Status in Chapter 2C, Code Tables, for suggested values. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RF1.1.1",
                             Type = @"Component",
@@ -478,25 +490,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _referralStatus = new HL7V28Field
+        {
+            field = message[@"RF1"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_referralStatus.field.FieldRepetitions != null && _referralStatus.field.FieldRepetitions.Count > 0)
+        {
+            _referralStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_referralStatus, fieldData);
+        }
+
+        return _referralStatus;
+    } 
+}
+
+internal HL7V28Field _referralPriority;
+
+public HL7V28Field ReferralPriority
+{
+    get
+    {
+        if (_referralPriority != null)
+        {
+            return _referralPriority;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.2",
+            Type = @"Field",
+            Position = @"RF1.2",
+            Name = @"Referral Priority",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0280",
+            TableName = @"Referral Priority",
+            Description = @"This field contains the urgency of the referral.  Refer to User-defined Table 0280 - Referral Priority in Chapter 2C, Code Tables, for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RF1.2",
-                            Type = @"Field",
-                            Position = @"RF1.2",
-                            Name = @"Referral Priority",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0280",
-                            TableName = @"Referral Priority",
-                            Description = @"This field contains the urgency of the referral.  Refer to User-defined Table 0280 - Referral Priority in Chapter 2C, Code Tables, for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.2.1",
                             Type = @"Component",
@@ -924,25 +966,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _referralPriority = new HL7V28Field
+        {
+            field = message[@"RF1"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_referralPriority.field.FieldRepetitions != null && _referralPriority.field.FieldRepetitions.Count > 0)
+        {
+            _referralPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_referralPriority, fieldData);
+        }
+
+        return _referralPriority;
+    } 
+}
+
+internal HL7V28Field _referralType;
+
+public HL7V28Field ReferralType
+{
+    get
+    {
+        if (_referralType != null)
+        {
+            return _referralType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.3",
+            Type = @"Field",
+            Position = @"RF1.3",
+            Name = @"Referral Type",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0281",
+            TableName = @"Referral Type",
+            Description = @"This field contains the type of referral.  It is loosely associated with a clinical specialty or type of resource.  Refer to User-defined Table 0281 - Referral Type in Chapter 2C, Code Tables, for suggested values. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RF1.3",
-                            Type = @"Field",
-                            Position = @"RF1.3",
-                            Name = @"Referral Type",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0281",
-                            TableName = @"Referral Type",
-                            Description = @"This field contains the type of referral.  It is loosely associated with a clinical specialty or type of resource.  Refer to User-defined Table 0281 - Referral Type in Chapter 2C, Code Tables, for suggested values. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.3.1",
                             Type = @"Component",
@@ -1370,25 +1442,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _referralType = new HL7V28Field
+        {
+            field = message[@"RF1"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_referralType.field.FieldRepetitions != null && _referralType.field.FieldRepetitions.Count > 0)
+        {
+            _referralType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_referralType, fieldData);
+        }
+
+        return _referralType;
+    } 
+}
+
+internal HL7V28Field _referralDisposition;
+
+public HL7V28Field ReferralDisposition
+{
+    get
+    {
+        if (_referralDisposition != null)
+        {
+            return _referralDisposition;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.4",
+            Type = @"Field",
+            Position = @"RF1.4",
+            Name = @"Referral Disposition",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0282",
+            TableName = @"Referral Disposition",
+            Description = @"This field contains the type of response or action that the referring provider would like from the referred-to provider.  Refer to User-defined Table 0282 - Referral Disposition for suggested values. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RF1.4",
-                            Type = @"Field",
-                            Position = @"RF1.4",
-                            Name = @"Referral Disposition",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0282",
-                            TableName = @"Referral Disposition",
-                            Description = @"This field contains the type of response or action that the referring provider would like from the referred-to provider.  Refer to User-defined Table 0282 - Referral Disposition for suggested values. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.4.1",
                             Type = @"Component",
@@ -1816,25 +1918,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _referralDisposition = new HL7V28Field
+        {
+            field = message[@"RF1"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_referralDisposition.field.FieldRepetitions != null && _referralDisposition.field.FieldRepetitions.Count > 0)
+        {
+            _referralDisposition.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_referralDisposition, fieldData);
+        }
+
+        return _referralDisposition;
+    } 
+}
+
+internal HL7V28Field _referralCategory;
+
+public HL7V28Field ReferralCategory
+{
+    get
+    {
+        if (_referralCategory != null)
+        {
+            return _referralCategory;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.5",
+            Type = @"Field",
+            Position = @"RF1.5",
+            Name = @"Referral Category",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0284",
+            TableName = @"Referral Category",
+            Description = @"This field contains the location at which the referral will take place.  Refer to User-defined Table 0284 - Referral Category for suggested values. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RF1.5",
-                            Type = @"Field",
-                            Position = @"RF1.5",
-                            Name = @"Referral Category",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0284",
-                            TableName = @"Referral Category",
-                            Description = @"This field contains the location at which the referral will take place.  Refer to User-defined Table 0284 - Referral Category for suggested values. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.5.1",
                             Type = @"Component",
@@ -2262,31 +2394,61 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RF1.6",
-                            Type = @"Field",
-                            Position = @"RF1.6",
-                            Name = @"Originating Referral Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the originating application's permanent identifier for the referral.  This is a composite field.
+                        }
+        }
+
+        _referralCategory = new HL7V28Field
+        {
+            field = message[@"RF1"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_referralCategory.field.FieldRepetitions != null && _referralCategory.field.FieldRepetitions.Count > 0)
+        {
+            _referralCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_referralCategory, fieldData);
+        }
+
+        return _referralCategory;
+    } 
+}
+
+internal HL7V28Field _originatingReferralIdentifier;
+
+public HL7V28Field OriginatingReferralIdentifier
+{
+    get
+    {
+        if (_originatingReferralIdentifier != null)
+        {
+            return _originatingReferralIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.6",
+            Type = @"Field",
+            Position = @"RF1.6",
+            Name = @"Originating Referral Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the originating application's permanent identifier for the referral.  This is a composite field.
 
 The first component is a string of up to 15 characters that identifies an individual referral.  It is assigned by the originating application, and it identifies a referral, and the subsequent referral transactions, uniquely among all such referrals from a particular processing application.
 
 The second component is optional because this field, itself, is already defined as a referral identifier.  
 
 The third component is optional.  If used, it should contain the application identifier for the referred-to or external applications (i.e., not the originating application).  The application identifier is a string of up to 15 characters that is uniquely associated with an application.  A given healthcare provider facility, or group of intercommunicating healthcare provider facilities, should establish a unique list of applications that may be potential originators and recipients, and then assign unique application identifiers to each of those applications.  This list of application identifiers becomes one of the healthcare provider facility's master dictionary lists.  Since applications fulfilling different application roles can send and receive referral messages, the assigning authority application identifier may not identify the application sending or receiving a particular message.  Data elements on the Message Header (MSH) segment are available to identify the actual sending and receiving applications.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.6.1",
                             Type = @"Component",
@@ -2362,79 +2524,190 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _originatingReferralIdentifier = new HL7V28Field
+        {
+            field = message[@"RF1"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_originatingReferralIdentifier.field.FieldRepetitions != null && _originatingReferralIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _originatingReferralIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_originatingReferralIdentifier, fieldData);
+        }
+
+        return _originatingReferralIdentifier;
+    } 
+}
+
+internal HL7V28Field _effectiveDate;
+
+public HL7V28Field EffectiveDate
+{
+    get
+    {
+        if (_effectiveDate != null)
+        {
+            return _effectiveDate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.7",
+            Type = @"Field",
+            Position = @"RF1.7",
+            Name = @"Effective Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date on which the referral is effective.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _effectiveDate = new HL7V28Field
+        {
+            field = message[@"RF1"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_effectiveDate.field.FieldRepetitions != null && _effectiveDate.field.FieldRepetitions.Count > 0)
+        {
+            _effectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_effectiveDate, fieldData);
+        }
+
+        return _effectiveDate;
+    } 
+}
+
+internal HL7V28Field _expirationDate;
+
+public HL7V28Field ExpirationDate
+{
+    get
+    {
+        if (_expirationDate != null)
+        {
+            return _expirationDate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.8",
+            Type = @"Field",
+            Position = @"RF1.8",
+            Name = @"Expiration Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date on which the referral expires.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _expirationDate = new HL7V28Field
+        {
+            field = message[@"RF1"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_expirationDate.field.FieldRepetitions != null && _expirationDate.field.FieldRepetitions.Count > 0)
+        {
+            _expirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_expirationDate, fieldData);
+        }
+
+        return _expirationDate;
+    } 
+}
+
+internal HL7V28Field _processDate;
+
+public HL7V28Field ProcessDate
+{
+    get
+    {
+        if (_processDate != null)
+        {
+            return _processDate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.9",
+            Type = @"Field",
+            Position = @"RF1.9",
+            Name = @"Process Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date on which the referral originated.  It is used in cases of retroactive approval.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _processDate = new HL7V28Field
+        {
+            field = message[@"RF1"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_processDate.field.FieldRepetitions != null && _processDate.field.FieldRepetitions.Count > 0)
+        {
+            _processDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_processDate, fieldData);
+        }
+
+        return _processDate;
+    } 
+}
+
+internal HL7V28Field _referralReason;
+
+public HL7V28Field ReferralReason
+{
+    get
+    {
+        if (_referralReason != null)
+        {
+            return _referralReason;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.10",
+            Type = @"Field",
+            Position = @"RF1.10",
+            Name = @"Referral Reason",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0336",
+            TableName = @"Referral Reason",
+            Description = @"This field contains the reason for which the referral will take place.  Refer to User-defined Table 0336 - Referral Reason for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RF1.7",
-                            Type = @"Field",
-                            Position = @"RF1.7",
-                            Name = @"Effective Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date on which the referral is effective.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RF1.8",
-                            Type = @"Field",
-                            Position = @"RF1.8",
-                            Name = @"Expiration Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date on which the referral expires.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RF1.9",
-                            Type = @"Field",
-                            Position = @"RF1.9",
-                            Name = @"Process Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date on which the referral originated.  It is used in cases of retroactive approval.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RF1.10",
-                            Type = @"Field",
-                            Position = @"RF1.10",
-                            Name = @"Referral Reason",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0336",
-                            TableName = @"Referral Reason",
-                            Description = @"This field contains the reason for which the referral will take place.  Refer to User-defined Table 0336 - Referral Reason for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.10.1",
                             Type = @"Component",
@@ -2862,23 +3135,51 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RF1.11",
-                            Type = @"Field",
-                            Position = @"RF1.11",
-                            Name = @"External Referral Identifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an external application's permanent identifier for the referral.  That is, this referral identifier does not belong to the application that originated the referral and assigned the originating referral identifier.
+                        }
+        }
+
+        _referralReason = new HL7V28Field
+        {
+            field = message[@"RF1"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_referralReason.field.FieldRepetitions != null && _referralReason.field.FieldRepetitions.Count > 0)
+        {
+            _referralReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_referralReason, fieldData);
+        }
+
+        return _referralReason;
+    } 
+}
+
+internal HL7V28Field _externalReferralIdentifier;
+
+public HL7V28Field ExternalReferralIdentifier
+{
+    get
+    {
+        if (_externalReferralIdentifier != null)
+        {
+            return _externalReferralIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.11",
+            Type = @"Field",
+            Position = @"RF1.11",
+            Name = @"External Referral Identifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an external application's permanent identifier for the referral.  That is, this referral identifier does not belong to the application that originated the referral and assigned the originating referral identifier.
 
 The first component is a string of up to 15 characters that identifies an individual referral.  It is typically assigned by the referred-to provider application responding to a referral originating from a referring provider application, and it identifies a referral, and the subsequent referral transactions, uniquely among all such referrals for a particular referred-to provider processing application.  For example, when a primary care provider (referring provider) sends a referral to a specialist (referred-to provider), the specialist's application system may accept the referral and assign it a new referral identifier which uniquely identifies that particular referral within the specialist's application system.  This new referral identifier would be placed in the external referral identifier field when the specialist responds to the primary care physician.
 
@@ -2886,8 +3187,10 @@ The second component is optional because this field, itself, is already defined 
 
 The third component is optional.  If used, it should contain the application identifier for the referred-to or external application (i.e., not the originating application).  
 The application identifier is a string of up to 15 characters that is uniquely associated with an application.  A given healthcare provider facility, or group of intercommunicating healthcare provider facilities, should establish a unique list of applications that may be potential originators and recipients, and then assign unique application identifiers to each of those applications.  This list of application identifiers becomes one of the healthcare provider facility's master dictionary lists.  Since applications fulfilling different application roles can send and receive referral messages, the assigning authority application identifier may not identify the application sending or receiving a particular message.  Data elements on the Message Header (MSH) segment are available to identify the actual sending and receiving applications.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.11.1",
                             Type = @"Component",
@@ -2963,25 +3266,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _externalReferralIdentifier = new HL7V28Field
+        {
+            field = message[@"RF1"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_externalReferralIdentifier.field.FieldRepetitions != null && _externalReferralIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _externalReferralIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_externalReferralIdentifier, fieldData);
+        }
+
+        return _externalReferralIdentifier;
+    } 
+}
+
+internal HL7V28Field _referralDocumentationCompletionStatus;
+
+public HL7V28Field ReferralDocumentationCompletionStatus
+{
+    get
+    {
+        if (_referralDocumentationCompletionStatus != null)
+        {
+            return _referralDocumentationCompletionStatus;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.12",
+            Type = @"Field",
+            Position = @"RF1.12",
+            Name = @"Referral Documentation Completion Status",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0865",
+            TableName = @"Referral Documentation Completion Status",
+            Description = @"This field can be used to indicate to the receiving provider that the clinical history in the message is incomplete and that more will follow.  Refer to User-defined Table 0865 - Referral Documentation Completion Status for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RF1.12",
-                            Type = @"Field",
-                            Position = @"RF1.12",
-                            Name = @"Referral Documentation Completion Status",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0865",
-                            TableName = @"Referral Documentation Completion Status",
-                            Description = @"This field can be used to indicate to the receiving provider that the clinical history in the message is incomplete and that more will follow.  Refer to User-defined Table 0865 - Referral Documentation Completion Status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.12.1",
                             Type = @"Component",
@@ -3409,61 +3742,145 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _referralDocumentationCompletionStatus = new HL7V28Field
+        {
+            field = message[@"RF1"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_referralDocumentationCompletionStatus.field.FieldRepetitions != null && _referralDocumentationCompletionStatus.field.FieldRepetitions.Count > 0)
+        {
+            _referralDocumentationCompletionStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_referralDocumentationCompletionStatus, fieldData);
+        }
+
+        return _referralDocumentationCompletionStatus;
+    } 
+}
+
+internal HL7V28Field _plannedTreatmentStopDate;
+
+public HL7V28Field PlannedTreatmentStopDate
+{
+    get
+    {
+        if (_plannedTreatmentStopDate != null)
+        {
+            return _plannedTreatmentStopDate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.13",
+            Type = @"Field",
+            Position = @"RF1.13",
+            Name = @"Planned Treatment Stop Date",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"The planned treatment stop date is the date that the patient's treatment from this referral is expected to complete, based on procedural protocols.  This value can be used to indicate that an extension to an authorization is necessary, if the treatment continues longer than expected.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _plannedTreatmentStopDate = new HL7V28Field
+        {
+            field = message[@"RF1"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_plannedTreatmentStopDate.field.FieldRepetitions != null && _plannedTreatmentStopDate.field.FieldRepetitions.Count > 0)
+        {
+            _plannedTreatmentStopDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_plannedTreatmentStopDate, fieldData);
+        }
+
+        return _plannedTreatmentStopDate;
+    } 
+}
+
+internal HL7V28Field _referralReasonText;
+
+public HL7V28Field ReferralReasonText
+{
+    get
+    {
+        if (_referralReasonText != null)
+        {
+            return _referralReasonText;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.14",
+            Type = @"Field",
+            Position = @"RF1.14",
+            Name = @"Referral Reason Text",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The referral reason is a free text field allowing a user to capture, in a non-coded format, the reason for the referral.  Typically this would describe the patient's condition or illness for which the referral is recorded.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _referralReasonText = new HL7V28Field
+        {
+            field = message[@"RF1"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_referralReasonText.field.FieldRepetitions != null && _referralReasonText.field.FieldRepetitions.Count > 0)
+        {
+            _referralReasonText.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_referralReasonText, fieldData);
+        }
+
+        return _referralReasonText;
+    } 
+}
+
+internal HL7V28Field _numberofAuthorizedTreatmentsUnits;
+
+public HL7V28Field NumberofAuthorizedTreatmentsUnits
+{
+    get
+    {
+        if (_numberofAuthorizedTreatmentsUnits != null)
+        {
+            return _numberofAuthorizedTreatmentsUnits;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.15",
+            Type = @"Field",
+            Position = @"RF1.15",
+            Name = @"Number of Authorized Treatments/Units",
+            Length = 721,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The authorized duration is the amount of time, in days or visits, that the patient has been authorized for treatment for this referral.  The duration of ""days"" is reserved for inpatient authorizations.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RF1.13",
-                            Type = @"Field",
-                            Position = @"RF1.13",
-                            Name = @"Planned Treatment Stop Date",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The planned treatment stop date is the date that the patient's treatment from this referral is expected to complete, based on procedural protocols.  This value can be used to indicate that an extension to an authorization is necessary, if the treatment continues longer than expected.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RF1.14",
-                            Type = @"Field",
-                            Position = @"RF1.14",
-                            Name = @"Referral Reason Text",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The referral reason is a free text field allowing a user to capture, in a non-coded format, the reason for the referral.  Typically this would describe the patient's condition or illness for which the referral is recorded.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RF1.15",
-                            Type = @"Field",
-                            Position = @"RF1.15",
-                            Name = @"Number of Authorized Treatments/Units",
-                            Length = 721,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The authorized duration is the amount of time, in days or visits, that the patient has been authorized for treatment for this referral.  The duration of ""days"" is reserved for inpatient authorizations.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.15.1",
                             Type = @"Component",
@@ -3925,25 +4342,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _numberofAuthorizedTreatmentsUnits = new HL7V28Field
+        {
+            field = message[@"RF1"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_numberofAuthorizedTreatmentsUnits.field.FieldRepetitions != null && _numberofAuthorizedTreatmentsUnits.field.FieldRepetitions.Count > 0)
+        {
+            _numberofAuthorizedTreatmentsUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_numberofAuthorizedTreatmentsUnits, fieldData);
+        }
+
+        return _numberofAuthorizedTreatmentsUnits;
+    } 
+}
+
+internal HL7V28Field _numberofUsedTreatmentsUnits;
+
+public HL7V28Field NumberofUsedTreatmentsUnits
+{
+    get
+    {
+        if (_numberofUsedTreatmentsUnits != null)
+        {
+            return _numberofUsedTreatmentsUnits;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.16",
+            Type = @"Field",
+            Position = @"RF1.16",
+            Name = @"Number of Used Treatments/Units",
+            Length = 721,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The used duration is the amount of time, in days or visits that the patient has used of the originally authorized duration. The duration of ""days"" is reserved for inpatient authorizations.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RF1.16",
-                            Type = @"Field",
-                            Position = @"RF1.16",
-                            Name = @"Number of Used Treatments/Units",
-                            Length = 721,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The used duration is the amount of time, in days or visits that the patient has used of the originally authorized duration. The duration of ""days"" is reserved for inpatient authorizations.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.16.1",
                             Type = @"Component",
@@ -4405,25 +4852,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _numberofUsedTreatmentsUnits = new HL7V28Field
+        {
+            field = message[@"RF1"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_numberofUsedTreatmentsUnits.field.FieldRepetitions != null && _numberofUsedTreatmentsUnits.field.FieldRepetitions.Count > 0)
+        {
+            _numberofUsedTreatmentsUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_numberofUsedTreatmentsUnits, fieldData);
+        }
+
+        return _numberofUsedTreatmentsUnits;
+    } 
+}
+
+internal HL7V28Field _numberofScheduleTreatmentsUnits;
+
+public HL7V28Field NumberofScheduleTreatmentsUnits
+{
+    get
+    {
+        if (_numberofScheduleTreatmentsUnits != null)
+        {
+            return _numberofScheduleTreatmentsUnits;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.17",
+            Type = @"Field",
+            Position = @"RF1.17",
+            Name = @"Number of Schedule Treatments/Units",
+            Length = 721,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The scheduled treatments is the amount of time, in days or visits that the patient has planned treatments scheduled.  The duration of ""days"" is reserved for inpatient authorizations.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RF1.17",
-                            Type = @"Field",
-                            Position = @"RF1.17",
-                            Name = @"Number of Schedule Treatments/Units",
-                            Length = 721,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The scheduled treatments is the amount of time, in days or visits that the patient has planned treatments scheduled.  The duration of ""days"" is reserved for inpatient authorizations.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.17.1",
                             Type = @"Component",
@@ -4885,25 +5362,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _numberofScheduleTreatmentsUnits = new HL7V28Field
+        {
+            field = message[@"RF1"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_numberofScheduleTreatmentsUnits.field.FieldRepetitions != null && _numberofScheduleTreatmentsUnits.field.FieldRepetitions.Count > 0)
+        {
+            _numberofScheduleTreatmentsUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_numberofScheduleTreatmentsUnits, fieldData);
+        }
+
+        return _numberofScheduleTreatmentsUnits;
+    } 
+}
+
+internal HL7V28Field _remainingBenefitAmount;
+
+public HL7V28Field RemainingBenefitAmount
+{
+    get
+    {
+        if (_remainingBenefitAmount != null)
+        {
+            return _remainingBenefitAmount;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.18",
+            Type = @"Field",
+            Position = @"RF1.18",
+            Name = @"Remaining Benefit Amount",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"MO",
+            DataTypeName = @"Money",
+            TableId = null,
+            TableName = null,
+            Description = @"The remaining benefit amount is the amount remaining from the insurance company related to this referral. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RF1.18",
-                            Type = @"Field",
-                            Position = @"RF1.18",
-                            Name = @"Remaining Benefit Amount",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"MO",
-                            DataTypeName = @"Money",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The remaining benefit amount is the amount remaining from the insurance company related to this referral. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.18.1",
                             Type = @"Component",
@@ -4942,25 +5449,55 @@ Example, where USD is the ISO 4217 code for the U.S. American dollar.
 |99.50^USD|",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _remainingBenefitAmount = new HL7V28Field
+        {
+            field = message[@"RF1"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_remainingBenefitAmount.field.FieldRepetitions != null && _remainingBenefitAmount.field.FieldRepetitions.Count > 0)
+        {
+            _remainingBenefitAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_remainingBenefitAmount, fieldData);
+        }
+
+        return _remainingBenefitAmount;
+    } 
+}
+
+internal HL7V28Field _authorizedProvider;
+
+public HL7V28Field AuthorizedProvider
+{
+    get
+    {
+        if (_authorizedProvider != null)
+        {
+            return _authorizedProvider;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.19",
+            Type = @"Field",
+            Position = @"RF1.19",
+            Name = @"Authorized Provider",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"This represents the organization to which the patient was referred to perform the procedure(s).  The authorized provider represents the organization recognized by the insurance carrier that is authorized to perform the services for the patient specified on the referral",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RF1.19",
-                            Type = @"Field",
-                            Position = @"RF1.19",
-                            Name = @"Authorized Provider",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This represents the organization to which the patient was referred to perform the procedure(s).  The authorized provider represents the organization recognized by the insurance carrier that is authorized to perform the services for the patient specified on the referral",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.19.1",
                             Type = @"Component",
@@ -5692,25 +6229,55 @@ In general this component provides an indication of the representation provided 
 Note: The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _authorizedProvider = new HL7V28Field
+        {
+            field = message[@"RF1"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_authorizedProvider.field.FieldRepetitions != null && _authorizedProvider.field.FieldRepetitions.Count > 0)
+        {
+            _authorizedProvider.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_authorizedProvider, fieldData);
+        }
+
+        return _authorizedProvider;
+    } 
+}
+
+internal HL7V28Field _authorizedHealthProfessional;
+
+public HL7V28Field AuthorizedHealthProfessional
+{
+    get
+    {
+        if (_authorizedHealthProfessional != null)
+        {
+            return _authorizedHealthProfessional;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.20",
+            Type = @"Field",
+            Position = @"RF1.20",
+            Name = @"Authorized Health Professional",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"The authorized HP represents the specific health professional authorized to perform the services for the patient.  This is a less frequently used field, as most often the authorization is for a group/organization and not a specific HP within that group.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RF1.20",
-                            Type = @"Field",
-                            Position = @"RF1.20",
-                            Name = @"Authorized Health Professional",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The authorized HP represents the specific health professional authorized to perform the services for the patient.  This is a less frequently used field, as most often the authorization is for a group/organization and not a specific HP within that group.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.20.1",
                             Type = @"Component",
@@ -8116,61 +8683,145 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _authorizedHealthProfessional = new HL7V28Field
+        {
+            field = message[@"RF1"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_authorizedHealthProfessional.field.FieldRepetitions != null && _authorizedHealthProfessional.field.FieldRepetitions.Count > 0)
+        {
+            _authorizedHealthProfessional.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_authorizedHealthProfessional, fieldData);
+        }
+
+        return _authorizedHealthProfessional;
+    } 
+}
+
+internal HL7V28Field _sourceText;
+
+public HL7V28Field SourceText
+{
+    get
+    {
+        if (_sourceText != null)
+        {
+            return _sourceText;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.21",
+            Type = @"Field",
+            Position = @"RF1.21",
+            Name = @"Source Text",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The source text allows a user to capture information (such as the name) of the person contacted regarding the specific referral.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sourceText = new HL7V28Field
+        {
+            field = message[@"RF1"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sourceText.field.FieldRepetitions != null && _sourceText.field.FieldRepetitions.Count > 0)
+        {
+            _sourceText.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_sourceText, fieldData);
+        }
+
+        return _sourceText;
+    } 
+}
+
+internal HL7V28Field _sourceDate;
+
+public HL7V28Field SourceDate
+{
+    get
+    {
+        if (_sourceDate != null)
+        {
+            return _sourceDate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.22",
+            Type = @"Field",
+            Position = @"RF1.22",
+            Name = @"Source Date",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"The source date allows a user to capture the date the person was contacted regarding the specific referral.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sourceDate = new HL7V28Field
+        {
+            field = message[@"RF1"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sourceDate.field.FieldRepetitions != null && _sourceDate.field.FieldRepetitions.Count > 0)
+        {
+            _sourceDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_sourceDate, fieldData);
+        }
+
+        return _sourceDate;
+    } 
+}
+
+internal HL7V28Field _sourcePhone;
+
+public HL7V28Field SourcePhone
+{
+    get
+    {
+        if (_sourcePhone != null)
+        {
+            return _sourcePhone;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RF1.23",
+            Type = @"Field",
+            Position = @"RF1.23",
+            Name = @"Source Phone",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"The source phone number allows a user to capture the phone number of the person contacted regarding the specific referral.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RF1.21",
-                            Type = @"Field",
-                            Position = @"RF1.21",
-                            Name = @"Source Text",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The source text allows a user to capture information (such as the name) of the person contacted regarding the specific referral.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RF1.22",
-                            Type = @"Field",
-                            Position = @"RF1.22",
-                            Name = @"Source Date",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The source date allows a user to capture the date the person was contacted regarding the specific referral.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RF1.23",
-                            Type = @"Field",
-                            Position = @"RF1.23",
-                            Name = @"Source Phone",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The source phone number allows a user to capture the phone number of the person contacted regarding the specific referral.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RF1.23.1",
                             Type = @"Component",
@@ -9446,1023 +10097,39 @@ If the preference order is unique across all usages for a given type, then it in
 Preference order numbers need not be sequential (i.e., three numbers with the priority orders of 0, 5 and 15 are legitimate).  The preference order numbers must be non-negative.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RF1.24",
-                            Type = @"Field",
-                            Position = @"RF1.24",
-                            Name = @"Comment",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The comment allows for a free text capture of any notes the user wishes to capture related to the referral.  This is a single notes field that allows the user to add additional text over time, or replace the text that already exists.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RF1.25",
-                            Type = @"Field",
-                            Position = @"RF1.25",
-                            Name = @"Action Code",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0206",
-                            TableName = @"Segment action code",
-                            Description = @"This field defines the action to be taken for this referral.  Refer to HL7 Table 0206 - Segment Action Code in Chapter 2, Code Tables, for valid values.  When this field is valued, the AUT segment is not in ""snapshot mode"", rather in ""action mode"". ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentRF1(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field referralStatus;
-
-public HL7V28Field ReferralStatus
-{
-    get
-    {
-        if (referralStatus != null)
-        {
-            return referralStatus;
-        }
-
-        referralStatus = new HL7V28Field
-        {
-            field = message[@"RF1"][1],
-            Id = @"RF1.1",
-            Type = @"Field",
-            Position = @"RF1.1",
-            Name = @"Referral Status",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0283",
-            TableName = @"Referral Status",
-            Description = @"This field contains the status of the referral as defined by either the referred-to or the referred-by provider.  Refer to User-defined Table 0283 - Referral Status in Chapter 2C, Code Tables, for suggested values. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (referralStatus.field.FieldRepetitions != null && referralStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(referralStatus.Id));
-            referralStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(referralStatus, fieldData);
-        }
-
-        return referralStatus;
-    } 
-}
-
-internal HL7V28Field referralPriority;
-
-public HL7V28Field ReferralPriority
-{
-    get
-    {
-        if (referralPriority != null)
-        {
-            return referralPriority;
-        }
-
-        referralPriority = new HL7V28Field
-        {
-            field = message[@"RF1"][2],
-            Id = @"RF1.2",
-            Type = @"Field",
-            Position = @"RF1.2",
-            Name = @"Referral Priority",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0280",
-            TableName = @"Referral Priority",
-            Description = @"This field contains the urgency of the referral.  Refer to User-defined Table 0280 - Referral Priority in Chapter 2C, Code Tables, for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (referralPriority.field.FieldRepetitions != null && referralPriority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(referralPriority.Id));
-            referralPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(referralPriority, fieldData);
-        }
-
-        return referralPriority;
-    } 
-}
-
-internal HL7V28Field referralType;
-
-public HL7V28Field ReferralType
-{
-    get
-    {
-        if (referralType != null)
-        {
-            return referralType;
-        }
-
-        referralType = new HL7V28Field
-        {
-            field = message[@"RF1"][3],
-            Id = @"RF1.3",
-            Type = @"Field",
-            Position = @"RF1.3",
-            Name = @"Referral Type",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0281",
-            TableName = @"Referral Type",
-            Description = @"This field contains the type of referral.  It is loosely associated with a clinical specialty or type of resource.  Refer to User-defined Table 0281 - Referral Type in Chapter 2C, Code Tables, for suggested values. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (referralType.field.FieldRepetitions != null && referralType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(referralType.Id));
-            referralType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(referralType, fieldData);
-        }
-
-        return referralType;
-    } 
-}
-
-internal HL7V28Field referralDisposition;
-
-public HL7V28Field ReferralDisposition
-{
-    get
-    {
-        if (referralDisposition != null)
-        {
-            return referralDisposition;
-        }
-
-        referralDisposition = new HL7V28Field
-        {
-            field = message[@"RF1"][4],
-            Id = @"RF1.4",
-            Type = @"Field",
-            Position = @"RF1.4",
-            Name = @"Referral Disposition",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0282",
-            TableName = @"Referral Disposition",
-            Description = @"This field contains the type of response or action that the referring provider would like from the referred-to provider.  Refer to User-defined Table 0282 - Referral Disposition for suggested values. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (referralDisposition.field.FieldRepetitions != null && referralDisposition.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(referralDisposition.Id));
-            referralDisposition.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(referralDisposition, fieldData);
-        }
-
-        return referralDisposition;
-    } 
-}
-
-internal HL7V28Field referralCategory;
-
-public HL7V28Field ReferralCategory
-{
-    get
-    {
-        if (referralCategory != null)
-        {
-            return referralCategory;
-        }
-
-        referralCategory = new HL7V28Field
-        {
-            field = message[@"RF1"][5],
-            Id = @"RF1.5",
-            Type = @"Field",
-            Position = @"RF1.5",
-            Name = @"Referral Category",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0284",
-            TableName = @"Referral Category",
-            Description = @"This field contains the location at which the referral will take place.  Refer to User-defined Table 0284 - Referral Category for suggested values. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (referralCategory.field.FieldRepetitions != null && referralCategory.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(referralCategory.Id));
-            referralCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(referralCategory, fieldData);
-        }
-
-        return referralCategory;
-    } 
-}
-
-internal HL7V28Field originatingReferralIdentifier;
-
-public HL7V28Field OriginatingReferralIdentifier
-{
-    get
-    {
-        if (originatingReferralIdentifier != null)
-        {
-            return originatingReferralIdentifier;
-        }
-
-        originatingReferralIdentifier = new HL7V28Field
-        {
-            field = message[@"RF1"][6],
-            Id = @"RF1.6",
-            Type = @"Field",
-            Position = @"RF1.6",
-            Name = @"Originating Referral Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the originating application's permanent identifier for the referral.  This is a composite field.
-
-The first component is a string of up to 15 characters that identifies an individual referral.  It is assigned by the originating application, and it identifies a referral, and the subsequent referral transactions, uniquely among all such referrals from a particular processing application.
-
-The second component is optional because this field, itself, is already defined as a referral identifier.  
-
-The third component is optional.  If used, it should contain the application identifier for the referred-to or external applications (i.e., not the originating application).  The application identifier is a string of up to 15 characters that is uniquely associated with an application.  A given healthcare provider facility, or group of intercommunicating healthcare provider facilities, should establish a unique list of applications that may be potential originators and recipients, and then assign unique application identifiers to each of those applications.  This list of application identifiers becomes one of the healthcare provider facility's master dictionary lists.  Since applications fulfilling different application roles can send and receive referral messages, the assigning authority application identifier may not identify the application sending or receiving a particular message.  Data elements on the Message Header (MSH) segment are available to identify the actual sending and receiving applications.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (originatingReferralIdentifier.field.FieldRepetitions != null && originatingReferralIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(originatingReferralIdentifier.Id));
-            originatingReferralIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(originatingReferralIdentifier, fieldData);
-        }
-
-        return originatingReferralIdentifier;
-    } 
-}
-
-internal HL7V28Field effectiveDate;
-
-public HL7V28Field EffectiveDate
-{
-    get
-    {
-        if (effectiveDate != null)
-        {
-            return effectiveDate;
-        }
-
-        effectiveDate = new HL7V28Field
-        {
-            field = message[@"RF1"][7],
-            Id = @"RF1.7",
-            Type = @"Field",
-            Position = @"RF1.7",
-            Name = @"Effective Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date on which the referral is effective.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (effectiveDate.field.FieldRepetitions != null && effectiveDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(effectiveDate.Id));
-            effectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(effectiveDate, fieldData);
-        }
-
-        return effectiveDate;
-    } 
-}
-
-internal HL7V28Field expirationDate;
-
-public HL7V28Field ExpirationDate
-{
-    get
-    {
-        if (expirationDate != null)
-        {
-            return expirationDate;
-        }
-
-        expirationDate = new HL7V28Field
-        {
-            field = message[@"RF1"][8],
-            Id = @"RF1.8",
-            Type = @"Field",
-            Position = @"RF1.8",
-            Name = @"Expiration Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date on which the referral expires.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (expirationDate.field.FieldRepetitions != null && expirationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(expirationDate.Id));
-            expirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(expirationDate, fieldData);
-        }
-
-        return expirationDate;
-    } 
-}
-
-internal HL7V28Field processDate;
-
-public HL7V28Field ProcessDate
-{
-    get
-    {
-        if (processDate != null)
-        {
-            return processDate;
-        }
-
-        processDate = new HL7V28Field
-        {
-            field = message[@"RF1"][9],
-            Id = @"RF1.9",
-            Type = @"Field",
-            Position = @"RF1.9",
-            Name = @"Process Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date on which the referral originated.  It is used in cases of retroactive approval.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (processDate.field.FieldRepetitions != null && processDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(processDate.Id));
-            processDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(processDate, fieldData);
-        }
-
-        return processDate;
-    } 
-}
-
-internal HL7V28Field referralReason;
-
-public HL7V28Field ReferralReason
-{
-    get
-    {
-        if (referralReason != null)
-        {
-            return referralReason;
-        }
-
-        referralReason = new HL7V28Field
-        {
-            field = message[@"RF1"][10],
-            Id = @"RF1.10",
-            Type = @"Field",
-            Position = @"RF1.10",
-            Name = @"Referral Reason",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0336",
-            TableName = @"Referral Reason",
-            Description = @"This field contains the reason for which the referral will take place.  Refer to User-defined Table 0336 - Referral Reason for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (referralReason.field.FieldRepetitions != null && referralReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(referralReason.Id));
-            referralReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(referralReason, fieldData);
-        }
-
-        return referralReason;
-    } 
-}
-
-internal HL7V28Field externalReferralIdentifier;
-
-public HL7V28Field ExternalReferralIdentifier
-{
-    get
-    {
-        if (externalReferralIdentifier != null)
-        {
-            return externalReferralIdentifier;
-        }
-
-        externalReferralIdentifier = new HL7V28Field
-        {
-            field = message[@"RF1"][11],
-            Id = @"RF1.11",
-            Type = @"Field",
-            Position = @"RF1.11",
-            Name = @"External Referral Identifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an external application's permanent identifier for the referral.  That is, this referral identifier does not belong to the application that originated the referral and assigned the originating referral identifier.
-
-The first component is a string of up to 15 characters that identifies an individual referral.  It is typically assigned by the referred-to provider application responding to a referral originating from a referring provider application, and it identifies a referral, and the subsequent referral transactions, uniquely among all such referrals for a particular referred-to provider processing application.  For example, when a primary care provider (referring provider) sends a referral to a specialist (referred-to provider), the specialist's application system may accept the referral and assign it a new referral identifier which uniquely identifies that particular referral within the specialist's application system.  This new referral identifier would be placed in the external referral identifier field when the specialist responds to the primary care physician.
-
-The second component is optional because this field, itself, is already defined as a referral identifier.  
-
-The third component is optional.  If used, it should contain the application identifier for the referred-to or external application (i.e., not the originating application).  
-The application identifier is a string of up to 15 characters that is uniquely associated with an application.  A given healthcare provider facility, or group of intercommunicating healthcare provider facilities, should establish a unique list of applications that may be potential originators and recipients, and then assign unique application identifiers to each of those applications.  This list of application identifiers becomes one of the healthcare provider facility's master dictionary lists.  Since applications fulfilling different application roles can send and receive referral messages, the assigning authority application identifier may not identify the application sending or receiving a particular message.  Data elements on the Message Header (MSH) segment are available to identify the actual sending and receiving applications.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (externalReferralIdentifier.field.FieldRepetitions != null && externalReferralIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(externalReferralIdentifier.Id));
-            externalReferralIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(externalReferralIdentifier, fieldData);
-        }
-
-        return externalReferralIdentifier;
-    } 
-}
-
-internal HL7V28Field referralDocumentationCompletionStatus;
-
-public HL7V28Field ReferralDocumentationCompletionStatus
-{
-    get
-    {
-        if (referralDocumentationCompletionStatus != null)
-        {
-            return referralDocumentationCompletionStatus;
-        }
-
-        referralDocumentationCompletionStatus = new HL7V28Field
-        {
-            field = message[@"RF1"][12],
-            Id = @"RF1.12",
-            Type = @"Field",
-            Position = @"RF1.12",
-            Name = @"Referral Documentation Completion Status",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0865",
-            TableName = @"Referral Documentation Completion Status",
-            Description = @"This field can be used to indicate to the receiving provider that the clinical history in the message is incomplete and that more will follow.  Refer to User-defined Table 0865 - Referral Documentation Completion Status for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (referralDocumentationCompletionStatus.field.FieldRepetitions != null && referralDocumentationCompletionStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(referralDocumentationCompletionStatus.Id));
-            referralDocumentationCompletionStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(referralDocumentationCompletionStatus, fieldData);
-        }
-
-        return referralDocumentationCompletionStatus;
-    } 
-}
-
-internal HL7V28Field plannedTreatmentStopDate;
-
-public HL7V28Field PlannedTreatmentStopDate
-{
-    get
-    {
-        if (plannedTreatmentStopDate != null)
-        {
-            return plannedTreatmentStopDate;
-        }
-
-        plannedTreatmentStopDate = new HL7V28Field
-        {
-            field = message[@"RF1"][13],
-            Id = @"RF1.13",
-            Type = @"Field",
-            Position = @"RF1.13",
-            Name = @"Planned Treatment Stop Date",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"The planned treatment stop date is the date that the patient's treatment from this referral is expected to complete, based on procedural protocols.  This value can be used to indicate that an extension to an authorization is necessary, if the treatment continues longer than expected.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (plannedTreatmentStopDate.field.FieldRepetitions != null && plannedTreatmentStopDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(plannedTreatmentStopDate.Id));
-            plannedTreatmentStopDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(plannedTreatmentStopDate, fieldData);
-        }
-
-        return plannedTreatmentStopDate;
-    } 
-}
-
-internal HL7V28Field referralReasonText;
-
-public HL7V28Field ReferralReasonText
-{
-    get
-    {
-        if (referralReasonText != null)
-        {
-            return referralReasonText;
-        }
-
-        referralReasonText = new HL7V28Field
-        {
-            field = message[@"RF1"][14],
-            Id = @"RF1.14",
-            Type = @"Field",
-            Position = @"RF1.14",
-            Name = @"Referral Reason Text",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The referral reason is a free text field allowing a user to capture, in a non-coded format, the reason for the referral.  Typically this would describe the patient's condition or illness for which the referral is recorded.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (referralReasonText.field.FieldRepetitions != null && referralReasonText.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(referralReasonText.Id));
-            referralReasonText.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(referralReasonText, fieldData);
-        }
-
-        return referralReasonText;
-    } 
-}
-
-internal HL7V28Field numberofAuthorizedTreatmentsUnits;
-
-public HL7V28Field NumberofAuthorizedTreatmentsUnits
-{
-    get
-    {
-        if (numberofAuthorizedTreatmentsUnits != null)
-        {
-            return numberofAuthorizedTreatmentsUnits;
-        }
-
-        numberofAuthorizedTreatmentsUnits = new HL7V28Field
-        {
-            field = message[@"RF1"][15],
-            Id = @"RF1.15",
-            Type = @"Field",
-            Position = @"RF1.15",
-            Name = @"Number of Authorized Treatments/Units",
-            Length = 721,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The authorized duration is the amount of time, in days or visits, that the patient has been authorized for treatment for this referral.  The duration of ""days"" is reserved for inpatient authorizations.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (numberofAuthorizedTreatmentsUnits.field.FieldRepetitions != null && numberofAuthorizedTreatmentsUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberofAuthorizedTreatmentsUnits.Id));
-            numberofAuthorizedTreatmentsUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(numberofAuthorizedTreatmentsUnits, fieldData);
-        }
-
-        return numberofAuthorizedTreatmentsUnits;
-    } 
-}
-
-internal HL7V28Field numberofUsedTreatmentsUnits;
-
-public HL7V28Field NumberofUsedTreatmentsUnits
-{
-    get
-    {
-        if (numberofUsedTreatmentsUnits != null)
-        {
-            return numberofUsedTreatmentsUnits;
-        }
-
-        numberofUsedTreatmentsUnits = new HL7V28Field
-        {
-            field = message[@"RF1"][16],
-            Id = @"RF1.16",
-            Type = @"Field",
-            Position = @"RF1.16",
-            Name = @"Number of Used Treatments/Units",
-            Length = 721,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The used duration is the amount of time, in days or visits that the patient has used of the originally authorized duration. The duration of ""days"" is reserved for inpatient authorizations.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (numberofUsedTreatmentsUnits.field.FieldRepetitions != null && numberofUsedTreatmentsUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberofUsedTreatmentsUnits.Id));
-            numberofUsedTreatmentsUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(numberofUsedTreatmentsUnits, fieldData);
-        }
-
-        return numberofUsedTreatmentsUnits;
-    } 
-}
-
-internal HL7V28Field numberofScheduleTreatmentsUnits;
-
-public HL7V28Field NumberofScheduleTreatmentsUnits
-{
-    get
-    {
-        if (numberofScheduleTreatmentsUnits != null)
-        {
-            return numberofScheduleTreatmentsUnits;
-        }
-
-        numberofScheduleTreatmentsUnits = new HL7V28Field
-        {
-            field = message[@"RF1"][17],
-            Id = @"RF1.17",
-            Type = @"Field",
-            Position = @"RF1.17",
-            Name = @"Number of Schedule Treatments/Units",
-            Length = 721,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The scheduled treatments is the amount of time, in days or visits that the patient has planned treatments scheduled.  The duration of ""days"" is reserved for inpatient authorizations.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (numberofScheduleTreatmentsUnits.field.FieldRepetitions != null && numberofScheduleTreatmentsUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberofScheduleTreatmentsUnits.Id));
-            numberofScheduleTreatmentsUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(numberofScheduleTreatmentsUnits, fieldData);
-        }
-
-        return numberofScheduleTreatmentsUnits;
-    } 
-}
-
-internal HL7V28Field remainingBenefitAmount;
-
-public HL7V28Field RemainingBenefitAmount
-{
-    get
-    {
-        if (remainingBenefitAmount != null)
-        {
-            return remainingBenefitAmount;
-        }
-
-        remainingBenefitAmount = new HL7V28Field
-        {
-            field = message[@"RF1"][18],
-            Id = @"RF1.18",
-            Type = @"Field",
-            Position = @"RF1.18",
-            Name = @"Remaining Benefit Amount",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"MO",
-            DataTypeName = @"Money",
-            TableId = null,
-            TableName = null,
-            Description = @"The remaining benefit amount is the amount remaining from the insurance company related to this referral. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (remainingBenefitAmount.field.FieldRepetitions != null && remainingBenefitAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(remainingBenefitAmount.Id));
-            remainingBenefitAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(remainingBenefitAmount, fieldData);
-        }
-
-        return remainingBenefitAmount;
-    } 
-}
-
-internal HL7V28Field authorizedProvider;
-
-public HL7V28Field AuthorizedProvider
-{
-    get
-    {
-        if (authorizedProvider != null)
-        {
-            return authorizedProvider;
-        }
-
-        authorizedProvider = new HL7V28Field
-        {
-            field = message[@"RF1"][19],
-            Id = @"RF1.19",
-            Type = @"Field",
-            Position = @"RF1.19",
-            Name = @"Authorized Provider",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"This represents the organization to which the patient was referred to perform the procedure(s).  The authorized provider represents the organization recognized by the insurance carrier that is authorized to perform the services for the patient specified on the referral",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (authorizedProvider.field.FieldRepetitions != null && authorizedProvider.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authorizedProvider.Id));
-            authorizedProvider.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(authorizedProvider, fieldData);
-        }
-
-        return authorizedProvider;
-    } 
-}
-
-internal HL7V28Field authorizedHealthProfessional;
-
-public HL7V28Field AuthorizedHealthProfessional
-{
-    get
-    {
-        if (authorizedHealthProfessional != null)
-        {
-            return authorizedHealthProfessional;
-        }
-
-        authorizedHealthProfessional = new HL7V28Field
-        {
-            field = message[@"RF1"][20],
-            Id = @"RF1.20",
-            Type = @"Field",
-            Position = @"RF1.20",
-            Name = @"Authorized Health Professional",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"The authorized HP represents the specific health professional authorized to perform the services for the patient.  This is a less frequently used field, as most often the authorization is for a group/organization and not a specific HP within that group.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (authorizedHealthProfessional.field.FieldRepetitions != null && authorizedHealthProfessional.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authorizedHealthProfessional.Id));
-            authorizedHealthProfessional.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(authorizedHealthProfessional, fieldData);
-        }
-
-        return authorizedHealthProfessional;
-    } 
-}
-
-internal HL7V28Field sourceText;
-
-public HL7V28Field SourceText
-{
-    get
-    {
-        if (sourceText != null)
-        {
-            return sourceText;
-        }
-
-        sourceText = new HL7V28Field
-        {
-            field = message[@"RF1"][21],
-            Id = @"RF1.21",
-            Type = @"Field",
-            Position = @"RF1.21",
-            Name = @"Source Text",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The source text allows a user to capture information (such as the name) of the person contacted regarding the specific referral.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sourceText.field.FieldRepetitions != null && sourceText.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sourceText.Id));
-            sourceText.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(sourceText, fieldData);
-        }
-
-        return sourceText;
-    } 
-}
-
-internal HL7V28Field sourceDate;
-
-public HL7V28Field SourceDate
-{
-    get
-    {
-        if (sourceDate != null)
-        {
-            return sourceDate;
-        }
-
-        sourceDate = new HL7V28Field
-        {
-            field = message[@"RF1"][22],
-            Id = @"RF1.22",
-            Type = @"Field",
-            Position = @"RF1.22",
-            Name = @"Source Date",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"The source date allows a user to capture the date the person was contacted regarding the specific referral.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sourceDate.field.FieldRepetitions != null && sourceDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sourceDate.Id));
-            sourceDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(sourceDate, fieldData);
-        }
-
-        return sourceDate;
-    } 
-}
-
-internal HL7V28Field sourcePhone;
-
-public HL7V28Field SourcePhone
-{
-    get
-    {
-        if (sourcePhone != null)
-        {
-            return sourcePhone;
-        }
-
-        sourcePhone = new HL7V28Field
+        _sourcePhone = new HL7V28Field
         {
             field = message[@"RF1"][23],
-            Id = @"RF1.23",
-            Type = @"Field",
-            Position = @"RF1.23",
-            Name = @"Source Phone",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"The source phone number allows a user to capture the phone number of the person contacted regarding the specific referral.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (sourcePhone.field.FieldRepetitions != null && sourcePhone.field.FieldRepetitions.Count > 0)
+        if (_sourcePhone.field.FieldRepetitions != null && _sourcePhone.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sourcePhone.Id));
-            sourcePhone.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(sourcePhone, fieldData);
+            _sourcePhone.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_sourcePhone, fieldData);
         }
 
-        return sourcePhone;
+        return _sourcePhone;
     } 
 }
 
-internal HL7V28Field comment;
+internal HL7V28Field _comment;
 
 public HL7V28Field Comment
 {
     get
     {
-        if (comment != null)
+        if (_comment != null)
         {
-            return comment;
+            return _comment;
         }
 
-        comment = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"RF1"][24],
             Id = @"RF1.24",
             Type = @"Field",
             Position = @"RF1.24",
@@ -10476,34 +10143,38 @@ public HL7V28Field Comment
             TableName = null,
             Description = @"The comment allows for a free text capture of any notes the user wishes to capture related to the referral.  This is a single notes field that allows the user to add additional text over time, or replace the text that already exists.",
             Sample = @"",
+            Fields = null
+        }
+
+        _comment = new HL7V28Field
+        {
+            field = message[@"RF1"][24],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (comment.field.FieldRepetitions != null && comment.field.FieldRepetitions.Count > 0)
+        if (_comment.field.FieldRepetitions != null && _comment.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(comment.Id));
-            comment.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(comment, fieldData);
+            _comment.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_comment, fieldData);
         }
 
-        return comment;
+        return _comment;
     } 
 }
 
-internal HL7V28Field actionCode;
+internal HL7V28Field _actionCode;
 
 public HL7V28Field ActionCode
 {
     get
     {
-        if (actionCode != null)
+        if (_actionCode != null)
         {
-            return actionCode;
+            return _actionCode;
         }
 
-        actionCode = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"RF1"][25],
             Id = @"RF1.25",
             Type = @"Field",
             Position = @"RF1.25",
@@ -10517,17 +10188,22 @@ public HL7V28Field ActionCode
             TableName = @"Segment action code",
             Description = @"This field defines the action to be taken for this referral.  Refer to HL7 Table 0206 - Segment Action Code in Chapter 2, Code Tables, for valid values.  When this field is valued, the AUT segment is not in ""snapshot mode"", rather in ""action mode"". ",
             Sample = @"",
+            Fields = null
+        }
+
+        _actionCode = new HL7V28Field
+        {
+            field = message[@"RF1"][25],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (actionCode.field.FieldRepetitions != null && actionCode.field.FieldRepetitions.Count > 0)
+        if (_actionCode.field.FieldRepetitions != null && _actionCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actionCode.Id));
-            actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(actionCode, fieldData);
+            _actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_actionCode, fieldData);
         }
 
-        return actionCode;
+        return _actionCode;
     } 
 }
     }

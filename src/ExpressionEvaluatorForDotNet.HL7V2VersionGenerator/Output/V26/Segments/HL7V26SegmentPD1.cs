@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentPD1(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _livingDependency;
+
+public HL7V26Field LivingDependency
+{
+    get
+    {
+        if (_livingDependency != null)
+        {
+            return _livingDependency;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.1",
+            Type = @"Field",
+            Position = @"PD1.1",
+            Name = @"Living Dependency",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0223",
+            TableName = @"Living Dependency",
+            Description = @"This field identifies specific living conditions (e.g., spouse dependent on patient, walk-up) that are relevant to an evaluation of the patient's healthcare needs. This information can be used for discharge planning. This field repeats because, for example, ""spouse dependent"" and ""medical supervision required"" can apply at the same time. Refer to User-defined Table 0223 - Living Dependency for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _livingDependency = new HL7V26Field
+        {
+            field = message[@"PD1"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_livingDependency.field.FieldRepetitions != null && _livingDependency.field.FieldRepetitions.Count > 0)
+        {
+            _livingDependency.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_livingDependency, fieldData);
+        }
+
+        return _livingDependency;
+    } 
+}
+
+internal HL7V26Field _livingArrangement;
+
+public HL7V26Field LivingArrangement
+{
+    get
+    {
+        if (_livingArrangement != null)
+        {
+            return _livingArrangement;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.2",
+            Type = @"Field",
+            Position = @"PD1.2",
+            Name = @"Living Arrangement",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0220",
+            TableName = @"Living Arrangement",
+            Description = @"This field identifies the situation in which the patient lives at his residential address. Examples might include Alone, Family, Relatives, Institution, etc. Refer to User-defined Table 0220 - Living Arrangement for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _livingArrangement = new HL7V26Field
+        {
+            field = message[@"PD1"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_livingArrangement.field.FieldRepetitions != null && _livingArrangement.field.FieldRepetitions.Count > 0)
+        {
+            _livingArrangement.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_livingArrangement, fieldData);
+        }
+
+        return _livingArrangement;
+    } 
+}
+
+internal HL7V26Field _patientPrimaryFacility;
+
+public HL7V26Field PatientPrimaryFacility
+{
+    get
+    {
+        if (_patientPrimaryFacility != null)
+        {
+            return _patientPrimaryFacility;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.3",
+            Type = @"Field",
+            Position = @"PD1.3",
+            Name = @"Patient Primary Facility",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
+            TableId = @"0204",
+            TableName = @"Organizational name type",
+            Description = @"This field contains the name and identifier that specifies the ""primary care"" healthcare facility selected by the patient at the time of enrolment in an HMO Insurance Plan. Multiple names and identifiers are allowed for the same facility. The legal name of the healthcare facility must be sent in the first sequence. If the legal name of the facility is not sent, then the repeat delimiter must be sent in the first sequence. Refer to User-defined Table 0204 - Organizational Name Type for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PD1.1",
-                            Type = @"Field",
-                            Position = @"PD1.1",
-                            Name = @"Living Dependency",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0223",
-                            TableName = @"Living Dependency",
-                            Description = @"This field identifies specific living conditions (e.g., spouse dependent on patient, walk-up) that are relevant to an evaluation of the patient's healthcare needs. This information can be used for discharge planning. This field repeats because, for example, ""spouse dependent"" and ""medical supervision required"" can apply at the same time. Refer to User-defined Table 0223 - Living Dependency for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.2",
-                            Type = @"Field",
-                            Position = @"PD1.2",
-                            Name = @"Living Arrangement",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0220",
-                            TableName = @"Living Arrangement",
-                            Description = @"This field identifies the situation in which the patient lives at his residential address. Examples might include Alone, Family, Relatives, Institution, etc. Refer to User-defined Table 0220 - Living Arrangement for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.3",
-                            Type = @"Field",
-                            Position = @"PD1.3",
-                            Name = @"Patient Primary Facility",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-                            TableId = @"0204",
-                            TableName = @"Organizational name type",
-                            Description = @"This field contains the name and identifier that specifies the ""primary care"" healthcare facility selected by the patient at the time of enrolment in an HMO Insurance Plan. Multiple names and identifiers are allowed for the same facility. The legal name of the healthcare facility must be sent in the first sequence. If the legal name of the facility is not sent, then the repeat delimiter must be sent in the first sequence. Refer to User-defined Table 0204 - Organizational Name Type for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PD1.3.1",
                             Type = @"Component",
@@ -368,25 +434,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _patientPrimaryFacility = new HL7V26Field
+        {
+            field = message[@"PD1"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientPrimaryFacility.field.FieldRepetitions != null && _patientPrimaryFacility.field.FieldRepetitions.Count > 0)
+        {
+            _patientPrimaryFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_patientPrimaryFacility, fieldData);
+        }
+
+        return _patientPrimaryFacility;
+    } 
+}
+
+internal HL7V26Field _patientPrimaryCareProviderNameandIDNo;
+
+public HL7V26Field PatientPrimaryCareProviderNameandIDNo
+{
+    get
+    {
+        if (_patientPrimaryCareProviderNameandIDNo != null)
+        {
+            return _patientPrimaryCareProviderNameandIDNo;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.4",
+            Type = @"Field",
+            Position = @"PD1.4",
+            Name = @"Patient Primary Care Provider Name and ID No.",
+            Length = 250,
+            Usage = @"B",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is retained for backward compatibility only; the ROL segment is now used to convey more complete information about the primary care provider. This field contained the provider name and ID of the primary care provider. Multiple names are allowed for the same person. The legal name must be sent in the first sequence. If the legal name is not sent, then the repeat delimiter must be sent in the first sequence.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PD1.4",
-                            Type = @"Field",
-                            Position = @"PD1.4",
-                            Name = @"Patient Primary Care Provider Name and ID No.",
-                            Length = 250,
-                            Usage = @"B",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is retained for backward compatibility only; the ROL segment is now used to convey more complete information about the primary care provider. This field contained the provider name and ID of the primary care provider. Multiple names are allowed for the same person. The legal name must be sent in the first sequence. If the legal name is not sent, then the repeat delimiter must be sent in the first sequence.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PD1.4.1",
                             Type = @"Component",
@@ -1506,115 +1602,280 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _patientPrimaryCareProviderNameandIDNo = new HL7V26Field
+        {
+            field = message[@"PD1"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientPrimaryCareProviderNameandIDNo.field.FieldRepetitions != null && _patientPrimaryCareProviderNameandIDNo.field.FieldRepetitions.Count > 0)
+        {
+            _patientPrimaryCareProviderNameandIDNo.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_patientPrimaryCareProviderNameandIDNo, fieldData);
+        }
+
+        return _patientPrimaryCareProviderNameandIDNo;
+    } 
+}
+
+internal HL7V26Field _studentIndicator;
+
+public HL7V26Field StudentIndicator
+{
+    get
+    {
+        if (_studentIndicator != null)
+        {
+            return _studentIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.5",
+            Type = @"Field",
+            Position = @"PD1.5",
+            Name = @"Student Indicator",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0231",
+            TableName = @"Student Status",
+            Description = @"This field indicates if the patient is currently a student or not, and whether the patient is a full-time or a part-time student. This field does not indicate the student's degree level (high school, college, elementary) or the student's field of study (accounting, engineering, etc.). Refer to User-defined Table 0231 - Student Status in Chapter 6 for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _studentIndicator = new HL7V26Field
+        {
+            field = message[@"PD1"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_studentIndicator.field.FieldRepetitions != null && _studentIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _studentIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_studentIndicator, fieldData);
+        }
+
+        return _studentIndicator;
+    } 
+}
+
+internal HL7V26Field _handicap;
+
+public HL7V26Field Handicap
+{
+    get
+    {
+        if (_handicap != null)
+        {
+            return _handicap;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.6",
+            Type = @"Field",
+            Position = @"PD1.6",
+            Name = @"Handicap",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0295",
+            TableName = @"Handicap",
+            Description = @"This field indicates the nature of the patient's permanent handicapped condition (e.g., deaf, blind). A handicapped condition is defined as a physical or mental disability that is permanent. Transient handicapped conditions should be sent in the ambulatory status. Refer to User-defined Table 0295 - Handicap for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _handicap = new HL7V26Field
+        {
+            field = message[@"PD1"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_handicap.field.FieldRepetitions != null && _handicap.field.FieldRepetitions.Count > 0)
+        {
+            _handicap.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_handicap, fieldData);
+        }
+
+        return _handicap;
+    } 
+}
+
+internal HL7V26Field _livingWillCode;
+
+public HL7V26Field LivingWillCode
+{
+    get
+    {
+        if (_livingWillCode != null)
+        {
+            return _livingWillCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.7",
+            Type = @"Field",
+            Position = @"PD1.7",
+            Name = @"Living Will Code",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0315",
+            TableName = @"Living Will Code",
+            Description = @"This field indicates whether or not the patient has a living will and, if so, whether a copy of the living will is on file at the healthcare facility. If the patient does not have a living will, the value of this field indicates whether the patient was provided information on living wills. Refer to User-defined Table 0315 - Living Will Code for suggested values. See also PV2-43 - Living Will Code.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _livingWillCode = new HL7V26Field
+        {
+            field = message[@"PD1"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_livingWillCode.field.FieldRepetitions != null && _livingWillCode.field.FieldRepetitions.Count > 0)
+        {
+            _livingWillCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_livingWillCode, fieldData);
+        }
+
+        return _livingWillCode;
+    } 
+}
+
+internal HL7V26Field _organDonorCode;
+
+public HL7V26Field OrganDonorCode
+{
+    get
+    {
+        if (_organDonorCode != null)
+        {
+            return _organDonorCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.8",
+            Type = @"Field",
+            Position = @"PD1.8",
+            Name = @"Organ Donor Code",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0316",
+            TableName = @"Organ Donor Code",
+            Description = @"This field indicates whether the patient wants to donate his/her organs and whether an organ donor card or similar documentation is on file with the healthcare organization. Refer to User-defined Table 0316 - Organ Donor Code for suggested values. See also PV2-44 - Organ donor Code.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _organDonorCode = new HL7V26Field
+        {
+            field = message[@"PD1"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_organDonorCode.field.FieldRepetitions != null && _organDonorCode.field.FieldRepetitions.Count > 0)
+        {
+            _organDonorCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_organDonorCode, fieldData);
+        }
+
+        return _organDonorCode;
+    } 
+}
+
+internal HL7V26Field _separateBill;
+
+public HL7V26Field SeparateBill
+{
+    get
+    {
+        if (_separateBill != null)
+        {
+            return _separateBill;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.9",
+            Type = @"Field",
+            Position = @"PD1.9",
+            Name = @"Separate Bill",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field specifies that charges for this patient are to be billed separately from other patient bills with the same guarantor. (This bill is now a patient bill rather than a guarantor bill.) Refer to HL7 Table 0136 - Yes/No Indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _separateBill = new HL7V26Field
+        {
+            field = message[@"PD1"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_separateBill.field.FieldRepetitions != null && _separateBill.field.FieldRepetitions.Count > 0)
+        {
+            _separateBill.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_separateBill, fieldData);
+        }
+
+        return _separateBill;
+    } 
+}
+
+internal HL7V26Field _duplicatePatient;
+
+public HL7V26Field DuplicatePatient
+{
+    get
+    {
+        if (_duplicatePatient != null)
+        {
+            return _duplicatePatient;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.10",
+            Type = @"Field",
+            Position = @"PD1.10",
+            Name = @"Duplicate Patient",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID with Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates that a patient is the same as, or a duplicate of, another patient found on the sending system. The intent is to be informational only and no action is required by the receiver. Include the patient identifier if the sender knows an identifier for the patient. The assigning authority and identifier type code are strongly recommended for all CX data types.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PD1.5",
-                            Type = @"Field",
-                            Position = @"PD1.5",
-                            Name = @"Student Indicator",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0231",
-                            TableName = @"Student Status",
-                            Description = @"This field indicates if the patient is currently a student or not, and whether the patient is a full-time or a part-time student. This field does not indicate the student's degree level (high school, college, elementary) or the student's field of study (accounting, engineering, etc.). Refer to User-defined Table 0231 - Student Status in Chapter 6 for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.6",
-                            Type = @"Field",
-                            Position = @"PD1.6",
-                            Name = @"Handicap",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0295",
-                            TableName = @"Handicap",
-                            Description = @"This field indicates the nature of the patient's permanent handicapped condition (e.g., deaf, blind). A handicapped condition is defined as a physical or mental disability that is permanent. Transient handicapped conditions should be sent in the ambulatory status. Refer to User-defined Table 0295 - Handicap for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.7",
-                            Type = @"Field",
-                            Position = @"PD1.7",
-                            Name = @"Living Will Code",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0315",
-                            TableName = @"Living Will Code",
-                            Description = @"This field indicates whether or not the patient has a living will and, if so, whether a copy of the living will is on file at the healthcare facility. If the patient does not have a living will, the value of this field indicates whether the patient was provided information on living wills. Refer to User-defined Table 0315 - Living Will Code for suggested values. See also PV2-43 - Living Will Code.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.8",
-                            Type = @"Field",
-                            Position = @"PD1.8",
-                            Name = @"Organ Donor Code",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0316",
-                            TableName = @"Organ Donor Code",
-                            Description = @"This field indicates whether the patient wants to donate his/her organs and whether an organ donor card or similar documentation is on file with the healthcare organization. Refer to User-defined Table 0316 - Organ Donor Code for suggested values. See also PV2-44 - Organ donor Code.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.9",
-                            Type = @"Field",
-                            Position = @"PD1.9",
-                            Name = @"Separate Bill",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field specifies that charges for this patient are to be billed separately from other patient bills with the same guarantor. (This bill is now a patient bill rather than a guarantor bill.) Refer to HL7 Table 0136 - Yes/No Indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.10",
-                            Type = @"Field",
-                            Position = @"PD1.10",
-                            Name = @"Duplicate Patient",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID with Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates that a patient is the same as, or a duplicate of, another patient found on the sending system. The intent is to be informational only and no action is required by the receiver. Include the patient identifier if the sender knows an identifier for the patient. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PD1.10.1",
                             Type = @"Component",
@@ -2216,25 +2477,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _duplicatePatient = new HL7V26Field
+        {
+            field = message[@"PD1"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_duplicatePatient.field.FieldRepetitions != null && _duplicatePatient.field.FieldRepetitions.Count > 0)
+        {
+            _duplicatePatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_duplicatePatient, fieldData);
+        }
+
+        return _duplicatePatient;
+    } 
+}
+
+internal HL7V26Field _publicityCode;
+
+public HL7V26Field PublicityCode
+{
+    get
+    {
+        if (_publicityCode != null)
+        {
+            return _publicityCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.11",
+            Type = @"Field",
+            Position = @"PD1.11",
+            Name = @"Publicity Code",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0215",
+            TableName = @"Publicity Code",
+            Description = @"This field contains a user-defined code indicating what level of publicity is allowed (e.g., No Publicity, Family Only) for the patient. Refer to User-defined Table 0215 - Publicity Code for suggested values. Refer to PV2-21 - Visit Publicity Code for visit level code.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PD1.11",
-                            Type = @"Field",
-                            Position = @"PD1.11",
-                            Name = @"Publicity Code",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0215",
-                            TableName = @"Publicity Code",
-                            Description = @"This field contains a user-defined code indicating what level of publicity is allowed (e.g., No Publicity, Family Only) for the patient. Refer to User-defined Table 0215 - Publicity Code for suggested values. Refer to PV2-21 - Visit Publicity Code for visit level code.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PD1.11.1",
                             Type = @"Component",
@@ -2394,61 +2685,145 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _publicityCode = new HL7V26Field
+        {
+            field = message[@"PD1"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_publicityCode.field.FieldRepetitions != null && _publicityCode.field.FieldRepetitions.Count > 0)
+        {
+            _publicityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_publicityCode, fieldData);
+        }
+
+        return _publicityCode;
+    } 
+}
+
+internal HL7V26Field _protectionIndicator;
+
+public HL7V26Field ProtectionIndicator
+{
+    get
+    {
+        if (_protectionIndicator != null)
+        {
+            return _protectionIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.12",
+            Type = @"Field",
+            Position = @"PD1.12",
+            Name = @"Protection Indicator",
+            Length = 1,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"From V2.6 onward, this field has been retained for backward compatibility only.  Use the ARV segment instead. This field identifies the patient's protection that determines, in turn, whether access to information about this person should be kept from users who do not have adequate authority for the patient. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _protectionIndicator = new HL7V26Field
+        {
+            field = message[@"PD1"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_protectionIndicator.field.FieldRepetitions != null && _protectionIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _protectionIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_protectionIndicator, fieldData);
+        }
+
+        return _protectionIndicator;
+    } 
+}
+
+internal HL7V26Field _protectionIndicatorEffectiveDate;
+
+public HL7V26Field ProtectionIndicatorEffectiveDate
+{
+    get
+    {
+        if (_protectionIndicatorEffectiveDate != null)
+        {
+            return _protectionIndicatorEffectiveDate;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.13",
+            Type = @"Field",
+            Position = @"PD1.13",
+            Name = @"Protection Indicator Effective Date",
+            Length = 8,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"From V2.6 onward, this field has been retained for backward compatibility only.  Use the ARV segment instead. This field indicates the effective date for PD1-12 - Protection Indicator.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _protectionIndicatorEffectiveDate = new HL7V26Field
+        {
+            field = message[@"PD1"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_protectionIndicatorEffectiveDate.field.FieldRepetitions != null && _protectionIndicatorEffectiveDate.field.FieldRepetitions.Count > 0)
+        {
+            _protectionIndicatorEffectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_protectionIndicatorEffectiveDate, fieldData);
+        }
+
+        return _protectionIndicatorEffectiveDate;
+    } 
+}
+
+internal HL7V26Field _placeofWorship;
+
+public HL7V26Field PlaceofWorship
+{
+    get
+    {
+        if (_placeofWorship != null)
+        {
+            return _placeofWorship;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.14",
+            Type = @"Field",
+            Position = @"PD1.14",
+            Name = @"Place of Worship",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"The patient's place of worship. For example, the patient attends the First Baptist Church of Atlanta.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PD1.12",
-                            Type = @"Field",
-                            Position = @"PD1.12",
-                            Name = @"Protection Indicator",
-                            Length = 1,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"From V2.6 onward, this field has been retained for backward compatibility only.  Use the ARV segment instead. This field identifies the patient's protection that determines, in turn, whether access to information about this person should be kept from users who do not have adequate authority for the patient. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.13",
-                            Type = @"Field",
-                            Position = @"PD1.13",
-                            Name = @"Protection Indicator Effective Date",
-                            Length = 8,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"From V2.6 onward, this field has been retained for backward compatibility only.  Use the ARV segment instead. This field indicates the effective date for PD1-12 - Protection Indicator.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.14",
-                            Type = @"Field",
-                            Position = @"PD1.14",
-                            Name = @"Place of Worship",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The patient's place of worship. For example, the patient attends the First Baptist Church of Atlanta.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PD1.14.1",
                             Type = @"Component",
@@ -2730,25 +3105,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _placeofWorship = new HL7V26Field
+        {
+            field = message[@"PD1"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_placeofWorship.field.FieldRepetitions != null && _placeofWorship.field.FieldRepetitions.Count > 0)
+        {
+            _placeofWorship.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_placeofWorship, fieldData);
+        }
+
+        return _placeofWorship;
+    } 
+}
+
+internal HL7V26Field _advanceDirectiveCode;
+
+public HL7V26Field AdvanceDirectiveCode
+{
+    get
+    {
+        if (_advanceDirectiveCode != null)
+        {
+            return _advanceDirectiveCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PD1.15",
+            Type = @"Field",
+            Position = @"PD1.15",
+            Name = @"Advance Directive Code",
+            Length = 705,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0435",
+            TableName = @"Advance Directive Code",
+            Description = @"This field indicates the patient's instructions to the healthcare facility. Refer to User-defined Table 0435 - Advance Directive Code for suggested values. See also PV2-45 - Advance Directive Code. When PD1-22 - Advanced Directive Last Verified Date is valued, this field is required.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PD1.15",
-                            Type = @"Field",
-                            Position = @"PD1.15",
-                            Name = @"Advance Directive Code",
-                            Length = 705,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0435",
-                            TableName = @"Advance Directive Code",
-                            Description = @"This field indicates the patient's instructions to the healthcare facility. Refer to User-defined Table 0435 - Advance Directive Code for suggested values. See also PV2-45 - Advance Directive Code. When PD1-22 - Advanced Directive Last Verified Date is valued, this field is required.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PD1.15.1",
                             Type = @"Component",
@@ -2908,772 +3313,39 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.16",
-                            Type = @"Field",
-                            Position = @"PD1.16",
-                            Name = @"Immunization Registry Status",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0441",
-                            TableName = @"Immunization Registry Status",
-                            Description = @"This field identifies the immunization registry status of the patient. Refer to User-defined Table 0441 - Immunization Registry Status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.17",
-                            Type = @"Field",
-                            Position = @"PD1.17",
-                            Name = @"Immunization Registry Status Effective Date",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the effective date for the immunization registry status reported in PD1-16 - Immunization Registry Status.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.18",
-                            Type = @"Field",
-                            Position = @"PD1.18",
-                            Name = @"Publicity Code Effective Date",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This is the effective date for PD1-11 - Publicity Code.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.19",
-                            Type = @"Field",
-                            Position = @"PD1.19",
-                            Name = @"Military Branch",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0140",
-                            TableName = @"Military Service",
-                            Description = @"This field is defined by CMS or other regulatory agencies. Refer to User-defined Table 0140 - Military Service for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.20",
-                            Type = @"Field",
-                            Position = @"PD1.20",
-                            Name = @"Military Rank/Grade",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0141",
-                            TableName = @"Military Rank/Grade",
-                            Description = @"This user-defined field identifies the military rank/grade of the patient. Refer to User-defined Table 0141 - Military Rank/Grade for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.21",
-                            Type = @"Field",
-                            Position = @"PD1.21",
-                            Name = @"Military Status",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0142",
-                            TableName = @"Military Status",
-                            Description = @"This field is defined by CMS or other regulatory agencies. Refer to User-defined Table 0142 - Military Status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PD1.22",
-                            Type = @"Field",
-                            Position = @"PD1.22",
-                            Name = @"Advance Directive Last Verified Date",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the date that all the advance directives held in PD1-15 - Advance Directive Code were last validated. When this field is valued, the field PD1-15 - Advance Directive Code is required.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentPD1(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field livingDependency;
-
-public HL7V26Field LivingDependency
-{
-    get
-    {
-        if (livingDependency != null)
-        {
-            return livingDependency;
-        }
-
-        livingDependency = new HL7V26Field
-        {
-            field = message[@"PD1"][1],
-            Id = @"PD1.1",
-            Type = @"Field",
-            Position = @"PD1.1",
-            Name = @"Living Dependency",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0223",
-            TableName = @"Living Dependency",
-            Description = @"This field identifies specific living conditions (e.g., spouse dependent on patient, walk-up) that are relevant to an evaluation of the patient's healthcare needs. This information can be used for discharge planning. This field repeats because, for example, ""spouse dependent"" and ""medical supervision required"" can apply at the same time. Refer to User-defined Table 0223 - Living Dependency for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (livingDependency.field.FieldRepetitions != null && livingDependency.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(livingDependency.Id));
-            livingDependency.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(livingDependency, fieldData);
-        }
-
-        return livingDependency;
-    } 
-}
-
-internal HL7V26Field livingArrangement;
-
-public HL7V26Field LivingArrangement
-{
-    get
-    {
-        if (livingArrangement != null)
-        {
-            return livingArrangement;
-        }
-
-        livingArrangement = new HL7V26Field
-        {
-            field = message[@"PD1"][2],
-            Id = @"PD1.2",
-            Type = @"Field",
-            Position = @"PD1.2",
-            Name = @"Living Arrangement",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0220",
-            TableName = @"Living Arrangement",
-            Description = @"This field identifies the situation in which the patient lives at his residential address. Examples might include Alone, Family, Relatives, Institution, etc. Refer to User-defined Table 0220 - Living Arrangement for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (livingArrangement.field.FieldRepetitions != null && livingArrangement.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(livingArrangement.Id));
-            livingArrangement.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(livingArrangement, fieldData);
-        }
-
-        return livingArrangement;
-    } 
-}
-
-internal HL7V26Field patientPrimaryFacility;
-
-public HL7V26Field PatientPrimaryFacility
-{
-    get
-    {
-        if (patientPrimaryFacility != null)
-        {
-            return patientPrimaryFacility;
-        }
-
-        patientPrimaryFacility = new HL7V26Field
-        {
-            field = message[@"PD1"][3],
-            Id = @"PD1.3",
-            Type = @"Field",
-            Position = @"PD1.3",
-            Name = @"Patient Primary Facility",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-            TableId = @"0204",
-            TableName = @"Organizational name type",
-            Description = @"This field contains the name and identifier that specifies the ""primary care"" healthcare facility selected by the patient at the time of enrolment in an HMO Insurance Plan. Multiple names and identifiers are allowed for the same facility. The legal name of the healthcare facility must be sent in the first sequence. If the legal name of the facility is not sent, then the repeat delimiter must be sent in the first sequence. Refer to User-defined Table 0204 - Organizational Name Type for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientPrimaryFacility.field.FieldRepetitions != null && patientPrimaryFacility.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientPrimaryFacility.Id));
-            patientPrimaryFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(patientPrimaryFacility, fieldData);
-        }
-
-        return patientPrimaryFacility;
-    } 
-}
-
-internal HL7V26Field patientPrimaryCareProviderNameandIDNo;
-
-public HL7V26Field PatientPrimaryCareProviderNameandIDNo
-{
-    get
-    {
-        if (patientPrimaryCareProviderNameandIDNo != null)
-        {
-            return patientPrimaryCareProviderNameandIDNo;
-        }
-
-        patientPrimaryCareProviderNameandIDNo = new HL7V26Field
-        {
-            field = message[@"PD1"][4],
-            Id = @"PD1.4",
-            Type = @"Field",
-            Position = @"PD1.4",
-            Name = @"Patient Primary Care Provider Name and ID No.",
-            Length = 250,
-            Usage = @"B",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is retained for backward compatibility only; the ROL segment is now used to convey more complete information about the primary care provider. This field contained the provider name and ID of the primary care provider. Multiple names are allowed for the same person. The legal name must be sent in the first sequence. If the legal name is not sent, then the repeat delimiter must be sent in the first sequence.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientPrimaryCareProviderNameandIDNo.field.FieldRepetitions != null && patientPrimaryCareProviderNameandIDNo.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientPrimaryCareProviderNameandIDNo.Id));
-            patientPrimaryCareProviderNameandIDNo.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(patientPrimaryCareProviderNameandIDNo, fieldData);
-        }
-
-        return patientPrimaryCareProviderNameandIDNo;
-    } 
-}
-
-internal HL7V26Field studentIndicator;
-
-public HL7V26Field StudentIndicator
-{
-    get
-    {
-        if (studentIndicator != null)
-        {
-            return studentIndicator;
-        }
-
-        studentIndicator = new HL7V26Field
-        {
-            field = message[@"PD1"][5],
-            Id = @"PD1.5",
-            Type = @"Field",
-            Position = @"PD1.5",
-            Name = @"Student Indicator",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0231",
-            TableName = @"Student Status",
-            Description = @"This field indicates if the patient is currently a student or not, and whether the patient is a full-time or a part-time student. This field does not indicate the student's degree level (high school, college, elementary) or the student's field of study (accounting, engineering, etc.). Refer to User-defined Table 0231 - Student Status in Chapter 6 for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (studentIndicator.field.FieldRepetitions != null && studentIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studentIndicator.Id));
-            studentIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(studentIndicator, fieldData);
-        }
-
-        return studentIndicator;
-    } 
-}
-
-internal HL7V26Field handicap;
-
-public HL7V26Field Handicap
-{
-    get
-    {
-        if (handicap != null)
-        {
-            return handicap;
-        }
-
-        handicap = new HL7V26Field
-        {
-            field = message[@"PD1"][6],
-            Id = @"PD1.6",
-            Type = @"Field",
-            Position = @"PD1.6",
-            Name = @"Handicap",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0295",
-            TableName = @"Handicap",
-            Description = @"This field indicates the nature of the patient's permanent handicapped condition (e.g., deaf, blind). A handicapped condition is defined as a physical or mental disability that is permanent. Transient handicapped conditions should be sent in the ambulatory status. Refer to User-defined Table 0295 - Handicap for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (handicap.field.FieldRepetitions != null && handicap.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(handicap.Id));
-            handicap.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(handicap, fieldData);
-        }
-
-        return handicap;
-    } 
-}
-
-internal HL7V26Field livingWillCode;
-
-public HL7V26Field LivingWillCode
-{
-    get
-    {
-        if (livingWillCode != null)
-        {
-            return livingWillCode;
-        }
-
-        livingWillCode = new HL7V26Field
-        {
-            field = message[@"PD1"][7],
-            Id = @"PD1.7",
-            Type = @"Field",
-            Position = @"PD1.7",
-            Name = @"Living Will Code",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0315",
-            TableName = @"Living Will Code",
-            Description = @"This field indicates whether or not the patient has a living will and, if so, whether a copy of the living will is on file at the healthcare facility. If the patient does not have a living will, the value of this field indicates whether the patient was provided information on living wills. Refer to User-defined Table 0315 - Living Will Code for suggested values. See also PV2-43 - Living Will Code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (livingWillCode.field.FieldRepetitions != null && livingWillCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(livingWillCode.Id));
-            livingWillCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(livingWillCode, fieldData);
-        }
-
-        return livingWillCode;
-    } 
-}
-
-internal HL7V26Field organDonorCode;
-
-public HL7V26Field OrganDonorCode
-{
-    get
-    {
-        if (organDonorCode != null)
-        {
-            return organDonorCode;
-        }
-
-        organDonorCode = new HL7V26Field
-        {
-            field = message[@"PD1"][8],
-            Id = @"PD1.8",
-            Type = @"Field",
-            Position = @"PD1.8",
-            Name = @"Organ Donor Code",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0316",
-            TableName = @"Organ Donor Code",
-            Description = @"This field indicates whether the patient wants to donate his/her organs and whether an organ donor card or similar documentation is on file with the healthcare organization. Refer to User-defined Table 0316 - Organ Donor Code for suggested values. See also PV2-44 - Organ donor Code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (organDonorCode.field.FieldRepetitions != null && organDonorCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(organDonorCode.Id));
-            organDonorCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(organDonorCode, fieldData);
-        }
-
-        return organDonorCode;
-    } 
-}
-
-internal HL7V26Field separateBill;
-
-public HL7V26Field SeparateBill
-{
-    get
-    {
-        if (separateBill != null)
-        {
-            return separateBill;
-        }
-
-        separateBill = new HL7V26Field
-        {
-            field = message[@"PD1"][9],
-            Id = @"PD1.9",
-            Type = @"Field",
-            Position = @"PD1.9",
-            Name = @"Separate Bill",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field specifies that charges for this patient are to be billed separately from other patient bills with the same guarantor. (This bill is now a patient bill rather than a guarantor bill.) Refer to HL7 Table 0136 - Yes/No Indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (separateBill.field.FieldRepetitions != null && separateBill.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(separateBill.Id));
-            separateBill.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(separateBill, fieldData);
-        }
-
-        return separateBill;
-    } 
-}
-
-internal HL7V26Field duplicatePatient;
-
-public HL7V26Field DuplicatePatient
-{
-    get
-    {
-        if (duplicatePatient != null)
-        {
-            return duplicatePatient;
-        }
-
-        duplicatePatient = new HL7V26Field
-        {
-            field = message[@"PD1"][10],
-            Id = @"PD1.10",
-            Type = @"Field",
-            Position = @"PD1.10",
-            Name = @"Duplicate Patient",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID with Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates that a patient is the same as, or a duplicate of, another patient found on the sending system. The intent is to be informational only and no action is required by the receiver. Include the patient identifier if the sender knows an identifier for the patient. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (duplicatePatient.field.FieldRepetitions != null && duplicatePatient.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(duplicatePatient.Id));
-            duplicatePatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(duplicatePatient, fieldData);
-        }
-
-        return duplicatePatient;
-    } 
-}
-
-internal HL7V26Field publicityCode;
-
-public HL7V26Field PublicityCode
-{
-    get
-    {
-        if (publicityCode != null)
-        {
-            return publicityCode;
-        }
-
-        publicityCode = new HL7V26Field
-        {
-            field = message[@"PD1"][11],
-            Id = @"PD1.11",
-            Type = @"Field",
-            Position = @"PD1.11",
-            Name = @"Publicity Code",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0215",
-            TableName = @"Publicity Code",
-            Description = @"This field contains a user-defined code indicating what level of publicity is allowed (e.g., No Publicity, Family Only) for the patient. Refer to User-defined Table 0215 - Publicity Code for suggested values. Refer to PV2-21 - Visit Publicity Code for visit level code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (publicityCode.field.FieldRepetitions != null && publicityCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(publicityCode.Id));
-            publicityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(publicityCode, fieldData);
-        }
-
-        return publicityCode;
-    } 
-}
-
-internal HL7V26Field protectionIndicator;
-
-public HL7V26Field ProtectionIndicator
-{
-    get
-    {
-        if (protectionIndicator != null)
-        {
-            return protectionIndicator;
-        }
-
-        protectionIndicator = new HL7V26Field
-        {
-            field = message[@"PD1"][12],
-            Id = @"PD1.12",
-            Type = @"Field",
-            Position = @"PD1.12",
-            Name = @"Protection Indicator",
-            Length = 1,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"From V2.6 onward, this field has been retained for backward compatibility only.  Use the ARV segment instead. This field identifies the patient's protection that determines, in turn, whether access to information about this person should be kept from users who do not have adequate authority for the patient. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (protectionIndicator.field.FieldRepetitions != null && protectionIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(protectionIndicator.Id));
-            protectionIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(protectionIndicator, fieldData);
-        }
-
-        return protectionIndicator;
-    } 
-}
-
-internal HL7V26Field protectionIndicatorEffectiveDate;
-
-public HL7V26Field ProtectionIndicatorEffectiveDate
-{
-    get
-    {
-        if (protectionIndicatorEffectiveDate != null)
-        {
-            return protectionIndicatorEffectiveDate;
-        }
-
-        protectionIndicatorEffectiveDate = new HL7V26Field
-        {
-            field = message[@"PD1"][13],
-            Id = @"PD1.13",
-            Type = @"Field",
-            Position = @"PD1.13",
-            Name = @"Protection Indicator Effective Date",
-            Length = 8,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"From V2.6 onward, this field has been retained for backward compatibility only.  Use the ARV segment instead. This field indicates the effective date for PD1-12 - Protection Indicator.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (protectionIndicatorEffectiveDate.field.FieldRepetitions != null && protectionIndicatorEffectiveDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(protectionIndicatorEffectiveDate.Id));
-            protectionIndicatorEffectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(protectionIndicatorEffectiveDate, fieldData);
-        }
-
-        return protectionIndicatorEffectiveDate;
-    } 
-}
-
-internal HL7V26Field placeofWorship;
-
-public HL7V26Field PlaceofWorship
-{
-    get
-    {
-        if (placeofWorship != null)
-        {
-            return placeofWorship;
-        }
-
-        placeofWorship = new HL7V26Field
-        {
-            field = message[@"PD1"][14],
-            Id = @"PD1.14",
-            Type = @"Field",
-            Position = @"PD1.14",
-            Name = @"Place of Worship",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"The patient's place of worship. For example, the patient attends the First Baptist Church of Atlanta.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (placeofWorship.field.FieldRepetitions != null && placeofWorship.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placeofWorship.Id));
-            placeofWorship.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(placeofWorship, fieldData);
-        }
-
-        return placeofWorship;
-    } 
-}
-
-internal HL7V26Field advanceDirectiveCode;
-
-public HL7V26Field AdvanceDirectiveCode
-{
-    get
-    {
-        if (advanceDirectiveCode != null)
-        {
-            return advanceDirectiveCode;
-        }
-
-        advanceDirectiveCode = new HL7V26Field
+        _advanceDirectiveCode = new HL7V26Field
         {
             field = message[@"PD1"][15],
-            Id = @"PD1.15",
-            Type = @"Field",
-            Position = @"PD1.15",
-            Name = @"Advance Directive Code",
-            Length = 705,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0435",
-            TableName = @"Advance Directive Code",
-            Description = @"This field indicates the patient's instructions to the healthcare facility. Refer to User-defined Table 0435 - Advance Directive Code for suggested values. See also PV2-45 - Advance Directive Code. When PD1-22 - Advanced Directive Last Verified Date is valued, this field is required.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (advanceDirectiveCode.field.FieldRepetitions != null && advanceDirectiveCode.field.FieldRepetitions.Count > 0)
+        if (_advanceDirectiveCode.field.FieldRepetitions != null && _advanceDirectiveCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(advanceDirectiveCode.Id));
-            advanceDirectiveCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(advanceDirectiveCode, fieldData);
+            _advanceDirectiveCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_advanceDirectiveCode, fieldData);
         }
 
-        return advanceDirectiveCode;
+        return _advanceDirectiveCode;
     } 
 }
 
-internal HL7V26Field immunizationRegistryStatus;
+internal HL7V26Field _immunizationRegistryStatus;
 
 public HL7V26Field ImmunizationRegistryStatus
 {
     get
     {
-        if (immunizationRegistryStatus != null)
+        if (_immunizationRegistryStatus != null)
         {
-            return immunizationRegistryStatus;
+            return _immunizationRegistryStatus;
         }
 
-        immunizationRegistryStatus = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"PD1"][16],
             Id = @"PD1.16",
             Type = @"Field",
             Position = @"PD1.16",
@@ -3687,34 +3359,38 @@ public HL7V26Field ImmunizationRegistryStatus
             TableName = @"Immunization Registry Status",
             Description = @"This field identifies the immunization registry status of the patient. Refer to User-defined Table 0441 - Immunization Registry Status for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _immunizationRegistryStatus = new HL7V26Field
+        {
+            field = message[@"PD1"][16],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (immunizationRegistryStatus.field.FieldRepetitions != null && immunizationRegistryStatus.field.FieldRepetitions.Count > 0)
+        if (_immunizationRegistryStatus.field.FieldRepetitions != null && _immunizationRegistryStatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(immunizationRegistryStatus.Id));
-            immunizationRegistryStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(immunizationRegistryStatus, fieldData);
+            _immunizationRegistryStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_immunizationRegistryStatus, fieldData);
         }
 
-        return immunizationRegistryStatus;
+        return _immunizationRegistryStatus;
     } 
 }
 
-internal HL7V26Field immunizationRegistryStatusEffectiveDate;
+internal HL7V26Field _immunizationRegistryStatusEffectiveDate;
 
 public HL7V26Field ImmunizationRegistryStatusEffectiveDate
 {
     get
     {
-        if (immunizationRegistryStatusEffectiveDate != null)
+        if (_immunizationRegistryStatusEffectiveDate != null)
         {
-            return immunizationRegistryStatusEffectiveDate;
+            return _immunizationRegistryStatusEffectiveDate;
         }
 
-        immunizationRegistryStatusEffectiveDate = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"PD1"][17],
             Id = @"PD1.17",
             Type = @"Field",
             Position = @"PD1.17",
@@ -3728,34 +3404,38 @@ public HL7V26Field ImmunizationRegistryStatusEffectiveDate
             TableName = null,
             Description = @"This field indicates the effective date for the immunization registry status reported in PD1-16 - Immunization Registry Status.",
             Sample = @"",
+            Fields = null
+        }
+
+        _immunizationRegistryStatusEffectiveDate = new HL7V26Field
+        {
+            field = message[@"PD1"][17],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (immunizationRegistryStatusEffectiveDate.field.FieldRepetitions != null && immunizationRegistryStatusEffectiveDate.field.FieldRepetitions.Count > 0)
+        if (_immunizationRegistryStatusEffectiveDate.field.FieldRepetitions != null && _immunizationRegistryStatusEffectiveDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(immunizationRegistryStatusEffectiveDate.Id));
-            immunizationRegistryStatusEffectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(immunizationRegistryStatusEffectiveDate, fieldData);
+            _immunizationRegistryStatusEffectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_immunizationRegistryStatusEffectiveDate, fieldData);
         }
 
-        return immunizationRegistryStatusEffectiveDate;
+        return _immunizationRegistryStatusEffectiveDate;
     } 
 }
 
-internal HL7V26Field publicityCodeEffectiveDate;
+internal HL7V26Field _publicityCodeEffectiveDate;
 
 public HL7V26Field PublicityCodeEffectiveDate
 {
     get
     {
-        if (publicityCodeEffectiveDate != null)
+        if (_publicityCodeEffectiveDate != null)
         {
-            return publicityCodeEffectiveDate;
+            return _publicityCodeEffectiveDate;
         }
 
-        publicityCodeEffectiveDate = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"PD1"][18],
             Id = @"PD1.18",
             Type = @"Field",
             Position = @"PD1.18",
@@ -3769,34 +3449,38 @@ public HL7V26Field PublicityCodeEffectiveDate
             TableName = null,
             Description = @"This is the effective date for PD1-11 - Publicity Code.",
             Sample = @"",
+            Fields = null
+        }
+
+        _publicityCodeEffectiveDate = new HL7V26Field
+        {
+            field = message[@"PD1"][18],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (publicityCodeEffectiveDate.field.FieldRepetitions != null && publicityCodeEffectiveDate.field.FieldRepetitions.Count > 0)
+        if (_publicityCodeEffectiveDate.field.FieldRepetitions != null && _publicityCodeEffectiveDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(publicityCodeEffectiveDate.Id));
-            publicityCodeEffectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(publicityCodeEffectiveDate, fieldData);
+            _publicityCodeEffectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_publicityCodeEffectiveDate, fieldData);
         }
 
-        return publicityCodeEffectiveDate;
+        return _publicityCodeEffectiveDate;
     } 
 }
 
-internal HL7V26Field militaryBranch;
+internal HL7V26Field _militaryBranch;
 
 public HL7V26Field MilitaryBranch
 {
     get
     {
-        if (militaryBranch != null)
+        if (_militaryBranch != null)
         {
-            return militaryBranch;
+            return _militaryBranch;
         }
 
-        militaryBranch = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"PD1"][19],
             Id = @"PD1.19",
             Type = @"Field",
             Position = @"PD1.19",
@@ -3810,34 +3494,38 @@ public HL7V26Field MilitaryBranch
             TableName = @"Military Service",
             Description = @"This field is defined by CMS or other regulatory agencies. Refer to User-defined Table 0140 - Military Service for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _militaryBranch = new HL7V26Field
+        {
+            field = message[@"PD1"][19],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (militaryBranch.field.FieldRepetitions != null && militaryBranch.field.FieldRepetitions.Count > 0)
+        if (_militaryBranch.field.FieldRepetitions != null && _militaryBranch.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(militaryBranch.Id));
-            militaryBranch.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(militaryBranch, fieldData);
+            _militaryBranch.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_militaryBranch, fieldData);
         }
 
-        return militaryBranch;
+        return _militaryBranch;
     } 
 }
 
-internal HL7V26Field militaryRankGrade;
+internal HL7V26Field _militaryRankGrade;
 
 public HL7V26Field MilitaryRankGrade
 {
     get
     {
-        if (militaryRankGrade != null)
+        if (_militaryRankGrade != null)
         {
-            return militaryRankGrade;
+            return _militaryRankGrade;
         }
 
-        militaryRankGrade = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"PD1"][20],
             Id = @"PD1.20",
             Type = @"Field",
             Position = @"PD1.20",
@@ -3851,34 +3539,38 @@ public HL7V26Field MilitaryRankGrade
             TableName = @"Military Rank/Grade",
             Description = @"This user-defined field identifies the military rank/grade of the patient. Refer to User-defined Table 0141 - Military Rank/Grade for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _militaryRankGrade = new HL7V26Field
+        {
+            field = message[@"PD1"][20],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (militaryRankGrade.field.FieldRepetitions != null && militaryRankGrade.field.FieldRepetitions.Count > 0)
+        if (_militaryRankGrade.field.FieldRepetitions != null && _militaryRankGrade.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(militaryRankGrade.Id));
-            militaryRankGrade.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(militaryRankGrade, fieldData);
+            _militaryRankGrade.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_militaryRankGrade, fieldData);
         }
 
-        return militaryRankGrade;
+        return _militaryRankGrade;
     } 
 }
 
-internal HL7V26Field militaryStatus;
+internal HL7V26Field _militaryStatus;
 
 public HL7V26Field MilitaryStatus
 {
     get
     {
-        if (militaryStatus != null)
+        if (_militaryStatus != null)
         {
-            return militaryStatus;
+            return _militaryStatus;
         }
 
-        militaryStatus = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"PD1"][21],
             Id = @"PD1.21",
             Type = @"Field",
             Position = @"PD1.21",
@@ -3892,34 +3584,38 @@ public HL7V26Field MilitaryStatus
             TableName = @"Military Status",
             Description = @"This field is defined by CMS or other regulatory agencies. Refer to User-defined Table 0142 - Military Status for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _militaryStatus = new HL7V26Field
+        {
+            field = message[@"PD1"][21],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (militaryStatus.field.FieldRepetitions != null && militaryStatus.field.FieldRepetitions.Count > 0)
+        if (_militaryStatus.field.FieldRepetitions != null && _militaryStatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(militaryStatus.Id));
-            militaryStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(militaryStatus, fieldData);
+            _militaryStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_militaryStatus, fieldData);
         }
 
-        return militaryStatus;
+        return _militaryStatus;
     } 
 }
 
-internal HL7V26Field advanceDirectiveLastVerifiedDate;
+internal HL7V26Field _advanceDirectiveLastVerifiedDate;
 
 public HL7V26Field AdvanceDirectiveLastVerifiedDate
 {
     get
     {
-        if (advanceDirectiveLastVerifiedDate != null)
+        if (_advanceDirectiveLastVerifiedDate != null)
         {
-            return advanceDirectiveLastVerifiedDate;
+            return _advanceDirectiveLastVerifiedDate;
         }
 
-        advanceDirectiveLastVerifiedDate = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"PD1"][22],
             Id = @"PD1.22",
             Type = @"Field",
             Position = @"PD1.22",
@@ -3933,17 +3629,22 @@ public HL7V26Field AdvanceDirectiveLastVerifiedDate
             TableName = null,
             Description = @"This field indicates the date that all the advance directives held in PD1-15 - Advance Directive Code were last validated. When this field is valued, the field PD1-15 - Advance Directive Code is required.",
             Sample = @"",
+            Fields = null
+        }
+
+        _advanceDirectiveLastVerifiedDate = new HL7V26Field
+        {
+            field = message[@"PD1"][22],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (advanceDirectiveLastVerifiedDate.field.FieldRepetitions != null && advanceDirectiveLastVerifiedDate.field.FieldRepetitions.Count > 0)
+        if (_advanceDirectiveLastVerifiedDate.field.FieldRepetitions != null && _advanceDirectiveLastVerifiedDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(advanceDirectiveLastVerifiedDate.Id));
-            advanceDirectiveLastVerifiedDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(advanceDirectiveLastVerifiedDate, fieldData);
+            _advanceDirectiveLastVerifiedDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_advanceDirectiveLastVerifiedDate, fieldData);
         }
 
-        return advanceDirectiveLastVerifiedDate;
+        return _advanceDirectiveLastVerifiedDate;
     } 
 }
     }

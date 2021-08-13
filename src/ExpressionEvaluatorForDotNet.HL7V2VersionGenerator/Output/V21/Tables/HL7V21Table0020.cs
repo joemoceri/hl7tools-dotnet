@@ -38,6 +38,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Major Manifestation",
                             Comment = null
                         },
+                        
                     };
             } 
         }

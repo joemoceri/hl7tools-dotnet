@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentCM0(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _setIdCm0;
+
+public HL7V271Field SetIdCm0
+{
+    get
+    {
+        if (_setIdCm0 != null)
+        {
+            return _setIdCm0;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM0.1",
+            Type = @"Field",
+            Position = @"CM0.1",
+            Name = @"Set Id - Cm0",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a number that uniquely identifies this transaction for the purpose of adding, changing, or deleting the transaction.  For those messages that permit segments to repeat, the Set ID field is used to identify the repetitions.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdCm0 = new HL7V271Field
+        {
+            field = message[@"CM0"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdCm0.field.FieldRepetitions != null && _setIdCm0.field.FieldRepetitions.Count > 0)
+        {
+            _setIdCm0.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_setIdCm0, fieldData);
+        }
+
+        return _setIdCm0;
+    } 
+}
+
+internal HL7V271Field _sponsorStudyId;
+
+public HL7V271Field SponsorStudyId
+{
+    get
+    {
+        if (_sponsorStudyId != null)
+        {
+            return _sponsorStudyId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM0.2",
+            Type = @"Field",
+            Position = @"CM0.2",
+            Name = @"Sponsor Study Id",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the study number established by the study sponsor.  Please see discussion in Chapter 7, section 7.7.1.1, ""Sponsor study ID.""",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"CM0.1",
-                            Type = @"Field",
-                            Position = @"CM0.1",
-                            Name = @"Set Id - Cm0",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a number that uniquely identifies this transaction for the purpose of adding, changing, or deleting the transaction.  For those messages that permit segments to repeat, the Set ID field is used to identify the repetitions.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CM0.2",
-                            Type = @"Field",
-                            Position = @"CM0.2",
-                            Name = @"Sponsor Study Id",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the study number established by the study sponsor.  Please see discussion in Chapter 7, section 7.7.1.1, ""Sponsor study ID.""",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CM0.2.1",
                             Type = @"Component",
@@ -146,25 +185,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _sponsorStudyId = new HL7V271Field
+        {
+            field = message[@"CM0"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sponsorStudyId.field.FieldRepetitions != null && _sponsorStudyId.field.FieldRepetitions.Count > 0)
+        {
+            _sponsorStudyId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_sponsorStudyId, fieldData);
+        }
+
+        return _sponsorStudyId;
+    } 
+}
+
+internal HL7V271Field _alternateStudyId;
+
+public HL7V271Field AlternateStudyId
+{
+    get
+    {
+        if (_alternateStudyId != null)
+        {
+            return _alternateStudyId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM0.3",
+            Type = @"Field",
+            Position = @"CM0.3",
+            Name = @"Alternate Study Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"3",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the local or collaborators' cross-referenced study numbers.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CM0.3",
-                            Type = @"Field",
-                            Position = @"CM0.3",
-                            Name = @"Alternate Study Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"3",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the local or collaborators' cross-referenced study numbers.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CM0.3.1",
                             Type = @"Component",
@@ -242,43 +311,100 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _alternateStudyId = new HL7V271Field
+        {
+            field = message[@"CM0"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_alternateStudyId.field.FieldRepetitions != null && _alternateStudyId.field.FieldRepetitions.Count > 0)
+        {
+            _alternateStudyId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_alternateStudyId, fieldData);
+        }
+
+        return _alternateStudyId;
+    } 
+}
+
+internal HL7V271Field _titleOfStudy;
+
+public HL7V271Field TitleOfStudy
+{
+    get
+    {
+        if (_titleOfStudy != null)
+        {
+            return _titleOfStudy;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM0.4",
+            Type = @"Field",
+            Position = @"CM0.4",
+            Name = @"Title Of Study",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the sending institution's title for the clinical trial.  It gives recipients further identification of the study.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _titleOfStudy = new HL7V271Field
+        {
+            field = message[@"CM0"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_titleOfStudy.field.FieldRepetitions != null && _titleOfStudy.field.FieldRepetitions.Count > 0)
+        {
+            _titleOfStudy.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_titleOfStudy, fieldData);
+        }
+
+        return _titleOfStudy;
+    } 
+}
+
+internal HL7V271Field _chairmanOfStudy;
+
+public HL7V271Field ChairmanOfStudy
+{
+    get
+    {
+        if (_chairmanOfStudy != null)
+        {
+            return _chairmanOfStudy;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM0.5",
+            Type = @"Field",
+            Position = @"CM0.5",
+            Name = @"Chairman Of Study",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the sending institution's chairman.  It further identifies the study.  The chairman's name may be needed for communication purposes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CM0.4",
-                            Type = @"Field",
-                            Position = @"CM0.4",
-                            Name = @"Title Of Study",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the sending institution's title for the clinical trial.  It gives recipients further identification of the study.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CM0.5",
-                            Type = @"Field",
-                            Position = @"CM0.5",
-                            Name = @"Chairman Of Study",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the sending institution's chairman.  It further identifies the study.  The chairman's name may be needed for communication purposes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CM0.5.1",
                             Type = @"Component",
@@ -2677,79 +2803,190 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _chairmanOfStudy = new HL7V271Field
+        {
+            field = message[@"CM0"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_chairmanOfStudy.field.FieldRepetitions != null && _chairmanOfStudy.field.FieldRepetitions.Count > 0)
+        {
+            _chairmanOfStudy.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_chairmanOfStudy, fieldData);
+        }
+
+        return _chairmanOfStudy;
+    } 
+}
+
+internal HL7V271Field _lastIrbApprovalDate;
+
+public HL7V271Field LastIrbApprovalDate
+{
+    get
+    {
+        if (_lastIrbApprovalDate != null)
+        {
+            return _lastIrbApprovalDate;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM0.6",
+            Type = @"Field",
+            Position = @"CM0.6",
+            Name = @"Last Irb Approval Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an institution's Internal Review Board approval dates which are required annually to continue participation in a clinical trial.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _lastIrbApprovalDate = new HL7V271Field
+        {
+            field = message[@"CM0"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_lastIrbApprovalDate.field.FieldRepetitions != null && _lastIrbApprovalDate.field.FieldRepetitions.Count > 0)
+        {
+            _lastIrbApprovalDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_lastIrbApprovalDate, fieldData);
+        }
+
+        return _lastIrbApprovalDate;
+    } 
+}
+
+internal HL7V271Field _totalAccrualToDate;
+
+public HL7V271Field TotalAccrualToDate
+{
+    get
+    {
+        if (_totalAccrualToDate != null)
+        {
+            return _totalAccrualToDate;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM0.7",
+            Type = @"Field",
+            Position = @"CM0.7",
+            Name = @"Total Accrual To Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is a quality control field to enable checks that patient data have been transmitted on all registered patients.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _totalAccrualToDate = new HL7V271Field
+        {
+            field = message[@"CM0"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_totalAccrualToDate.field.FieldRepetitions != null && _totalAccrualToDate.field.FieldRepetitions.Count > 0)
+        {
+            _totalAccrualToDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_totalAccrualToDate, fieldData);
+        }
+
+        return _totalAccrualToDate;
+    } 
+}
+
+internal HL7V271Field _lastAccrualDate;
+
+public HL7V271Field LastAccrualDate
+{
+    get
+    {
+        if (_lastAccrualDate != null)
+        {
+            return _lastAccrualDate;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM0.8",
+            Type = @"Field",
+            Position = @"CM0.8",
+            Name = @"Last Accrual Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the status information on the patient registration activity for quality control and operations purposes.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _lastAccrualDate = new HL7V271Field
+        {
+            field = message[@"CM0"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_lastAccrualDate.field.FieldRepetitions != null && _lastAccrualDate.field.FieldRepetitions.Count > 0)
+        {
+            _lastAccrualDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_lastAccrualDate, fieldData);
+        }
+
+        return _lastAccrualDate;
+    } 
+}
+
+internal HL7V271Field _contactForStudy;
+
+public HL7V271Field ContactForStudy
+{
+    get
+    {
+        if (_contactForStudy != null)
+        {
+            return _contactForStudy;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM0.9",
+            Type = @"Field",
+            Position = @"CM0.9",
+            Name = @"Contact For Study",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the individual who should be contacted for inquiries about data transmitted for this study.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CM0.6",
-                            Type = @"Field",
-                            Position = @"CM0.6",
-                            Name = @"Last Irb Approval Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an institution's Internal Review Board approval dates which are required annually to continue participation in a clinical trial.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CM0.7",
-                            Type = @"Field",
-                            Position = @"CM0.7",
-                            Name = @"Total Accrual To Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is a quality control field to enable checks that patient data have been transmitted on all registered patients.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CM0.8",
-                            Type = @"Field",
-                            Position = @"CM0.8",
-                            Name = @"Last Accrual Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the status information on the patient registration activity for quality control and operations purposes.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CM0.9",
-                            Type = @"Field",
-                            Position = @"CM0.9",
-                            Name = @"Contact For Study",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the individual who should be contacted for inquiries about data transmitted for this study.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CM0.9.1",
                             Type = @"Component",
@@ -5148,25 +5385,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactForStudy = new HL7V271Field
+        {
+            field = message[@"CM0"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactForStudy.field.FieldRepetitions != null && _contactForStudy.field.FieldRepetitions.Count > 0)
+        {
+            _contactForStudy.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_contactForStudy, fieldData);
+        }
+
+        return _contactForStudy;
+    } 
+}
+
+internal HL7V271Field _contactsTelephoneNumber;
+
+public HL7V271Field ContactsTelephoneNumber
+{
+    get
+    {
+        if (_contactsTelephoneNumber != null)
+        {
+            return _contactsTelephoneNumber;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM0.10",
+            Type = @"Field",
+            Position = @"CM0.10",
+            Name = @"Contact's Telephone Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the phone number of the study contact identified in CM0-9 - Contact for Study.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CM0.10",
-                            Type = @"Field",
-                            Position = @"CM0.10",
-                            Name = @"Contact's Telephone Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the phone number of the study contact identified in CM0-9 - Contact for Study.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CM0.10.1",
                             Type = @"Component",
@@ -6441,25 +6708,55 @@ If the preference order is unique across all usages for a given type, then it in
 Preference order numbers need not be sequential (i.e., three numbers with the priority orders of 0, 5 and 15 are legitimate).  The preference order numbers must be non-negative.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactsTelephoneNumber = new HL7V271Field
+        {
+            field = message[@"CM0"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactsTelephoneNumber.field.FieldRepetitions != null && _contactsTelephoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            _contactsTelephoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_contactsTelephoneNumber, fieldData);
+        }
+
+        return _contactsTelephoneNumber;
+    } 
+}
+
+internal HL7V271Field _contactsAddress;
+
+public HL7V271Field ContactsAddress
+{
+    get
+    {
+        if (_contactsAddress != null)
+        {
+            return _contactsAddress;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM0.11",
+            Type = @"Field",
+            Position = @"CM0.11",
+            Name = @"Contact's Address",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the address of the study contact identified in CM0-9 - Contact for Study.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CM0.11",
-                            Type = @"Field",
-                            Position = @"CM0.11",
-                            Name = @"Contact's Address",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the address of the study contact identified in CM0-9 - Contact for Study.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CM0.11.1",
                             Type = @"Component",
@@ -8725,465 +9022,23 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentCM0(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field setIdCm0;
-
-public HL7V271Field SetIdCm0
-{
-    get
-    {
-        if (setIdCm0 != null)
-        {
-            return setIdCm0;
-        }
-
-        setIdCm0 = new HL7V271Field
-        {
-            field = message[@"CM0"][1],
-            Id = @"CM0.1",
-            Type = @"Field",
-            Position = @"CM0.1",
-            Name = @"Set Id - Cm0",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a number that uniquely identifies this transaction for the purpose of adding, changing, or deleting the transaction.  For those messages that permit segments to repeat, the Set ID field is used to identify the repetitions.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdCm0.field.FieldRepetitions != null && setIdCm0.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdCm0.Id));
-            setIdCm0.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(setIdCm0, fieldData);
-        }
-
-        return setIdCm0;
-    } 
-}
-
-internal HL7V271Field sponsorStudyId;
-
-public HL7V271Field SponsorStudyId
-{
-    get
-    {
-        if (sponsorStudyId != null)
-        {
-            return sponsorStudyId;
-        }
-
-        sponsorStudyId = new HL7V271Field
-        {
-            field = message[@"CM0"][2],
-            Id = @"CM0.2",
-            Type = @"Field",
-            Position = @"CM0.2",
-            Name = @"Sponsor Study Id",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the study number established by the study sponsor.  Please see discussion in Chapter 7, section 7.7.1.1, ""Sponsor study ID.""",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sponsorStudyId.field.FieldRepetitions != null && sponsorStudyId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sponsorStudyId.Id));
-            sponsorStudyId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(sponsorStudyId, fieldData);
-        }
-
-        return sponsorStudyId;
-    } 
-}
-
-internal HL7V271Field alternateStudyId;
-
-public HL7V271Field AlternateStudyId
-{
-    get
-    {
-        if (alternateStudyId != null)
-        {
-            return alternateStudyId;
-        }
-
-        alternateStudyId = new HL7V271Field
-        {
-            field = message[@"CM0"][3],
-            Id = @"CM0.3",
-            Type = @"Field",
-            Position = @"CM0.3",
-            Name = @"Alternate Study Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"3",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the local or collaborators' cross-referenced study numbers.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (alternateStudyId.field.FieldRepetitions != null && alternateStudyId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(alternateStudyId.Id));
-            alternateStudyId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(alternateStudyId, fieldData);
-        }
-
-        return alternateStudyId;
-    } 
-}
-
-internal HL7V271Field titleOfStudy;
-
-public HL7V271Field TitleOfStudy
-{
-    get
-    {
-        if (titleOfStudy != null)
-        {
-            return titleOfStudy;
-        }
-
-        titleOfStudy = new HL7V271Field
-        {
-            field = message[@"CM0"][4],
-            Id = @"CM0.4",
-            Type = @"Field",
-            Position = @"CM0.4",
-            Name = @"Title Of Study",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the sending institution's title for the clinical trial.  It gives recipients further identification of the study.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (titleOfStudy.field.FieldRepetitions != null && titleOfStudy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(titleOfStudy.Id));
-            titleOfStudy.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(titleOfStudy, fieldData);
-        }
-
-        return titleOfStudy;
-    } 
-}
-
-internal HL7V271Field chairmanOfStudy;
-
-public HL7V271Field ChairmanOfStudy
-{
-    get
-    {
-        if (chairmanOfStudy != null)
-        {
-            return chairmanOfStudy;
-        }
-
-        chairmanOfStudy = new HL7V271Field
-        {
-            field = message[@"CM0"][5],
-            Id = @"CM0.5",
-            Type = @"Field",
-            Position = @"CM0.5",
-            Name = @"Chairman Of Study",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the sending institution's chairman.  It further identifies the study.  The chairman's name may be needed for communication purposes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (chairmanOfStudy.field.FieldRepetitions != null && chairmanOfStudy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(chairmanOfStudy.Id));
-            chairmanOfStudy.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(chairmanOfStudy, fieldData);
-        }
-
-        return chairmanOfStudy;
-    } 
-}
-
-internal HL7V271Field lastIrbApprovalDate;
-
-public HL7V271Field LastIrbApprovalDate
-{
-    get
-    {
-        if (lastIrbApprovalDate != null)
-        {
-            return lastIrbApprovalDate;
-        }
-
-        lastIrbApprovalDate = new HL7V271Field
-        {
-            field = message[@"CM0"][6],
-            Id = @"CM0.6",
-            Type = @"Field",
-            Position = @"CM0.6",
-            Name = @"Last Irb Approval Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an institution's Internal Review Board approval dates which are required annually to continue participation in a clinical trial.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (lastIrbApprovalDate.field.FieldRepetitions != null && lastIrbApprovalDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(lastIrbApprovalDate.Id));
-            lastIrbApprovalDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(lastIrbApprovalDate, fieldData);
-        }
-
-        return lastIrbApprovalDate;
-    } 
-}
-
-internal HL7V271Field totalAccrualToDate;
-
-public HL7V271Field TotalAccrualToDate
-{
-    get
-    {
-        if (totalAccrualToDate != null)
-        {
-            return totalAccrualToDate;
-        }
-
-        totalAccrualToDate = new HL7V271Field
-        {
-            field = message[@"CM0"][7],
-            Id = @"CM0.7",
-            Type = @"Field",
-            Position = @"CM0.7",
-            Name = @"Total Accrual To Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is a quality control field to enable checks that patient data have been transmitted on all registered patients.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (totalAccrualToDate.field.FieldRepetitions != null && totalAccrualToDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(totalAccrualToDate.Id));
-            totalAccrualToDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(totalAccrualToDate, fieldData);
-        }
-
-        return totalAccrualToDate;
-    } 
-}
-
-internal HL7V271Field lastAccrualDate;
-
-public HL7V271Field LastAccrualDate
-{
-    get
-    {
-        if (lastAccrualDate != null)
-        {
-            return lastAccrualDate;
-        }
-
-        lastAccrualDate = new HL7V271Field
-        {
-            field = message[@"CM0"][8],
-            Id = @"CM0.8",
-            Type = @"Field",
-            Position = @"CM0.8",
-            Name = @"Last Accrual Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the status information on the patient registration activity for quality control and operations purposes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (lastAccrualDate.field.FieldRepetitions != null && lastAccrualDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(lastAccrualDate.Id));
-            lastAccrualDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(lastAccrualDate, fieldData);
-        }
-
-        return lastAccrualDate;
-    } 
-}
-
-internal HL7V271Field contactForStudy;
-
-public HL7V271Field ContactForStudy
-{
-    get
-    {
-        if (contactForStudy != null)
-        {
-            return contactForStudy;
-        }
-
-        contactForStudy = new HL7V271Field
-        {
-            field = message[@"CM0"][9],
-            Id = @"CM0.9",
-            Type = @"Field",
-            Position = @"CM0.9",
-            Name = @"Contact For Study",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the individual who should be contacted for inquiries about data transmitted for this study.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactForStudy.field.FieldRepetitions != null && contactForStudy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactForStudy.Id));
-            contactForStudy.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(contactForStudy, fieldData);
-        }
-
-        return contactForStudy;
-    } 
-}
-
-internal HL7V271Field contactsTelephoneNumber;
-
-public HL7V271Field ContactsTelephoneNumber
-{
-    get
-    {
-        if (contactsTelephoneNumber != null)
-        {
-            return contactsTelephoneNumber;
-        }
-
-        contactsTelephoneNumber = new HL7V271Field
-        {
-            field = message[@"CM0"][10],
-            Id = @"CM0.10",
-            Type = @"Field",
-            Position = @"CM0.10",
-            Name = @"Contact's Telephone Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the phone number of the study contact identified in CM0-9 - Contact for Study.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactsTelephoneNumber.field.FieldRepetitions != null && contactsTelephoneNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactsTelephoneNumber.Id));
-            contactsTelephoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(contactsTelephoneNumber, fieldData);
-        }
-
-        return contactsTelephoneNumber;
-    } 
-}
-
-internal HL7V271Field contactsAddress;
-
-public HL7V271Field ContactsAddress
-{
-    get
-    {
-        if (contactsAddress != null)
-        {
-            return contactsAddress;
-        }
-
-        contactsAddress = new HL7V271Field
+        _contactsAddress = new HL7V271Field
         {
             field = message[@"CM0"][11],
-            Id = @"CM0.11",
-            Type = @"Field",
-            Position = @"CM0.11",
-            Name = @"Contact's Address",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the address of the study contact identified in CM0-9 - Contact for Study.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (contactsAddress.field.FieldRepetitions != null && contactsAddress.field.FieldRepetitions.Count > 0)
+        if (_contactsAddress.field.FieldRepetitions != null && _contactsAddress.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactsAddress.Id));
-            contactsAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(contactsAddress, fieldData);
+            _contactsAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_contactsAddress, fieldData);
         }
 
-        return contactsAddress;
+        return _contactsAddress;
     } 
 }
     }

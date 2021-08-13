@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentGT1(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _setIdGt1;
+
+public HL7V28Field SetIdGt1
+{
+    get
+    {
+        if (_setIdGt1 != null)
+        {
+            return _setIdGt1;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.1",
+            Type = @"Field",
+            Position = @"GT1.1",
+            Name = @"Set Id - Gt1",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"GT1-1 - Set ID contains a number that identifies this transaction. For the first occurrence of the segment the sequence shall be 1, for the second occurrence it shall be 2, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdGt1 = new HL7V28Field
+        {
+            field = message[@"GT1"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdGt1.field.FieldRepetitions != null && _setIdGt1.field.FieldRepetitions.Count > 0)
+        {
+            _setIdGt1.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_setIdGt1, fieldData);
+        }
+
+        return _setIdGt1;
+    } 
+}
+
+internal HL7V28Field _guarantorNumber;
+
+public HL7V28Field GuarantorNumber
+{
+    get
+    {
+        if (_guarantorNumber != null)
+        {
+            return _guarantorNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.2",
+            Type = @"Field",
+            Position = @"GT1.2",
+            Name = @"Guarantor Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the primary identifier, or other identifiers, assigned to the guarantor. The assigning authority and identifier type code are strongly recommended for all CX data types.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"GT1.1",
-                            Type = @"Field",
-                            Position = @"GT1.1",
-                            Name = @"Set Id - Gt1",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"GT1-1 - Set ID contains a number that identifies this transaction. For the first occurrence of the segment the sequence shall be 1, for the second occurrence it shall be 2, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.2",
-                            Type = @"Field",
-                            Position = @"GT1.2",
-                            Name = @"Guarantor Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the primary identifier, or other identifiers, assigned to the guarantor. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GT1.2.1",
                             Type = @"Component",
@@ -1281,27 +1320,57 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.3",
-                            Type = @"Field",
-                            Position = @"GT1.3",
-                            Name = @"Guarantor Name",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the guarantor. Multiple names for the same guarantor may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.
+                        }
+        }
+
+        _guarantorNumber = new HL7V28Field
+        {
+            field = message[@"GT1"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorNumber.field.FieldRepetitions != null && _guarantorNumber.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorNumber, fieldData);
+        }
+
+        return _guarantorNumber;
+    } 
+}
+
+internal HL7V28Field _guarantorName;
+
+public HL7V28Field GuarantorName
+{
+    get
+    {
+        if (_guarantorName != null)
+        {
+            return _guarantorName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.3",
+            Type = @"Field",
+            Position = @"GT1.3",
+            Name = @"Guarantor Name",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the guarantor. Multiple names for the same guarantor may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.
 
 Beginning with version 2.3, if the guarantor is an organization, send a null value ("""") in GT1-3 - Guarantor Name and put the organization name in GT1-21 - Guarantor Organization Name. Either guarantor name or guarantor organization name is required.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.3.1",
                             Type = @"Component",
@@ -2115,25 +2184,55 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorName = new HL7V28Field
+        {
+            field = message[@"GT1"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorName.field.FieldRepetitions != null && _guarantorName.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorName, fieldData);
+        }
+
+        return _guarantorName;
+    } 
+}
+
+internal HL7V28Field _guarantorSpouseName;
+
+public HL7V28Field GuarantorSpouseName
+{
+    get
+    {
+        if (_guarantorSpouseName != null)
+        {
+            return _guarantorSpouseName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.4",
+            Type = @"Field",
+            Position = @"GT1.4",
+            Name = @"Guarantor Spouse Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the guarantor’s spouse. Multiple names for the same guarantor spouse may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.4",
-                            Type = @"Field",
-                            Position = @"GT1.4",
-                            Name = @"Guarantor Spouse Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the guarantor’s spouse. Multiple names for the same guarantor spouse may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.4.1",
                             Type = @"Component",
@@ -2947,25 +3046,55 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorSpouseName = new HL7V28Field
+        {
+            field = message[@"GT1"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorSpouseName.field.FieldRepetitions != null && _guarantorSpouseName.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorSpouseName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorSpouseName, fieldData);
+        }
+
+        return _guarantorSpouseName;
+    } 
+}
+
+internal HL7V28Field _guarantorAddress;
+
+public HL7V28Field GuarantorAddress
+{
+    get
+    {
+        if (_guarantorAddress != null)
+        {
+            return _guarantorAddress;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.5",
+            Type = @"Field",
+            Position = @"GT1.5",
+            Name = @"Guarantor Address",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the guarantor’s address. Multiple addresses for the same person may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.5",
-                            Type = @"Field",
-                            Position = @"GT1.5",
-                            Name = @"Guarantor Address",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the guarantor’s address. Multiple addresses for the same person may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.5.1",
                             Type = @"Component",
@@ -5238,25 +5367,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorAddress = new HL7V28Field
+        {
+            field = message[@"GT1"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorAddress.field.FieldRepetitions != null && _guarantorAddress.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorAddress, fieldData);
+        }
+
+        return _guarantorAddress;
+    } 
+}
+
+internal HL7V28Field _guarantorPhNumHome;
+
+public HL7V28Field GuarantorPhNumHome
+{
+    get
+    {
+        if (_guarantorPhNumHome != null)
+        {
+            return _guarantorPhNumHome;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.6",
+            Type = @"Field",
+            Position = @"GT1.6",
+            Name = @"Guarantor Ph Num - Home",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the guarantor’s home phone number. All personal phone numbers for the guarantor may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.6",
-                            Type = @"Field",
-                            Position = @"GT1.6",
-                            Name = @"Guarantor Ph Num - Home",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the guarantor’s home phone number. All personal phone numbers for the guarantor may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.6.1",
                             Type = @"Component",
@@ -6532,25 +6691,55 @@ If the preference order is unique across all usages for a given type, then it in
 Preference order numbers need not be sequential (i.e., three numbers with the priority orders of 0, 5 and 15 are legitimate).  The preference order numbers must be non-negative.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorPhNumHome = new HL7V28Field
+        {
+            field = message[@"GT1"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorPhNumHome.field.FieldRepetitions != null && _guarantorPhNumHome.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorPhNumHome.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorPhNumHome, fieldData);
+        }
+
+        return _guarantorPhNumHome;
+    } 
+}
+
+internal HL7V28Field _guarantorPhNumBusiness;
+
+public HL7V28Field GuarantorPhNumBusiness
+{
+    get
+    {
+        if (_guarantorPhNumBusiness != null)
+        {
+            return _guarantorPhNumBusiness;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.7",
+            Type = @"Field",
+            Position = @"GT1.7",
+            Name = @"Guarantor Ph Num - Business",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the guarantor’s business phone number. All business phone numbers for the guarantor may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.7",
-                            Type = @"Field",
-                            Position = @"GT1.7",
-                            Name = @"Guarantor Ph Num - Business",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the guarantor’s business phone number. All business phone numbers for the guarantor may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.7.1",
                             Type = @"Component",
@@ -7826,43 +8015,100 @@ If the preference order is unique across all usages for a given type, then it in
 Preference order numbers need not be sequential (i.e., three numbers with the priority orders of 0, 5 and 15 are legitimate).  The preference order numbers must be non-negative.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorPhNumBusiness = new HL7V28Field
+        {
+            field = message[@"GT1"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorPhNumBusiness.field.FieldRepetitions != null && _guarantorPhNumBusiness.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorPhNumBusiness.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorPhNumBusiness, fieldData);
+        }
+
+        return _guarantorPhNumBusiness;
+    } 
+}
+
+internal HL7V28Field _guarantorDateTimeOfBirth;
+
+public HL7V28Field GuarantorDateTimeOfBirth
+{
+    get
+    {
+        if (_guarantorDateTimeOfBirth != null)
+        {
+            return _guarantorDateTimeOfBirth;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.8",
+            Type = @"Field",
+            Position = @"GT1.8",
+            Name = @"Guarantor Date/Time Of Birth",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the guarantor’s date of birth.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _guarantorDateTimeOfBirth = new HL7V28Field
+        {
+            field = message[@"GT1"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorDateTimeOfBirth.field.FieldRepetitions != null && _guarantorDateTimeOfBirth.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorDateTimeOfBirth.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorDateTimeOfBirth, fieldData);
+        }
+
+        return _guarantorDateTimeOfBirth;
+    } 
+}
+
+internal HL7V28Field _guarantorAdministrativeSex;
+
+public HL7V28Field GuarantorAdministrativeSex
+{
+    get
+    {
+        if (_guarantorAdministrativeSex != null)
+        {
+            return _guarantorAdministrativeSex;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.9",
+            Type = @"Field",
+            Position = @"GT1.9",
+            Name = @"Guarantor Administrative Sex",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0001",
+            TableName = @"Administrative Sex",
+            Description = @"This field contains the guarantor’s gender. Refer to User-defined Table 0001 - Administrative Sex in Chapter 3, ""Patient Administration"", for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.8",
-                            Type = @"Field",
-                            Position = @"GT1.8",
-                            Name = @"Guarantor Date/Time Of Birth",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the guarantor’s date of birth.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.9",
-                            Type = @"Field",
-                            Position = @"GT1.9",
-                            Name = @"Guarantor Administrative Sex",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0001",
-                            TableName = @"Administrative Sex",
-                            Description = @"This field contains the guarantor’s gender. Refer to User-defined Table 0001 - Administrative Sex in Chapter 3, ""Patient Administration"", for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.9.1",
                             Type = @"Component",
@@ -8290,25 +8536,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorAdministrativeSex = new HL7V28Field
+        {
+            field = message[@"GT1"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorAdministrativeSex.field.FieldRepetitions != null && _guarantorAdministrativeSex.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorAdministrativeSex.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorAdministrativeSex, fieldData);
+        }
+
+        return _guarantorAdministrativeSex;
+    } 
+}
+
+internal HL7V28Field _guarantorType;
+
+public HL7V28Field GuarantorType
+{
+    get
+    {
+        if (_guarantorType != null)
+        {
+            return _guarantorType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.10",
+            Type = @"Field",
+            Position = @"GT1.10",
+            Name = @"Guarantor Type",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0068",
+            TableName = @"Guarantor Type",
+            Description = @"This field indicates the type of guarantor, e.g., individual, institution, etc. Refer to User-defined Table 0068 - Guarantor Type for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.10",
-                            Type = @"Field",
-                            Position = @"GT1.10",
-                            Name = @"Guarantor Type",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0068",
-                            TableName = @"Guarantor Type",
-                            Description = @"This field indicates the type of guarantor, e.g., individual, institution, etc. Refer to User-defined Table 0068 - Guarantor Type for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.10.1",
                             Type = @"Component",
@@ -8736,25 +9012,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorType = new HL7V28Field
+        {
+            field = message[@"GT1"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorType.field.FieldRepetitions != null && _guarantorType.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorType, fieldData);
+        }
+
+        return _guarantorType;
+    } 
+}
+
+internal HL7V28Field _guarantorRelationship;
+
+public HL7V28Field GuarantorRelationship
+{
+    get
+    {
+        if (_guarantorRelationship != null)
+        {
+            return _guarantorRelationship;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.11",
+            Type = @"Field",
+            Position = @"GT1.11",
+            Name = @"Guarantor Relationship",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0063",
+            TableName = @"Relationship",
+            Description = @"This field indicates the relationship of the guarantor with the patient, e.g., parent, child, etc. Refer to User-defined Table 0063 - Relationship in Chapter 3, ""Patient Administration"", for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.11",
-                            Type = @"Field",
-                            Position = @"GT1.11",
-                            Name = @"Guarantor Relationship",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0063",
-                            TableName = @"Relationship",
-                            Description = @"This field indicates the relationship of the guarantor with the patient, e.g., parent, child, etc. Refer to User-defined Table 0063 - Relationship in Chapter 3, ""Patient Administration"", for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.11.1",
                             Type = @"Component",
@@ -9182,99 +9488,237 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.12",
-                            Type = @"Field",
-                            Position = @"GT1.12",
-                            Name = @"Guarantor Ssn",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the guarantor’s social security number.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.13",
-                            Type = @"Field",
-                            Position = @"GT1.13",
-                            Name = @"Guarantor Date - Begin",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date that the guarantor becomes responsible for the patient’s account.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.14",
-                            Type = @"Field",
-                            Position = @"GT1.14",
-                            Name = @"Guarantor Date - End",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date that the guarantor stops being responsible for the patient’s account.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.15",
-                            Type = @"Field",
-                            Position = @"GT1.15",
-                            Name = @"Guarantor Priority",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to determine the order in which the guarantors are responsible for the patient’s account.
+                        }
+        }
+
+        _guarantorRelationship = new HL7V28Field
+        {
+            field = message[@"GT1"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorRelationship.field.FieldRepetitions != null && _guarantorRelationship.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorRelationship.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorRelationship, fieldData);
+        }
+
+        return _guarantorRelationship;
+    } 
+}
+
+internal HL7V28Field _guarantorSsn;
+
+public HL7V28Field GuarantorSsn
+{
+    get
+    {
+        if (_guarantorSsn != null)
+        {
+            return _guarantorSsn;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.12",
+            Type = @"Field",
+            Position = @"GT1.12",
+            Name = @"Guarantor Ssn",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the guarantor’s social security number.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _guarantorSsn = new HL7V28Field
+        {
+            field = message[@"GT1"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorSsn.field.FieldRepetitions != null && _guarantorSsn.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorSsn.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorSsn, fieldData);
+        }
+
+        return _guarantorSsn;
+    } 
+}
+
+internal HL7V28Field _guarantorDateBegin;
+
+public HL7V28Field GuarantorDateBegin
+{
+    get
+    {
+        if (_guarantorDateBegin != null)
+        {
+            return _guarantorDateBegin;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.13",
+            Type = @"Field",
+            Position = @"GT1.13",
+            Name = @"Guarantor Date - Begin",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date that the guarantor becomes responsible for the patient’s account.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _guarantorDateBegin = new HL7V28Field
+        {
+            field = message[@"GT1"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorDateBegin.field.FieldRepetitions != null && _guarantorDateBegin.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorDateBegin.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorDateBegin, fieldData);
+        }
+
+        return _guarantorDateBegin;
+    } 
+}
+
+internal HL7V28Field _guarantorDateEnd;
+
+public HL7V28Field GuarantorDateEnd
+{
+    get
+    {
+        if (_guarantorDateEnd != null)
+        {
+            return _guarantorDateEnd;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.14",
+            Type = @"Field",
+            Position = @"GT1.14",
+            Name = @"Guarantor Date - End",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date that the guarantor stops being responsible for the patient’s account.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _guarantorDateEnd = new HL7V28Field
+        {
+            field = message[@"GT1"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorDateEnd.field.FieldRepetitions != null && _guarantorDateEnd.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorDateEnd.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorDateEnd, fieldData);
+        }
+
+        return _guarantorDateEnd;
+    } 
+}
+
+internal HL7V28Field _guarantorPriority;
+
+public HL7V28Field GuarantorPriority
+{
+    get
+    {
+        if (_guarantorPriority != null)
+        {
+            return _guarantorPriority;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.15",
+            Type = @"Field",
+            Position = @"GT1.15",
+            Name = @"Guarantor Priority",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to determine the order in which the guarantors are responsible for the patient’s account.
 ""1"" = primary guarantor
 ""2"" = secondary guarantor, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _guarantorPriority = new HL7V28Field
+        {
+            field = message[@"GT1"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorPriority.field.FieldRepetitions != null && _guarantorPriority.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorPriority, fieldData);
+        }
+
+        return _guarantorPriority;
+    } 
+}
+
+internal HL7V28Field _guarantorEmployerName;
+
+public HL7V28Field GuarantorEmployerName
+{
+    get
+    {
+        if (_guarantorEmployerName != null)
+        {
+            return _guarantorEmployerName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.16",
+            Type = @"Field",
+            Position = @"GT1.16",
+            Name = @"Guarantor Employer Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the guarantor’s employer, if the employer is a person. When the guarantor’s employer is an organization, use GT1-51 - Guarantor Employer’s Organization Name. Multiple names for the same person may be sent in this field, not multiple employers. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.16",
-                            Type = @"Field",
-                            Position = @"GT1.16",
-                            Name = @"Guarantor Employer Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the guarantor’s employer, if the employer is a person. When the guarantor’s employer is an organization, use GT1-51 - Guarantor Employer’s Organization Name. Multiple names for the same person may be sent in this field, not multiple employers. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.16.1",
                             Type = @"Component",
@@ -10088,25 +10532,55 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorEmployerName = new HL7V28Field
+        {
+            field = message[@"GT1"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorEmployerName.field.FieldRepetitions != null && _guarantorEmployerName.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorEmployerName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorEmployerName, fieldData);
+        }
+
+        return _guarantorEmployerName;
+    } 
+}
+
+internal HL7V28Field _guarantorEmployerAddress;
+
+public HL7V28Field GuarantorEmployerAddress
+{
+    get
+    {
+        if (_guarantorEmployerAddress != null)
+        {
+            return _guarantorEmployerAddress;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.17",
+            Type = @"Field",
+            Position = @"GT1.17",
+            Name = @"Guarantor Employer Address",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the guarantor’s employer’s address. Multiple addresses for the same employer may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.17",
-                            Type = @"Field",
-                            Position = @"GT1.17",
-                            Name = @"Guarantor Employer Address",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the guarantor’s employer’s address. Multiple addresses for the same employer may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.17.1",
                             Type = @"Component",
@@ -12379,25 +12853,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorEmployerAddress = new HL7V28Field
+        {
+            field = message[@"GT1"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorEmployerAddress.field.FieldRepetitions != null && _guarantorEmployerAddress.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorEmployerAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorEmployerAddress, fieldData);
+        }
+
+        return _guarantorEmployerAddress;
+    } 
+}
+
+internal HL7V28Field _guarantorEmployerPhoneNumber;
+
+public HL7V28Field GuarantorEmployerPhoneNumber
+{
+    get
+    {
+        if (_guarantorEmployerPhoneNumber != null)
+        {
+            return _guarantorEmployerPhoneNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.18",
+            Type = @"Field",
+            Position = @"GT1.18",
+            Name = @"Guarantor Employer Phone Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the guarantor’s employer’s phone number. Multiple phone numbers for the same employer may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.18",
-                            Type = @"Field",
-                            Position = @"GT1.18",
-                            Name = @"Guarantor Employer Phone Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the guarantor’s employer’s phone number. Multiple phone numbers for the same employer may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.18.1",
                             Type = @"Component",
@@ -13673,25 +14177,55 @@ If the preference order is unique across all usages for a given type, then it in
 Preference order numbers need not be sequential (i.e., three numbers with the priority orders of 0, 5 and 15 are legitimate).  The preference order numbers must be non-negative.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorEmployerPhoneNumber = new HL7V28Field
+        {
+            field = message[@"GT1"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorEmployerPhoneNumber.field.FieldRepetitions != null && _guarantorEmployerPhoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorEmployerPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorEmployerPhoneNumber, fieldData);
+        }
+
+        return _guarantorEmployerPhoneNumber;
+    } 
+}
+
+internal HL7V28Field _guarantorEmployeeIdNumber;
+
+public HL7V28Field GuarantorEmployeeIdNumber
+{
+    get
+    {
+        if (_guarantorEmployeeIdNumber != null)
+        {
+            return _guarantorEmployeeIdNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.19",
+            Type = @"Field",
+            Position = @"GT1.19",
+            Name = @"Guarantor Employee Id Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the guarantor’s employee number. The assigning authority and identifier type code are strongly recommended for all CX data types.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.19",
-                            Type = @"Field",
-                            Position = @"GT1.19",
-                            Name = @"Guarantor Employee Id Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the guarantor’s employee number. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.19.1",
                             Type = @"Component",
@@ -14904,25 +15438,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorEmployeeIdNumber = new HL7V28Field
+        {
+            field = message[@"GT1"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorEmployeeIdNumber.field.FieldRepetitions != null && _guarantorEmployeeIdNumber.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorEmployeeIdNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorEmployeeIdNumber, fieldData);
+        }
+
+        return _guarantorEmployeeIdNumber;
+    } 
+}
+
+internal HL7V28Field _guarantorEmploymentStatus;
+
+public HL7V28Field GuarantorEmploymentStatus
+{
+    get
+    {
+        if (_guarantorEmploymentStatus != null)
+        {
+            return _guarantorEmploymentStatus;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.20",
+            Type = @"Field",
+            Position = @"GT1.20",
+            Name = @"Guarantor Employment Status",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0066",
+            TableName = @"Employment Status",
+            Description = @"This field contains the code that indicates the guarantor’s employment status. Refer to User-Defined Table 0066 - Employment Status for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.20",
-                            Type = @"Field",
-                            Position = @"GT1.20",
-                            Name = @"Guarantor Employment Status",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0066",
-                            TableName = @"Employment Status",
-                            Description = @"This field contains the code that indicates the guarantor’s employment status. Refer to User-Defined Table 0066 - Employment Status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.20.1",
                             Type = @"Component",
@@ -15350,27 +15914,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.21",
-                            Type = @"Field",
-                            Position = @"GT1.21",
-                            Name = @"Guarantor Organization Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the guarantor when the guarantor is an organization. Multiple names for the same guarantor may be sent in this field, not multiple guarantors. The legal name is assumed to be in the first repetition. When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.
+                        }
+        }
+
+        _guarantorEmploymentStatus = new HL7V28Field
+        {
+            field = message[@"GT1"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorEmploymentStatus.field.FieldRepetitions != null && _guarantorEmploymentStatus.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorEmploymentStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorEmploymentStatus, fieldData);
+        }
+
+        return _guarantorEmploymentStatus;
+    } 
+}
+
+internal HL7V28Field _guarantorOrganizationName;
+
+public HL7V28Field GuarantorOrganizationName
+{
+    get
+    {
+        if (_guarantorOrganizationName != null)
+        {
+            return _guarantorOrganizationName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.21",
+            Type = @"Field",
+            Position = @"GT1.21",
+            Name = @"Guarantor Organization Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the guarantor when the guarantor is an organization. Multiple names for the same guarantor may be sent in this field, not multiple guarantors. The legal name is assumed to be in the first repetition. When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.
 
 Beginning with version 2.3, if the guarantor is a person, send a null value ("""") in GT1-21 - Guarantor Organization Name and put the person name in GT1-3 - Guarantor Name. Either guarantor person name or guarantor organization name is required.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.21.1",
                             Type = @"Component",
@@ -16102,45 +16696,102 @@ In general this component provides an indication of the representation provided 
 Note: The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.22",
-                            Type = @"Field",
-                            Position = @"GT1.22",
-                            Name = @"Guarantor Billing Hold Flag",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"Refer to HL7 Table 0136 - Yes/no Indicator in Chapter 2C, ""Code Tables"", for valid values. This field indicates whether or not a system should suppress printing of the guarantor’s bills.
+                        }
+        }
+
+        _guarantorOrganizationName = new HL7V28Field
+        {
+            field = message[@"GT1"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorOrganizationName.field.FieldRepetitions != null && _guarantorOrganizationName.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorOrganizationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorOrganizationName, fieldData);
+        }
+
+        return _guarantorOrganizationName;
+    } 
+}
+
+internal HL7V28Field _guarantorBillingHoldFlag;
+
+public HL7V28Field GuarantorBillingHoldFlag
+{
+    get
+    {
+        if (_guarantorBillingHoldFlag != null)
+        {
+            return _guarantorBillingHoldFlag;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.22",
+            Type = @"Field",
+            Position = @"GT1.22",
+            Name = @"Guarantor Billing Hold Flag",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"Refer to HL7 Table 0136 - Yes/no Indicator in Chapter 2C, ""Code Tables"", for valid values. This field indicates whether or not a system should suppress printing of the guarantor’s bills.
 Y - a system should suppress printing of guarantor’s bills
 N - a system should not suppress printing of guarantor’s bills",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _guarantorBillingHoldFlag = new HL7V28Field
+        {
+            field = message[@"GT1"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorBillingHoldFlag.field.FieldRepetitions != null && _guarantorBillingHoldFlag.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorBillingHoldFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorBillingHoldFlag, fieldData);
+        }
+
+        return _guarantorBillingHoldFlag;
+    } 
+}
+
+internal HL7V28Field _guarantorCreditRatingCode;
+
+public HL7V28Field GuarantorCreditRatingCode
+{
+    get
+    {
+        if (_guarantorCreditRatingCode != null)
+        {
+            return _guarantorCreditRatingCode;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.23",
+            Type = @"Field",
+            Position = @"GT1.23",
+            Name = @"Guarantor Credit Rating Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0341",
+            TableName = @"Guarantor Credit Rating Code",
+            Description = @"This field contains the guarantor’s credit rating. Refer to User-defined Table 0341 - Guarantor Credit Rating Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.23",
-                            Type = @"Field",
-                            Position = @"GT1.23",
-                            Name = @"Guarantor Credit Rating Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0341",
-                            TableName = @"Guarantor Credit Rating Code",
-                            Description = @"This field contains the guarantor’s credit rating. Refer to User-defined Table 0341 - Guarantor Credit Rating Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.23.1",
                             Type = @"Component",
@@ -16568,65 +17219,149 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.24",
-                            Type = @"Field",
-                            Position = @"GT1.24",
-                            Name = @"Guarantor Death Date And Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to indicate the date and time at which the guarantor’s death occurred.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.25",
-                            Type = @"Field",
-                            Position = @"GT1.25",
-                            Name = @"Guarantor Death Flag",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This field indicates whether or not the guarantor is deceased. Refer to HL7 Table 0136 - Yes/no Indicator in Chapter 2C, ""Code Tables"", for valid values.
+                        }
+        }
+
+        _guarantorCreditRatingCode = new HL7V28Field
+        {
+            field = message[@"GT1"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorCreditRatingCode.field.FieldRepetitions != null && _guarantorCreditRatingCode.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorCreditRatingCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorCreditRatingCode, fieldData);
+        }
+
+        return _guarantorCreditRatingCode;
+    } 
+}
+
+internal HL7V28Field _guarantorDeathDateAndTime;
+
+public HL7V28Field GuarantorDeathDateAndTime
+{
+    get
+    {
+        if (_guarantorDeathDateAndTime != null)
+        {
+            return _guarantorDeathDateAndTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.24",
+            Type = @"Field",
+            Position = @"GT1.24",
+            Name = @"Guarantor Death Date And Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to indicate the date and time at which the guarantor’s death occurred.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _guarantorDeathDateAndTime = new HL7V28Field
+        {
+            field = message[@"GT1"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorDeathDateAndTime.field.FieldRepetitions != null && _guarantorDeathDateAndTime.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorDeathDateAndTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorDeathDateAndTime, fieldData);
+        }
+
+        return _guarantorDeathDateAndTime;
+    } 
+}
+
+internal HL7V28Field _guarantorDeathFlag;
+
+public HL7V28Field GuarantorDeathFlag
+{
+    get
+    {
+        if (_guarantorDeathFlag != null)
+        {
+            return _guarantorDeathFlag;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.25",
+            Type = @"Field",
+            Position = @"GT1.25",
+            Name = @"Guarantor Death Flag",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"This field indicates whether or not the guarantor is deceased. Refer to HL7 Table 0136 - Yes/no Indicator in Chapter 2C, ""Code Tables"", for valid values.
 Y - the guarantor is deceased
 N - the guarantor is living",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.26",
-                            Type = @"Field",
-                            Position = @"GT1.26",
-                            Name = @"Guarantor Charge Adjustment Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0218",
-                            TableName = @"Patient Charge Adjustment",
-                            Description = @"This field contains user-defined codes that indicate which adjustments should be made to this guarantor’s charges. For example, when the hospital agrees to adjust this guarantor’s charges to a sliding scale. Refer to User-defined Table 0218 - Patient Charge Adjustment for suggested values.
+            Sample = @"",
+            Fields = null
+        }
+
+        _guarantorDeathFlag = new HL7V28Field
+        {
+            field = message[@"GT1"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorDeathFlag.field.FieldRepetitions != null && _guarantorDeathFlag.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorDeathFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorDeathFlag, fieldData);
+        }
+
+        return _guarantorDeathFlag;
+    } 
+}
+
+internal HL7V28Field _guarantorChargeAdjustmentCode;
+
+public HL7V28Field GuarantorChargeAdjustmentCode
+{
+    get
+    {
+        if (_guarantorChargeAdjustmentCode != null)
+        {
+            return _guarantorChargeAdjustmentCode;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.26",
+            Type = @"Field",
+            Position = @"GT1.26",
+            Name = @"Guarantor Charge Adjustment Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0218",
+            TableName = @"Patient Charge Adjustment",
+            Description = @"This field contains user-defined codes that indicate which adjustments should be made to this guarantor’s charges. For example, when the hospital agrees to adjust this guarantor’s charges to a sliding scale. Refer to User-defined Table 0218 - Patient Charge Adjustment for suggested values.
 
 Example: This field would contain the value used for sliding-fee scale processing.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.26.1",
                             Type = @"Component",
@@ -17054,25 +17789,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorChargeAdjustmentCode = new HL7V28Field
+        {
+            field = message[@"GT1"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorChargeAdjustmentCode.field.FieldRepetitions != null && _guarantorChargeAdjustmentCode.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorChargeAdjustmentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorChargeAdjustmentCode, fieldData);
+        }
+
+        return _guarantorChargeAdjustmentCode;
+    } 
+}
+
+internal HL7V28Field _guarantorHouseholdAnnualIncome;
+
+public HL7V28Field GuarantorHouseholdAnnualIncome
+{
+    get
+    {
+        if (_guarantorHouseholdAnnualIncome != null)
+        {
+            return _guarantorHouseholdAnnualIncome;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.27",
+            Type = @"Field",
+            Position = @"GT1.27",
+            Name = @"Guarantor Household Annual Income",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the combined annual income of all members of the guarantor’s household.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.27",
-                            Type = @"Field",
-                            Position = @"GT1.27",
-                            Name = @"Guarantor Household Annual Income",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the combined annual income of all members of the guarantor’s household.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.27.1",
                             Type = @"Component",
@@ -17649,45 +18414,102 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.28",
-                            Type = @"Field",
-                            Position = @"GT1.28",
-                            Name = @"Guarantor Household Size",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the number of people living at the guarantor’s primary residence.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.29",
-                            Type = @"Field",
-                            Position = @"GT1.29",
-                            Name = @"Guarantor Employer Id Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This is a code that uniquely identifies the guarantor’s employer when the employer is a person. It may be a user-defined code or a code defined by a government agency (Federal Tax ID#).
+                        }
+        }
+
+        _guarantorHouseholdAnnualIncome = new HL7V28Field
+        {
+            field = message[@"GT1"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorHouseholdAnnualIncome.field.FieldRepetitions != null && _guarantorHouseholdAnnualIncome.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorHouseholdAnnualIncome.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorHouseholdAnnualIncome, fieldData);
+        }
+
+        return _guarantorHouseholdAnnualIncome;
+    } 
+}
+
+internal HL7V28Field _guarantorHouseholdSize;
+
+public HL7V28Field GuarantorHouseholdSize
+{
+    get
+    {
+        if (_guarantorHouseholdSize != null)
+        {
+            return _guarantorHouseholdSize;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.28",
+            Type = @"Field",
+            Position = @"GT1.28",
+            Name = @"Guarantor Household Size",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the number of people living at the guarantor’s primary residence.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _guarantorHouseholdSize = new HL7V28Field
+        {
+            field = message[@"GT1"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorHouseholdSize.field.FieldRepetitions != null && _guarantorHouseholdSize.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorHouseholdSize.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorHouseholdSize, fieldData);
+        }
+
+        return _guarantorHouseholdSize;
+    } 
+}
+
+internal HL7V28Field _guarantorEmployerIdNumber;
+
+public HL7V28Field GuarantorEmployerIdNumber
+{
+    get
+    {
+        if (_guarantorEmployerIdNumber != null)
+        {
+            return _guarantorEmployerIdNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.29",
+            Type = @"Field",
+            Position = @"GT1.29",
+            Name = @"Guarantor Employer Id Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This is a code that uniquely identifies the guarantor’s employer when the employer is a person. It may be a user-defined code or a code defined by a government agency (Federal Tax ID#).
 
 When further breakdowns of employer information are needed, such as a division or plant, it is recommended that the coding scheme incorporate the relationships (e.g., define separate codes for each division). The assigning authority and identifier type code are strongly recommended for all CX data types.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.29.1",
                             Type = @"Component",
@@ -18900,25 +19722,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorEmployerIdNumber = new HL7V28Field
+        {
+            field = message[@"GT1"][29],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorEmployerIdNumber.field.FieldRepetitions != null && _guarantorEmployerIdNumber.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorEmployerIdNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorEmployerIdNumber, fieldData);
+        }
+
+        return _guarantorEmployerIdNumber;
+    } 
+}
+
+internal HL7V28Field _guarantorMaritalStatusCode;
+
+public HL7V28Field GuarantorMaritalStatusCode
+{
+    get
+    {
+        if (_guarantorMaritalStatusCode != null)
+        {
+            return _guarantorMaritalStatusCode;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.30",
+            Type = @"Field",
+            Position = @"GT1.30",
+            Name = @"Guarantor Marital Status Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0002",
+            TableName = @"Marital Status",
+            Description = @"This field contains the marital status of the guarantor. Refer to User-defined Table 0002 - Marital Status in Chapter 3, ""Patient Administration"", for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.30",
-                            Type = @"Field",
-                            Position = @"GT1.30",
-                            Name = @"Guarantor Marital Status Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0002",
-                            TableName = @"Marital Status",
-                            Description = @"This field contains the marital status of the guarantor. Refer to User-defined Table 0002 - Marital Status in Chapter 3, ""Patient Administration"", for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.30.1",
                             Type = @"Component",
@@ -19346,61 +20198,145 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorMaritalStatusCode = new HL7V28Field
+        {
+            field = message[@"GT1"][30],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorMaritalStatusCode.field.FieldRepetitions != null && _guarantorMaritalStatusCode.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorMaritalStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorMaritalStatusCode, fieldData);
+        }
+
+        return _guarantorMaritalStatusCode;
+    } 
+}
+
+internal HL7V28Field _guarantorHireEffectiveDate;
+
+public HL7V28Field GuarantorHireEffectiveDate
+{
+    get
+    {
+        if (_guarantorHireEffectiveDate != null)
+        {
+            return _guarantorHireEffectiveDate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.31",
+            Type = @"Field",
+            Position = @"GT1.31",
+            Name = @"Guarantor Hire Effective Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date that the guarantor’s employment began.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _guarantorHireEffectiveDate = new HL7V28Field
+        {
+            field = message[@"GT1"][31],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorHireEffectiveDate.field.FieldRepetitions != null && _guarantorHireEffectiveDate.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorHireEffectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorHireEffectiveDate, fieldData);
+        }
+
+        return _guarantorHireEffectiveDate;
+    } 
+}
+
+internal HL7V28Field _employmentStopDate;
+
+public HL7V28Field EmploymentStopDate
+{
+    get
+    {
+        if (_employmentStopDate != null)
+        {
+            return _employmentStopDate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.32",
+            Type = @"Field",
+            Position = @"GT1.32",
+            Name = @"Employment Stop Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the date on which the guarantor’s employment with a particular employer ended.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _employmentStopDate = new HL7V28Field
+        {
+            field = message[@"GT1"][32],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_employmentStopDate.field.FieldRepetitions != null && _employmentStopDate.field.FieldRepetitions.Count > 0)
+        {
+            _employmentStopDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_employmentStopDate, fieldData);
+        }
+
+        return _employmentStopDate;
+    } 
+}
+
+internal HL7V28Field _livingDependency;
+
+public HL7V28Field LivingDependency
+{
+    get
+    {
+        if (_livingDependency != null)
+        {
+            return _livingDependency;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.33",
+            Type = @"Field",
+            Position = @"GT1.33",
+            Name = @"Living Dependency",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0223",
+            TableName = @"Living Dependency",
+            Description = @"Identifies the specific living conditions of the guarantor. Refer to User-defined Table 0223 - Living Dependency in Chapter 3, ""Patient Administration"", for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.31",
-                            Type = @"Field",
-                            Position = @"GT1.31",
-                            Name = @"Guarantor Hire Effective Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date that the guarantor’s employment began.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.32",
-                            Type = @"Field",
-                            Position = @"GT1.32",
-                            Name = @"Employment Stop Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the date on which the guarantor’s employment with a particular employer ended.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.33",
-                            Type = @"Field",
-                            Position = @"GT1.33",
-                            Name = @"Living Dependency",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0223",
-                            TableName = @"Living Dependency",
-                            Description = @"Identifies the specific living conditions of the guarantor. Refer to User-defined Table 0223 - Living Dependency in Chapter 3, ""Patient Administration"", for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.33.1",
                             Type = @"Component",
@@ -19828,25 +20764,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _livingDependency = new HL7V28Field
+        {
+            field = message[@"GT1"][33],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_livingDependency.field.FieldRepetitions != null && _livingDependency.field.FieldRepetitions.Count > 0)
+        {
+            _livingDependency.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_livingDependency, fieldData);
+        }
+
+        return _livingDependency;
+    } 
+}
+
+internal HL7V28Field _ambulatoryStatus;
+
+public HL7V28Field AmbulatoryStatus
+{
+    get
+    {
+        if (_ambulatoryStatus != null)
+        {
+            return _ambulatoryStatus;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.34",
+            Type = @"Field",
+            Position = @"GT1.34",
+            Name = @"Ambulatory Status",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0009",
+            TableName = @"Ambulatory Status",
+            Description = @"Identifies the transient state of mobility for the guarantor. Refer to User-defined Table 0009 - Ambulatory Status in Chapter 3, ""Patient Administration"", for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.34",
-                            Type = @"Field",
-                            Position = @"GT1.34",
-                            Name = @"Ambulatory Status",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0009",
-                            TableName = @"Ambulatory Status",
-                            Description = @"Identifies the transient state of mobility for the guarantor. Refer to User-defined Table 0009 - Ambulatory Status in Chapter 3, ""Patient Administration"", for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.34.1",
                             Type = @"Component",
@@ -20274,25 +21240,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _ambulatoryStatus = new HL7V28Field
+        {
+            field = message[@"GT1"][34],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_ambulatoryStatus.field.FieldRepetitions != null && _ambulatoryStatus.field.FieldRepetitions.Count > 0)
+        {
+            _ambulatoryStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_ambulatoryStatus, fieldData);
+        }
+
+        return _ambulatoryStatus;
+    } 
+}
+
+internal HL7V28Field _citizenship;
+
+public HL7V28Field Citizenship
+{
+    get
+    {
+        if (_citizenship != null)
+        {
+            return _citizenship;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.35",
+            Type = @"Field",
+            Position = @"GT1.35",
+            Name = @"Citizenship",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0171",
+            TableName = @"Citizenship",
+            Description = @"This field contains the code to identify the guarantor’s citizenship. HL7 recommends using ISO table 3166 as the suggested values in User-defined Table 0171 - Citizenship defined in Chapter 3, ""Patient Administration"".",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.35",
-                            Type = @"Field",
-                            Position = @"GT1.35",
-                            Name = @"Citizenship",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0171",
-                            TableName = @"Citizenship",
-                            Description = @"This field contains the code to identify the guarantor’s citizenship. HL7 recommends using ISO table 3166 as the suggested values in User-defined Table 0171 - Citizenship defined in Chapter 3, ""Patient Administration"".",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.35.1",
                             Type = @"Component",
@@ -20720,25 +21716,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _citizenship = new HL7V28Field
+        {
+            field = message[@"GT1"][35],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_citizenship.field.FieldRepetitions != null && _citizenship.field.FieldRepetitions.Count > 0)
+        {
+            _citizenship.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_citizenship, fieldData);
+        }
+
+        return _citizenship;
+    } 
+}
+
+internal HL7V28Field _primaryLanguage;
+
+public HL7V28Field PrimaryLanguage
+{
+    get
+    {
+        if (_primaryLanguage != null)
+        {
+            return _primaryLanguage;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.36",
+            Type = @"Field",
+            Position = @"GT1.36",
+            Name = @"Primary Language",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0296",
+            TableName = @"Primary Language",
+            Description = @"This field identifies the guarantor’s primary speaking language. HL7 recommends using ISO table 639 as the suggested values in User-defined Table 0296 - Primary Language defined in Chapter 3, ""Patient Administration"".",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.36",
-                            Type = @"Field",
-                            Position = @"GT1.36",
-                            Name = @"Primary Language",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0296",
-                            TableName = @"Primary Language",
-                            Description = @"This field identifies the guarantor’s primary speaking language. HL7 recommends using ISO table 639 as the suggested values in User-defined Table 0296 - Primary Language defined in Chapter 3, ""Patient Administration"".",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.36.1",
                             Type = @"Component",
@@ -21166,25 +22192,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primaryLanguage = new HL7V28Field
+        {
+            field = message[@"GT1"][36],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryLanguage.field.FieldRepetitions != null && _primaryLanguage.field.FieldRepetitions.Count > 0)
+        {
+            _primaryLanguage.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_primaryLanguage, fieldData);
+        }
+
+        return _primaryLanguage;
+    } 
+}
+
+internal HL7V28Field _livingArrangement;
+
+public HL7V28Field LivingArrangement
+{
+    get
+    {
+        if (_livingArrangement != null)
+        {
+            return _livingArrangement;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.37",
+            Type = @"Field",
+            Position = @"GT1.37",
+            Name = @"Living Arrangement",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0220",
+            TableName = @"Living Arrangement",
+            Description = @"This field identifies the situation in which the person lives at his residential address. Refer to User-defined Table 0220 - Living Arrangement in Chapter 3, ""Patient Administration"", for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.37",
-                            Type = @"Field",
-                            Position = @"GT1.37",
-                            Name = @"Living Arrangement",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0220",
-                            TableName = @"Living Arrangement",
-                            Description = @"This field identifies the situation in which the person lives at his residential address. Refer to User-defined Table 0220 - Living Arrangement in Chapter 3, ""Patient Administration"", for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.37.1",
                             Type = @"Component",
@@ -21612,25 +22668,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _livingArrangement = new HL7V28Field
+        {
+            field = message[@"GT1"][37],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_livingArrangement.field.FieldRepetitions != null && _livingArrangement.field.FieldRepetitions.Count > 0)
+        {
+            _livingArrangement.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_livingArrangement, fieldData);
+        }
+
+        return _livingArrangement;
+    } 
+}
+
+internal HL7V28Field _publicityCode;
+
+public HL7V28Field PublicityCode
+{
+    get
+    {
+        if (_publicityCode != null)
+        {
+            return _publicityCode;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.38",
+            Type = @"Field",
+            Position = @"GT1.38",
+            Name = @"Publicity Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0215",
+            TableName = @"Publicity Code",
+            Description = @"This field contains a user-defined code indicating what level of publicity is allowed (e.g., No Publicity, Family Only) for a guarantor. Refer to User-defined Table 0215 - Publicity Code in Chapter 3, ""Patient Administration"", for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.38",
-                            Type = @"Field",
-                            Position = @"GT1.38",
-                            Name = @"Publicity Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0215",
-                            TableName = @"Publicity Code",
-                            Description = @"This field contains a user-defined code indicating what level of publicity is allowed (e.g., No Publicity, Family Only) for a guarantor. Refer to User-defined Table 0215 - Publicity Code in Chapter 3, ""Patient Administration"", for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.38.1",
                             Type = @"Component",
@@ -22058,45 +23144,102 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.39",
-                            Type = @"Field",
-                            Position = @"GT1.39",
-                            Name = @"Protection Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This field identifies the guarantor’s protection, which determines whether or not access to information about this enrollee should be restricted from users who do not have adequate authority. Refer to HL7 Table 0136 - Yes/no Indicator for valid values.
+                        }
+        }
+
+        _publicityCode = new HL7V28Field
+        {
+            field = message[@"GT1"][38],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_publicityCode.field.FieldRepetitions != null && _publicityCode.field.FieldRepetitions.Count > 0)
+        {
+            _publicityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_publicityCode, fieldData);
+        }
+
+        return _publicityCode;
+    } 
+}
+
+internal HL7V28Field _protectionIndicator;
+
+public HL7V28Field ProtectionIndicator
+{
+    get
+    {
+        if (_protectionIndicator != null)
+        {
+            return _protectionIndicator;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.39",
+            Type = @"Field",
+            Position = @"GT1.39",
+            Name = @"Protection Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"This field identifies the guarantor’s protection, which determines whether or not access to information about this enrollee should be restricted from users who do not have adequate authority. Refer to HL7 Table 0136 - Yes/no Indicator for valid values.
 Y - restrict access
 N - do not restrict access",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _protectionIndicator = new HL7V28Field
+        {
+            field = message[@"GT1"][39],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_protectionIndicator.field.FieldRepetitions != null && _protectionIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _protectionIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_protectionIndicator, fieldData);
+        }
+
+        return _protectionIndicator;
+    } 
+}
+
+internal HL7V28Field _studentIndicator;
+
+public HL7V28Field StudentIndicator
+{
+    get
+    {
+        if (_studentIndicator != null)
+        {
+            return _studentIndicator;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.40",
+            Type = @"Field",
+            Position = @"GT1.40",
+            Name = @"Student Indicator",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0231",
+            TableName = @"Student Status",
+            Description = @"This field indicates whether the guarantor is currently a student, and whether the guarantor is a full-time or part-time student. This field does not indicate the degree level (high school, college) of the student, or his/her field of study (accounting, engineering, etc.). Refer to User-defined Table 0231- Student Status for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.40",
-                            Type = @"Field",
-                            Position = @"GT1.40",
-                            Name = @"Student Indicator",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0231",
-                            TableName = @"Student Status",
-                            Description = @"This field indicates whether the guarantor is currently a student, and whether the guarantor is a full-time or part-time student. This field does not indicate the degree level (high school, college) of the student, or his/her field of study (accounting, engineering, etc.). Refer to User-defined Table 0231- Student Status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.40.1",
                             Type = @"Component",
@@ -22524,25 +23667,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _studentIndicator = new HL7V28Field
+        {
+            field = message[@"GT1"][40],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_studentIndicator.field.FieldRepetitions != null && _studentIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _studentIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_studentIndicator, fieldData);
+        }
+
+        return _studentIndicator;
+    } 
+}
+
+internal HL7V28Field _religion;
+
+public HL7V28Field Religion
+{
+    get
+    {
+        if (_religion != null)
+        {
+            return _religion;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.41",
+            Type = @"Field",
+            Position = @"GT1.41",
+            Name = @"Religion",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0006",
+            TableName = @"Religion",
+            Description = @"This field indicates the type of religion practiced by the guarantor. Refer to User-defined Table 0006 - Religion in Chapter 3, ""Patient Administration"" for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.41",
-                            Type = @"Field",
-                            Position = @"GT1.41",
-                            Name = @"Religion",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0006",
-                            TableName = @"Religion",
-                            Description = @"This field indicates the type of religion practiced by the guarantor. Refer to User-defined Table 0006 - Religion in Chapter 3, ""Patient Administration"" for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.41.1",
                             Type = @"Component",
@@ -22970,25 +24143,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _religion = new HL7V28Field
+        {
+            field = message[@"GT1"][41],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_religion.field.FieldRepetitions != null && _religion.field.FieldRepetitions.Count > 0)
+        {
+            _religion.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_religion, fieldData);
+        }
+
+        return _religion;
+    } 
+}
+
+internal HL7V28Field _mothersMaidenName;
+
+public HL7V28Field MothersMaidenName
+{
+    get
+    {
+        if (_mothersMaidenName != null)
+        {
+            return _mothersMaidenName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.42",
+            Type = @"Field",
+            Position = @"GT1.42",
+            Name = @"Mother's Maiden Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the guarantor’s mother’s maiden name.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.42",
-                            Type = @"Field",
-                            Position = @"GT1.42",
-                            Name = @"Mother's Maiden Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the guarantor’s mother’s maiden name.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.42.1",
                             Type = @"Component",
@@ -23802,25 +25005,55 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _mothersMaidenName = new HL7V28Field
+        {
+            field = message[@"GT1"][42],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_mothersMaidenName.field.FieldRepetitions != null && _mothersMaidenName.field.FieldRepetitions.Count > 0)
+        {
+            _mothersMaidenName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_mothersMaidenName, fieldData);
+        }
+
+        return _mothersMaidenName;
+    } 
+}
+
+internal HL7V28Field _nationality;
+
+public HL7V28Field Nationality
+{
+    get
+    {
+        if (_nationality != null)
+        {
+            return _nationality;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.43",
+            Type = @"Field",
+            Position = @"GT1.43",
+            Name = @"Nationality",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0212",
+            TableName = @"Nationality",
+            Description = @"This field contains a code that identifies the nation or national grouping to which the person belongs. This may be different from a person’s citizenship in countries in which multiple nationalities are recognized (for example, Spain: Basque, Catalan, etc.). HL7 recommends using ISO table 3166 as suggested values in User-defined Table 0212 - Nationality in Chapter 2C, ""Code Tables"".",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.43",
-                            Type = @"Field",
-                            Position = @"GT1.43",
-                            Name = @"Nationality",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0212",
-                            TableName = @"Nationality",
-                            Description = @"This field contains a code that identifies the nation or national grouping to which the person belongs. This may be different from a person’s citizenship in countries in which multiple nationalities are recognized (for example, Spain: Basque, Catalan, etc.). HL7 recommends using ISO table 3166 as suggested values in User-defined Table 0212 - Nationality in Chapter 2C, ""Code Tables"".",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.43.1",
                             Type = @"Component",
@@ -24248,25 +25481,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _nationality = new HL7V28Field
+        {
+            field = message[@"GT1"][43],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_nationality.field.FieldRepetitions != null && _nationality.field.FieldRepetitions.Count > 0)
+        {
+            _nationality.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_nationality, fieldData);
+        }
+
+        return _nationality;
+    } 
+}
+
+internal HL7V28Field _ethnicGroup;
+
+public HL7V28Field EthnicGroup
+{
+    get
+    {
+        if (_ethnicGroup != null)
+        {
+            return _ethnicGroup;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.44",
+            Type = @"Field",
+            Position = @"GT1.44",
+            Name = @"Ethnic Group",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0189",
+            TableName = @"Ethnic Group",
+            Description = @"This field contains the guarantor’s ethnic group. Refer to User-defined Table 0189 - Ethnic Group in Chapter 3, ""Patient Administration"", for suggested values. The second triplet of the CE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes. In the US, a current use is to report ethnicity in line with US federal standards for Hispanic origin.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.44",
-                            Type = @"Field",
-                            Position = @"GT1.44",
-                            Name = @"Ethnic Group",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0189",
-                            TableName = @"Ethnic Group",
-                            Description = @"This field contains the guarantor’s ethnic group. Refer to User-defined Table 0189 - Ethnic Group in Chapter 3, ""Patient Administration"", for suggested values. The second triplet of the CE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes. In the US, a current use is to report ethnicity in line with US federal standards for Hispanic origin.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.44.1",
                             Type = @"Component",
@@ -24694,27 +25957,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.45",
-                            Type = @"Field",
-                            Position = @"GT1.45",
-                            Name = @"Contact Person's Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the person who should be contacted regarding the guarantor bills, etc. This may be someone other than the guarantor. (E.g., Contact guarantor’s wife regarding all bills - guarantor lives out of country.)
+                        }
+        }
+
+        _ethnicGroup = new HL7V28Field
+        {
+            field = message[@"GT1"][44],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_ethnicGroup.field.FieldRepetitions != null && _ethnicGroup.field.FieldRepetitions.Count > 0)
+        {
+            _ethnicGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_ethnicGroup, fieldData);
+        }
+
+        return _ethnicGroup;
+    } 
+}
+
+internal HL7V28Field _contactPersonsName;
+
+public HL7V28Field ContactPersonsName
+{
+    get
+    {
+        if (_contactPersonsName != null)
+        {
+            return _contactPersonsName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.45",
+            Type = @"Field",
+            Position = @"GT1.45",
+            Name = @"Contact Person's Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the person who should be contacted regarding the guarantor bills, etc. This may be someone other than the guarantor. (E.g., Contact guarantor’s wife regarding all bills - guarantor lives out of country.)
 
 This is a repeating field that allows for multiple names for the same person. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.45.1",
                             Type = @"Component",
@@ -25528,25 +26821,55 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactPersonsName = new HL7V28Field
+        {
+            field = message[@"GT1"][45],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactPersonsName.field.FieldRepetitions != null && _contactPersonsName.field.FieldRepetitions.Count > 0)
+        {
+            _contactPersonsName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_contactPersonsName, fieldData);
+        }
+
+        return _contactPersonsName;
+    } 
+}
+
+internal HL7V28Field _contactPersonsTelephoneNumber;
+
+public HL7V28Field ContactPersonsTelephoneNumber
+{
+    get
+    {
+        if (_contactPersonsTelephoneNumber != null)
+        {
+            return _contactPersonsTelephoneNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.46",
+            Type = @"Field",
+            Position = @"GT1.46",
+            Name = @"Contact Person's Telephone Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the telephone number of the guarantor (person) to contact regarding guarantor bills, etc. Multiple phone numbers for that person may be sent in this sequence. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.46",
-                            Type = @"Field",
-                            Position = @"GT1.46",
-                            Name = @"Contact Person's Telephone Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the telephone number of the guarantor (person) to contact regarding guarantor bills, etc. Multiple phone numbers for that person may be sent in this sequence. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.46.1",
                             Type = @"Component",
@@ -26822,25 +28145,55 @@ If the preference order is unique across all usages for a given type, then it in
 Preference order numbers need not be sequential (i.e., three numbers with the priority orders of 0, 5 and 15 are legitimate).  The preference order numbers must be non-negative.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactPersonsTelephoneNumber = new HL7V28Field
+        {
+            field = message[@"GT1"][46],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactPersonsTelephoneNumber.field.FieldRepetitions != null && _contactPersonsTelephoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            _contactPersonsTelephoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_contactPersonsTelephoneNumber, fieldData);
+        }
+
+        return _contactPersonsTelephoneNumber;
+    } 
+}
+
+internal HL7V28Field _contactReason;
+
+public HL7V28Field ContactReason
+{
+    get
+    {
+        if (_contactReason != null)
+        {
+            return _contactReason;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.47",
+            Type = @"Field",
+            Position = @"GT1.47",
+            Name = @"Contact Reason",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0222",
+            TableName = @"Contact Reason",
+            Description = @"This field contains a user-defined code that identifies the reason for contacting the guarantor, for example, to phone the guarantor if payments are late. Refer to User-defined Table 0222 - Contact reason for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.47",
-                            Type = @"Field",
-                            Position = @"GT1.47",
-                            Name = @"Contact Reason",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0222",
-                            TableName = @"Contact Reason",
-                            Description = @"This field contains a user-defined code that identifies the reason for contacting the guarantor, for example, to phone the guarantor if payments are late. Refer to User-defined Table 0222 - Contact reason for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.47.1",
                             Type = @"Component",
@@ -27268,25 +28621,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactReason = new HL7V28Field
+        {
+            field = message[@"GT1"][47],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactReason.field.FieldRepetitions != null && _contactReason.field.FieldRepetitions.Count > 0)
+        {
+            _contactReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_contactReason, fieldData);
+        }
+
+        return _contactReason;
+    } 
+}
+
+internal HL7V28Field _contactRelationship;
+
+public HL7V28Field ContactRelationship
+{
+    get
+    {
+        if (_contactRelationship != null)
+        {
+            return _contactRelationship;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.48",
+            Type = @"Field",
+            Position = @"GT1.48",
+            Name = @"Contact Relationship",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0063",
+            TableName = @"Relationship",
+            Description = @"Identifies the guarantor relationship to the contact person specified above. Refer to User-defined Table 0063 - Relationship in Chapter 3, ""Patient Administration"", for suggested values. Examples include wife, attorney, power of attorney, self, and organization.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.48",
-                            Type = @"Field",
-                            Position = @"GT1.48",
-                            Name = @"Contact Relationship",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0063",
-                            TableName = @"Relationship",
-                            Description = @"Identifies the guarantor relationship to the contact person specified above. Refer to User-defined Table 0063 - Relationship in Chapter 3, ""Patient Administration"", for suggested values. Examples include wife, attorney, power of attorney, self, and organization.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.48.1",
                             Type = @"Component",
@@ -27714,43 +29097,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactRelationship = new HL7V28Field
+        {
+            field = message[@"GT1"][48],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactRelationship.field.FieldRepetitions != null && _contactRelationship.field.FieldRepetitions.Count > 0)
+        {
+            _contactRelationship.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_contactRelationship, fieldData);
+        }
+
+        return _contactRelationship;
+    } 
+}
+
+internal HL7V28Field _jobTitle;
+
+public HL7V28Field JobTitle
+{
+    get
+    {
+        if (_jobTitle != null)
+        {
+            return _jobTitle;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.49",
+            Type = @"Field",
+            Position = @"GT1.49",
+            Name = @"Job Title",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a descriptive name of the guarantor’s occupation (e.g., Sr. Systems Analyst, Sr. Accountant).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _jobTitle = new HL7V28Field
+        {
+            field = message[@"GT1"][49],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_jobTitle.field.FieldRepetitions != null && _jobTitle.field.FieldRepetitions.Count > 0)
+        {
+            _jobTitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_jobTitle, fieldData);
+        }
+
+        return _jobTitle;
+    } 
+}
+
+internal HL7V28Field _jobCodeClass;
+
+public HL7V28Field JobCodeClass
+{
+    get
+    {
+        if (_jobCodeClass != null)
+        {
+            return _jobCodeClass;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.50",
+            Type = @"Field",
+            Position = @"GT1.50",
+            Name = @"Job Code/Class",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"JCC",
+            DataTypeName = @"Job Code/class",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the guarantor’s job code and employee classification.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.49",
-                            Type = @"Field",
-                            Position = @"GT1.49",
-                            Name = @"Job Title",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a descriptive name of the guarantor’s occupation (e.g., Sr. Systems Analyst, Sr. Accountant).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.50",
-                            Type = @"Field",
-                            Position = @"GT1.50",
-                            Name = @"Job Code/Class",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"JCC",
-                            DataTypeName = @"Job Code/class",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the guarantor’s job code and employee classification.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.50.1",
                             Type = @"Component",
@@ -28658,25 +30098,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"This component contains the text of the job description. This will accommodate systems where job descriptions are not codified.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _jobCodeClass = new HL7V28Field
+        {
+            field = message[@"GT1"][50],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_jobCodeClass.field.FieldRepetitions != null && _jobCodeClass.field.FieldRepetitions.Count > 0)
+        {
+            _jobCodeClass.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_jobCodeClass, fieldData);
+        }
+
+        return _jobCodeClass;
+    } 
+}
+
+internal HL7V28Field _guarantorEmployersOrganizationName;
+
+public HL7V28Field GuarantorEmployersOrganizationName
+{
+    get
+    {
+        if (_guarantorEmployersOrganizationName != null)
+        {
+            return _guarantorEmployersOrganizationName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.51",
+            Type = @"Field",
+            Position = @"GT1.51",
+            Name = @"Guarantor Employer's Organization Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the guarantor’s employer when the guarantor’s employer is an organization. When the guarantor’s employer is a person, use GT1-16 - Guarantor Employer Name. Multiple names for the same guarantor may be sent in this field. The legal name is assumed to be in the first repetition. When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.51",
-                            Type = @"Field",
-                            Position = @"GT1.51",
-                            Name = @"Guarantor Employer's Organization Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the guarantor’s employer when the guarantor’s employer is an organization. When the guarantor’s employer is a person, use GT1-16 - Guarantor Employer Name. Multiple names for the same guarantor may be sent in this field. The legal name is assumed to be in the first repetition. When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.51.1",
                             Type = @"Component",
@@ -29408,25 +30878,55 @@ In general this component provides an indication of the representation provided 
 Note: The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorEmployersOrganizationName = new HL7V28Field
+        {
+            field = message[@"GT1"][51],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorEmployersOrganizationName.field.FieldRepetitions != null && _guarantorEmployersOrganizationName.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorEmployersOrganizationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorEmployersOrganizationName, fieldData);
+        }
+
+        return _guarantorEmployersOrganizationName;
+    } 
+}
+
+internal HL7V28Field _handicap;
+
+public HL7V28Field Handicap
+{
+    get
+    {
+        if (_handicap != null)
+        {
+            return _handicap;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.52",
+            Type = @"Field",
+            Position = @"GT1.52",
+            Name = @"Handicap",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0295",
+            TableName = @"Handicap",
+            Description = @"This field contains a code to describe the guarantor’s disability. Refer to User-defined Table 0295 - Handicap in Chapter 3, ""Patient Administration"", for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.52",
-                            Type = @"Field",
-                            Position = @"GT1.52",
-                            Name = @"Handicap",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0295",
-                            TableName = @"Handicap",
-                            Description = @"This field contains a code to describe the guarantor’s disability. Refer to User-defined Table 0295 - Handicap in Chapter 3, ""Patient Administration"", for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.52.1",
                             Type = @"Component",
@@ -29854,25 +31354,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _handicap = new HL7V28Field
+        {
+            field = message[@"GT1"][52],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_handicap.field.FieldRepetitions != null && _handicap.field.FieldRepetitions.Count > 0)
+        {
+            _handicap.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_handicap, fieldData);
+        }
+
+        return _handicap;
+    } 
+}
+
+internal HL7V28Field _jobStatus;
+
+public HL7V28Field JobStatus
+{
+    get
+    {
+        if (_jobStatus != null)
+        {
+            return _jobStatus;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.53",
+            Type = @"Field",
+            Position = @"GT1.53",
+            Name = @"Job Status",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0311",
+            TableName = @"Job Status",
+            Description = @"This field contains a code that identifies the guarantor’s current job status. Refer to User-defined Table 0311 - Job Status in Chapter 3, ""Patient Administration"", for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.53",
-                            Type = @"Field",
-                            Position = @"GT1.53",
-                            Name = @"Job Status",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0311",
-                            TableName = @"Job Status",
-                            Description = @"This field contains a code that identifies the guarantor’s current job status. Refer to User-defined Table 0311 - Job Status in Chapter 3, ""Patient Administration"", for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.53.1",
                             Type = @"Component",
@@ -30300,25 +31830,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _jobStatus = new HL7V28Field
+        {
+            field = message[@"GT1"][53],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_jobStatus.field.FieldRepetitions != null && _jobStatus.field.FieldRepetitions.Count > 0)
+        {
+            _jobStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_jobStatus, fieldData);
+        }
+
+        return _jobStatus;
+    } 
+}
+
+internal HL7V28Field _guarantorFinancialClass;
+
+public HL7V28Field GuarantorFinancialClass
+{
+    get
+    {
+        if (_guarantorFinancialClass != null)
+        {
+            return _guarantorFinancialClass;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.54",
+            Type = @"Field",
+            Position = @"GT1.54",
+            Name = @"Guarantor Financial Class",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"FC",
+            DataTypeName = @"Financial Class",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the financial class (FC) assigned to the guarantor for the purpose of identifying sources of reimbursement. It can be different than that of the patient. When the FC of the guarantor is different than the FC of the patient, and the guarantor’s coverage for that patient has been exhausted, the source of reimbursement falls back onto the FC of the patient..",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.54",
-                            Type = @"Field",
-                            Position = @"GT1.54",
-                            Name = @"Guarantor Financial Class",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"FC",
-                            DataTypeName = @"Financial Class",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the financial class (FC) assigned to the guarantor for the purpose of identifying sources of reimbursement. It can be different than that of the patient. When the FC of the guarantor is different than the FC of the patient, and the guarantor’s coverage for that patient has been exhausted, the source of reimbursement falls back onto the FC of the patient..",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.54.1",
                             Type = @"Component",
@@ -30780,25 +32340,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"This component contains the effective date/time of the person’s assignment to the financial class specified in the first component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorFinancialClass = new HL7V28Field
+        {
+            field = message[@"GT1"][54],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorFinancialClass.field.FieldRepetitions != null && _guarantorFinancialClass.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorFinancialClass.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorFinancialClass, fieldData);
+        }
+
+        return _guarantorFinancialClass;
+    } 
+}
+
+internal HL7V28Field _guarantorRace;
+
+public HL7V28Field GuarantorRace
+{
+    get
+    {
+        if (_guarantorRace != null)
+        {
+            return _guarantorRace;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.55",
+            Type = @"Field",
+            Position = @"GT1.55",
+            Name = @"Guarantor Race",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0005",
+            TableName = @"Race",
+            Description = @"This field refers to the guarantor’s race. Refer to User-defined Table 0005 - Race in Chapter 3, ""Patient Adminstration"", for suggested values. The second triplet of the CE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.55",
-                            Type = @"Field",
-                            Position = @"GT1.55",
-                            Name = @"Guarantor Race",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0005",
-                            TableName = @"Race",
-                            Description = @"This field refers to the guarantor’s race. Refer to User-defined Table 0005 - Race in Chapter 3, ""Patient Adminstration"", for suggested values. The second triplet of the CE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.55.1",
                             Type = @"Component",
@@ -31226,43 +32816,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _guarantorRace = new HL7V28Field
+        {
+            field = message[@"GT1"][55],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorRace.field.FieldRepetitions != null && _guarantorRace.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorRace.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorRace, fieldData);
+        }
+
+        return _guarantorRace;
+    } 
+}
+
+internal HL7V28Field _guarantorBirthPlace;
+
+public HL7V28Field GuarantorBirthPlace
+{
+    get
+    {
+        if (_guarantorBirthPlace != null)
+        {
+            return _guarantorBirthPlace;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.56",
+            Type = @"Field",
+            Position = @"GT1.56",
+            Name = @"Guarantor Birth Place",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the description of the guarantor’s birth place, for example “St. Francis Community Hospital of Lower South Side.” The actual address is reported in GT1-5 – Guarantor Address with an identifier of “N”.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _guarantorBirthPlace = new HL7V28Field
+        {
+            field = message[@"GT1"][56],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_guarantorBirthPlace.field.FieldRepetitions != null && _guarantorBirthPlace.field.FieldRepetitions.Count > 0)
+        {
+            _guarantorBirthPlace.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_guarantorBirthPlace, fieldData);
+        }
+
+        return _guarantorBirthPlace;
+    } 
+}
+
+internal HL7V28Field _vipIndicator;
+
+public HL7V28Field VipIndicator
+{
+    get
+    {
+        if (_vipIndicator != null)
+        {
+            return _vipIndicator;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"GT1.57",
+            Type = @"Field",
+            Position = @"GT1.57",
+            Name = @"Vip Indicator",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0099",
+            TableName = @"VIP Indicator",
+            Description = @"This field identifies the type of VIP for the guarantor. Refer to User-defined Table 0099 – VIP Indicator in Chapter 3, ""Patient Administration"", for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GT1.56",
-                            Type = @"Field",
-                            Position = @"GT1.56",
-                            Name = @"Guarantor Birth Place",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the description of the guarantor’s birth place, for example “St. Francis Community Hospital of Lower South Side.” The actual address is reported in GT1-5 – Guarantor Address with an identifier of “N”.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GT1.57",
-                            Type = @"Field",
-                            Position = @"GT1.57",
-                            Name = @"Vip Indicator",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0099",
-                            TableName = @"VIP Indicator",
-                            Description = @"This field identifies the type of VIP for the guarantor. Refer to User-defined Table 0099 – VIP Indicator in Chapter 3, ""Patient Administration"", for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GT1.57.1",
                             Type = @"Component",
@@ -31690,2369 +33337,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentGT1(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field setIdGt1;
-
-public HL7V28Field SetIdGt1
-{
-    get
-    {
-        if (setIdGt1 != null)
-        {
-            return setIdGt1;
-        }
-
-        setIdGt1 = new HL7V28Field
-        {
-            field = message[@"GT1"][1],
-            Id = @"GT1.1",
-            Type = @"Field",
-            Position = @"GT1.1",
-            Name = @"Set Id - Gt1",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"GT1-1 - Set ID contains a number that identifies this transaction. For the first occurrence of the segment the sequence shall be 1, for the second occurrence it shall be 2, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdGt1.field.FieldRepetitions != null && setIdGt1.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdGt1.Id));
-            setIdGt1.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(setIdGt1, fieldData);
-        }
-
-        return setIdGt1;
-    } 
-}
-
-internal HL7V28Field guarantorNumber;
-
-public HL7V28Field GuarantorNumber
-{
-    get
-    {
-        if (guarantorNumber != null)
-        {
-            return guarantorNumber;
-        }
-
-        guarantorNumber = new HL7V28Field
-        {
-            field = message[@"GT1"][2],
-            Id = @"GT1.2",
-            Type = @"Field",
-            Position = @"GT1.2",
-            Name = @"Guarantor Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the primary identifier, or other identifiers, assigned to the guarantor. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorNumber.field.FieldRepetitions != null && guarantorNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorNumber.Id));
-            guarantorNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorNumber, fieldData);
-        }
-
-        return guarantorNumber;
-    } 
-}
-
-internal HL7V28Field guarantorName;
-
-public HL7V28Field GuarantorName
-{
-    get
-    {
-        if (guarantorName != null)
-        {
-            return guarantorName;
-        }
-
-        guarantorName = new HL7V28Field
-        {
-            field = message[@"GT1"][3],
-            Id = @"GT1.3",
-            Type = @"Field",
-            Position = @"GT1.3",
-            Name = @"Guarantor Name",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the guarantor. Multiple names for the same guarantor may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.
-
-Beginning with version 2.3, if the guarantor is an organization, send a null value ("""") in GT1-3 - Guarantor Name and put the organization name in GT1-21 - Guarantor Organization Name. Either guarantor name or guarantor organization name is required.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorName.field.FieldRepetitions != null && guarantorName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorName.Id));
-            guarantorName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorName, fieldData);
-        }
-
-        return guarantorName;
-    } 
-}
-
-internal HL7V28Field guarantorSpouseName;
-
-public HL7V28Field GuarantorSpouseName
-{
-    get
-    {
-        if (guarantorSpouseName != null)
-        {
-            return guarantorSpouseName;
-        }
-
-        guarantorSpouseName = new HL7V28Field
-        {
-            field = message[@"GT1"][4],
-            Id = @"GT1.4",
-            Type = @"Field",
-            Position = @"GT1.4",
-            Name = @"Guarantor Spouse Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the guarantor’s spouse. Multiple names for the same guarantor spouse may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorSpouseName.field.FieldRepetitions != null && guarantorSpouseName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorSpouseName.Id));
-            guarantorSpouseName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorSpouseName, fieldData);
-        }
-
-        return guarantorSpouseName;
-    } 
-}
-
-internal HL7V28Field guarantorAddress;
-
-public HL7V28Field GuarantorAddress
-{
-    get
-    {
-        if (guarantorAddress != null)
-        {
-            return guarantorAddress;
-        }
-
-        guarantorAddress = new HL7V28Field
-        {
-            field = message[@"GT1"][5],
-            Id = @"GT1.5",
-            Type = @"Field",
-            Position = @"GT1.5",
-            Name = @"Guarantor Address",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the guarantor’s address. Multiple addresses for the same person may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorAddress.field.FieldRepetitions != null && guarantorAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorAddress.Id));
-            guarantorAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorAddress, fieldData);
-        }
-
-        return guarantorAddress;
-    } 
-}
-
-internal HL7V28Field guarantorPhNumHome;
-
-public HL7V28Field GuarantorPhNumHome
-{
-    get
-    {
-        if (guarantorPhNumHome != null)
-        {
-            return guarantorPhNumHome;
-        }
-
-        guarantorPhNumHome = new HL7V28Field
-        {
-            field = message[@"GT1"][6],
-            Id = @"GT1.6",
-            Type = @"Field",
-            Position = @"GT1.6",
-            Name = @"Guarantor Ph Num - Home",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the guarantor’s home phone number. All personal phone numbers for the guarantor may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorPhNumHome.field.FieldRepetitions != null && guarantorPhNumHome.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorPhNumHome.Id));
-            guarantorPhNumHome.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorPhNumHome, fieldData);
-        }
-
-        return guarantorPhNumHome;
-    } 
-}
-
-internal HL7V28Field guarantorPhNumBusiness;
-
-public HL7V28Field GuarantorPhNumBusiness
-{
-    get
-    {
-        if (guarantorPhNumBusiness != null)
-        {
-            return guarantorPhNumBusiness;
-        }
-
-        guarantorPhNumBusiness = new HL7V28Field
-        {
-            field = message[@"GT1"][7],
-            Id = @"GT1.7",
-            Type = @"Field",
-            Position = @"GT1.7",
-            Name = @"Guarantor Ph Num - Business",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the guarantor’s business phone number. All business phone numbers for the guarantor may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorPhNumBusiness.field.FieldRepetitions != null && guarantorPhNumBusiness.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorPhNumBusiness.Id));
-            guarantorPhNumBusiness.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorPhNumBusiness, fieldData);
-        }
-
-        return guarantorPhNumBusiness;
-    } 
-}
-
-internal HL7V28Field guarantorDateTimeOfBirth;
-
-public HL7V28Field GuarantorDateTimeOfBirth
-{
-    get
-    {
-        if (guarantorDateTimeOfBirth != null)
-        {
-            return guarantorDateTimeOfBirth;
-        }
-
-        guarantorDateTimeOfBirth = new HL7V28Field
-        {
-            field = message[@"GT1"][8],
-            Id = @"GT1.8",
-            Type = @"Field",
-            Position = @"GT1.8",
-            Name = @"Guarantor Date/Time Of Birth",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the guarantor’s date of birth.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorDateTimeOfBirth.field.FieldRepetitions != null && guarantorDateTimeOfBirth.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorDateTimeOfBirth.Id));
-            guarantorDateTimeOfBirth.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorDateTimeOfBirth, fieldData);
-        }
-
-        return guarantorDateTimeOfBirth;
-    } 
-}
-
-internal HL7V28Field guarantorAdministrativeSex;
-
-public HL7V28Field GuarantorAdministrativeSex
-{
-    get
-    {
-        if (guarantorAdministrativeSex != null)
-        {
-            return guarantorAdministrativeSex;
-        }
-
-        guarantorAdministrativeSex = new HL7V28Field
-        {
-            field = message[@"GT1"][9],
-            Id = @"GT1.9",
-            Type = @"Field",
-            Position = @"GT1.9",
-            Name = @"Guarantor Administrative Sex",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0001",
-            TableName = @"Administrative Sex",
-            Description = @"This field contains the guarantor’s gender. Refer to User-defined Table 0001 - Administrative Sex in Chapter 3, ""Patient Administration"", for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorAdministrativeSex.field.FieldRepetitions != null && guarantorAdministrativeSex.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorAdministrativeSex.Id));
-            guarantorAdministrativeSex.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorAdministrativeSex, fieldData);
-        }
-
-        return guarantorAdministrativeSex;
-    } 
-}
-
-internal HL7V28Field guarantorType;
-
-public HL7V28Field GuarantorType
-{
-    get
-    {
-        if (guarantorType != null)
-        {
-            return guarantorType;
-        }
-
-        guarantorType = new HL7V28Field
-        {
-            field = message[@"GT1"][10],
-            Id = @"GT1.10",
-            Type = @"Field",
-            Position = @"GT1.10",
-            Name = @"Guarantor Type",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0068",
-            TableName = @"Guarantor Type",
-            Description = @"This field indicates the type of guarantor, e.g., individual, institution, etc. Refer to User-defined Table 0068 - Guarantor Type for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorType.field.FieldRepetitions != null && guarantorType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorType.Id));
-            guarantorType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorType, fieldData);
-        }
-
-        return guarantorType;
-    } 
-}
-
-internal HL7V28Field guarantorRelationship;
-
-public HL7V28Field GuarantorRelationship
-{
-    get
-    {
-        if (guarantorRelationship != null)
-        {
-            return guarantorRelationship;
-        }
-
-        guarantorRelationship = new HL7V28Field
-        {
-            field = message[@"GT1"][11],
-            Id = @"GT1.11",
-            Type = @"Field",
-            Position = @"GT1.11",
-            Name = @"Guarantor Relationship",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0063",
-            TableName = @"Relationship",
-            Description = @"This field indicates the relationship of the guarantor with the patient, e.g., parent, child, etc. Refer to User-defined Table 0063 - Relationship in Chapter 3, ""Patient Administration"", for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorRelationship.field.FieldRepetitions != null && guarantorRelationship.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorRelationship.Id));
-            guarantorRelationship.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorRelationship, fieldData);
-        }
-
-        return guarantorRelationship;
-    } 
-}
-
-internal HL7V28Field guarantorSsn;
-
-public HL7V28Field GuarantorSsn
-{
-    get
-    {
-        if (guarantorSsn != null)
-        {
-            return guarantorSsn;
-        }
-
-        guarantorSsn = new HL7V28Field
-        {
-            field = message[@"GT1"][12],
-            Id = @"GT1.12",
-            Type = @"Field",
-            Position = @"GT1.12",
-            Name = @"Guarantor Ssn",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the guarantor’s social security number.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorSsn.field.FieldRepetitions != null && guarantorSsn.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorSsn.Id));
-            guarantorSsn.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorSsn, fieldData);
-        }
-
-        return guarantorSsn;
-    } 
-}
-
-internal HL7V28Field guarantorDateBegin;
-
-public HL7V28Field GuarantorDateBegin
-{
-    get
-    {
-        if (guarantorDateBegin != null)
-        {
-            return guarantorDateBegin;
-        }
-
-        guarantorDateBegin = new HL7V28Field
-        {
-            field = message[@"GT1"][13],
-            Id = @"GT1.13",
-            Type = @"Field",
-            Position = @"GT1.13",
-            Name = @"Guarantor Date - Begin",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date that the guarantor becomes responsible for the patient’s account.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorDateBegin.field.FieldRepetitions != null && guarantorDateBegin.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorDateBegin.Id));
-            guarantorDateBegin.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorDateBegin, fieldData);
-        }
-
-        return guarantorDateBegin;
-    } 
-}
-
-internal HL7V28Field guarantorDateEnd;
-
-public HL7V28Field GuarantorDateEnd
-{
-    get
-    {
-        if (guarantorDateEnd != null)
-        {
-            return guarantorDateEnd;
-        }
-
-        guarantorDateEnd = new HL7V28Field
-        {
-            field = message[@"GT1"][14],
-            Id = @"GT1.14",
-            Type = @"Field",
-            Position = @"GT1.14",
-            Name = @"Guarantor Date - End",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date that the guarantor stops being responsible for the patient’s account.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorDateEnd.field.FieldRepetitions != null && guarantorDateEnd.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorDateEnd.Id));
-            guarantorDateEnd.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorDateEnd, fieldData);
-        }
-
-        return guarantorDateEnd;
-    } 
-}
-
-internal HL7V28Field guarantorPriority;
-
-public HL7V28Field GuarantorPriority
-{
-    get
-    {
-        if (guarantorPriority != null)
-        {
-            return guarantorPriority;
-        }
-
-        guarantorPriority = new HL7V28Field
-        {
-            field = message[@"GT1"][15],
-            Id = @"GT1.15",
-            Type = @"Field",
-            Position = @"GT1.15",
-            Name = @"Guarantor Priority",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to determine the order in which the guarantors are responsible for the patient’s account.
-""1"" = primary guarantor
-""2"" = secondary guarantor, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorPriority.field.FieldRepetitions != null && guarantorPriority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorPriority.Id));
-            guarantorPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorPriority, fieldData);
-        }
-
-        return guarantorPriority;
-    } 
-}
-
-internal HL7V28Field guarantorEmployerName;
-
-public HL7V28Field GuarantorEmployerName
-{
-    get
-    {
-        if (guarantorEmployerName != null)
-        {
-            return guarantorEmployerName;
-        }
-
-        guarantorEmployerName = new HL7V28Field
-        {
-            field = message[@"GT1"][16],
-            Id = @"GT1.16",
-            Type = @"Field",
-            Position = @"GT1.16",
-            Name = @"Guarantor Employer Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the guarantor’s employer, if the employer is a person. When the guarantor’s employer is an organization, use GT1-51 - Guarantor Employer’s Organization Name. Multiple names for the same person may be sent in this field, not multiple employers. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorEmployerName.field.FieldRepetitions != null && guarantorEmployerName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmployerName.Id));
-            guarantorEmployerName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorEmployerName, fieldData);
-        }
-
-        return guarantorEmployerName;
-    } 
-}
-
-internal HL7V28Field guarantorEmployerAddress;
-
-public HL7V28Field GuarantorEmployerAddress
-{
-    get
-    {
-        if (guarantorEmployerAddress != null)
-        {
-            return guarantorEmployerAddress;
-        }
-
-        guarantorEmployerAddress = new HL7V28Field
-        {
-            field = message[@"GT1"][17],
-            Id = @"GT1.17",
-            Type = @"Field",
-            Position = @"GT1.17",
-            Name = @"Guarantor Employer Address",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the guarantor’s employer’s address. Multiple addresses for the same employer may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorEmployerAddress.field.FieldRepetitions != null && guarantorEmployerAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmployerAddress.Id));
-            guarantorEmployerAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorEmployerAddress, fieldData);
-        }
-
-        return guarantorEmployerAddress;
-    } 
-}
-
-internal HL7V28Field guarantorEmployerPhoneNumber;
-
-public HL7V28Field GuarantorEmployerPhoneNumber
-{
-    get
-    {
-        if (guarantorEmployerPhoneNumber != null)
-        {
-            return guarantorEmployerPhoneNumber;
-        }
-
-        guarantorEmployerPhoneNumber = new HL7V28Field
-        {
-            field = message[@"GT1"][18],
-            Id = @"GT1.18",
-            Type = @"Field",
-            Position = @"GT1.18",
-            Name = @"Guarantor Employer Phone Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the guarantor’s employer’s phone number. Multiple phone numbers for the same employer may be sent in this field. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorEmployerPhoneNumber.field.FieldRepetitions != null && guarantorEmployerPhoneNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmployerPhoneNumber.Id));
-            guarantorEmployerPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorEmployerPhoneNumber, fieldData);
-        }
-
-        return guarantorEmployerPhoneNumber;
-    } 
-}
-
-internal HL7V28Field guarantorEmployeeIdNumber;
-
-public HL7V28Field GuarantorEmployeeIdNumber
-{
-    get
-    {
-        if (guarantorEmployeeIdNumber != null)
-        {
-            return guarantorEmployeeIdNumber;
-        }
-
-        guarantorEmployeeIdNumber = new HL7V28Field
-        {
-            field = message[@"GT1"][19],
-            Id = @"GT1.19",
-            Type = @"Field",
-            Position = @"GT1.19",
-            Name = @"Guarantor Employee Id Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the guarantor’s employee number. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorEmployeeIdNumber.field.FieldRepetitions != null && guarantorEmployeeIdNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmployeeIdNumber.Id));
-            guarantorEmployeeIdNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorEmployeeIdNumber, fieldData);
-        }
-
-        return guarantorEmployeeIdNumber;
-    } 
-}
-
-internal HL7V28Field guarantorEmploymentStatus;
-
-public HL7V28Field GuarantorEmploymentStatus
-{
-    get
-    {
-        if (guarantorEmploymentStatus != null)
-        {
-            return guarantorEmploymentStatus;
-        }
-
-        guarantorEmploymentStatus = new HL7V28Field
-        {
-            field = message[@"GT1"][20],
-            Id = @"GT1.20",
-            Type = @"Field",
-            Position = @"GT1.20",
-            Name = @"Guarantor Employment Status",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0066",
-            TableName = @"Employment Status",
-            Description = @"This field contains the code that indicates the guarantor’s employment status. Refer to User-Defined Table 0066 - Employment Status for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorEmploymentStatus.field.FieldRepetitions != null && guarantorEmploymentStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmploymentStatus.Id));
-            guarantorEmploymentStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorEmploymentStatus, fieldData);
-        }
-
-        return guarantorEmploymentStatus;
-    } 
-}
-
-internal HL7V28Field guarantorOrganizationName;
-
-public HL7V28Field GuarantorOrganizationName
-{
-    get
-    {
-        if (guarantorOrganizationName != null)
-        {
-            return guarantorOrganizationName;
-        }
-
-        guarantorOrganizationName = new HL7V28Field
-        {
-            field = message[@"GT1"][21],
-            Id = @"GT1.21",
-            Type = @"Field",
-            Position = @"GT1.21",
-            Name = @"Guarantor Organization Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the guarantor when the guarantor is an organization. Multiple names for the same guarantor may be sent in this field, not multiple guarantors. The legal name is assumed to be in the first repetition. When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.
-
-Beginning with version 2.3, if the guarantor is a person, send a null value ("""") in GT1-21 - Guarantor Organization Name and put the person name in GT1-3 - Guarantor Name. Either guarantor person name or guarantor organization name is required.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorOrganizationName.field.FieldRepetitions != null && guarantorOrganizationName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorOrganizationName.Id));
-            guarantorOrganizationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorOrganizationName, fieldData);
-        }
-
-        return guarantorOrganizationName;
-    } 
-}
-
-internal HL7V28Field guarantorBillingHoldFlag;
-
-public HL7V28Field GuarantorBillingHoldFlag
-{
-    get
-    {
-        if (guarantorBillingHoldFlag != null)
-        {
-            return guarantorBillingHoldFlag;
-        }
-
-        guarantorBillingHoldFlag = new HL7V28Field
-        {
-            field = message[@"GT1"][22],
-            Id = @"GT1.22",
-            Type = @"Field",
-            Position = @"GT1.22",
-            Name = @"Guarantor Billing Hold Flag",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"Refer to HL7 Table 0136 - Yes/no Indicator in Chapter 2C, ""Code Tables"", for valid values. This field indicates whether or not a system should suppress printing of the guarantor’s bills.
-Y - a system should suppress printing of guarantor’s bills
-N - a system should not suppress printing of guarantor’s bills",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorBillingHoldFlag.field.FieldRepetitions != null && guarantorBillingHoldFlag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorBillingHoldFlag.Id));
-            guarantorBillingHoldFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorBillingHoldFlag, fieldData);
-        }
-
-        return guarantorBillingHoldFlag;
-    } 
-}
-
-internal HL7V28Field guarantorCreditRatingCode;
-
-public HL7V28Field GuarantorCreditRatingCode
-{
-    get
-    {
-        if (guarantorCreditRatingCode != null)
-        {
-            return guarantorCreditRatingCode;
-        }
-
-        guarantorCreditRatingCode = new HL7V28Field
-        {
-            field = message[@"GT1"][23],
-            Id = @"GT1.23",
-            Type = @"Field",
-            Position = @"GT1.23",
-            Name = @"Guarantor Credit Rating Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0341",
-            TableName = @"Guarantor Credit Rating Code",
-            Description = @"This field contains the guarantor’s credit rating. Refer to User-defined Table 0341 - Guarantor Credit Rating Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorCreditRatingCode.field.FieldRepetitions != null && guarantorCreditRatingCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorCreditRatingCode.Id));
-            guarantorCreditRatingCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorCreditRatingCode, fieldData);
-        }
-
-        return guarantorCreditRatingCode;
-    } 
-}
-
-internal HL7V28Field guarantorDeathDateAndTime;
-
-public HL7V28Field GuarantorDeathDateAndTime
-{
-    get
-    {
-        if (guarantorDeathDateAndTime != null)
-        {
-            return guarantorDeathDateAndTime;
-        }
-
-        guarantorDeathDateAndTime = new HL7V28Field
-        {
-            field = message[@"GT1"][24],
-            Id = @"GT1.24",
-            Type = @"Field",
-            Position = @"GT1.24",
-            Name = @"Guarantor Death Date And Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to indicate the date and time at which the guarantor’s death occurred.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorDeathDateAndTime.field.FieldRepetitions != null && guarantorDeathDateAndTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorDeathDateAndTime.Id));
-            guarantorDeathDateAndTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorDeathDateAndTime, fieldData);
-        }
-
-        return guarantorDeathDateAndTime;
-    } 
-}
-
-internal HL7V28Field guarantorDeathFlag;
-
-public HL7V28Field GuarantorDeathFlag
-{
-    get
-    {
-        if (guarantorDeathFlag != null)
-        {
-            return guarantorDeathFlag;
-        }
-
-        guarantorDeathFlag = new HL7V28Field
-        {
-            field = message[@"GT1"][25],
-            Id = @"GT1.25",
-            Type = @"Field",
-            Position = @"GT1.25",
-            Name = @"Guarantor Death Flag",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"This field indicates whether or not the guarantor is deceased. Refer to HL7 Table 0136 - Yes/no Indicator in Chapter 2C, ""Code Tables"", for valid values.
-Y - the guarantor is deceased
-N - the guarantor is living",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorDeathFlag.field.FieldRepetitions != null && guarantorDeathFlag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorDeathFlag.Id));
-            guarantorDeathFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorDeathFlag, fieldData);
-        }
-
-        return guarantorDeathFlag;
-    } 
-}
-
-internal HL7V28Field guarantorChargeAdjustmentCode;
-
-public HL7V28Field GuarantorChargeAdjustmentCode
-{
-    get
-    {
-        if (guarantorChargeAdjustmentCode != null)
-        {
-            return guarantorChargeAdjustmentCode;
-        }
-
-        guarantorChargeAdjustmentCode = new HL7V28Field
-        {
-            field = message[@"GT1"][26],
-            Id = @"GT1.26",
-            Type = @"Field",
-            Position = @"GT1.26",
-            Name = @"Guarantor Charge Adjustment Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0218",
-            TableName = @"Patient Charge Adjustment",
-            Description = @"This field contains user-defined codes that indicate which adjustments should be made to this guarantor’s charges. For example, when the hospital agrees to adjust this guarantor’s charges to a sliding scale. Refer to User-defined Table 0218 - Patient Charge Adjustment for suggested values.
-
-Example: This field would contain the value used for sliding-fee scale processing.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorChargeAdjustmentCode.field.FieldRepetitions != null && guarantorChargeAdjustmentCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorChargeAdjustmentCode.Id));
-            guarantorChargeAdjustmentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorChargeAdjustmentCode, fieldData);
-        }
-
-        return guarantorChargeAdjustmentCode;
-    } 
-}
-
-internal HL7V28Field guarantorHouseholdAnnualIncome;
-
-public HL7V28Field GuarantorHouseholdAnnualIncome
-{
-    get
-    {
-        if (guarantorHouseholdAnnualIncome != null)
-        {
-            return guarantorHouseholdAnnualIncome;
-        }
-
-        guarantorHouseholdAnnualIncome = new HL7V28Field
-        {
-            field = message[@"GT1"][27],
-            Id = @"GT1.27",
-            Type = @"Field",
-            Position = @"GT1.27",
-            Name = @"Guarantor Household Annual Income",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the combined annual income of all members of the guarantor’s household.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorHouseholdAnnualIncome.field.FieldRepetitions != null && guarantorHouseholdAnnualIncome.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorHouseholdAnnualIncome.Id));
-            guarantorHouseholdAnnualIncome.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorHouseholdAnnualIncome, fieldData);
-        }
-
-        return guarantorHouseholdAnnualIncome;
-    } 
-}
-
-internal HL7V28Field guarantorHouseholdSize;
-
-public HL7V28Field GuarantorHouseholdSize
-{
-    get
-    {
-        if (guarantorHouseholdSize != null)
-        {
-            return guarantorHouseholdSize;
-        }
-
-        guarantorHouseholdSize = new HL7V28Field
-        {
-            field = message[@"GT1"][28],
-            Id = @"GT1.28",
-            Type = @"Field",
-            Position = @"GT1.28",
-            Name = @"Guarantor Household Size",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the number of people living at the guarantor’s primary residence.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorHouseholdSize.field.FieldRepetitions != null && guarantorHouseholdSize.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorHouseholdSize.Id));
-            guarantorHouseholdSize.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorHouseholdSize, fieldData);
-        }
-
-        return guarantorHouseholdSize;
-    } 
-}
-
-internal HL7V28Field guarantorEmployerIdNumber;
-
-public HL7V28Field GuarantorEmployerIdNumber
-{
-    get
-    {
-        if (guarantorEmployerIdNumber != null)
-        {
-            return guarantorEmployerIdNumber;
-        }
-
-        guarantorEmployerIdNumber = new HL7V28Field
-        {
-            field = message[@"GT1"][29],
-            Id = @"GT1.29",
-            Type = @"Field",
-            Position = @"GT1.29",
-            Name = @"Guarantor Employer Id Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This is a code that uniquely identifies the guarantor’s employer when the employer is a person. It may be a user-defined code or a code defined by a government agency (Federal Tax ID#).
-
-When further breakdowns of employer information are needed, such as a division or plant, it is recommended that the coding scheme incorporate the relationships (e.g., define separate codes for each division). The assigning authority and identifier type code are strongly recommended for all CX data types.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorEmployerIdNumber.field.FieldRepetitions != null && guarantorEmployerIdNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmployerIdNumber.Id));
-            guarantorEmployerIdNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorEmployerIdNumber, fieldData);
-        }
-
-        return guarantorEmployerIdNumber;
-    } 
-}
-
-internal HL7V28Field guarantorMaritalStatusCode;
-
-public HL7V28Field GuarantorMaritalStatusCode
-{
-    get
-    {
-        if (guarantorMaritalStatusCode != null)
-        {
-            return guarantorMaritalStatusCode;
-        }
-
-        guarantorMaritalStatusCode = new HL7V28Field
-        {
-            field = message[@"GT1"][30],
-            Id = @"GT1.30",
-            Type = @"Field",
-            Position = @"GT1.30",
-            Name = @"Guarantor Marital Status Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0002",
-            TableName = @"Marital Status",
-            Description = @"This field contains the marital status of the guarantor. Refer to User-defined Table 0002 - Marital Status in Chapter 3, ""Patient Administration"", for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorMaritalStatusCode.field.FieldRepetitions != null && guarantorMaritalStatusCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorMaritalStatusCode.Id));
-            guarantorMaritalStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorMaritalStatusCode, fieldData);
-        }
-
-        return guarantorMaritalStatusCode;
-    } 
-}
-
-internal HL7V28Field guarantorHireEffectiveDate;
-
-public HL7V28Field GuarantorHireEffectiveDate
-{
-    get
-    {
-        if (guarantorHireEffectiveDate != null)
-        {
-            return guarantorHireEffectiveDate;
-        }
-
-        guarantorHireEffectiveDate = new HL7V28Field
-        {
-            field = message[@"GT1"][31],
-            Id = @"GT1.31",
-            Type = @"Field",
-            Position = @"GT1.31",
-            Name = @"Guarantor Hire Effective Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date that the guarantor’s employment began.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorHireEffectiveDate.field.FieldRepetitions != null && guarantorHireEffectiveDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorHireEffectiveDate.Id));
-            guarantorHireEffectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorHireEffectiveDate, fieldData);
-        }
-
-        return guarantorHireEffectiveDate;
-    } 
-}
-
-internal HL7V28Field employmentStopDate;
-
-public HL7V28Field EmploymentStopDate
-{
-    get
-    {
-        if (employmentStopDate != null)
-        {
-            return employmentStopDate;
-        }
-
-        employmentStopDate = new HL7V28Field
-        {
-            field = message[@"GT1"][32],
-            Id = @"GT1.32",
-            Type = @"Field",
-            Position = @"GT1.32",
-            Name = @"Employment Stop Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the date on which the guarantor’s employment with a particular employer ended.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (employmentStopDate.field.FieldRepetitions != null && employmentStopDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(employmentStopDate.Id));
-            employmentStopDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(employmentStopDate, fieldData);
-        }
-
-        return employmentStopDate;
-    } 
-}
-
-internal HL7V28Field livingDependency;
-
-public HL7V28Field LivingDependency
-{
-    get
-    {
-        if (livingDependency != null)
-        {
-            return livingDependency;
-        }
-
-        livingDependency = new HL7V28Field
-        {
-            field = message[@"GT1"][33],
-            Id = @"GT1.33",
-            Type = @"Field",
-            Position = @"GT1.33",
-            Name = @"Living Dependency",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0223",
-            TableName = @"Living Dependency",
-            Description = @"Identifies the specific living conditions of the guarantor. Refer to User-defined Table 0223 - Living Dependency in Chapter 3, ""Patient Administration"", for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (livingDependency.field.FieldRepetitions != null && livingDependency.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(livingDependency.Id));
-            livingDependency.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(livingDependency, fieldData);
-        }
-
-        return livingDependency;
-    } 
-}
-
-internal HL7V28Field ambulatoryStatus;
-
-public HL7V28Field AmbulatoryStatus
-{
-    get
-    {
-        if (ambulatoryStatus != null)
-        {
-            return ambulatoryStatus;
-        }
-
-        ambulatoryStatus = new HL7V28Field
-        {
-            field = message[@"GT1"][34],
-            Id = @"GT1.34",
-            Type = @"Field",
-            Position = @"GT1.34",
-            Name = @"Ambulatory Status",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0009",
-            TableName = @"Ambulatory Status",
-            Description = @"Identifies the transient state of mobility for the guarantor. Refer to User-defined Table 0009 - Ambulatory Status in Chapter 3, ""Patient Administration"", for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (ambulatoryStatus.field.FieldRepetitions != null && ambulatoryStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ambulatoryStatus.Id));
-            ambulatoryStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(ambulatoryStatus, fieldData);
-        }
-
-        return ambulatoryStatus;
-    } 
-}
-
-internal HL7V28Field citizenship;
-
-public HL7V28Field Citizenship
-{
-    get
-    {
-        if (citizenship != null)
-        {
-            return citizenship;
-        }
-
-        citizenship = new HL7V28Field
-        {
-            field = message[@"GT1"][35],
-            Id = @"GT1.35",
-            Type = @"Field",
-            Position = @"GT1.35",
-            Name = @"Citizenship",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0171",
-            TableName = @"Citizenship",
-            Description = @"This field contains the code to identify the guarantor’s citizenship. HL7 recommends using ISO table 3166 as the suggested values in User-defined Table 0171 - Citizenship defined in Chapter 3, ""Patient Administration"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (citizenship.field.FieldRepetitions != null && citizenship.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(citizenship.Id));
-            citizenship.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(citizenship, fieldData);
-        }
-
-        return citizenship;
-    } 
-}
-
-internal HL7V28Field primaryLanguage;
-
-public HL7V28Field PrimaryLanguage
-{
-    get
-    {
-        if (primaryLanguage != null)
-        {
-            return primaryLanguage;
-        }
-
-        primaryLanguage = new HL7V28Field
-        {
-            field = message[@"GT1"][36],
-            Id = @"GT1.36",
-            Type = @"Field",
-            Position = @"GT1.36",
-            Name = @"Primary Language",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0296",
-            TableName = @"Primary Language",
-            Description = @"This field identifies the guarantor’s primary speaking language. HL7 recommends using ISO table 639 as the suggested values in User-defined Table 0296 - Primary Language defined in Chapter 3, ""Patient Administration"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryLanguage.field.FieldRepetitions != null && primaryLanguage.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryLanguage.Id));
-            primaryLanguage.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(primaryLanguage, fieldData);
-        }
-
-        return primaryLanguage;
-    } 
-}
-
-internal HL7V28Field livingArrangement;
-
-public HL7V28Field LivingArrangement
-{
-    get
-    {
-        if (livingArrangement != null)
-        {
-            return livingArrangement;
-        }
-
-        livingArrangement = new HL7V28Field
-        {
-            field = message[@"GT1"][37],
-            Id = @"GT1.37",
-            Type = @"Field",
-            Position = @"GT1.37",
-            Name = @"Living Arrangement",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0220",
-            TableName = @"Living Arrangement",
-            Description = @"This field identifies the situation in which the person lives at his residential address. Refer to User-defined Table 0220 - Living Arrangement in Chapter 3, ""Patient Administration"", for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (livingArrangement.field.FieldRepetitions != null && livingArrangement.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(livingArrangement.Id));
-            livingArrangement.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(livingArrangement, fieldData);
-        }
-
-        return livingArrangement;
-    } 
-}
-
-internal HL7V28Field publicityCode;
-
-public HL7V28Field PublicityCode
-{
-    get
-    {
-        if (publicityCode != null)
-        {
-            return publicityCode;
-        }
-
-        publicityCode = new HL7V28Field
-        {
-            field = message[@"GT1"][38],
-            Id = @"GT1.38",
-            Type = @"Field",
-            Position = @"GT1.38",
-            Name = @"Publicity Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0215",
-            TableName = @"Publicity Code",
-            Description = @"This field contains a user-defined code indicating what level of publicity is allowed (e.g., No Publicity, Family Only) for a guarantor. Refer to User-defined Table 0215 - Publicity Code in Chapter 3, ""Patient Administration"", for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (publicityCode.field.FieldRepetitions != null && publicityCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(publicityCode.Id));
-            publicityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(publicityCode, fieldData);
-        }
-
-        return publicityCode;
-    } 
-}
-
-internal HL7V28Field protectionIndicator;
-
-public HL7V28Field ProtectionIndicator
-{
-    get
-    {
-        if (protectionIndicator != null)
-        {
-            return protectionIndicator;
-        }
-
-        protectionIndicator = new HL7V28Field
-        {
-            field = message[@"GT1"][39],
-            Id = @"GT1.39",
-            Type = @"Field",
-            Position = @"GT1.39",
-            Name = @"Protection Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"This field identifies the guarantor’s protection, which determines whether or not access to information about this enrollee should be restricted from users who do not have adequate authority. Refer to HL7 Table 0136 - Yes/no Indicator for valid values.
-Y - restrict access
-N - do not restrict access",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (protectionIndicator.field.FieldRepetitions != null && protectionIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(protectionIndicator.Id));
-            protectionIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(protectionIndicator, fieldData);
-        }
-
-        return protectionIndicator;
-    } 
-}
-
-internal HL7V28Field studentIndicator;
-
-public HL7V28Field StudentIndicator
-{
-    get
-    {
-        if (studentIndicator != null)
-        {
-            return studentIndicator;
-        }
-
-        studentIndicator = new HL7V28Field
-        {
-            field = message[@"GT1"][40],
-            Id = @"GT1.40",
-            Type = @"Field",
-            Position = @"GT1.40",
-            Name = @"Student Indicator",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0231",
-            TableName = @"Student Status",
-            Description = @"This field indicates whether the guarantor is currently a student, and whether the guarantor is a full-time or part-time student. This field does not indicate the degree level (high school, college) of the student, or his/her field of study (accounting, engineering, etc.). Refer to User-defined Table 0231- Student Status for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (studentIndicator.field.FieldRepetitions != null && studentIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studentIndicator.Id));
-            studentIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(studentIndicator, fieldData);
-        }
-
-        return studentIndicator;
-    } 
-}
-
-internal HL7V28Field religion;
-
-public HL7V28Field Religion
-{
-    get
-    {
-        if (religion != null)
-        {
-            return religion;
-        }
-
-        religion = new HL7V28Field
-        {
-            field = message[@"GT1"][41],
-            Id = @"GT1.41",
-            Type = @"Field",
-            Position = @"GT1.41",
-            Name = @"Religion",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0006",
-            TableName = @"Religion",
-            Description = @"This field indicates the type of religion practiced by the guarantor. Refer to User-defined Table 0006 - Religion in Chapter 3, ""Patient Administration"" for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (religion.field.FieldRepetitions != null && religion.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(religion.Id));
-            religion.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(religion, fieldData);
-        }
-
-        return religion;
-    } 
-}
-
-internal HL7V28Field mothersMaidenName;
-
-public HL7V28Field MothersMaidenName
-{
-    get
-    {
-        if (mothersMaidenName != null)
-        {
-            return mothersMaidenName;
-        }
-
-        mothersMaidenName = new HL7V28Field
-        {
-            field = message[@"GT1"][42],
-            Id = @"GT1.42",
-            Type = @"Field",
-            Position = @"GT1.42",
-            Name = @"Mother's Maiden Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the guarantor’s mother’s maiden name.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (mothersMaidenName.field.FieldRepetitions != null && mothersMaidenName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mothersMaidenName.Id));
-            mothersMaidenName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(mothersMaidenName, fieldData);
-        }
-
-        return mothersMaidenName;
-    } 
-}
-
-internal HL7V28Field nationality;
-
-public HL7V28Field Nationality
-{
-    get
-    {
-        if (nationality != null)
-        {
-            return nationality;
-        }
-
-        nationality = new HL7V28Field
-        {
-            field = message[@"GT1"][43],
-            Id = @"GT1.43",
-            Type = @"Field",
-            Position = @"GT1.43",
-            Name = @"Nationality",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0212",
-            TableName = @"Nationality",
-            Description = @"This field contains a code that identifies the nation or national grouping to which the person belongs. This may be different from a person’s citizenship in countries in which multiple nationalities are recognized (for example, Spain: Basque, Catalan, etc.). HL7 recommends using ISO table 3166 as suggested values in User-defined Table 0212 - Nationality in Chapter 2C, ""Code Tables"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (nationality.field.FieldRepetitions != null && nationality.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nationality.Id));
-            nationality.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(nationality, fieldData);
-        }
-
-        return nationality;
-    } 
-}
-
-internal HL7V28Field ethnicGroup;
-
-public HL7V28Field EthnicGroup
-{
-    get
-    {
-        if (ethnicGroup != null)
-        {
-            return ethnicGroup;
-        }
-
-        ethnicGroup = new HL7V28Field
-        {
-            field = message[@"GT1"][44],
-            Id = @"GT1.44",
-            Type = @"Field",
-            Position = @"GT1.44",
-            Name = @"Ethnic Group",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0189",
-            TableName = @"Ethnic Group",
-            Description = @"This field contains the guarantor’s ethnic group. Refer to User-defined Table 0189 - Ethnic Group in Chapter 3, ""Patient Administration"", for suggested values. The second triplet of the CE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes. In the US, a current use is to report ethnicity in line with US federal standards for Hispanic origin.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (ethnicGroup.field.FieldRepetitions != null && ethnicGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ethnicGroup.Id));
-            ethnicGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(ethnicGroup, fieldData);
-        }
-
-        return ethnicGroup;
-    } 
-}
-
-internal HL7V28Field contactPersonsName;
-
-public HL7V28Field ContactPersonsName
-{
-    get
-    {
-        if (contactPersonsName != null)
-        {
-            return contactPersonsName;
-        }
-
-        contactPersonsName = new HL7V28Field
-        {
-            field = message[@"GT1"][45],
-            Id = @"GT1.45",
-            Type = @"Field",
-            Position = @"GT1.45",
-            Name = @"Contact Person's Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the person who should be contacted regarding the guarantor bills, etc. This may be someone other than the guarantor. (E.g., Contact guarantor’s wife regarding all bills - guarantor lives out of country.)
-
-This is a repeating field that allows for multiple names for the same person. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactPersonsName.field.FieldRepetitions != null && contactPersonsName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactPersonsName.Id));
-            contactPersonsName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(contactPersonsName, fieldData);
-        }
-
-        return contactPersonsName;
-    } 
-}
-
-internal HL7V28Field contactPersonsTelephoneNumber;
-
-public HL7V28Field ContactPersonsTelephoneNumber
-{
-    get
-    {
-        if (contactPersonsTelephoneNumber != null)
-        {
-            return contactPersonsTelephoneNumber;
-        }
-
-        contactPersonsTelephoneNumber = new HL7V28Field
-        {
-            field = message[@"GT1"][46],
-            Id = @"GT1.46",
-            Type = @"Field",
-            Position = @"GT1.46",
-            Name = @"Contact Person's Telephone Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the telephone number of the guarantor (person) to contact regarding guarantor bills, etc. Multiple phone numbers for that person may be sent in this sequence. As of v2.7, no assumptions can be made based on position or sequence. Specification of meaning based on sequence is deprecated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactPersonsTelephoneNumber.field.FieldRepetitions != null && contactPersonsTelephoneNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactPersonsTelephoneNumber.Id));
-            contactPersonsTelephoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(contactPersonsTelephoneNumber, fieldData);
-        }
-
-        return contactPersonsTelephoneNumber;
-    } 
-}
-
-internal HL7V28Field contactReason;
-
-public HL7V28Field ContactReason
-{
-    get
-    {
-        if (contactReason != null)
-        {
-            return contactReason;
-        }
-
-        contactReason = new HL7V28Field
-        {
-            field = message[@"GT1"][47],
-            Id = @"GT1.47",
-            Type = @"Field",
-            Position = @"GT1.47",
-            Name = @"Contact Reason",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0222",
-            TableName = @"Contact Reason",
-            Description = @"This field contains a user-defined code that identifies the reason for contacting the guarantor, for example, to phone the guarantor if payments are late. Refer to User-defined Table 0222 - Contact reason for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactReason.field.FieldRepetitions != null && contactReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactReason.Id));
-            contactReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(contactReason, fieldData);
-        }
-
-        return contactReason;
-    } 
-}
-
-internal HL7V28Field contactRelationship;
-
-public HL7V28Field ContactRelationship
-{
-    get
-    {
-        if (contactRelationship != null)
-        {
-            return contactRelationship;
-        }
-
-        contactRelationship = new HL7V28Field
-        {
-            field = message[@"GT1"][48],
-            Id = @"GT1.48",
-            Type = @"Field",
-            Position = @"GT1.48",
-            Name = @"Contact Relationship",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0063",
-            TableName = @"Relationship",
-            Description = @"Identifies the guarantor relationship to the contact person specified above. Refer to User-defined Table 0063 - Relationship in Chapter 3, ""Patient Administration"", for suggested values. Examples include wife, attorney, power of attorney, self, and organization.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactRelationship.field.FieldRepetitions != null && contactRelationship.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactRelationship.Id));
-            contactRelationship.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(contactRelationship, fieldData);
-        }
-
-        return contactRelationship;
-    } 
-}
-
-internal HL7V28Field jobTitle;
-
-public HL7V28Field JobTitle
-{
-    get
-    {
-        if (jobTitle != null)
-        {
-            return jobTitle;
-        }
-
-        jobTitle = new HL7V28Field
-        {
-            field = message[@"GT1"][49],
-            Id = @"GT1.49",
-            Type = @"Field",
-            Position = @"GT1.49",
-            Name = @"Job Title",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a descriptive name of the guarantor’s occupation (e.g., Sr. Systems Analyst, Sr. Accountant).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (jobTitle.field.FieldRepetitions != null && jobTitle.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(jobTitle.Id));
-            jobTitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(jobTitle, fieldData);
-        }
-
-        return jobTitle;
-    } 
-}
-
-internal HL7V28Field jobCodeClass;
-
-public HL7V28Field JobCodeClass
-{
-    get
-    {
-        if (jobCodeClass != null)
-        {
-            return jobCodeClass;
-        }
-
-        jobCodeClass = new HL7V28Field
-        {
-            field = message[@"GT1"][50],
-            Id = @"GT1.50",
-            Type = @"Field",
-            Position = @"GT1.50",
-            Name = @"Job Code/Class",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"JCC",
-            DataTypeName = @"Job Code/class",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the guarantor’s job code and employee classification.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (jobCodeClass.field.FieldRepetitions != null && jobCodeClass.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(jobCodeClass.Id));
-            jobCodeClass.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(jobCodeClass, fieldData);
-        }
-
-        return jobCodeClass;
-    } 
-}
-
-internal HL7V28Field guarantorEmployersOrganizationName;
-
-public HL7V28Field GuarantorEmployersOrganizationName
-{
-    get
-    {
-        if (guarantorEmployersOrganizationName != null)
-        {
-            return guarantorEmployersOrganizationName;
-        }
-
-        guarantorEmployersOrganizationName = new HL7V28Field
-        {
-            field = message[@"GT1"][51],
-            Id = @"GT1.51",
-            Type = @"Field",
-            Position = @"GT1.51",
-            Name = @"Guarantor Employer's Organization Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the guarantor’s employer when the guarantor’s employer is an organization. When the guarantor’s employer is a person, use GT1-16 - Guarantor Employer Name. Multiple names for the same guarantor may be sent in this field. The legal name is assumed to be in the first repetition. When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorEmployersOrganizationName.field.FieldRepetitions != null && guarantorEmployersOrganizationName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorEmployersOrganizationName.Id));
-            guarantorEmployersOrganizationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorEmployersOrganizationName, fieldData);
-        }
-
-        return guarantorEmployersOrganizationName;
-    } 
-}
-
-internal HL7V28Field handicap;
-
-public HL7V28Field Handicap
-{
-    get
-    {
-        if (handicap != null)
-        {
-            return handicap;
-        }
-
-        handicap = new HL7V28Field
-        {
-            field = message[@"GT1"][52],
-            Id = @"GT1.52",
-            Type = @"Field",
-            Position = @"GT1.52",
-            Name = @"Handicap",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0295",
-            TableName = @"Handicap",
-            Description = @"This field contains a code to describe the guarantor’s disability. Refer to User-defined Table 0295 - Handicap in Chapter 3, ""Patient Administration"", for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (handicap.field.FieldRepetitions != null && handicap.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(handicap.Id));
-            handicap.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(handicap, fieldData);
-        }
-
-        return handicap;
-    } 
-}
-
-internal HL7V28Field jobStatus;
-
-public HL7V28Field JobStatus
-{
-    get
-    {
-        if (jobStatus != null)
-        {
-            return jobStatus;
-        }
-
-        jobStatus = new HL7V28Field
-        {
-            field = message[@"GT1"][53],
-            Id = @"GT1.53",
-            Type = @"Field",
-            Position = @"GT1.53",
-            Name = @"Job Status",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0311",
-            TableName = @"Job Status",
-            Description = @"This field contains a code that identifies the guarantor’s current job status. Refer to User-defined Table 0311 - Job Status in Chapter 3, ""Patient Administration"", for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (jobStatus.field.FieldRepetitions != null && jobStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(jobStatus.Id));
-            jobStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(jobStatus, fieldData);
-        }
-
-        return jobStatus;
-    } 
-}
-
-internal HL7V28Field guarantorFinancialClass;
-
-public HL7V28Field GuarantorFinancialClass
-{
-    get
-    {
-        if (guarantorFinancialClass != null)
-        {
-            return guarantorFinancialClass;
-        }
-
-        guarantorFinancialClass = new HL7V28Field
-        {
-            field = message[@"GT1"][54],
-            Id = @"GT1.54",
-            Type = @"Field",
-            Position = @"GT1.54",
-            Name = @"Guarantor Financial Class",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"FC",
-            DataTypeName = @"Financial Class",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the financial class (FC) assigned to the guarantor for the purpose of identifying sources of reimbursement. It can be different than that of the patient. When the FC of the guarantor is different than the FC of the patient, and the guarantor’s coverage for that patient has been exhausted, the source of reimbursement falls back onto the FC of the patient..",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorFinancialClass.field.FieldRepetitions != null && guarantorFinancialClass.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorFinancialClass.Id));
-            guarantorFinancialClass.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorFinancialClass, fieldData);
-        }
-
-        return guarantorFinancialClass;
-    } 
-}
-
-internal HL7V28Field guarantorRace;
-
-public HL7V28Field GuarantorRace
-{
-    get
-    {
-        if (guarantorRace != null)
-        {
-            return guarantorRace;
-        }
-
-        guarantorRace = new HL7V28Field
-        {
-            field = message[@"GT1"][55],
-            Id = @"GT1.55",
-            Type = @"Field",
-            Position = @"GT1.55",
-            Name = @"Guarantor Race",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0005",
-            TableName = @"Race",
-            Description = @"This field refers to the guarantor’s race. Refer to User-defined Table 0005 - Race in Chapter 3, ""Patient Adminstration"", for suggested values. The second triplet of the CE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorRace.field.FieldRepetitions != null && guarantorRace.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorRace.Id));
-            guarantorRace.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorRace, fieldData);
-        }
-
-        return guarantorRace;
-    } 
-}
-
-internal HL7V28Field guarantorBirthPlace;
-
-public HL7V28Field GuarantorBirthPlace
-{
-    get
-    {
-        if (guarantorBirthPlace != null)
-        {
-            return guarantorBirthPlace;
-        }
-
-        guarantorBirthPlace = new HL7V28Field
-        {
-            field = message[@"GT1"][56],
-            Id = @"GT1.56",
-            Type = @"Field",
-            Position = @"GT1.56",
-            Name = @"Guarantor Birth Place",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the description of the guarantor’s birth place, for example “St. Francis Community Hospital of Lower South Side.” The actual address is reported in GT1-5 – Guarantor Address with an identifier of “N”.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (guarantorBirthPlace.field.FieldRepetitions != null && guarantorBirthPlace.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(guarantorBirthPlace.Id));
-            guarantorBirthPlace.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(guarantorBirthPlace, fieldData);
-        }
-
-        return guarantorBirthPlace;
-    } 
-}
-
-internal HL7V28Field vipIndicator;
-
-public HL7V28Field VipIndicator
-{
-    get
-    {
-        if (vipIndicator != null)
-        {
-            return vipIndicator;
-        }
-
-        vipIndicator = new HL7V28Field
+        _vipIndicator = new HL7V28Field
         {
             field = message[@"GT1"][57],
-            Id = @"GT1.57",
-            Type = @"Field",
-            Position = @"GT1.57",
-            Name = @"Vip Indicator",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0099",
-            TableName = @"VIP Indicator",
-            Description = @"This field identifies the type of VIP for the guarantor. Refer to User-defined Table 0099 – VIP Indicator in Chapter 3, ""Patient Administration"", for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (vipIndicator.field.FieldRepetitions != null && vipIndicator.field.FieldRepetitions.Count > 0)
+        if (_vipIndicator.field.FieldRepetitions != null && _vipIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(vipIndicator.Id));
-            vipIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(vipIndicator, fieldData);
+            _vipIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_vipIndicator, fieldData);
         }
 
-        return vipIndicator;
+        return _vipIndicator;
     } 
 }
     }

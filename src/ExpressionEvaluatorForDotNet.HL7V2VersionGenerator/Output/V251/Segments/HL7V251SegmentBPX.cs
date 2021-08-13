@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentBPX(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _setIDBPX;
+
+public HL7V251Field SetIDBPX
+{
+    get
+    {
+        if (_setIDBPX != null)
+        {
+            return _setIDBPX;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.1",
+            Type = @"Field",
+            Position = @"BPX.1",
+            Name = @"Set ID - BPX",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the sequence number for the BPX segment under the related BPO segment. For the first blood product dispense status transmitted, the sequence number shall be 1; for the second product dispense status, it shall be 2; and so on.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDBPX = new HL7V251Field
+        {
+            field = message[@"BPX"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDBPX.field.FieldRepetitions != null && _setIDBPX.field.FieldRepetitions.Count > 0)
+        {
+            _setIDBPX.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_setIDBPX, fieldData);
+        }
+
+        return _setIDBPX;
+    } 
+}
+
+internal HL7V251Field _bPDispenseStatus;
+
+public HL7V251Field BPDispenseStatus
+{
+    get
+    {
+        if (_bPDispenseStatus != null)
+        {
+            return _bPDispenseStatus;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.2",
+            Type = @"Field",
+            Position = @"BPX.2",
+            Name = @"BP Dispense Status",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0510",
+            TableName = @"Blood Product Dispense Status",
+            Description = @"This field indicates the current status of the specified blood product as indicated by the filler or placer. For example, the first status change of a product that may trigger a Blood Product Dispense Status Message occurs when it first becomes linked to a patient and is ready to dispense. The placer system may use the Blood Product Dispense Status Message to request the transfusion service to dispense the product. When the blood product is delivered or issued to a patient, the status of the blood product would be changed to indicate that it has now been ""dispensed."" Refer to HL7 Table 0510 - Blood Product Dispense Status for valid entries.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"BPX.1",
-                            Type = @"Field",
-                            Position = @"BPX.1",
-                            Name = @"Set ID - BPX",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the sequence number for the BPX segment under the related BPO segment. For the first blood product dispense status transmitted, the sequence number shall be 1; for the second product dispense status, it shall be 2; and so on.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BPX.2",
-                            Type = @"Field",
-                            Position = @"BPX.2",
-                            Name = @"BP Dispense Status",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0510",
-                            TableName = @"Blood Product Dispense Status",
-                            Description = @"This field indicates the current status of the specified blood product as indicated by the filler or placer. For example, the first status change of a product that may trigger a Blood Product Dispense Status Message occurs when it first becomes linked to a patient and is ready to dispense. The placer system may use the Blood Product Dispense Status Message to request the transfusion service to dispense the product. When the blood product is delivered or issued to a patient, the status of the blood product would be changed to indicate that it has now been ""dispensed."" Refer to HL7 Table 0510 - Blood Product Dispense Status for valid entries.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"BPX.2.1",
                             Type = @"Component",
@@ -228,43 +267,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bPDispenseStatus = new HL7V251Field
+        {
+            field = message[@"BPX"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bPDispenseStatus.field.FieldRepetitions != null && _bPDispenseStatus.field.FieldRepetitions.Count > 0)
+        {
+            _bPDispenseStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bPDispenseStatus, fieldData);
+        }
+
+        return _bPDispenseStatus;
+    } 
+}
+
+internal HL7V251Field _bPStatus;
+
+public HL7V251Field BPStatus
+{
+    get
+    {
+        if (_bPStatus != null)
+        {
+            return _bPStatus;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.3",
+            Type = @"Field",
+            Position = @"BPX.3",
+            Name = @"BP Status",
+            Length = 1,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0511",
+            TableName = @"BP Observation Status Codes Interpretation",
+            Description = @"The most commonly used message status values in a BPX will be preliminary and final. A status is considered preliminary until a blood product has reached a final disposition for the patient. For example, when the product is first cross-matched and a status message is sent, it would be considered preliminary. When the product is dispensed to the patient, that status would also be considered preliminary. However, once the product is transfused, the status would be considered final. The status of a blood product (BPX-2) can continue to change and the previous status should be overwritten until it reaches a final status (BPX-3). Refer to HL7 Table 0511 - BP Observation Status Codes Interpretation for valid entries.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _bPStatus = new HL7V251Field
+        {
+            field = message[@"BPX"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bPStatus.field.FieldRepetitions != null && _bPStatus.field.FieldRepetitions.Count > 0)
+        {
+            _bPStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bPStatus, fieldData);
+        }
+
+        return _bPStatus;
+    } 
+}
+
+internal HL7V251Field _bPDateTimeofStatus;
+
+public HL7V251Field BPDateTimeofStatus
+{
+    get
+    {
+        if (_bPDateTimeofStatus != null)
+        {
+            return _bPDateTimeofStatus;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.4",
+            Type = @"Field",
+            Position = @"BPX.4",
+            Name = @"BP Date/Time of Status",
+            Length = 26,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the date and time that the status of the blood component was changed. For example, if the blood component had a status, of ""RD"" (Ready to Dispense), the date and time in this field would indicate the date and time that component was made ready to dispense by the filler system.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BPX.3",
-                            Type = @"Field",
-                            Position = @"BPX.3",
-                            Name = @"BP Status",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0511",
-                            TableName = @"BP Observation Status Codes Interpretation",
-                            Description = @"The most commonly used message status values in a BPX will be preliminary and final. A status is considered preliminary until a blood product has reached a final disposition for the patient. For example, when the product is first cross-matched and a status message is sent, it would be considered preliminary. When the product is dispensed to the patient, that status would also be considered preliminary. However, once the product is transfused, the status would be considered final. The status of a blood product (BPX-2) can continue to change and the previous status should be overwritten until it reaches a final status (BPX-3). Refer to HL7 Table 0511 - BP Observation Status Codes Interpretation for valid entries.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BPX.4",
-                            Type = @"Field",
-                            Position = @"BPX.4",
-                            Name = @"BP Date/Time of Status",
-                            Length = 26,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the date and time that the status of the blood component was changed. For example, if the blood component had a status, of ""RD"" (Ready to Dispense), the date and time in this field would indicate the date and time that component was made ready to dispense by the filler system.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.4.1",
                             Type = @"Component",
@@ -300,27 +396,57 @@ namespace ExpressionEvaluatorForDotNet
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BPX.5",
-                            Type = @"Field",
-                            Position = @"BPX.5",
-                            Name = @"BC Donation ID",
-                            Length = 22,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Donation ID is the unique identification number assigned to a blood donation. The Donation ID depends upon the bar code labeling system used for the component. There are currently two blood component labeling standards: ABC CODABAR and ISBT 128. The preferred labeling system is ISBT 128.
+                        }
+        }
+
+        _bPDateTimeofStatus = new HL7V251Field
+        {
+            field = message[@"BPX"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bPDateTimeofStatus.field.FieldRepetitions != null && _bPDateTimeofStatus.field.FieldRepetitions.Count > 0)
+        {
+            _bPDateTimeofStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bPDateTimeofStatus, fieldData);
+        }
+
+        return _bPDateTimeofStatus;
+    } 
+}
+
+internal HL7V251Field _bCDonationID;
+
+public HL7V251Field BCDonationID
+{
+    get
+    {
+        if (_bCDonationID != null)
+        {
+            return _bCDonationID;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.5",
+            Type = @"Field",
+            Position = @"BPX.5",
+            Name = @"BC Donation ID",
+            Length = 22,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The Donation ID is the unique identification number assigned to a blood donation. The Donation ID depends upon the bar code labeling system used for the component. There are currently two blood component labeling standards: ABC CODABAR and ISBT 128. The preferred labeling system is ISBT 128.
 
 This field is required for blood components and is not applicable for commercial product messages.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.5.1",
                             Type = @"Component",
@@ -390,27 +516,57 @@ This field is required for blood components and is not applicable for commercial
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BPX.6",
-                            Type = @"Field",
-                            Position = @"BPX.6",
-                            Name = @"BC Component",
-                            Length = 250,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Component field includes an identifier and description of the specific blood component.
+                        }
+        }
+
+        _bCDonationID = new HL7V251Field
+        {
+            field = message[@"BPX"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bCDonationID.field.FieldRepetitions != null && _bCDonationID.field.FieldRepetitions.Count > 0)
+        {
+            _bCDonationID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bCDonationID, fieldData);
+        }
+
+        return _bCDonationID;
+    } 
+}
+
+internal HL7V251Field _bCComponent;
+
+public HL7V251Field BCComponent
+{
+    get
+    {
+        if (_bCComponent != null)
+        {
+            return _bCComponent;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.6",
+            Type = @"Field",
+            Position = @"BPX.6",
+            Name = @"BC Component",
+            Length = 250,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"The Component field includes an identifier and description of the specific blood component.
 
 This field is required for blood components and is not applicable for commercial product messages",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.6.1",
                             Type = @"Component",
@@ -572,25 +728,55 @@ Usage Note: If the coding system is any system other than an ""HL7 coding system
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bCComponent = new HL7V251Field
+        {
+            field = message[@"BPX"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bCComponent.field.FieldRepetitions != null && _bCComponent.field.FieldRepetitions.Count > 0)
+        {
+            _bCComponent.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bCComponent, fieldData);
+        }
+
+        return _bCComponent;
+    } 
+}
+
+internal HL7V251Field _bCDonationTypeIntendedUse;
+
+public HL7V251Field BCDonationTypeIntendedUse
+{
+    get
+    {
+        if (_bCDonationTypeIntendedUse != null)
+        {
+            return _bCDonationTypeIntendedUse;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.7",
+            Type = @"Field",
+            Position = @"BPX.7",
+            Name = @"BC Donation Type / Intended Use",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the type of donation or collection/intended use. This value is populated from Table 5 -Type of Donation in the ISBT 128 Application Specification . The default value is ""0"", meaning ""Not specified."" Other values indicate whether the blood product (1) is an allogeneic unit from a volunteer donor, (2) is intended for a specific recipient but may be crossed over and used for another recipient, or (3) is an autologous donation intended only for that particular recipient.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BPX.7",
-                            Type = @"Field",
-                            Position = @"BPX.7",
-                            Name = @"BC Donation Type / Intended Use",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the type of donation or collection/intended use. This value is populated from Table 5 -Type of Donation in the ISBT 128 Application Specification . The default value is ""0"", meaning ""Not specified."" Other values indicate whether the blood product (1) is an allogeneic unit from a volunteer donor, (2) is intended for a specific recipient but may be crossed over and used for another recipient, or (3) is an autologous donation intended only for that particular recipient.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.7.1",
                             Type = @"Component",
@@ -752,28 +938,58 @@ Usage Note: If the coding system is any system other than an ""HL7 coding system
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BPX.8",
-                            Type = @"Field",
-                            Position = @"BPX.8",
-                            Name = @"CP Commercial Product",
-                            Length = 250,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0512",
-                            TableName = @"Commercial Product",
-                            Description = @"This field contains the code and/or text to identify a commercial product. Examples of commercial products are blood derivatives such as Rh Immune Globulin and Factor VIII concentrate, Leukoreduction filters, and blood administration sets.
+                        }
+        }
+
+        _bCDonationTypeIntendedUse = new HL7V251Field
+        {
+            field = message[@"BPX"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bCDonationTypeIntendedUse.field.FieldRepetitions != null && _bCDonationTypeIntendedUse.field.FieldRepetitions.Count > 0)
+        {
+            _bCDonationTypeIntendedUse.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bCDonationTypeIntendedUse, fieldData);
+        }
+
+        return _bCDonationTypeIntendedUse;
+    } 
+}
+
+internal HL7V251Field _cPCommercialProduct;
+
+public HL7V251Field CPCommercialProduct
+{
+    get
+    {
+        if (_cPCommercialProduct != null)
+        {
+            return _cPCommercialProduct;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.8",
+            Type = @"Field",
+            Position = @"BPX.8",
+            Name = @"CP Commercial Product",
+            Length = 250,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0512",
+            TableName = @"Commercial Product",
+            Description = @"This field contains the code and/or text to identify a commercial product. Examples of commercial products are blood derivatives such as Rh Immune Globulin and Factor VIII concentrate, Leukoreduction filters, and blood administration sets.
 
 This field is required for commercial blood products and is not applicable for blood component messages. 
 4",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.8.1",
                             Type = @"Component",
@@ -933,27 +1149,57 @@ This field is required for commercial blood products and is not applicable for b
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BPX.9",
-                            Type = @"Field",
-                            Position = @"BPX.9",
-                            Name = @"CP Manufacturer",
-                            Length = 250,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the manufacturer of the commercial product. The manufacturer may be different from the supplier of the commercial product.
+                        }
+        }
+
+        _cPCommercialProduct = new HL7V251Field
+        {
+            field = message[@"BPX"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_cPCommercialProduct.field.FieldRepetitions != null && _cPCommercialProduct.field.FieldRepetitions.Count > 0)
+        {
+            _cPCommercialProduct.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_cPCommercialProduct, fieldData);
+        }
+
+        return _cPCommercialProduct;
+    } 
+}
+
+internal HL7V251Field _cPManufacturer;
+
+public HL7V251Field CPManufacturer
+{
+    get
+    {
+        if (_cPManufacturer != null)
+        {
+            return _cPManufacturer;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.9",
+            Type = @"Field",
+            Position = @"BPX.9",
+            Name = @"CP Manufacturer",
+            Length = 250,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the manufacturer of the commercial product. The manufacturer may be different from the supplier of the commercial product.
 
 This field is required for commercial blood products and is not applicable for blood component messages. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.9.1",
                             Type = @"Component",
@@ -1239,27 +1485,57 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BPX.10",
-                            Type = @"Field",
-                            Position = @"BPX.10",
-                            Name = @"CP Lot Number",
-                            Length = 22,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the lot number for blood derivatives or commercially supplied items used as accessories to transfusion.
+                        }
+        }
+
+        _cPManufacturer = new HL7V251Field
+        {
+            field = message[@"BPX"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_cPManufacturer.field.FieldRepetitions != null && _cPManufacturer.field.FieldRepetitions.Count > 0)
+        {
+            _cPManufacturer.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_cPManufacturer, fieldData);
+        }
+
+        return _cPManufacturer;
+    } 
+}
+
+internal HL7V251Field _cPLotNumber;
+
+public HL7V251Field CPLotNumber
+{
+    get
+    {
+        if (_cPLotNumber != null)
+        {
+            return _cPLotNumber;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.10",
+            Type = @"Field",
+            Position = @"BPX.10",
+            Name = @"CP Lot Number",
+            Length = 22,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the lot number for blood derivatives or commercially supplied items used as accessories to transfusion.
 
 This field is required for commercial blood products and is not applicable for blood component messages",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.10.1",
                             Type = @"Component",
@@ -1329,27 +1605,57 @@ This field is required for commercial blood products and is not applicable for b
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BPX.11",
-                            Type = @"Field",
-                            Position = @"BPX.11",
-                            Name = @"BP Blood Group",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the ABO/Rh blood group of the blood component. The preferred values for the blood group are the specified values in Table 3A - Encodation of ABO/Rh Blood Group in the ISBT 128 Application Specification .
+                        }
+        }
+
+        _cPLotNumber = new HL7V251Field
+        {
+            field = message[@"BPX"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_cPLotNumber.field.FieldRepetitions != null && _cPLotNumber.field.FieldRepetitions.Count > 0)
+        {
+            _cPLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_cPLotNumber, fieldData);
+        }
+
+        return _cPLotNumber;
+    } 
+}
+
+internal HL7V251Field _bPBloodGroup;
+
+public HL7V251Field BPBloodGroup
+{
+    get
+    {
+        if (_bPBloodGroup != null)
+        {
+            return _bPBloodGroup;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.11",
+            Type = @"Field",
+            Position = @"BPX.11",
+            Name = @"BP Blood Group",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the ABO/Rh blood group of the blood component. The preferred values for the blood group are the specified values in Table 3A - Encodation of ABO/Rh Blood Group in the ISBT 128 Application Specification .
 
 This field is required for blood components and certain commercial products (such as solvent detergent plasma). ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.11.1",
                             Type = @"Component",
@@ -1511,25 +1817,55 @@ Usage Note: If the coding system is any system other than an ""HL7 coding system
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bPBloodGroup = new HL7V251Field
+        {
+            field = message[@"BPX"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bPBloodGroup.field.FieldRepetitions != null && _bPBloodGroup.field.FieldRepetitions.Count > 0)
+        {
+            _bPBloodGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bPBloodGroup, fieldData);
+        }
+
+        return _bPBloodGroup;
+    } 
+}
+
+internal HL7V251Field _bCSpecialTesting;
+
+public HL7V251Field BCSpecialTesting
+{
+    get
+    {
+        if (_bCSpecialTesting != null)
+        {
+            return _bCSpecialTesting;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.12",
+            Type = @"Field",
+            Position = @"BPX.12",
+            Name = @"BC Special Testing",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This is a repeating field to allow multiple entries for special testing that was performed on the blood component. The preferred coding system for Special Testing is defined in the ISBT 128 Application Specification . Proposals have been developed and will soon be published by ICCBBA, Inc. for the encodation of other antigen and antibody specificities, including HLA, platelet, red cell and other types of markers.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BPX.12",
-                            Type = @"Field",
-                            Position = @"BPX.12",
-                            Name = @"BC Special Testing",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This is a repeating field to allow multiple entries for special testing that was performed on the blood component. The preferred coding system for Special Testing is defined in the ISBT 128 Application Specification . Proposals have been developed and will soon be published by ICCBBA, Inc. for the encodation of other antigen and antibody specificities, including HLA, platelet, red cell and other types of markers.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.12.1",
                             Type = @"Component",
@@ -1691,25 +2027,55 @@ Usage Note: If the coding system is any system other than an ""HL7 coding system
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bCSpecialTesting = new HL7V251Field
+        {
+            field = message[@"BPX"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bCSpecialTesting.field.FieldRepetitions != null && _bCSpecialTesting.field.FieldRepetitions.Count > 0)
+        {
+            _bCSpecialTesting.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bCSpecialTesting, fieldData);
+        }
+
+        return _bCSpecialTesting;
+    } 
+}
+
+internal HL7V251Field _bPExpirationDateTime;
+
+public HL7V251Field BPExpirationDateTime
+{
+    get
+    {
+        if (_bPExpirationDateTime != null)
+        {
+            return _bPExpirationDateTime;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.13",
+            Type = @"Field",
+            Position = @"BPX.13",
+            Name = @"BP Expiration Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the date and time that the blood product expires. The blood product is no longer considered acceptable once the expiration date has been reached unless cleared by the transfusion service medical staff.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BPX.13",
-                            Type = @"Field",
-                            Position = @"BPX.13",
-                            Name = @"BP Expiration Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the date and time that the blood product expires. The blood product is no longer considered acceptable once the expiration date has been reached unless cleared by the transfusion service medical staff.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.13.1",
                             Type = @"Component",
@@ -1745,61 +2111,145 @@ Usage Note: If the coding system is any system other than an ""HL7 coding system
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bPExpirationDateTime = new HL7V251Field
+        {
+            field = message[@"BPX"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bPExpirationDateTime.field.FieldRepetitions != null && _bPExpirationDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _bPExpirationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bPExpirationDateTime, fieldData);
+        }
+
+        return _bPExpirationDateTime;
+    } 
+}
+
+internal HL7V251Field _bPQuantity;
+
+public HL7V251Field BPQuantity
+{
+    get
+    {
+        if (_bPQuantity != null)
+        {
+            return _bPQuantity;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.14",
+            Type = @"Field",
+            Position = @"BPX.14",
+            Name = @"BP Quantity",
+            Length = 5,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the number of blood components or commercial products to which this message refers.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _bPQuantity = new HL7V251Field
+        {
+            field = message[@"BPX"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bPQuantity.field.FieldRepetitions != null && _bPQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _bPQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bPQuantity, fieldData);
+        }
+
+        return _bPQuantity;
+    } 
+}
+
+internal HL7V251Field _bPAmount;
+
+public HL7V251Field BPAmount
+{
+    get
+    {
+        if (_bPAmount != null)
+        {
+            return _bPAmount;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.15",
+            Type = @"Field",
+            Position = @"BPX.15",
+            Name = @"BP Amount",
+            Length = 5,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the ordered amount (volume) associated with each quantity of a blood component or commercial product to which this message refers.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _bPAmount = new HL7V251Field
+        {
+            field = message[@"BPX"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bPAmount.field.FieldRepetitions != null && _bPAmount.field.FieldRepetitions.Count > 0)
+        {
+            _bPAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bPAmount, fieldData);
+        }
+
+        return _bPAmount;
+    } 
+}
+
+internal HL7V251Field _bPUnits;
+
+public HL7V251Field BPUnits
+{
+    get
+    {
+        if (_bPUnits != null)
+        {
+            return _bPUnits;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.16",
+            Type = @"Field",
+            Position = @"BPX.16",
+            Name = @"BP Units",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the units of measure for the blood product amount. (See Chapter 7 for more details about reporting units.) This field specifies the units of measure for volume of a blood component (i.e. 50 ml) or the units of measure or dosage of a commercial product (i.e. 910 I.U. - International Units - of Factor VIII Concentrate).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BPX.14",
-                            Type = @"Field",
-                            Position = @"BPX.14",
-                            Name = @"BP Quantity",
-                            Length = 5,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the number of blood components or commercial products to which this message refers.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BPX.15",
-                            Type = @"Field",
-                            Position = @"BPX.15",
-                            Name = @"BP Amount",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the ordered amount (volume) associated with each quantity of a blood component or commercial product to which this message refers.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BPX.16",
-                            Type = @"Field",
-                            Position = @"BPX.16",
-                            Name = @"BP Units",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the units of measure for the blood product amount. (See Chapter 7 for more details about reporting units.) This field specifies the units of measure for volume of a blood component (i.e. 50 ml) or the units of measure or dosage of a commercial product (i.e. 910 I.U. - International Units - of Factor VIII Concentrate).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.16.1",
                             Type = @"Component",
@@ -1905,27 +2355,57 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"BPX.17",
-                            Type = @"Field",
-                            Position = @"BPX.17",
-                            Name = @"BP Unique ID",
-                            Length = 22,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is a unique system-generated number assigned to the blood product to which the message is referring. Each time the status is updated, the new message should replace the previous message if the Blood Product Unique ID is the same. If the Blood Product Unique ID is different, it indicates that the status applies to a different blood product.
+                        }
+        }
+
+        _bPUnits = new HL7V251Field
+        {
+            field = message[@"BPX"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bPUnits.field.FieldRepetitions != null && _bPUnits.field.FieldRepetitions.Count > 0)
+        {
+            _bPUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bPUnits, fieldData);
+        }
+
+        return _bPUnits;
+    } 
+}
+
+internal HL7V251Field _bPUniqueID;
+
+public HL7V251Field BPUniqueID
+{
+    get
+    {
+        if (_bPUniqueID != null)
+        {
+            return _bPUniqueID;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.17",
+            Type = @"Field",
+            Position = @"BPX.17",
+            Name = @"BP Unique ID",
+            Length = 22,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is a unique system-generated number assigned to the blood product to which the message is referring. Each time the status is updated, the new message should replace the previous message if the Blood Product Unique ID is the same. If the Blood Product Unique ID is different, it indicates that the status applies to a different blood product.
 
 The sending and receiving systems must agree upon the use of this field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.17.1",
                             Type = @"Component",
@@ -1995,25 +2475,55 @@ The sending and receiving systems must agree upon the use of this field.",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bPUniqueID = new HL7V251Field
+        {
+            field = message[@"BPX"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bPUniqueID.field.FieldRepetitions != null && _bPUniqueID.field.FieldRepetitions.Count > 0)
+        {
+            _bPUniqueID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bPUniqueID, fieldData);
+        }
+
+        return _bPUniqueID;
+    } 
+}
+
+internal HL7V251Field _bPActualDispensedToLocation;
+
+public HL7V251Field BPActualDispensedToLocation
+{
+    get
+    {
+        if (_bPActualDispensedToLocation != null)
+        {
+            return _bPActualDispensedToLocation;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.18",
+            Type = @"Field",
+            Position = @"BPX.18",
+            Name = @"BP Actual Dispensed To Location",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the inpatient or outpatient location to which the blood product was actually dispensed. The default value is the current census location for the patient.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BPX.18",
-                            Type = @"Field",
-                            Position = @"BPX.18",
-                            Name = @"BP Actual Dispensed To Location",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the inpatient or outpatient location to which the blood product was actually dispensed. The default value is the current census location for the patient.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.18.1",
                             Type = @"Component",
@@ -2387,25 +2897,55 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bPActualDispensedToLocation = new HL7V251Field
+        {
+            field = message[@"BPX"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bPActualDispensedToLocation.field.FieldRepetitions != null && _bPActualDispensedToLocation.field.FieldRepetitions.Count > 0)
+        {
+            _bPActualDispensedToLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bPActualDispensedToLocation, fieldData);
+        }
+
+        return _bPActualDispensedToLocation;
+    } 
+}
+
+internal HL7V251Field _bPActualDispensedToAddress;
+
+public HL7V251Field BPActualDispensedToAddress
+{
+    get
+    {
+        if (_bPActualDispensedToAddress != null)
+        {
+            return _bPActualDispensedToAddress;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.19",
+            Type = @"Field",
+            Position = @"BPX.19",
+            Name = @"BP Actual Dispensed To Address",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the actual address of the location to which the blood product was actually dispensed.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BPX.19",
-                            Type = @"Field",
-                            Position = @"BPX.19",
-                            Name = @"BP Actual Dispensed To Address",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the actual address of the location to which the blood product was actually dispensed.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.19.1",
                             Type = @"Component",
@@ -2887,25 +3427,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bPActualDispensedToAddress = new HL7V251Field
+        {
+            field = message[@"BPX"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bPActualDispensedToAddress.field.FieldRepetitions != null && _bPActualDispensedToAddress.field.FieldRepetitions.Count > 0)
+        {
+            _bPActualDispensedToAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bPActualDispensedToAddress, fieldData);
+        }
+
+        return _bPActualDispensedToAddress;
+    } 
+}
+
+internal HL7V251Field _bPDispensedtoReceiver;
+
+public HL7V251Field BPDispensedtoReceiver
+{
+    get
+    {
+        if (_bPDispensedtoReceiver != null)
+        {
+            return _bPDispensedtoReceiver;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.20",
+            Type = @"Field",
+            Position = @"BPX.20",
+            Name = @"BP Dispensed to Receiver",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This is the person who picked up and transported the blood component(s) or commercial product(s). The code for the receiver is recorded as a XCN data type. This field can be free text. In this case, the receiver's name must be recorded as the second through fourth components of the field.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BPX.20",
-                            Type = @"Field",
-                            Position = @"BPX.20",
-                            Name = @"BP Dispensed to Receiver",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This is the person who picked up and transported the blood component(s) or commercial product(s). The code for the receiver is recorded as a XCN data type. This field can be free text. In this case, the receiver's name must be recorded as the second through fourth components of the field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.20.1",
                             Type = @"Component",
@@ -4121,25 +4691,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bPDispensedtoReceiver = new HL7V251Field
+        {
+            field = message[@"BPX"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bPDispensedtoReceiver.field.FieldRepetitions != null && _bPDispensedtoReceiver.field.FieldRepetitions.Count > 0)
+        {
+            _bPDispensedtoReceiver.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bPDispensedtoReceiver, fieldData);
+        }
+
+        return _bPDispensedtoReceiver;
+    } 
+}
+
+internal HL7V251Field _bPDispensingIndividual;
+
+public HL7V251Field BPDispensingIndividual
+{
+    get
+    {
+        if (_bPDispensingIndividual != null)
+        {
+            return _bPDispensingIndividual;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"BPX.21",
+            Type = @"Field",
+            Position = @"BPX.21",
+            Name = @"BP Dispensing Individual",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the individual who is dispensing the blood component or commercial product.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BPX.21",
-                            Type = @"Field",
-                            Position = @"BPX.21",
-                            Name = @"BP Dispensing Individual",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the individual who is dispensing the blood component or commercial product.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BPX.21.1",
                             Type = @"Component",
@@ -5355,890 +5955,23 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentBPX(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field setIDBPX;
-
-public HL7V251Field SetIDBPX
-{
-    get
-    {
-        if (setIDBPX != null)
-        {
-            return setIDBPX;
-        }
-
-        setIDBPX = new HL7V251Field
-        {
-            field = message[@"BPX"][1],
-            Id = @"BPX.1",
-            Type = @"Field",
-            Position = @"BPX.1",
-            Name = @"Set ID - BPX",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the sequence number for the BPX segment under the related BPO segment. For the first blood product dispense status transmitted, the sequence number shall be 1; for the second product dispense status, it shall be 2; and so on.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDBPX.field.FieldRepetitions != null && setIDBPX.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDBPX.Id));
-            setIDBPX.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(setIDBPX, fieldData);
-        }
-
-        return setIDBPX;
-    } 
-}
-
-internal HL7V251Field bPDispenseStatus;
-
-public HL7V251Field BPDispenseStatus
-{
-    get
-    {
-        if (bPDispenseStatus != null)
-        {
-            return bPDispenseStatus;
-        }
-
-        bPDispenseStatus = new HL7V251Field
-        {
-            field = message[@"BPX"][2],
-            Id = @"BPX.2",
-            Type = @"Field",
-            Position = @"BPX.2",
-            Name = @"BP Dispense Status",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0510",
-            TableName = @"Blood Product Dispense Status",
-            Description = @"This field indicates the current status of the specified blood product as indicated by the filler or placer. For example, the first status change of a product that may trigger a Blood Product Dispense Status Message occurs when it first becomes linked to a patient and is ready to dispense. The placer system may use the Blood Product Dispense Status Message to request the transfusion service to dispense the product. When the blood product is delivered or issued to a patient, the status of the blood product would be changed to indicate that it has now been ""dispensed."" Refer to HL7 Table 0510 - Blood Product Dispense Status for valid entries.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bPDispenseStatus.field.FieldRepetitions != null && bPDispenseStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bPDispenseStatus.Id));
-            bPDispenseStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bPDispenseStatus, fieldData);
-        }
-
-        return bPDispenseStatus;
-    } 
-}
-
-internal HL7V251Field bPStatus;
-
-public HL7V251Field BPStatus
-{
-    get
-    {
-        if (bPStatus != null)
-        {
-            return bPStatus;
-        }
-
-        bPStatus = new HL7V251Field
-        {
-            field = message[@"BPX"][3],
-            Id = @"BPX.3",
-            Type = @"Field",
-            Position = @"BPX.3",
-            Name = @"BP Status",
-            Length = 1,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0511",
-            TableName = @"BP Observation Status Codes Interpretation",
-            Description = @"The most commonly used message status values in a BPX will be preliminary and final. A status is considered preliminary until a blood product has reached a final disposition for the patient. For example, when the product is first cross-matched and a status message is sent, it would be considered preliminary. When the product is dispensed to the patient, that status would also be considered preliminary. However, once the product is transfused, the status would be considered final. The status of a blood product (BPX-2) can continue to change and the previous status should be overwritten until it reaches a final status (BPX-3). Refer to HL7 Table 0511 - BP Observation Status Codes Interpretation for valid entries.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bPStatus.field.FieldRepetitions != null && bPStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bPStatus.Id));
-            bPStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bPStatus, fieldData);
-        }
-
-        return bPStatus;
-    } 
-}
-
-internal HL7V251Field bPDateTimeofStatus;
-
-public HL7V251Field BPDateTimeofStatus
-{
-    get
-    {
-        if (bPDateTimeofStatus != null)
-        {
-            return bPDateTimeofStatus;
-        }
-
-        bPDateTimeofStatus = new HL7V251Field
-        {
-            field = message[@"BPX"][4],
-            Id = @"BPX.4",
-            Type = @"Field",
-            Position = @"BPX.4",
-            Name = @"BP Date/Time of Status",
-            Length = 26,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the date and time that the status of the blood component was changed. For example, if the blood component had a status, of ""RD"" (Ready to Dispense), the date and time in this field would indicate the date and time that component was made ready to dispense by the filler system.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bPDateTimeofStatus.field.FieldRepetitions != null && bPDateTimeofStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bPDateTimeofStatus.Id));
-            bPDateTimeofStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bPDateTimeofStatus, fieldData);
-        }
-
-        return bPDateTimeofStatus;
-    } 
-}
-
-internal HL7V251Field bCDonationID;
-
-public HL7V251Field BCDonationID
-{
-    get
-    {
-        if (bCDonationID != null)
-        {
-            return bCDonationID;
-        }
-
-        bCDonationID = new HL7V251Field
-        {
-            field = message[@"BPX"][5],
-            Id = @"BPX.5",
-            Type = @"Field",
-            Position = @"BPX.5",
-            Name = @"BC Donation ID",
-            Length = 22,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The Donation ID is the unique identification number assigned to a blood donation. The Donation ID depends upon the bar code labeling system used for the component. There are currently two blood component labeling standards: ABC CODABAR and ISBT 128. The preferred labeling system is ISBT 128.
-
-This field is required for blood components and is not applicable for commercial product messages.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bCDonationID.field.FieldRepetitions != null && bCDonationID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bCDonationID.Id));
-            bCDonationID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bCDonationID, fieldData);
-        }
-
-        return bCDonationID;
-    } 
-}
-
-internal HL7V251Field bCComponent;
-
-public HL7V251Field BCComponent
-{
-    get
-    {
-        if (bCComponent != null)
-        {
-            return bCComponent;
-        }
-
-        bCComponent = new HL7V251Field
-        {
-            field = message[@"BPX"][6],
-            Id = @"BPX.6",
-            Type = @"Field",
-            Position = @"BPX.6",
-            Name = @"BC Component",
-            Length = 250,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"The Component field includes an identifier and description of the specific blood component.
-
-This field is required for blood components and is not applicable for commercial product messages",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bCComponent.field.FieldRepetitions != null && bCComponent.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bCComponent.Id));
-            bCComponent.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bCComponent, fieldData);
-        }
-
-        return bCComponent;
-    } 
-}
-
-internal HL7V251Field bCDonationTypeIntendedUse;
-
-public HL7V251Field BCDonationTypeIntendedUse
-{
-    get
-    {
-        if (bCDonationTypeIntendedUse != null)
-        {
-            return bCDonationTypeIntendedUse;
-        }
-
-        bCDonationTypeIntendedUse = new HL7V251Field
-        {
-            field = message[@"BPX"][7],
-            Id = @"BPX.7",
-            Type = @"Field",
-            Position = @"BPX.7",
-            Name = @"BC Donation Type / Intended Use",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the type of donation or collection/intended use. This value is populated from Table 5 -Type of Donation in the ISBT 128 Application Specification . The default value is ""0"", meaning ""Not specified."" Other values indicate whether the blood product (1) is an allogeneic unit from a volunteer donor, (2) is intended for a specific recipient but may be crossed over and used for another recipient, or (3) is an autologous donation intended only for that particular recipient.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bCDonationTypeIntendedUse.field.FieldRepetitions != null && bCDonationTypeIntendedUse.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bCDonationTypeIntendedUse.Id));
-            bCDonationTypeIntendedUse.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bCDonationTypeIntendedUse, fieldData);
-        }
-
-        return bCDonationTypeIntendedUse;
-    } 
-}
-
-internal HL7V251Field cPCommercialProduct;
-
-public HL7V251Field CPCommercialProduct
-{
-    get
-    {
-        if (cPCommercialProduct != null)
-        {
-            return cPCommercialProduct;
-        }
-
-        cPCommercialProduct = new HL7V251Field
-        {
-            field = message[@"BPX"][8],
-            Id = @"BPX.8",
-            Type = @"Field",
-            Position = @"BPX.8",
-            Name = @"CP Commercial Product",
-            Length = 250,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0512",
-            TableName = @"Commercial Product",
-            Description = @"This field contains the code and/or text to identify a commercial product. Examples of commercial products are blood derivatives such as Rh Immune Globulin and Factor VIII concentrate, Leukoreduction filters, and blood administration sets.
-
-This field is required for commercial blood products and is not applicable for blood component messages. 
-4",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (cPCommercialProduct.field.FieldRepetitions != null && cPCommercialProduct.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(cPCommercialProduct.Id));
-            cPCommercialProduct.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(cPCommercialProduct, fieldData);
-        }
-
-        return cPCommercialProduct;
-    } 
-}
-
-internal HL7V251Field cPManufacturer;
-
-public HL7V251Field CPManufacturer
-{
-    get
-    {
-        if (cPManufacturer != null)
-        {
-            return cPManufacturer;
-        }
-
-        cPManufacturer = new HL7V251Field
-        {
-            field = message[@"BPX"][9],
-            Id = @"BPX.9",
-            Type = @"Field",
-            Position = @"BPX.9",
-            Name = @"CP Manufacturer",
-            Length = 250,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the manufacturer of the commercial product. The manufacturer may be different from the supplier of the commercial product.
-
-This field is required for commercial blood products and is not applicable for blood component messages. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (cPManufacturer.field.FieldRepetitions != null && cPManufacturer.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(cPManufacturer.Id));
-            cPManufacturer.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(cPManufacturer, fieldData);
-        }
-
-        return cPManufacturer;
-    } 
-}
-
-internal HL7V251Field cPLotNumber;
-
-public HL7V251Field CPLotNumber
-{
-    get
-    {
-        if (cPLotNumber != null)
-        {
-            return cPLotNumber;
-        }
-
-        cPLotNumber = new HL7V251Field
-        {
-            field = message[@"BPX"][10],
-            Id = @"BPX.10",
-            Type = @"Field",
-            Position = @"BPX.10",
-            Name = @"CP Lot Number",
-            Length = 22,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the lot number for blood derivatives or commercially supplied items used as accessories to transfusion.
-
-This field is required for commercial blood products and is not applicable for blood component messages",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (cPLotNumber.field.FieldRepetitions != null && cPLotNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(cPLotNumber.Id));
-            cPLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(cPLotNumber, fieldData);
-        }
-
-        return cPLotNumber;
-    } 
-}
-
-internal HL7V251Field bPBloodGroup;
-
-public HL7V251Field BPBloodGroup
-{
-    get
-    {
-        if (bPBloodGroup != null)
-        {
-            return bPBloodGroup;
-        }
-
-        bPBloodGroup = new HL7V251Field
-        {
-            field = message[@"BPX"][11],
-            Id = @"BPX.11",
-            Type = @"Field",
-            Position = @"BPX.11",
-            Name = @"BP Blood Group",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the ABO/Rh blood group of the blood component. The preferred values for the blood group are the specified values in Table 3A - Encodation of ABO/Rh Blood Group in the ISBT 128 Application Specification .
-
-This field is required for blood components and certain commercial products (such as solvent detergent plasma). ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bPBloodGroup.field.FieldRepetitions != null && bPBloodGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bPBloodGroup.Id));
-            bPBloodGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bPBloodGroup, fieldData);
-        }
-
-        return bPBloodGroup;
-    } 
-}
-
-internal HL7V251Field bCSpecialTesting;
-
-public HL7V251Field BCSpecialTesting
-{
-    get
-    {
-        if (bCSpecialTesting != null)
-        {
-            return bCSpecialTesting;
-        }
-
-        bCSpecialTesting = new HL7V251Field
-        {
-            field = message[@"BPX"][12],
-            Id = @"BPX.12",
-            Type = @"Field",
-            Position = @"BPX.12",
-            Name = @"BC Special Testing",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This is a repeating field to allow multiple entries for special testing that was performed on the blood component. The preferred coding system for Special Testing is defined in the ISBT 128 Application Specification . Proposals have been developed and will soon be published by ICCBBA, Inc. for the encodation of other antigen and antibody specificities, including HLA, platelet, red cell and other types of markers.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bCSpecialTesting.field.FieldRepetitions != null && bCSpecialTesting.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bCSpecialTesting.Id));
-            bCSpecialTesting.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bCSpecialTesting, fieldData);
-        }
-
-        return bCSpecialTesting;
-    } 
-}
-
-internal HL7V251Field bPExpirationDateTime;
-
-public HL7V251Field BPExpirationDateTime
-{
-    get
-    {
-        if (bPExpirationDateTime != null)
-        {
-            return bPExpirationDateTime;
-        }
-
-        bPExpirationDateTime = new HL7V251Field
-        {
-            field = message[@"BPX"][13],
-            Id = @"BPX.13",
-            Type = @"Field",
-            Position = @"BPX.13",
-            Name = @"BP Expiration Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the date and time that the blood product expires. The blood product is no longer considered acceptable once the expiration date has been reached unless cleared by the transfusion service medical staff.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bPExpirationDateTime.field.FieldRepetitions != null && bPExpirationDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bPExpirationDateTime.Id));
-            bPExpirationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bPExpirationDateTime, fieldData);
-        }
-
-        return bPExpirationDateTime;
-    } 
-}
-
-internal HL7V251Field bPQuantity;
-
-public HL7V251Field BPQuantity
-{
-    get
-    {
-        if (bPQuantity != null)
-        {
-            return bPQuantity;
-        }
-
-        bPQuantity = new HL7V251Field
-        {
-            field = message[@"BPX"][14],
-            Id = @"BPX.14",
-            Type = @"Field",
-            Position = @"BPX.14",
-            Name = @"BP Quantity",
-            Length = 5,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the number of blood components or commercial products to which this message refers.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bPQuantity.field.FieldRepetitions != null && bPQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bPQuantity.Id));
-            bPQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bPQuantity, fieldData);
-        }
-
-        return bPQuantity;
-    } 
-}
-
-internal HL7V251Field bPAmount;
-
-public HL7V251Field BPAmount
-{
-    get
-    {
-        if (bPAmount != null)
-        {
-            return bPAmount;
-        }
-
-        bPAmount = new HL7V251Field
-        {
-            field = message[@"BPX"][15],
-            Id = @"BPX.15",
-            Type = @"Field",
-            Position = @"BPX.15",
-            Name = @"BP Amount",
-            Length = 5,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the ordered amount (volume) associated with each quantity of a blood component or commercial product to which this message refers.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bPAmount.field.FieldRepetitions != null && bPAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bPAmount.Id));
-            bPAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bPAmount, fieldData);
-        }
-
-        return bPAmount;
-    } 
-}
-
-internal HL7V251Field bPUnits;
-
-public HL7V251Field BPUnits
-{
-    get
-    {
-        if (bPUnits != null)
-        {
-            return bPUnits;
-        }
-
-        bPUnits = new HL7V251Field
-        {
-            field = message[@"BPX"][16],
-            Id = @"BPX.16",
-            Type = @"Field",
-            Position = @"BPX.16",
-            Name = @"BP Units",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the units of measure for the blood product amount. (See Chapter 7 for more details about reporting units.) This field specifies the units of measure for volume of a blood component (i.e. 50 ml) or the units of measure or dosage of a commercial product (i.e. 910 I.U. - International Units - of Factor VIII Concentrate).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bPUnits.field.FieldRepetitions != null && bPUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bPUnits.Id));
-            bPUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bPUnits, fieldData);
-        }
-
-        return bPUnits;
-    } 
-}
-
-internal HL7V251Field bPUniqueID;
-
-public HL7V251Field BPUniqueID
-{
-    get
-    {
-        if (bPUniqueID != null)
-        {
-            return bPUniqueID;
-        }
-
-        bPUniqueID = new HL7V251Field
-        {
-            field = message[@"BPX"][17],
-            Id = @"BPX.17",
-            Type = @"Field",
-            Position = @"BPX.17",
-            Name = @"BP Unique ID",
-            Length = 22,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is a unique system-generated number assigned to the blood product to which the message is referring. Each time the status is updated, the new message should replace the previous message if the Blood Product Unique ID is the same. If the Blood Product Unique ID is different, it indicates that the status applies to a different blood product.
-
-The sending and receiving systems must agree upon the use of this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bPUniqueID.field.FieldRepetitions != null && bPUniqueID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bPUniqueID.Id));
-            bPUniqueID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bPUniqueID, fieldData);
-        }
-
-        return bPUniqueID;
-    } 
-}
-
-internal HL7V251Field bPActualDispensedToLocation;
-
-public HL7V251Field BPActualDispensedToLocation
-{
-    get
-    {
-        if (bPActualDispensedToLocation != null)
-        {
-            return bPActualDispensedToLocation;
-        }
-
-        bPActualDispensedToLocation = new HL7V251Field
-        {
-            field = message[@"BPX"][18],
-            Id = @"BPX.18",
-            Type = @"Field",
-            Position = @"BPX.18",
-            Name = @"BP Actual Dispensed To Location",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the inpatient or outpatient location to which the blood product was actually dispensed. The default value is the current census location for the patient.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bPActualDispensedToLocation.field.FieldRepetitions != null && bPActualDispensedToLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bPActualDispensedToLocation.Id));
-            bPActualDispensedToLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bPActualDispensedToLocation, fieldData);
-        }
-
-        return bPActualDispensedToLocation;
-    } 
-}
-
-internal HL7V251Field bPActualDispensedToAddress;
-
-public HL7V251Field BPActualDispensedToAddress
-{
-    get
-    {
-        if (bPActualDispensedToAddress != null)
-        {
-            return bPActualDispensedToAddress;
-        }
-
-        bPActualDispensedToAddress = new HL7V251Field
-        {
-            field = message[@"BPX"][19],
-            Id = @"BPX.19",
-            Type = @"Field",
-            Position = @"BPX.19",
-            Name = @"BP Actual Dispensed To Address",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the actual address of the location to which the blood product was actually dispensed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bPActualDispensedToAddress.field.FieldRepetitions != null && bPActualDispensedToAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bPActualDispensedToAddress.Id));
-            bPActualDispensedToAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bPActualDispensedToAddress, fieldData);
-        }
-
-        return bPActualDispensedToAddress;
-    } 
-}
-
-internal HL7V251Field bPDispensedtoReceiver;
-
-public HL7V251Field BPDispensedtoReceiver
-{
-    get
-    {
-        if (bPDispensedtoReceiver != null)
-        {
-            return bPDispensedtoReceiver;
-        }
-
-        bPDispensedtoReceiver = new HL7V251Field
-        {
-            field = message[@"BPX"][20],
-            Id = @"BPX.20",
-            Type = @"Field",
-            Position = @"BPX.20",
-            Name = @"BP Dispensed to Receiver",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This is the person who picked up and transported the blood component(s) or commercial product(s). The code for the receiver is recorded as a XCN data type. This field can be free text. In this case, the receiver's name must be recorded as the second through fourth components of the field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bPDispensedtoReceiver.field.FieldRepetitions != null && bPDispensedtoReceiver.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bPDispensedtoReceiver.Id));
-            bPDispensedtoReceiver.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bPDispensedtoReceiver, fieldData);
-        }
-
-        return bPDispensedtoReceiver;
-    } 
-}
-
-internal HL7V251Field bPDispensingIndividual;
-
-public HL7V251Field BPDispensingIndividual
-{
-    get
-    {
-        if (bPDispensingIndividual != null)
-        {
-            return bPDispensingIndividual;
-        }
-
-        bPDispensingIndividual = new HL7V251Field
+        _bPDispensingIndividual = new HL7V251Field
         {
             field = message[@"BPX"][21],
-            Id = @"BPX.21",
-            Type = @"Field",
-            Position = @"BPX.21",
-            Name = @"BP Dispensing Individual",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the individual who is dispensing the blood component or commercial product.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (bPDispensingIndividual.field.FieldRepetitions != null && bPDispensingIndividual.field.FieldRepetitions.Count > 0)
+        if (_bPDispensingIndividual.field.FieldRepetitions != null && _bPDispensingIndividual.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bPDispensingIndividual.Id));
-            bPDispensingIndividual.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(bPDispensingIndividual, fieldData);
+            _bPDispensingIndividual.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_bPDispensingIndividual, fieldData);
         }
 
-        return bPDispensingIndividual;
+        return _bPDispensingIndividual;
     } 
 }
     }

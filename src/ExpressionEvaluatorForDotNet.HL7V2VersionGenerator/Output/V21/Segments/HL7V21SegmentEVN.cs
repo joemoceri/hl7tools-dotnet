@@ -25,106 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"EVN.1",
-                            Type = @"Field",
-                            Position = @"EVN.1",
-                            Name = @"Event Type Code",
-                            Length = 3,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0003",
-                            TableName = @"EVENT TYPE CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EVN.2",
-                            Type = @"Field",
-                            Position = @"EVN.2",
-                            Name = @"Date/Time Of Event",
-                            Length = 19,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EVN.3",
-                            Type = @"Field",
-                            Position = @"EVN.3",
-                            Name = @"Date/Time Planned Event",
-                            Length = 19,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EVN.4",
-                            Type = @"Field",
-                            Position = @"EVN.4",
-                            Name = @"Event Reason Code",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0062",
-                            TableName = @"EVENT REASON",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentEVN(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field eventTypeCode;
+        internal HL7V21Field _eventTypeCode;
 
 public HL7V21Field EventTypeCode
 {
     get
     {
-        if (eventTypeCode != null)
+        if (_eventTypeCode != null)
         {
-            return eventTypeCode;
+            return _eventTypeCode;
         }
 
-        eventTypeCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"EVN"][1],
             Id = @"EVN.1",
             Type = @"Field",
             Position = @"EVN.1",
@@ -138,34 +56,38 @@ public HL7V21Field EventTypeCode
             TableName = @"EVENT TYPE CODE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _eventTypeCode = new HL7V21Field
+        {
+            field = message[@"EVN"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (eventTypeCode.field.FieldRepetitions != null && eventTypeCode.field.FieldRepetitions.Count > 0)
+        if (_eventTypeCode.field.FieldRepetitions != null && _eventTypeCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventTypeCode.Id));
-            eventTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(eventTypeCode, fieldData);
+            _eventTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_eventTypeCode, fieldData);
         }
 
-        return eventTypeCode;
+        return _eventTypeCode;
     } 
 }
 
-internal HL7V21Field dateTimeOfEvent;
+internal HL7V21Field _dateTimeOfEvent;
 
 public HL7V21Field DateTimeOfEvent
 {
     get
     {
-        if (dateTimeOfEvent != null)
+        if (_dateTimeOfEvent != null)
         {
-            return dateTimeOfEvent;
+            return _dateTimeOfEvent;
         }
 
-        dateTimeOfEvent = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"EVN"][2],
             Id = @"EVN.2",
             Type = @"Field",
             Position = @"EVN.2",
@@ -179,34 +101,38 @@ public HL7V21Field DateTimeOfEvent
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _dateTimeOfEvent = new HL7V21Field
+        {
+            field = message[@"EVN"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dateTimeOfEvent.field.FieldRepetitions != null && dateTimeOfEvent.field.FieldRepetitions.Count > 0)
+        if (_dateTimeOfEvent.field.FieldRepetitions != null && _dateTimeOfEvent.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeOfEvent.Id));
-            dateTimeOfEvent.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(dateTimeOfEvent, fieldData);
+            _dateTimeOfEvent.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_dateTimeOfEvent, fieldData);
         }
 
-        return dateTimeOfEvent;
+        return _dateTimeOfEvent;
     } 
 }
 
-internal HL7V21Field dateTimePlannedEvent;
+internal HL7V21Field _dateTimePlannedEvent;
 
 public HL7V21Field DateTimePlannedEvent
 {
     get
     {
-        if (dateTimePlannedEvent != null)
+        if (_dateTimePlannedEvent != null)
         {
-            return dateTimePlannedEvent;
+            return _dateTimePlannedEvent;
         }
 
-        dateTimePlannedEvent = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"EVN"][3],
             Id = @"EVN.3",
             Type = @"Field",
             Position = @"EVN.3",
@@ -220,34 +146,38 @@ public HL7V21Field DateTimePlannedEvent
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _dateTimePlannedEvent = new HL7V21Field
+        {
+            field = message[@"EVN"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dateTimePlannedEvent.field.FieldRepetitions != null && dateTimePlannedEvent.field.FieldRepetitions.Count > 0)
+        if (_dateTimePlannedEvent.field.FieldRepetitions != null && _dateTimePlannedEvent.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimePlannedEvent.Id));
-            dateTimePlannedEvent.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(dateTimePlannedEvent, fieldData);
+            _dateTimePlannedEvent.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_dateTimePlannedEvent, fieldData);
         }
 
-        return dateTimePlannedEvent;
+        return _dateTimePlannedEvent;
     } 
 }
 
-internal HL7V21Field eventReasonCode;
+internal HL7V21Field _eventReasonCode;
 
 public HL7V21Field EventReasonCode
 {
     get
     {
-        if (eventReasonCode != null)
+        if (_eventReasonCode != null)
         {
-            return eventReasonCode;
+            return _eventReasonCode;
         }
 
-        eventReasonCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"EVN"][4],
             Id = @"EVN.4",
             Type = @"Field",
             Position = @"EVN.4",
@@ -261,17 +191,22 @@ public HL7V21Field EventReasonCode
             TableName = @"EVENT REASON",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _eventReasonCode = new HL7V21Field
+        {
+            field = message[@"EVN"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (eventReasonCode.field.FieldRepetitions != null && eventReasonCode.field.FieldRepetitions.Count > 0)
+        if (_eventReasonCode.field.FieldRepetitions != null && _eventReasonCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventReasonCode.Id));
-            eventReasonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(eventReasonCode, fieldData);
+            _eventReasonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_eventReasonCode, fieldData);
         }
 
-        return eventReasonCode;
+        return _eventReasonCode;
     } 
 }
     }

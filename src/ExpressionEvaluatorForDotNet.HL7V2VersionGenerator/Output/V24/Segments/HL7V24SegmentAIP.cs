@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentAIP(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _setIDAIP;
+
+public HL7V24Field SetIDAIP
+{
+    get
+    {
+        if (_setIDAIP != null)
+        {
+            return _setIDAIP;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"AIP.1",
+            Type = @"Field",
+            Position = @"AIP.1",
+            Name = @"Set ID - AIP",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a number that uniquely identifies the information represented by this segment in this transaction for the purposes of addition, change or deletion.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDAIP = new HL7V24Field
+        {
+            field = message[@"AIP"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDAIP.field.FieldRepetitions != null && _setIDAIP.field.FieldRepetitions.Count > 0)
+        {
+            _setIDAIP.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_setIDAIP, fieldData);
+        }
+
+        return _setIDAIP;
+    } 
+}
+
+internal HL7V24Field _segmentActionCode;
+
+public HL7V24Field SegmentActionCode
+{
+    get
+    {
+        if (_segmentActionCode != null)
+        {
+            return _segmentActionCode;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"AIP.2",
+            Type = @"Field",
+            Position = @"AIP.2",
+            Name = @"Segment Action Code",
+            Length = 3,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0206",
+            TableName = @"Segment action code",
+            Description = @"This field contains the action to be taken when updating or modifying information in this segment from previously sent interface transactions. Refer to HL7 Table 0206 - Segment action code in Chapter 2, Section 2.15.4.2, Action code/unique identifier mode update definition, for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _segmentActionCode = new HL7V24Field
+        {
+            field = message[@"AIP"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_segmentActionCode.field.FieldRepetitions != null && _segmentActionCode.field.FieldRepetitions.Count > 0)
+        {
+            _segmentActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_segmentActionCode, fieldData);
+        }
+
+        return _segmentActionCode;
+    } 
+}
+
+internal HL7V24Field _personnelResourceID;
+
+public HL7V24Field PersonnelResourceID
+{
+    get
+    {
+        if (_personnelResourceID != null)
+        {
+            return _personnelResourceID;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"AIP.3",
+            Type = @"Field",
+            Position = @"AIP.3",
+            Name = @"Personnel Resource ID",
+            Length = 250,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the ID number and name of the person being requested or scheduled for an appointment. This field is used to identify a specific person being requested, or a specific person who has been scheduled as a resource for an appointment. If the specific person is not known, but the type of resource is, AIP-4-Resource role is used to identify the type of personnel resource required or scheduled. Refer to Chapter 2, Section 2.9.52, XCN - extended composite ID number and name for persons, for a description of the components contained in the XCN data type.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"AIP.1",
-                            Type = @"Field",
-                            Position = @"AIP.1",
-                            Name = @"Set ID - AIP",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a number that uniquely identifies the information represented by this segment in this transaction for the purposes of addition, change or deletion.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIP.2",
-                            Type = @"Field",
-                            Position = @"AIP.2",
-                            Name = @"Segment Action Code",
-                            Length = 3,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0206",
-                            TableName = @"Segment action code",
-                            Description = @"This field contains the action to be taken when updating or modifying information in this segment from previously sent interface transactions. Refer to HL7 Table 0206 - Segment action code in Chapter 2, Section 2.15.4.2, Action code/unique identifier mode update definition, for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIP.3",
-                            Type = @"Field",
-                            Position = @"AIP.3",
-                            Name = @"Personnel Resource ID",
-                            Length = 250,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the ID number and name of the person being requested or scheduled for an appointment. This field is used to identify a specific person being requested, or a specific person who has been scheduled as a resource for an appointment. If the specific person is not known, but the type of resource is, AIP-4-Resource role is used to identify the type of personnel resource required or scheduled. Refer to Chapter 2, Section 2.9.52, XCN - extended composite ID number and name for persons, for a description of the components contained in the XCN data type.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AIP.3.1",
                             Type = @"Component",
@@ -812,25 +878,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 Table 0444 - Name assembly orde r for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _personnelResourceID = new HL7V24Field
+        {
+            field = message[@"AIP"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_personnelResourceID.field.FieldRepetitions != null && _personnelResourceID.field.FieldRepetitions.Count > 0)
+        {
+            _personnelResourceID.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_personnelResourceID, fieldData);
+        }
+
+        return _personnelResourceID;
+    } 
+}
+
+internal HL7V24Field _resourceRole;
+
+public HL7V24Field ResourceRole
+{
+    get
+    {
+        if (_resourceRole != null)
+        {
+            return _resourceRole;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"AIP.4",
+            Type = @"Field",
+            Position = @"AIP.4",
+            Name = @"Resource Role",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the role of the personnel requested/scheduled for an appointment. For requests, if a specific person is not identified in the AIP-3-Personnel resource ID field, then this field identifies the type of person that should be scheduled by the filler application. At a minimum, the AIP-4-Resource role component should be valued.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AIP.4",
-                            Type = @"Field",
-                            Position = @"AIP.4",
-                            Name = @"Resource Role",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the role of the personnel requested/scheduled for an appointment. For requests, if a specific person is not identified in the AIP-3-Personnel resource ID field, then this field identifies the type of person that should be scheduled by the filler application. At a minimum, the AIP-4-Resource role component should be valued.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AIP.4.1",
                             Type = @"Component",
@@ -940,25 +1036,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _resourceRole = new HL7V24Field
+        {
+            field = message[@"AIP"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_resourceRole.field.FieldRepetitions != null && _resourceRole.field.FieldRepetitions.Count > 0)
+        {
+            _resourceRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_resourceRole, fieldData);
+        }
+
+        return _resourceRole;
+    } 
+}
+
+internal HL7V24Field _resourceGroup;
+
+public HL7V24Field ResourceGroup
+{
+    get
+    {
+        if (_resourceGroup != null)
+        {
+            return _resourceGroup;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"AIP.5",
+            Type = @"Field",
+            Position = @"AIP.5",
+            Name = @"Resource Group",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the requested resource as a member of the indicated group. If, in a Schedule Request Message (SRM), no specific resource is requested, but an AIP-4-Resource role is requested, the AIP-5-Resource group field can be used to further qualify the type of resource being requested.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AIP.5",
-                            Type = @"Field",
-                            Position = @"AIP.5",
-                            Name = @"Resource Group",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the requested resource as a member of the indicated group. If, in a Schedule Request Message (SRM), no specific resource is requested, but an AIP-4-Resource role is requested, the AIP-5-Resource group field can be used to further qualify the type of resource being requested.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AIP.5.1",
                             Type = @"Component",
@@ -1068,25 +1194,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _resourceGroup = new HL7V24Field
+        {
+            field = message[@"AIP"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_resourceGroup.field.FieldRepetitions != null && _resourceGroup.field.FieldRepetitions.Count > 0)
+        {
+            _resourceGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_resourceGroup, fieldData);
+        }
+
+        return _resourceGroup;
+    } 
+}
+
+internal HL7V24Field _startDateTime;
+
+public HL7V24Field StartDateTime
+{
+    get
+    {
+        if (_startDateTime != null)
+        {
+            return _startDateTime;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"AIP.6",
+            Type = @"Field",
+            Position = @"AIP.6",
+            Name = @"Start Date/Time",
+            Length = 26,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time this service needs for the appointment. This field allows the application to identify that the service is required for the appointment at a different time than the appointments start date/time.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AIP.6",
-                            Type = @"Field",
-                            Position = @"AIP.6",
-                            Name = @"Start Date/Time",
-                            Length = 26,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time this service needs for the appointment. This field allows the application to identify that the service is required for the appointment at a different time than the appointments start date/time.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AIP.6.1",
                             Type = @"Component",
@@ -1120,43 +1276,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _startDateTime = new HL7V24Field
+        {
+            field = message[@"AIP"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_startDateTime.field.FieldRepetitions != null && _startDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _startDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_startDateTime, fieldData);
+        }
+
+        return _startDateTime;
+    } 
+}
+
+internal HL7V24Field _startDateTimeOffset;
+
+public HL7V24Field StartDateTimeOffset
+{
+    get
+    {
+        if (_startDateTimeOffset != null)
+        {
+            return _startDateTimeOffset;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"AIP.7",
+            Type = @"Field",
+            Position = @"AIP.7",
+            Name = @"Start Date/Time Offset",
+            Length = 20,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the offset this resource needs for the appointment, expressed in units of time relative to the scheduled start date/time. This field indicates to the application that the resource is required for the appointment at a different time than the appointments start date/time. The first component contains the offset amount. An offset of zero (0), or an unvalued field, indicates that the resource is required at the start date/time of the appointment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _startDateTimeOffset = new HL7V24Field
+        {
+            field = message[@"AIP"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_startDateTimeOffset.field.FieldRepetitions != null && _startDateTimeOffset.field.FieldRepetitions.Count > 0)
+        {
+            _startDateTimeOffset.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_startDateTimeOffset, fieldData);
+        }
+
+        return _startDateTimeOffset;
+    } 
+}
+
+internal HL7V24Field _startDateTimeOffsetUnits;
+
+public HL7V24Field StartDateTimeOffsetUnits
+{
+    get
+    {
+        if (_startDateTimeOffsetUnits != null)
+        {
+            return _startDateTimeOffsetUnits;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"AIP.8",
+            Type = @"Field",
+            Position = @"AIP.8",
+            Name = @"Start Date/Time Offset Units",
+            Length = 250,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a code describing the units of time used for expressing AIP-7-Start date/time offset. This field should be valued according to the recommendations made in Chapters 2 and 7. If this field is not valued, the ISO base unit of seconds (code s) is assumed. Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO and ANSI+ unit codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AIP.7",
-                            Type = @"Field",
-                            Position = @"AIP.7",
-                            Name = @"Start Date/Time Offset",
-                            Length = 20,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the offset this resource needs for the appointment, expressed in units of time relative to the scheduled start date/time. This field indicates to the application that the resource is required for the appointment at a different time than the appointments start date/time. The first component contains the offset amount. An offset of zero (0), or an unvalued field, indicates that the resource is required at the start date/time of the appointment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIP.8",
-                            Type = @"Field",
-                            Position = @"AIP.8",
-                            Name = @"Start Date/Time Offset Units",
-                            Length = 250,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a code describing the units of time used for expressing AIP-7-Start date/time offset. This field should be valued according to the recommendations made in Chapters 2 and 7. If this field is not valued, the ISO base unit of seconds (code s) is assumed. Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO and ANSI+ unit codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AIP.8.1",
                             Type = @"Component",
@@ -1266,43 +1479,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _startDateTimeOffsetUnits = new HL7V24Field
+        {
+            field = message[@"AIP"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_startDateTimeOffsetUnits.field.FieldRepetitions != null && _startDateTimeOffsetUnits.field.FieldRepetitions.Count > 0)
+        {
+            _startDateTimeOffsetUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_startDateTimeOffsetUnits, fieldData);
+        }
+
+        return _startDateTimeOffsetUnits;
+    } 
+}
+
+internal HL7V24Field _duration;
+
+public HL7V24Field Duration
+{
+    get
+    {
+        if (_duration != null)
+        {
+            return _duration;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"AIP.9",
+            Type = @"Field",
+            Position = @"AIP.9",
+            Name = @"Duration",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the duration for which the resource is requested/scheduled for an appointment, if different from the overall duration of the requested/scheduled appointment. This field indicates to the application that a resource is required for a different amount of time than the appointments overall duration. An unvalued duration indicates that the resource is required from its start date/time offset (specified in the previous two fields) until the end of the appointment. If no start date/time offset is specified, then the resource is required for the full duration of the appointment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _duration = new HL7V24Field
+        {
+            field = message[@"AIP"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_duration.field.FieldRepetitions != null && _duration.field.FieldRepetitions.Count > 0)
+        {
+            _duration.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_duration, fieldData);
+        }
+
+        return _duration;
+    } 
+}
+
+internal HL7V24Field _durationUnits;
+
+public HL7V24Field DurationUnits
+{
+    get
+    {
+        if (_durationUnits != null)
+        {
+            return _durationUnits;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"AIP.10",
+            Type = @"Field",
+            Position = @"AIP.10",
+            Name = @"Duration Units",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a code describing the units of time used associated with AIP-9-Duration. This field should be valued according to the recommendations made in Chapters 2 and 7. If this field is not valued, the ISO base unit of seconds (code s) will be assumed. Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO and ANSI+ unit codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AIP.9",
-                            Type = @"Field",
-                            Position = @"AIP.9",
-                            Name = @"Duration",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the duration for which the resource is requested/scheduled for an appointment, if different from the overall duration of the requested/scheduled appointment. This field indicates to the application that a resource is required for a different amount of time than the appointments overall duration. An unvalued duration indicates that the resource is required from its start date/time offset (specified in the previous two fields) until the end of the appointment. If no start date/time offset is specified, then the resource is required for the full duration of the appointment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIP.10",
-                            Type = @"Field",
-                            Position = @"AIP.10",
-                            Name = @"Duration Units",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a code describing the units of time used associated with AIP-9-Duration. This field should be valued according to the recommendations made in Chapters 2 and 7. If this field is not valued, the ISO base unit of seconds (code s) will be assumed. Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO and ANSI+ unit codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AIP.10.1",
                             Type = @"Component",
@@ -1412,43 +1682,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _durationUnits = new HL7V24Field
+        {
+            field = message[@"AIP"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_durationUnits.field.FieldRepetitions != null && _durationUnits.field.FieldRepetitions.Count > 0)
+        {
+            _durationUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_durationUnits, fieldData);
+        }
+
+        return _durationUnits;
+    } 
+}
+
+internal HL7V24Field _allowSubstitutionCode;
+
+public HL7V24Field AllowSubstitutionCode
+{
+    get
+    {
+        if (_allowSubstitutionCode != null)
+        {
+            return _allowSubstitutionCode;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"AIP.11",
+            Type = @"Field",
+            Position = @"AIP.11",
+            Name = @"Allow Substitution Code",
+            Length = 10,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0279",
+            TableName = @"Allow substitution codes",
+            Description = @"This field contains a code indicating whether the identified personnel resource can be replaced with an equivalent substitute personnel resource by the filler application. Refer to User-defined Table 0279 - Allow substitution codes for suggested codes.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _allowSubstitutionCode = new HL7V24Field
+        {
+            field = message[@"AIP"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_allowSubstitutionCode.field.FieldRepetitions != null && _allowSubstitutionCode.field.FieldRepetitions.Count > 0)
+        {
+            _allowSubstitutionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_allowSubstitutionCode, fieldData);
+        }
+
+        return _allowSubstitutionCode;
+    } 
+}
+
+internal HL7V24Field _fillerStatusCode;
+
+public HL7V24Field FillerStatusCode
+{
+    get
+    {
+        if (_fillerStatusCode != null)
+        {
+            return _fillerStatusCode;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"AIP.12",
+            Type = @"Field",
+            Position = @"AIP.12",
+            Name = @"Filler Status Code",
+            Length = 250,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0278",
+            TableName = @"Filler status codes",
+            Description = @"This field contains a code that describes the requested/scheduled status of the personnel resource, from the point of view of the filler application. Refer to User-defined Table 0278 - Filler status code s for suggested codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AIP.11",
-                            Type = @"Field",
-                            Position = @"AIP.11",
-                            Name = @"Allow Substitution Code",
-                            Length = 10,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0279",
-                            TableName = @"Allow substitution codes",
-                            Description = @"This field contains a code indicating whether the identified personnel resource can be replaced with an equivalent substitute personnel resource by the filler application. Refer to User-defined Table 0279 - Allow substitution codes for suggested codes.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIP.12",
-                            Type = @"Field",
-                            Position = @"AIP.12",
-                            Name = @"Filler Status Code",
-                            Length = 250,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0278",
-                            TableName = @"Filler status codes",
-                            Description = @"This field contains a code that describes the requested/scheduled status of the personnel resource, from the point of view of the filler application. Refer to User-defined Table 0278 - Filler status code s for suggested codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AIP.12.1",
                             Type = @"Component",
@@ -1558,506 +1885,23 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentAIP(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field setIDAIP;
-
-public HL7V24Field SetIDAIP
-{
-    get
-    {
-        if (setIDAIP != null)
-        {
-            return setIDAIP;
-        }
-
-        setIDAIP = new HL7V24Field
-        {
-            field = message[@"AIP"][1],
-            Id = @"AIP.1",
-            Type = @"Field",
-            Position = @"AIP.1",
-            Name = @"Set ID - AIP",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a number that uniquely identifies the information represented by this segment in this transaction for the purposes of addition, change or deletion.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDAIP.field.FieldRepetitions != null && setIDAIP.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDAIP.Id));
-            setIDAIP.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(setIDAIP, fieldData);
-        }
-
-        return setIDAIP;
-    } 
-}
-
-internal HL7V24Field segmentActionCode;
-
-public HL7V24Field SegmentActionCode
-{
-    get
-    {
-        if (segmentActionCode != null)
-        {
-            return segmentActionCode;
-        }
-
-        segmentActionCode = new HL7V24Field
-        {
-            field = message[@"AIP"][2],
-            Id = @"AIP.2",
-            Type = @"Field",
-            Position = @"AIP.2",
-            Name = @"Segment Action Code",
-            Length = 3,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0206",
-            TableName = @"Segment action code",
-            Description = @"This field contains the action to be taken when updating or modifying information in this segment from previously sent interface transactions. Refer to HL7 Table 0206 - Segment action code in Chapter 2, Section 2.15.4.2, Action code/unique identifier mode update definition, for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (segmentActionCode.field.FieldRepetitions != null && segmentActionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(segmentActionCode.Id));
-            segmentActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(segmentActionCode, fieldData);
-        }
-
-        return segmentActionCode;
-    } 
-}
-
-internal HL7V24Field personnelResourceID;
-
-public HL7V24Field PersonnelResourceID
-{
-    get
-    {
-        if (personnelResourceID != null)
-        {
-            return personnelResourceID;
-        }
-
-        personnelResourceID = new HL7V24Field
-        {
-            field = message[@"AIP"][3],
-            Id = @"AIP.3",
-            Type = @"Field",
-            Position = @"AIP.3",
-            Name = @"Personnel Resource ID",
-            Length = 250,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the ID number and name of the person being requested or scheduled for an appointment. This field is used to identify a specific person being requested, or a specific person who has been scheduled as a resource for an appointment. If the specific person is not known, but the type of resource is, AIP-4-Resource role is used to identify the type of personnel resource required or scheduled. Refer to Chapter 2, Section 2.9.52, XCN - extended composite ID number and name for persons, for a description of the components contained in the XCN data type.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (personnelResourceID.field.FieldRepetitions != null && personnelResourceID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(personnelResourceID.Id));
-            personnelResourceID.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(personnelResourceID, fieldData);
-        }
-
-        return personnelResourceID;
-    } 
-}
-
-internal HL7V24Field resourceRole;
-
-public HL7V24Field ResourceRole
-{
-    get
-    {
-        if (resourceRole != null)
-        {
-            return resourceRole;
-        }
-
-        resourceRole = new HL7V24Field
-        {
-            field = message[@"AIP"][4],
-            Id = @"AIP.4",
-            Type = @"Field",
-            Position = @"AIP.4",
-            Name = @"Resource Role",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the role of the personnel requested/scheduled for an appointment. For requests, if a specific person is not identified in the AIP-3-Personnel resource ID field, then this field identifies the type of person that should be scheduled by the filler application. At a minimum, the AIP-4-Resource role component should be valued.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (resourceRole.field.FieldRepetitions != null && resourceRole.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resourceRole.Id));
-            resourceRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(resourceRole, fieldData);
-        }
-
-        return resourceRole;
-    } 
-}
-
-internal HL7V24Field resourceGroup;
-
-public HL7V24Field ResourceGroup
-{
-    get
-    {
-        if (resourceGroup != null)
-        {
-            return resourceGroup;
-        }
-
-        resourceGroup = new HL7V24Field
-        {
-            field = message[@"AIP"][5],
-            Id = @"AIP.5",
-            Type = @"Field",
-            Position = @"AIP.5",
-            Name = @"Resource Group",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the requested resource as a member of the indicated group. If, in a Schedule Request Message (SRM), no specific resource is requested, but an AIP-4-Resource role is requested, the AIP-5-Resource group field can be used to further qualify the type of resource being requested.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (resourceGroup.field.FieldRepetitions != null && resourceGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resourceGroup.Id));
-            resourceGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(resourceGroup, fieldData);
-        }
-
-        return resourceGroup;
-    } 
-}
-
-internal HL7V24Field startDateTime;
-
-public HL7V24Field StartDateTime
-{
-    get
-    {
-        if (startDateTime != null)
-        {
-            return startDateTime;
-        }
-
-        startDateTime = new HL7V24Field
-        {
-            field = message[@"AIP"][6],
-            Id = @"AIP.6",
-            Type = @"Field",
-            Position = @"AIP.6",
-            Name = @"Start Date/Time",
-            Length = 26,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time this service needs for the appointment. This field allows the application to identify that the service is required for the appointment at a different time than the appointments start date/time.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (startDateTime.field.FieldRepetitions != null && startDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(startDateTime.Id));
-            startDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(startDateTime, fieldData);
-        }
-
-        return startDateTime;
-    } 
-}
-
-internal HL7V24Field startDateTimeOffset;
-
-public HL7V24Field StartDateTimeOffset
-{
-    get
-    {
-        if (startDateTimeOffset != null)
-        {
-            return startDateTimeOffset;
-        }
-
-        startDateTimeOffset = new HL7V24Field
-        {
-            field = message[@"AIP"][7],
-            Id = @"AIP.7",
-            Type = @"Field",
-            Position = @"AIP.7",
-            Name = @"Start Date/Time Offset",
-            Length = 20,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the offset this resource needs for the appointment, expressed in units of time relative to the scheduled start date/time. This field indicates to the application that the resource is required for the appointment at a different time than the appointments start date/time. The first component contains the offset amount. An offset of zero (0), or an unvalued field, indicates that the resource is required at the start date/time of the appointment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (startDateTimeOffset.field.FieldRepetitions != null && startDateTimeOffset.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(startDateTimeOffset.Id));
-            startDateTimeOffset.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(startDateTimeOffset, fieldData);
-        }
-
-        return startDateTimeOffset;
-    } 
-}
-
-internal HL7V24Field startDateTimeOffsetUnits;
-
-public HL7V24Field StartDateTimeOffsetUnits
-{
-    get
-    {
-        if (startDateTimeOffsetUnits != null)
-        {
-            return startDateTimeOffsetUnits;
-        }
-
-        startDateTimeOffsetUnits = new HL7V24Field
-        {
-            field = message[@"AIP"][8],
-            Id = @"AIP.8",
-            Type = @"Field",
-            Position = @"AIP.8",
-            Name = @"Start Date/Time Offset Units",
-            Length = 250,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a code describing the units of time used for expressing AIP-7-Start date/time offset. This field should be valued according to the recommendations made in Chapters 2 and 7. If this field is not valued, the ISO base unit of seconds (code s) is assumed. Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO and ANSI+ unit codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (startDateTimeOffsetUnits.field.FieldRepetitions != null && startDateTimeOffsetUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(startDateTimeOffsetUnits.Id));
-            startDateTimeOffsetUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(startDateTimeOffsetUnits, fieldData);
-        }
-
-        return startDateTimeOffsetUnits;
-    } 
-}
-
-internal HL7V24Field duration;
-
-public HL7V24Field Duration
-{
-    get
-    {
-        if (duration != null)
-        {
-            return duration;
-        }
-
-        duration = new HL7V24Field
-        {
-            field = message[@"AIP"][9],
-            Id = @"AIP.9",
-            Type = @"Field",
-            Position = @"AIP.9",
-            Name = @"Duration",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the duration for which the resource is requested/scheduled for an appointment, if different from the overall duration of the requested/scheduled appointment. This field indicates to the application that a resource is required for a different amount of time than the appointments overall duration. An unvalued duration indicates that the resource is required from its start date/time offset (specified in the previous two fields) until the end of the appointment. If no start date/time offset is specified, then the resource is required for the full duration of the appointment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (duration.field.FieldRepetitions != null && duration.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(duration.Id));
-            duration.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(duration, fieldData);
-        }
-
-        return duration;
-    } 
-}
-
-internal HL7V24Field durationUnits;
-
-public HL7V24Field DurationUnits
-{
-    get
-    {
-        if (durationUnits != null)
-        {
-            return durationUnits;
-        }
-
-        durationUnits = new HL7V24Field
-        {
-            field = message[@"AIP"][10],
-            Id = @"AIP.10",
-            Type = @"Field",
-            Position = @"AIP.10",
-            Name = @"Duration Units",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a code describing the units of time used associated with AIP-9-Duration. This field should be valued according to the recommendations made in Chapters 2 and 7. If this field is not valued, the ISO base unit of seconds (code s) will be assumed. Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO and ANSI+ unit codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (durationUnits.field.FieldRepetitions != null && durationUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(durationUnits.Id));
-            durationUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(durationUnits, fieldData);
-        }
-
-        return durationUnits;
-    } 
-}
-
-internal HL7V24Field allowSubstitutionCode;
-
-public HL7V24Field AllowSubstitutionCode
-{
-    get
-    {
-        if (allowSubstitutionCode != null)
-        {
-            return allowSubstitutionCode;
-        }
-
-        allowSubstitutionCode = new HL7V24Field
-        {
-            field = message[@"AIP"][11],
-            Id = @"AIP.11",
-            Type = @"Field",
-            Position = @"AIP.11",
-            Name = @"Allow Substitution Code",
-            Length = 10,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0279",
-            TableName = @"Allow substitution codes",
-            Description = @"This field contains a code indicating whether the identified personnel resource can be replaced with an equivalent substitute personnel resource by the filler application. Refer to User-defined Table 0279 - Allow substitution codes for suggested codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (allowSubstitutionCode.field.FieldRepetitions != null && allowSubstitutionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(allowSubstitutionCode.Id));
-            allowSubstitutionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(allowSubstitutionCode, fieldData);
-        }
-
-        return allowSubstitutionCode;
-    } 
-}
-
-internal HL7V24Field fillerStatusCode;
-
-public HL7V24Field FillerStatusCode
-{
-    get
-    {
-        if (fillerStatusCode != null)
-        {
-            return fillerStatusCode;
-        }
-
-        fillerStatusCode = new HL7V24Field
+        _fillerStatusCode = new HL7V24Field
         {
             field = message[@"AIP"][12],
-            Id = @"AIP.12",
-            Type = @"Field",
-            Position = @"AIP.12",
-            Name = @"Filler Status Code",
-            Length = 250,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0278",
-            TableName = @"Filler status codes",
-            Description = @"This field contains a code that describes the requested/scheduled status of the personnel resource, from the point of view of the filler application. Refer to User-defined Table 0278 - Filler status code s for suggested codes.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fillerStatusCode.field.FieldRepetitions != null && fillerStatusCode.field.FieldRepetitions.Count > 0)
+        if (_fillerStatusCode.field.FieldRepetitions != null && _fillerStatusCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerStatusCode.Id));
-            fillerStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(fillerStatusCode, fieldData);
+            _fillerStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_fillerStatusCode, fieldData);
         }
 
-        return fillerStatusCode;
+        return _fillerStatusCode;
     } 
 }
     }

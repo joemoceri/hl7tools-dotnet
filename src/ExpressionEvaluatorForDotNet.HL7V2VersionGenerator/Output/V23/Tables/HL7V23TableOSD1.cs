@@ -44,6 +44,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Sequence conditions",
                             Comment = null
                         },
+                        
                     };
             } 
         }

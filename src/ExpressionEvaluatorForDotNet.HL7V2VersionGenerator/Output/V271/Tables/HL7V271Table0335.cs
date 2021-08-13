@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -197,6 +198,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"""X"" times per day at institution-specified times, where X is a numeral 5 or greater.",
                             Comment = null
                         },
+                        
                     };
             } 
         }

@@ -4,21 +4,7 @@ namespace ExpressionEvaluatorForDotNet
 {
     public class HL7V[{-VERSION-}]DataType[{-DATA_TYPE_ID_CLASS_NAME-}]
     {
-        internal string id { get { return [{-ID_LOWER-}]; } }
-        
-        public string Id 
-        { 
-            get 
-            { 
-                if (id != null)
-                {
-                    return id;
-                }
-
-                id = [{-ID-}];
-                return id; 
-            } 
-        }
+        public string Id { get { return [{-ID-}]; } }
 
         public string Type { get { return [{-TYPE-}]; } }
 

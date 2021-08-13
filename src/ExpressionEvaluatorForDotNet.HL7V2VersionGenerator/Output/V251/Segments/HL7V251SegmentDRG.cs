@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentDRG(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _diagnosticRelatedGroup;
+
+public HL7V251Field DiagnosticRelatedGroup
+{
+    get
+    {
+        if (_diagnosticRelatedGroup != null)
+        {
+            return _diagnosticRelatedGroup;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"DRG.1",
+            Type = @"Field",
+            Position = @"DRG.1",
+            Name = @"Diagnostic Related Group",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0055",
+            TableName = @"Diagnosis related group",
+            Description = @"This field contains the DRG for the transaction. Interim DRGs could be determined for an encounter. Refer to User-defined Table 0055 - Diagnosis Related G roup for suggested values. For the name of coding system component, send the grouper version and type.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"DRG.1",
-                            Type = @"Field",
-                            Position = @"DRG.1",
-                            Name = @"Diagnostic Related Group",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0055",
-                            TableName = @"Diagnosis related group",
-                            Description = @"This field contains the DRG for the transaction. Interim DRGs could be determined for an encounter. Refer to User-defined Table 0055 - Diagnosis Related G roup for suggested values. For the name of coding system component, send the grouper version and type.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DRG.1.1",
                             Type = @"Component",
@@ -156,25 +168,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _diagnosticRelatedGroup = new HL7V251Field
+        {
+            field = message[@"DRG"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_diagnosticRelatedGroup.field.FieldRepetitions != null && _diagnosticRelatedGroup.field.FieldRepetitions.Count > 0)
+        {
+            _diagnosticRelatedGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_diagnosticRelatedGroup, fieldData);
+        }
+
+        return _diagnosticRelatedGroup;
+    } 
+}
+
+internal HL7V251Field _dRGAssignedDateTime;
+
+public HL7V251Field DRGAssignedDateTime
+{
+    get
+    {
+        if (_dRGAssignedDateTime != null)
+        {
+            return _dRGAssignedDateTime;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"DRG.2",
+            Type = @"Field",
+            Position = @"DRG.2",
+            Name = @"DRG Assigned Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the time stamp to indicate the date and time that the DRG was assigned.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DRG.2",
-                            Type = @"Field",
-                            Position = @"DRG.2",
-                            Name = @"DRG Assigned Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the time stamp to indicate the date and time that the DRG was assigned.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DRG.2.1",
                             Type = @"Component",
@@ -210,61 +252,145 @@ namespace ExpressionEvaluatorForDotNet
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dRGAssignedDateTime = new HL7V251Field
+        {
+            field = message[@"DRG"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dRGAssignedDateTime.field.FieldRepetitions != null && _dRGAssignedDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _dRGAssignedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_dRGAssignedDateTime, fieldData);
+        }
+
+        return _dRGAssignedDateTime;
+    } 
+}
+
+internal HL7V251Field _dRGApprovalIndicator;
+
+public HL7V251Field DRGApprovalIndicator
+{
+    get
+    {
+        if (_dRGApprovalIndicator != null)
+        {
+            return _dRGApprovalIndicator;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"DRG.3",
+            Type = @"Field",
+            Position = @"DRG.3",
+            Name = @"DRG Approval Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field indicates if the DRG has been approved by a reviewing entity. Refer to HL7 table 0136 - Yes/no Indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dRGApprovalIndicator = new HL7V251Field
+        {
+            field = message[@"DRG"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dRGApprovalIndicator.field.FieldRepetitions != null && _dRGApprovalIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _dRGApprovalIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_dRGApprovalIndicator, fieldData);
+        }
+
+        return _dRGApprovalIndicator;
+    } 
+}
+
+internal HL7V251Field _dRGGrouperReviewCode;
+
+public HL7V251Field DRGGrouperReviewCode
+{
+    get
+    {
+        if (_dRGGrouperReviewCode != null)
+        {
+            return _dRGGrouperReviewCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"DRG.4",
+            Type = @"Field",
+            Position = @"DRG.4",
+            Name = @"DRG Grouper Review Code",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0056",
+            TableName = @"DRG grouper review code",
+            Description = @"This code indicates that the grouper results have been reviewed and approved. Refer to User-defined Table 0056 - DRG Grouper Review Code for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dRGGrouperReviewCode = new HL7V251Field
+        {
+            field = message[@"DRG"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dRGGrouperReviewCode.field.FieldRepetitions != null && _dRGGrouperReviewCode.field.FieldRepetitions.Count > 0)
+        {
+            _dRGGrouperReviewCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_dRGGrouperReviewCode, fieldData);
+        }
+
+        return _dRGGrouperReviewCode;
+    } 
+}
+
+internal HL7V251Field _outlierType;
+
+public HL7V251Field OutlierType
+{
+    get
+    {
+        if (_outlierType != null)
+        {
+            return _outlierType;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"DRG.5",
+            Type = @"Field",
+            Position = @"DRG.5",
+            Name = @"Outlier Type",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0083",
+            TableName = @"Outlier Type",
+            Description = @"Refers to the type of outlier (i.e. period of care beyond DRG-standard stay in facility) that has been paid. Refer to User-defined Table 0083 - Outlier Type for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DRG.3",
-                            Type = @"Field",
-                            Position = @"DRG.3",
-                            Name = @"DRG Approval Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates if the DRG has been approved by a reviewing entity. Refer to HL7 table 0136 - Yes/no Indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DRG.4",
-                            Type = @"Field",
-                            Position = @"DRG.4",
-                            Name = @"DRG Grouper Review Code",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0056",
-                            TableName = @"DRG grouper review code",
-                            Description = @"This code indicates that the grouper results have been reviewed and approved. Refer to User-defined Table 0056 - DRG Grouper Review Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DRG.5",
-                            Type = @"Field",
-                            Position = @"DRG.5",
-                            Name = @"Outlier Type",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0083",
-                            TableName = @"Outlier Type",
-                            Description = @"Refers to the type of outlier (i.e. period of care beyond DRG-standard stay in facility) that has been paid. Refer to User-defined Table 0083 - Outlier Type for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DRG.5.1",
                             Type = @"Component",
@@ -370,43 +496,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _outlierType = new HL7V251Field
+        {
+            field = message[@"DRG"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_outlierType.field.FieldRepetitions != null && _outlierType.field.FieldRepetitions.Count > 0)
+        {
+            _outlierType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_outlierType, fieldData);
+        }
+
+        return _outlierType;
+    } 
+}
+
+internal HL7V251Field _outlierDays;
+
+public HL7V251Field OutlierDays
+{
+    get
+    {
+        if (_outlierDays != null)
+        {
+            return _outlierDays;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"DRG.6",
+            Type = @"Field",
+            Position = @"DRG.6",
+            Name = @"Outlier Days",
+            Length = 3,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number of days that have been approved as an outlier payment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _outlierDays = new HL7V251Field
+        {
+            field = message[@"DRG"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_outlierDays.field.FieldRepetitions != null && _outlierDays.field.FieldRepetitions.Count > 0)
+        {
+            _outlierDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_outlierDays, fieldData);
+        }
+
+        return _outlierDays;
+    } 
+}
+
+internal HL7V251Field _outlierCost;
+
+public HL7V251Field OutlierCost
+{
+    get
+    {
+        if (_outlierCost != null)
+        {
+            return _outlierCost;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"DRG.7",
+            Type = @"Field",
+            Position = @"DRG.7",
+            Name = @"Outlier Cost",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the amount of money that has been approved for an outlier payment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DRG.6",
-                            Type = @"Field",
-                            Position = @"DRG.6",
-                            Name = @"Outlier Days",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number of days that have been approved as an outlier payment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DRG.7",
-                            Type = @"Field",
-                            Position = @"DRG.7",
-                            Name = @"Outlier Cost",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the amount of money that has been approved for an outlier payment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DRG.7.1",
                             Type = @"Component",
@@ -652,43 +835,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Refer to HL7 Table 0298 - CP range type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _outlierCost = new HL7V251Field
+        {
+            field = message[@"DRG"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_outlierCost.field.FieldRepetitions != null && _outlierCost.field.FieldRepetitions.Count > 0)
+        {
+            _outlierCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_outlierCost, fieldData);
+        }
+
+        return _outlierCost;
+    } 
+}
+
+internal HL7V251Field _dRGPayor;
+
+public HL7V251Field DRGPayor
+{
+    get
+    {
+        if (_dRGPayor != null)
+        {
+            return _dRGPayor;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"DRG.8",
+            Type = @"Field",
+            Position = @"DRG.8",
+            Name = @"DRG Payor",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0229",
+            TableName = @"DRG Payor",
+            Description = @"This field indicates the associated DRG Payor. Refer to User-defined Table 0229 - DRG Payor for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dRGPayor = new HL7V251Field
+        {
+            field = message[@"DRG"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dRGPayor.field.FieldRepetitions != null && _dRGPayor.field.FieldRepetitions.Count > 0)
+        {
+            _dRGPayor.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_dRGPayor, fieldData);
+        }
+
+        return _dRGPayor;
+    } 
+}
+
+internal HL7V251Field _outlierReimbursement;
+
+public HL7V251Field OutlierReimbursement
+{
+    get
+    {
+        if (_outlierReimbursement != null)
+        {
+            return _outlierReimbursement;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"DRG.9",
+            Type = @"Field",
+            Position = @"DRG.9",
+            Name = @"Outlier Reimbursement",
+            Length = 9,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Where applicable, the outlier reimbursement amount indicates the part of the total reimbursement designated for reimbursement of outlier conditions (day or cost).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DRG.8",
-                            Type = @"Field",
-                            Position = @"DRG.8",
-                            Name = @"DRG Payor",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0229",
-                            TableName = @"DRG Payor",
-                            Description = @"This field indicates the associated DRG Payor. Refer to User-defined Table 0229 - DRG Payor for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DRG.9",
-                            Type = @"Field",
-                            Position = @"DRG.9",
-                            Name = @"Outlier Reimbursement",
-                            Length = 9,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Where applicable, the outlier reimbursement amount indicates the part of the total reimbursement designated for reimbursement of outlier conditions (day or cost).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DRG.9.1",
                             Type = @"Component",
@@ -934,436 +1174,39 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Refer to HL7 Table 0298 - CP range type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DRG.10",
-                            Type = @"Field",
-                            Position = @"DRG.10",
-                            Name = @"Confidential Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates if the DRG contains a confidential diagnosis. Refer to HL7 table 0136 - Yes/no Indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DRG.11",
-                            Type = @"Field",
-                            Position = @"DRG.11",
-                            Name = @"DRG Transfer Type",
-                            Length = 21,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0415",
-                            TableName = @"DRG Transfer Type",
-                            Description = @"This field indicates the type of hospital receiving a transfer patient, which affects how a facility is reimbursed under diagnosis related group (DRGs), for example, exempt or non-exempt. Refer to User-defined Table 0415 - DRG Transfer Type for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentDRG(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field diagnosticRelatedGroup;
-
-public HL7V251Field DiagnosticRelatedGroup
-{
-    get
-    {
-        if (diagnosticRelatedGroup != null)
-        {
-            return diagnosticRelatedGroup;
-        }
-
-        diagnosticRelatedGroup = new HL7V251Field
-        {
-            field = message[@"DRG"][1],
-            Id = @"DRG.1",
-            Type = @"Field",
-            Position = @"DRG.1",
-            Name = @"Diagnostic Related Group",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0055",
-            TableName = @"Diagnosis related group",
-            Description = @"This field contains the DRG for the transaction. Interim DRGs could be determined for an encounter. Refer to User-defined Table 0055 - Diagnosis Related G roup for suggested values. For the name of coding system component, send the grouper version and type.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (diagnosticRelatedGroup.field.FieldRepetitions != null && diagnosticRelatedGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosticRelatedGroup.Id));
-            diagnosticRelatedGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(diagnosticRelatedGroup, fieldData);
-        }
-
-        return diagnosticRelatedGroup;
-    } 
-}
-
-internal HL7V251Field dRGAssignedDateTime;
-
-public HL7V251Field DRGAssignedDateTime
-{
-    get
-    {
-        if (dRGAssignedDateTime != null)
-        {
-            return dRGAssignedDateTime;
-        }
-
-        dRGAssignedDateTime = new HL7V251Field
-        {
-            field = message[@"DRG"][2],
-            Id = @"DRG.2",
-            Type = @"Field",
-            Position = @"DRG.2",
-            Name = @"DRG Assigned Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the time stamp to indicate the date and time that the DRG was assigned.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dRGAssignedDateTime.field.FieldRepetitions != null && dRGAssignedDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dRGAssignedDateTime.Id));
-            dRGAssignedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(dRGAssignedDateTime, fieldData);
-        }
-
-        return dRGAssignedDateTime;
-    } 
-}
-
-internal HL7V251Field dRGApprovalIndicator;
-
-public HL7V251Field DRGApprovalIndicator
-{
-    get
-    {
-        if (dRGApprovalIndicator != null)
-        {
-            return dRGApprovalIndicator;
-        }
-
-        dRGApprovalIndicator = new HL7V251Field
-        {
-            field = message[@"DRG"][3],
-            Id = @"DRG.3",
-            Type = @"Field",
-            Position = @"DRG.3",
-            Name = @"DRG Approval Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field indicates if the DRG has been approved by a reviewing entity. Refer to HL7 table 0136 - Yes/no Indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dRGApprovalIndicator.field.FieldRepetitions != null && dRGApprovalIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dRGApprovalIndicator.Id));
-            dRGApprovalIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(dRGApprovalIndicator, fieldData);
-        }
-
-        return dRGApprovalIndicator;
-    } 
-}
-
-internal HL7V251Field dRGGrouperReviewCode;
-
-public HL7V251Field DRGGrouperReviewCode
-{
-    get
-    {
-        if (dRGGrouperReviewCode != null)
-        {
-            return dRGGrouperReviewCode;
-        }
-
-        dRGGrouperReviewCode = new HL7V251Field
-        {
-            field = message[@"DRG"][4],
-            Id = @"DRG.4",
-            Type = @"Field",
-            Position = @"DRG.4",
-            Name = @"DRG Grouper Review Code",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0056",
-            TableName = @"DRG grouper review code",
-            Description = @"This code indicates that the grouper results have been reviewed and approved. Refer to User-defined Table 0056 - DRG Grouper Review Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dRGGrouperReviewCode.field.FieldRepetitions != null && dRGGrouperReviewCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dRGGrouperReviewCode.Id));
-            dRGGrouperReviewCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(dRGGrouperReviewCode, fieldData);
-        }
-
-        return dRGGrouperReviewCode;
-    } 
-}
-
-internal HL7V251Field outlierType;
-
-public HL7V251Field OutlierType
-{
-    get
-    {
-        if (outlierType != null)
-        {
-            return outlierType;
-        }
-
-        outlierType = new HL7V251Field
-        {
-            field = message[@"DRG"][5],
-            Id = @"DRG.5",
-            Type = @"Field",
-            Position = @"DRG.5",
-            Name = @"Outlier Type",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0083",
-            TableName = @"Outlier Type",
-            Description = @"Refers to the type of outlier (i.e. period of care beyond DRG-standard stay in facility) that has been paid. Refer to User-defined Table 0083 - Outlier Type for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (outlierType.field.FieldRepetitions != null && outlierType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(outlierType.Id));
-            outlierType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(outlierType, fieldData);
-        }
-
-        return outlierType;
-    } 
-}
-
-internal HL7V251Field outlierDays;
-
-public HL7V251Field OutlierDays
-{
-    get
-    {
-        if (outlierDays != null)
-        {
-            return outlierDays;
-        }
-
-        outlierDays = new HL7V251Field
-        {
-            field = message[@"DRG"][6],
-            Id = @"DRG.6",
-            Type = @"Field",
-            Position = @"DRG.6",
-            Name = @"Outlier Days",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number of days that have been approved as an outlier payment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (outlierDays.field.FieldRepetitions != null && outlierDays.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(outlierDays.Id));
-            outlierDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(outlierDays, fieldData);
-        }
-
-        return outlierDays;
-    } 
-}
-
-internal HL7V251Field outlierCost;
-
-public HL7V251Field OutlierCost
-{
-    get
-    {
-        if (outlierCost != null)
-        {
-            return outlierCost;
-        }
-
-        outlierCost = new HL7V251Field
-        {
-            field = message[@"DRG"][7],
-            Id = @"DRG.7",
-            Type = @"Field",
-            Position = @"DRG.7",
-            Name = @"Outlier Cost",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the amount of money that has been approved for an outlier payment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (outlierCost.field.FieldRepetitions != null && outlierCost.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(outlierCost.Id));
-            outlierCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(outlierCost, fieldData);
-        }
-
-        return outlierCost;
-    } 
-}
-
-internal HL7V251Field dRGPayor;
-
-public HL7V251Field DRGPayor
-{
-    get
-    {
-        if (dRGPayor != null)
-        {
-            return dRGPayor;
-        }
-
-        dRGPayor = new HL7V251Field
-        {
-            field = message[@"DRG"][8],
-            Id = @"DRG.8",
-            Type = @"Field",
-            Position = @"DRG.8",
-            Name = @"DRG Payor",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0229",
-            TableName = @"DRG Payor",
-            Description = @"This field indicates the associated DRG Payor. Refer to User-defined Table 0229 - DRG Payor for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dRGPayor.field.FieldRepetitions != null && dRGPayor.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dRGPayor.Id));
-            dRGPayor.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(dRGPayor, fieldData);
-        }
-
-        return dRGPayor;
-    } 
-}
-
-internal HL7V251Field outlierReimbursement;
-
-public HL7V251Field OutlierReimbursement
-{
-    get
-    {
-        if (outlierReimbursement != null)
-        {
-            return outlierReimbursement;
-        }
-
-        outlierReimbursement = new HL7V251Field
+        _outlierReimbursement = new HL7V251Field
         {
             field = message[@"DRG"][9],
-            Id = @"DRG.9",
-            Type = @"Field",
-            Position = @"DRG.9",
-            Name = @"Outlier Reimbursement",
-            Length = 9,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Where applicable, the outlier reimbursement amount indicates the part of the total reimbursement designated for reimbursement of outlier conditions (day or cost).",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (outlierReimbursement.field.FieldRepetitions != null && outlierReimbursement.field.FieldRepetitions.Count > 0)
+        if (_outlierReimbursement.field.FieldRepetitions != null && _outlierReimbursement.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(outlierReimbursement.Id));
-            outlierReimbursement.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(outlierReimbursement, fieldData);
+            _outlierReimbursement.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_outlierReimbursement, fieldData);
         }
 
-        return outlierReimbursement;
+        return _outlierReimbursement;
     } 
 }
 
-internal HL7V251Field confidentialIndicator;
+internal HL7V251Field _confidentialIndicator;
 
 public HL7V251Field ConfidentialIndicator
 {
     get
     {
-        if (confidentialIndicator != null)
+        if (_confidentialIndicator != null)
         {
-            return confidentialIndicator;
+            return _confidentialIndicator;
         }
 
-        confidentialIndicator = new HL7V251Field
+        var fieldData = new HL7V251FieldData
         {
-            field = message[@"DRG"][10],
             Id = @"DRG.10",
             Type = @"Field",
             Position = @"DRG.10",
@@ -1377,34 +1220,38 @@ public HL7V251Field ConfidentialIndicator
             TableName = @"Yes/no indicator",
             Description = @"This field indicates if the DRG contains a confidential diagnosis. Refer to HL7 table 0136 - Yes/no Indicator for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _confidentialIndicator = new HL7V251Field
+        {
+            field = message[@"DRG"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (confidentialIndicator.field.FieldRepetitions != null && confidentialIndicator.field.FieldRepetitions.Count > 0)
+        if (_confidentialIndicator.field.FieldRepetitions != null && _confidentialIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(confidentialIndicator.Id));
-            confidentialIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(confidentialIndicator, fieldData);
+            _confidentialIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_confidentialIndicator, fieldData);
         }
 
-        return confidentialIndicator;
+        return _confidentialIndicator;
     } 
 }
 
-internal HL7V251Field dRGTransferType;
+internal HL7V251Field _dRGTransferType;
 
 public HL7V251Field DRGTransferType
 {
     get
     {
-        if (dRGTransferType != null)
+        if (_dRGTransferType != null)
         {
-            return dRGTransferType;
+            return _dRGTransferType;
         }
 
-        dRGTransferType = new HL7V251Field
+        var fieldData = new HL7V251FieldData
         {
-            field = message[@"DRG"][11],
             Id = @"DRG.11",
             Type = @"Field",
             Position = @"DRG.11",
@@ -1418,17 +1265,22 @@ public HL7V251Field DRGTransferType
             TableName = @"DRG Transfer Type",
             Description = @"This field indicates the type of hospital receiving a transfer patient, which affects how a facility is reimbursed under diagnosis related group (DRGs), for example, exempt or non-exempt. Refer to User-defined Table 0415 - DRG Transfer Type for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _dRGTransferType = new HL7V251Field
+        {
+            field = message[@"DRG"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dRGTransferType.field.FieldRepetitions != null && dRGTransferType.field.FieldRepetitions.Count > 0)
+        if (_dRGTransferType.field.FieldRepetitions != null && _dRGTransferType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dRGTransferType.Id));
-            dRGTransferType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(dRGTransferType, fieldData);
+            _dRGTransferType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_dRGTransferType, fieldData);
         }
 
-        return dRGTransferType;
+        return _dRGTransferType;
     } 
 }
     }

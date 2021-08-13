@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V23SegmentPTH(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field _actionCode;
+
+public HL7V23Field ActionCode
+{
+    get
+    {
+        if (_actionCode != null)
+        {
+            return _actionCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PTH.1",
+            Type = @"Field",
+            Position = @"PTH.1",
+            Name = @"Action Code",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0287",
+            TableName = @"Problem/goal action code",
+            Description = @"This field reveals the intent of the message.  Refer to HL7 table 0287 - Action code for valid values",
+            Sample = @"",
+            Fields = null
+        }
+
+        _actionCode = new HL7V23Field
+        {
+            field = message[@"PTH"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_actionCode.field.FieldRepetitions != null && _actionCode.field.FieldRepetitions.Count > 0)
+        {
+            _actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_actionCode, fieldData);
+        }
+
+        return _actionCode;
+    } 
+}
+
+internal HL7V23Field _pathwayID;
+
+public HL7V23Field PathwayID
+{
+    get
+    {
+        if (_pathwayID != null)
+        {
+            return _pathwayID;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PTH.2",
+            Type = @"Field",
+            Position = @"PTH.2",
+            Name = @"Pathway ID",
+            Length = 80,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the pathway master data identifier associated with the referenced problem or goal. Examples; open heart pathway, new diabetic, total hip replace",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PTH.1",
-                            Type = @"Field",
-                            Position = @"PTH.1",
-                            Name = @"Action Code",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0287",
-                            TableName = @"Problem/goal action code",
-                            Description = @"This field reveals the intent of the message.  Refer to HL7 table 0287 - Action code for valid values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PTH.2",
-                            Type = @"Field",
-                            Position = @"PTH.2",
-                            Name = @"Pathway ID",
-                            Length = 80,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the pathway master data identifier associated with the referenced problem or goal. Examples; open heart pathway, new diabetic, total hip replace",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PTH.2.1",
                             Type = @"Component",
@@ -174,27 +213,57 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PTH.3",
-                            Type = @"Field",
-                            Position = @"PTH.3",
-                            Name = @"Pathway Instance ID",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a value generated by the originating application that represents an associated order placer group number, or other unique identifier assigned to the grouping of pathway directives. 
+                        }
+        }
+
+        _pathwayID = new HL7V23Field
+        {
+            field = message[@"PTH"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_pathwayID.field.FieldRepetitions != null && _pathwayID.field.FieldRepetitions.Count > 0)
+        {
+            _pathwayID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_pathwayID, fieldData);
+        }
+
+        return _pathwayID;
+    } 
+}
+
+internal HL7V23Field _pathwayInstanceID;
+
+public HL7V23Field PathwayInstanceID
+{
+    get
+    {
+        if (_pathwayInstanceID != null)
+        {
+            return _pathwayInstanceID;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PTH.3",
+            Type = @"Field",
+            Position = @"PTH.3",
+            Name = @"Pathway Instance ID",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a value generated by the originating application that represents an associated order placer group number, or other unique identifier assigned to the grouping of pathway directives. 
 
 Note: It is required that this value remain unique over time.  This instance ID identifies a specific instance for a specific patient and is unique across all patients.  See entity ID data type description in Chapter ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PTH.3.1",
                             Type = @"Component",
@@ -264,25 +333,55 @@ Note: It is required that this value remain unique over time.  This instance ID 
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _pathwayInstanceID = new HL7V23Field
+        {
+            field = message[@"PTH"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_pathwayInstanceID.field.FieldRepetitions != null && _pathwayInstanceID.field.FieldRepetitions.Count > 0)
+        {
+            _pathwayInstanceID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_pathwayInstanceID, fieldData);
+        }
+
+        return _pathwayInstanceID;
+    } 
+}
+
+internal HL7V23Field _pathwayEstablishedDateTime;
+
+public HL7V23Field PathwayEstablishedDateTime
+{
+    get
+    {
+        if (_pathwayEstablishedDateTime != null)
+        {
+            return _pathwayEstablishedDateTime;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PTH.4",
+            Type = @"Field",
+            Position = @"PTH.4",
+            Name = @"Pathway Established Date/Time",
+            Length = 26,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identification of the event time for the current pathway record",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PTH.4",
-                            Type = @"Field",
-                            Position = @"PTH.4",
-                            Name = @"Pathway Established Date/Time",
-                            Length = 26,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the identification of the event time for the current pathway record",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PTH.4.1",
                             Type = @"Component",
@@ -298,25 +397,55 @@ Note: It is required that this value remain unique over time.  This instance ID 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _pathwayEstablishedDateTime = new HL7V23Field
+        {
+            field = message[@"PTH"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_pathwayEstablishedDateTime.field.FieldRepetitions != null && _pathwayEstablishedDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _pathwayEstablishedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_pathwayEstablishedDateTime, fieldData);
+        }
+
+        return _pathwayEstablishedDateTime;
+    } 
+}
+
+internal HL7V23Field _pathwayLifecycleStatus;
+
+public HL7V23Field PathwayLifecycleStatus
+{
+    get
+    {
+        if (_pathwayLifecycleStatus != null)
+        {
+            return _pathwayLifecycleStatus;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PTH.5",
+            Type = @"Field",
+            Position = @"PTH.5",
+            Name = @"Pathway Lifecycle Status",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an application-specific set of state identifiers (e.g.,  Active, Suspended, Complete, Canceled, Delayed, Scheduled). ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PTH.5",
-                            Type = @"Field",
-                            Position = @"PTH.5",
-                            Name = @"Pathway Lifecycle Status",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an application-specific set of state identifiers (e.g.,  Active, Suspended, Complete, Canceled, Delayed, Scheduled). ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PTH.5.1",
                             Type = @"Component",
@@ -422,25 +551,55 @@ Note: It is required that this value remain unique over time.  This instance ID 
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _pathwayLifecycleStatus = new HL7V23Field
+        {
+            field = message[@"PTH"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_pathwayLifecycleStatus.field.FieldRepetitions != null && _pathwayLifecycleStatus.field.FieldRepetitions.Count > 0)
+        {
+            _pathwayLifecycleStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_pathwayLifecycleStatus, fieldData);
+        }
+
+        return _pathwayLifecycleStatus;
+    } 
+}
+
+internal HL7V23Field _changePathwayLifecycleStatusDateTime;
+
+public HL7V23Field ChangePathwayLifecycleStatusDateTime
+{
+    get
+    {
+        if (_changePathwayLifecycleStatusDateTime != null)
+        {
+            return _changePathwayLifecycleStatusDateTime;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PTH.6",
+            Type = @"Field",
+            Position = @"PTH.6",
+            Name = @"Change Pathway Lifecycle Status Date/Time",
+            Length = 26,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when pathway has been modified or deactivated.  (Marked as conditional - must be filled in if trigger event is update or terminate pathway) ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PTH.6",
-                            Type = @"Field",
-                            Position = @"PTH.6",
-                            Name = @"Change Pathway Lifecycle Status Date/Time",
-                            Length = 26,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when pathway has been modified or deactivated.  (Marked as conditional - must be filled in if trigger event is update or terminate pathway) ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PTH.6.1",
                             Type = @"Component",
@@ -456,262 +615,23 @@ Note: It is required that this value remain unique over time.  This instance ID 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V23SegmentPTH(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V23Field actionCode;
-
-public HL7V23Field ActionCode
-{
-    get
-    {
-        if (actionCode != null)
-        {
-            return actionCode;
-        }
-
-        actionCode = new HL7V23Field
-        {
-            field = message[@"PTH"][1],
-            Id = @"PTH.1",
-            Type = @"Field",
-            Position = @"PTH.1",
-            Name = @"Action Code",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0287",
-            TableName = @"Problem/goal action code",
-            Description = @"This field reveals the intent of the message.  Refer to HL7 table 0287 - Action code for valid values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (actionCode.field.FieldRepetitions != null && actionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actionCode.Id));
-            actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(actionCode, fieldData);
-        }
-
-        return actionCode;
-    } 
-}
-
-internal HL7V23Field pathwayID;
-
-public HL7V23Field PathwayID
-{
-    get
-    {
-        if (pathwayID != null)
-        {
-            return pathwayID;
-        }
-
-        pathwayID = new HL7V23Field
-        {
-            field = message[@"PTH"][2],
-            Id = @"PTH.2",
-            Type = @"Field",
-            Position = @"PTH.2",
-            Name = @"Pathway ID",
-            Length = 80,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the pathway master data identifier associated with the referenced problem or goal. Examples; open heart pathway, new diabetic, total hip replace",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (pathwayID.field.FieldRepetitions != null && pathwayID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pathwayID.Id));
-            pathwayID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(pathwayID, fieldData);
-        }
-
-        return pathwayID;
-    } 
-}
-
-internal HL7V23Field pathwayInstanceID;
-
-public HL7V23Field PathwayInstanceID
-{
-    get
-    {
-        if (pathwayInstanceID != null)
-        {
-            return pathwayInstanceID;
-        }
-
-        pathwayInstanceID = new HL7V23Field
-        {
-            field = message[@"PTH"][3],
-            Id = @"PTH.3",
-            Type = @"Field",
-            Position = @"PTH.3",
-            Name = @"Pathway Instance ID",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a value generated by the originating application that represents an associated order placer group number, or other unique identifier assigned to the grouping of pathway directives. 
-
-Note: It is required that this value remain unique over time.  This instance ID identifies a specific instance for a specific patient and is unique across all patients.  See entity ID data type description in Chapter ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (pathwayInstanceID.field.FieldRepetitions != null && pathwayInstanceID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pathwayInstanceID.Id));
-            pathwayInstanceID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(pathwayInstanceID, fieldData);
-        }
-
-        return pathwayInstanceID;
-    } 
-}
-
-internal HL7V23Field pathwayEstablishedDateTime;
-
-public HL7V23Field PathwayEstablishedDateTime
-{
-    get
-    {
-        if (pathwayEstablishedDateTime != null)
-        {
-            return pathwayEstablishedDateTime;
-        }
-
-        pathwayEstablishedDateTime = new HL7V23Field
-        {
-            field = message[@"PTH"][4],
-            Id = @"PTH.4",
-            Type = @"Field",
-            Position = @"PTH.4",
-            Name = @"Pathway Established Date/Time",
-            Length = 26,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the identification of the event time for the current pathway record",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (pathwayEstablishedDateTime.field.FieldRepetitions != null && pathwayEstablishedDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pathwayEstablishedDateTime.Id));
-            pathwayEstablishedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(pathwayEstablishedDateTime, fieldData);
-        }
-
-        return pathwayEstablishedDateTime;
-    } 
-}
-
-internal HL7V23Field pathwayLifecycleStatus;
-
-public HL7V23Field PathwayLifecycleStatus
-{
-    get
-    {
-        if (pathwayLifecycleStatus != null)
-        {
-            return pathwayLifecycleStatus;
-        }
-
-        pathwayLifecycleStatus = new HL7V23Field
-        {
-            field = message[@"PTH"][5],
-            Id = @"PTH.5",
-            Type = @"Field",
-            Position = @"PTH.5",
-            Name = @"Pathway Lifecycle Status",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an application-specific set of state identifiers (e.g.,  Active, Suspended, Complete, Canceled, Delayed, Scheduled). ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (pathwayLifecycleStatus.field.FieldRepetitions != null && pathwayLifecycleStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pathwayLifecycleStatus.Id));
-            pathwayLifecycleStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(pathwayLifecycleStatus, fieldData);
-        }
-
-        return pathwayLifecycleStatus;
-    } 
-}
-
-internal HL7V23Field changePathwayLifecycleStatusDateTime;
-
-public HL7V23Field ChangePathwayLifecycleStatusDateTime
-{
-    get
-    {
-        if (changePathwayLifecycleStatusDateTime != null)
-        {
-            return changePathwayLifecycleStatusDateTime;
-        }
-
-        changePathwayLifecycleStatusDateTime = new HL7V23Field
+        _changePathwayLifecycleStatusDateTime = new HL7V23Field
         {
             field = message[@"PTH"][6],
-            Id = @"PTH.6",
-            Type = @"Field",
-            Position = @"PTH.6",
-            Name = @"Change Pathway Lifecycle Status Date/Time",
-            Length = 26,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when pathway has been modified or deactivated.  (Marked as conditional - must be filled in if trigger event is update or terminate pathway) ",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (changePathwayLifecycleStatusDateTime.field.FieldRepetitions != null && changePathwayLifecycleStatusDateTime.field.FieldRepetitions.Count > 0)
+        if (_changePathwayLifecycleStatusDateTime.field.FieldRepetitions != null && _changePathwayLifecycleStatusDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(changePathwayLifecycleStatusDateTime.Id));
-            changePathwayLifecycleStatusDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(changePathwayLifecycleStatusDateTime, fieldData);
+            _changePathwayLifecycleStatusDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_changePathwayLifecycleStatusDateTime, fieldData);
         }
 
-        return changePathwayLifecycleStatusDateTime;
+        return _changePathwayLifecycleStatusDateTime;
     } 
 }
     }

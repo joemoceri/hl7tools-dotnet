@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_05",
+
                     };
             } 
         }
@@ -47,6 +48,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Bolus (a series of responses sent at the same time without use of batch formatting)",
                             Comment = null
                         },
+                        
                     };
             } 
         }

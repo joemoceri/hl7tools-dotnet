@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V23SegmentODS(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field _type;
+
+public HL7V23Field Type
+{
+    get
+    {
+        if (_type != null)
+        {
+            return _type;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"ODS.1",
+            Type = @"Field",
+            Position = @"ODS.1",
+            Name = @"Type",
+            Length = 1,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0159",
+            TableName = @"Diet code specification type",
+            Description = @"This field specifies type of diet.  Refer to HL7 table 0159 - Diet type for valid entries",
+            Sample = @"",
+            Fields = null
+        }
+
+        _type = new HL7V23Field
+        {
+            field = message[@"ODS"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_type.field.FieldRepetitions != null && _type.field.FieldRepetitions.Count > 0)
+        {
+            _type.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_type, fieldData);
+        }
+
+        return _type;
+    } 
+}
+
+internal HL7V23Field _servicePeriod;
+
+public HL7V23Field ServicePeriod
+{
+    get
+    {
+        if (_servicePeriod != null)
+        {
+            return _servicePeriod;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"ODS.2",
+            Type = @"Field",
+            Position = @"ODS.2",
+            Name = @"Service Period",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"10",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"When blank, the modifier applies to all service periods.  Diet orders, for example, typically apply to all service periods.  This field usually specifies supplements.  This field allows you to designate a modification for one or more of the service periods during a day by combining service specifications as needed.  The service periods will be local CEs, normally numbers",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ODS.1",
-                            Type = @"Field",
-                            Position = @"ODS.1",
-                            Name = @"Type",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0159",
-                            TableName = @"Diet code specification type",
-                            Description = @"This field specifies type of diet.  Refer to HL7 table 0159 - Diet type for valid entries",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ODS.2",
-                            Type = @"Field",
-                            Position = @"ODS.2",
-                            Name = @"Service Period",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"10",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"When blank, the modifier applies to all service periods.  Diet orders, for example, typically apply to all service periods.  This field usually specifies supplements.  This field allows you to designate a modification for one or more of the service periods during a day by combining service specifications as needed.  The service periods will be local CEs, normally numbers",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ODS.2.1",
                             Type = @"Component",
@@ -174,25 +213,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _servicePeriod = new HL7V23Field
+        {
+            field = message[@"ODS"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_servicePeriod.field.FieldRepetitions != null && _servicePeriod.field.FieldRepetitions.Count > 0)
+        {
+            _servicePeriod.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_servicePeriod, fieldData);
+        }
+
+        return _servicePeriod;
+    } 
+}
+
+internal HL7V23Field _dietSupplementorPreferenceCode;
+
+public HL7V23Field DietSupplementorPreferenceCode
+{
+    get
+    {
+        if (_dietSupplementorPreferenceCode != null)
+        {
+            return _dietSupplementorPreferenceCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"ODS.3",
+            Type = @"Field",
+            Position = @"ODS.3",
+            Name = @"Diet, Supplement, or Preference Code",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"20",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the identifier of the ordered item for a patient; it is equivalent to OBR-4-universal service ID in function.  Since ODS is a repeating segment, multiple entities get multiple segments",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ODS.3",
-                            Type = @"Field",
-                            Position = @"ODS.3",
-                            Name = @"Diet, Supplement, or Preference Code",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"20",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the identifier of the ordered item for a patient; it is equivalent to OBR-4-universal service ID in function.  Since ODS is a repeating segment, multiple entities get multiple segments",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ODS.3.1",
                             Type = @"Component",
@@ -298,172 +367,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ODS.4",
-                            Type = @"Field",
-                            Position = @"ODS.4",
-                            Name = @"Text Instruction",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"2",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field defines the specific instructions for dietary.  These instructions may address specific patient needs, such as isolation.  This field provides the ordering provider’s dietary instructions as free text. It can represent the full dietary instruction or indicate supplemental information.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V23SegmentODS(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V23Field type;
-
-public HL7V23Field Type
-{
-    get
-    {
-        if (type != null)
-        {
-            return type;
-        }
-
-        type = new HL7V23Field
-        {
-            field = message[@"ODS"][1],
-            Id = @"ODS.1",
-            Type = @"Field",
-            Position = @"ODS.1",
-            Name = @"Type",
-            Length = 1,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0159",
-            TableName = @"Diet code specification type",
-            Description = @"This field specifies type of diet.  Refer to HL7 table 0159 - Diet type for valid entries",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (type.field.FieldRepetitions != null && type.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(type.Id));
-            type.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(type, fieldData);
-        }
-
-        return type;
-    } 
-}
-
-internal HL7V23Field servicePeriod;
-
-public HL7V23Field ServicePeriod
-{
-    get
-    {
-        if (servicePeriod != null)
-        {
-            return servicePeriod;
-        }
-
-        servicePeriod = new HL7V23Field
-        {
-            field = message[@"ODS"][2],
-            Id = @"ODS.2",
-            Type = @"Field",
-            Position = @"ODS.2",
-            Name = @"Service Period",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"10",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"When blank, the modifier applies to all service periods.  Diet orders, for example, typically apply to all service periods.  This field usually specifies supplements.  This field allows you to designate a modification for one or more of the service periods during a day by combining service specifications as needed.  The service periods will be local CEs, normally numbers",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (servicePeriod.field.FieldRepetitions != null && servicePeriod.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(servicePeriod.Id));
-            servicePeriod.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(servicePeriod, fieldData);
-        }
-
-        return servicePeriod;
-    } 
-}
-
-internal HL7V23Field dietSupplementorPreferenceCode;
-
-public HL7V23Field DietSupplementorPreferenceCode
-{
-    get
-    {
-        if (dietSupplementorPreferenceCode != null)
-        {
-            return dietSupplementorPreferenceCode;
-        }
-
-        dietSupplementorPreferenceCode = new HL7V23Field
+        _dietSupplementorPreferenceCode = new HL7V23Field
         {
             field = message[@"ODS"][3],
-            Id = @"ODS.3",
-            Type = @"Field",
-            Position = @"ODS.3",
-            Name = @"Diet, Supplement, or Preference Code",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"20",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the identifier of the ordered item for a patient; it is equivalent to OBR-4-universal service ID in function.  Since ODS is a repeating segment, multiple entities get multiple segments",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dietSupplementorPreferenceCode.field.FieldRepetitions != null && dietSupplementorPreferenceCode.field.FieldRepetitions.Count > 0)
+        if (_dietSupplementorPreferenceCode.field.FieldRepetitions != null && _dietSupplementorPreferenceCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dietSupplementorPreferenceCode.Id));
-            dietSupplementorPreferenceCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(dietSupplementorPreferenceCode, fieldData);
+            _dietSupplementorPreferenceCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_dietSupplementorPreferenceCode, fieldData);
         }
 
-        return dietSupplementorPreferenceCode;
+        return _dietSupplementorPreferenceCode;
     } 
 }
 
-internal HL7V23Field textInstruction;
+internal HL7V23Field _textInstruction;
 
 public HL7V23Field TextInstruction
 {
     get
     {
-        if (textInstruction != null)
+        if (_textInstruction != null)
         {
-            return textInstruction;
+            return _textInstruction;
         }
 
-        textInstruction = new HL7V23Field
+        var fieldData = new HL7V23FieldData
         {
-            field = message[@"ODS"][4],
             Id = @"ODS.4",
             Type = @"Field",
             Position = @"ODS.4",
@@ -477,17 +413,22 @@ public HL7V23Field TextInstruction
             TableName = null,
             Description = @"This field defines the specific instructions for dietary.  These instructions may address specific patient needs, such as isolation.  This field provides the ordering provider’s dietary instructions as free text. It can represent the full dietary instruction or indicate supplemental information.",
             Sample = @"",
+            Fields = null
+        }
+
+        _textInstruction = new HL7V23Field
+        {
+            field = message[@"ODS"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (textInstruction.field.FieldRepetitions != null && textInstruction.field.FieldRepetitions.Count > 0)
+        if (_textInstruction.field.FieldRepetitions != null && _textInstruction.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(textInstruction.Id));
-            textInstruction.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(textInstruction, fieldData);
+            _textInstruction.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_textInstruction, fieldData);
         }
 
-        return textInstruction;
+        return _textInstruction;
     } 
 }
     }

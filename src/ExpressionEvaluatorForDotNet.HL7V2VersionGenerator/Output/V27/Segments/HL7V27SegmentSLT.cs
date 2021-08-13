@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentSLT(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _deviceNumber;
+
+public HL7V27Field DeviceNumber
+{
+    get
+    {
+        if (_deviceNumber != null)
+        {
+            return _deviceNumber;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SLT.1",
+            Type = @"Field",
+            Position = @"SLT.1",
+            Name = @"Device Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The unique identifier of the device (assigned by user, not assigned by the software application; e.g.: 01).",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"SLT.1",
-                            Type = @"Field",
-                            Position = @"SLT.1",
-                            Name = @"Device Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The unique identifier of the device (assigned by user, not assigned by the software application; e.g.: 01).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SLT.1.1",
                             Type = @"Component",
@@ -128,43 +140,100 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _deviceNumber = new HL7V27Field
+        {
+            field = message[@"SLT"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_deviceNumber.field.FieldRepetitions != null && _deviceNumber.field.FieldRepetitions.Count > 0)
+        {
+            _deviceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_deviceNumber, fieldData);
+        }
+
+        return _deviceNumber;
+    } 
+}
+
+internal HL7V27Field _deviceName;
+
+public HL7V27Field DeviceName
+{
+    get
+    {
+        if (_deviceName != null)
+        {
+            return _deviceName;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SLT.2",
+            Type = @"Field",
+            Position = @"SLT.2",
+            Name = @"Device Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The name of the device associated with the device number in SLT-1 (e.g., VAC).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _deviceName = new HL7V27Field
+        {
+            field = message[@"SLT"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_deviceName.field.FieldRepetitions != null && _deviceName.field.FieldRepetitions.Count > 0)
+        {
+            _deviceName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_deviceName, fieldData);
+        }
+
+        return _deviceName;
+    } 
+}
+
+internal HL7V27Field _lotNumber;
+
+public HL7V27Field LotNumber
+{
+    get
+    {
+        if (_lotNumber != null)
+        {
+            return _lotNumber;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SLT.3",
+            Type = @"Field",
+            Position = @"SLT.3",
+            Name = @"Lot Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"A unique number associated with an instance of a sterilization/decontamination cycle assigned by the instrument-tracking system.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SLT.2",
-                            Type = @"Field",
-                            Position = @"SLT.2",
-                            Name = @"Device Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The name of the device associated with the device number in SLT-1 (e.g., VAC).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SLT.3",
-                            Type = @"Field",
-                            Position = @"SLT.3",
-                            Name = @"Lot Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A unique number associated with an instance of a sterilization/decontamination cycle assigned by the instrument-tracking system.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SLT.3.1",
                             Type = @"Component",
@@ -242,25 +311,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _lotNumber = new HL7V27Field
+        {
+            field = message[@"SLT"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_lotNumber.field.FieldRepetitions != null && _lotNumber.field.FieldRepetitions.Count > 0)
+        {
+            _lotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_lotNumber, fieldData);
+        }
+
+        return _lotNumber;
+    } 
+}
+
+internal HL7V27Field _itemIdentifier;
+
+public HL7V27Field ItemIdentifier
+{
+    get
+    {
+        if (_itemIdentifier != null)
+        {
+            return _itemIdentifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SLT.4",
+            Type = @"Field",
+            Position = @"SLT.4",
+            Name = @"Item Identifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The Item Identifier is a unique code assigned to the material item by the Instrument-tracking software application to identify the item being sterilized or decontaminated.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SLT.4",
-                            Type = @"Field",
-                            Position = @"SLT.4",
-                            Name = @"Item Identifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Item Identifier is a unique code assigned to the material item by the Instrument-tracking software application to identify the item being sterilized or decontaminated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SLT.4.1",
                             Type = @"Component",
@@ -338,213 +437,39 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SLT.5",
-                            Type = @"Field",
-                            Position = @"SLT.5",
-                            Name = @"Bar Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The special identification code, printed as a set of vertical bars of differing widths, used on instruments to identify them and provide for rapid, error-free input by a barcode scanning device.  The coding can include numbers, letters or a combination of both.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentSLT(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field deviceNumber;
-
-public HL7V27Field DeviceNumber
-{
-    get
-    {
-        if (deviceNumber != null)
-        {
-            return deviceNumber;
-        }
-
-        deviceNumber = new HL7V27Field
-        {
-            field = message[@"SLT"][1],
-            Id = @"SLT.1",
-            Type = @"Field",
-            Position = @"SLT.1",
-            Name = @"Device Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The unique identifier of the device (assigned by user, not assigned by the software application; e.g.: 01).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (deviceNumber.field.FieldRepetitions != null && deviceNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deviceNumber.Id));
-            deviceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(deviceNumber, fieldData);
-        }
-
-        return deviceNumber;
-    } 
-}
-
-internal HL7V27Field deviceName;
-
-public HL7V27Field DeviceName
-{
-    get
-    {
-        if (deviceName != null)
-        {
-            return deviceName;
-        }
-
-        deviceName = new HL7V27Field
-        {
-            field = message[@"SLT"][2],
-            Id = @"SLT.2",
-            Type = @"Field",
-            Position = @"SLT.2",
-            Name = @"Device Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The name of the device associated with the device number in SLT-1 (e.g., VAC).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (deviceName.field.FieldRepetitions != null && deviceName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deviceName.Id));
-            deviceName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(deviceName, fieldData);
-        }
-
-        return deviceName;
-    } 
-}
-
-internal HL7V27Field lotNumber;
-
-public HL7V27Field LotNumber
-{
-    get
-    {
-        if (lotNumber != null)
-        {
-            return lotNumber;
-        }
-
-        lotNumber = new HL7V27Field
-        {
-            field = message[@"SLT"][3],
-            Id = @"SLT.3",
-            Type = @"Field",
-            Position = @"SLT.3",
-            Name = @"Lot Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"A unique number associated with an instance of a sterilization/decontamination cycle assigned by the instrument-tracking system.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (lotNumber.field.FieldRepetitions != null && lotNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(lotNumber.Id));
-            lotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(lotNumber, fieldData);
-        }
-
-        return lotNumber;
-    } 
-}
-
-internal HL7V27Field itemIdentifier;
-
-public HL7V27Field ItemIdentifier
-{
-    get
-    {
-        if (itemIdentifier != null)
-        {
-            return itemIdentifier;
-        }
-
-        itemIdentifier = new HL7V27Field
+        _itemIdentifier = new HL7V27Field
         {
             field = message[@"SLT"][4],
-            Id = @"SLT.4",
-            Type = @"Field",
-            Position = @"SLT.4",
-            Name = @"Item Identifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The Item Identifier is a unique code assigned to the material item by the Instrument-tracking software application to identify the item being sterilized or decontaminated.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (itemIdentifier.field.FieldRepetitions != null && itemIdentifier.field.FieldRepetitions.Count > 0)
+        if (_itemIdentifier.field.FieldRepetitions != null && _itemIdentifier.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(itemIdentifier.Id));
-            itemIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(itemIdentifier, fieldData);
+            _itemIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_itemIdentifier, fieldData);
         }
 
-        return itemIdentifier;
+        return _itemIdentifier;
     } 
 }
 
-internal HL7V27Field barCode;
+internal HL7V27Field _barCode;
 
 public HL7V27Field BarCode
 {
     get
     {
-        if (barCode != null)
+        if (_barCode != null)
         {
-            return barCode;
+            return _barCode;
         }
 
-        barCode = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"SLT"][5],
             Id = @"SLT.5",
             Type = @"Field",
             Position = @"SLT.5",
@@ -558,17 +483,22 @@ public HL7V27Field BarCode
             TableName = null,
             Description = @"The special identification code, printed as a set of vertical bars of differing widths, used on instruments to identify them and provide for rapid, error-free input by a barcode scanning device.  The coding can include numbers, letters or a combination of both.",
             Sample = @"",
+            Fields = null
+        }
+
+        _barCode = new HL7V27Field
+        {
+            field = message[@"SLT"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (barCode.field.FieldRepetitions != null && barCode.field.FieldRepetitions.Count > 0)
+        if (_barCode.field.FieldRepetitions != null && _barCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(barCode.Id));
-            barCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(barCode, fieldData);
+            _barCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_barCode, fieldData);
         }
 
-        return barCode;
+        return _barCode;
     } 
 }
     }

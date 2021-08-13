@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -107,6 +108,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The world wide character standard from ISO/IEC 10646-1-1993[3]",
                             Comment = null
                         },
+                        
                     };
             } 
         }

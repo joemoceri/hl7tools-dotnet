@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V22SegmentPRA(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V22Field _praPrimaryKeyValue;
+
+public HL7V22Field PraPrimaryKeyValue
+{
+    get
+    {
+        if (_praPrimaryKeyValue != null)
+        {
+            return _praPrimaryKeyValue;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"PRA.1",
+            Type = @"Field",
+            Position = @"PRA.1",
+            Name = @"Pra - Primary Key Value",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _praPrimaryKeyValue = new HL7V22Field
+        {
+            field = message[@"PRA"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_praPrimaryKeyValue.field.FieldRepetitions != null && _praPrimaryKeyValue.field.FieldRepetitions.Count > 0)
+        {
+            _praPrimaryKeyValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_praPrimaryKeyValue, fieldData);
+        }
+
+        return _praPrimaryKeyValue;
+    } 
+}
+
+internal HL7V22Field _practitionerGroup;
+
+public HL7V22Field PractitionerGroup
+{
+    get
+    {
+        if (_practitionerGroup != null)
+        {
+            return _practitionerGroup;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"PRA.2",
+            Type = @"Field",
+            Position = @"PRA.2",
+            Name = @"Practitioner Group",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PRA.1",
-                            Type = @"Field",
-                            Position = @"PRA.1",
-                            Name = @"Pra - Primary Key Value",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRA.2",
-                            Type = @"Field",
-                            Position = @"PRA.2",
-                            Name = @"Practitioner Group",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRA.2.1",
                             Type = @"Component",
@@ -174,61 +213,145 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _practitionerGroup = new HL7V22Field
+        {
+            field = message[@"PRA"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_practitionerGroup.field.FieldRepetitions != null && _practitionerGroup.field.FieldRepetitions.Count > 0)
+        {
+            _practitionerGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_practitionerGroup, fieldData);
+        }
+
+        return _practitionerGroup;
+    } 
+}
+
+internal HL7V22Field _practitionerCategory;
+
+public HL7V22Field PractitionerCategory
+{
+    get
+    {
+        if (_practitionerCategory != null)
+        {
+            return _practitionerCategory;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"PRA.3",
+            Type = @"Field",
+            Position = @"PRA.3",
+            Name = @"Practitioner Category",
+            Length = 3,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"0186",
+            TableName = @"PRACTIONNER CATEGORY",
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _practitionerCategory = new HL7V22Field
+        {
+            field = message[@"PRA"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_practitionerCategory.field.FieldRepetitions != null && _practitionerCategory.field.FieldRepetitions.Count > 0)
+        {
+            _practitionerCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_practitionerCategory, fieldData);
+        }
+
+        return _practitionerCategory;
+    } 
+}
+
+internal HL7V22Field _providerBilling;
+
+public HL7V22Field ProviderBilling
+{
+    get
+    {
+        if (_providerBilling != null)
+        {
+            return _providerBilling;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"PRA.4",
+            Type = @"Field",
+            Position = @"PRA.4",
+            Name = @"Provider Billing",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"0187",
+            TableName = @"PROVIDER BILLING",
+            Description = null,
+            Sample = @"",
+            Fields = null
+        }
+
+        _providerBilling = new HL7V22Field
+        {
+            field = message[@"PRA"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerBilling.field.FieldRepetitions != null && _providerBilling.field.FieldRepetitions.Count > 0)
+        {
+            _providerBilling.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_providerBilling, fieldData);
+        }
+
+        return _providerBilling;
+    } 
+}
+
+internal HL7V22Field _specialty;
+
+public HL7V22Field Specialty
+{
+    get
+    {
+        if (_specialty != null)
+        {
+            return _specialty;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"PRA.5",
+            Type = @"Field",
+            Position = @"PRA.5",
+            Name = @"Specialty",
+            Length = 100,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CM_SPD",
+            DataTypeName = @"Specialty",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRA.3",
-                            Type = @"Field",
-                            Position = @"PRA.3",
-                            Name = @"Practitioner Category",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0186",
-                            TableName = @"PRACTIONNER CATEGORY",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRA.4",
-                            Type = @"Field",
-                            Position = @"PRA.4",
-                            Name = @"Provider Billing",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0187",
-                            TableName = @"PROVIDER BILLING",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRA.5",
-                            Type = @"Field",
-                            Position = @"PRA.5",
-                            Name = @"Specialty",
-                            Length = 100,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CM_SPD",
-                            DataTypeName = @"Specialty",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRA.5.1",
                             Type = @"Component",
@@ -298,25 +421,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specialty = new HL7V22Field
+        {
+            field = message[@"PRA"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specialty.field.FieldRepetitions != null && _specialty.field.FieldRepetitions.Count > 0)
+        {
+            _specialty.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_specialty, fieldData);
+        }
+
+        return _specialty;
+    } 
+}
+
+internal HL7V22Field _practitionerIdNumbers;
+
+public HL7V22Field PractitionerIdNumbers
+{
+    get
+    {
+        if (_practitionerIdNumbers != null)
+        {
+            return _practitionerIdNumbers;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"PRA.6",
+            Type = @"Field",
+            Position = @"PRA.6",
+            Name = @"Practitioner Id Numbers",
+            Length = 100,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CM_PLN",
+            DataTypeName = @"Practitioner Id Numbers",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRA.6",
-                            Type = @"Field",
-                            Position = @"PRA.6",
-                            Name = @"Practitioner Id Numbers",
-                            Length = 100,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CM_PLN",
-                            DataTypeName = @"Practitioner Id Numbers",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRA.6.1",
                             Type = @"Component",
@@ -368,25 +521,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _practitionerIdNumbers = new HL7V22Field
+        {
+            field = message[@"PRA"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_practitionerIdNumbers.field.FieldRepetitions != null && _practitionerIdNumbers.field.FieldRepetitions.Count > 0)
+        {
+            _practitionerIdNumbers.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_practitionerIdNumbers, fieldData);
+        }
+
+        return _practitionerIdNumbers;
+    } 
+}
+
+internal HL7V22Field _privileges;
+
+public HL7V22Field Privileges
+{
+    get
+    {
+        if (_privileges != null)
+        {
+            return _privileges;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"PRA.7",
+            Type = @"Field",
+            Position = @"PRA.7",
+            Name = @"Privileges",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CM_PIP",
+            DataTypeName = @"Privileges",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRA.7",
-                            Type = @"Field",
-                            Position = @"PRA.7",
-                            Name = @"Privileges",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CM_PIP",
-                            DataTypeName = @"Privileges",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRA.7.1",
                             Type = @"Component",
@@ -668,301 +851,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V22SegmentPRA(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V22Field praPrimaryKeyValue;
-
-public HL7V22Field PraPrimaryKeyValue
-{
-    get
-    {
-        if (praPrimaryKeyValue != null)
-        {
-            return praPrimaryKeyValue;
-        }
-
-        praPrimaryKeyValue = new HL7V22Field
-        {
-            field = message[@"PRA"][1],
-            Id = @"PRA.1",
-            Type = @"Field",
-            Position = @"PRA.1",
-            Name = @"Pra - Primary Key Value",
-            Length = 20,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (praPrimaryKeyValue.field.FieldRepetitions != null && praPrimaryKeyValue.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(praPrimaryKeyValue.Id));
-            praPrimaryKeyValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(praPrimaryKeyValue, fieldData);
-        }
-
-        return praPrimaryKeyValue;
-    } 
-}
-
-internal HL7V22Field practitionerGroup;
-
-public HL7V22Field PractitionerGroup
-{
-    get
-    {
-        if (practitionerGroup != null)
-        {
-            return practitionerGroup;
-        }
-
-        practitionerGroup = new HL7V22Field
-        {
-            field = message[@"PRA"][2],
-            Id = @"PRA.2",
-            Type = @"Field",
-            Position = @"PRA.2",
-            Name = @"Practitioner Group",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (practitionerGroup.field.FieldRepetitions != null && practitionerGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(practitionerGroup.Id));
-            practitionerGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(practitionerGroup, fieldData);
-        }
-
-        return practitionerGroup;
-    } 
-}
-
-internal HL7V22Field practitionerCategory;
-
-public HL7V22Field PractitionerCategory
-{
-    get
-    {
-        if (practitionerCategory != null)
-        {
-            return practitionerCategory;
-        }
-
-        practitionerCategory = new HL7V22Field
-        {
-            field = message[@"PRA"][3],
-            Id = @"PRA.3",
-            Type = @"Field",
-            Position = @"PRA.3",
-            Name = @"Practitioner Category",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0186",
-            TableName = @"PRACTIONNER CATEGORY",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (practitionerCategory.field.FieldRepetitions != null && practitionerCategory.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(practitionerCategory.Id));
-            practitionerCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(practitionerCategory, fieldData);
-        }
-
-        return practitionerCategory;
-    } 
-}
-
-internal HL7V22Field providerBilling;
-
-public HL7V22Field ProviderBilling
-{
-    get
-    {
-        if (providerBilling != null)
-        {
-            return providerBilling;
-        }
-
-        providerBilling = new HL7V22Field
-        {
-            field = message[@"PRA"][4],
-            Id = @"PRA.4",
-            Type = @"Field",
-            Position = @"PRA.4",
-            Name = @"Provider Billing",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0187",
-            TableName = @"PROVIDER BILLING",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerBilling.field.FieldRepetitions != null && providerBilling.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerBilling.Id));
-            providerBilling.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(providerBilling, fieldData);
-        }
-
-        return providerBilling;
-    } 
-}
-
-internal HL7V22Field specialty;
-
-public HL7V22Field Specialty
-{
-    get
-    {
-        if (specialty != null)
-        {
-            return specialty;
-        }
-
-        specialty = new HL7V22Field
-        {
-            field = message[@"PRA"][5],
-            Id = @"PRA.5",
-            Type = @"Field",
-            Position = @"PRA.5",
-            Name = @"Specialty",
-            Length = 100,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CM_SPD",
-            DataTypeName = @"Specialty",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specialty.field.FieldRepetitions != null && specialty.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specialty.Id));
-            specialty.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(specialty, fieldData);
-        }
-
-        return specialty;
-    } 
-}
-
-internal HL7V22Field practitionerIdNumbers;
-
-public HL7V22Field PractitionerIdNumbers
-{
-    get
-    {
-        if (practitionerIdNumbers != null)
-        {
-            return practitionerIdNumbers;
-        }
-
-        practitionerIdNumbers = new HL7V22Field
-        {
-            field = message[@"PRA"][6],
-            Id = @"PRA.6",
-            Type = @"Field",
-            Position = @"PRA.6",
-            Name = @"Practitioner Id Numbers",
-            Length = 100,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CM_PLN",
-            DataTypeName = @"Practitioner Id Numbers",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (practitionerIdNumbers.field.FieldRepetitions != null && practitionerIdNumbers.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(practitionerIdNumbers.Id));
-            practitionerIdNumbers.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(practitionerIdNumbers, fieldData);
-        }
-
-        return practitionerIdNumbers;
-    } 
-}
-
-internal HL7V22Field privileges;
-
-public HL7V22Field Privileges
-{
-    get
-    {
-        if (privileges != null)
-        {
-            return privileges;
-        }
-
-        privileges = new HL7V22Field
+        _privileges = new HL7V22Field
         {
             field = message[@"PRA"][7],
-            Id = @"PRA.7",
-            Type = @"Field",
-            Position = @"PRA.7",
-            Name = @"Privileges",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CM_PIP",
-            DataTypeName = @"Privileges",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (privileges.field.FieldRepetitions != null && privileges.field.FieldRepetitions.Count > 0)
+        if (_privileges.field.FieldRepetitions != null && _privileges.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(privileges.Id));
-            privileges.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(privileges, fieldData);
+            _privileges.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_privileges, fieldData);
         }
 
-        return privileges;
+        return _privileges;
     } 
 }
     }

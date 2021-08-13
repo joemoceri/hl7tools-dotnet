@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -71,6 +72,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"unit price, may be based on length of procedure or service",
                             Comment = null
                         },
+                        
                     };
             } 
         }

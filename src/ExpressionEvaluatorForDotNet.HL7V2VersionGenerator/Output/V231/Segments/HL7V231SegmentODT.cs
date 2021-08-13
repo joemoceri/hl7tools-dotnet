@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V231SegmentODT(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V231Field _trayType;
+
+public HL7V231Field TrayType
+{
+    get
+    {
+        if (_trayType != null)
+        {
+            return _trayType;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"ODT.1",
+            Type = @"Field",
+            Position = @"ODT.1",
+            Name = @"Tray Type",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0160",
+            TableName = @"Tray type",
+            Description = @"This field defines the type of dietary tray. Refer to HL7table 0160 - Tray type for valid entries.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ODT.1",
-                            Type = @"Field",
-                            Position = @"ODT.1",
-                            Name = @"Tray Type",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0160",
-                            TableName = @"Tray type",
-                            Description = @"This field defines the type of dietary tray. Refer to HL7table 0160 - Tray type for valid entries.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ODT.1.1",
                             Type = @"Component",
@@ -156,25 +168,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _trayType = new HL7V231Field
+        {
+            field = message[@"ODT"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_trayType.field.FieldRepetitions != null && _trayType.field.FieldRepetitions.Count > 0)
+        {
+            _trayType.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_trayType, fieldData);
+        }
+
+        return _trayType;
+    } 
+}
+
+internal HL7V231Field _servicePeriod;
+
+public HL7V231Field ServicePeriod
+{
+    get
+    {
+        if (_servicePeriod != null)
+        {
+            return _servicePeriod;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"ODT.2",
+            Type = @"Field",
+            Position = @"ODT.2",
+            Name = @"Service Period",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"10",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"When blank, the modifier applies to all service periods. This field allows you to designate one or more of the feeding periods during a day by combining the codes as needed. It can also combine with quantity/timing to give such information as which service period the order belongs with. This field is identical in meaning with ODS-2-service period. See Section 4.6.1.2, 'Service period (CE) 00270,' for further details.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ODT.2",
-                            Type = @"Field",
-                            Position = @"ODT.2",
-                            Name = @"Service Period",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"10",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"When blank, the modifier applies to all service periods. This field allows you to designate one or more of the feeding periods during a day by combining the codes as needed. It can also combine with quantity/timing to give such information as which service period the order belongs with. This field is identical in meaning with ODS-2-service period. See Section 4.6.1.2, 'Service period (CE) 00270,' for further details.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ODT.2.1",
                             Type = @"Component",
@@ -280,131 +322,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ODT.3",
-                            Type = @"Field",
-                            Position = @"ODT.3",
-                            Name = @"Text Instruction",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field defines instructions associated with the tray. Example:",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V231SegmentODT(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V231Field trayType;
-
-public HL7V231Field TrayType
-{
-    get
-    {
-        if (trayType != null)
-        {
-            return trayType;
-        }
-
-        trayType = new HL7V231Field
-        {
-            field = message[@"ODT"][1],
-            Id = @"ODT.1",
-            Type = @"Field",
-            Position = @"ODT.1",
-            Name = @"Tray Type",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0160",
-            TableName = @"Tray type",
-            Description = @"This field defines the type of dietary tray. Refer to HL7table 0160 - Tray type for valid entries.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (trayType.field.FieldRepetitions != null && trayType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(trayType.Id));
-            trayType.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(trayType, fieldData);
-        }
-
-        return trayType;
-    } 
-}
-
-internal HL7V231Field servicePeriod;
-
-public HL7V231Field ServicePeriod
-{
-    get
-    {
-        if (servicePeriod != null)
-        {
-            return servicePeriod;
-        }
-
-        servicePeriod = new HL7V231Field
+        _servicePeriod = new HL7V231Field
         {
             field = message[@"ODT"][2],
-            Id = @"ODT.2",
-            Type = @"Field",
-            Position = @"ODT.2",
-            Name = @"Service Period",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"10",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"When blank, the modifier applies to all service periods. This field allows you to designate one or more of the feeding periods during a day by combining the codes as needed. It can also combine with quantity/timing to give such information as which service period the order belongs with. This field is identical in meaning with ODS-2-service period. See Section 4.6.1.2, 'Service period (CE) 00270,' for further details.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (servicePeriod.field.FieldRepetitions != null && servicePeriod.field.FieldRepetitions.Count > 0)
+        if (_servicePeriod.field.FieldRepetitions != null && _servicePeriod.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(servicePeriod.Id));
-            servicePeriod.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(servicePeriod, fieldData);
+            _servicePeriod.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_servicePeriod, fieldData);
         }
 
-        return servicePeriod;
+        return _servicePeriod;
     } 
 }
 
-internal HL7V231Field textInstruction;
+internal HL7V231Field _textInstruction;
 
 public HL7V231Field TextInstruction
 {
     get
     {
-        if (textInstruction != null)
+        if (_textInstruction != null)
         {
-            return textInstruction;
+            return _textInstruction;
         }
 
-        textInstruction = new HL7V231Field
+        var fieldData = new HL7V231FieldData
         {
-            field = message[@"ODT"][3],
             Id = @"ODT.3",
             Type = @"Field",
             Position = @"ODT.3",
@@ -418,17 +368,22 @@ public HL7V231Field TextInstruction
             TableName = null,
             Description = @"This field defines instructions associated with the tray. Example:",
             Sample = @"",
+            Fields = null
+        }
+
+        _textInstruction = new HL7V231Field
+        {
+            field = message[@"ODT"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (textInstruction.field.FieldRepetitions != null && textInstruction.field.FieldRepetitions.Count > 0)
+        if (_textInstruction.field.FieldRepetitions != null && _textInstruction.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(textInstruction.Id));
-            textInstruction.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(textInstruction, fieldData);
+            _textInstruction.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_textInstruction, fieldData);
         }
 
-        return textInstruction;
+        return _textInstruction;
     } 
 }
     }

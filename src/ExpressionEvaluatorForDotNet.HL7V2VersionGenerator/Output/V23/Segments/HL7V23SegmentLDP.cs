@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V23SegmentLDP(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field _lDPPrimaryKeyValue;
+
+public HL7V23Field LDPPrimaryKeyValue
+{
+    get
+    {
+        if (_lDPPrimaryKeyValue != null)
+        {
+            return _lDPPrimaryKeyValue;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"LDP.1",
+            Type = @"Field",
+            Position = @"LDP.1",
+            Name = @"LDP Primary Key Value",
+            Length = 200,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the institution’s identification code for the location.  The identifying key value.  This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here).  At least the first component of this field is required.  The contents of this field must exactly match the content of its preceding MFE (MFE-4-primary key value) and its preceding LOC (LOC-1-LOC primary key value).",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"LDP.1",
-                            Type = @"Field",
-                            Position = @"LDP.1",
-                            Name = @"LDP Primary Key Value",
-                            Length = 200,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the institution’s identification code for the location.  The identifying key value.  This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here).  At least the first component of this field is required.  The contents of this field must exactly match the content of its preceding MFE (MFE-4-primary key value) and its preceding LOC (LOC-1-LOC primary key value).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LDP.1.1",
                             Type = @"Component",
@@ -262,61 +274,145 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"A free text description of the location",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _lDPPrimaryKeyValue = new HL7V23Field
+        {
+            field = message[@"LDP"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_lDPPrimaryKeyValue.field.FieldRepetitions != null && _lDPPrimaryKeyValue.field.FieldRepetitions.Count > 0)
+        {
+            _lDPPrimaryKeyValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_lDPPrimaryKeyValue, fieldData);
+        }
+
+        return _lDPPrimaryKeyValue;
+    } 
+}
+
+internal HL7V23Field _locationDepartment;
+
+public HL7V23Field LocationDepartment
+{
+    get
+    {
+        if (_locationDepartment != null)
+        {
+            return _locationDepartment;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"LDP.2",
+            Type = @"Field",
+            Position = @"LDP.2",
+            Name = @"Location Department",
+            Length = 10,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0264",
+            TableName = @"Location department",
+            Description = @"This field contains the institution’s department to which this location belongs, or its cost center.  Refer to user-defined table 0264 - Location department for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _locationDepartment = new HL7V23Field
+        {
+            field = message[@"LDP"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_locationDepartment.field.FieldRepetitions != null && _locationDepartment.field.FieldRepetitions.Count > 0)
+        {
+            _locationDepartment.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_locationDepartment, fieldData);
+        }
+
+        return _locationDepartment;
+    } 
+}
+
+internal HL7V23Field _locationService;
+
+public HL7V23Field LocationService
+{
+    get
+    {
+        if (_locationService != null)
+        {
+            return _locationService;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"LDP.3",
+            Type = @"Field",
+            Position = @"LDP.3",
+            Name = @"Location Service",
+            Length = 3,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0069",
+            TableName = @"Hospital service",
+            Description = @"This field contains the hospital or ancillary service with which this location is associated.  Depends on institution use.  Repeats for rooms that can be used, for example, by different services on different days.  These values should match the values used for PV1-10-hospital service, which is site defined.  Refer to user-defined table 0069 - Hospital service for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _locationService = new HL7V23Field
+        {
+            field = message[@"LDP"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_locationService.field.FieldRepetitions != null && _locationService.field.FieldRepetitions.Count > 0)
+        {
+            _locationService.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_locationService, fieldData);
+        }
+
+        return _locationService;
+    } 
+}
+
+internal HL7V23Field _specialityType;
+
+public HL7V23Field SpecialityType
+{
+    get
+    {
+        if (_specialityType != null)
+        {
+            return _specialityType;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"LDP.4",
+            Type = @"Field",
+            Position = @"LDP.4",
+            Name = @"Speciality Type",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0265",
+            TableName = @"Specialty type",
+            Description = @"This field contains the specialty type (if any) of the department or clinic. This may also be considered a bed type.  Specialty type is a physical accommodation type, whereas ‘accommodation type’ (LOC-20-accommodation type) is a financial accommodation type.  Refer to user-defined table 0265 - Specialty type for suggested values.  See also LOC-33-privacy level and LOC-34-level of care.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LDP.2",
-                            Type = @"Field",
-                            Position = @"LDP.2",
-                            Name = @"Location Department",
-                            Length = 10,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0264",
-                            TableName = @"Location department",
-                            Description = @"This field contains the institution’s department to which this location belongs, or its cost center.  Refer to user-defined table 0264 - Location department for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LDP.3",
-                            Type = @"Field",
-                            Position = @"LDP.3",
-                            Name = @"Location Service",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0069",
-                            TableName = @"Hospital service",
-                            Description = @"This field contains the hospital or ancillary service with which this location is associated.  Depends on institution use.  Repeats for rooms that can be used, for example, by different services on different days.  These values should match the values used for PV1-10-hospital service, which is site defined.  Refer to user-defined table 0069 - Hospital service for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LDP.4",
-                            Type = @"Field",
-                            Position = @"LDP.4",
-                            Name = @"Speciality Type",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0265",
-                            TableName = @"Specialty type",
-                            Description = @"This field contains the specialty type (if any) of the department or clinic. This may also be considered a bed type.  Specialty type is a physical accommodation type, whereas ‘accommodation type’ (LOC-20-accommodation type) is a financial accommodation type.  Refer to user-defined table 0265 - Specialty type for suggested values.  See also LOC-33-privacy level and LOC-34-level of care.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LDP.4.1",
                             Type = @"Component",
@@ -422,61 +518,145 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specialityType = new HL7V23Field
+        {
+            field = message[@"LDP"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specialityType.field.FieldRepetitions != null && _specialityType.field.FieldRepetitions.Count > 0)
+        {
+            _specialityType.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_specialityType, fieldData);
+        }
+
+        return _specialityType;
+    } 
+}
+
+internal HL7V23Field _validPatientClasses;
+
+public HL7V23Field ValidPatientClasses
+{
+    get
+    {
+        if (_validPatientClasses != null)
+        {
+            return _validPatientClasses;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"LDP.5",
+            Type = @"Field",
+            Position = @"LDP.5",
+            Name = @"Valid Patient Classes",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0004",
+            TableName = @"Patient class",
+            Description = @"This field contains the patient types that are allowed to be assigned to this bed.  For example, Inpatient, Outpatient, Series, Clinic, ER, Ambulatory, Observation, etc.  These values should be the same set of values as those used for PV1-2-patient class.  Refer to user-defined table 0004 - Patient class for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _validPatientClasses = new HL7V23Field
+        {
+            field = message[@"LDP"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_validPatientClasses.field.FieldRepetitions != null && _validPatientClasses.field.FieldRepetitions.Count > 0)
+        {
+            _validPatientClasses.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_validPatientClasses, fieldData);
+        }
+
+        return _validPatientClasses;
+    } 
+}
+
+internal HL7V23Field _activeInactiveFlag;
+
+public HL7V23Field ActiveInactiveFlag
+{
+    get
+    {
+        if (_activeInactiveFlag != null)
+        {
+            return _activeInactiveFlag;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"LDP.6",
+            Type = @"Field",
+            Position = @"LDP.6",
+            Name = @"Active/Inactive Flag",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0183",
+            TableName = @"Active/Inactive",
+            Description = @"This field indicates whether the entry for this location is currently an active, that is, valid, usable entry (disregarding whether it’s waiting to be maintained by housekeeping).  Refer to HL7 table 0183 - Active/inactive for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _activeInactiveFlag = new HL7V23Field
+        {
+            field = message[@"LDP"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_activeInactiveFlag.field.FieldRepetitions != null && _activeInactiveFlag.field.FieldRepetitions.Count > 0)
+        {
+            _activeInactiveFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_activeInactiveFlag, fieldData);
+        }
+
+        return _activeInactiveFlag;
+    } 
+}
+
+internal HL7V23Field _activationDate;
+
+public HL7V23Field ActivationDate
+{
+    get
+    {
+        if (_activationDate != null)
+        {
+            return _activationDate;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"LDP.7",
+            Type = @"Field",
+            Position = @"LDP.7",
+            Name = @"Activation Date",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time when the location became active or “in service” for a department (disregarding whether it is waiting to be maintained by housekeeping).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LDP.5",
-                            Type = @"Field",
-                            Position = @"LDP.5",
-                            Name = @"Valid Patient Classes",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0004",
-                            TableName = @"Patient class",
-                            Description = @"This field contains the patient types that are allowed to be assigned to this bed.  For example, Inpatient, Outpatient, Series, Clinic, ER, Ambulatory, Observation, etc.  These values should be the same set of values as those used for PV1-2-patient class.  Refer to user-defined table 0004 - Patient class for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LDP.6",
-                            Type = @"Field",
-                            Position = @"LDP.6",
-                            Name = @"Active/Inactive Flag",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0183",
-                            TableName = @"Active/Inactive",
-                            Description = @"This field indicates whether the entry for this location is currently an active, that is, valid, usable entry (disregarding whether it’s waiting to be maintained by housekeeping).  Refer to HL7 table 0183 - Active/inactive for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LDP.7",
-                            Type = @"Field",
-                            Position = @"LDP.7",
-                            Name = @"Activation Date",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time when the location became active or “in service” for a department (disregarding whether it is waiting to be maintained by housekeeping).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LDP.7.1",
                             Type = @"Component",
@@ -492,25 +672,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _activationDate = new HL7V23Field
+        {
+            field = message[@"LDP"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_activationDate.field.FieldRepetitions != null && _activationDate.field.FieldRepetitions.Count > 0)
+        {
+            _activationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_activationDate, fieldData);
+        }
+
+        return _activationDate;
+    } 
+}
+
+internal HL7V23Field _inactivationDateLDP;
+
+public HL7V23Field InactivationDateLDP
+{
+    get
+    {
+        if (_inactivationDateLDP != null)
+        {
+            return _inactivationDateLDP;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"LDP.8",
+            Type = @"Field",
+            Position = @"LDP.8",
+            Name = @"Inactivation Date - LDP",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date when the location became inactive or “out of service” for this department (disregarding whether it is waiting to be maintained by housekeeping). ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LDP.8",
-                            Type = @"Field",
-                            Position = @"LDP.8",
-                            Name = @"Inactivation Date - LDP",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date when the location became inactive or “out of service” for this department (disregarding whether it is waiting to be maintained by housekeeping). ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LDP.8.1",
                             Type = @"Component",
@@ -526,43 +736,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inactivationDateLDP = new HL7V23Field
+        {
+            field = message[@"LDP"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inactivationDateLDP.field.FieldRepetitions != null && _inactivationDateLDP.field.FieldRepetitions.Count > 0)
+        {
+            _inactivationDateLDP.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_inactivationDateLDP, fieldData);
+        }
+
+        return _inactivationDateLDP;
+    } 
+}
+
+internal HL7V23Field _inactivatedReason;
+
+public HL7V23Field InactivatedReason
+{
+    get
+    {
+        if (_inactivatedReason != null)
+        {
+            return _inactivatedReason;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"LDP.9",
+            Type = @"Field",
+            Position = @"LDP.9",
+            Name = @"Inactivated Reason",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the reason the location was put out of service.  It is used when LDP-8inactivation date-LDP is sent. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _inactivatedReason = new HL7V23Field
+        {
+            field = message[@"LDP"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inactivatedReason.field.FieldRepetitions != null && _inactivatedReason.field.FieldRepetitions.Count > 0)
+        {
+            _inactivatedReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_inactivatedReason, fieldData);
+        }
+
+        return _inactivatedReason;
+    } 
+}
+
+internal HL7V23Field _visitingHours;
+
+public HL7V23Field VisitingHours
+{
+    get
+    {
+        if (_visitingHours != null)
+        {
+            return _visitingHours;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"LDP.10",
+            Type = @"Field",
+            Position = @"LDP.10",
+            Name = @"Visiting Hours",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"VH",
+            DataTypeName = @"Visiting Hours",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the hours when this location is open for visiting.  Refer to HL7 table 0267 - Days of the week for valid values for the first two components. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LDP.9",
-                            Type = @"Field",
-                            Position = @"LDP.9",
-                            Name = @"Inactivated Reason",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the reason the location was put out of service.  It is used when LDP-8inactivation date-LDP is sent. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LDP.10",
-                            Type = @"Field",
-                            Position = @"LDP.10",
-                            Name = @"Visiting Hours",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"VH",
-                            DataTypeName = @"Visiting Hours",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the hours when this location is open for visiting.  Refer to HL7 table 0267 - Days of the week for valid values for the first two components. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LDP.10.1",
                             Type = @"Component",
@@ -632,25 +899,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Ending hour on ending day of visiting hours range (see second component, 2.8.44.2, “End day range”). ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _visitingHours = new HL7V23Field
+        {
+            field = message[@"LDP"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_visitingHours.field.FieldRepetitions != null && _visitingHours.field.FieldRepetitions.Count > 0)
+        {
+            _visitingHours.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_visitingHours, fieldData);
+        }
+
+        return _visitingHours;
+    } 
+}
+
+internal HL7V23Field _contactPhone;
+
+public HL7V23Field ContactPhone
+{
+    get
+    {
+        if (_contactPhone != null)
+        {
+            return _contactPhone;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"LDP.11",
+            Type = @"Field",
+            Position = @"LDP.11",
+            Name = @"Contact Phone",
+            Length = 40,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the phone number to use to contact facility personnel about the patient location, in case of inquiries about the location.  This phone is not necessarily within the named patient location.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LDP.11",
-                            Type = @"Field",
-                            Position = @"LDP.11",
-                            Name = @"Contact Phone",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the phone number to use to contact facility personnel about the patient location, in case of inquiries about the location.  This phone is not necessarily within the named patient location.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LDP.11.1",
                             Type = @"Component",
@@ -810,465 +1107,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V23SegmentLDP(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V23Field lDPPrimaryKeyValue;
-
-public HL7V23Field LDPPrimaryKeyValue
-{
-    get
-    {
-        if (lDPPrimaryKeyValue != null)
-        {
-            return lDPPrimaryKeyValue;
-        }
-
-        lDPPrimaryKeyValue = new HL7V23Field
-        {
-            field = message[@"LDP"][1],
-            Id = @"LDP.1",
-            Type = @"Field",
-            Position = @"LDP.1",
-            Name = @"LDP Primary Key Value",
-            Length = 200,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the institution’s identification code for the location.  The identifying key value.  This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here).  At least the first component of this field is required.  The contents of this field must exactly match the content of its preceding MFE (MFE-4-primary key value) and its preceding LOC (LOC-1-LOC primary key value).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (lDPPrimaryKeyValue.field.FieldRepetitions != null && lDPPrimaryKeyValue.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(lDPPrimaryKeyValue.Id));
-            lDPPrimaryKeyValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(lDPPrimaryKeyValue, fieldData);
-        }
-
-        return lDPPrimaryKeyValue;
-    } 
-}
-
-internal HL7V23Field locationDepartment;
-
-public HL7V23Field LocationDepartment
-{
-    get
-    {
-        if (locationDepartment != null)
-        {
-            return locationDepartment;
-        }
-
-        locationDepartment = new HL7V23Field
-        {
-            field = message[@"LDP"][2],
-            Id = @"LDP.2",
-            Type = @"Field",
-            Position = @"LDP.2",
-            Name = @"Location Department",
-            Length = 10,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0264",
-            TableName = @"Location department",
-            Description = @"This field contains the institution’s department to which this location belongs, or its cost center.  Refer to user-defined table 0264 - Location department for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (locationDepartment.field.FieldRepetitions != null && locationDepartment.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(locationDepartment.Id));
-            locationDepartment.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(locationDepartment, fieldData);
-        }
-
-        return locationDepartment;
-    } 
-}
-
-internal HL7V23Field locationService;
-
-public HL7V23Field LocationService
-{
-    get
-    {
-        if (locationService != null)
-        {
-            return locationService;
-        }
-
-        locationService = new HL7V23Field
-        {
-            field = message[@"LDP"][3],
-            Id = @"LDP.3",
-            Type = @"Field",
-            Position = @"LDP.3",
-            Name = @"Location Service",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0069",
-            TableName = @"Hospital service",
-            Description = @"This field contains the hospital or ancillary service with which this location is associated.  Depends on institution use.  Repeats for rooms that can be used, for example, by different services on different days.  These values should match the values used for PV1-10-hospital service, which is site defined.  Refer to user-defined table 0069 - Hospital service for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (locationService.field.FieldRepetitions != null && locationService.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(locationService.Id));
-            locationService.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(locationService, fieldData);
-        }
-
-        return locationService;
-    } 
-}
-
-internal HL7V23Field specialityType;
-
-public HL7V23Field SpecialityType
-{
-    get
-    {
-        if (specialityType != null)
-        {
-            return specialityType;
-        }
-
-        specialityType = new HL7V23Field
-        {
-            field = message[@"LDP"][4],
-            Id = @"LDP.4",
-            Type = @"Field",
-            Position = @"LDP.4",
-            Name = @"Speciality Type",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0265",
-            TableName = @"Specialty type",
-            Description = @"This field contains the specialty type (if any) of the department or clinic. This may also be considered a bed type.  Specialty type is a physical accommodation type, whereas ‘accommodation type’ (LOC-20-accommodation type) is a financial accommodation type.  Refer to user-defined table 0265 - Specialty type for suggested values.  See also LOC-33-privacy level and LOC-34-level of care.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specialityType.field.FieldRepetitions != null && specialityType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specialityType.Id));
-            specialityType.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(specialityType, fieldData);
-        }
-
-        return specialityType;
-    } 
-}
-
-internal HL7V23Field validPatientClasses;
-
-public HL7V23Field ValidPatientClasses
-{
-    get
-    {
-        if (validPatientClasses != null)
-        {
-            return validPatientClasses;
-        }
-
-        validPatientClasses = new HL7V23Field
-        {
-            field = message[@"LDP"][5],
-            Id = @"LDP.5",
-            Type = @"Field",
-            Position = @"LDP.5",
-            Name = @"Valid Patient Classes",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0004",
-            TableName = @"Patient class",
-            Description = @"This field contains the patient types that are allowed to be assigned to this bed.  For example, Inpatient, Outpatient, Series, Clinic, ER, Ambulatory, Observation, etc.  These values should be the same set of values as those used for PV1-2-patient class.  Refer to user-defined table 0004 - Patient class for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (validPatientClasses.field.FieldRepetitions != null && validPatientClasses.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(validPatientClasses.Id));
-            validPatientClasses.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(validPatientClasses, fieldData);
-        }
-
-        return validPatientClasses;
-    } 
-}
-
-internal HL7V23Field activeInactiveFlag;
-
-public HL7V23Field ActiveInactiveFlag
-{
-    get
-    {
-        if (activeInactiveFlag != null)
-        {
-            return activeInactiveFlag;
-        }
-
-        activeInactiveFlag = new HL7V23Field
-        {
-            field = message[@"LDP"][6],
-            Id = @"LDP.6",
-            Type = @"Field",
-            Position = @"LDP.6",
-            Name = @"Active/Inactive Flag",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0183",
-            TableName = @"Active/Inactive",
-            Description = @"This field indicates whether the entry for this location is currently an active, that is, valid, usable entry (disregarding whether it’s waiting to be maintained by housekeeping).  Refer to HL7 table 0183 - Active/inactive for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (activeInactiveFlag.field.FieldRepetitions != null && activeInactiveFlag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(activeInactiveFlag.Id));
-            activeInactiveFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(activeInactiveFlag, fieldData);
-        }
-
-        return activeInactiveFlag;
-    } 
-}
-
-internal HL7V23Field activationDate;
-
-public HL7V23Field ActivationDate
-{
-    get
-    {
-        if (activationDate != null)
-        {
-            return activationDate;
-        }
-
-        activationDate = new HL7V23Field
-        {
-            field = message[@"LDP"][7],
-            Id = @"LDP.7",
-            Type = @"Field",
-            Position = @"LDP.7",
-            Name = @"Activation Date",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time when the location became active or “in service” for a department (disregarding whether it is waiting to be maintained by housekeeping).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (activationDate.field.FieldRepetitions != null && activationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(activationDate.Id));
-            activationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(activationDate, fieldData);
-        }
-
-        return activationDate;
-    } 
-}
-
-internal HL7V23Field inactivationDateLDP;
-
-public HL7V23Field InactivationDateLDP
-{
-    get
-    {
-        if (inactivationDateLDP != null)
-        {
-            return inactivationDateLDP;
-        }
-
-        inactivationDateLDP = new HL7V23Field
-        {
-            field = message[@"LDP"][8],
-            Id = @"LDP.8",
-            Type = @"Field",
-            Position = @"LDP.8",
-            Name = @"Inactivation Date - LDP",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date when the location became inactive or “out of service” for this department (disregarding whether it is waiting to be maintained by housekeeping). ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inactivationDateLDP.field.FieldRepetitions != null && inactivationDateLDP.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inactivationDateLDP.Id));
-            inactivationDateLDP.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(inactivationDateLDP, fieldData);
-        }
-
-        return inactivationDateLDP;
-    } 
-}
-
-internal HL7V23Field inactivatedReason;
-
-public HL7V23Field InactivatedReason
-{
-    get
-    {
-        if (inactivatedReason != null)
-        {
-            return inactivatedReason;
-        }
-
-        inactivatedReason = new HL7V23Field
-        {
-            field = message[@"LDP"][9],
-            Id = @"LDP.9",
-            Type = @"Field",
-            Position = @"LDP.9",
-            Name = @"Inactivated Reason",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the reason the location was put out of service.  It is used when LDP-8inactivation date-LDP is sent. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inactivatedReason.field.FieldRepetitions != null && inactivatedReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inactivatedReason.Id));
-            inactivatedReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(inactivatedReason, fieldData);
-        }
-
-        return inactivatedReason;
-    } 
-}
-
-internal HL7V23Field visitingHours;
-
-public HL7V23Field VisitingHours
-{
-    get
-    {
-        if (visitingHours != null)
-        {
-            return visitingHours;
-        }
-
-        visitingHours = new HL7V23Field
-        {
-            field = message[@"LDP"][10],
-            Id = @"LDP.10",
-            Type = @"Field",
-            Position = @"LDP.10",
-            Name = @"Visiting Hours",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"VH",
-            DataTypeName = @"Visiting Hours",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the hours when this location is open for visiting.  Refer to HL7 table 0267 - Days of the week for valid values for the first two components. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (visitingHours.field.FieldRepetitions != null && visitingHours.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(visitingHours.Id));
-            visitingHours.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(visitingHours, fieldData);
-        }
-
-        return visitingHours;
-    } 
-}
-
-internal HL7V23Field contactPhone;
-
-public HL7V23Field ContactPhone
-{
-    get
-    {
-        if (contactPhone != null)
-        {
-            return contactPhone;
-        }
-
-        contactPhone = new HL7V23Field
+        _contactPhone = new HL7V23Field
         {
             field = message[@"LDP"][11],
-            Id = @"LDP.11",
-            Type = @"Field",
-            Position = @"LDP.11",
-            Name = @"Contact Phone",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the phone number to use to contact facility personnel about the patient location, in case of inquiries about the location.  This phone is not necessarily within the named patient location.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (contactPhone.field.FieldRepetitions != null && contactPhone.field.FieldRepetitions.Count > 0)
+        if (_contactPhone.field.FieldRepetitions != null && _contactPhone.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactPhone.Id));
-            contactPhone.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(contactPhone, fieldData);
+            _contactPhone.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_contactPhone, fieldData);
         }
 
-        return contactPhone;
+        return _contactPhone;
     } 
 }
     }

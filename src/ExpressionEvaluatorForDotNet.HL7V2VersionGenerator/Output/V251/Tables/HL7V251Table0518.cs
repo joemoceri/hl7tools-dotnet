@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -47,6 +48,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Interval Override",
                             Comment = @"Identifies an override where a repetition of service is being performed sooner than the ordered frequency."
                         },
+                        
                     };
             } 
         }

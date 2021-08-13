@@ -29,196 +29,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"NSC.1",
-                            Type = @"Field",
-                            Position = @"NSC.1",
-                            Name = @"Network Change Type",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"NSC1",
-                            TableName = @"Network Change Type",
-                            Description = @"Type of change being requested (if NMR query) or announced (if NMD unsolicited update). Suggested values are: ""SU"" - Start up; ""SD"" - Shut down; ""M"" - migrates to different CPU. Implies that ""new"" version starts up with no loss or duplication of data as old one is shutting down (if possible).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.2",
-                            Type = @"Field",
-                            Position = @"NSC.2",
-                            Name = @"Current Cpu",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A site specific name for the current CPU.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.3",
-                            Type = @"Field",
-                            Position = @"NSC.3",
-                            Name = @"Current Fileserver",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A site-specific name for the current fileserver or file system used by this application",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.4",
-                            Type = @"Field",
-                            Position = @"NSC.4",
-                            Name = @"Current Application",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A site specific name available to identify the ""current"" application process used for interfacing with lower level protocols. To be used in conjunction with the sending/receiving system and facility values in the MSH.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.5",
-                            Type = @"Field",
-                            Position = @"NSC.5",
-                            Name = @"Current Facility",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A site specific name for the current facility used by this application. To be used in conjunction with the values for the sending/receiving system and facility values in the MSH.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.6",
-                            Type = @"Field",
-                            Position = @"NSC.6",
-                            Name = @"New Cpu",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A site specific name for the new CPU.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.7",
-                            Type = @"Field",
-                            Position = @"NSC.7",
-                            Name = @"New Fileserver",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A site specific name for the new fileserver or file system used by this application",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.8",
-                            Type = @"Field",
-                            Position = @"NSC.8",
-                            Name = @"New Application",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A site specific name available to identify ""new"" application processes used for interfacing with lower level protocols. To be used in conjunction with the sending/receiving system and facility values in the MSH.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.9",
-                            Type = @"Field",
-                            Position = @"NSC.9",
-                            Name = @"New Facility",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A site specific name for the new facility used by this application. To be used in conjunction with the values for the sending/receiving system and facility values in the MSH.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V22SegmentNSC(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V22Field networkChangeType;
+        internal HL7V22Field _networkChangeType;
 
 public HL7V22Field NetworkChangeType
 {
     get
     {
-        if (networkChangeType != null)
+        if (_networkChangeType != null)
         {
-            return networkChangeType;
+            return _networkChangeType;
         }
 
-        networkChangeType = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NSC"][1],
             Id = @"NSC.1",
             Type = @"Field",
             Position = @"NSC.1",
@@ -232,34 +60,38 @@ public HL7V22Field NetworkChangeType
             TableName = @"Network Change Type",
             Description = @"Type of change being requested (if NMR query) or announced (if NMD unsolicited update). Suggested values are: ""SU"" - Start up; ""SD"" - Shut down; ""M"" - migrates to different CPU. Implies that ""new"" version starts up with no loss or duplication of data as old one is shutting down (if possible).",
             Sample = @"",
+            Fields = null
+        }
+
+        _networkChangeType = new HL7V22Field
+        {
+            field = message[@"NSC"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (networkChangeType.field.FieldRepetitions != null && networkChangeType.field.FieldRepetitions.Count > 0)
+        if (_networkChangeType.field.FieldRepetitions != null && _networkChangeType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(networkChangeType.Id));
-            networkChangeType.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(networkChangeType, fieldData);
+            _networkChangeType.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_networkChangeType, fieldData);
         }
 
-        return networkChangeType;
+        return _networkChangeType;
     } 
 }
 
-internal HL7V22Field currentCpu;
+internal HL7V22Field _currentCpu;
 
 public HL7V22Field CurrentCpu
 {
     get
     {
-        if (currentCpu != null)
+        if (_currentCpu != null)
         {
-            return currentCpu;
+            return _currentCpu;
         }
 
-        currentCpu = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NSC"][2],
             Id = @"NSC.2",
             Type = @"Field",
             Position = @"NSC.2",
@@ -273,34 +105,38 @@ public HL7V22Field CurrentCpu
             TableName = null,
             Description = @"A site specific name for the current CPU.",
             Sample = @"",
+            Fields = null
+        }
+
+        _currentCpu = new HL7V22Field
+        {
+            field = message[@"NSC"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (currentCpu.field.FieldRepetitions != null && currentCpu.field.FieldRepetitions.Count > 0)
+        if (_currentCpu.field.FieldRepetitions != null && _currentCpu.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(currentCpu.Id));
-            currentCpu.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(currentCpu, fieldData);
+            _currentCpu.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_currentCpu, fieldData);
         }
 
-        return currentCpu;
+        return _currentCpu;
     } 
 }
 
-internal HL7V22Field currentFileserver;
+internal HL7V22Field _currentFileserver;
 
 public HL7V22Field CurrentFileserver
 {
     get
     {
-        if (currentFileserver != null)
+        if (_currentFileserver != null)
         {
-            return currentFileserver;
+            return _currentFileserver;
         }
 
-        currentFileserver = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NSC"][3],
             Id = @"NSC.3",
             Type = @"Field",
             Position = @"NSC.3",
@@ -314,34 +150,38 @@ public HL7V22Field CurrentFileserver
             TableName = null,
             Description = @"A site-specific name for the current fileserver or file system used by this application",
             Sample = @"",
+            Fields = null
+        }
+
+        _currentFileserver = new HL7V22Field
+        {
+            field = message[@"NSC"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (currentFileserver.field.FieldRepetitions != null && currentFileserver.field.FieldRepetitions.Count > 0)
+        if (_currentFileserver.field.FieldRepetitions != null && _currentFileserver.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(currentFileserver.Id));
-            currentFileserver.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(currentFileserver, fieldData);
+            _currentFileserver.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_currentFileserver, fieldData);
         }
 
-        return currentFileserver;
+        return _currentFileserver;
     } 
 }
 
-internal HL7V22Field currentApplication;
+internal HL7V22Field _currentApplication;
 
 public HL7V22Field CurrentApplication
 {
     get
     {
-        if (currentApplication != null)
+        if (_currentApplication != null)
         {
-            return currentApplication;
+            return _currentApplication;
         }
 
-        currentApplication = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NSC"][4],
             Id = @"NSC.4",
             Type = @"Field",
             Position = @"NSC.4",
@@ -355,34 +195,38 @@ public HL7V22Field CurrentApplication
             TableName = null,
             Description = @"A site specific name available to identify the ""current"" application process used for interfacing with lower level protocols. To be used in conjunction with the sending/receiving system and facility values in the MSH.",
             Sample = @"",
+            Fields = null
+        }
+
+        _currentApplication = new HL7V22Field
+        {
+            field = message[@"NSC"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (currentApplication.field.FieldRepetitions != null && currentApplication.field.FieldRepetitions.Count > 0)
+        if (_currentApplication.field.FieldRepetitions != null && _currentApplication.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(currentApplication.Id));
-            currentApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(currentApplication, fieldData);
+            _currentApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_currentApplication, fieldData);
         }
 
-        return currentApplication;
+        return _currentApplication;
     } 
 }
 
-internal HL7V22Field currentFacility;
+internal HL7V22Field _currentFacility;
 
 public HL7V22Field CurrentFacility
 {
     get
     {
-        if (currentFacility != null)
+        if (_currentFacility != null)
         {
-            return currentFacility;
+            return _currentFacility;
         }
 
-        currentFacility = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NSC"][5],
             Id = @"NSC.5",
             Type = @"Field",
             Position = @"NSC.5",
@@ -396,34 +240,38 @@ public HL7V22Field CurrentFacility
             TableName = null,
             Description = @"A site specific name for the current facility used by this application. To be used in conjunction with the values for the sending/receiving system and facility values in the MSH.",
             Sample = @"",
+            Fields = null
+        }
+
+        _currentFacility = new HL7V22Field
+        {
+            field = message[@"NSC"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (currentFacility.field.FieldRepetitions != null && currentFacility.field.FieldRepetitions.Count > 0)
+        if (_currentFacility.field.FieldRepetitions != null && _currentFacility.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(currentFacility.Id));
-            currentFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(currentFacility, fieldData);
+            _currentFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_currentFacility, fieldData);
         }
 
-        return currentFacility;
+        return _currentFacility;
     } 
 }
 
-internal HL7V22Field newCpu;
+internal HL7V22Field _newCpu;
 
 public HL7V22Field NewCpu
 {
     get
     {
-        if (newCpu != null)
+        if (_newCpu != null)
         {
-            return newCpu;
+            return _newCpu;
         }
 
-        newCpu = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NSC"][6],
             Id = @"NSC.6",
             Type = @"Field",
             Position = @"NSC.6",
@@ -437,34 +285,38 @@ public HL7V22Field NewCpu
             TableName = null,
             Description = @"A site specific name for the new CPU.",
             Sample = @"",
+            Fields = null
+        }
+
+        _newCpu = new HL7V22Field
+        {
+            field = message[@"NSC"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (newCpu.field.FieldRepetitions != null && newCpu.field.FieldRepetitions.Count > 0)
+        if (_newCpu.field.FieldRepetitions != null && _newCpu.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(newCpu.Id));
-            newCpu.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(newCpu, fieldData);
+            _newCpu.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_newCpu, fieldData);
         }
 
-        return newCpu;
+        return _newCpu;
     } 
 }
 
-internal HL7V22Field newFileserver;
+internal HL7V22Field _newFileserver;
 
 public HL7V22Field NewFileserver
 {
     get
     {
-        if (newFileserver != null)
+        if (_newFileserver != null)
         {
-            return newFileserver;
+            return _newFileserver;
         }
 
-        newFileserver = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NSC"][7],
             Id = @"NSC.7",
             Type = @"Field",
             Position = @"NSC.7",
@@ -478,34 +330,38 @@ public HL7V22Field NewFileserver
             TableName = null,
             Description = @"A site specific name for the new fileserver or file system used by this application",
             Sample = @"",
+            Fields = null
+        }
+
+        _newFileserver = new HL7V22Field
+        {
+            field = message[@"NSC"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (newFileserver.field.FieldRepetitions != null && newFileserver.field.FieldRepetitions.Count > 0)
+        if (_newFileserver.field.FieldRepetitions != null && _newFileserver.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(newFileserver.Id));
-            newFileserver.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(newFileserver, fieldData);
+            _newFileserver.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_newFileserver, fieldData);
         }
 
-        return newFileserver;
+        return _newFileserver;
     } 
 }
 
-internal HL7V22Field newApplication;
+internal HL7V22Field _newApplication;
 
 public HL7V22Field NewApplication
 {
     get
     {
-        if (newApplication != null)
+        if (_newApplication != null)
         {
-            return newApplication;
+            return _newApplication;
         }
 
-        newApplication = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NSC"][8],
             Id = @"NSC.8",
             Type = @"Field",
             Position = @"NSC.8",
@@ -519,34 +375,38 @@ public HL7V22Field NewApplication
             TableName = null,
             Description = @"A site specific name available to identify ""new"" application processes used for interfacing with lower level protocols. To be used in conjunction with the sending/receiving system and facility values in the MSH.",
             Sample = @"",
+            Fields = null
+        }
+
+        _newApplication = new HL7V22Field
+        {
+            field = message[@"NSC"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (newApplication.field.FieldRepetitions != null && newApplication.field.FieldRepetitions.Count > 0)
+        if (_newApplication.field.FieldRepetitions != null && _newApplication.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(newApplication.Id));
-            newApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(newApplication, fieldData);
+            _newApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_newApplication, fieldData);
         }
 
-        return newApplication;
+        return _newApplication;
     } 
 }
 
-internal HL7V22Field newFacility;
+internal HL7V22Field _newFacility;
 
 public HL7V22Field NewFacility
 {
     get
     {
-        if (newFacility != null)
+        if (_newFacility != null)
         {
-            return newFacility;
+            return _newFacility;
         }
 
-        newFacility = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NSC"][9],
             Id = @"NSC.9",
             Type = @"Field",
             Position = @"NSC.9",
@@ -560,17 +420,22 @@ public HL7V22Field NewFacility
             TableName = null,
             Description = @"A site specific name for the new facility used by this application. To be used in conjunction with the values for the sending/receiving system and facility values in the MSH.",
             Sample = @"",
+            Fields = null
+        }
+
+        _newFacility = new HL7V22Field
+        {
+            field = message[@"NSC"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (newFacility.field.FieldRepetitions != null && newFacility.field.FieldRepetitions.Count > 0)
+        if (_newFacility.field.FieldRepetitions != null && _newFacility.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(newFacility.Id));
-            newFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(newFacility, fieldData);
+            _newFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_newFacility, fieldData);
         }
 
-        return newFacility;
+        return _newFacility;
     } 
 }
     }

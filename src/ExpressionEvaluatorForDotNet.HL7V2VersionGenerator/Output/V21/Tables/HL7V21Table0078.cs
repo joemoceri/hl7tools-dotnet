@@ -104,6 +104,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Very sensitive",
                             Comment = null
                         },
+                        
                     };
             } 
         }

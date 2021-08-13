@@ -31,28 +31,40 @@ The LCH segment is used to identify location characteristics which determine whi
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentLCH(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _primaryKeyValueLCH;
+
+public HL7V26Field PrimaryKeyValueLCH
+{
+    get
+    {
+        if (_primaryKeyValueLCH != null)
+        {
+            return _primaryKeyValueLCH;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"LCH.1",
+            Type = @"Field",
+            Position = @"LCH.1",
+            Name = @"Primary Key Value - LCH",
+            Length = 200,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the institution's identification code for the location. The identifying key value. This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here). At least the first component of this field is required. The contents of this field must exactly match the content of its preceding MFE ( MFE-4 - Primary Key Value - MFE ), its preceding LOC ( LOC-1 - Primary Key Value - LOC ), and its preceding LDP (LDP-1 - Primary Key Value - LDP).",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"LCH.1",
-                            Type = @"Field",
-                            Position = @"LCH.1",
-                            Name = @"Primary Key Value - LCH",
-                            Length = 200,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the institution's identification code for the location. The identifying key value. This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here). At least the first component of this field is required. The contents of this field must exactly match the content of its preceding MFE ( MFE-4 - Primary Key Value - MFE ), its preceding LOC ( LOC-1 - Primary Key Value - LOC ), and its preceding LDP (LDP-1 - Primary Key Value - LDP).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LCH.1.1",
                             Type = @"Component",
@@ -422,43 +434,100 @@ The LCH segment is used to identify location characteristics which determine whi
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primaryKeyValueLCH = new HL7V26Field
+        {
+            field = message[@"LCH"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryKeyValueLCH.field.FieldRepetitions != null && _primaryKeyValueLCH.field.FieldRepetitions.Count > 0)
+        {
+            _primaryKeyValueLCH.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_primaryKeyValueLCH, fieldData);
+        }
+
+        return _primaryKeyValueLCH;
+    } 
+}
+
+internal HL7V26Field _segmentActionCode;
+
+public HL7V26Field SegmentActionCode
+{
+    get
+    {
+        if (_segmentActionCode != null)
+        {
+            return _segmentActionCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"LCH.2",
+            Type = @"Field",
+            Position = @"LCH.2",
+            Name = @"Segment Action Code",
+            Length = 3,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0206",
+            TableName = @"Segment action code",
+            Description = @"This field indicates whether this repetition of the segment is being added, changed or deleted. The action code adds a validation check to indicate, from the point of view of the sending system, whether this repetition of a segment is being added, changed or deleted. This and the following field are used to implement the ""unique key"" mode of updating repeating segments. (See Chapter 2, section 2.23.4.2, ""Action code/unique identifier mode update definition."") Refer to HL7 Table 0206 - Segment action code for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _segmentActionCode = new HL7V26Field
+        {
+            field = message[@"LCH"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_segmentActionCode.field.FieldRepetitions != null && _segmentActionCode.field.FieldRepetitions.Count > 0)
+        {
+            _segmentActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_segmentActionCode, fieldData);
+        }
+
+        return _segmentActionCode;
+    } 
+}
+
+internal HL7V26Field _segmentUniqueKey;
+
+public HL7V26Field SegmentUniqueKey
+{
+    get
+    {
+        if (_segmentUniqueKey != null)
+        {
+            return _segmentUniqueKey;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"LCH.3",
+            Type = @"Field",
+            Position = @"LCH.3",
+            Name = @"Segment Unique Key",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a unique identifier for one of the multiple repetitions of this segment, to be used in conjunction with the preceding field. Each of the repetitions of the segment will be uniquely identified by this unique key field for the purposes of updates.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LCH.2",
-                            Type = @"Field",
-                            Position = @"LCH.2",
-                            Name = @"Segment Action Code",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0206",
-                            TableName = @"Segment action code",
-                            Description = @"This field indicates whether this repetition of the segment is being added, changed or deleted. The action code adds a validation check to indicate, from the point of view of the sending system, whether this repetition of a segment is being added, changed or deleted. This and the following field are used to implement the ""unique key"" mode of updating repeating segments. (See Chapter 2, section 2.23.4.2, ""Action code/unique identifier mode update definition."") Refer to HL7 Table 0206 - Segment action code for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LCH.3",
-                            Type = @"Field",
-                            Position = @"LCH.3",
-                            Name = @"Segment Unique Key",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a unique identifier for one of the multiple repetitions of this segment, to be used in conjunction with the preceding field. Each of the repetitions of the segment will be uniquely identified by this unique key field for the purposes of updates.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LCH.3.1",
                             Type = @"Component",
@@ -528,25 +597,55 @@ The LCH segment is used to identify location characteristics which determine whi
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _segmentUniqueKey = new HL7V26Field
+        {
+            field = message[@"LCH"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_segmentUniqueKey.field.FieldRepetitions != null && _segmentUniqueKey.field.FieldRepetitions.Count > 0)
+        {
+            _segmentUniqueKey.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_segmentUniqueKey, fieldData);
+        }
+
+        return _segmentUniqueKey;
+    } 
+}
+
+internal HL7V26Field _locationCharacteristicID;
+
+public HL7V26Field LocationCharacteristicID
+{
+    get
+    {
+        if (_locationCharacteristicID != null)
+        {
+            return _locationCharacteristicID;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"LCH.4",
+            Type = @"Field",
+            Position = @"LCH.4",
+            Name = @"Location Characteristic ID",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0324",
+            TableName = @"Location characteristic ID",
+            Description = @"This field contains an identifier code to show WHICH characteristic is being communicated with this segment. Refer to User-defined Table 0324 - Location characteristic ID for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LCH.4",
-                            Type = @"Field",
-                            Position = @"LCH.4",
-                            Name = @"Location Characteristic ID",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0324",
-                            TableName = @"Location characteristic ID",
-                            Description = @"This field contains an identifier code to show WHICH characteristic is being communicated with this segment. Refer to User-defined Table 0324 - Location characteristic ID for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LCH.4.1",
                             Type = @"Component",
@@ -706,31 +805,61 @@ The LCH segment is used to identify location characteristics which determine whi
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LCH.5",
-                            Type = @"Field",
-                            Position = @"LCH.5",
-                            Name = @"Location Characteristic Value-LCH",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the value of the above field's characteristic. The expected coded values for this field will depend upon the previous field. For example, if the previous field is SMK, IMP, INF, the values would be ""Y"" or ""N"".
+                        }
+        }
+
+        _locationCharacteristicID = new HL7V26Field
+        {
+            field = message[@"LCH"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_locationCharacteristicID.field.FieldRepetitions != null && _locationCharacteristicID.field.FieldRepetitions.Count > 0)
+        {
+            _locationCharacteristicID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_locationCharacteristicID, fieldData);
+        }
+
+        return _locationCharacteristicID;
+    } 
+}
+
+internal HL7V26Field _locationCharacteristicValueLCH;
+
+public HL7V26Field LocationCharacteristicValueLCH
+{
+    get
+    {
+        if (_locationCharacteristicValueLCH != null)
+        {
+            return _locationCharacteristicValueLCH;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"LCH.5",
+            Type = @"Field",
+            Position = @"LCH.5",
+            Name = @"Location Characteristic Value-LCH",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the value of the above field's characteristic. The expected coded values for this field will depend upon the previous field. For example, if the previous field is SMK, IMP, INF, the values would be ""Y"" or ""N"".
 
 When LCH-4-location characteristic ID contains ""SHA""- Shadow, ""IFD"" - Infectious disease, ""SMO""- Smoking, ""IMP""- Implant, or ""LIC""- Licensed, refer to HL7 Table 0136 - Yes/no indicator for valid values for LRL-5 - Organizational Location Relationship Value.
 
 When LCH-4 - Location Characteristic ID contains ""PRL""- Privacy level (CWE), then LRL-5 - Organizational Location Relationship Value indicates how the room is set up and intended to be used, disregarding different uses under special circumstances.  Refer to User-defined Table 0262 - Privacy level for suggested values.
 
 When LCH-4 - Location Characteristic ID contains ""LCR""- Level of care, then LRL-5 - Organizational Location Relationship Value contains the code which indicates what severity of the patient's medical condition which this location is designed to handle.  This indicates how the room is set up and intended to be used, disregarding different uses under special circumstances.  Refer to User-defined Table 0263 - Level of care for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"LCH.5.1",
                             Type = @"Component",
@@ -890,225 +1019,23 @@ When LCH-4 - Location Characteristic ID contains ""LCR""- Level of care, then LR
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentLCH(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field primaryKeyValueLCH;
-
-public HL7V26Field PrimaryKeyValueLCH
-{
-    get
-    {
-        if (primaryKeyValueLCH != null)
-        {
-            return primaryKeyValueLCH;
-        }
-
-        primaryKeyValueLCH = new HL7V26Field
-        {
-            field = message[@"LCH"][1],
-            Id = @"LCH.1",
-            Type = @"Field",
-            Position = @"LCH.1",
-            Name = @"Primary Key Value - LCH",
-            Length = 200,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the institution's identification code for the location. The identifying key value. This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here). At least the first component of this field is required. The contents of this field must exactly match the content of its preceding MFE ( MFE-4 - Primary Key Value - MFE ), its preceding LOC ( LOC-1 - Primary Key Value - LOC ), and its preceding LDP (LDP-1 - Primary Key Value - LDP).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryKeyValueLCH.field.FieldRepetitions != null && primaryKeyValueLCH.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryKeyValueLCH.Id));
-            primaryKeyValueLCH.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(primaryKeyValueLCH, fieldData);
-        }
-
-        return primaryKeyValueLCH;
-    } 
-}
-
-internal HL7V26Field segmentActionCode;
-
-public HL7V26Field SegmentActionCode
-{
-    get
-    {
-        if (segmentActionCode != null)
-        {
-            return segmentActionCode;
-        }
-
-        segmentActionCode = new HL7V26Field
-        {
-            field = message[@"LCH"][2],
-            Id = @"LCH.2",
-            Type = @"Field",
-            Position = @"LCH.2",
-            Name = @"Segment Action Code",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0206",
-            TableName = @"Segment action code",
-            Description = @"This field indicates whether this repetition of the segment is being added, changed or deleted. The action code adds a validation check to indicate, from the point of view of the sending system, whether this repetition of a segment is being added, changed or deleted. This and the following field are used to implement the ""unique key"" mode of updating repeating segments. (See Chapter 2, section 2.23.4.2, ""Action code/unique identifier mode update definition."") Refer to HL7 Table 0206 - Segment action code for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (segmentActionCode.field.FieldRepetitions != null && segmentActionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(segmentActionCode.Id));
-            segmentActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(segmentActionCode, fieldData);
-        }
-
-        return segmentActionCode;
-    } 
-}
-
-internal HL7V26Field segmentUniqueKey;
-
-public HL7V26Field SegmentUniqueKey
-{
-    get
-    {
-        if (segmentUniqueKey != null)
-        {
-            return segmentUniqueKey;
-        }
-
-        segmentUniqueKey = new HL7V26Field
-        {
-            field = message[@"LCH"][3],
-            Id = @"LCH.3",
-            Type = @"Field",
-            Position = @"LCH.3",
-            Name = @"Segment Unique Key",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a unique identifier for one of the multiple repetitions of this segment, to be used in conjunction with the preceding field. Each of the repetitions of the segment will be uniquely identified by this unique key field for the purposes of updates.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (segmentUniqueKey.field.FieldRepetitions != null && segmentUniqueKey.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(segmentUniqueKey.Id));
-            segmentUniqueKey.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(segmentUniqueKey, fieldData);
-        }
-
-        return segmentUniqueKey;
-    } 
-}
-
-internal HL7V26Field locationCharacteristicID;
-
-public HL7V26Field LocationCharacteristicID
-{
-    get
-    {
-        if (locationCharacteristicID != null)
-        {
-            return locationCharacteristicID;
-        }
-
-        locationCharacteristicID = new HL7V26Field
-        {
-            field = message[@"LCH"][4],
-            Id = @"LCH.4",
-            Type = @"Field",
-            Position = @"LCH.4",
-            Name = @"Location Characteristic ID",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0324",
-            TableName = @"Location characteristic ID",
-            Description = @"This field contains an identifier code to show WHICH characteristic is being communicated with this segment. Refer to User-defined Table 0324 - Location characteristic ID for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (locationCharacteristicID.field.FieldRepetitions != null && locationCharacteristicID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(locationCharacteristicID.Id));
-            locationCharacteristicID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(locationCharacteristicID, fieldData);
-        }
-
-        return locationCharacteristicID;
-    } 
-}
-
-internal HL7V26Field locationCharacteristicValueLCH;
-
-public HL7V26Field LocationCharacteristicValueLCH
-{
-    get
-    {
-        if (locationCharacteristicValueLCH != null)
-        {
-            return locationCharacteristicValueLCH;
-        }
-
-        locationCharacteristicValueLCH = new HL7V26Field
+        _locationCharacteristicValueLCH = new HL7V26Field
         {
             field = message[@"LCH"][5],
-            Id = @"LCH.5",
-            Type = @"Field",
-            Position = @"LCH.5",
-            Name = @"Location Characteristic Value-LCH",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the value of the above field's characteristic. The expected coded values for this field will depend upon the previous field. For example, if the previous field is SMK, IMP, INF, the values would be ""Y"" or ""N"".
-
-When LCH-4-location characteristic ID contains ""SHA""- Shadow, ""IFD"" - Infectious disease, ""SMO""- Smoking, ""IMP""- Implant, or ""LIC""- Licensed, refer to HL7 Table 0136 - Yes/no indicator for valid values for LRL-5 - Organizational Location Relationship Value.
-
-When LCH-4 - Location Characteristic ID contains ""PRL""- Privacy level (CWE), then LRL-5 - Organizational Location Relationship Value indicates how the room is set up and intended to be used, disregarding different uses under special circumstances.  Refer to User-defined Table 0262 - Privacy level for suggested values.
-
-When LCH-4 - Location Characteristic ID contains ""LCR""- Level of care, then LRL-5 - Organizational Location Relationship Value contains the code which indicates what severity of the patient's medical condition which this location is designed to handle.  This indicates how the room is set up and intended to be used, disregarding different uses under special circumstances.  Refer to User-defined Table 0263 - Level of care for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (locationCharacteristicValueLCH.field.FieldRepetitions != null && locationCharacteristicValueLCH.field.FieldRepetitions.Count > 0)
+        if (_locationCharacteristicValueLCH.field.FieldRepetitions != null && _locationCharacteristicValueLCH.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(locationCharacteristicValueLCH.Id));
-            locationCharacteristicValueLCH.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(locationCharacteristicValueLCH, fieldData);
+            _locationCharacteristicValueLCH.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_locationCharacteristicValueLCH, fieldData);
         }
 
-        return locationCharacteristicValueLCH;
+        return _locationCharacteristicValueLCH;
     } 
 }
     }

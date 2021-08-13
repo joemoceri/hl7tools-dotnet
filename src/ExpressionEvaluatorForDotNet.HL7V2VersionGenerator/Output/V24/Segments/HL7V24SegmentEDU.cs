@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentEDU(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _setIDEDU;
+
+public HL7V24Field SetIDEDU
+{
+    get
+    {
+        if (_setIDEDU != null)
+        {
+            return _setIDEDU;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"EDU.1",
+            Type = @"Field",
+            Position = @"EDU.1",
+            Name = @"Set ID - EDU",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction.  For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDEDU = new HL7V24Field
+        {
+            field = message[@"EDU"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDEDU.field.FieldRepetitions != null && _setIDEDU.field.FieldRepetitions.Count > 0)
+        {
+            _setIDEDU.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_setIDEDU, fieldData);
+        }
+
+        return _setIDEDU;
+    } 
+}
+
+internal HL7V24Field _academicDegree;
+
+public HL7V24Field AcademicDegree
+{
+    get
+    {
+        if (_academicDegree != null)
+        {
+            return _academicDegree;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"EDU.2",
+            Type = @"Field",
+            Position = @"EDU.2",
+            Name = @"Academic Degree",
+            Length = 10,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0360",
+            TableName = @"Degree",
+            Description = @"This field contains the standard classification awarded upon completion of a unified program of study.  HL7 suggests using values in User-defined Table 0360 - Degree.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _academicDegree = new HL7V24Field
+        {
+            field = message[@"EDU"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_academicDegree.field.FieldRepetitions != null && _academicDegree.field.FieldRepetitions.Count > 0)
+        {
+            _academicDegree.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_academicDegree, fieldData);
+        }
+
+        return _academicDegree;
+    } 
+}
+
+internal HL7V24Field _academicDegreeProgramDateRange;
+
+public HL7V24Field AcademicDegreeProgramDateRange
+{
+    get
+    {
+        if (_academicDegreeProgramDateRange != null)
+        {
+            return _academicDegreeProgramDateRange;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"EDU.3",
+            Type = @"Field",
+            Position = @"EDU.3",
+            Name = @"Academic Degree Program Date Range",
+            Length = 52,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DR",
+            DataTypeName = @"Date/time Range",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date range when the academic degree program took place",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"EDU.1",
-                            Type = @"Field",
-                            Position = @"EDU.1",
-                            Name = @"Set ID - EDU",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction.  For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EDU.2",
-                            Type = @"Field",
-                            Position = @"EDU.2",
-                            Name = @"Academic Degree",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0360",
-                            TableName = @"Degree",
-                            Description = @"This field contains the standard classification awarded upon completion of a unified program of study.  HL7 suggests using values in User-defined Table 0360 - Degree.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EDU.3",
-                            Type = @"Field",
-                            Position = @"EDU.3",
-                            Name = @"Academic Degree Program Date Range",
-                            Length = 52,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DR",
-                            DataTypeName = @"Date/time Range",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date range when the academic degree program took place",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"EDU.3.1",
                             Type = @"Component",
@@ -188,25 +254,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _academicDegreeProgramDateRange = new HL7V24Field
+        {
+            field = message[@"EDU"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_academicDegreeProgramDateRange.field.FieldRepetitions != null && _academicDegreeProgramDateRange.field.FieldRepetitions.Count > 0)
+        {
+            _academicDegreeProgramDateRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_academicDegreeProgramDateRange, fieldData);
+        }
+
+        return _academicDegreeProgramDateRange;
+    } 
+}
+
+internal HL7V24Field _academicDegreeProgramParticipationDateRange;
+
+public HL7V24Field AcademicDegreeProgramParticipationDateRange
+{
+    get
+    {
+        if (_academicDegreeProgramParticipationDateRange != null)
+        {
+            return _academicDegreeProgramParticipationDateRange;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"EDU.4",
+            Type = @"Field",
+            Position = @"EDU.4",
+            Name = @"Academic Degree Program Participation Date Range",
+            Length = 52,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DR",
+            DataTypeName = @"Date/time Range",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date range during which the staff member participated in the academic degree program",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EDU.4",
-                            Type = @"Field",
-                            Position = @"EDU.4",
-                            Name = @"Academic Degree Program Participation Date Range",
-                            Length = 52,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DR",
-                            DataTypeName = @"Date/time Range",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date range during which the staff member participated in the academic degree program",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EDU.4.1",
                             Type = @"Component",
@@ -308,43 +404,100 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _academicDegreeProgramParticipationDateRange = new HL7V24Field
+        {
+            field = message[@"EDU"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_academicDegreeProgramParticipationDateRange.field.FieldRepetitions != null && _academicDegreeProgramParticipationDateRange.field.FieldRepetitions.Count > 0)
+        {
+            _academicDegreeProgramParticipationDateRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_academicDegreeProgramParticipationDateRange, fieldData);
+        }
+
+        return _academicDegreeProgramParticipationDateRange;
+    } 
+}
+
+internal HL7V24Field _academicDegreeGrantedDate;
+
+public HL7V24Field AcademicDegreeGrantedDate
+{
+    get
+    {
+        if (_academicDegreeGrantedDate != null)
+        {
+            return _academicDegreeGrantedDate;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"EDU.5",
+            Type = @"Field",
+            Position = @"EDU.5",
+            Name = @"Academic Degree Granted Date",
+            Length = 8,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date the academic degree was granted to the staff member",
+            Sample = @"",
+            Fields = null
+        }
+
+        _academicDegreeGrantedDate = new HL7V24Field
+        {
+            field = message[@"EDU"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_academicDegreeGrantedDate.field.FieldRepetitions != null && _academicDegreeGrantedDate.field.FieldRepetitions.Count > 0)
+        {
+            _academicDegreeGrantedDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_academicDegreeGrantedDate, fieldData);
+        }
+
+        return _academicDegreeGrantedDate;
+    } 
+}
+
+internal HL7V24Field _school;
+
+public HL7V24Field School
+{
+    get
+    {
+        if (_school != null)
+        {
+            return _school;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"EDU.6",
+            Type = @"Field",
+            Position = @"EDU.6",
+            Name = @"School",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the official name of the academic institution that granted the degree to the Staff Member",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EDU.5",
-                            Type = @"Field",
-                            Position = @"EDU.5",
-                            Name = @"Academic Degree Granted Date",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date the academic degree was granted to the staff member",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EDU.6",
-                            Type = @"Field",
-                            Position = @"EDU.6",
-                            Name = @"School",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the official name of the academic institution that granted the degree to the Staff Member",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EDU.6.1",
                             Type = @"Component",
@@ -608,25 +761,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Different <name/address types> and representations of the same <name/address> should be described by repeating of this field, with different values of the <name/address type> and/or <name/address representation> component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _school = new HL7V24Field
+        {
+            field = message[@"EDU"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_school.field.FieldRepetitions != null && _school.field.FieldRepetitions.Count > 0)
+        {
+            _school.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_school, fieldData);
+        }
+
+        return _school;
+    } 
+}
+
+internal HL7V24Field _schoolTypeCode;
+
+public HL7V24Field SchoolTypeCode
+{
+    get
+    {
+        if (_schoolTypeCode != null)
+        {
+            return _schoolTypeCode;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"EDU.7",
+            Type = @"Field",
+            Position = @"EDU.7",
+            Name = @"School Type Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0402",
+            TableName = @"School type",
+            Description = @"This field contains the categorization of the academic institution that granted the degree to the Staff Member.  HL7 suggests using values in User-defined Table 0402 - School type",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EDU.7",
-                            Type = @"Field",
-                            Position = @"EDU.7",
-                            Name = @"School Type Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0402",
-                            TableName = @"School type",
-                            Description = @"This field contains the categorization of the academic institution that granted the degree to the Staff Member.  HL7 suggests using values in User-defined Table 0402 - School type",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EDU.7.1",
                             Type = @"Component",
@@ -736,25 +919,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _schoolTypeCode = new HL7V24Field
+        {
+            field = message[@"EDU"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_schoolTypeCode.field.FieldRepetitions != null && _schoolTypeCode.field.FieldRepetitions.Count > 0)
+        {
+            _schoolTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_schoolTypeCode, fieldData);
+        }
+
+        return _schoolTypeCode;
+    } 
+}
+
+internal HL7V24Field _schoolAddress;
+
+public HL7V24Field SchoolAddress
+{
+    get
+    {
+        if (_schoolAddress != null)
+        {
+            return _schoolAddress;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"EDU.8",
+            Type = @"Field",
+            Position = @"EDU.8",
+            Name = @"School Address",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the postal address of the academic institution that granted the degree to the Staff Member",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EDU.8",
-                            Type = @"Field",
-                            Position = @"EDU.8",
-                            Name = @"School Address",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the postal address of the academic institution that granted the degree to the Staff Member",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EDU.8.1",
                             Type = @"Component",
@@ -1122,342 +1335,23 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             FieldDatas = null
                         },}
                         },}
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentEDU(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field setIDEDU;
-
-public HL7V24Field SetIDEDU
-{
-    get
-    {
-        if (setIDEDU != null)
-        {
-            return setIDEDU;
-        }
-
-        setIDEDU = new HL7V24Field
-        {
-            field = message[@"EDU"][1],
-            Id = @"EDU.1",
-            Type = @"Field",
-            Position = @"EDU.1",
-            Name = @"Set ID - EDU",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction.  For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDEDU.field.FieldRepetitions != null && setIDEDU.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDEDU.Id));
-            setIDEDU.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(setIDEDU, fieldData);
-        }
-
-        return setIDEDU;
-    } 
-}
-
-internal HL7V24Field academicDegree;
-
-public HL7V24Field AcademicDegree
-{
-    get
-    {
-        if (academicDegree != null)
-        {
-            return academicDegree;
-        }
-
-        academicDegree = new HL7V24Field
-        {
-            field = message[@"EDU"][2],
-            Id = @"EDU.2",
-            Type = @"Field",
-            Position = @"EDU.2",
-            Name = @"Academic Degree",
-            Length = 10,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0360",
-            TableName = @"Degree",
-            Description = @"This field contains the standard classification awarded upon completion of a unified program of study.  HL7 suggests using values in User-defined Table 0360 - Degree.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (academicDegree.field.FieldRepetitions != null && academicDegree.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(academicDegree.Id));
-            academicDegree.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(academicDegree, fieldData);
-        }
-
-        return academicDegree;
-    } 
-}
-
-internal HL7V24Field academicDegreeProgramDateRange;
-
-public HL7V24Field AcademicDegreeProgramDateRange
-{
-    get
-    {
-        if (academicDegreeProgramDateRange != null)
-        {
-            return academicDegreeProgramDateRange;
-        }
-
-        academicDegreeProgramDateRange = new HL7V24Field
-        {
-            field = message[@"EDU"][3],
-            Id = @"EDU.3",
-            Type = @"Field",
-            Position = @"EDU.3",
-            Name = @"Academic Degree Program Date Range",
-            Length = 52,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DR",
-            DataTypeName = @"Date/time Range",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date range when the academic degree program took place",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (academicDegreeProgramDateRange.field.FieldRepetitions != null && academicDegreeProgramDateRange.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(academicDegreeProgramDateRange.Id));
-            academicDegreeProgramDateRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(academicDegreeProgramDateRange, fieldData);
-        }
-
-        return academicDegreeProgramDateRange;
-    } 
-}
-
-internal HL7V24Field academicDegreeProgramParticipationDateRange;
-
-public HL7V24Field AcademicDegreeProgramParticipationDateRange
-{
-    get
-    {
-        if (academicDegreeProgramParticipationDateRange != null)
-        {
-            return academicDegreeProgramParticipationDateRange;
-        }
-
-        academicDegreeProgramParticipationDateRange = new HL7V24Field
-        {
-            field = message[@"EDU"][4],
-            Id = @"EDU.4",
-            Type = @"Field",
-            Position = @"EDU.4",
-            Name = @"Academic Degree Program Participation Date Range",
-            Length = 52,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DR",
-            DataTypeName = @"Date/time Range",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date range during which the staff member participated in the academic degree program",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (academicDegreeProgramParticipationDateRange.field.FieldRepetitions != null && academicDegreeProgramParticipationDateRange.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(academicDegreeProgramParticipationDateRange.Id));
-            academicDegreeProgramParticipationDateRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(academicDegreeProgramParticipationDateRange, fieldData);
-        }
-
-        return academicDegreeProgramParticipationDateRange;
-    } 
-}
-
-internal HL7V24Field academicDegreeGrantedDate;
-
-public HL7V24Field AcademicDegreeGrantedDate
-{
-    get
-    {
-        if (academicDegreeGrantedDate != null)
-        {
-            return academicDegreeGrantedDate;
-        }
-
-        academicDegreeGrantedDate = new HL7V24Field
-        {
-            field = message[@"EDU"][5],
-            Id = @"EDU.5",
-            Type = @"Field",
-            Position = @"EDU.5",
-            Name = @"Academic Degree Granted Date",
-            Length = 8,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date the academic degree was granted to the staff member",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (academicDegreeGrantedDate.field.FieldRepetitions != null && academicDegreeGrantedDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(academicDegreeGrantedDate.Id));
-            academicDegreeGrantedDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(academicDegreeGrantedDate, fieldData);
-        }
-
-        return academicDegreeGrantedDate;
-    } 
-}
-
-internal HL7V24Field school;
-
-public HL7V24Field School
-{
-    get
-    {
-        if (school != null)
-        {
-            return school;
-        }
-
-        school = new HL7V24Field
-        {
-            field = message[@"EDU"][6],
-            Id = @"EDU.6",
-            Type = @"Field",
-            Position = @"EDU.6",
-            Name = @"School",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the official name of the academic institution that granted the degree to the Staff Member",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (school.field.FieldRepetitions != null && school.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(school.Id));
-            school.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(school, fieldData);
-        }
-
-        return school;
-    } 
-}
-
-internal HL7V24Field schoolTypeCode;
-
-public HL7V24Field SchoolTypeCode
-{
-    get
-    {
-        if (schoolTypeCode != null)
-        {
-            return schoolTypeCode;
-        }
-
-        schoolTypeCode = new HL7V24Field
-        {
-            field = message[@"EDU"][7],
-            Id = @"EDU.7",
-            Type = @"Field",
-            Position = @"EDU.7",
-            Name = @"School Type Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0402",
-            TableName = @"School type",
-            Description = @"This field contains the categorization of the academic institution that granted the degree to the Staff Member.  HL7 suggests using values in User-defined Table 0402 - School type",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (schoolTypeCode.field.FieldRepetitions != null && schoolTypeCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(schoolTypeCode.Id));
-            schoolTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(schoolTypeCode, fieldData);
-        }
-
-        return schoolTypeCode;
-    } 
-}
-
-internal HL7V24Field schoolAddress;
-
-public HL7V24Field SchoolAddress
-{
-    get
-    {
-        if (schoolAddress != null)
-        {
-            return schoolAddress;
-        }
-
-        schoolAddress = new HL7V24Field
+        _schoolAddress = new HL7V24Field
         {
             field = message[@"EDU"][8],
-            Id = @"EDU.8",
-            Type = @"Field",
-            Position = @"EDU.8",
-            Name = @"School Address",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the postal address of the academic institution that granted the degree to the Staff Member",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (schoolAddress.field.FieldRepetitions != null && schoolAddress.field.FieldRepetitions.Count > 0)
+        if (_schoolAddress.field.FieldRepetitions != null && _schoolAddress.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(schoolAddress.Id));
-            schoolAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(schoolAddress, fieldData);
+            _schoolAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_schoolAddress, fieldData);
         }
 
-        return schoolAddress;
+        return _schoolAddress;
     } 
 }
     }

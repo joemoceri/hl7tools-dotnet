@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V25SegmentTQ2(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V25Field _setIDTQ2;
+
+public HL7V25Field SetIDTQ2
+{
+    get
+    {
+        if (_setIDTQ2 != null)
+        {
+            return _setIDTQ2;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"TQ2.1",
+            Type = @"Field",
+            Position = @"TQ2.1",
+            Name = @"Set ID - TQ2",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"For the first timing specification transmitted, the sequence number shall be 1; for the second timing specification, it shall be 2; and so on.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDTQ2 = new HL7V25Field
+        {
+            field = message[@"TQ2"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDTQ2.field.FieldRepetitions != null && _setIDTQ2.field.FieldRepetitions.Count > 0)
+        {
+            _setIDTQ2.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_setIDTQ2, fieldData);
+        }
+
+        return _setIDTQ2;
+    } 
+}
+
+internal HL7V25Field _sequenceResultsFlag;
+
+public HL7V25Field SequenceResultsFlag
+{
+    get
+    {
+        if (_sequenceResultsFlag != null)
+        {
+            return _sequenceResultsFlag;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"TQ2.2",
+            Type = @"Field",
+            Position = @"TQ2.2",
+            Name = @"Sequence/Results Flag",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0503",
+            TableName = @"Sequence/Results Flag",
+            Description = @"This flag defines the sequencing relationship between the current service request, and the related service request(s) specified in this TQ2 segment. See HL7 Table 0503 - Sequence/Results Flag for values. If not value is present, the S - Sequential is the default value.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sequenceResultsFlag = new HL7V25Field
+        {
+            field = message[@"TQ2"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sequenceResultsFlag.field.FieldRepetitions != null && _sequenceResultsFlag.field.FieldRepetitions.Count > 0)
+        {
+            _sequenceResultsFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_sequenceResultsFlag, fieldData);
+        }
+
+        return _sequenceResultsFlag;
+    } 
+}
+
+internal HL7V25Field _relatedPlacerNumber;
+
+public HL7V25Field RelatedPlacerNumber
+{
+    get
+    {
+        if (_relatedPlacerNumber != null)
+        {
+            return _relatedPlacerNumber;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"TQ2.3",
+            Type = @"Field",
+            Position = @"TQ2.3",
+            Name = @"Related Placer Number",
+            Length = 22,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The placer numbers of the service request(s) to which this TQ2 segment links the current service request. This field should be populated with the appropriate ""Placer number"" from the current service request. For orders, the Placer Order Number from ORC-2 is the appropriate ""Placer number"". Repeats of this field indicate the current service request is related to multiple service requests.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"TQ2.1",
-                            Type = @"Field",
-                            Position = @"TQ2.1",
-                            Name = @"Set ID - TQ2",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"For the first timing specification transmitted, the sequence number shall be 1; for the second timing specification, it shall be 2; and so on.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TQ2.2",
-                            Type = @"Field",
-                            Position = @"TQ2.2",
-                            Name = @"Sequence/Results Flag",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0503",
-                            TableName = @"Sequence/Results Flag",
-                            Description = @"This flag defines the sequencing relationship between the current service request, and the related service request(s) specified in this TQ2 segment. See HL7 Table 0503 - Sequence/Results Flag for values. If not value is present, the S - Sequential is the default value.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TQ2.3",
-                            Type = @"Field",
-                            Position = @"TQ2.3",
-                            Name = @"Related Placer Number",
-                            Length = 22,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The placer numbers of the service request(s) to which this TQ2 segment links the current service request. This field should be populated with the appropriate ""Placer number"" from the current service request. For orders, the Placer Order Number from ORC-2 is the appropriate ""Placer number"". Repeats of this field indicate the current service request is related to multiple service requests.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ2.3.1",
                             Type = @"Component",
@@ -156,25 +222,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _relatedPlacerNumber = new HL7V25Field
+        {
+            field = message[@"TQ2"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_relatedPlacerNumber.field.FieldRepetitions != null && _relatedPlacerNumber.field.FieldRepetitions.Count > 0)
+        {
+            _relatedPlacerNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_relatedPlacerNumber, fieldData);
+        }
+
+        return _relatedPlacerNumber;
+    } 
+}
+
+internal HL7V25Field _relatedFillerNumber;
+
+public HL7V25Field RelatedFillerNumber
+{
+    get
+    {
+        if (_relatedFillerNumber != null)
+        {
+            return _relatedFillerNumber;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"TQ2.4",
+            Type = @"Field",
+            Position = @"TQ2.4",
+            Name = @"Related Filler Number",
+            Length = 22,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The filler numbers of the service request(s) to which this TQ2 segment links the current service request. This field should be populated with the appropriate ""Filler number"" from the current service request. For orders, the Filler Order Number from ORC-3 is the appropriate ""Filler number"". Repeats of this field indicate the current service request is related to multiple service requests.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TQ2.4",
-                            Type = @"Field",
-                            Position = @"TQ2.4",
-                            Name = @"Related Filler Number",
-                            Length = 22,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The filler numbers of the service request(s) to which this TQ2 segment links the current service request. This field should be populated with the appropriate ""Filler number"" from the current service request. For orders, the Filler Order Number from ORC-3 is the appropriate ""Filler number"". Repeats of this field indicate the current service request is related to multiple service requests.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TQ2.4.1",
                             Type = @"Component",
@@ -244,25 +340,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _relatedFillerNumber = new HL7V25Field
+        {
+            field = message[@"TQ2"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_relatedFillerNumber.field.FieldRepetitions != null && _relatedFillerNumber.field.FieldRepetitions.Count > 0)
+        {
+            _relatedFillerNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_relatedFillerNumber, fieldData);
+        }
+
+        return _relatedFillerNumber;
+    } 
+}
+
+internal HL7V25Field _relatedPlacerGroupNumber;
+
+public HL7V25Field RelatedPlacerGroupNumber
+{
+    get
+    {
+        if (_relatedPlacerGroupNumber != null)
+        {
+            return _relatedPlacerGroupNumber;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"TQ2.5",
+            Type = @"Field",
+            Position = @"TQ2.5",
+            Name = @"Related Placer Group Number",
+            Length = 22,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The placer group numbers of the service request(s) to which this TQ2 segment links the current service request. This field should be populated with the appropriate ""Placer group number"" from the current service request. For orders, the Placer Group Number from ORC-4 is the appropriate ""Placer group number"". Repeats of this field indicate that the current service request is related to multiple groups of service requests.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TQ2.5",
-                            Type = @"Field",
-                            Position = @"TQ2.5",
-                            Name = @"Related Placer Group Number",
-                            Length = 22,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The placer group numbers of the service request(s) to which this TQ2 segment links the current service request. This field should be populated with the appropriate ""Placer group number"" from the current service request. For orders, the Placer Group Number from ORC-4 is the appropriate ""Placer group number"". Repeats of this field indicate that the current service request is related to multiple groups of service requests.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TQ2.5.1",
                             Type = @"Component",
@@ -332,61 +458,145 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _relatedPlacerGroupNumber = new HL7V25Field
+        {
+            field = message[@"TQ2"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_relatedPlacerGroupNumber.field.FieldRepetitions != null && _relatedPlacerGroupNumber.field.FieldRepetitions.Count > 0)
+        {
+            _relatedPlacerGroupNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_relatedPlacerGroupNumber, fieldData);
+        }
+
+        return _relatedPlacerGroupNumber;
+    } 
+}
+
+internal HL7V25Field _sequenceConditionCode;
+
+public HL7V25Field SequenceConditionCode
+{
+    get
+    {
+        if (_sequenceConditionCode != null)
+        {
+            return _sequenceConditionCode;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"TQ2.6",
+            Type = @"Field",
+            Position = @"TQ2.6",
+            Name = @"Sequence Condition Code",
+            Length = 2,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0504",
+            TableName = @"Sequence Condition Code",
+            Description = @"Defines the relationship between the start/end of the related service request(s) (from TQ2-3, TQ2-4, or TQ2-5) and the current service request from ORC-2,3 or 4. See HL7 Table 0504 - Sequence Condition Code for allowed values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sequenceConditionCode = new HL7V25Field
+        {
+            field = message[@"TQ2"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sequenceConditionCode.field.FieldRepetitions != null && _sequenceConditionCode.field.FieldRepetitions.Count > 0)
+        {
+            _sequenceConditionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_sequenceConditionCode, fieldData);
+        }
+
+        return _sequenceConditionCode;
+    } 
+}
+
+internal HL7V25Field _cyclicEntryExitIndicator;
+
+public HL7V25Field CyclicEntryExitIndicator
+{
+    get
+    {
+        if (_cyclicEntryExitIndicator != null)
+        {
+            return _cyclicEntryExitIndicator;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"TQ2.7",
+            Type = @"Field",
+            Position = @"TQ2.7",
+            Name = @"Cyclic Entry/Exit Indicator",
+            Length = 1,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0505",
+            TableName = @"Cyclic Entry/Exit Indicator",
+            Description = @"Indicates if this service request is the first, last, service request in a cyclic series of service requests. If null or not present, this field indicates that the current service request is neither the first or last service request in a cyclic series of service requests. Refer to HL7 Table 0505 - Cyclic Entry/Exit Indicator for allowed values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _cyclicEntryExitIndicator = new HL7V25Field
+        {
+            field = message[@"TQ2"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_cyclicEntryExitIndicator.field.FieldRepetitions != null && _cyclicEntryExitIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _cyclicEntryExitIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_cyclicEntryExitIndicator, fieldData);
+        }
+
+        return _cyclicEntryExitIndicator;
+    } 
+}
+
+internal HL7V25Field _sequenceConditionTimeInterval;
+
+public HL7V25Field SequenceConditionTimeInterval
+{
+    get
+    {
+        if (_sequenceConditionTimeInterval != null)
+        {
+            return _sequenceConditionTimeInterval;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"TQ2.8",
+            Type = @"Field",
+            Position = @"TQ2.8",
+            Name = @"Sequence Condition Time Interval",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity with Units",
+            TableId = null,
+            TableName = null,
+            Description = @"Defines the interval of time between the start/end of the related service request(s) and the start/end of the current service request. The unit's component is constrained to units of time. If this field is not populated, then there should be no interruption between start/ending the current service request, and the related service request(s).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TQ2.6",
-                            Type = @"Field",
-                            Position = @"TQ2.6",
-                            Name = @"Sequence Condition Code",
-                            Length = 2,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0504",
-                            TableName = @"Sequence Condition Code",
-                            Description = @"Defines the relationship between the start/end of the related service request(s) (from TQ2-3, TQ2-4, or TQ2-5) and the current service request from ORC-2,3 or 4. See HL7 Table 0504 - Sequence Condition Code for allowed values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TQ2.7",
-                            Type = @"Field",
-                            Position = @"TQ2.7",
-                            Name = @"Cyclic Entry/Exit Indicator",
-                            Length = 1,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0505",
-                            TableName = @"Cyclic Entry/Exit Indicator",
-                            Description = @"Indicates if this service request is the first, last, service request in a cyclic series of service requests. If null or not present, this field indicates that the current service request is neither the first or last service request in a cyclic series of service requests. Refer to HL7 Table 0505 - Cyclic Entry/Exit Indicator for allowed values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TQ2.8",
-                            Type = @"Field",
-                            Position = @"TQ2.8",
-                            Name = @"Sequence Condition Time Interval",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity with Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Defines the interval of time between the start/end of the related service request(s) and the start/end of the current service request. The unit's component is constrained to units of time. If this field is not populated, then there should be no interruption between start/ending the current service request, and the related service request(s).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TQ2.8.1",
                             Type = @"Component",
@@ -526,395 +736,39 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TQ2.9",
-                            Type = @"Field",
-                            Position = @"TQ2.9",
-                            Name = @"Cyclic Group Maximum Number of Repeats",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The maximum number of repeats for a cyclic group.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TQ2.10",
-                            Type = @"Field",
-                            Position = @"TQ2.10",
-                            Name = @"Special Service Request Relationship",
-                            Length = 1,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0506",
-                            TableName = @"Service Request Relationship",
-                            Description = @"This defines an additional or alternate relationship between this service request and other service requests. Its primary intended use is for Pharmacy administration service requests, but it may be useful for other domains. See HL7 Table 0506 - Service Request Relationship for allowed values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V25SegmentTQ2(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V25Field setIDTQ2;
-
-public HL7V25Field SetIDTQ2
-{
-    get
-    {
-        if (setIDTQ2 != null)
-        {
-            return setIDTQ2;
-        }
-
-        setIDTQ2 = new HL7V25Field
-        {
-            field = message[@"TQ2"][1],
-            Id = @"TQ2.1",
-            Type = @"Field",
-            Position = @"TQ2.1",
-            Name = @"Set ID - TQ2",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"For the first timing specification transmitted, the sequence number shall be 1; for the second timing specification, it shall be 2; and so on.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDTQ2.field.FieldRepetitions != null && setIDTQ2.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDTQ2.Id));
-            setIDTQ2.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(setIDTQ2, fieldData);
-        }
-
-        return setIDTQ2;
-    } 
-}
-
-internal HL7V25Field sequenceResultsFlag;
-
-public HL7V25Field SequenceResultsFlag
-{
-    get
-    {
-        if (sequenceResultsFlag != null)
-        {
-            return sequenceResultsFlag;
-        }
-
-        sequenceResultsFlag = new HL7V25Field
-        {
-            field = message[@"TQ2"][2],
-            Id = @"TQ2.2",
-            Type = @"Field",
-            Position = @"TQ2.2",
-            Name = @"Sequence/Results Flag",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0503",
-            TableName = @"Sequence/Results Flag",
-            Description = @"This flag defines the sequencing relationship between the current service request, and the related service request(s) specified in this TQ2 segment. See HL7 Table 0503 - Sequence/Results Flag for values. If not value is present, the S - Sequential is the default value.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sequenceResultsFlag.field.FieldRepetitions != null && sequenceResultsFlag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sequenceResultsFlag.Id));
-            sequenceResultsFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(sequenceResultsFlag, fieldData);
-        }
-
-        return sequenceResultsFlag;
-    } 
-}
-
-internal HL7V25Field relatedPlacerNumber;
-
-public HL7V25Field RelatedPlacerNumber
-{
-    get
-    {
-        if (relatedPlacerNumber != null)
-        {
-            return relatedPlacerNumber;
-        }
-
-        relatedPlacerNumber = new HL7V25Field
-        {
-            field = message[@"TQ2"][3],
-            Id = @"TQ2.3",
-            Type = @"Field",
-            Position = @"TQ2.3",
-            Name = @"Related Placer Number",
-            Length = 22,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The placer numbers of the service request(s) to which this TQ2 segment links the current service request. This field should be populated with the appropriate ""Placer number"" from the current service request. For orders, the Placer Order Number from ORC-2 is the appropriate ""Placer number"". Repeats of this field indicate the current service request is related to multiple service requests.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (relatedPlacerNumber.field.FieldRepetitions != null && relatedPlacerNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(relatedPlacerNumber.Id));
-            relatedPlacerNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(relatedPlacerNumber, fieldData);
-        }
-
-        return relatedPlacerNumber;
-    } 
-}
-
-internal HL7V25Field relatedFillerNumber;
-
-public HL7V25Field RelatedFillerNumber
-{
-    get
-    {
-        if (relatedFillerNumber != null)
-        {
-            return relatedFillerNumber;
-        }
-
-        relatedFillerNumber = new HL7V25Field
-        {
-            field = message[@"TQ2"][4],
-            Id = @"TQ2.4",
-            Type = @"Field",
-            Position = @"TQ2.4",
-            Name = @"Related Filler Number",
-            Length = 22,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The filler numbers of the service request(s) to which this TQ2 segment links the current service request. This field should be populated with the appropriate ""Filler number"" from the current service request. For orders, the Filler Order Number from ORC-3 is the appropriate ""Filler number"". Repeats of this field indicate the current service request is related to multiple service requests.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (relatedFillerNumber.field.FieldRepetitions != null && relatedFillerNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(relatedFillerNumber.Id));
-            relatedFillerNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(relatedFillerNumber, fieldData);
-        }
-
-        return relatedFillerNumber;
-    } 
-}
-
-internal HL7V25Field relatedPlacerGroupNumber;
-
-public HL7V25Field RelatedPlacerGroupNumber
-{
-    get
-    {
-        if (relatedPlacerGroupNumber != null)
-        {
-            return relatedPlacerGroupNumber;
-        }
-
-        relatedPlacerGroupNumber = new HL7V25Field
-        {
-            field = message[@"TQ2"][5],
-            Id = @"TQ2.5",
-            Type = @"Field",
-            Position = @"TQ2.5",
-            Name = @"Related Placer Group Number",
-            Length = 22,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The placer group numbers of the service request(s) to which this TQ2 segment links the current service request. This field should be populated with the appropriate ""Placer group number"" from the current service request. For orders, the Placer Group Number from ORC-4 is the appropriate ""Placer group number"". Repeats of this field indicate that the current service request is related to multiple groups of service requests.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (relatedPlacerGroupNumber.field.FieldRepetitions != null && relatedPlacerGroupNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(relatedPlacerGroupNumber.Id));
-            relatedPlacerGroupNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(relatedPlacerGroupNumber, fieldData);
-        }
-
-        return relatedPlacerGroupNumber;
-    } 
-}
-
-internal HL7V25Field sequenceConditionCode;
-
-public HL7V25Field SequenceConditionCode
-{
-    get
-    {
-        if (sequenceConditionCode != null)
-        {
-            return sequenceConditionCode;
-        }
-
-        sequenceConditionCode = new HL7V25Field
-        {
-            field = message[@"TQ2"][6],
-            Id = @"TQ2.6",
-            Type = @"Field",
-            Position = @"TQ2.6",
-            Name = @"Sequence Condition Code",
-            Length = 2,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0504",
-            TableName = @"Sequence Condition Code",
-            Description = @"Defines the relationship between the start/end of the related service request(s) (from TQ2-3, TQ2-4, or TQ2-5) and the current service request from ORC-2,3 or 4. See HL7 Table 0504 - Sequence Condition Code for allowed values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sequenceConditionCode.field.FieldRepetitions != null && sequenceConditionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sequenceConditionCode.Id));
-            sequenceConditionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(sequenceConditionCode, fieldData);
-        }
-
-        return sequenceConditionCode;
-    } 
-}
-
-internal HL7V25Field cyclicEntryExitIndicator;
-
-public HL7V25Field CyclicEntryExitIndicator
-{
-    get
-    {
-        if (cyclicEntryExitIndicator != null)
-        {
-            return cyclicEntryExitIndicator;
-        }
-
-        cyclicEntryExitIndicator = new HL7V25Field
-        {
-            field = message[@"TQ2"][7],
-            Id = @"TQ2.7",
-            Type = @"Field",
-            Position = @"TQ2.7",
-            Name = @"Cyclic Entry/Exit Indicator",
-            Length = 1,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0505",
-            TableName = @"Cyclic Entry/Exit Indicator",
-            Description = @"Indicates if this service request is the first, last, service request in a cyclic series of service requests. If null or not present, this field indicates that the current service request is neither the first or last service request in a cyclic series of service requests. Refer to HL7 Table 0505 - Cyclic Entry/Exit Indicator for allowed values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (cyclicEntryExitIndicator.field.FieldRepetitions != null && cyclicEntryExitIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(cyclicEntryExitIndicator.Id));
-            cyclicEntryExitIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(cyclicEntryExitIndicator, fieldData);
-        }
-
-        return cyclicEntryExitIndicator;
-    } 
-}
-
-internal HL7V25Field sequenceConditionTimeInterval;
-
-public HL7V25Field SequenceConditionTimeInterval
-{
-    get
-    {
-        if (sequenceConditionTimeInterval != null)
-        {
-            return sequenceConditionTimeInterval;
-        }
-
-        sequenceConditionTimeInterval = new HL7V25Field
+        _sequenceConditionTimeInterval = new HL7V25Field
         {
             field = message[@"TQ2"][8],
-            Id = @"TQ2.8",
-            Type = @"Field",
-            Position = @"TQ2.8",
-            Name = @"Sequence Condition Time Interval",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity with Units",
-            TableId = null,
-            TableName = null,
-            Description = @"Defines the interval of time between the start/end of the related service request(s) and the start/end of the current service request. The unit's component is constrained to units of time. If this field is not populated, then there should be no interruption between start/ending the current service request, and the related service request(s).",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (sequenceConditionTimeInterval.field.FieldRepetitions != null && sequenceConditionTimeInterval.field.FieldRepetitions.Count > 0)
+        if (_sequenceConditionTimeInterval.field.FieldRepetitions != null && _sequenceConditionTimeInterval.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sequenceConditionTimeInterval.Id));
-            sequenceConditionTimeInterval.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(sequenceConditionTimeInterval, fieldData);
+            _sequenceConditionTimeInterval.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_sequenceConditionTimeInterval, fieldData);
         }
 
-        return sequenceConditionTimeInterval;
+        return _sequenceConditionTimeInterval;
     } 
 }
 
-internal HL7V25Field cyclicGroupMaximumNumberofRepeats;
+internal HL7V25Field _cyclicGroupMaximumNumberofRepeats;
 
 public HL7V25Field CyclicGroupMaximumNumberofRepeats
 {
     get
     {
-        if (cyclicGroupMaximumNumberofRepeats != null)
+        if (_cyclicGroupMaximumNumberofRepeats != null)
         {
-            return cyclicGroupMaximumNumberofRepeats;
+            return _cyclicGroupMaximumNumberofRepeats;
         }
 
-        cyclicGroupMaximumNumberofRepeats = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"TQ2"][9],
             Id = @"TQ2.9",
             Type = @"Field",
             Position = @"TQ2.9",
@@ -928,34 +782,38 @@ public HL7V25Field CyclicGroupMaximumNumberofRepeats
             TableName = null,
             Description = @"The maximum number of repeats for a cyclic group.",
             Sample = @"",
+            Fields = null
+        }
+
+        _cyclicGroupMaximumNumberofRepeats = new HL7V25Field
+        {
+            field = message[@"TQ2"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (cyclicGroupMaximumNumberofRepeats.field.FieldRepetitions != null && cyclicGroupMaximumNumberofRepeats.field.FieldRepetitions.Count > 0)
+        if (_cyclicGroupMaximumNumberofRepeats.field.FieldRepetitions != null && _cyclicGroupMaximumNumberofRepeats.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(cyclicGroupMaximumNumberofRepeats.Id));
-            cyclicGroupMaximumNumberofRepeats.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(cyclicGroupMaximumNumberofRepeats, fieldData);
+            _cyclicGroupMaximumNumberofRepeats.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_cyclicGroupMaximumNumberofRepeats, fieldData);
         }
 
-        return cyclicGroupMaximumNumberofRepeats;
+        return _cyclicGroupMaximumNumberofRepeats;
     } 
 }
 
-internal HL7V25Field specialServiceRequestRelationship;
+internal HL7V25Field _specialServiceRequestRelationship;
 
 public HL7V25Field SpecialServiceRequestRelationship
 {
     get
     {
-        if (specialServiceRequestRelationship != null)
+        if (_specialServiceRequestRelationship != null)
         {
-            return specialServiceRequestRelationship;
+            return _specialServiceRequestRelationship;
         }
 
-        specialServiceRequestRelationship = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"TQ2"][10],
             Id = @"TQ2.10",
             Type = @"Field",
             Position = @"TQ2.10",
@@ -969,17 +827,22 @@ public HL7V25Field SpecialServiceRequestRelationship
             TableName = @"Service Request Relationship",
             Description = @"This defines an additional or alternate relationship between this service request and other service requests. Its primary intended use is for Pharmacy administration service requests, but it may be useful for other domains. See HL7 Table 0506 - Service Request Relationship for allowed values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _specialServiceRequestRelationship = new HL7V25Field
+        {
+            field = message[@"TQ2"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (specialServiceRequestRelationship.field.FieldRepetitions != null && specialServiceRequestRelationship.field.FieldRepetitions.Count > 0)
+        if (_specialServiceRequestRelationship.field.FieldRepetitions != null && _specialServiceRequestRelationship.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specialServiceRequestRelationship.Id));
-            specialServiceRequestRelationship.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(specialServiceRequestRelationship, fieldData);
+            _specialServiceRequestRelationship.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_specialServiceRequestRelationship, fieldData);
         }
 
-        return specialServiceRequestRelationship;
+        return _specialServiceRequestRelationship;
     } 
 }
     }

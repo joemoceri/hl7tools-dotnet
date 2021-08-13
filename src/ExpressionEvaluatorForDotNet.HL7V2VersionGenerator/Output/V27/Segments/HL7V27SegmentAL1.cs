@@ -29,47 +29,86 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentAL1(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _setIdAl1;
+
+public HL7V27Field SetIdAl1
+{
+    get
+    {
+        if (_setIdAl1 != null)
+        {
+            return _setIdAl1;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AL1.1",
+            Type = @"Field",
+            Position = @"AL1.1",
+            Name = @"Set Id - Al1",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdAl1 = new HL7V27Field
+        {
+            field = message[@"AL1"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdAl1.field.FieldRepetitions != null && _setIdAl1.field.FieldRepetitions.Count > 0)
+        {
+            _setIdAl1.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_setIdAl1, fieldData);
+        }
+
+        return _setIdAl1;
+    } 
+}
+
+internal HL7V27Field _allergenTypeCode;
+
+public HL7V27Field AllergenTypeCode
+{
+    get
+    {
+        if (_allergenTypeCode != null)
+        {
+            return _allergenTypeCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AL1.2",
+            Type = @"Field",
+            Position = @"AL1.2",
+            Name = @"Allergen Type Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0127",
+            TableName = @"Allergen Type",
+            Description = @"This field indicates a general allergy category (drug, food, pollen, etc.). Refer to User-defined Table 0127 - Allergen Type for suggested values.
+User-defined Table 0127",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"AL1.1",
-                            Type = @"Field",
-                            Position = @"AL1.1",
-                            Name = @"Set Id - Al1",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AL1.2",
-                            Type = @"Field",
-                            Position = @"AL1.2",
-                            Name = @"Allergen Type Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0127",
-                            TableName = @"Allergen Type",
-                            Description = @"This field indicates a general allergy category (drug, food, pollen, etc.). Refer to User-defined Table 0127 - Allergen Type for suggested values.
-User-defined Table 0127",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"AL1.2.1",
                             Type = @"Component",
@@ -495,25 +534,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _allergenTypeCode = new HL7V27Field
+        {
+            field = message[@"AL1"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_allergenTypeCode.field.FieldRepetitions != null && _allergenTypeCode.field.FieldRepetitions.Count > 0)
+        {
+            _allergenTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_allergenTypeCode, fieldData);
+        }
+
+        return _allergenTypeCode;
+    } 
+}
+
+internal HL7V27Field _allergenCodeMnemonicDescription;
+
+public HL7V27Field AllergenCodeMnemonicDescription
+{
+    get
+    {
+        if (_allergenCodeMnemonicDescription != null)
+        {
+            return _allergenCodeMnemonicDescription;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AL1.3",
+            Type = @"Field",
+            Position = @"AL1.3",
+            Name = @"Allergen Code/Mnemonic/Description",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field uniquely identifies a particular allergen. This element may conform to some external, standard coding system (that must be identified), or it may conform to local, largely textual or mnemonic descriptions.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AL1.3",
-                            Type = @"Field",
-                            Position = @"AL1.3",
-                            Name = @"Allergen Code/Mnemonic/Description",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field uniquely identifies a particular allergen. This element may conform to some external, standard coding system (that must be identified), or it may conform to local, largely textual or mnemonic descriptions.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AL1.3.1",
                             Type = @"Component",
@@ -939,25 +1008,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _allergenCodeMnemonicDescription = new HL7V27Field
+        {
+            field = message[@"AL1"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_allergenCodeMnemonicDescription.field.FieldRepetitions != null && _allergenCodeMnemonicDescription.field.FieldRepetitions.Count > 0)
+        {
+            _allergenCodeMnemonicDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_allergenCodeMnemonicDescription, fieldData);
+        }
+
+        return _allergenCodeMnemonicDescription;
+    } 
+}
+
+internal HL7V27Field _allergySeverityCode;
+
+public HL7V27Field AllergySeverityCode
+{
+    get
+    {
+        if (_allergySeverityCode != null)
+        {
+            return _allergySeverityCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AL1.4",
+            Type = @"Field",
+            Position = @"AL1.4",
+            Name = @"Allergy Severity Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0128",
+            TableName = @"Allergy Severity",
+            Description = @"This field indicates the general severity of the allergy. Refer to User-defined Table 0128 - Allergy Severity for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AL1.4",
-                            Type = @"Field",
-                            Position = @"AL1.4",
-                            Name = @"Allergy Severity Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0128",
-                            TableName = @"Allergy Severity",
-                            Description = @"This field indicates the general severity of the allergy. Refer to User-defined Table 0128 - Allergy Severity for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AL1.4.1",
                             Type = @"Component",
@@ -1383,232 +1482,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AL1.5",
-                            Type = @"Field",
-                            Position = @"AL1.5",
-                            Name = @"Allergy Reaction Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the specific allergic reaction that was documented. This element may conform to some external, standard coding system, or it may conform to local, largely textual or mnemonic descriptions (e.g., convulsions, sneeze, rash, etc.).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AL1.6",
-                            Type = @"Field",
-                            Position = @"AL1.6",
-                            Name = @"Identification Date",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Al-6 field was retained for backward compatibility only as of v2.4 and has been withdrawn as of v2.7. The reader is referred to the IAM-11 – Onset Date or IAM-13 – Inset Date fields for dates when the allergy was identified.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentAL1(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field setIdAl1;
-
-public HL7V27Field SetIdAl1
-{
-    get
-    {
-        if (setIdAl1 != null)
-        {
-            return setIdAl1;
-        }
-
-        setIdAl1 = new HL7V27Field
-        {
-            field = message[@"AL1"][1],
-            Id = @"AL1.1",
-            Type = @"Field",
-            Position = @"AL1.1",
-            Name = @"Set Id - Al1",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdAl1.field.FieldRepetitions != null && setIdAl1.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdAl1.Id));
-            setIdAl1.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(setIdAl1, fieldData);
-        }
-
-        return setIdAl1;
-    } 
-}
-
-internal HL7V27Field allergenTypeCode;
-
-public HL7V27Field AllergenTypeCode
-{
-    get
-    {
-        if (allergenTypeCode != null)
-        {
-            return allergenTypeCode;
-        }
-
-        allergenTypeCode = new HL7V27Field
-        {
-            field = message[@"AL1"][2],
-            Id = @"AL1.2",
-            Type = @"Field",
-            Position = @"AL1.2",
-            Name = @"Allergen Type Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0127",
-            TableName = @"Allergen Type",
-            Description = @"This field indicates a general allergy category (drug, food, pollen, etc.). Refer to User-defined Table 0127 - Allergen Type for suggested values.
-User-defined Table 0127",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (allergenTypeCode.field.FieldRepetitions != null && allergenTypeCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(allergenTypeCode.Id));
-            allergenTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(allergenTypeCode, fieldData);
-        }
-
-        return allergenTypeCode;
-    } 
-}
-
-internal HL7V27Field allergenCodeMnemonicDescription;
-
-public HL7V27Field AllergenCodeMnemonicDescription
-{
-    get
-    {
-        if (allergenCodeMnemonicDescription != null)
-        {
-            return allergenCodeMnemonicDescription;
-        }
-
-        allergenCodeMnemonicDescription = new HL7V27Field
-        {
-            field = message[@"AL1"][3],
-            Id = @"AL1.3",
-            Type = @"Field",
-            Position = @"AL1.3",
-            Name = @"Allergen Code/Mnemonic/Description",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field uniquely identifies a particular allergen. This element may conform to some external, standard coding system (that must be identified), or it may conform to local, largely textual or mnemonic descriptions.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (allergenCodeMnemonicDescription.field.FieldRepetitions != null && allergenCodeMnemonicDescription.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(allergenCodeMnemonicDescription.Id));
-            allergenCodeMnemonicDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(allergenCodeMnemonicDescription, fieldData);
-        }
-
-        return allergenCodeMnemonicDescription;
-    } 
-}
-
-internal HL7V27Field allergySeverityCode;
-
-public HL7V27Field AllergySeverityCode
-{
-    get
-    {
-        if (allergySeverityCode != null)
-        {
-            return allergySeverityCode;
-        }
-
-        allergySeverityCode = new HL7V27Field
+        _allergySeverityCode = new HL7V27Field
         {
             field = message[@"AL1"][4],
-            Id = @"AL1.4",
-            Type = @"Field",
-            Position = @"AL1.4",
-            Name = @"Allergy Severity Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0128",
-            TableName = @"Allergy Severity",
-            Description = @"This field indicates the general severity of the allergy. Refer to User-defined Table 0128 - Allergy Severity for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (allergySeverityCode.field.FieldRepetitions != null && allergySeverityCode.field.FieldRepetitions.Count > 0)
+        if (_allergySeverityCode.field.FieldRepetitions != null && _allergySeverityCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(allergySeverityCode.Id));
-            allergySeverityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(allergySeverityCode, fieldData);
+            _allergySeverityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_allergySeverityCode, fieldData);
         }
 
-        return allergySeverityCode;
+        return _allergySeverityCode;
     } 
 }
 
-internal HL7V27Field allergyReactionCode;
+internal HL7V27Field _allergyReactionCode;
 
 public HL7V27Field AllergyReactionCode
 {
     get
     {
-        if (allergyReactionCode != null)
+        if (_allergyReactionCode != null)
         {
-            return allergyReactionCode;
+            return _allergyReactionCode;
         }
 
-        allergyReactionCode = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"AL1"][5],
             Id = @"AL1.5",
             Type = @"Field",
             Position = @"AL1.5",
@@ -1622,34 +1528,38 @@ public HL7V27Field AllergyReactionCode
             TableName = null,
             Description = @"This field identifies the specific allergic reaction that was documented. This element may conform to some external, standard coding system, or it may conform to local, largely textual or mnemonic descriptions (e.g., convulsions, sneeze, rash, etc.).",
             Sample = @"",
+            Fields = null
+        }
+
+        _allergyReactionCode = new HL7V27Field
+        {
+            field = message[@"AL1"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (allergyReactionCode.field.FieldRepetitions != null && allergyReactionCode.field.FieldRepetitions.Count > 0)
+        if (_allergyReactionCode.field.FieldRepetitions != null && _allergyReactionCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(allergyReactionCode.Id));
-            allergyReactionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(allergyReactionCode, fieldData);
+            _allergyReactionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_allergyReactionCode, fieldData);
         }
 
-        return allergyReactionCode;
+        return _allergyReactionCode;
     } 
 }
 
-internal HL7V27Field identificationDate;
+internal HL7V27Field _identificationDate;
 
 public HL7V27Field IdentificationDate
 {
     get
     {
-        if (identificationDate != null)
+        if (_identificationDate != null)
         {
-            return identificationDate;
+            return _identificationDate;
         }
 
-        identificationDate = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"AL1"][6],
             Id = @"AL1.6",
             Type = @"Field",
             Position = @"AL1.6",
@@ -1663,17 +1573,22 @@ public HL7V27Field IdentificationDate
             TableName = null,
             Description = @"The Al-6 field was retained for backward compatibility only as of v2.4 and has been withdrawn as of v2.7. The reader is referred to the IAM-11 – Onset Date or IAM-13 – Inset Date fields for dates when the allergy was identified.",
             Sample = @"",
+            Fields = null
+        }
+
+        _identificationDate = new HL7V27Field
+        {
+            field = message[@"AL1"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (identificationDate.field.FieldRepetitions != null && identificationDate.field.FieldRepetitions.Count > 0)
+        if (_identificationDate.field.FieldRepetitions != null && _identificationDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(identificationDate.Id));
-            identificationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(identificationDate, fieldData);
+            _identificationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_identificationDate, fieldData);
         }
 
-        return identificationDate;
+        return _identificationDate;
     } 
 }
     }

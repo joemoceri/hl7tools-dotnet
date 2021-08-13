@@ -29,32 +29,44 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"SCH.1",
-                            Type = @"Field",
-                            Position = @"SCH.1",
-                            Name = @"Placer Appointment ID",
-                            Length = 75,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the placer application's permanent identifier for the appointment request (and the scheduled appointment itself, when it has been confirmed as a booked slot by the filler application). This is a composite field.
+        public HL7V251SegmentSCH(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _placerAppointmentID;
+
+public HL7V251Field PlacerAppointmentID
+{
+    get
+    {
+        if (_placerAppointmentID != null)
+        {
+            return _placerAppointmentID;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.1",
+            Type = @"Field",
+            Position = @"SCH.1",
+            Name = @"Placer Appointment ID",
+            Length = 75,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the placer application's permanent identifier for the appointment request (and the scheduled appointment itself, when it has been confirmed as a booked slot by the filler application). This is a composite field.
 
 The first component is a string that identifies an individual appointment request, or a booked appointment.  It is assigned by the placer application, and identifies an appointment request, and the subsequent scheduled appointment, uniquely among all such requests and/or booked appointments from a particular requesting application.  If SCH-1-Placer appointment ID identifies a parent of a repeating schedule request, then the individual child scheduled appointments can be uniquely identified either by a new SCH-1-Placer appointment ID or by SCH-23-Parent placer appointment ID plus an SCH-3-Occurrence number. 
 
 If a schedule request originates from a placer it MUST have a placer appointment ID.  If the filler sends responses, it may use the placer appointment ID and/or assign a filler appointment ID (which it would echo back to the placer to enable the placer application to associate the two).  If the placer appointment ID is not present, the filler appointment ID must be present and vice versa. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.1.1",
                             Type = @"Component",
@@ -124,27 +136,57 @@ If a schedule request originates from a placer it MUST have a placer appointment
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SCH.2",
-                            Type = @"Field",
-                            Position = @"SCH.2",
-                            Name = @"Filler Appointment ID",
-                            Length = 75,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the filler application's permanent identifier for the appointment request (and the scheduled appointment itself, when it has been confirmed as a booked slot by the filler application). This is a composite field.
+                        }
+        }
+
+        _placerAppointmentID = new HL7V251Field
+        {
+            field = message[@"SCH"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_placerAppointmentID.field.FieldRepetitions != null && _placerAppointmentID.field.FieldRepetitions.Count > 0)
+        {
+            _placerAppointmentID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_placerAppointmentID, fieldData);
+        }
+
+        return _placerAppointmentID;
+    } 
+}
+
+internal HL7V251Field _fillerAppointmentID;
+
+public HL7V251Field FillerAppointmentID
+{
+    get
+    {
+        if (_fillerAppointmentID != null)
+        {
+            return _fillerAppointmentID;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.2",
+            Type = @"Field",
+            Position = @"SCH.2",
+            Name = @"Filler Appointment ID",
+            Length = 75,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the filler application's permanent identifier for the appointment request (and the scheduled appointment itself, when it has been confirmed as a booked slot by the filler application). This is a composite field.
 
 The first component is a string of up to fifteen characters that identifies an individual appointment request, or a booked appointment.  It is assigned by the filler application, and identifies an appointment request, and the subsequent scheduled appointment, uniquely among all such requests and/or booked appointments from a particular processing application.  If SCH-2-Filler appointment ID identifies a parent of a repeating schedule request, then the individual child scheduled appointments can be uniquely identified either by a new SCH-2-Filler appointment ID or by SCH-25-Parent filler appointment ID plus an SCH-3-Occurrence number. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.2.1",
                             Type = @"Component",
@@ -214,45 +256,102 @@ The first component is a string of up to fifteen characters that identifies an i
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SCH.3",
-                            Type = @"Field",
-                            Position = @"SCH.3",
-                            Name = @"Occurrence Number",
-                            Length = 5,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used in conjunction with SCH-1-Placer appointment ID and/or SCH-2-Filler appointment ID to uniquely identify an individual occurrence (a child) of a parent repeating schedule appointment.
+                        }
+        }
+
+        _fillerAppointmentID = new HL7V251Field
+        {
+            field = message[@"SCH"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fillerAppointmentID.field.FieldRepetitions != null && _fillerAppointmentID.field.FieldRepetitions.Count > 0)
+        {
+            _fillerAppointmentID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_fillerAppointmentID, fieldData);
+        }
+
+        return _fillerAppointmentID;
+    } 
+}
+
+internal HL7V251Field _occurrenceNumber;
+
+public HL7V251Field OccurrenceNumber
+{
+    get
+    {
+        if (_occurrenceNumber != null)
+        {
+            return _occurrenceNumber;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.3",
+            Type = @"Field",
+            Position = @"SCH.3",
+            Name = @"Occurrence Number",
+            Length = 5,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used in conjunction with SCH-1-Placer appointment ID and/or SCH-2-Filler appointment ID to uniquely identify an individual occurrence (a child) of a parent repeating schedule appointment.
 
 This field is conditionally required.  If the transaction using this segment is intended to apply only to one occurrence of a repeating appointment, and an occurrence number is required to uniquely identify the child appointment (that is, the child does not have a separate and unique SCH-1-Placer appointment ID or SCH2-Filler appointment ID), then this field is required.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _occurrenceNumber = new HL7V251Field
+        {
+            field = message[@"SCH"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_occurrenceNumber.field.FieldRepetitions != null && _occurrenceNumber.field.FieldRepetitions.Count > 0)
+        {
+            _occurrenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_occurrenceNumber, fieldData);
+        }
+
+        return _occurrenceNumber;
+    } 
+}
+
+internal HL7V251Field _placerGroupNumber;
+
+public HL7V251Field PlacerGroupNumber
+{
+    get
+    {
+        if (_placerGroupNumber != null)
+        {
+            return _placerGroupNumber;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.4",
+            Type = @"Field",
+            Position = @"SCH.4",
+            Name = @"Placer Group Number",
+            Length = 22,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field allows a placer application to group sets of appointment requests together, and subsequently to identify the group.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.4",
-                            Type = @"Field",
-                            Position = @"SCH.4",
-                            Name = @"Placer Group Number",
-                            Length = 22,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field allows a placer application to group sets of appointment requests together, and subsequently to identify the group.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.4.1",
                             Type = @"Component",
@@ -322,25 +421,55 @@ This field is conditionally required.  If the transaction using this segment is 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _placerGroupNumber = new HL7V251Field
+        {
+            field = message[@"SCH"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_placerGroupNumber.field.FieldRepetitions != null && _placerGroupNumber.field.FieldRepetitions.Count > 0)
+        {
+            _placerGroupNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_placerGroupNumber, fieldData);
+        }
+
+        return _placerGroupNumber;
+    } 
+}
+
+internal HL7V251Field _scheduleID;
+
+public HL7V251Field ScheduleID
+{
+    get
+    {
+        if (_scheduleID != null)
+        {
+            return _scheduleID;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.5",
+            Type = @"Field",
+            Position = @"SCH.5",
+            Name = @"Schedule ID",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an identifier code for the schedule in which this appointment is (or will be) booked. This field is provided for instances in which filler applications maintain multiple schedules, and when a particular resource or set of resources is controlled by more than one of those schedules.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.5",
-                            Type = @"Field",
-                            Position = @"SCH.5",
-                            Name = @"Schedule ID",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an identifier code for the schedule in which this appointment is (or will be) booked. This field is provided for instances in which filler applications maintain multiple schedules, and when a particular resource or set of resources is controlled by more than one of those schedules.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.5.1",
                             Type = @"Component",
@@ -446,25 +575,55 @@ This field is conditionally required.  If the transaction using this segment is 
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _scheduleID = new HL7V251Field
+        {
+            field = message[@"SCH"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_scheduleID.field.FieldRepetitions != null && _scheduleID.field.FieldRepetitions.Count > 0)
+        {
+            _scheduleID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_scheduleID, fieldData);
+        }
+
+        return _scheduleID;
+    } 
+}
+
+internal HL7V251Field _eventReason;
+
+public HL7V251Field EventReason
+{
+    get
+    {
+        if (_eventReason != null)
+        {
+            return _eventReason;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.6",
+            Type = @"Field",
+            Position = @"SCH.6",
+            Name = @"Event Reason",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an identifier code for the reason that the notification event was triggered. This field may contain a code describing the cancel reason, the delete reason, the discontinue reason, the add reason, the block reason or any other code describing the reason that a specific event will occur.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.6",
-                            Type = @"Field",
-                            Position = @"SCH.6",
-                            Name = @"Event Reason",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an identifier code for the reason that the notification event was triggered. This field may contain a code describing the cancel reason, the delete reason, the discontinue reason, the add reason, the block reason or any other code describing the reason that a specific event will occur.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.6.1",
                             Type = @"Component",
@@ -570,25 +729,55 @@ This field is conditionally required.  If the transaction using this segment is 
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _eventReason = new HL7V251Field
+        {
+            field = message[@"SCH"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventReason.field.FieldRepetitions != null && _eventReason.field.FieldRepetitions.Count > 0)
+        {
+            _eventReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_eventReason, fieldData);
+        }
+
+        return _eventReason;
+    } 
+}
+
+internal HL7V251Field _appointmentReason;
+
+public HL7V251Field AppointmentReason
+{
+    get
+    {
+        if (_appointmentReason != null)
+        {
+            return _appointmentReason;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.7",
+            Type = @"Field",
+            Position = @"SCH.7",
+            Name = @"Appointment Reason",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0276",
+            TableName = @"Appointment reason codes",
+            Description = @"This field contains an identifier code for the reason that the appointment is to take place. This field may contain a Universal Service ID describing the observation/test/battery/procedure or other activity that is to take place during the requested appointment, similar to the Universal Service ID defined for the OBR segment. It may also contain a site-specific code describing a pre-defined set of reasons that an appointment may be set to occur. This code can be based on local and/or universal codes. The use of universal codes is recommended. Refer to User-Defined Table 0276 - Appointment Reason Code s for suggested codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.7",
-                            Type = @"Field",
-                            Position = @"SCH.7",
-                            Name = @"Appointment Reason",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0276",
-                            TableName = @"Appointment reason codes",
-                            Description = @"This field contains an identifier code for the reason that the appointment is to take place. This field may contain a Universal Service ID describing the observation/test/battery/procedure or other activity that is to take place during the requested appointment, similar to the Universal Service ID defined for the OBR segment. It may also contain a site-specific code describing a pre-defined set of reasons that an appointment may be set to occur. This code can be based on local and/or universal codes. The use of universal codes is recommended. Refer to User-Defined Table 0276 - Appointment Reason Code s for suggested codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.7.1",
                             Type = @"Component",
@@ -694,25 +883,55 @@ This field is conditionally required.  If the transaction using this segment is 
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _appointmentReason = new HL7V251Field
+        {
+            field = message[@"SCH"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_appointmentReason.field.FieldRepetitions != null && _appointmentReason.field.FieldRepetitions.Count > 0)
+        {
+            _appointmentReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_appointmentReason, fieldData);
+        }
+
+        return _appointmentReason;
+    } 
+}
+
+internal HL7V251Field _appointmentType;
+
+public HL7V251Field AppointmentType
+{
+    get
+    {
+        if (_appointmentType != null)
+        {
+            return _appointmentType;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.8",
+            Type = @"Field",
+            Position = @"SCH.8",
+            Name = @"Appointment Type",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0277",
+            TableName = @"Appointment Type Codes",
+            Description = @"This field contains the identifier code for the type of appointment. Refer to User-Defined Table 0277 - Appointment Type Codes for suggested codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.8",
-                            Type = @"Field",
-                            Position = @"SCH.8",
-                            Name = @"Appointment Type",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0277",
-                            TableName = @"Appointment Type Codes",
-                            Description = @"This field contains the identifier code for the type of appointment. Refer to User-Defined Table 0277 - Appointment Type Codes for suggested codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.8.1",
                             Type = @"Component",
@@ -818,47 +1037,104 @@ This field is conditionally required.  If the transaction using this segment is 
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SCH.9",
-                            Type = @"Field",
-                            Position = @"SCH.9",
-                            Name = @"Appointment Duration",
-                            Length = 20,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"As of Version 2.5, this field is retained for backward compatibility only. Refer to the TQ1 segment.
+                        }
+        }
+
+        _appointmentType = new HL7V251Field
+        {
+            field = message[@"SCH"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_appointmentType.field.FieldRepetitions != null && _appointmentType.field.FieldRepetitions.Count > 0)
+        {
+            _appointmentType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_appointmentType, fieldData);
+        }
+
+        return _appointmentType;
+    } 
+}
+
+internal HL7V251Field _appointmentDuration;
+
+public HL7V251Field AppointmentDuration
+{
+    get
+    {
+        if (_appointmentDuration != null)
+        {
+            return _appointmentDuration;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.9",
+            Type = @"Field",
+            Position = @"SCH.9",
+            Name = @"Appointment Duration",
+            Length = 20,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"As of Version 2.5, this field is retained for backward compatibility only. Refer to the TQ1 segment.
 
 This field specifies the amount of time requested and allotted for the appointment. In cases of repeating appointments, this field describes the duration of one instance of the appointment. If this field is unvalued, then the institution's standard duration for the type of appointment requested will be assumed.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SCH.10",
-                            Type = @"Field",
-                            Position = @"SCH.10",
-                            Name = @"Appointment Duration Units",
-                            Length = 250,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"As of Version 2.5, this field is retained for backward compatibility only. Refer to the TQ1 segment.
+            Sample = @"",
+            Fields = null
+        }
+
+        _appointmentDuration = new HL7V251Field
+        {
+            field = message[@"SCH"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_appointmentDuration.field.FieldRepetitions != null && _appointmentDuration.field.FieldRepetitions.Count > 0)
+        {
+            _appointmentDuration.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_appointmentDuration, fieldData);
+        }
+
+        return _appointmentDuration;
+    } 
+}
+
+internal HL7V251Field _appointmentDurationUnits;
+
+public HL7V251Field AppointmentDurationUnits
+{
+    get
+    {
+        if (_appointmentDurationUnits != null)
+        {
+            return _appointmentDurationUnits;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.10",
+            Type = @"Field",
+            Position = @"SCH.10",
+            Name = @"Appointment Duration Units",
+            Length = 250,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"As of Version 2.5, this field is retained for backward compatibility only. Refer to the TQ1 segment.
 
 This field contains a code describing the units of time used for expressing the ARQ-9-Appointment duration field. If this component is not valued, the ISO base unit of seconds (code ""s"") is assumed.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.10.1",
                             Type = @"Component",
@@ -964,27 +1240,57 @@ This field contains a code describing the units of time used for expressing the 
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SCH.11",
-                            Type = @"Field",
-                            Position = @"SCH.11",
-                            Name = @"Appointment Timing Quantity",
-                            Length = 200,
-                            Usage = @"B",
-                            Rpt = @"*",
-                            DataType = @"TQ",
-                            DataTypeName = @"Timing Quantity",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"As of Version 2.5, this field is retained for backward compatibility only. Refer to the TQ1 segment.
+                        }
+        }
+
+        _appointmentDurationUnits = new HL7V251Field
+        {
+            field = message[@"SCH"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_appointmentDurationUnits.field.FieldRepetitions != null && _appointmentDurationUnits.field.FieldRepetitions.Count > 0)
+        {
+            _appointmentDurationUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_appointmentDurationUnits, fieldData);
+        }
+
+        return _appointmentDurationUnits;
+    } 
+}
+
+internal HL7V251Field _appointmentTimingQuantity;
+
+public HL7V251Field AppointmentTimingQuantity
+{
+    get
+    {
+        if (_appointmentTimingQuantity != null)
+        {
+            return _appointmentTimingQuantity;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.11",
+            Type = @"Field",
+            Position = @"SCH.11",
+            Name = @"Appointment Timing Quantity",
+            Length = 200,
+            Usage = @"B",
+            Rpt = @"*",
+            DataType = @"TQ",
+            DataTypeName = @"Timing Quantity",
+            TableId = null,
+            TableName = null,
+            Description = @"As of Version 2.5, this field is retained for backward compatibility only. Refer to the TQ1 segment.
 
 This field contains the scheduled appointment's timing and quantity, as scheduled by the filler application. The TQ1 segment fully describes the components and the appropriate data values for the components of this field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.11.1",
                             Type = @"Component",
@@ -1746,25 +2052,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"This component contains the total number of occurrences of a service that should result from this order. It is optional within TQ and does not repeat. If both the end date/time and the total occurrences are valued and the occurrences would extend beyond the end date/time, then the end date/time takes precedence. Otherwise the number of occurrences takes precedence.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _appointmentTimingQuantity = new HL7V251Field
+        {
+            field = message[@"SCH"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_appointmentTimingQuantity.field.FieldRepetitions != null && _appointmentTimingQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _appointmentTimingQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_appointmentTimingQuantity, fieldData);
+        }
+
+        return _appointmentTimingQuantity;
+    } 
+}
+
+internal HL7V251Field _placerContactPerson;
+
+public HL7V251Field PlacerContactPerson
+{
+    get
+    {
+        if (_placerContactPerson != null)
+        {
+            return _placerContactPerson;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.12",
+            Type = @"Field",
+            Position = @"SCH.12",
+            Name = @"Placer Contact Person",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the person responsible for requesting the scheduling of a requested appointment. Most often, this person will be the same person responsible for executing the appointment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.12",
-                            Type = @"Field",
-                            Position = @"SCH.12",
-                            Name = @"Placer Contact Person",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the person responsible for requesting the scheduling of a requested appointment. Most often, this person will be the same person responsible for executing the appointment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.12.1",
                             Type = @"Component",
@@ -2980,25 +3316,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _placerContactPerson = new HL7V251Field
+        {
+            field = message[@"SCH"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_placerContactPerson.field.FieldRepetitions != null && _placerContactPerson.field.FieldRepetitions.Count > 0)
+        {
+            _placerContactPerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_placerContactPerson, fieldData);
+        }
+
+        return _placerContactPerson;
+    } 
+}
+
+internal HL7V251Field _placerContactPhoneNumber;
+
+public HL7V251Field PlacerContactPhoneNumber
+{
+    get
+    {
+        if (_placerContactPhoneNumber != null)
+        {
+            return _placerContactPhoneNumber;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.13",
+            Type = @"Field",
+            Position = @"SCH.13",
+            Name = @"Placer Contact Phone Number",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the phone number used to contact the SCH-12-Placer contact person.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.13",
-                            Type = @"Field",
-                            Position = @"SCH.13",
-                            Name = @"Placer Contact Phone Number",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the phone number used to contact the SCH-12-Placer contact person.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.13.1",
                             Type = @"Component",
@@ -3218,25 +3584,55 @@ Format: [NNN] [(999)]999-9999 [X99999] [B99999] [C any text] ",
 Example: |^^^^^^^^^^^1-800-Dentist| ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _placerContactPhoneNumber = new HL7V251Field
+        {
+            field = message[@"SCH"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_placerContactPhoneNumber.field.FieldRepetitions != null && _placerContactPhoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            _placerContactPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_placerContactPhoneNumber, fieldData);
+        }
+
+        return _placerContactPhoneNumber;
+    } 
+}
+
+internal HL7V251Field _placerContactAddress;
+
+public HL7V251Field PlacerContactAddress
+{
+    get
+    {
+        if (_placerContactAddress != null)
+        {
+            return _placerContactAddress;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.14",
+            Type = @"Field",
+            Position = @"SCH.14",
+            Name = @"Placer Contact Address",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the address used to contact the SCH-12-Placer contact person.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.14",
-                            Type = @"Field",
-                            Position = @"SCH.14",
-                            Name = @"Placer Contact Address",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the address used to contact the SCH-12-Placer contact person.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.14.1",
                             Type = @"Component",
@@ -3718,25 +4114,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _placerContactAddress = new HL7V251Field
+        {
+            field = message[@"SCH"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_placerContactAddress.field.FieldRepetitions != null && _placerContactAddress.field.FieldRepetitions.Count > 0)
+        {
+            _placerContactAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_placerContactAddress, fieldData);
+        }
+
+        return _placerContactAddress;
+    } 
+}
+
+internal HL7V251Field _placerContactLocation;
+
+public HL7V251Field PlacerContactLocation
+{
+    get
+    {
+        if (_placerContactLocation != null)
+        {
+            return _placerContactLocation;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.15",
+            Type = @"Field",
+            Position = @"SCH.15",
+            Name = @"Placer Contact Location",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a code that identifies the location of the SCH-12-Placer contact person.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.15",
-                            Type = @"Field",
-                            Position = @"SCH.15",
-                            Name = @"Placer Contact Location",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a code that identifies the location of the SCH-12-Placer contact person.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.15.1",
                             Type = @"Component",
@@ -4110,25 +4536,55 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _placerContactLocation = new HL7V251Field
+        {
+            field = message[@"SCH"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_placerContactLocation.field.FieldRepetitions != null && _placerContactLocation.field.FieldRepetitions.Count > 0)
+        {
+            _placerContactLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_placerContactLocation, fieldData);
+        }
+
+        return _placerContactLocation;
+    } 
+}
+
+internal HL7V251Field _fillerContactPerson;
+
+public HL7V251Field FillerContactPerson
+{
+    get
+    {
+        if (_fillerContactPerson != null)
+        {
+            return _fillerContactPerson;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.16",
+            Type = @"Field",
+            Position = @"SCH.16",
+            Name = @"Filler Contact Person",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the person responsible for the scheduling of the requested appointment. Most often, this person will be the same person responsible for maintaining the schedule and for reviewing appointment requests.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.16",
-                            Type = @"Field",
-                            Position = @"SCH.16",
-                            Name = @"Filler Contact Person",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the person responsible for the scheduling of the requested appointment. Most often, this person will be the same person responsible for maintaining the schedule and for reviewing appointment requests.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.16.1",
                             Type = @"Component",
@@ -5344,25 +5800,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _fillerContactPerson = new HL7V251Field
+        {
+            field = message[@"SCH"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fillerContactPerson.field.FieldRepetitions != null && _fillerContactPerson.field.FieldRepetitions.Count > 0)
+        {
+            _fillerContactPerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_fillerContactPerson, fieldData);
+        }
+
+        return _fillerContactPerson;
+    } 
+}
+
+internal HL7V251Field _fillerContactPhoneNumber;
+
+public HL7V251Field FillerContactPhoneNumber
+{
+    get
+    {
+        if (_fillerContactPhoneNumber != null)
+        {
+            return _fillerContactPhoneNumber;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.17",
+            Type = @"Field",
+            Position = @"SCH.17",
+            Name = @"Filler Contact Phone Number",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the phone number used to contact the SCH-16-Filler contact person.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.17",
-                            Type = @"Field",
-                            Position = @"SCH.17",
-                            Name = @"Filler Contact Phone Number",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the phone number used to contact the SCH-16-Filler contact person.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.17.1",
                             Type = @"Component",
@@ -5582,25 +6068,55 @@ Format: [NNN] [(999)]999-9999 [X99999] [B99999] [C any text] ",
 Example: |^^^^^^^^^^^1-800-Dentist| ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _fillerContactPhoneNumber = new HL7V251Field
+        {
+            field = message[@"SCH"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fillerContactPhoneNumber.field.FieldRepetitions != null && _fillerContactPhoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            _fillerContactPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_fillerContactPhoneNumber, fieldData);
+        }
+
+        return _fillerContactPhoneNumber;
+    } 
+}
+
+internal HL7V251Field _fillerContactAddress;
+
+public HL7V251Field FillerContactAddress
+{
+    get
+    {
+        if (_fillerContactAddress != null)
+        {
+            return _fillerContactAddress;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.18",
+            Type = @"Field",
+            Position = @"SCH.18",
+            Name = @"Filler Contact Address",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the address used to contact the SCH-16-Filler contact person.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.18",
-                            Type = @"Field",
-                            Position = @"SCH.18",
-                            Name = @"Filler Contact Address",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the address used to contact the SCH-16-Filler contact person.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.18.1",
                             Type = @"Component",
@@ -6082,25 +6598,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _fillerContactAddress = new HL7V251Field
+        {
+            field = message[@"SCH"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fillerContactAddress.field.FieldRepetitions != null && _fillerContactAddress.field.FieldRepetitions.Count > 0)
+        {
+            _fillerContactAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_fillerContactAddress, fieldData);
+        }
+
+        return _fillerContactAddress;
+    } 
+}
+
+internal HL7V251Field _fillerContactLocation;
+
+public HL7V251Field FillerContactLocation
+{
+    get
+    {
+        if (_fillerContactLocation != null)
+        {
+            return _fillerContactLocation;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.19",
+            Type = @"Field",
+            Position = @"SCH.19",
+            Name = @"Filler Contact Location",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a code that identifies the location of the SCH-16-Filler Contact Person.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.19",
-                            Type = @"Field",
-                            Position = @"SCH.19",
-                            Name = @"Filler Contact Location",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a code that identifies the location of the SCH-16-Filler Contact Person.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.19.1",
                             Type = @"Component",
@@ -6474,25 +7020,55 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _fillerContactLocation = new HL7V251Field
+        {
+            field = message[@"SCH"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fillerContactLocation.field.FieldRepetitions != null && _fillerContactLocation.field.FieldRepetitions.Count > 0)
+        {
+            _fillerContactLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_fillerContactLocation, fieldData);
+        }
+
+        return _fillerContactLocation;
+    } 
+}
+
+internal HL7V251Field _enteredByPerson;
+
+public HL7V251Field EnteredByPerson
+{
+    get
+    {
+        if (_enteredByPerson != null)
+        {
+            return _enteredByPerson;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.20",
+            Type = @"Field",
+            Position = @"SCH.20",
+            Name = @"Entered By Person",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the person responsible for entering the request for the scheduling of an appointment. It is included to provide an audit trail of persons responsible for the request. This person may be someone other than the placer contact person, who is responsible for entering orders and requests.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.20",
-                            Type = @"Field",
-                            Position = @"SCH.20",
-                            Name = @"Entered By Person",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the person responsible for entering the request for the scheduling of an appointment. It is included to provide an audit trail of persons responsible for the request. This person may be someone other than the placer contact person, who is responsible for entering orders and requests.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.20.1",
                             Type = @"Component",
@@ -7708,25 +8284,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _enteredByPerson = new HL7V251Field
+        {
+            field = message[@"SCH"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_enteredByPerson.field.FieldRepetitions != null && _enteredByPerson.field.FieldRepetitions.Count > 0)
+        {
+            _enteredByPerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_enteredByPerson, fieldData);
+        }
+
+        return _enteredByPerson;
+    } 
+}
+
+internal HL7V251Field _enteredByPhoneNumber;
+
+public HL7V251Field EnteredByPhoneNumber
+{
+    get
+    {
+        if (_enteredByPhoneNumber != null)
+        {
+            return _enteredByPhoneNumber;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.21",
+            Type = @"Field",
+            Position = @"SCH.21",
+            Name = @"Entered By Phone Number",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the phone number used to contact the ARQ-19-Entered by person.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.21",
-                            Type = @"Field",
-                            Position = @"SCH.21",
-                            Name = @"Entered By Phone Number",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the phone number used to contact the ARQ-19-Entered by person.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.21.1",
                             Type = @"Component",
@@ -7946,25 +8552,55 @@ Format: [NNN] [(999)]999-9999 [X99999] [B99999] [C any text] ",
 Example: |^^^^^^^^^^^1-800-Dentist| ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _enteredByPhoneNumber = new HL7V251Field
+        {
+            field = message[@"SCH"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_enteredByPhoneNumber.field.FieldRepetitions != null && _enteredByPhoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            _enteredByPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_enteredByPhoneNumber, fieldData);
+        }
+
+        return _enteredByPhoneNumber;
+    } 
+}
+
+internal HL7V251Field _enteredByLocation;
+
+public HL7V251Field EnteredByLocation
+{
+    get
+    {
+        if (_enteredByLocation != null)
+        {
+            return _enteredByLocation;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.22",
+            Type = @"Field",
+            Position = @"SCH.22",
+            Name = @"Entered By Location",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a code that identifies the location of the entered by person.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.22",
-                            Type = @"Field",
-                            Position = @"SCH.22",
-                            Name = @"Entered By Location",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a code that identifies the location of the entered by person.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.22.1",
                             Type = @"Component",
@@ -8338,25 +8974,55 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _enteredByLocation = new HL7V251Field
+        {
+            field = message[@"SCH"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_enteredByLocation.field.FieldRepetitions != null && _enteredByLocation.field.FieldRepetitions.Count > 0)
+        {
+            _enteredByLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_enteredByLocation, fieldData);
+        }
+
+        return _enteredByLocation;
+    } 
+}
+
+internal HL7V251Field _parentPlacerAppointmentID;
+
+public HL7V251Field ParentPlacerAppointmentID
+{
+    get
+    {
+        if (_parentPlacerAppointmentID != null)
+        {
+            return _parentPlacerAppointmentID;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.23",
+            Type = @"Field",
+            Position = @"SCH.23",
+            Name = @"Parent Placer Appointment ID",
+            Length = 75,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field relates a child to its parent, when a parent-child relationship exists. It contains the placer application's permanent identifier for the parent of the appointment request. This is a composite field.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.23",
-                            Type = @"Field",
-                            Position = @"SCH.23",
-                            Name = @"Parent Placer Appointment ID",
-                            Length = 75,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field relates a child to its parent, when a parent-child relationship exists. It contains the placer application's permanent identifier for the parent of the appointment request. This is a composite field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.23.1",
                             Type = @"Component",
@@ -8426,29 +9092,59 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SCH.24",
-                            Type = @"Field",
-                            Position = @"SCH.24",
-                            Name = @"Parent Filler Appointment ID",
-                            Length = 75,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field relates a child to its parent, when a parent-child relationship exists. It contains the filler application's permanent identifier for the parent of the appointment request. This is a composite field.
+                        }
+        }
+
+        _parentPlacerAppointmentID = new HL7V251Field
+        {
+            field = message[@"SCH"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_parentPlacerAppointmentID.field.FieldRepetitions != null && _parentPlacerAppointmentID.field.FieldRepetitions.Count > 0)
+        {
+            _parentPlacerAppointmentID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_parentPlacerAppointmentID, fieldData);
+        }
+
+        return _parentPlacerAppointmentID;
+    } 
+}
+
+internal HL7V251Field _parentFillerAppointmentID;
+
+public HL7V251Field ParentFillerAppointmentID
+{
+    get
+    {
+        if (_parentFillerAppointmentID != null)
+        {
+            return _parentFillerAppointmentID;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.24",
+            Type = @"Field",
+            Position = @"SCH.24",
+            Name = @"Parent Filler Appointment ID",
+            Length = 75,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field relates a child to its parent, when a parent-child relationship exists. It contains the filler application's permanent identifier for the parent of the appointment request. This is a composite field.
 
 The first component is a string that identifies the parent appointment request.  It is assigned by the filler application, and it identifies an appointment request uniquely among all such requests on a particular processing application. 
 
 This is a conditionally required field.  On initial messages where a filler has not yet assigned a filler appointment ID, this field should not contain a value.  In all other subsequent messages, where a filler application has assigned a filler appointment ID, this field is required. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.24.1",
                             Type = @"Component",
@@ -8518,25 +9214,55 @@ This is a conditionally required field.  On initial messages where a filler has 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _parentFillerAppointmentID = new HL7V251Field
+        {
+            field = message[@"SCH"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_parentFillerAppointmentID.field.FieldRepetitions != null && _parentFillerAppointmentID.field.FieldRepetitions.Count > 0)
+        {
+            _parentFillerAppointmentID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_parentFillerAppointmentID, fieldData);
+        }
+
+        return _parentFillerAppointmentID;
+    } 
+}
+
+internal HL7V251Field _fillerStatusCode;
+
+public HL7V251Field FillerStatusCode
+{
+    get
+    {
+        if (_fillerStatusCode != null)
+        {
+            return _fillerStatusCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.25",
+            Type = @"Field",
+            Position = @"SCH.25",
+            Name = @"Filler Status Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0278",
+            TableName = @"Filler status codes",
+            Description = @"This field contains a code describing the status of the appointment with respect to the filler application. Refer to User-Defined Table 0278 - Filler Status Codes for suggested codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SCH.25",
-                            Type = @"Field",
-                            Position = @"SCH.25",
-                            Name = @"Filler Status Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0278",
-                            TableName = @"Filler status codes",
-                            Description = @"This field contains a code describing the status of the appointment with respect to the filler application. Refer to User-Defined Table 0278 - Filler Status Codes for suggested codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.25.1",
                             Type = @"Component",
@@ -8642,27 +9368,57 @@ This is a conditionally required field.  On initial messages where a filler has 
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SCH.26",
-                            Type = @"Field",
-                            Position = @"SCH.26",
-                            Name = @"Placer Order Number",
-                            Length = 22,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the placer application's order number for the order associated with this scheduling filler application response.
+                        }
+        }
+
+        _fillerStatusCode = new HL7V251Field
+        {
+            field = message[@"SCH"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fillerStatusCode.field.FieldRepetitions != null && _fillerStatusCode.field.FieldRepetitions.Count > 0)
+        {
+            _fillerStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_fillerStatusCode, fieldData);
+        }
+
+        return _fillerStatusCode;
+    } 
+}
+
+internal HL7V251Field _placerOrderNumber;
+
+public HL7V251Field PlacerOrderNumber
+{
+    get
+    {
+        if (_placerOrderNumber != null)
+        {
+            return _placerOrderNumber;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.26",
+            Type = @"Field",
+            Position = @"SCH.26",
+            Name = @"Placer Order Number",
+            Length = 22,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the placer application's order number for the order associated with this scheduling filler application response.
 
 This field is described in detail in Section 4.5.1.2.  It is an optional field, but if a Placer order number is present, then a Filler order number (Section 10.6.2.27) must also be present. Both this field and the Filler order number below may have been sent as part of the appointment request in the ARQ segment or they may be assigned by the scheduling filler application only. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.26.1",
                             Type = @"Component",
@@ -8732,27 +9488,57 @@ This field is described in detail in Section 4.5.1.2.  It is an optional field, 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SCH.27",
-                            Type = @"Field",
-                            Position = @"SCH.27",
-                            Name = @"Filler Order Number",
-                            Length = 22,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the order number assigned by the filler application for the order associated with this scheduling filler response.
+                        }
+        }
+
+        _placerOrderNumber = new HL7V251Field
+        {
+            field = message[@"SCH"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_placerOrderNumber.field.FieldRepetitions != null && _placerOrderNumber.field.FieldRepetitions.Count > 0)
+        {
+            _placerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_placerOrderNumber, fieldData);
+        }
+
+        return _placerOrderNumber;
+    } 
+}
+
+internal HL7V251Field _fillerOrderNumber;
+
+public HL7V251Field FillerOrderNumber
+{
+    get
+    {
+        if (_fillerOrderNumber != null)
+        {
+            return _fillerOrderNumber;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SCH.27",
+            Type = @"Field",
+            Position = @"SCH.27",
+            Name = @"Filler Order Number",
+            Length = 22,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the order number assigned by the filler application for the order associated with this scheduling filler response.
 
 This field is described in detail in Section 4.5.1.3.  It is conditionally mandatory depending on the presence of the Placer order number (Section 10.6.2.26).  This conditionally mandatory requirement addresses the concern that a Scheduling system cannot and should not create or fill an order.  Therefore, an order must have been accepted by the order filler application before scheduling the resources associated with that order.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SCH.27.1",
                             Type = @"Component",
@@ -8822,1143 +9608,23 @@ This field is described in detail in Section 4.5.1.3.  It is conditionally manda
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentSCH(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field placerAppointmentID;
-
-public HL7V251Field PlacerAppointmentID
-{
-    get
-    {
-        if (placerAppointmentID != null)
-        {
-            return placerAppointmentID;
-        }
-
-        placerAppointmentID = new HL7V251Field
-        {
-            field = message[@"SCH"][1],
-            Id = @"SCH.1",
-            Type = @"Field",
-            Position = @"SCH.1",
-            Name = @"Placer Appointment ID",
-            Length = 75,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the placer application's permanent identifier for the appointment request (and the scheduled appointment itself, when it has been confirmed as a booked slot by the filler application). This is a composite field.
-
-The first component is a string that identifies an individual appointment request, or a booked appointment.  It is assigned by the placer application, and identifies an appointment request, and the subsequent scheduled appointment, uniquely among all such requests and/or booked appointments from a particular requesting application.  If SCH-1-Placer appointment ID identifies a parent of a repeating schedule request, then the individual child scheduled appointments can be uniquely identified either by a new SCH-1-Placer appointment ID or by SCH-23-Parent placer appointment ID plus an SCH-3-Occurrence number. 
-
-If a schedule request originates from a placer it MUST have a placer appointment ID.  If the filler sends responses, it may use the placer appointment ID and/or assign a filler appointment ID (which it would echo back to the placer to enable the placer application to associate the two).  If the placer appointment ID is not present, the filler appointment ID must be present and vice versa. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (placerAppointmentID.field.FieldRepetitions != null && placerAppointmentID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerAppointmentID.Id));
-            placerAppointmentID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(placerAppointmentID, fieldData);
-        }
-
-        return placerAppointmentID;
-    } 
-}
-
-internal HL7V251Field fillerAppointmentID;
-
-public HL7V251Field FillerAppointmentID
-{
-    get
-    {
-        if (fillerAppointmentID != null)
-        {
-            return fillerAppointmentID;
-        }
-
-        fillerAppointmentID = new HL7V251Field
-        {
-            field = message[@"SCH"][2],
-            Id = @"SCH.2",
-            Type = @"Field",
-            Position = @"SCH.2",
-            Name = @"Filler Appointment ID",
-            Length = 75,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the filler application's permanent identifier for the appointment request (and the scheduled appointment itself, when it has been confirmed as a booked slot by the filler application). This is a composite field.
-
-The first component is a string of up to fifteen characters that identifies an individual appointment request, or a booked appointment.  It is assigned by the filler application, and identifies an appointment request, and the subsequent scheduled appointment, uniquely among all such requests and/or booked appointments from a particular processing application.  If SCH-2-Filler appointment ID identifies a parent of a repeating schedule request, then the individual child scheduled appointments can be uniquely identified either by a new SCH-2-Filler appointment ID or by SCH-25-Parent filler appointment ID plus an SCH-3-Occurrence number. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fillerAppointmentID.field.FieldRepetitions != null && fillerAppointmentID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerAppointmentID.Id));
-            fillerAppointmentID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(fillerAppointmentID, fieldData);
-        }
-
-        return fillerAppointmentID;
-    } 
-}
-
-internal HL7V251Field occurrenceNumber;
-
-public HL7V251Field OccurrenceNumber
-{
-    get
-    {
-        if (occurrenceNumber != null)
-        {
-            return occurrenceNumber;
-        }
-
-        occurrenceNumber = new HL7V251Field
-        {
-            field = message[@"SCH"][3],
-            Id = @"SCH.3",
-            Type = @"Field",
-            Position = @"SCH.3",
-            Name = @"Occurrence Number",
-            Length = 5,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used in conjunction with SCH-1-Placer appointment ID and/or SCH-2-Filler appointment ID to uniquely identify an individual occurrence (a child) of a parent repeating schedule appointment.
-
-This field is conditionally required.  If the transaction using this segment is intended to apply only to one occurrence of a repeating appointment, and an occurrence number is required to uniquely identify the child appointment (that is, the child does not have a separate and unique SCH-1-Placer appointment ID or SCH2-Filler appointment ID), then this field is required.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (occurrenceNumber.field.FieldRepetitions != null && occurrenceNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(occurrenceNumber.Id));
-            occurrenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(occurrenceNumber, fieldData);
-        }
-
-        return occurrenceNumber;
-    } 
-}
-
-internal HL7V251Field placerGroupNumber;
-
-public HL7V251Field PlacerGroupNumber
-{
-    get
-    {
-        if (placerGroupNumber != null)
-        {
-            return placerGroupNumber;
-        }
-
-        placerGroupNumber = new HL7V251Field
-        {
-            field = message[@"SCH"][4],
-            Id = @"SCH.4",
-            Type = @"Field",
-            Position = @"SCH.4",
-            Name = @"Placer Group Number",
-            Length = 22,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field allows a placer application to group sets of appointment requests together, and subsequently to identify the group.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (placerGroupNumber.field.FieldRepetitions != null && placerGroupNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerGroupNumber.Id));
-            placerGroupNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(placerGroupNumber, fieldData);
-        }
-
-        return placerGroupNumber;
-    } 
-}
-
-internal HL7V251Field scheduleID;
-
-public HL7V251Field ScheduleID
-{
-    get
-    {
-        if (scheduleID != null)
-        {
-            return scheduleID;
-        }
-
-        scheduleID = new HL7V251Field
-        {
-            field = message[@"SCH"][5],
-            Id = @"SCH.5",
-            Type = @"Field",
-            Position = @"SCH.5",
-            Name = @"Schedule ID",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an identifier code for the schedule in which this appointment is (or will be) booked. This field is provided for instances in which filler applications maintain multiple schedules, and when a particular resource or set of resources is controlled by more than one of those schedules.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (scheduleID.field.FieldRepetitions != null && scheduleID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(scheduleID.Id));
-            scheduleID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(scheduleID, fieldData);
-        }
-
-        return scheduleID;
-    } 
-}
-
-internal HL7V251Field eventReason;
-
-public HL7V251Field EventReason
-{
-    get
-    {
-        if (eventReason != null)
-        {
-            return eventReason;
-        }
-
-        eventReason = new HL7V251Field
-        {
-            field = message[@"SCH"][6],
-            Id = @"SCH.6",
-            Type = @"Field",
-            Position = @"SCH.6",
-            Name = @"Event Reason",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an identifier code for the reason that the notification event was triggered. This field may contain a code describing the cancel reason, the delete reason, the discontinue reason, the add reason, the block reason or any other code describing the reason that a specific event will occur.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventReason.field.FieldRepetitions != null && eventReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventReason.Id));
-            eventReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(eventReason, fieldData);
-        }
-
-        return eventReason;
-    } 
-}
-
-internal HL7V251Field appointmentReason;
-
-public HL7V251Field AppointmentReason
-{
-    get
-    {
-        if (appointmentReason != null)
-        {
-            return appointmentReason;
-        }
-
-        appointmentReason = new HL7V251Field
-        {
-            field = message[@"SCH"][7],
-            Id = @"SCH.7",
-            Type = @"Field",
-            Position = @"SCH.7",
-            Name = @"Appointment Reason",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0276",
-            TableName = @"Appointment reason codes",
-            Description = @"This field contains an identifier code for the reason that the appointment is to take place. This field may contain a Universal Service ID describing the observation/test/battery/procedure or other activity that is to take place during the requested appointment, similar to the Universal Service ID defined for the OBR segment. It may also contain a site-specific code describing a pre-defined set of reasons that an appointment may be set to occur. This code can be based on local and/or universal codes. The use of universal codes is recommended. Refer to User-Defined Table 0276 - Appointment Reason Code s for suggested codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (appointmentReason.field.FieldRepetitions != null && appointmentReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(appointmentReason.Id));
-            appointmentReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(appointmentReason, fieldData);
-        }
-
-        return appointmentReason;
-    } 
-}
-
-internal HL7V251Field appointmentType;
-
-public HL7V251Field AppointmentType
-{
-    get
-    {
-        if (appointmentType != null)
-        {
-            return appointmentType;
-        }
-
-        appointmentType = new HL7V251Field
-        {
-            field = message[@"SCH"][8],
-            Id = @"SCH.8",
-            Type = @"Field",
-            Position = @"SCH.8",
-            Name = @"Appointment Type",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0277",
-            TableName = @"Appointment Type Codes",
-            Description = @"This field contains the identifier code for the type of appointment. Refer to User-Defined Table 0277 - Appointment Type Codes for suggested codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (appointmentType.field.FieldRepetitions != null && appointmentType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(appointmentType.Id));
-            appointmentType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(appointmentType, fieldData);
-        }
-
-        return appointmentType;
-    } 
-}
-
-internal HL7V251Field appointmentDuration;
-
-public HL7V251Field AppointmentDuration
-{
-    get
-    {
-        if (appointmentDuration != null)
-        {
-            return appointmentDuration;
-        }
-
-        appointmentDuration = new HL7V251Field
-        {
-            field = message[@"SCH"][9],
-            Id = @"SCH.9",
-            Type = @"Field",
-            Position = @"SCH.9",
-            Name = @"Appointment Duration",
-            Length = 20,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"As of Version 2.5, this field is retained for backward compatibility only. Refer to the TQ1 segment.
-
-This field specifies the amount of time requested and allotted for the appointment. In cases of repeating appointments, this field describes the duration of one instance of the appointment. If this field is unvalued, then the institution's standard duration for the type of appointment requested will be assumed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (appointmentDuration.field.FieldRepetitions != null && appointmentDuration.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(appointmentDuration.Id));
-            appointmentDuration.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(appointmentDuration, fieldData);
-        }
-
-        return appointmentDuration;
-    } 
-}
-
-internal HL7V251Field appointmentDurationUnits;
-
-public HL7V251Field AppointmentDurationUnits
-{
-    get
-    {
-        if (appointmentDurationUnits != null)
-        {
-            return appointmentDurationUnits;
-        }
-
-        appointmentDurationUnits = new HL7V251Field
-        {
-            field = message[@"SCH"][10],
-            Id = @"SCH.10",
-            Type = @"Field",
-            Position = @"SCH.10",
-            Name = @"Appointment Duration Units",
-            Length = 250,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"As of Version 2.5, this field is retained for backward compatibility only. Refer to the TQ1 segment.
-
-This field contains a code describing the units of time used for expressing the ARQ-9-Appointment duration field. If this component is not valued, the ISO base unit of seconds (code ""s"") is assumed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (appointmentDurationUnits.field.FieldRepetitions != null && appointmentDurationUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(appointmentDurationUnits.Id));
-            appointmentDurationUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(appointmentDurationUnits, fieldData);
-        }
-
-        return appointmentDurationUnits;
-    } 
-}
-
-internal HL7V251Field appointmentTimingQuantity;
-
-public HL7V251Field AppointmentTimingQuantity
-{
-    get
-    {
-        if (appointmentTimingQuantity != null)
-        {
-            return appointmentTimingQuantity;
-        }
-
-        appointmentTimingQuantity = new HL7V251Field
-        {
-            field = message[@"SCH"][11],
-            Id = @"SCH.11",
-            Type = @"Field",
-            Position = @"SCH.11",
-            Name = @"Appointment Timing Quantity",
-            Length = 200,
-            Usage = @"B",
-            Rpt = @"*",
-            DataType = @"TQ",
-            DataTypeName = @"Timing Quantity",
-            TableId = null,
-            TableName = null,
-            Description = @"As of Version 2.5, this field is retained for backward compatibility only. Refer to the TQ1 segment.
-
-This field contains the scheduled appointment's timing and quantity, as scheduled by the filler application. The TQ1 segment fully describes the components and the appropriate data values for the components of this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (appointmentTimingQuantity.field.FieldRepetitions != null && appointmentTimingQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(appointmentTimingQuantity.Id));
-            appointmentTimingQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(appointmentTimingQuantity, fieldData);
-        }
-
-        return appointmentTimingQuantity;
-    } 
-}
-
-internal HL7V251Field placerContactPerson;
-
-public HL7V251Field PlacerContactPerson
-{
-    get
-    {
-        if (placerContactPerson != null)
-        {
-            return placerContactPerson;
-        }
-
-        placerContactPerson = new HL7V251Field
-        {
-            field = message[@"SCH"][12],
-            Id = @"SCH.12",
-            Type = @"Field",
-            Position = @"SCH.12",
-            Name = @"Placer Contact Person",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the person responsible for requesting the scheduling of a requested appointment. Most often, this person will be the same person responsible for executing the appointment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (placerContactPerson.field.FieldRepetitions != null && placerContactPerson.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerContactPerson.Id));
-            placerContactPerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(placerContactPerson, fieldData);
-        }
-
-        return placerContactPerson;
-    } 
-}
-
-internal HL7V251Field placerContactPhoneNumber;
-
-public HL7V251Field PlacerContactPhoneNumber
-{
-    get
-    {
-        if (placerContactPhoneNumber != null)
-        {
-            return placerContactPhoneNumber;
-        }
-
-        placerContactPhoneNumber = new HL7V251Field
-        {
-            field = message[@"SCH"][13],
-            Id = @"SCH.13",
-            Type = @"Field",
-            Position = @"SCH.13",
-            Name = @"Placer Contact Phone Number",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the phone number used to contact the SCH-12-Placer contact person.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (placerContactPhoneNumber.field.FieldRepetitions != null && placerContactPhoneNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerContactPhoneNumber.Id));
-            placerContactPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(placerContactPhoneNumber, fieldData);
-        }
-
-        return placerContactPhoneNumber;
-    } 
-}
-
-internal HL7V251Field placerContactAddress;
-
-public HL7V251Field PlacerContactAddress
-{
-    get
-    {
-        if (placerContactAddress != null)
-        {
-            return placerContactAddress;
-        }
-
-        placerContactAddress = new HL7V251Field
-        {
-            field = message[@"SCH"][14],
-            Id = @"SCH.14",
-            Type = @"Field",
-            Position = @"SCH.14",
-            Name = @"Placer Contact Address",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the address used to contact the SCH-12-Placer contact person.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (placerContactAddress.field.FieldRepetitions != null && placerContactAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerContactAddress.Id));
-            placerContactAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(placerContactAddress, fieldData);
-        }
-
-        return placerContactAddress;
-    } 
-}
-
-internal HL7V251Field placerContactLocation;
-
-public HL7V251Field PlacerContactLocation
-{
-    get
-    {
-        if (placerContactLocation != null)
-        {
-            return placerContactLocation;
-        }
-
-        placerContactLocation = new HL7V251Field
-        {
-            field = message[@"SCH"][15],
-            Id = @"SCH.15",
-            Type = @"Field",
-            Position = @"SCH.15",
-            Name = @"Placer Contact Location",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a code that identifies the location of the SCH-12-Placer contact person.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (placerContactLocation.field.FieldRepetitions != null && placerContactLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerContactLocation.Id));
-            placerContactLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(placerContactLocation, fieldData);
-        }
-
-        return placerContactLocation;
-    } 
-}
-
-internal HL7V251Field fillerContactPerson;
-
-public HL7V251Field FillerContactPerson
-{
-    get
-    {
-        if (fillerContactPerson != null)
-        {
-            return fillerContactPerson;
-        }
-
-        fillerContactPerson = new HL7V251Field
-        {
-            field = message[@"SCH"][16],
-            Id = @"SCH.16",
-            Type = @"Field",
-            Position = @"SCH.16",
-            Name = @"Filler Contact Person",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the person responsible for the scheduling of the requested appointment. Most often, this person will be the same person responsible for maintaining the schedule and for reviewing appointment requests.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fillerContactPerson.field.FieldRepetitions != null && fillerContactPerson.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerContactPerson.Id));
-            fillerContactPerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(fillerContactPerson, fieldData);
-        }
-
-        return fillerContactPerson;
-    } 
-}
-
-internal HL7V251Field fillerContactPhoneNumber;
-
-public HL7V251Field FillerContactPhoneNumber
-{
-    get
-    {
-        if (fillerContactPhoneNumber != null)
-        {
-            return fillerContactPhoneNumber;
-        }
-
-        fillerContactPhoneNumber = new HL7V251Field
-        {
-            field = message[@"SCH"][17],
-            Id = @"SCH.17",
-            Type = @"Field",
-            Position = @"SCH.17",
-            Name = @"Filler Contact Phone Number",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the phone number used to contact the SCH-16-Filler contact person.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fillerContactPhoneNumber.field.FieldRepetitions != null && fillerContactPhoneNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerContactPhoneNumber.Id));
-            fillerContactPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(fillerContactPhoneNumber, fieldData);
-        }
-
-        return fillerContactPhoneNumber;
-    } 
-}
-
-internal HL7V251Field fillerContactAddress;
-
-public HL7V251Field FillerContactAddress
-{
-    get
-    {
-        if (fillerContactAddress != null)
-        {
-            return fillerContactAddress;
-        }
-
-        fillerContactAddress = new HL7V251Field
-        {
-            field = message[@"SCH"][18],
-            Id = @"SCH.18",
-            Type = @"Field",
-            Position = @"SCH.18",
-            Name = @"Filler Contact Address",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the address used to contact the SCH-16-Filler contact person.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fillerContactAddress.field.FieldRepetitions != null && fillerContactAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerContactAddress.Id));
-            fillerContactAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(fillerContactAddress, fieldData);
-        }
-
-        return fillerContactAddress;
-    } 
-}
-
-internal HL7V251Field fillerContactLocation;
-
-public HL7V251Field FillerContactLocation
-{
-    get
-    {
-        if (fillerContactLocation != null)
-        {
-            return fillerContactLocation;
-        }
-
-        fillerContactLocation = new HL7V251Field
-        {
-            field = message[@"SCH"][19],
-            Id = @"SCH.19",
-            Type = @"Field",
-            Position = @"SCH.19",
-            Name = @"Filler Contact Location",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a code that identifies the location of the SCH-16-Filler Contact Person.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fillerContactLocation.field.FieldRepetitions != null && fillerContactLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerContactLocation.Id));
-            fillerContactLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(fillerContactLocation, fieldData);
-        }
-
-        return fillerContactLocation;
-    } 
-}
-
-internal HL7V251Field enteredByPerson;
-
-public HL7V251Field EnteredByPerson
-{
-    get
-    {
-        if (enteredByPerson != null)
-        {
-            return enteredByPerson;
-        }
-
-        enteredByPerson = new HL7V251Field
-        {
-            field = message[@"SCH"][20],
-            Id = @"SCH.20",
-            Type = @"Field",
-            Position = @"SCH.20",
-            Name = @"Entered By Person",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the person responsible for entering the request for the scheduling of an appointment. It is included to provide an audit trail of persons responsible for the request. This person may be someone other than the placer contact person, who is responsible for entering orders and requests.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (enteredByPerson.field.FieldRepetitions != null && enteredByPerson.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteredByPerson.Id));
-            enteredByPerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(enteredByPerson, fieldData);
-        }
-
-        return enteredByPerson;
-    } 
-}
-
-internal HL7V251Field enteredByPhoneNumber;
-
-public HL7V251Field EnteredByPhoneNumber
-{
-    get
-    {
-        if (enteredByPhoneNumber != null)
-        {
-            return enteredByPhoneNumber;
-        }
-
-        enteredByPhoneNumber = new HL7V251Field
-        {
-            field = message[@"SCH"][21],
-            Id = @"SCH.21",
-            Type = @"Field",
-            Position = @"SCH.21",
-            Name = @"Entered By Phone Number",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the phone number used to contact the ARQ-19-Entered by person.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (enteredByPhoneNumber.field.FieldRepetitions != null && enteredByPhoneNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteredByPhoneNumber.Id));
-            enteredByPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(enteredByPhoneNumber, fieldData);
-        }
-
-        return enteredByPhoneNumber;
-    } 
-}
-
-internal HL7V251Field enteredByLocation;
-
-public HL7V251Field EnteredByLocation
-{
-    get
-    {
-        if (enteredByLocation != null)
-        {
-            return enteredByLocation;
-        }
-
-        enteredByLocation = new HL7V251Field
-        {
-            field = message[@"SCH"][22],
-            Id = @"SCH.22",
-            Type = @"Field",
-            Position = @"SCH.22",
-            Name = @"Entered By Location",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a code that identifies the location of the entered by person.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (enteredByLocation.field.FieldRepetitions != null && enteredByLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteredByLocation.Id));
-            enteredByLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(enteredByLocation, fieldData);
-        }
-
-        return enteredByLocation;
-    } 
-}
-
-internal HL7V251Field parentPlacerAppointmentID;
-
-public HL7V251Field ParentPlacerAppointmentID
-{
-    get
-    {
-        if (parentPlacerAppointmentID != null)
-        {
-            return parentPlacerAppointmentID;
-        }
-
-        parentPlacerAppointmentID = new HL7V251Field
-        {
-            field = message[@"SCH"][23],
-            Id = @"SCH.23",
-            Type = @"Field",
-            Position = @"SCH.23",
-            Name = @"Parent Placer Appointment ID",
-            Length = 75,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field relates a child to its parent, when a parent-child relationship exists. It contains the placer application's permanent identifier for the parent of the appointment request. This is a composite field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (parentPlacerAppointmentID.field.FieldRepetitions != null && parentPlacerAppointmentID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(parentPlacerAppointmentID.Id));
-            parentPlacerAppointmentID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(parentPlacerAppointmentID, fieldData);
-        }
-
-        return parentPlacerAppointmentID;
-    } 
-}
-
-internal HL7V251Field parentFillerAppointmentID;
-
-public HL7V251Field ParentFillerAppointmentID
-{
-    get
-    {
-        if (parentFillerAppointmentID != null)
-        {
-            return parentFillerAppointmentID;
-        }
-
-        parentFillerAppointmentID = new HL7V251Field
-        {
-            field = message[@"SCH"][24],
-            Id = @"SCH.24",
-            Type = @"Field",
-            Position = @"SCH.24",
-            Name = @"Parent Filler Appointment ID",
-            Length = 75,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field relates a child to its parent, when a parent-child relationship exists. It contains the filler application's permanent identifier for the parent of the appointment request. This is a composite field.
-
-The first component is a string that identifies the parent appointment request.  It is assigned by the filler application, and it identifies an appointment request uniquely among all such requests on a particular processing application. 
-
-This is a conditionally required field.  On initial messages where a filler has not yet assigned a filler appointment ID, this field should not contain a value.  In all other subsequent messages, where a filler application has assigned a filler appointment ID, this field is required. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (parentFillerAppointmentID.field.FieldRepetitions != null && parentFillerAppointmentID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(parentFillerAppointmentID.Id));
-            parentFillerAppointmentID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(parentFillerAppointmentID, fieldData);
-        }
-
-        return parentFillerAppointmentID;
-    } 
-}
-
-internal HL7V251Field fillerStatusCode;
-
-public HL7V251Field FillerStatusCode
-{
-    get
-    {
-        if (fillerStatusCode != null)
-        {
-            return fillerStatusCode;
-        }
-
-        fillerStatusCode = new HL7V251Field
-        {
-            field = message[@"SCH"][25],
-            Id = @"SCH.25",
-            Type = @"Field",
-            Position = @"SCH.25",
-            Name = @"Filler Status Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0278",
-            TableName = @"Filler status codes",
-            Description = @"This field contains a code describing the status of the appointment with respect to the filler application. Refer to User-Defined Table 0278 - Filler Status Codes for suggested codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fillerStatusCode.field.FieldRepetitions != null && fillerStatusCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerStatusCode.Id));
-            fillerStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(fillerStatusCode, fieldData);
-        }
-
-        return fillerStatusCode;
-    } 
-}
-
-internal HL7V251Field placerOrderNumber;
-
-public HL7V251Field PlacerOrderNumber
-{
-    get
-    {
-        if (placerOrderNumber != null)
-        {
-            return placerOrderNumber;
-        }
-
-        placerOrderNumber = new HL7V251Field
-        {
-            field = message[@"SCH"][26],
-            Id = @"SCH.26",
-            Type = @"Field",
-            Position = @"SCH.26",
-            Name = @"Placer Order Number",
-            Length = 22,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the placer application's order number for the order associated with this scheduling filler application response.
-
-This field is described in detail in Section 4.5.1.2.  It is an optional field, but if a Placer order number is present, then a Filler order number (Section 10.6.2.27) must also be present. Both this field and the Filler order number below may have been sent as part of the appointment request in the ARQ segment or they may be assigned by the scheduling filler application only. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (placerOrderNumber.field.FieldRepetitions != null && placerOrderNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerOrderNumber.Id));
-            placerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(placerOrderNumber, fieldData);
-        }
-
-        return placerOrderNumber;
-    } 
-}
-
-internal HL7V251Field fillerOrderNumber;
-
-public HL7V251Field FillerOrderNumber
-{
-    get
-    {
-        if (fillerOrderNumber != null)
-        {
-            return fillerOrderNumber;
-        }
-
-        fillerOrderNumber = new HL7V251Field
+        _fillerOrderNumber = new HL7V251Field
         {
             field = message[@"SCH"][27],
-            Id = @"SCH.27",
-            Type = @"Field",
-            Position = @"SCH.27",
-            Name = @"Filler Order Number",
-            Length = 22,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the order number assigned by the filler application for the order associated with this scheduling filler response.
-
-This field is described in detail in Section 4.5.1.3.  It is conditionally mandatory depending on the presence of the Placer order number (Section 10.6.2.26).  This conditionally mandatory requirement addresses the concern that a Scheduling system cannot and should not create or fill an order.  Therefore, an order must have been accepted by the order filler application before scheduling the resources associated with that order.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fillerOrderNumber.field.FieldRepetitions != null && fillerOrderNumber.field.FieldRepetitions.Count > 0)
+        if (_fillerOrderNumber.field.FieldRepetitions != null && _fillerOrderNumber.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerOrderNumber.Id));
-            fillerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(fillerOrderNumber, fieldData);
+            _fillerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_fillerOrderNumber, fieldData);
         }
 
-        return fillerOrderNumber;
+        return _fillerOrderNumber;
     } 
 }
     }

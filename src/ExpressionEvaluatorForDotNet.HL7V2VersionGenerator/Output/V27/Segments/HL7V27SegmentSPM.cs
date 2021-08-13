@@ -37,48 +37,87 @@ In summary, SPM represents the attributes specific and unique to a specimen."; }
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"SPM.1",
-                            Type = @"Field",
-                            Position = @"SPM.1",
-                            Name = @"Set Id - Spm",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the sequence number. This field is used to identify SPM segment instances in message structures where the SPM segment repeats.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.2",
-                            Type = @"Field",
-                            Position = @"SPM.2",
-                            Name = @"Specimen Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EIP",
-                            DataTypeName = @"Entity Identifier Pair",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a unique identifier for the specimen as referenced by the Placer application, the Filler application, or both.
+        public HL7V27SegmentSPM(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _setIdSpm;
+
+public HL7V27Field SetIdSpm
+{
+    get
+    {
+        if (_setIdSpm != null)
+        {
+            return _setIdSpm;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.1",
+            Type = @"Field",
+            Position = @"SPM.1",
+            Name = @"Set Id - Spm",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the sequence number. This field is used to identify SPM segment instances in message structures where the SPM segment repeats.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdSpm = new HL7V27Field
+        {
+            field = message[@"SPM"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdSpm.field.FieldRepetitions != null && _setIdSpm.field.FieldRepetitions.Count > 0)
+        {
+            _setIdSpm.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_setIdSpm, fieldData);
+        }
+
+        return _setIdSpm;
+    } 
+}
+
+internal HL7V27Field _specimenId;
+
+public HL7V27Field SpecimenId
+{
+    get
+    {
+        if (_specimenId != null)
+        {
+            return _specimenId;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.2",
+            Type = @"Field",
+            Position = @"SPM.2",
+            Name = @"Specimen Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EIP",
+            DataTypeName = @"Entity Identifier Pair",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a unique identifier for the specimen as referenced by the Placer application, the Filler application, or both.
 
 This field is not required, as there are use cases in which a unique specimen identifier may not exist. In the first scenario, a placer application may initiate an observation request against an existing specimen without uniquely identifying the specimen. Additionally, in the case of the TCU_U10 message structure, used in Automated equipment test code settings messages, the SPM segment is used to define required characteristics of the specimen. As such, TCU_U10 uses SPM to define a virtual specimen, and a specific specimen ID would not exist. Filler applications would be expected to assign a Specimen ID and populate this field accordingly.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.2.1",
                             Type = @"Component",
@@ -268,27 +307,57 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.3",
-                            Type = @"Field",
-                            Position = @"SPM.3",
-                            Name = @"Specimen Parent Ids",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"EIP",
-                            DataTypeName = @"Entity Identifier Pair",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the identifiers for the specimen or specimens that contributed to the specimen that is described by the segment instance.
+                        }
+        }
+
+        _specimenId = new HL7V27Field
+        {
+            field = message[@"SPM"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenId.field.FieldRepetitions != null && _specimenId.field.FieldRepetitions.Count > 0)
+        {
+            _specimenId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenId, fieldData);
+        }
+
+        return _specimenId;
+    } 
+}
+
+internal HL7V27Field _specimenParentIds;
+
+public HL7V27Field SpecimenParentIds
+{
+    get
+    {
+        if (_specimenParentIds != null)
+        {
+            return _specimenParentIds;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.3",
+            Type = @"Field",
+            Position = @"SPM.3",
+            Name = @"Specimen Parent Ids",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"EIP",
+            DataTypeName = @"Entity Identifier Pair",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identifiers for the specimen or specimens that contributed to the specimen that is described by the segment instance.
 
 If this field repeats, then SPM-11-Specimen Role should be valued with ""L"" (pooled). The repetitions of this field then carry the specimen IDs of the parent specimens contributing to the pool.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.3.1",
                             Type = @"Component",
@@ -478,23 +547,51 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.4",
-                            Type = @"Field",
-                            Position = @"SPM.4",
-                            Name = @"Specimen Type",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0487",
-                            TableName = @"Specimen Type",
-                            Description = @"This field describes the precise nature of the entity that will be the source material for the observation.
+                        }
+        }
+
+        _specimenParentIds = new HL7V27Field
+        {
+            field = message[@"SPM"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenParentIds.field.FieldRepetitions != null && _specimenParentIds.field.FieldRepetitions.Count > 0)
+        {
+            _specimenParentIds.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenParentIds, fieldData);
+        }
+
+        return _specimenParentIds;
+    } 
+}
+
+internal HL7V27Field _specimenType;
+
+public HL7V27Field SpecimenType
+{
+    get
+    {
+        if (_specimenType != null)
+        {
+            return _specimenType;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.4",
+            Type = @"Field",
+            Position = @"SPM.4",
+            Name = @"Specimen Type",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0487",
+            TableName = @"Specimen Type",
+            Description = @"This field describes the precise nature of the entity that will be the source material for the observation.
 
 Any physical entity that may have observations made about it may qualify as a specimen. The entry in this attribute describes the specific entity as precisely as possible, whether that is a complex organism (e.g., an ostrich) or a specific cellular mass (e.g., a specific muscle biopsy).
 
@@ -502,8 +599,10 @@ A nationally recognized coding system is to be used for this field. Valid coding
 - HL7 Table 0487 – Specimen Type (replaces HL7 Table 0070 – Specimen source codes)
 - SNOMED, etc.
 - Veterinary medicine may choose the tables supported for the components of this field as decided by their industry.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.4.1",
                             Type = @"Component",
@@ -929,29 +1028,59 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.5",
-                            Type = @"Field",
-                            Position = @"SPM.5",
-                            Name = @"Specimen Type Modifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0541",
-                            TableName = @"Specimen Type Modifier",
-                            Description = @"This field contains modifying or qualifying description(s) about the specimen type
+                        }
+        }
+
+        _specimenType = new HL7V27Field
+        {
+            field = message[@"SPM"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenType.field.FieldRepetitions != null && _specimenType.field.FieldRepetitions.Count > 0)
+        {
+            _specimenType.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenType, fieldData);
+        }
+
+        return _specimenType;
+    } 
+}
+
+internal HL7V27Field _specimenTypeModifier;
+
+public HL7V27Field SpecimenTypeModifier
+{
+    get
+    {
+        if (_specimenTypeModifier != null)
+        {
+            return _specimenTypeModifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.5",
+            Type = @"Field",
+            Position = @"SPM.5",
+            Name = @"Specimen Type Modifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0541",
+            TableName = @"Specimen Type Modifier",
+            Description = @"This field contains modifying or qualifying description(s) about the specimen type
 
 The use of this attribute is to modify, qualify or further specify, the entity described by SPM-4 -Specimen Type. This is particularly useful when the code set used in SPM-4-Specimen Type does not provide the precision required to fully describe the specimen. For example, if the specimen was precisely described as ‘capillary venous blood’ but the code set employed only provided ‘venous blood,’ this attribute could be employed to add the modifier ‘capillary.’
 
 Refer to User-Defined Table 0541 Specimen Type Modifier for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.5.1",
                             Type = @"Component",
@@ -1377,25 +1506,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specimenTypeModifier = new HL7V27Field
+        {
+            field = message[@"SPM"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenTypeModifier.field.FieldRepetitions != null && _specimenTypeModifier.field.FieldRepetitions.Count > 0)
+        {
+            _specimenTypeModifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenTypeModifier, fieldData);
+        }
+
+        return _specimenTypeModifier;
+    } 
+}
+
+internal HL7V27Field _specimenAdditives;
+
+public HL7V27Field SpecimenAdditives
+{
+    get
+    {
+        if (_specimenAdditives != null)
+        {
+            return _specimenAdditives;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.6",
+            Type = @"Field",
+            Position = @"SPM.6",
+            Name = @"Specimen Additives",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0371",
+            TableName = @"Additive/Preservative",
+            Description = @"This field identifies any additives introduced to the specimen before or at the time of collection. These additives may be introduced in order to preserve, maintain or enhance the particular nature or component of the specimen. Refer to HL7 Table 0371 – Additive/Preservative for valid values. When multiple additives are introduced and valid individual additive codes exist but a valid value for the combination does not exist, repeating the field with individual values is most appropriate.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SPM.6",
-                            Type = @"Field",
-                            Position = @"SPM.6",
-                            Name = @"Specimen Additives",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0371",
-                            TableName = @"Additive/Preservative",
-                            Description = @"This field identifies any additives introduced to the specimen before or at the time of collection. These additives may be introduced in order to preserve, maintain or enhance the particular nature or component of the specimen. Refer to HL7 Table 0371 – Additive/Preservative for valid values. When multiple additives are introduced and valid individual additive codes exist but a valid value for the combination does not exist, repeating the field with individual values is most appropriate.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.6.1",
                             Type = @"Component",
@@ -1821,27 +1980,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.7",
-                            Type = @"Field",
-                            Position = @"SPM.7",
-                            Name = @"Specimen Collection Method",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0488",
-                            TableName = @"Specimen Collection Method",
-                            Description = @"Describes the procedure or process by which the specimen was collected.
+                        }
+        }
+
+        _specimenAdditives = new HL7V27Field
+        {
+            field = message[@"SPM"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenAdditives.field.FieldRepetitions != null && _specimenAdditives.field.FieldRepetitions.Count > 0)
+        {
+            _specimenAdditives.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenAdditives, fieldData);
+        }
+
+        return _specimenAdditives;
+    } 
+}
+
+internal HL7V27Field _specimenCollectionMethod;
+
+public HL7V27Field SpecimenCollectionMethod
+{
+    get
+    {
+        if (_specimenCollectionMethod != null)
+        {
+            return _specimenCollectionMethod;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.7",
+            Type = @"Field",
+            Position = @"SPM.7",
+            Name = @"Specimen Collection Method",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0488",
+            TableName = @"Specimen Collection Method",
+            Description = @"Describes the procedure or process by which the specimen was collected.
 
 Any nationally recognized coding system might be used for this field including SNOMED; alternatively the HL7 Table 0488 – Specimen Collection Method may be used. Veterinary medicine may choose the tables supported for the components of this field as decided by their industry.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.7.1",
                             Type = @"Component",
@@ -2267,28 +2456,58 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.8",
-                            Type = @"Field",
-                            Position = @"SPM.8",
-                            Name = @"Specimen Source Site",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"Specifies the source from which the specimen was obtained. For example, in the case where a liver biopsy is obtained via a percutaneous needle, the source would be ‘liver.’
+                        }
+        }
+
+        _specimenCollectionMethod = new HL7V27Field
+        {
+            field = message[@"SPM"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenCollectionMethod.field.FieldRepetitions != null && _specimenCollectionMethod.field.FieldRepetitions.Count > 0)
+        {
+            _specimenCollectionMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenCollectionMethod, fieldData);
+        }
+
+        return _specimenCollectionMethod;
+    } 
+}
+
+internal HL7V27Field _specimenSourceSite;
+
+public HL7V27Field SpecimenSourceSite
+{
+    get
+    {
+        if (_specimenSourceSite != null)
+        {
+            return _specimenSourceSite;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.8",
+            Type = @"Field",
+            Position = @"SPM.8",
+            Name = @"Specimen Source Site",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"Specifies the source from which the specimen was obtained. For example, in the case where a liver biopsy is obtained via a percutaneous needle, the source would be ‘liver.’
 Any nationally recognized coding system might be used for this field including SNOMED; alternatively the HL7 Table 0163 – Body Site may be used. Veterinary medicine may choose the tables supported for the components of this field as decided by their industry.
 
 Veterinary medicine may choose the tables supported for the components of this field as decided by their industry. Refer to User-Defined Table 0542 - Specimen Source Type Modifier for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.8.1",
                             Type = @"Component",
@@ -2714,31 +2933,61 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.9",
-                            Type = @"Field",
-                            Position = @"SPM.9",
-                            Name = @"Specimen Source Site Modifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0542",
-                            TableName = @"Specimen Source Type Modifier",
-                            Description = @"This field contains modifying or qualifying description(s) about the specimen source site
+                        }
+        }
+
+        _specimenSourceSite = new HL7V27Field
+        {
+            field = message[@"SPM"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenSourceSite.field.FieldRepetitions != null && _specimenSourceSite.field.FieldRepetitions.Count > 0)
+        {
+            _specimenSourceSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenSourceSite, fieldData);
+        }
+
+        return _specimenSourceSite;
+    } 
+}
+
+internal HL7V27Field _specimenSourceSiteModifier;
+
+public HL7V27Field SpecimenSourceSiteModifier
+{
+    get
+    {
+        if (_specimenSourceSiteModifier != null)
+        {
+            return _specimenSourceSiteModifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.9",
+            Type = @"Field",
+            Position = @"SPM.9",
+            Name = @"Specimen Source Site Modifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0542",
+            TableName = @"Specimen Source Type Modifier",
+            Description = @"This field contains modifying or qualifying description(s) about the specimen source site
 
 The use of this attribute is to modify, qualify or further specify, the entity described by SPM-8 – Specimen Source Site. This is particularly useful when the code set used in SPM-8 does not provide the precision required to fully describe the site from which the specimen originated. For example, if the specimen source site was precisely described as ‘left radial vein’ but the code set employed only provided ‘radial vein,’ this attribute could be employed to add the modifier ‘left.’
 
 Veterinary medicine may choose the tables supported for the components of this field as decided by their industry. Refer to User-Defined Table 0542 – Specimen Source Type Modifier for suggested values.
 
 Refer to User-Defined Table 0543 - Specimen Collection Site for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.9.1",
                             Type = @"Component",
@@ -3164,29 +3413,59 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.10",
-                            Type = @"Field",
-                            Position = @"SPM.10",
-                            Name = @"Specimen Collection Site",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0543",
-                            TableName = @"Specimen Collection Site",
-                            Description = @"This field differs from SPM-8-Specimen Source Site in those cases where the source site must be approached via a particular site (e.g., anatomic location). For example, in the case where a liver biopsy is obtained via a percutaneous needle, the collection site would be the point of entry of the needle. For venous blood collected from the left radial vein, the collection site could be ""antecubital fossa"".
+                        }
+        }
+
+        _specimenSourceSiteModifier = new HL7V27Field
+        {
+            field = message[@"SPM"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenSourceSiteModifier.field.FieldRepetitions != null && _specimenSourceSiteModifier.field.FieldRepetitions.Count > 0)
+        {
+            _specimenSourceSiteModifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenSourceSiteModifier, fieldData);
+        }
+
+        return _specimenSourceSiteModifier;
+    } 
+}
+
+internal HL7V27Field _specimenCollectionSite;
+
+public HL7V27Field SpecimenCollectionSite
+{
+    get
+    {
+        if (_specimenCollectionSite != null)
+        {
+            return _specimenCollectionSite;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.10",
+            Type = @"Field",
+            Position = @"SPM.10",
+            Name = @"Specimen Collection Site",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0543",
+            TableName = @"Specimen Collection Site",
+            Description = @"This field differs from SPM-8-Specimen Source Site in those cases where the source site must be approached via a particular site (e.g., anatomic location). For example, in the case where a liver biopsy is obtained via a percutaneous needle, the collection site would be the point of entry of the needle. For venous blood collected from the left radial vein, the collection site could be ""antecubital fossa"".
 
 Veterinary medicine may choose the tables supported for the components of this field as decided by their industry.
 
 Refer to User-Defined Table 0543 – Specimen Collection Site for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.10.1",
                             Type = @"Component",
@@ -3612,31 +3891,61 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.11",
-                            Type = @"Field",
-                            Position = @"SPM.11",
-                            Name = @"Specimen Role",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0369",
-                            TableName = @"Specimen Role",
-                            Description = @"This field indicates the role of the sample. Refer to User-defined Table 0369 – Specimen role for suggested values. Each of these values is normally identifiable by the systems and its components and can influence processing and data management related to the specimen.
+                        }
+        }
+
+        _specimenCollectionSite = new HL7V27Field
+        {
+            field = message[@"SPM"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenCollectionSite.field.FieldRepetitions != null && _specimenCollectionSite.field.FieldRepetitions.Count > 0)
+        {
+            _specimenCollectionSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenCollectionSite, fieldData);
+        }
+
+        return _specimenCollectionSite;
+    } 
+}
+
+internal HL7V27Field _specimenRole;
+
+public HL7V27Field SpecimenRole
+{
+    get
+    {
+        if (_specimenRole != null)
+        {
+            return _specimenRole;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.11",
+            Type = @"Field",
+            Position = @"SPM.11",
+            Name = @"Specimen Role",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0369",
+            TableName = @"Specimen Role",
+            Description = @"This field indicates the role of the sample. Refer to User-defined Table 0369 – Specimen role for suggested values. Each of these values is normally identifiable by the systems and its components and can influence processing and data management related to the specimen.
 
 If this field is not populated, then the specimen described has no special, or specific, role other than serving as the focus of the observation. Such specimens include patient, environmental and other specimens that are intended for analysis.
 
 A grouped specimen consists of identical specimen types from multiple individuals that do not have individual identifiers and upon which the same services will be performed. If the specimen role value is ""G"" then the Grouped Specimen Count (SPM-13) must be valued with the total number of specimens contained in the group.
 
 If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) represent the individual parent specimens that contribute to the pooled specimen.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.11.1",
                             Type = @"Component",
@@ -4062,25 +4371,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specimenRole = new HL7V27Field
+        {
+            field = message[@"SPM"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenRole.field.FieldRepetitions != null && _specimenRole.field.FieldRepetitions.Count > 0)
+        {
+            _specimenRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenRole, fieldData);
+        }
+
+        return _specimenRole;
+    } 
+}
+
+internal HL7V27Field _specimenCollectionAmount;
+
+public HL7V27Field SpecimenCollectionAmount
+{
+    get
+    {
+        if (_specimenCollectionAmount != null)
+        {
+            return _specimenCollectionAmount;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.12",
+            Type = @"Field",
+            Position = @"SPM.12",
+            Name = @"Specimen Collection Amount",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the volume or mass of the collected specimen. For laboratory tests, the collection volume is the volume of a specimen. Specifically, units should be expressed in the ISO Standard unit abbreviations (ISO-2955, 1977). This is a results-only field except when the placer or a party has already drawn the specimen. (See Chapter 7 for full details about units.)",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SPM.12",
-                            Type = @"Field",
-                            Position = @"SPM.12",
-                            Name = @"Specimen Collection Amount",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the volume or mass of the collected specimen. For laboratory tests, the collection volume is the volume of a specimen. Specifically, units should be expressed in the ISO Standard unit abbreviations (ISO-2955, 1977). This is a results-only field except when the placer or a party has already drawn the specimen. (See Chapter 7 for full details about units.)",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.12.1",
                             Type = @"Component",
@@ -4540,63 +4879,147 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.13",
-                            Type = @"Field",
-                            Position = @"SPM.13",
-                            Name = @"Grouped Specimen Count",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field refers to the number of individual specimens of a particular type represented by this instance of a specimen. The use of this field is restricted to specimens upon which all specimen related attributes are identical. This field would only be valued if the specimen role attribute has the value ""G"".",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.14",
-                            Type = @"Field",
-                            Position = @"SPM.14",
-                            Name = @"Specimen Description",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This is a text field that allows additional information specifically about the specimen to be sent in the message",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.15",
-                            Type = @"Field",
-                            Position = @"SPM.15",
-                            Name = @"Specimen Handling Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0376",
-                            TableName = @"Special Handling Code",
-                            Description = @"This describes how the specimen and/or container need to be handled from the time of collection through the initiation of testing. As this field is not required, no assumptions can be made as to meaning when this field is not populated.
+                        }
+        }
+
+        _specimenCollectionAmount = new HL7V27Field
+        {
+            field = message[@"SPM"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenCollectionAmount.field.FieldRepetitions != null && _specimenCollectionAmount.field.FieldRepetitions.Count > 0)
+        {
+            _specimenCollectionAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenCollectionAmount, fieldData);
+        }
+
+        return _specimenCollectionAmount;
+    } 
+}
+
+internal HL7V27Field _groupedSpecimenCount;
+
+public HL7V27Field GroupedSpecimenCount
+{
+    get
+    {
+        if (_groupedSpecimenCount != null)
+        {
+            return _groupedSpecimenCount;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.13",
+            Type = @"Field",
+            Position = @"SPM.13",
+            Name = @"Grouped Specimen Count",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field refers to the number of individual specimens of a particular type represented by this instance of a specimen. The use of this field is restricted to specimens upon which all specimen related attributes are identical. This field would only be valued if the specimen role attribute has the value ""G"".",
+            Sample = @"",
+            Fields = null
+        }
+
+        _groupedSpecimenCount = new HL7V27Field
+        {
+            field = message[@"SPM"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_groupedSpecimenCount.field.FieldRepetitions != null && _groupedSpecimenCount.field.FieldRepetitions.Count > 0)
+        {
+            _groupedSpecimenCount.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_groupedSpecimenCount, fieldData);
+        }
+
+        return _groupedSpecimenCount;
+    } 
+}
+
+internal HL7V27Field _specimenDescription;
+
+public HL7V27Field SpecimenDescription
+{
+    get
+    {
+        if (_specimenDescription != null)
+        {
+            return _specimenDescription;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.14",
+            Type = @"Field",
+            Position = @"SPM.14",
+            Name = @"Specimen Description",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This is a text field that allows additional information specifically about the specimen to be sent in the message",
+            Sample = @"",
+            Fields = null
+        }
+
+        _specimenDescription = new HL7V27Field
+        {
+            field = message[@"SPM"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenDescription.field.FieldRepetitions != null && _specimenDescription.field.FieldRepetitions.Count > 0)
+        {
+            _specimenDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenDescription, fieldData);
+        }
+
+        return _specimenDescription;
+    } 
+}
+
+internal HL7V27Field _specimenHandlingCode;
+
+public HL7V27Field SpecimenHandlingCode
+{
+    get
+    {
+        if (_specimenHandlingCode != null)
+        {
+            return _specimenHandlingCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.15",
+            Type = @"Field",
+            Position = @"SPM.15",
+            Name = @"Specimen Handling Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0376",
+            TableName = @"Special Handling Code",
+            Description = @"This describes how the specimen and/or container need to be handled from the time of collection through the initiation of testing. As this field is not required, no assumptions can be made as to meaning when this field is not populated.
 
 Refer to User-defined Table 0376 – Special Handling Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.15.1",
                             Type = @"Component",
@@ -5022,25 +5445,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specimenHandlingCode = new HL7V27Field
+        {
+            field = message[@"SPM"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenHandlingCode.field.FieldRepetitions != null && _specimenHandlingCode.field.FieldRepetitions.Count > 0)
+        {
+            _specimenHandlingCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenHandlingCode, fieldData);
+        }
+
+        return _specimenHandlingCode;
+    } 
+}
+
+internal HL7V27Field _specimenRiskCode;
+
+public HL7V27Field SpecimenRiskCode
+{
+    get
+    {
+        if (_specimenRiskCode != null)
+        {
+            return _specimenRiskCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.16",
+            Type = @"Field",
+            Position = @"SPM.16",
+            Name = @"Specimen Risk Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0489",
+            TableName = @"Risk Codes",
+            Description = @"This field contains any known or suspected specimen hazards, e.g., exceptionally infectious agent or blood from a hepatitis patient. Either code and/or text may be absent. However, the code is always placed in the first component position and any free text in the second component. Thus, a component delimiter must precede free text without a code. Refer to User-defined Table 0489 – Risk Codes for suggested entries",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SPM.16",
-                            Type = @"Field",
-                            Position = @"SPM.16",
-                            Name = @"Specimen Risk Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0489",
-                            TableName = @"Risk Codes",
-                            Description = @"This field contains any known or suspected specimen hazards, e.g., exceptionally infectious agent or blood from a hepatitis patient. Either code and/or text may be absent. However, the code is always placed in the first component position and any free text in the second component. Thus, a component delimiter must precede free text without a code. Refer to User-defined Table 0489 – Risk Codes for suggested entries",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.16.1",
                             Type = @"Component",
@@ -5466,25 +5919,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specimenRiskCode = new HL7V27Field
+        {
+            field = message[@"SPM"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenRiskCode.field.FieldRepetitions != null && _specimenRiskCode.field.FieldRepetitions.Count > 0)
+        {
+            _specimenRiskCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenRiskCode, fieldData);
+        }
+
+        return _specimenRiskCode;
+    } 
+}
+
+internal HL7V27Field _specimenCollectionDateTime;
+
+public HL7V27Field SpecimenCollectionDateTime
+{
+    get
+    {
+        if (_specimenCollectionDateTime != null)
+        {
+            return _specimenCollectionDateTime;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.17",
+            Type = @"Field",
+            Position = @"SPM.17",
+            Name = @"Specimen Collection Date/Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DR",
+            DataTypeName = @"Date/time Range",
+            TableId = null,
+            TableName = null,
+            Description = @"The date and time when the specimen was acquired from the source. The use of the Date Range data type allows for description of specimens collected over a period of time, for example, 24-hour urine collection. For specimens collected at a point in time, only the first component (start date/time) will be populated.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SPM.17",
-                            Type = @"Field",
-                            Position = @"SPM.17",
-                            Name = @"Specimen Collection Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DR",
-                            DataTypeName = @"Date/time Range",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The date and time when the specimen was acquired from the source. The use of the Date Range data type allows for description of specimens collected over a period of time, for example, 24-hour urine collection. For specimens collected at a point in time, only the first component (start date/time) will be populated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.17.1",
                             Type = @"Component",
@@ -5518,79 +6001,190 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specimenCollectionDateTime = new HL7V27Field
+        {
+            field = message[@"SPM"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenCollectionDateTime.field.FieldRepetitions != null && _specimenCollectionDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _specimenCollectionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenCollectionDateTime, fieldData);
+        }
+
+        return _specimenCollectionDateTime;
+    } 
+}
+
+internal HL7V27Field _specimenReceivedDateTime;
+
+public HL7V27Field SpecimenReceivedDateTime
+{
+    get
+    {
+        if (_specimenReceivedDateTime != null)
+        {
+            return _specimenReceivedDateTime;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.18",
+            Type = @"Field",
+            Position = @"SPM.18",
+            Name = @"Specimen Received Date/Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"The specimen received date/time is the time that the specimen is received at the diagnostic service. The actual time that is recorded is based on how specimen receipt is managed and may correspond to the time the sample is logged in. This is fundamentally different from SPM-17 Specimen Collection date/time.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _specimenReceivedDateTime = new HL7V27Field
+        {
+            field = message[@"SPM"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenReceivedDateTime.field.FieldRepetitions != null && _specimenReceivedDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _specimenReceivedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenReceivedDateTime, fieldData);
+        }
+
+        return _specimenReceivedDateTime;
+    } 
+}
+
+internal HL7V27Field _specimenExpirationDateTime;
+
+public HL7V27Field SpecimenExpirationDateTime
+{
+    get
+    {
+        if (_specimenExpirationDateTime != null)
+        {
+            return _specimenExpirationDateTime;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.19",
+            Type = @"Field",
+            Position = @"SPM.19",
+            Name = @"Specimen Expiration Date/Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the date and time the specimen can no longer be used for the purpose implied by the order. For example, in the Blood Banking environment the specimen can no longer be used for pre-transfusion compatibility testing. The specimen segment will include an SPM-21-Specimen Reject Reason of 'EX' indicating 'Expired' for message instances created after this date and time.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _specimenExpirationDateTime = new HL7V27Field
+        {
+            field = message[@"SPM"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenExpirationDateTime.field.FieldRepetitions != null && _specimenExpirationDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _specimenExpirationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenExpirationDateTime, fieldData);
+        }
+
+        return _specimenExpirationDateTime;
+    } 
+}
+
+internal HL7V27Field _specimenAvailability;
+
+public HL7V27Field SpecimenAvailability
+{
+    get
+    {
+        if (_specimenAvailability != null)
+        {
+            return _specimenAvailability;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.20",
+            Type = @"Field",
+            Position = @"SPM.20",
+            Name = @"Specimen Availability",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"This describes whether the specimen, as it exists, is currently available to use in an analysis. Refer to HL7 Table 0136 – Yes/No Indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _specimenAvailability = new HL7V27Field
+        {
+            field = message[@"SPM"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenAvailability.field.FieldRepetitions != null && _specimenAvailability.field.FieldRepetitions.Count > 0)
+        {
+            _specimenAvailability.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenAvailability, fieldData);
+        }
+
+        return _specimenAvailability;
+    } 
+}
+
+internal HL7V27Field _specimenRejectReason;
+
+public HL7V27Field SpecimenRejectReason
+{
+    get
+    {
+        if (_specimenRejectReason != null)
+        {
+            return _specimenRejectReason;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.21",
+            Type = @"Field",
+            Position = @"SPM.21",
+            Name = @"Specimen Reject Reason",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0490",
+            TableName = @"Specimen Reject Reason",
+            Description = @"This describes one or more reasons the specimen is rejected for the specified observation/result/analysis. Refer to HL7 Table 0490 – Specimen Reject Reason for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SPM.18",
-                            Type = @"Field",
-                            Position = @"SPM.18",
-                            Name = @"Specimen Received Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The specimen received date/time is the time that the specimen is received at the diagnostic service. The actual time that is recorded is based on how specimen receipt is managed and may correspond to the time the sample is logged in. This is fundamentally different from SPM-17 Specimen Collection date/time.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.19",
-                            Type = @"Field",
-                            Position = @"SPM.19",
-                            Name = @"Specimen Expiration Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the date and time the specimen can no longer be used for the purpose implied by the order. For example, in the Blood Banking environment the specimen can no longer be used for pre-transfusion compatibility testing. The specimen segment will include an SPM-21-Specimen Reject Reason of 'EX' indicating 'Expired' for message instances created after this date and time.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.20",
-                            Type = @"Field",
-                            Position = @"SPM.20",
-                            Name = @"Specimen Availability",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This describes whether the specimen, as it exists, is currently available to use in an analysis. Refer to HL7 Table 0136 – Yes/No Indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.21",
-                            Type = @"Field",
-                            Position = @"SPM.21",
-                            Name = @"Specimen Reject Reason",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0490",
-                            TableName = @"Specimen Reject Reason",
-                            Description = @"This describes one or more reasons the specimen is rejected for the specified observation/result/analysis. Refer to HL7 Table 0490 – Specimen Reject Reason for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.21.1",
                             Type = @"Component",
@@ -6016,25 +6610,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specimenRejectReason = new HL7V27Field
+        {
+            field = message[@"SPM"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenRejectReason.field.FieldRepetitions != null && _specimenRejectReason.field.FieldRepetitions.Count > 0)
+        {
+            _specimenRejectReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenRejectReason, fieldData);
+        }
+
+        return _specimenRejectReason;
+    } 
+}
+
+internal HL7V27Field _specimenQuality;
+
+public HL7V27Field SpecimenQuality
+{
+    get
+    {
+        if (_specimenQuality != null)
+        {
+            return _specimenQuality;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.22",
+            Type = @"Field",
+            Position = @"SPM.22",
+            Name = @"Specimen Quality",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0491",
+            TableName = @"Specimen Quality",
+            Description = @"The degree or grade of excellence of the specimen at receipt. The filler populates this attribute. Refer to User-defined Table 0491 – Specimen Quality for suggested entries..",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SPM.22",
-                            Type = @"Field",
-                            Position = @"SPM.22",
-                            Name = @"Specimen Quality",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0491",
-                            TableName = @"Specimen Quality",
-                            Description = @"The degree or grade of excellence of the specimen at receipt. The filler populates this attribute. Refer to User-defined Table 0491 – Specimen Quality for suggested entries..",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.22.1",
                             Type = @"Component",
@@ -6460,25 +7084,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specimenQuality = new HL7V27Field
+        {
+            field = message[@"SPM"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenQuality.field.FieldRepetitions != null && _specimenQuality.field.FieldRepetitions.Count > 0)
+        {
+            _specimenQuality.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenQuality, fieldData);
+        }
+
+        return _specimenQuality;
+    } 
+}
+
+internal HL7V27Field _specimenAppropriateness;
+
+public HL7V27Field SpecimenAppropriateness
+{
+    get
+    {
+        if (_specimenAppropriateness != null)
+        {
+            return _specimenAppropriateness;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.23",
+            Type = @"Field",
+            Position = @"SPM.23",
+            Name = @"Specimen Appropriateness",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0492",
+            TableName = @"Specimen Appropriateness",
+            Description = @"The suitability of the specimen for the particular planned use as determined by the filler. Refer to User-defined Table 0492 – Specimen Appropriateness for suggested entries.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SPM.23",
-                            Type = @"Field",
-                            Position = @"SPM.23",
-                            Name = @"Specimen Appropriateness",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0492",
-                            TableName = @"Specimen Appropriateness",
-                            Description = @"The suitability of the specimen for the particular planned use as determined by the filler. Refer to User-defined Table 0492 – Specimen Appropriateness for suggested entries.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.23.1",
                             Type = @"Component",
@@ -6904,25 +7558,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specimenAppropriateness = new HL7V27Field
+        {
+            field = message[@"SPM"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenAppropriateness.field.FieldRepetitions != null && _specimenAppropriateness.field.FieldRepetitions.Count > 0)
+        {
+            _specimenAppropriateness.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenAppropriateness, fieldData);
+        }
+
+        return _specimenAppropriateness;
+    } 
+}
+
+internal HL7V27Field _specimenCondition;
+
+public HL7V27Field SpecimenCondition
+{
+    get
+    {
+        if (_specimenCondition != null)
+        {
+            return _specimenCondition;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.24",
+            Type = @"Field",
+            Position = @"SPM.24",
+            Name = @"Specimen Condition",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0493",
+            TableName = @"Specimen Condition",
+            Description = @"A mode or state of being that describes the nature of the specimen. Refer to User-defined Table 0493 – Specimen Condition for suggested entries.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SPM.24",
-                            Type = @"Field",
-                            Position = @"SPM.24",
-                            Name = @"Specimen Condition",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0493",
-                            TableName = @"Specimen Condition",
-                            Description = @"A mode or state of being that describes the nature of the specimen. Refer to User-defined Table 0493 – Specimen Condition for suggested entries.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.24.1",
                             Type = @"Component",
@@ -7348,25 +8032,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specimenCondition = new HL7V27Field
+        {
+            field = message[@"SPM"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenCondition.field.FieldRepetitions != null && _specimenCondition.field.FieldRepetitions.Count > 0)
+        {
+            _specimenCondition.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenCondition, fieldData);
+        }
+
+        return _specimenCondition;
+    } 
+}
+
+internal HL7V27Field _specimenCurrentQuantity;
+
+public HL7V27Field SpecimenCurrentQuantity
+{
+    get
+    {
+        if (_specimenCurrentQuantity != null)
+        {
+            return _specimenCurrentQuantity;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.25",
+            Type = @"Field",
+            Position = @"SPM.25",
+            Name = @"Specimen Current Quantity",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This attributes contains the amount of specimen that currently exists or is available for use in further testing.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SPM.25",
-                            Type = @"Field",
-                            Position = @"SPM.25",
-                            Name = @"Specimen Current Quantity",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This attributes contains the amount of specimen that currently exists or is available for use in further testing.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.25.1",
                             Type = @"Component",
@@ -7826,43 +8540,100 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specimenCurrentQuantity = new HL7V27Field
+        {
+            field = message[@"SPM"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenCurrentQuantity.field.FieldRepetitions != null && _specimenCurrentQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _specimenCurrentQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenCurrentQuantity, fieldData);
+        }
+
+        return _specimenCurrentQuantity;
+    } 
+}
+
+internal HL7V27Field _numberOfSpecimenContainers;
+
+public HL7V27Field NumberOfSpecimenContainers
+{
+    get
+    {
+        if (_numberOfSpecimenContainers != null)
+        {
+            return _numberOfSpecimenContainers;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.26",
+            Type = @"Field",
+            Position = @"SPM.26",
+            Name = @"Number Of Specimen Containers",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the number of containers for a given sample. For sample receipt verification purposes; may be different from the total number of samples that accompany the order.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _numberOfSpecimenContainers = new HL7V27Field
+        {
+            field = message[@"SPM"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_numberOfSpecimenContainers.field.FieldRepetitions != null && _numberOfSpecimenContainers.field.FieldRepetitions.Count > 0)
+        {
+            _numberOfSpecimenContainers.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_numberOfSpecimenContainers, fieldData);
+        }
+
+        return _numberOfSpecimenContainers;
+    } 
+}
+
+internal HL7V27Field _containerType;
+
+public HL7V27Field ContainerType
+{
+    get
+    {
+        if (_containerType != null)
+        {
+            return _containerType;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.27",
+            Type = @"Field",
+            Position = @"SPM.27",
+            Name = @"Container Type",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"The container in or on which a specimen is transported.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SPM.26",
-                            Type = @"Field",
-                            Position = @"SPM.26",
-                            Name = @"Number Of Specimen Containers",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the number of containers for a given sample. For sample receipt verification purposes; may be different from the total number of samples that accompany the order.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.27",
-                            Type = @"Field",
-                            Position = @"SPM.27",
-                            Name = @"Container Type",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"The container in or on which a specimen is transported.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.27.1",
                             Type = @"Component",
@@ -8288,25 +9059,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _containerType = new HL7V27Field
+        {
+            field = message[@"SPM"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerType.field.FieldRepetitions != null && _containerType.field.FieldRepetitions.Count > 0)
+        {
+            _containerType.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_containerType, fieldData);
+        }
+
+        return _containerType;
+    } 
+}
+
+internal HL7V27Field _containerCondition;
+
+public HL7V27Field ContainerCondition
+{
+    get
+    {
+        if (_containerCondition != null)
+        {
+            return _containerCondition;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.28",
+            Type = @"Field",
+            Position = @"SPM.28",
+            Name = @"Container Condition",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0544",
+            TableName = @"Container Condition",
+            Description = @"In chain of custody cases where specimens are moved from lab to lab, the status of the container that the specimen is shipped in must be recorded at each receipt. If the container is compromised in any way (seal broken, container cracked or leaking, etc) then this needs to be recorded for legal reasons.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SPM.28",
-                            Type = @"Field",
-                            Position = @"SPM.28",
-                            Name = @"Container Condition",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0544",
-                            TableName = @"Container Condition",
-                            Description = @"In chain of custody cases where specimens are moved from lab to lab, the status of the container that the specimen is shipped in must be recorded at each receipt. If the container is compromised in any way (seal broken, container cracked or leaking, etc) then this needs to be recorded for legal reasons.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.28.1",
                             Type = @"Component",
@@ -8732,27 +9533,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.29",
-                            Type = @"Field",
-                            Position = @"SPM.29",
-                            Name = @"Specimen Child Role",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0494",
-                            TableName = @"Specimen Child Role",
-                            Description = @"For child specimens, this field identifies the relationship between this specimen and the parent specimen. If this field is populated, then SPM-3-Specimen Parent ID must be populated. This field differs from SPM-15-Specimen Role in that this field refers to the role of this specimen relative to a parent role rather than the role of this specimen to the ordered service.
+                        }
+        }
+
+        _containerCondition = new HL7V27Field
+        {
+            field = message[@"SPM"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerCondition.field.FieldRepetitions != null && _containerCondition.field.FieldRepetitions.Count > 0)
+        {
+            _containerCondition.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_containerCondition, fieldData);
+        }
+
+        return _containerCondition;
+    } 
+}
+
+internal HL7V27Field _specimenChildRole;
+
+public HL7V27Field SpecimenChildRole
+{
+    get
+    {
+        if (_specimenChildRole != null)
+        {
+            return _specimenChildRole;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.29",
+            Type = @"Field",
+            Position = @"SPM.29",
+            Name = @"Specimen Child Role",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0494",
+            TableName = @"Specimen Child Role",
+            Description = @"For child specimens, this field identifies the relationship between this specimen and the parent specimen. If this field is populated, then SPM-3-Specimen Parent ID must be populated. This field differs from SPM-15-Specimen Role in that this field refers to the role of this specimen relative to a parent role rather than the role of this specimen to the ordered service.
 
 Refer to HL7 Table 0494 – Specimen Child Role for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.29.1",
                             Type = @"Component",
@@ -9178,27 +10009,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SPM.30",
-                            Type = @"Field",
-                            Position = @"SPM.30",
-                            Name = @"Accession Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains accession identifier(s) associated with the specimen. In many cases, applications involved in the collection, transportation or testing of the specimen will assign their own accession identifiers. This field allows communication of these accession identifiers.
+                        }
+        }
+
+        _specimenChildRole = new HL7V27Field
+        {
+            field = message[@"SPM"][29],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenChildRole.field.FieldRepetitions != null && _specimenChildRole.field.FieldRepetitions.Count > 0)
+        {
+            _specimenChildRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specimenChildRole, fieldData);
+        }
+
+        return _specimenChildRole;
+    } 
+}
+
+internal HL7V27Field _accessionId;
+
+public HL7V27Field AccessionId
+{
+    get
+    {
+        if (_accessionId != null)
+        {
+            return _accessionId;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.30",
+            Type = @"Field",
+            Position = @"SPM.30",
+            Name = @"Accession Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains accession identifier(s) associated with the specimen. In many cases, applications involved in the collection, transportation or testing of the specimen will assign their own accession identifiers. This field allows communication of these accession identifiers.
 
 An accession id may or may not, depending up laboratory practice, identify a single specimen. Best practice is to use accession identifiers that are globally unique (typically ID Number + Assigning Facility components). However, an accession id may or may not, depending up laboratory practice, identify a single specimen. In addition, accession ids are commonly re-used over time, so the accession id may not uniquely identify a specimen.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.30.1",
                             Type = @"Component",
@@ -10400,25 +11261,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _accessionId = new HL7V27Field
+        {
+            field = message[@"SPM"][30],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accessionId.field.FieldRepetitions != null && _accessionId.field.FieldRepetitions.Count > 0)
+        {
+            _accessionId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_accessionId, fieldData);
+        }
+
+        return _accessionId;
+    } 
+}
+
+internal HL7V27Field _otherSpecimenId;
+
+public HL7V27Field OtherSpecimenId
+{
+    get
+    {
+        if (_otherSpecimenId != null)
+        {
+            return _otherSpecimenId;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.31",
+            Type = @"Field",
+            Position = @"SPM.31",
+            Name = @"Other Specimen Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains other identifier(s) for the specimen as referenced an application. Normally this field is used to carry additional identifiers for the specimen in addition to those identified in SPM-2, Specimen ID. In may cases other applications involved in the collection, transportation or testing of the specimen will assign additional specimen identifiers. This field allows communication of those other specimen identifiers.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SPM.31",
-                            Type = @"Field",
-                            Position = @"SPM.31",
-                            Name = @"Other Specimen Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains other identifier(s) for the specimen as referenced an application. Normally this field is used to carry additional identifiers for the specimen in addition to those identified in SPM-2, Specimen ID. In may cases other applications involved in the collection, transportation or testing of the specimen will assign additional specimen identifiers. This field allows communication of those other specimen identifiers.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.31.1",
                             Type = @"Component",
@@ -11620,25 +12511,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _otherSpecimenId = new HL7V27Field
+        {
+            field = message[@"SPM"][31],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_otherSpecimenId.field.FieldRepetitions != null && _otherSpecimenId.field.FieldRepetitions.Count > 0)
+        {
+            _otherSpecimenId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_otherSpecimenId, fieldData);
+        }
+
+        return _otherSpecimenId;
+    } 
+}
+
+internal HL7V27Field _shipmentId;
+
+public HL7V27Field ShipmentId
+{
+    get
+    {
+        if (_shipmentId != null)
+        {
+            return _shipmentId;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SPM.32",
+            Type = @"Field",
+            Position = @"SPM.32",
+            Name = @"Shipment Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The shipment identifier is the identifier assigned by the shipment transportation provider that uniquely identifies this shipment from all other shipments by the same provider. The addressee for the shipment should be able to use this identifier to match a physical shipment with the electronic manifest for the shipment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SPM.32",
-                            Type = @"Field",
-                            Position = @"SPM.32",
-                            Name = @"Shipment Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The shipment identifier is the identifier assigned by the shipment transportation provider that uniquely identifies this shipment from all other shipments by the same provider. The addressee for the shipment should be able to use this identifier to match a physical shipment with the electronic manifest for the shipment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SPM.32.1",
                             Type = @"Component",
@@ -11716,1368 +12637,23 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentSPM(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field setIdSpm;
-
-public HL7V27Field SetIdSpm
-{
-    get
-    {
-        if (setIdSpm != null)
-        {
-            return setIdSpm;
-        }
-
-        setIdSpm = new HL7V27Field
-        {
-            field = message[@"SPM"][1],
-            Id = @"SPM.1",
-            Type = @"Field",
-            Position = @"SPM.1",
-            Name = @"Set Id - Spm",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the sequence number. This field is used to identify SPM segment instances in message structures where the SPM segment repeats.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdSpm.field.FieldRepetitions != null && setIdSpm.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdSpm.Id));
-            setIdSpm.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(setIdSpm, fieldData);
-        }
-
-        return setIdSpm;
-    } 
-}
-
-internal HL7V27Field specimenId;
-
-public HL7V27Field SpecimenId
-{
-    get
-    {
-        if (specimenId != null)
-        {
-            return specimenId;
-        }
-
-        specimenId = new HL7V27Field
-        {
-            field = message[@"SPM"][2],
-            Id = @"SPM.2",
-            Type = @"Field",
-            Position = @"SPM.2",
-            Name = @"Specimen Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EIP",
-            DataTypeName = @"Entity Identifier Pair",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a unique identifier for the specimen as referenced by the Placer application, the Filler application, or both.
-
-This field is not required, as there are use cases in which a unique specimen identifier may not exist. In the first scenario, a placer application may initiate an observation request against an existing specimen without uniquely identifying the specimen. Additionally, in the case of the TCU_U10 message structure, used in Automated equipment test code settings messages, the SPM segment is used to define required characteristics of the specimen. As such, TCU_U10 uses SPM to define a virtual specimen, and a specific specimen ID would not exist. Filler applications would be expected to assign a Specimen ID and populate this field accordingly.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenId.field.FieldRepetitions != null && specimenId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenId.Id));
-            specimenId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenId, fieldData);
-        }
-
-        return specimenId;
-    } 
-}
-
-internal HL7V27Field specimenParentIds;
-
-public HL7V27Field SpecimenParentIds
-{
-    get
-    {
-        if (specimenParentIds != null)
-        {
-            return specimenParentIds;
-        }
-
-        specimenParentIds = new HL7V27Field
-        {
-            field = message[@"SPM"][3],
-            Id = @"SPM.3",
-            Type = @"Field",
-            Position = @"SPM.3",
-            Name = @"Specimen Parent Ids",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"EIP",
-            DataTypeName = @"Entity Identifier Pair",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the identifiers for the specimen or specimens that contributed to the specimen that is described by the segment instance.
-
-If this field repeats, then SPM-11-Specimen Role should be valued with ""L"" (pooled). The repetitions of this field then carry the specimen IDs of the parent specimens contributing to the pool.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenParentIds.field.FieldRepetitions != null && specimenParentIds.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenParentIds.Id));
-            specimenParentIds.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenParentIds, fieldData);
-        }
-
-        return specimenParentIds;
-    } 
-}
-
-internal HL7V27Field specimenType;
-
-public HL7V27Field SpecimenType
-{
-    get
-    {
-        if (specimenType != null)
-        {
-            return specimenType;
-        }
-
-        specimenType = new HL7V27Field
-        {
-            field = message[@"SPM"][4],
-            Id = @"SPM.4",
-            Type = @"Field",
-            Position = @"SPM.4",
-            Name = @"Specimen Type",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0487",
-            TableName = @"Specimen Type",
-            Description = @"This field describes the precise nature of the entity that will be the source material for the observation.
-
-Any physical entity that may have observations made about it may qualify as a specimen. The entry in this attribute describes the specific entity as precisely as possible, whether that is a complex organism (e.g., an ostrich) or a specific cellular mass (e.g., a specific muscle biopsy).
-
-A nationally recognized coding system is to be used for this field. Valid coding sources for this field include:
-- HL7 Table 0487 – Specimen Type (replaces HL7 Table 0070 – Specimen source codes)
-- SNOMED, etc.
-- Veterinary medicine may choose the tables supported for the components of this field as decided by their industry.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenType.field.FieldRepetitions != null && specimenType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenType.Id));
-            specimenType.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenType, fieldData);
-        }
-
-        return specimenType;
-    } 
-}
-
-internal HL7V27Field specimenTypeModifier;
-
-public HL7V27Field SpecimenTypeModifier
-{
-    get
-    {
-        if (specimenTypeModifier != null)
-        {
-            return specimenTypeModifier;
-        }
-
-        specimenTypeModifier = new HL7V27Field
-        {
-            field = message[@"SPM"][5],
-            Id = @"SPM.5",
-            Type = @"Field",
-            Position = @"SPM.5",
-            Name = @"Specimen Type Modifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0541",
-            TableName = @"Specimen Type Modifier",
-            Description = @"This field contains modifying or qualifying description(s) about the specimen type
-
-The use of this attribute is to modify, qualify or further specify, the entity described by SPM-4 -Specimen Type. This is particularly useful when the code set used in SPM-4-Specimen Type does not provide the precision required to fully describe the specimen. For example, if the specimen was precisely described as ‘capillary venous blood’ but the code set employed only provided ‘venous blood,’ this attribute could be employed to add the modifier ‘capillary.’
-
-Refer to User-Defined Table 0541 Specimen Type Modifier for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenTypeModifier.field.FieldRepetitions != null && specimenTypeModifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenTypeModifier.Id));
-            specimenTypeModifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenTypeModifier, fieldData);
-        }
-
-        return specimenTypeModifier;
-    } 
-}
-
-internal HL7V27Field specimenAdditives;
-
-public HL7V27Field SpecimenAdditives
-{
-    get
-    {
-        if (specimenAdditives != null)
-        {
-            return specimenAdditives;
-        }
-
-        specimenAdditives = new HL7V27Field
-        {
-            field = message[@"SPM"][6],
-            Id = @"SPM.6",
-            Type = @"Field",
-            Position = @"SPM.6",
-            Name = @"Specimen Additives",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0371",
-            TableName = @"Additive/Preservative",
-            Description = @"This field identifies any additives introduced to the specimen before or at the time of collection. These additives may be introduced in order to preserve, maintain or enhance the particular nature or component of the specimen. Refer to HL7 Table 0371 – Additive/Preservative for valid values. When multiple additives are introduced and valid individual additive codes exist but a valid value for the combination does not exist, repeating the field with individual values is most appropriate.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenAdditives.field.FieldRepetitions != null && specimenAdditives.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenAdditives.Id));
-            specimenAdditives.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenAdditives, fieldData);
-        }
-
-        return specimenAdditives;
-    } 
-}
-
-internal HL7V27Field specimenCollectionMethod;
-
-public HL7V27Field SpecimenCollectionMethod
-{
-    get
-    {
-        if (specimenCollectionMethod != null)
-        {
-            return specimenCollectionMethod;
-        }
-
-        specimenCollectionMethod = new HL7V27Field
-        {
-            field = message[@"SPM"][7],
-            Id = @"SPM.7",
-            Type = @"Field",
-            Position = @"SPM.7",
-            Name = @"Specimen Collection Method",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0488",
-            TableName = @"Specimen Collection Method",
-            Description = @"Describes the procedure or process by which the specimen was collected.
-
-Any nationally recognized coding system might be used for this field including SNOMED; alternatively the HL7 Table 0488 – Specimen Collection Method may be used. Veterinary medicine may choose the tables supported for the components of this field as decided by their industry.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenCollectionMethod.field.FieldRepetitions != null && specimenCollectionMethod.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenCollectionMethod.Id));
-            specimenCollectionMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenCollectionMethod, fieldData);
-        }
-
-        return specimenCollectionMethod;
-    } 
-}
-
-internal HL7V27Field specimenSourceSite;
-
-public HL7V27Field SpecimenSourceSite
-{
-    get
-    {
-        if (specimenSourceSite != null)
-        {
-            return specimenSourceSite;
-        }
-
-        specimenSourceSite = new HL7V27Field
-        {
-            field = message[@"SPM"][8],
-            Id = @"SPM.8",
-            Type = @"Field",
-            Position = @"SPM.8",
-            Name = @"Specimen Source Site",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"Specifies the source from which the specimen was obtained. For example, in the case where a liver biopsy is obtained via a percutaneous needle, the source would be ‘liver.’
-Any nationally recognized coding system might be used for this field including SNOMED; alternatively the HL7 Table 0163 – Body Site may be used. Veterinary medicine may choose the tables supported for the components of this field as decided by their industry.
-
-Veterinary medicine may choose the tables supported for the components of this field as decided by their industry. Refer to User-Defined Table 0542 - Specimen Source Type Modifier for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenSourceSite.field.FieldRepetitions != null && specimenSourceSite.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenSourceSite.Id));
-            specimenSourceSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenSourceSite, fieldData);
-        }
-
-        return specimenSourceSite;
-    } 
-}
-
-internal HL7V27Field specimenSourceSiteModifier;
-
-public HL7V27Field SpecimenSourceSiteModifier
-{
-    get
-    {
-        if (specimenSourceSiteModifier != null)
-        {
-            return specimenSourceSiteModifier;
-        }
-
-        specimenSourceSiteModifier = new HL7V27Field
-        {
-            field = message[@"SPM"][9],
-            Id = @"SPM.9",
-            Type = @"Field",
-            Position = @"SPM.9",
-            Name = @"Specimen Source Site Modifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0542",
-            TableName = @"Specimen Source Type Modifier",
-            Description = @"This field contains modifying or qualifying description(s) about the specimen source site
-
-The use of this attribute is to modify, qualify or further specify, the entity described by SPM-8 – Specimen Source Site. This is particularly useful when the code set used in SPM-8 does not provide the precision required to fully describe the site from which the specimen originated. For example, if the specimen source site was precisely described as ‘left radial vein’ but the code set employed only provided ‘radial vein,’ this attribute could be employed to add the modifier ‘left.’
-
-Veterinary medicine may choose the tables supported for the components of this field as decided by their industry. Refer to User-Defined Table 0542 – Specimen Source Type Modifier for suggested values.
-
-Refer to User-Defined Table 0543 - Specimen Collection Site for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenSourceSiteModifier.field.FieldRepetitions != null && specimenSourceSiteModifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenSourceSiteModifier.Id));
-            specimenSourceSiteModifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenSourceSiteModifier, fieldData);
-        }
-
-        return specimenSourceSiteModifier;
-    } 
-}
-
-internal HL7V27Field specimenCollectionSite;
-
-public HL7V27Field SpecimenCollectionSite
-{
-    get
-    {
-        if (specimenCollectionSite != null)
-        {
-            return specimenCollectionSite;
-        }
-
-        specimenCollectionSite = new HL7V27Field
-        {
-            field = message[@"SPM"][10],
-            Id = @"SPM.10",
-            Type = @"Field",
-            Position = @"SPM.10",
-            Name = @"Specimen Collection Site",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0543",
-            TableName = @"Specimen Collection Site",
-            Description = @"This field differs from SPM-8-Specimen Source Site in those cases where the source site must be approached via a particular site (e.g., anatomic location). For example, in the case where a liver biopsy is obtained via a percutaneous needle, the collection site would be the point of entry of the needle. For venous blood collected from the left radial vein, the collection site could be ""antecubital fossa"".
-
-Veterinary medicine may choose the tables supported for the components of this field as decided by their industry.
-
-Refer to User-Defined Table 0543 – Specimen Collection Site for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenCollectionSite.field.FieldRepetitions != null && specimenCollectionSite.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenCollectionSite.Id));
-            specimenCollectionSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenCollectionSite, fieldData);
-        }
-
-        return specimenCollectionSite;
-    } 
-}
-
-internal HL7V27Field specimenRole;
-
-public HL7V27Field SpecimenRole
-{
-    get
-    {
-        if (specimenRole != null)
-        {
-            return specimenRole;
-        }
-
-        specimenRole = new HL7V27Field
-        {
-            field = message[@"SPM"][11],
-            Id = @"SPM.11",
-            Type = @"Field",
-            Position = @"SPM.11",
-            Name = @"Specimen Role",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0369",
-            TableName = @"Specimen Role",
-            Description = @"This field indicates the role of the sample. Refer to User-defined Table 0369 – Specimen role for suggested values. Each of these values is normally identifiable by the systems and its components and can influence processing and data management related to the specimen.
-
-If this field is not populated, then the specimen described has no special, or specific, role other than serving as the focus of the observation. Such specimens include patient, environmental and other specimens that are intended for analysis.
-
-A grouped specimen consists of identical specimen types from multiple individuals that do not have individual identifiers and upon which the same services will be performed. If the specimen role value is ""G"" then the Grouped Specimen Count (SPM-13) must be valued with the total number of specimens contained in the group.
-
-If the specimen role is ""L"", the repetitions of Parent Specimen ID (SPM-4) represent the individual parent specimens that contribute to the pooled specimen.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenRole.field.FieldRepetitions != null && specimenRole.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenRole.Id));
-            specimenRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenRole, fieldData);
-        }
-
-        return specimenRole;
-    } 
-}
-
-internal HL7V27Field specimenCollectionAmount;
-
-public HL7V27Field SpecimenCollectionAmount
-{
-    get
-    {
-        if (specimenCollectionAmount != null)
-        {
-            return specimenCollectionAmount;
-        }
-
-        specimenCollectionAmount = new HL7V27Field
-        {
-            field = message[@"SPM"][12],
-            Id = @"SPM.12",
-            Type = @"Field",
-            Position = @"SPM.12",
-            Name = @"Specimen Collection Amount",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the volume or mass of the collected specimen. For laboratory tests, the collection volume is the volume of a specimen. Specifically, units should be expressed in the ISO Standard unit abbreviations (ISO-2955, 1977). This is a results-only field except when the placer or a party has already drawn the specimen. (See Chapter 7 for full details about units.)",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenCollectionAmount.field.FieldRepetitions != null && specimenCollectionAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenCollectionAmount.Id));
-            specimenCollectionAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenCollectionAmount, fieldData);
-        }
-
-        return specimenCollectionAmount;
-    } 
-}
-
-internal HL7V27Field groupedSpecimenCount;
-
-public HL7V27Field GroupedSpecimenCount
-{
-    get
-    {
-        if (groupedSpecimenCount != null)
-        {
-            return groupedSpecimenCount;
-        }
-
-        groupedSpecimenCount = new HL7V27Field
-        {
-            field = message[@"SPM"][13],
-            Id = @"SPM.13",
-            Type = @"Field",
-            Position = @"SPM.13",
-            Name = @"Grouped Specimen Count",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field refers to the number of individual specimens of a particular type represented by this instance of a specimen. The use of this field is restricted to specimens upon which all specimen related attributes are identical. This field would only be valued if the specimen role attribute has the value ""G"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (groupedSpecimenCount.field.FieldRepetitions != null && groupedSpecimenCount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(groupedSpecimenCount.Id));
-            groupedSpecimenCount.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(groupedSpecimenCount, fieldData);
-        }
-
-        return groupedSpecimenCount;
-    } 
-}
-
-internal HL7V27Field specimenDescription;
-
-public HL7V27Field SpecimenDescription
-{
-    get
-    {
-        if (specimenDescription != null)
-        {
-            return specimenDescription;
-        }
-
-        specimenDescription = new HL7V27Field
-        {
-            field = message[@"SPM"][14],
-            Id = @"SPM.14",
-            Type = @"Field",
-            Position = @"SPM.14",
-            Name = @"Specimen Description",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This is a text field that allows additional information specifically about the specimen to be sent in the message",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenDescription.field.FieldRepetitions != null && specimenDescription.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenDescription.Id));
-            specimenDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenDescription, fieldData);
-        }
-
-        return specimenDescription;
-    } 
-}
-
-internal HL7V27Field specimenHandlingCode;
-
-public HL7V27Field SpecimenHandlingCode
-{
-    get
-    {
-        if (specimenHandlingCode != null)
-        {
-            return specimenHandlingCode;
-        }
-
-        specimenHandlingCode = new HL7V27Field
-        {
-            field = message[@"SPM"][15],
-            Id = @"SPM.15",
-            Type = @"Field",
-            Position = @"SPM.15",
-            Name = @"Specimen Handling Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0376",
-            TableName = @"Special Handling Code",
-            Description = @"This describes how the specimen and/or container need to be handled from the time of collection through the initiation of testing. As this field is not required, no assumptions can be made as to meaning when this field is not populated.
-
-Refer to User-defined Table 0376 – Special Handling Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenHandlingCode.field.FieldRepetitions != null && specimenHandlingCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenHandlingCode.Id));
-            specimenHandlingCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenHandlingCode, fieldData);
-        }
-
-        return specimenHandlingCode;
-    } 
-}
-
-internal HL7V27Field specimenRiskCode;
-
-public HL7V27Field SpecimenRiskCode
-{
-    get
-    {
-        if (specimenRiskCode != null)
-        {
-            return specimenRiskCode;
-        }
-
-        specimenRiskCode = new HL7V27Field
-        {
-            field = message[@"SPM"][16],
-            Id = @"SPM.16",
-            Type = @"Field",
-            Position = @"SPM.16",
-            Name = @"Specimen Risk Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0489",
-            TableName = @"Risk Codes",
-            Description = @"This field contains any known or suspected specimen hazards, e.g., exceptionally infectious agent or blood from a hepatitis patient. Either code and/or text may be absent. However, the code is always placed in the first component position and any free text in the second component. Thus, a component delimiter must precede free text without a code. Refer to User-defined Table 0489 – Risk Codes for suggested entries",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenRiskCode.field.FieldRepetitions != null && specimenRiskCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenRiskCode.Id));
-            specimenRiskCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenRiskCode, fieldData);
-        }
-
-        return specimenRiskCode;
-    } 
-}
-
-internal HL7V27Field specimenCollectionDateTime;
-
-public HL7V27Field SpecimenCollectionDateTime
-{
-    get
-    {
-        if (specimenCollectionDateTime != null)
-        {
-            return specimenCollectionDateTime;
-        }
-
-        specimenCollectionDateTime = new HL7V27Field
-        {
-            field = message[@"SPM"][17],
-            Id = @"SPM.17",
-            Type = @"Field",
-            Position = @"SPM.17",
-            Name = @"Specimen Collection Date/Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DR",
-            DataTypeName = @"Date/time Range",
-            TableId = null,
-            TableName = null,
-            Description = @"The date and time when the specimen was acquired from the source. The use of the Date Range data type allows for description of specimens collected over a period of time, for example, 24-hour urine collection. For specimens collected at a point in time, only the first component (start date/time) will be populated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenCollectionDateTime.field.FieldRepetitions != null && specimenCollectionDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenCollectionDateTime.Id));
-            specimenCollectionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenCollectionDateTime, fieldData);
-        }
-
-        return specimenCollectionDateTime;
-    } 
-}
-
-internal HL7V27Field specimenReceivedDateTime;
-
-public HL7V27Field SpecimenReceivedDateTime
-{
-    get
-    {
-        if (specimenReceivedDateTime != null)
-        {
-            return specimenReceivedDateTime;
-        }
-
-        specimenReceivedDateTime = new HL7V27Field
-        {
-            field = message[@"SPM"][18],
-            Id = @"SPM.18",
-            Type = @"Field",
-            Position = @"SPM.18",
-            Name = @"Specimen Received Date/Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"The specimen received date/time is the time that the specimen is received at the diagnostic service. The actual time that is recorded is based on how specimen receipt is managed and may correspond to the time the sample is logged in. This is fundamentally different from SPM-17 Specimen Collection date/time.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenReceivedDateTime.field.FieldRepetitions != null && specimenReceivedDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenReceivedDateTime.Id));
-            specimenReceivedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenReceivedDateTime, fieldData);
-        }
-
-        return specimenReceivedDateTime;
-    } 
-}
-
-internal HL7V27Field specimenExpirationDateTime;
-
-public HL7V27Field SpecimenExpirationDateTime
-{
-    get
-    {
-        if (specimenExpirationDateTime != null)
-        {
-            return specimenExpirationDateTime;
-        }
-
-        specimenExpirationDateTime = new HL7V27Field
-        {
-            field = message[@"SPM"][19],
-            Id = @"SPM.19",
-            Type = @"Field",
-            Position = @"SPM.19",
-            Name = @"Specimen Expiration Date/Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the date and time the specimen can no longer be used for the purpose implied by the order. For example, in the Blood Banking environment the specimen can no longer be used for pre-transfusion compatibility testing. The specimen segment will include an SPM-21-Specimen Reject Reason of 'EX' indicating 'Expired' for message instances created after this date and time.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenExpirationDateTime.field.FieldRepetitions != null && specimenExpirationDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenExpirationDateTime.Id));
-            specimenExpirationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenExpirationDateTime, fieldData);
-        }
-
-        return specimenExpirationDateTime;
-    } 
-}
-
-internal HL7V27Field specimenAvailability;
-
-public HL7V27Field SpecimenAvailability
-{
-    get
-    {
-        if (specimenAvailability != null)
-        {
-            return specimenAvailability;
-        }
-
-        specimenAvailability = new HL7V27Field
-        {
-            field = message[@"SPM"][20],
-            Id = @"SPM.20",
-            Type = @"Field",
-            Position = @"SPM.20",
-            Name = @"Specimen Availability",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"This describes whether the specimen, as it exists, is currently available to use in an analysis. Refer to HL7 Table 0136 – Yes/No Indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenAvailability.field.FieldRepetitions != null && specimenAvailability.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenAvailability.Id));
-            specimenAvailability.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenAvailability, fieldData);
-        }
-
-        return specimenAvailability;
-    } 
-}
-
-internal HL7V27Field specimenRejectReason;
-
-public HL7V27Field SpecimenRejectReason
-{
-    get
-    {
-        if (specimenRejectReason != null)
-        {
-            return specimenRejectReason;
-        }
-
-        specimenRejectReason = new HL7V27Field
-        {
-            field = message[@"SPM"][21],
-            Id = @"SPM.21",
-            Type = @"Field",
-            Position = @"SPM.21",
-            Name = @"Specimen Reject Reason",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0490",
-            TableName = @"Specimen Reject Reason",
-            Description = @"This describes one or more reasons the specimen is rejected for the specified observation/result/analysis. Refer to HL7 Table 0490 – Specimen Reject Reason for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenRejectReason.field.FieldRepetitions != null && specimenRejectReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenRejectReason.Id));
-            specimenRejectReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenRejectReason, fieldData);
-        }
-
-        return specimenRejectReason;
-    } 
-}
-
-internal HL7V27Field specimenQuality;
-
-public HL7V27Field SpecimenQuality
-{
-    get
-    {
-        if (specimenQuality != null)
-        {
-            return specimenQuality;
-        }
-
-        specimenQuality = new HL7V27Field
-        {
-            field = message[@"SPM"][22],
-            Id = @"SPM.22",
-            Type = @"Field",
-            Position = @"SPM.22",
-            Name = @"Specimen Quality",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0491",
-            TableName = @"Specimen Quality",
-            Description = @"The degree or grade of excellence of the specimen at receipt. The filler populates this attribute. Refer to User-defined Table 0491 – Specimen Quality for suggested entries..",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenQuality.field.FieldRepetitions != null && specimenQuality.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenQuality.Id));
-            specimenQuality.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenQuality, fieldData);
-        }
-
-        return specimenQuality;
-    } 
-}
-
-internal HL7V27Field specimenAppropriateness;
-
-public HL7V27Field SpecimenAppropriateness
-{
-    get
-    {
-        if (specimenAppropriateness != null)
-        {
-            return specimenAppropriateness;
-        }
-
-        specimenAppropriateness = new HL7V27Field
-        {
-            field = message[@"SPM"][23],
-            Id = @"SPM.23",
-            Type = @"Field",
-            Position = @"SPM.23",
-            Name = @"Specimen Appropriateness",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0492",
-            TableName = @"Specimen Appropriateness",
-            Description = @"The suitability of the specimen for the particular planned use as determined by the filler. Refer to User-defined Table 0492 – Specimen Appropriateness for suggested entries.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenAppropriateness.field.FieldRepetitions != null && specimenAppropriateness.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenAppropriateness.Id));
-            specimenAppropriateness.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenAppropriateness, fieldData);
-        }
-
-        return specimenAppropriateness;
-    } 
-}
-
-internal HL7V27Field specimenCondition;
-
-public HL7V27Field SpecimenCondition
-{
-    get
-    {
-        if (specimenCondition != null)
-        {
-            return specimenCondition;
-        }
-
-        specimenCondition = new HL7V27Field
-        {
-            field = message[@"SPM"][24],
-            Id = @"SPM.24",
-            Type = @"Field",
-            Position = @"SPM.24",
-            Name = @"Specimen Condition",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0493",
-            TableName = @"Specimen Condition",
-            Description = @"A mode or state of being that describes the nature of the specimen. Refer to User-defined Table 0493 – Specimen Condition for suggested entries.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenCondition.field.FieldRepetitions != null && specimenCondition.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenCondition.Id));
-            specimenCondition.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenCondition, fieldData);
-        }
-
-        return specimenCondition;
-    } 
-}
-
-internal HL7V27Field specimenCurrentQuantity;
-
-public HL7V27Field SpecimenCurrentQuantity
-{
-    get
-    {
-        if (specimenCurrentQuantity != null)
-        {
-            return specimenCurrentQuantity;
-        }
-
-        specimenCurrentQuantity = new HL7V27Field
-        {
-            field = message[@"SPM"][25],
-            Id = @"SPM.25",
-            Type = @"Field",
-            Position = @"SPM.25",
-            Name = @"Specimen Current Quantity",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This attributes contains the amount of specimen that currently exists or is available for use in further testing.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenCurrentQuantity.field.FieldRepetitions != null && specimenCurrentQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenCurrentQuantity.Id));
-            specimenCurrentQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenCurrentQuantity, fieldData);
-        }
-
-        return specimenCurrentQuantity;
-    } 
-}
-
-internal HL7V27Field numberOfSpecimenContainers;
-
-public HL7V27Field NumberOfSpecimenContainers
-{
-    get
-    {
-        if (numberOfSpecimenContainers != null)
-        {
-            return numberOfSpecimenContainers;
-        }
-
-        numberOfSpecimenContainers = new HL7V27Field
-        {
-            field = message[@"SPM"][26],
-            Id = @"SPM.26",
-            Type = @"Field",
-            Position = @"SPM.26",
-            Name = @"Number Of Specimen Containers",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the number of containers for a given sample. For sample receipt verification purposes; may be different from the total number of samples that accompany the order.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (numberOfSpecimenContainers.field.FieldRepetitions != null && numberOfSpecimenContainers.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfSpecimenContainers.Id));
-            numberOfSpecimenContainers.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(numberOfSpecimenContainers, fieldData);
-        }
-
-        return numberOfSpecimenContainers;
-    } 
-}
-
-internal HL7V27Field containerType;
-
-public HL7V27Field ContainerType
-{
-    get
-    {
-        if (containerType != null)
-        {
-            return containerType;
-        }
-
-        containerType = new HL7V27Field
-        {
-            field = message[@"SPM"][27],
-            Id = @"SPM.27",
-            Type = @"Field",
-            Position = @"SPM.27",
-            Name = @"Container Type",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"The container in or on which a specimen is transported.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerType.field.FieldRepetitions != null && containerType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerType.Id));
-            containerType.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(containerType, fieldData);
-        }
-
-        return containerType;
-    } 
-}
-
-internal HL7V27Field containerCondition;
-
-public HL7V27Field ContainerCondition
-{
-    get
-    {
-        if (containerCondition != null)
-        {
-            return containerCondition;
-        }
-
-        containerCondition = new HL7V27Field
-        {
-            field = message[@"SPM"][28],
-            Id = @"SPM.28",
-            Type = @"Field",
-            Position = @"SPM.28",
-            Name = @"Container Condition",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0544",
-            TableName = @"Container Condition",
-            Description = @"In chain of custody cases where specimens are moved from lab to lab, the status of the container that the specimen is shipped in must be recorded at each receipt. If the container is compromised in any way (seal broken, container cracked or leaking, etc) then this needs to be recorded for legal reasons.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerCondition.field.FieldRepetitions != null && containerCondition.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerCondition.Id));
-            containerCondition.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(containerCondition, fieldData);
-        }
-
-        return containerCondition;
-    } 
-}
-
-internal HL7V27Field specimenChildRole;
-
-public HL7V27Field SpecimenChildRole
-{
-    get
-    {
-        if (specimenChildRole != null)
-        {
-            return specimenChildRole;
-        }
-
-        specimenChildRole = new HL7V27Field
-        {
-            field = message[@"SPM"][29],
-            Id = @"SPM.29",
-            Type = @"Field",
-            Position = @"SPM.29",
-            Name = @"Specimen Child Role",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0494",
-            TableName = @"Specimen Child Role",
-            Description = @"For child specimens, this field identifies the relationship between this specimen and the parent specimen. If this field is populated, then SPM-3-Specimen Parent ID must be populated. This field differs from SPM-15-Specimen Role in that this field refers to the role of this specimen relative to a parent role rather than the role of this specimen to the ordered service.
-
-Refer to HL7 Table 0494 – Specimen Child Role for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenChildRole.field.FieldRepetitions != null && specimenChildRole.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenChildRole.Id));
-            specimenChildRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specimenChildRole, fieldData);
-        }
-
-        return specimenChildRole;
-    } 
-}
-
-internal HL7V27Field accessionId;
-
-public HL7V27Field AccessionId
-{
-    get
-    {
-        if (accessionId != null)
-        {
-            return accessionId;
-        }
-
-        accessionId = new HL7V27Field
-        {
-            field = message[@"SPM"][30],
-            Id = @"SPM.30",
-            Type = @"Field",
-            Position = @"SPM.30",
-            Name = @"Accession Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains accession identifier(s) associated with the specimen. In many cases, applications involved in the collection, transportation or testing of the specimen will assign their own accession identifiers. This field allows communication of these accession identifiers.
-
-An accession id may or may not, depending up laboratory practice, identify a single specimen. Best practice is to use accession identifiers that are globally unique (typically ID Number + Assigning Facility components). However, an accession id may or may not, depending up laboratory practice, identify a single specimen. In addition, accession ids are commonly re-used over time, so the accession id may not uniquely identify a specimen.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accessionId.field.FieldRepetitions != null && accessionId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accessionId.Id));
-            accessionId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(accessionId, fieldData);
-        }
-
-        return accessionId;
-    } 
-}
-
-internal HL7V27Field otherSpecimenId;
-
-public HL7V27Field OtherSpecimenId
-{
-    get
-    {
-        if (otherSpecimenId != null)
-        {
-            return otherSpecimenId;
-        }
-
-        otherSpecimenId = new HL7V27Field
-        {
-            field = message[@"SPM"][31],
-            Id = @"SPM.31",
-            Type = @"Field",
-            Position = @"SPM.31",
-            Name = @"Other Specimen Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains other identifier(s) for the specimen as referenced an application. Normally this field is used to carry additional identifiers for the specimen in addition to those identified in SPM-2, Specimen ID. In may cases other applications involved in the collection, transportation or testing of the specimen will assign additional specimen identifiers. This field allows communication of those other specimen identifiers.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (otherSpecimenId.field.FieldRepetitions != null && otherSpecimenId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(otherSpecimenId.Id));
-            otherSpecimenId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(otherSpecimenId, fieldData);
-        }
-
-        return otherSpecimenId;
-    } 
-}
-
-internal HL7V27Field shipmentId;
-
-public HL7V27Field ShipmentId
-{
-    get
-    {
-        if (shipmentId != null)
-        {
-            return shipmentId;
-        }
-
-        shipmentId = new HL7V27Field
+        _shipmentId = new HL7V27Field
         {
             field = message[@"SPM"][32],
-            Id = @"SPM.32",
-            Type = @"Field",
-            Position = @"SPM.32",
-            Name = @"Shipment Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The shipment identifier is the identifier assigned by the shipment transportation provider that uniquely identifies this shipment from all other shipments by the same provider. The addressee for the shipment should be able to use this identifier to match a physical shipment with the electronic manifest for the shipment.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (shipmentId.field.FieldRepetitions != null && shipmentId.field.FieldRepetitions.Count > 0)
+        if (_shipmentId.field.FieldRepetitions != null && _shipmentId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(shipmentId.Id));
-            shipmentId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(shipmentId, fieldData);
+            _shipmentId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_shipmentId, fieldData);
         }
 
-        return shipmentId;
+        return _shipmentId;
     } 
 }
     }

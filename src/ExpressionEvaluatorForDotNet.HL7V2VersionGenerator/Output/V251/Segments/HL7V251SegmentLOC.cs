@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentLOC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _primaryKeyValueLOC;
+
+public HL7V251Field PrimaryKeyValueLOC
+{
+    get
+    {
+        if (_primaryKeyValueLOC != null)
+        {
+            return _primaryKeyValueLOC;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"LOC.1",
+            Type = @"Field",
+            Position = @"LOC.1",
+            Name = @"Primary Key Value - LOC",
+            Length = 200,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the institutions identification code for the location. The identifying key value. Must match MFE-4 -Primary Key Value - MFE. This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here).",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"LOC.1",
-                            Type = @"Field",
-                            Position = @"LOC.1",
-                            Name = @"Primary Key Value - LOC",
-                            Length = 200,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the institutions identification code for the location. The identifying key value. Must match MFE-4 -Primary Key Value - MFE. This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LOC.1.1",
                             Type = @"Component",
@@ -424,61 +436,145 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primaryKeyValueLOC = new HL7V251Field
+        {
+            field = message[@"LOC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryKeyValueLOC.field.FieldRepetitions != null && _primaryKeyValueLOC.field.FieldRepetitions.Count > 0)
+        {
+            _primaryKeyValueLOC.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_primaryKeyValueLOC, fieldData);
+        }
+
+        return _primaryKeyValueLOC;
+    } 
+}
+
+internal HL7V251Field _locationDescription;
+
+public HL7V251Field LocationDescription
+{
+    get
+    {
+        if (_locationDescription != null)
+        {
+            return _locationDescription;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"LOC.2",
+            Type = @"Field",
+            Position = @"LOC.2",
+            Name = @"Location Description",
+            Length = 48,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the optional free text description of the location, to elaborate upon LOC primary key value.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _locationDescription = new HL7V251Field
+        {
+            field = message[@"LOC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_locationDescription.field.FieldRepetitions != null && _locationDescription.field.FieldRepetitions.Count > 0)
+        {
+            _locationDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_locationDescription, fieldData);
+        }
+
+        return _locationDescription;
+    } 
+}
+
+internal HL7V251Field _locationTypeLOC;
+
+public HL7V251Field LocationTypeLOC
+{
+    get
+    {
+        if (_locationTypeLOC != null)
+        {
+            return _locationTypeLOC;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"LOC.3",
+            Type = @"Field",
+            Position = @"LOC.3",
+            Name = @"Location Type - LOC",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0260",
+            TableName = @"Patient location type",
+            Description = @"This field contains the code identifying what type of location this is. Refer to User-defined Table 0260 - Patient location type for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _locationTypeLOC = new HL7V251Field
+        {
+            field = message[@"LOC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_locationTypeLOC.field.FieldRepetitions != null && _locationTypeLOC.field.FieldRepetitions.Count > 0)
+        {
+            _locationTypeLOC.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_locationTypeLOC, fieldData);
+        }
+
+        return _locationTypeLOC;
+    } 
+}
+
+internal HL7V251Field _organizationNameLOC;
+
+public HL7V251Field OrganizationNameLOC
+{
+    get
+    {
+        if (_organizationNameLOC != null)
+        {
+            return _organizationNameLOC;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"LOC.4",
+            Type = @"Field",
+            Position = @"LOC.4",
+            Name = @"Organization Name - LOC",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the organization(s) of which this location is a part. For inpatient locations, this can be the hospital or institution name. For outpatient locations, this can be the clinic or office name.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LOC.2",
-                            Type = @"Field",
-                            Position = @"LOC.2",
-                            Name = @"Location Description",
-                            Length = 48,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the optional free text description of the location, to elaborate upon LOC primary key value.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LOC.3",
-                            Type = @"Field",
-                            Position = @"LOC.3",
-                            Name = @"Location Type - LOC",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0260",
-                            TableName = @"Patient location type",
-                            Description = @"This field contains the code identifying what type of location this is. Refer to User-defined Table 0260 - Patient location type for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LOC.4",
-                            Type = @"Field",
-                            Position = @"LOC.4",
-                            Name = @"Organization Name - LOC",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the organization(s) of which this location is a part. For inpatient locations, this can be the hospital or institution name. For outpatient locations, this can be the clinic or office name.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LOC.4.1",
                             Type = @"Component",
@@ -764,25 +860,55 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _organizationNameLOC = new HL7V251Field
+        {
+            field = message[@"LOC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_organizationNameLOC.field.FieldRepetitions != null && _organizationNameLOC.field.FieldRepetitions.Count > 0)
+        {
+            _organizationNameLOC.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_organizationNameLOC, fieldData);
+        }
+
+        return _organizationNameLOC;
+    } 
+}
+
+internal HL7V251Field _locationAddress;
+
+public HL7V251Field LocationAddress
+{
+    get
+    {
+        if (_locationAddress != null)
+        {
+            return _locationAddress;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"LOC.5",
+            Type = @"Field",
+            Position = @"LOC.5",
+            Name = @"Location Address",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the address of the patient location, especially for use for outpatient clinic or office locations.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LOC.5",
-                            Type = @"Field",
-                            Position = @"LOC.5",
-                            Name = @"Location Address",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the address of the patient location, especially for use for outpatient clinic or office locations.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LOC.5.1",
                             Type = @"Component",
@@ -1264,25 +1390,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _locationAddress = new HL7V251Field
+        {
+            field = message[@"LOC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_locationAddress.field.FieldRepetitions != null && _locationAddress.field.FieldRepetitions.Count > 0)
+        {
+            _locationAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_locationAddress, fieldData);
+        }
+
+        return _locationAddress;
+    } 
+}
+
+internal HL7V251Field _locationPhone;
+
+public HL7V251Field LocationPhone
+{
+    get
+    {
+        if (_locationPhone != null)
+        {
+            return _locationPhone;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"LOC.6",
+            Type = @"Field",
+            Position = @"LOC.6",
+            Name = @"Location Phone",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the phone number within the patient location, if any. For example, the room or bed phone for use by the patient.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LOC.6",
-                            Type = @"Field",
-                            Position = @"LOC.6",
-                            Name = @"Location Phone",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the phone number within the patient location, if any. For example, the room or bed phone for use by the patient.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LOC.6.1",
                             Type = @"Component",
@@ -1502,25 +1658,55 @@ Format: [NNN] [(999)]999-9999 [X99999] [B99999] [C any text] ",
 Example: |^^^^^^^^^^^1-800-Dentist| ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _locationPhone = new HL7V251Field
+        {
+            field = message[@"LOC"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_locationPhone.field.FieldRepetitions != null && _locationPhone.field.FieldRepetitions.Count > 0)
+        {
+            _locationPhone.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_locationPhone, fieldData);
+        }
+
+        return _locationPhone;
+    } 
+}
+
+internal HL7V251Field _licenseNumber;
+
+public HL7V251Field LicenseNumber
+{
+    get
+    {
+        if (_licenseNumber != null)
+        {
+            return _licenseNumber;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"LOC.7",
+            Type = @"Field",
+            Position = @"LOC.7",
+            Name = @"License Number",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0461",
+            TableName = @"License Number",
+            Description = @"This field contains the multiple license numbers for the facility. Refer toUser-defined Table 0461 - License number for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LOC.7",
-                            Type = @"Field",
-                            Position = @"LOC.7",
-                            Name = @"License Number",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0461",
-                            TableName = @"License Number",
-                            Description = @"This field contains the multiple license numbers for the facility. Refer toUser-defined Table 0461 - License number for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LOC.7.1",
                             Type = @"Component",
@@ -1626,354 +1812,39 @@ Example: |^^^^^^^^^^^1-800-Dentist| ",
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LOC.8",
-                            Type = @"Field",
-                            Position = @"LOC.8",
-                            Name = @"Location Equipment",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0261",
-                            TableName = @"Location Equipment",
-                            Description = @"This repeating field indicates what types of equipment are built in. Applies only to room or bed locations. If LOC-3 - Location Type indicates that this is a room, this will be the equipment in the room which can be used by more than one bed. If LOC-3 - Location Type indicates this is a bed, this will be the bedside devices available to this bed. Refer to User-defined Table 0261 - Location equipment for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LOC.9",
-                            Type = @"Field",
-                            Position = @"LOC.9",
-                            Name = @"Location Service Code",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0442",
-                            TableName = @"Location Service Code",
-                            Description = @"This field categorizes the types of services provided by the location. Refer to User-defined Table 0442 - Location service code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentLOC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field primaryKeyValueLOC;
-
-public HL7V251Field PrimaryKeyValueLOC
-{
-    get
-    {
-        if (primaryKeyValueLOC != null)
-        {
-            return primaryKeyValueLOC;
-        }
-
-        primaryKeyValueLOC = new HL7V251Field
-        {
-            field = message[@"LOC"][1],
-            Id = @"LOC.1",
-            Type = @"Field",
-            Position = @"LOC.1",
-            Name = @"Primary Key Value - LOC",
-            Length = 200,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the institutions identification code for the location. The identifying key value. Must match MFE-4 -Primary Key Value - MFE. This field has the same components as the patient location fields in the PV1 segment (except that bed status is not included here).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryKeyValueLOC.field.FieldRepetitions != null && primaryKeyValueLOC.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryKeyValueLOC.Id));
-            primaryKeyValueLOC.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(primaryKeyValueLOC, fieldData);
-        }
-
-        return primaryKeyValueLOC;
-    } 
-}
-
-internal HL7V251Field locationDescription;
-
-public HL7V251Field LocationDescription
-{
-    get
-    {
-        if (locationDescription != null)
-        {
-            return locationDescription;
-        }
-
-        locationDescription = new HL7V251Field
-        {
-            field = message[@"LOC"][2],
-            Id = @"LOC.2",
-            Type = @"Field",
-            Position = @"LOC.2",
-            Name = @"Location Description",
-            Length = 48,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the optional free text description of the location, to elaborate upon LOC primary key value.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (locationDescription.field.FieldRepetitions != null && locationDescription.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(locationDescription.Id));
-            locationDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(locationDescription, fieldData);
-        }
-
-        return locationDescription;
-    } 
-}
-
-internal HL7V251Field locationTypeLOC;
-
-public HL7V251Field LocationTypeLOC
-{
-    get
-    {
-        if (locationTypeLOC != null)
-        {
-            return locationTypeLOC;
-        }
-
-        locationTypeLOC = new HL7V251Field
-        {
-            field = message[@"LOC"][3],
-            Id = @"LOC.3",
-            Type = @"Field",
-            Position = @"LOC.3",
-            Name = @"Location Type - LOC",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0260",
-            TableName = @"Patient location type",
-            Description = @"This field contains the code identifying what type of location this is. Refer to User-defined Table 0260 - Patient location type for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (locationTypeLOC.field.FieldRepetitions != null && locationTypeLOC.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(locationTypeLOC.Id));
-            locationTypeLOC.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(locationTypeLOC, fieldData);
-        }
-
-        return locationTypeLOC;
-    } 
-}
-
-internal HL7V251Field organizationNameLOC;
-
-public HL7V251Field OrganizationNameLOC
-{
-    get
-    {
-        if (organizationNameLOC != null)
-        {
-            return organizationNameLOC;
-        }
-
-        organizationNameLOC = new HL7V251Field
-        {
-            field = message[@"LOC"][4],
-            Id = @"LOC.4",
-            Type = @"Field",
-            Position = @"LOC.4",
-            Name = @"Organization Name - LOC",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the organization(s) of which this location is a part. For inpatient locations, this can be the hospital or institution name. For outpatient locations, this can be the clinic or office name.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (organizationNameLOC.field.FieldRepetitions != null && organizationNameLOC.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(organizationNameLOC.Id));
-            organizationNameLOC.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(organizationNameLOC, fieldData);
-        }
-
-        return organizationNameLOC;
-    } 
-}
-
-internal HL7V251Field locationAddress;
-
-public HL7V251Field LocationAddress
-{
-    get
-    {
-        if (locationAddress != null)
-        {
-            return locationAddress;
-        }
-
-        locationAddress = new HL7V251Field
-        {
-            field = message[@"LOC"][5],
-            Id = @"LOC.5",
-            Type = @"Field",
-            Position = @"LOC.5",
-            Name = @"Location Address",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the address of the patient location, especially for use for outpatient clinic or office locations.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (locationAddress.field.FieldRepetitions != null && locationAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(locationAddress.Id));
-            locationAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(locationAddress, fieldData);
-        }
-
-        return locationAddress;
-    } 
-}
-
-internal HL7V251Field locationPhone;
-
-public HL7V251Field LocationPhone
-{
-    get
-    {
-        if (locationPhone != null)
-        {
-            return locationPhone;
-        }
-
-        locationPhone = new HL7V251Field
-        {
-            field = message[@"LOC"][6],
-            Id = @"LOC.6",
-            Type = @"Field",
-            Position = @"LOC.6",
-            Name = @"Location Phone",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the phone number within the patient location, if any. For example, the room or bed phone for use by the patient.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (locationPhone.field.FieldRepetitions != null && locationPhone.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(locationPhone.Id));
-            locationPhone.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(locationPhone, fieldData);
-        }
-
-        return locationPhone;
-    } 
-}
-
-internal HL7V251Field licenseNumber;
-
-public HL7V251Field LicenseNumber
-{
-    get
-    {
-        if (licenseNumber != null)
-        {
-            return licenseNumber;
-        }
-
-        licenseNumber = new HL7V251Field
+        _licenseNumber = new HL7V251Field
         {
             field = message[@"LOC"][7],
-            Id = @"LOC.7",
-            Type = @"Field",
-            Position = @"LOC.7",
-            Name = @"License Number",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0461",
-            TableName = @"License Number",
-            Description = @"This field contains the multiple license numbers for the facility. Refer toUser-defined Table 0461 - License number for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (licenseNumber.field.FieldRepetitions != null && licenseNumber.field.FieldRepetitions.Count > 0)
+        if (_licenseNumber.field.FieldRepetitions != null && _licenseNumber.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(licenseNumber.Id));
-            licenseNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(licenseNumber, fieldData);
+            _licenseNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_licenseNumber, fieldData);
         }
 
-        return licenseNumber;
+        return _licenseNumber;
     } 
 }
 
-internal HL7V251Field locationEquipment;
+internal HL7V251Field _locationEquipment;
 
 public HL7V251Field LocationEquipment
 {
     get
     {
-        if (locationEquipment != null)
+        if (_locationEquipment != null)
         {
-            return locationEquipment;
+            return _locationEquipment;
         }
 
-        locationEquipment = new HL7V251Field
+        var fieldData = new HL7V251FieldData
         {
-            field = message[@"LOC"][8],
             Id = @"LOC.8",
             Type = @"Field",
             Position = @"LOC.8",
@@ -1987,34 +1858,38 @@ public HL7V251Field LocationEquipment
             TableName = @"Location Equipment",
             Description = @"This repeating field indicates what types of equipment are built in. Applies only to room or bed locations. If LOC-3 - Location Type indicates that this is a room, this will be the equipment in the room which can be used by more than one bed. If LOC-3 - Location Type indicates this is a bed, this will be the bedside devices available to this bed. Refer to User-defined Table 0261 - Location equipment for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _locationEquipment = new HL7V251Field
+        {
+            field = message[@"LOC"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (locationEquipment.field.FieldRepetitions != null && locationEquipment.field.FieldRepetitions.Count > 0)
+        if (_locationEquipment.field.FieldRepetitions != null && _locationEquipment.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(locationEquipment.Id));
-            locationEquipment.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(locationEquipment, fieldData);
+            _locationEquipment.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_locationEquipment, fieldData);
         }
 
-        return locationEquipment;
+        return _locationEquipment;
     } 
 }
 
-internal HL7V251Field locationServiceCode;
+internal HL7V251Field _locationServiceCode;
 
 public HL7V251Field LocationServiceCode
 {
     get
     {
-        if (locationServiceCode != null)
+        if (_locationServiceCode != null)
         {
-            return locationServiceCode;
+            return _locationServiceCode;
         }
 
-        locationServiceCode = new HL7V251Field
+        var fieldData = new HL7V251FieldData
         {
-            field = message[@"LOC"][9],
             Id = @"LOC.9",
             Type = @"Field",
             Position = @"LOC.9",
@@ -2028,17 +1903,22 @@ public HL7V251Field LocationServiceCode
             TableName = @"Location Service Code",
             Description = @"This field categorizes the types of services provided by the location. Refer to User-defined Table 0442 - Location service code for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _locationServiceCode = new HL7V251Field
+        {
+            field = message[@"LOC"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (locationServiceCode.field.FieldRepetitions != null && locationServiceCode.field.FieldRepetitions.Count > 0)
+        if (_locationServiceCode.field.FieldRepetitions != null && _locationServiceCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(locationServiceCode.Id));
-            locationServiceCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(locationServiceCode, fieldData);
+            _locationServiceCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_locationServiceCode, fieldData);
         }
 
-        return locationServiceCode;
+        return _locationServiceCode;
     } 
 }
     }

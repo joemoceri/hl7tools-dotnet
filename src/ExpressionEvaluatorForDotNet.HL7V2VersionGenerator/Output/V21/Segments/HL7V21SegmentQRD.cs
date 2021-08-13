@@ -25,250 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"QRD.1",
-                            Type = @"Field",
-                            Position = @"QRD.1",
-                            Name = @"Query Date/Time",
-                            Length = 19,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QRD.2",
-                            Type = @"Field",
-                            Position = @"QRD.2",
-                            Name = @"Query Format Code",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0106",
-                            TableName = @"QUERY FORMAT CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QRD.3",
-                            Type = @"Field",
-                            Position = @"QRD.3",
-                            Name = @"Query Priority",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0091",
-                            TableName = @"QUERY PRIORITY",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QRD.4",
-                            Type = @"Field",
-                            Position = @"QRD.4",
-                            Name = @"Query Id",
-                            Length = 10,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QRD.5",
-                            Type = @"Field",
-                            Position = @"QRD.5",
-                            Name = @"Deferred Response Type",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0107",
-                            TableName = @"DEFERRED RESPONSE TYPE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QRD.6",
-                            Type = @"Field",
-                            Position = @"QRD.6",
-                            Name = @"Deferred Response Date/Time",
-                            Length = 19,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QRD.7",
-                            Type = @"Field",
-                            Position = @"QRD.7",
-                            Name = @"Quantity Limited Request",
-                            Length = 5,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = @"0126",
-                            TableName = @"QUANTITY LIMITED REQUEST",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QRD.8",
-                            Type = @"Field",
-                            Position = @"QRD.8",
-                            Name = @"Who Subject Filter",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QRD.9",
-                            Type = @"Field",
-                            Position = @"QRD.9",
-                            Name = @"What Subject Filter",
-                            Length = 3,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0048",
-                            TableName = @"WHAT SUBJECT FILTER",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QRD.10",
-                            Type = @"Field",
-                            Position = @"QRD.10",
-                            Name = @"What Department Data Code",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QRD.11",
-                            Type = @"Field",
-                            Position = @"QRD.11",
-                            Name = @"What Data Code Value Qual.",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QRD.12",
-                            Type = @"Field",
-                            Position = @"QRD.12",
-                            Name = @"Query Results Level",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0108",
-                            TableName = @"QUERY RESULTS LEVEL",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentQRD(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field queryDateTime;
+        internal HL7V21Field _queryDateTime;
 
 public HL7V21Field QueryDateTime
 {
     get
     {
-        if (queryDateTime != null)
+        if (_queryDateTime != null)
         {
-            return queryDateTime;
+            return _queryDateTime;
         }
 
-        queryDateTime = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"QRD"][1],
             Id = @"QRD.1",
             Type = @"Field",
             Position = @"QRD.1",
@@ -282,34 +56,38 @@ public HL7V21Field QueryDateTime
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _queryDateTime = new HL7V21Field
+        {
+            field = message[@"QRD"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (queryDateTime.field.FieldRepetitions != null && queryDateTime.field.FieldRepetitions.Count > 0)
+        if (_queryDateTime.field.FieldRepetitions != null && _queryDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(queryDateTime.Id));
-            queryDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(queryDateTime, fieldData);
+            _queryDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_queryDateTime, fieldData);
         }
 
-        return queryDateTime;
+        return _queryDateTime;
     } 
 }
 
-internal HL7V21Field queryFormatCode;
+internal HL7V21Field _queryFormatCode;
 
 public HL7V21Field QueryFormatCode
 {
     get
     {
-        if (queryFormatCode != null)
+        if (_queryFormatCode != null)
         {
-            return queryFormatCode;
+            return _queryFormatCode;
         }
 
-        queryFormatCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"QRD"][2],
             Id = @"QRD.2",
             Type = @"Field",
             Position = @"QRD.2",
@@ -323,34 +101,38 @@ public HL7V21Field QueryFormatCode
             TableName = @"QUERY FORMAT CODE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _queryFormatCode = new HL7V21Field
+        {
+            field = message[@"QRD"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (queryFormatCode.field.FieldRepetitions != null && queryFormatCode.field.FieldRepetitions.Count > 0)
+        if (_queryFormatCode.field.FieldRepetitions != null && _queryFormatCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(queryFormatCode.Id));
-            queryFormatCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(queryFormatCode, fieldData);
+            _queryFormatCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_queryFormatCode, fieldData);
         }
 
-        return queryFormatCode;
+        return _queryFormatCode;
     } 
 }
 
-internal HL7V21Field queryPriority;
+internal HL7V21Field _queryPriority;
 
 public HL7V21Field QueryPriority
 {
     get
     {
-        if (queryPriority != null)
+        if (_queryPriority != null)
         {
-            return queryPriority;
+            return _queryPriority;
         }
 
-        queryPriority = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"QRD"][3],
             Id = @"QRD.3",
             Type = @"Field",
             Position = @"QRD.3",
@@ -364,34 +146,38 @@ public HL7V21Field QueryPriority
             TableName = @"QUERY PRIORITY",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _queryPriority = new HL7V21Field
+        {
+            field = message[@"QRD"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (queryPriority.field.FieldRepetitions != null && queryPriority.field.FieldRepetitions.Count > 0)
+        if (_queryPriority.field.FieldRepetitions != null && _queryPriority.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(queryPriority.Id));
-            queryPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(queryPriority, fieldData);
+            _queryPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_queryPriority, fieldData);
         }
 
-        return queryPriority;
+        return _queryPriority;
     } 
 }
 
-internal HL7V21Field queryId;
+internal HL7V21Field _queryId;
 
 public HL7V21Field QueryId
 {
     get
     {
-        if (queryId != null)
+        if (_queryId != null)
         {
-            return queryId;
+            return _queryId;
         }
 
-        queryId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"QRD"][4],
             Id = @"QRD.4",
             Type = @"Field",
             Position = @"QRD.4",
@@ -405,34 +191,38 @@ public HL7V21Field QueryId
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _queryId = new HL7V21Field
+        {
+            field = message[@"QRD"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (queryId.field.FieldRepetitions != null && queryId.field.FieldRepetitions.Count > 0)
+        if (_queryId.field.FieldRepetitions != null && _queryId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(queryId.Id));
-            queryId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(queryId, fieldData);
+            _queryId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_queryId, fieldData);
         }
 
-        return queryId;
+        return _queryId;
     } 
 }
 
-internal HL7V21Field deferredResponseType;
+internal HL7V21Field _deferredResponseType;
 
 public HL7V21Field DeferredResponseType
 {
     get
     {
-        if (deferredResponseType != null)
+        if (_deferredResponseType != null)
         {
-            return deferredResponseType;
+            return _deferredResponseType;
         }
 
-        deferredResponseType = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"QRD"][5],
             Id = @"QRD.5",
             Type = @"Field",
             Position = @"QRD.5",
@@ -446,34 +236,38 @@ public HL7V21Field DeferredResponseType
             TableName = @"DEFERRED RESPONSE TYPE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _deferredResponseType = new HL7V21Field
+        {
+            field = message[@"QRD"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (deferredResponseType.field.FieldRepetitions != null && deferredResponseType.field.FieldRepetitions.Count > 0)
+        if (_deferredResponseType.field.FieldRepetitions != null && _deferredResponseType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deferredResponseType.Id));
-            deferredResponseType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(deferredResponseType, fieldData);
+            _deferredResponseType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_deferredResponseType, fieldData);
         }
 
-        return deferredResponseType;
+        return _deferredResponseType;
     } 
 }
 
-internal HL7V21Field deferredResponseDateTime;
+internal HL7V21Field _deferredResponseDateTime;
 
 public HL7V21Field DeferredResponseDateTime
 {
     get
     {
-        if (deferredResponseDateTime != null)
+        if (_deferredResponseDateTime != null)
         {
-            return deferredResponseDateTime;
+            return _deferredResponseDateTime;
         }
 
-        deferredResponseDateTime = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"QRD"][6],
             Id = @"QRD.6",
             Type = @"Field",
             Position = @"QRD.6",
@@ -487,34 +281,38 @@ public HL7V21Field DeferredResponseDateTime
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _deferredResponseDateTime = new HL7V21Field
+        {
+            field = message[@"QRD"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (deferredResponseDateTime.field.FieldRepetitions != null && deferredResponseDateTime.field.FieldRepetitions.Count > 0)
+        if (_deferredResponseDateTime.field.FieldRepetitions != null && _deferredResponseDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deferredResponseDateTime.Id));
-            deferredResponseDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(deferredResponseDateTime, fieldData);
+            _deferredResponseDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_deferredResponseDateTime, fieldData);
         }
 
-        return deferredResponseDateTime;
+        return _deferredResponseDateTime;
     } 
 }
 
-internal HL7V21Field quantityLimitedRequest;
+internal HL7V21Field _quantityLimitedRequest;
 
 public HL7V21Field QuantityLimitedRequest
 {
     get
     {
-        if (quantityLimitedRequest != null)
+        if (_quantityLimitedRequest != null)
         {
-            return quantityLimitedRequest;
+            return _quantityLimitedRequest;
         }
 
-        quantityLimitedRequest = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"QRD"][7],
             Id = @"QRD.7",
             Type = @"Field",
             Position = @"QRD.7",
@@ -528,34 +326,38 @@ public HL7V21Field QuantityLimitedRequest
             TableName = @"QUANTITY LIMITED REQUEST",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _quantityLimitedRequest = new HL7V21Field
+        {
+            field = message[@"QRD"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (quantityLimitedRequest.field.FieldRepetitions != null && quantityLimitedRequest.field.FieldRepetitions.Count > 0)
+        if (_quantityLimitedRequest.field.FieldRepetitions != null && _quantityLimitedRequest.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(quantityLimitedRequest.Id));
-            quantityLimitedRequest.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(quantityLimitedRequest, fieldData);
+            _quantityLimitedRequest.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_quantityLimitedRequest, fieldData);
         }
 
-        return quantityLimitedRequest;
+        return _quantityLimitedRequest;
     } 
 }
 
-internal HL7V21Field whoSubjectFilter;
+internal HL7V21Field _whoSubjectFilter;
 
 public HL7V21Field WhoSubjectFilter
 {
     get
     {
-        if (whoSubjectFilter != null)
+        if (_whoSubjectFilter != null)
         {
-            return whoSubjectFilter;
+            return _whoSubjectFilter;
         }
 
-        whoSubjectFilter = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"QRD"][8],
             Id = @"QRD.8",
             Type = @"Field",
             Position = @"QRD.8",
@@ -569,34 +371,38 @@ public HL7V21Field WhoSubjectFilter
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _whoSubjectFilter = new HL7V21Field
+        {
+            field = message[@"QRD"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (whoSubjectFilter.field.FieldRepetitions != null && whoSubjectFilter.field.FieldRepetitions.Count > 0)
+        if (_whoSubjectFilter.field.FieldRepetitions != null && _whoSubjectFilter.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(whoSubjectFilter.Id));
-            whoSubjectFilter.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(whoSubjectFilter, fieldData);
+            _whoSubjectFilter.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_whoSubjectFilter, fieldData);
         }
 
-        return whoSubjectFilter;
+        return _whoSubjectFilter;
     } 
 }
 
-internal HL7V21Field whatSubjectFilter;
+internal HL7V21Field _whatSubjectFilter;
 
 public HL7V21Field WhatSubjectFilter
 {
     get
     {
-        if (whatSubjectFilter != null)
+        if (_whatSubjectFilter != null)
         {
-            return whatSubjectFilter;
+            return _whatSubjectFilter;
         }
 
-        whatSubjectFilter = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"QRD"][9],
             Id = @"QRD.9",
             Type = @"Field",
             Position = @"QRD.9",
@@ -610,34 +416,38 @@ public HL7V21Field WhatSubjectFilter
             TableName = @"WHAT SUBJECT FILTER",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _whatSubjectFilter = new HL7V21Field
+        {
+            field = message[@"QRD"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (whatSubjectFilter.field.FieldRepetitions != null && whatSubjectFilter.field.FieldRepetitions.Count > 0)
+        if (_whatSubjectFilter.field.FieldRepetitions != null && _whatSubjectFilter.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(whatSubjectFilter.Id));
-            whatSubjectFilter.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(whatSubjectFilter, fieldData);
+            _whatSubjectFilter.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_whatSubjectFilter, fieldData);
         }
 
-        return whatSubjectFilter;
+        return _whatSubjectFilter;
     } 
 }
 
-internal HL7V21Field whatDepartmentDataCode;
+internal HL7V21Field _whatDepartmentDataCode;
 
 public HL7V21Field WhatDepartmentDataCode
 {
     get
     {
-        if (whatDepartmentDataCode != null)
+        if (_whatDepartmentDataCode != null)
         {
-            return whatDepartmentDataCode;
+            return _whatDepartmentDataCode;
         }
 
-        whatDepartmentDataCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"QRD"][10],
             Id = @"QRD.10",
             Type = @"Field",
             Position = @"QRD.10",
@@ -651,34 +461,38 @@ public HL7V21Field WhatDepartmentDataCode
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _whatDepartmentDataCode = new HL7V21Field
+        {
+            field = message[@"QRD"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (whatDepartmentDataCode.field.FieldRepetitions != null && whatDepartmentDataCode.field.FieldRepetitions.Count > 0)
+        if (_whatDepartmentDataCode.field.FieldRepetitions != null && _whatDepartmentDataCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(whatDepartmentDataCode.Id));
-            whatDepartmentDataCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(whatDepartmentDataCode, fieldData);
+            _whatDepartmentDataCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_whatDepartmentDataCode, fieldData);
         }
 
-        return whatDepartmentDataCode;
+        return _whatDepartmentDataCode;
     } 
 }
 
-internal HL7V21Field whatDataCodeValueQual;
+internal HL7V21Field _whatDataCodeValueQual;
 
 public HL7V21Field WhatDataCodeValueQual
 {
     get
     {
-        if (whatDataCodeValueQual != null)
+        if (_whatDataCodeValueQual != null)
         {
-            return whatDataCodeValueQual;
+            return _whatDataCodeValueQual;
         }
 
-        whatDataCodeValueQual = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"QRD"][11],
             Id = @"QRD.11",
             Type = @"Field",
             Position = @"QRD.11",
@@ -692,34 +506,38 @@ public HL7V21Field WhatDataCodeValueQual
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _whatDataCodeValueQual = new HL7V21Field
+        {
+            field = message[@"QRD"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (whatDataCodeValueQual.field.FieldRepetitions != null && whatDataCodeValueQual.field.FieldRepetitions.Count > 0)
+        if (_whatDataCodeValueQual.field.FieldRepetitions != null && _whatDataCodeValueQual.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(whatDataCodeValueQual.Id));
-            whatDataCodeValueQual.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(whatDataCodeValueQual, fieldData);
+            _whatDataCodeValueQual.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_whatDataCodeValueQual, fieldData);
         }
 
-        return whatDataCodeValueQual;
+        return _whatDataCodeValueQual;
     } 
 }
 
-internal HL7V21Field queryResultsLevel;
+internal HL7V21Field _queryResultsLevel;
 
 public HL7V21Field QueryResultsLevel
 {
     get
     {
-        if (queryResultsLevel != null)
+        if (_queryResultsLevel != null)
         {
-            return queryResultsLevel;
+            return _queryResultsLevel;
         }
 
-        queryResultsLevel = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"QRD"][12],
             Id = @"QRD.12",
             Type = @"Field",
             Position = @"QRD.12",
@@ -733,17 +551,22 @@ public HL7V21Field QueryResultsLevel
             TableName = @"QUERY RESULTS LEVEL",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _queryResultsLevel = new HL7V21Field
+        {
+            field = message[@"QRD"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (queryResultsLevel.field.FieldRepetitions != null && queryResultsLevel.field.FieldRepetitions.Count > 0)
+        if (_queryResultsLevel.field.FieldRepetitions != null && _queryResultsLevel.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(queryResultsLevel.Id));
-            queryResultsLevel.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(queryResultsLevel, fieldData);
+            _queryResultsLevel.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_queryResultsLevel, fieldData);
         }
 
-        return queryResultsLevel;
+        return _queryResultsLevel;
     } 
 }
     }

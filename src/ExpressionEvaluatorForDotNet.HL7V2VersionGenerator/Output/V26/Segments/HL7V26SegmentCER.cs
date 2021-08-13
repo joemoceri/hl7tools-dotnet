@@ -29,82 +29,175 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentCER(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _setIDCER;
+
+public HL7V26Field SetIDCER
+{
+    get
+    {
+        if (_setIDCER != null)
+        {
+            return _setIDCER;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.1",
+            Type = @"Field",
+            Position = @"CER.1",
+            Name = @"Set ID – CER",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDCER = new HL7V26Field
+        {
+            field = message[@"CER"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDCER.field.FieldRepetitions != null && _setIDCER.field.FieldRepetitions.Count > 0)
+        {
+            _setIDCER.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_setIDCER, fieldData);
+        }
+
+        return _setIDCER;
+    } 
+}
+
+internal HL7V26Field _serialNumber;
+
+public HL7V26Field SerialNumber
+{
+    get
+    {
+        if (_serialNumber != null)
+        {
+            return _serialNumber;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.2",
+            Type = @"Field",
+            Position = @"CER.2",
+            Name = @"Serial Number",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The serial number uniquely identifies the attribute certificate within the scope of its issuer. This field contains the number and/or characters that identify the certificate held by the health professional.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _serialNumber = new HL7V26Field
+        {
+            field = message[@"CER"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_serialNumber.field.FieldRepetitions != null && _serialNumber.field.FieldRepetitions.Count > 0)
+        {
+            _serialNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_serialNumber, fieldData);
+        }
+
+        return _serialNumber;
+    } 
+}
+
+internal HL7V26Field _version;
+
+public HL7V26Field Version
+{
+    get
+    {
+        if (_version != null)
+        {
+            return _version;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.3",
+            Type = @"Field",
+            Position = @"CER.3",
+            Name = @"Version",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The version number differentiates among different versions of the attribute certificate.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _version = new HL7V26Field
+        {
+            field = message[@"CER"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_version.field.FieldRepetitions != null && _version.field.FieldRepetitions.Count > 0)
+        {
+            _version.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_version, fieldData);
+        }
+
+        return _version;
+    } 
+}
+
+internal HL7V26Field _grantingAuthority;
+
+public HL7V26Field GrantingAuthority
+{
+    get
+    {
+        if (_grantingAuthority != null)
+        {
+            return _grantingAuthority;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.4",
+            Type = @"Field",
+            Position = @"CER.4",
+            Name = @"Granting Authority",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"It specifies the authority that granted the certificate to the person.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"CER.1",
-                            Type = @"Field",
-                            Position = @"CER.1",
-                            Name = @"Set ID – CER",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.2",
-                            Type = @"Field",
-                            Position = @"CER.2",
-                            Name = @"Serial Number",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The serial number uniquely identifies the attribute certificate within the scope of its issuer. This field contains the number and/or characters that identify the certificate held by the health professional.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.3",
-                            Type = @"Field",
-                            Position = @"CER.3",
-                            Name = @"Version",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The version number differentiates among different versions of the attribute certificate.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.4",
-                            Type = @"Field",
-                            Position = @"CER.4",
-                            Name = @"Granting Authority",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"It specifies the authority that granted the certificate to the person.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CER.4.1",
                             Type = @"Component",
@@ -386,25 +479,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _grantingAuthority = new HL7V26Field
+        {
+            field = message[@"CER"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_grantingAuthority.field.FieldRepetitions != null && _grantingAuthority.field.FieldRepetitions.Count > 0)
+        {
+            _grantingAuthority.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_grantingAuthority, fieldData);
+        }
+
+        return _grantingAuthority;
+    } 
+}
+
+internal HL7V26Field _issuingAuthority;
+
+public HL7V26Field IssuingAuthority
+{
+    get
+    {
+        if (_issuingAuthority != null)
+        {
+            return _issuingAuthority;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.5",
+            Type = @"Field",
+            Position = @"CER.5",
+            Name = @"Issuing Authority",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"Specifies the authority that issued the certificate to the person.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.5",
-                            Type = @"Field",
-                            Position = @"CER.5",
-                            Name = @"Issuing Authority",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Specifies the authority that issued the certificate to the person.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.5.1",
                             Type = @"Component",
@@ -1524,25 +1647,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _issuingAuthority = new HL7V26Field
+        {
+            field = message[@"CER"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_issuingAuthority.field.FieldRepetitions != null && _issuingAuthority.field.FieldRepetitions.Count > 0)
+        {
+            _issuingAuthority.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_issuingAuthority, fieldData);
+        }
+
+        return _issuingAuthority;
+    } 
+}
+
+internal HL7V26Field _signatureofIssuingAuthority;
+
+public HL7V26Field SignatureofIssuingAuthority
+{
+    get
+    {
+        if (_signatureofIssuingAuthority != null)
+        {
+            return _signatureofIssuingAuthority;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.6",
+            Type = @"Field",
+            Position = @"CER.6",
+            Name = @"Signature of Issuing Authority",
+            Length = 65536,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ED",
+            DataTypeName = @"Encapsulated Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Digital Signature of the certifying authority. The Digital Signature includes a seal concept and is verifiable.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.6",
-                            Type = @"Field",
-                            Position = @"CER.6",
-                            Name = @"Signature of Issuing Authority",
-                            Length = 65536,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ED",
-                            DataTypeName = @"Encapsulated Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Digital Signature of the certifying authority. The Digital Signature includes a seal concept and is verifiable.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.6.1",
                             Type = @"Component",
@@ -1682,43 +1835,100 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"Displayable ASCII characters which constitute the data to be sent from source application to destination application. The characters are limited to the legal characters of the ST data type, as defined in Section 2.A.74, "" ST - string data ,"" and, if encoded binary, are encoded according to the method of Section 2.A.24.2, ""Type of Data (ID)"".",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _signatureofIssuingAuthority = new HL7V26Field
+        {
+            field = message[@"CER"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_signatureofIssuingAuthority.field.FieldRepetitions != null && _signatureofIssuingAuthority.field.FieldRepetitions.Count > 0)
+        {
+            _signatureofIssuingAuthority.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_signatureofIssuingAuthority, fieldData);
+        }
+
+        return _signatureofIssuingAuthority;
+    } 
+}
+
+internal HL7V26Field _grantingCountry;
+
+public HL7V26Field GrantingCountry
+{
+    get
+    {
+        if (_grantingCountry != null)
+        {
+            return _grantingCountry;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.7",
+            Type = @"Field",
+            Position = @"CER.7",
+            Name = @"Granting Country",
+            Length = 3,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0399",
+            TableName = @"Country Code",
+            Description = @"ID of the country granting the certificate. Refer to HL7 Table 0399 - Country Code for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _grantingCountry = new HL7V26Field
+        {
+            field = message[@"CER"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_grantingCountry.field.FieldRepetitions != null && _grantingCountry.field.FieldRepetitions.Count > 0)
+        {
+            _grantingCountry.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_grantingCountry, fieldData);
+        }
+
+        return _grantingCountry;
+    } 
+}
+
+internal HL7V26Field _grantingStateProvince;
+
+public HL7V26Field GrantingStateProvince
+{
+    get
+    {
+        if (_grantingStateProvince != null)
+        {
+            return _grantingStateProvince;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.8",
+            Type = @"Field",
+            Position = @"CER.8",
+            Name = @"Granting State/Province",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0347",
+            TableName = @"State/province",
+            Description = @"State/province granting the certificate. Refer to HL7 Table 0347 - State/Province for valid values (in Chapter 2)",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.7",
-                            Type = @"Field",
-                            Position = @"CER.7",
-                            Name = @"Granting Country",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0399",
-                            TableName = @"Country Code",
-                            Description = @"ID of the country granting the certificate. Refer to HL7 Table 0399 - Country Code for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.8",
-                            Type = @"Field",
-                            Position = @"CER.8",
-                            Name = @"Granting State/Province",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0347",
-                            TableName = @"State/province",
-                            Description = @"State/province granting the certificate. Refer to HL7 Table 0347 - State/Province for valid values (in Chapter 2)",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.8.1",
                             Type = @"Component",
@@ -1878,25 +2088,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _grantingStateProvince = new HL7V26Field
+        {
+            field = message[@"CER"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_grantingStateProvince.field.FieldRepetitions != null && _grantingStateProvince.field.FieldRepetitions.Count > 0)
+        {
+            _grantingStateProvince.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_grantingStateProvince, fieldData);
+        }
+
+        return _grantingStateProvince;
+    } 
+}
+
+internal HL7V26Field _grantingCountyParish;
+
+public HL7V26Field GrantingCountyParish
+{
+    get
+    {
+        if (_grantingCountyParish != null)
+        {
+            return _grantingCountyParish;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.9",
+            Type = @"Field",
+            Position = @"CER.9",
+            Name = @"Granting County/Parish",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0289",
+            TableName = @"County/parish",
+            Description = @"County/parish granting the certificate. Refer to HL7 Table 0289 - County/Parish for valid values (in Chapter 2).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.9",
-                            Type = @"Field",
-                            Position = @"CER.9",
-                            Name = @"Granting County/Parish",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0289",
-                            TableName = @"County/parish",
-                            Description = @"County/parish granting the certificate. Refer to HL7 Table 0289 - County/Parish for valid values (in Chapter 2).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.9.1",
                             Type = @"Component",
@@ -2056,25 +2296,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _grantingCountyParish = new HL7V26Field
+        {
+            field = message[@"CER"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_grantingCountyParish.field.FieldRepetitions != null && _grantingCountyParish.field.FieldRepetitions.Count > 0)
+        {
+            _grantingCountyParish.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_grantingCountyParish, fieldData);
+        }
+
+        return _grantingCountyParish;
+    } 
+}
+
+internal HL7V26Field _certificateType;
+
+public HL7V26Field CertificateType
+{
+    get
+    {
+        if (_certificateType != null)
+        {
+            return _certificateType;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.10",
+            Type = @"Field",
+            Position = @"CER.10",
+            Name = @"Certificate Type",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the certificate's classification, e.g., being a privilege, permission, or qualification certificate.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.10",
-                            Type = @"Field",
-                            Position = @"CER.10",
-                            Name = @"Certificate Type",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the certificate's classification, e.g., being a privilege, permission, or qualification certificate.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.10.1",
                             Type = @"Component",
@@ -2234,25 +2504,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _certificateType = new HL7V26Field
+        {
+            field = message[@"CER"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_certificateType.field.FieldRepetitions != null && _certificateType.field.FieldRepetitions.Count > 0)
+        {
+            _certificateType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_certificateType, fieldData);
+        }
+
+        return _certificateType;
+    } 
+}
+
+internal HL7V26Field _certificateDomain;
+
+public HL7V26Field CertificateDomain
+{
+    get
+    {
+        if (_certificateDomain != null)
+        {
+            return _certificateDomain;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.11",
+            Type = @"Field",
+            Position = @"CER.11",
+            Name = @"Certificate Domain",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the subject area to which the certificate is applicable, e.g., administrative, medical, or nursing issues.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.11",
-                            Type = @"Field",
-                            Position = @"CER.11",
-                            Name = @"Certificate Domain",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the subject area to which the certificate is applicable, e.g., administrative, medical, or nursing issues.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.11.1",
                             Type = @"Component",
@@ -2412,61 +2712,145 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _certificateDomain = new HL7V26Field
+        {
+            field = message[@"CER"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_certificateDomain.field.FieldRepetitions != null && _certificateDomain.field.FieldRepetitions.Count > 0)
+        {
+            _certificateDomain.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_certificateDomain, fieldData);
+        }
+
+        return _certificateDomain;
+    } 
+}
+
+internal HL7V26Field _subjectID;
+
+public HL7V26Field SubjectID
+{
+    get
+    {
+        if (_subjectID != null)
+        {
+            return _subjectID;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.12",
+            Type = @"Field",
+            Position = @"CER.12",
+            Name = @"Subject ID",
+            Length = 250,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = null,
+            TableName = null,
+            Description = @"This field expresses the identifier of the certificate's subject as used by the certifying body. (The subject is the owner of the certificate, e.g., person, organization, device, application, component.) If the certificate is expressed as a X.509 document this field is required.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _subjectID = new HL7V26Field
+        {
+            field = message[@"CER"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_subjectID.field.FieldRepetitions != null && _subjectID.field.FieldRepetitions.Count > 0)
+        {
+            _subjectID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_subjectID, fieldData);
+        }
+
+        return _subjectID;
+    } 
+}
+
+internal HL7V26Field _subjectName;
+
+public HL7V26Field SubjectName
+{
+    get
+    {
+        if (_subjectName != null)
+        {
+            return _subjectName;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.13",
+            Type = @"Field",
+            Position = @"CER.13",
+            Name = @"Subject Name",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field defines the name of the subject of the certificate as used by the certifying body.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _subjectName = new HL7V26Field
+        {
+            field = message[@"CER"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_subjectName.field.FieldRepetitions != null && _subjectName.field.FieldRepetitions.Count > 0)
+        {
+            _subjectName.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_subjectName, fieldData);
+        }
+
+        return _subjectName;
+    } 
+}
+
+internal HL7V26Field _subjectDirectoryAttributeExtension;
+
+public HL7V26Field SubjectDirectoryAttributeExtension
+{
+    get
+    {
+        if (_subjectDirectoryAttributeExtension != null)
+        {
+            return _subjectDirectoryAttributeExtension;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.14",
+            Type = @"Field",
+            Position = @"CER.14",
+            Name = @"Subject Directory Attribute Extension",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"In individual identity certificates, this Subject Directory Attribute extension MAY contain a Healthcare Professional Role attribute and may contain a Qualified Certificate Statement attribute. In addition, Subject Directory Attributes MAY contain other attributes not specified by this technical specification.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.12",
-                            Type = @"Field",
-                            Position = @"CER.12",
-                            Name = @"Subject ID",
-                            Length = 250,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field expresses the identifier of the certificate's subject as used by the certifying body. (The subject is the owner of the certificate, e.g., person, organization, device, application, component.) If the certificate is expressed as a X.509 document this field is required.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.13",
-                            Type = @"Field",
-                            Position = @"CER.13",
-                            Name = @"Subject Name",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field defines the name of the subject of the certificate as used by the certifying body.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.14",
-                            Type = @"Field",
-                            Position = @"CER.14",
-                            Name = @"Subject Directory Attribute Extension",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"In individual identity certificates, this Subject Directory Attribute extension MAY contain a Healthcare Professional Role attribute and may contain a Qualified Certificate Statement attribute. In addition, Subject Directory Attributes MAY contain other attributes not specified by this technical specification.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.14.1",
                             Type = @"Component",
@@ -2626,25 +3010,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _subjectDirectoryAttributeExtension = new HL7V26Field
+        {
+            field = message[@"CER"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_subjectDirectoryAttributeExtension.field.FieldRepetitions != null && _subjectDirectoryAttributeExtension.field.FieldRepetitions.Count > 0)
+        {
+            _subjectDirectoryAttributeExtension.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_subjectDirectoryAttributeExtension, fieldData);
+        }
+
+        return _subjectDirectoryAttributeExtension;
+    } 
+}
+
+internal HL7V26Field _subjectPublicKeyInfo;
+
+public HL7V26Field SubjectPublicKeyInfo
+{
+    get
+    {
+        if (_subjectPublicKeyInfo != null)
+        {
+            return _subjectPublicKeyInfo;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.15",
+            Type = @"Field",
+            Position = @"CER.15",
+            Name = @"Subject Public Key Info",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the algorithm identifier. Referred to this field, the X.509 extension field MAY contain a Subject Public Key Identifier to identify the public key used in the Subject Public Key Info.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.15",
-                            Type = @"Field",
-                            Position = @"CER.15",
-                            Name = @"Subject Public Key Info",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the algorithm identifier. Referred to this field, the X.509 extension field MAY contain a Subject Public Key Identifier to identify the public key used in the Subject Public Key Info.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.15.1",
                             Type = @"Component",
@@ -2804,25 +3218,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _subjectPublicKeyInfo = new HL7V26Field
+        {
+            field = message[@"CER"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_subjectPublicKeyInfo.field.FieldRepetitions != null && _subjectPublicKeyInfo.field.FieldRepetitions.Count > 0)
+        {
+            _subjectPublicKeyInfo.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_subjectPublicKeyInfo, fieldData);
+        }
+
+        return _subjectPublicKeyInfo;
+    } 
+}
+
+internal HL7V26Field _authorityKeyIdentifier;
+
+public HL7V26Field AuthorityKeyIdentifier
+{
+    get
+    {
+        if (_authorityKeyIdentifier != null)
+        {
+            return _authorityKeyIdentifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.16",
+            Type = @"Field",
+            Position = @"CER.16",
+            Name = @"Authority Key Identifier",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"The Authority Key Identifier extension SHALL identify the public key to be used to verify the signature of the certificate. It enables distinct keys, used by one CA, to be distinguished (e.g., as key updating occurs).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.16",
-                            Type = @"Field",
-                            Position = @"CER.16",
-                            Name = @"Authority Key Identifier",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Authority Key Identifier extension SHALL identify the public key to be used to verify the signature of the certificate. It enables distinct keys, used by one CA, to be distinguished (e.g., as key updating occurs).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.16.1",
                             Type = @"Component",
@@ -2982,43 +3426,100 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _authorityKeyIdentifier = new HL7V26Field
+        {
+            field = message[@"CER"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_authorityKeyIdentifier.field.FieldRepetitions != null && _authorityKeyIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _authorityKeyIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_authorityKeyIdentifier, fieldData);
+        }
+
+        return _authorityKeyIdentifier;
+    } 
+}
+
+internal HL7V26Field _basicConstraint;
+
+public HL7V26Field BasicConstraint
+{
+    get
+    {
+        if (_basicConstraint != null)
+        {
+            return _basicConstraint;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.17",
+            Type = @"Field",
+            Position = @"CER.17",
+            Name = @"Basic Constraint",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"The Basic Constraints extension contains a boolean used to specify whether or not the subject can act as a CA (certificate authority), using the certified key to sign certificates.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _basicConstraint = new HL7V26Field
+        {
+            field = message[@"CER"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_basicConstraint.field.FieldRepetitions != null && _basicConstraint.field.FieldRepetitions.Count > 0)
+        {
+            _basicConstraint.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_basicConstraint, fieldData);
+        }
+
+        return _basicConstraint;
+    } 
+}
+
+internal HL7V26Field _cRLDistributionPoint;
+
+public HL7V26Field CRLDistributionPoint
+{
+    get
+    {
+        if (_cRLDistributionPoint != null)
+        {
+            return _cRLDistributionPoint;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.18",
+            Type = @"Field",
+            Position = @"CER.18",
+            Name = @"CRL Distribution Point",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"The Certificate Revocation List (CRL) Distribution Point extension SHALL identify the location of the associated CRL (or Authority Revocation List (ARL) for attribute certificates) in the PKI directory.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.17",
-                            Type = @"Field",
-                            Position = @"CER.17",
-                            Name = @"Basic Constraint",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"The Basic Constraints extension contains a boolean used to specify whether or not the subject can act as a CA (certificate authority), using the certified key to sign certificates.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.18",
-                            Type = @"Field",
-                            Position = @"CER.18",
-                            Name = @"CRL Distribution Point",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Certificate Revocation List (CRL) Distribution Point extension SHALL identify the location of the associated CRL (or Authority Revocation List (ARL) for attribute certificates) in the PKI directory.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.18.1",
                             Type = @"Component",
@@ -3178,43 +3679,100 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _cRLDistributionPoint = new HL7V26Field
+        {
+            field = message[@"CER"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_cRLDistributionPoint.field.FieldRepetitions != null && _cRLDistributionPoint.field.FieldRepetitions.Count > 0)
+        {
+            _cRLDistributionPoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_cRLDistributionPoint, fieldData);
+        }
+
+        return _cRLDistributionPoint;
+    } 
+}
+
+internal HL7V26Field _jurisdictionCountry;
+
+public HL7V26Field JurisdictionCountry
+{
+    get
+    {
+        if (_jurisdictionCountry != null)
+        {
+            return _jurisdictionCountry;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.19",
+            Type = @"Field",
+            Position = @"CER.19",
+            Name = @"Jurisdiction Country",
+            Length = 3,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0399",
+            TableName = @"Country Code",
+            Description = @"This field contains the country for which the qualification is valid. Refer to HL7 Table 0399 - Country Code for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _jurisdictionCountry = new HL7V26Field
+        {
+            field = message[@"CER"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_jurisdictionCountry.field.FieldRepetitions != null && _jurisdictionCountry.field.FieldRepetitions.Count > 0)
+        {
+            _jurisdictionCountry.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_jurisdictionCountry, fieldData);
+        }
+
+        return _jurisdictionCountry;
+    } 
+}
+
+internal HL7V26Field _jurisdictionStateProvince;
+
+public HL7V26Field JurisdictionStateProvince
+{
+    get
+    {
+        if (_jurisdictionStateProvince != null)
+        {
+            return _jurisdictionStateProvince;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.20",
+            Type = @"Field",
+            Position = @"CER.20",
+            Name = @"Jurisdiction State/Province",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0347",
+            TableName = @"State/province",
+            Description = @"This field contains the state for which the qualification is valid. HL7 suggests using values in User-defined Table 0347 - State/Province.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.19",
-                            Type = @"Field",
-                            Position = @"CER.19",
-                            Name = @"Jurisdiction Country",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0399",
-                            TableName = @"Country Code",
-                            Description = @"This field contains the country for which the qualification is valid. Refer to HL7 Table 0399 - Country Code for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.20",
-                            Type = @"Field",
-                            Position = @"CER.20",
-                            Name = @"Jurisdiction State/Province",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0347",
-                            TableName = @"State/province",
-                            Description = @"This field contains the state for which the qualification is valid. HL7 suggests using values in User-defined Table 0347 - State/Province.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.20.1",
                             Type = @"Component",
@@ -3374,25 +3932,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _jurisdictionStateProvince = new HL7V26Field
+        {
+            field = message[@"CER"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_jurisdictionStateProvince.field.FieldRepetitions != null && _jurisdictionStateProvince.field.FieldRepetitions.Count > 0)
+        {
+            _jurisdictionStateProvince.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_jurisdictionStateProvince, fieldData);
+        }
+
+        return _jurisdictionStateProvince;
+    } 
+}
+
+internal HL7V26Field _jurisdictionCountyParish;
+
+public HL7V26Field JurisdictionCountyParish
+{
+    get
+    {
+        if (_jurisdictionCountyParish != null)
+        {
+            return _jurisdictionCountyParish;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.21",
+            Type = @"Field",
+            Position = @"CER.21",
+            Name = @"Jurisdiction County/Parish",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0289",
+            TableName = @"County/parish",
+            Description = @"This field contains the county/parish for which the qualification is valid. HL7 suggests using values in User-defined Table 0289 - County/Parish.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.21",
-                            Type = @"Field",
-                            Position = @"CER.21",
-                            Name = @"Jurisdiction County/Parish",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0289",
-                            TableName = @"County/parish",
-                            Description = @"This field contains the county/parish for which the qualification is valid. HL7 suggests using values in User-defined Table 0289 - County/Parish.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.21.1",
                             Type = @"Component",
@@ -3552,25 +4140,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _jurisdictionCountyParish = new HL7V26Field
+        {
+            field = message[@"CER"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_jurisdictionCountyParish.field.FieldRepetitions != null && _jurisdictionCountyParish.field.FieldRepetitions.Count > 0)
+        {
+            _jurisdictionCountyParish.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_jurisdictionCountyParish, fieldData);
+        }
+
+        return _jurisdictionCountyParish;
+    } 
+}
+
+internal HL7V26Field _jurisdictionBreadth;
+
+public HL7V26Field JurisdictionBreadth
+{
+    get
+    {
+        if (_jurisdictionBreadth != null)
+        {
+            return _jurisdictionBreadth;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.22",
+            Type = @"Field",
+            Position = @"CER.22",
+            Name = @"Jurisdiction Breadth",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0547",
+            TableName = @"Jurisdictional Breadth",
+            Description = @"This field contains the breadth/extent of the jurisdiction where the qualification is valid. HL7 suggests using values in User-defined Table 0547 - Jurisdictional Breadth .",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.22",
-                            Type = @"Field",
-                            Position = @"CER.22",
-                            Name = @"Jurisdiction Breadth",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0547",
-                            TableName = @"Jurisdictional Breadth",
-                            Description = @"This field contains the breadth/extent of the jurisdiction where the qualification is valid. HL7 suggests using values in User-defined Table 0547 - Jurisdictional Breadth .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.22.1",
                             Type = @"Component",
@@ -3730,151 +4348,370 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _jurisdictionBreadth = new HL7V26Field
+        {
+            field = message[@"CER"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_jurisdictionBreadth.field.FieldRepetitions != null && _jurisdictionBreadth.field.FieldRepetitions.Count > 0)
+        {
+            _jurisdictionBreadth.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_jurisdictionBreadth, fieldData);
+        }
+
+        return _jurisdictionBreadth;
+    } 
+}
+
+internal HL7V26Field _grantingDate;
+
+public HL7V26Field GrantingDate
+{
+    get
+    {
+        if (_grantingDate != null)
+        {
+            return _grantingDate;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.23",
+            Type = @"Field",
+            Position = @"CER.23",
+            Name = @"Granting Date",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date when the certificate was granted.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _grantingDate = new HL7V26Field
+        {
+            field = message[@"CER"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_grantingDate.field.FieldRepetitions != null && _grantingDate.field.FieldRepetitions.Count > 0)
+        {
+            _grantingDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_grantingDate, fieldData);
+        }
+
+        return _grantingDate;
+    } 
+}
+
+internal HL7V26Field _issuingDate;
+
+public HL7V26Field IssuingDate
+{
+    get
+    {
+        if (_issuingDate != null)
+        {
+            return _issuingDate;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.24",
+            Type = @"Field",
+            Position = @"CER.24",
+            Name = @"Issuing Date",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the certificate was issued.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _issuingDate = new HL7V26Field
+        {
+            field = message[@"CER"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_issuingDate.field.FieldRepetitions != null && _issuingDate.field.FieldRepetitions.Count > 0)
+        {
+            _issuingDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_issuingDate, fieldData);
+        }
+
+        return _issuingDate;
+    } 
+}
+
+internal HL7V26Field _activationDate;
+
+public HL7V26Field ActivationDate
+{
+    get
+    {
+        if (_activationDate != null)
+        {
+            return _activationDate;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.25",
+            Type = @"Field",
+            Position = @"CER.25",
+            Name = @"Activation Date",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the certificate became or will become active.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _activationDate = new HL7V26Field
+        {
+            field = message[@"CER"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_activationDate.field.FieldRepetitions != null && _activationDate.field.FieldRepetitions.Count > 0)
+        {
+            _activationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_activationDate, fieldData);
+        }
+
+        return _activationDate;
+    } 
+}
+
+internal HL7V26Field _inactivationDate;
+
+public HL7V26Field InactivationDate
+{
+    get
+    {
+        if (_inactivationDate != null)
+        {
+            return _inactivationDate;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.26",
+            Type = @"Field",
+            Position = @"CER.26",
+            Name = @"Inactivation Date",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the certificate became or will become inactive.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _inactivationDate = new HL7V26Field
+        {
+            field = message[@"CER"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inactivationDate.field.FieldRepetitions != null && _inactivationDate.field.FieldRepetitions.Count > 0)
+        {
+            _inactivationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_inactivationDate, fieldData);
+        }
+
+        return _inactivationDate;
+    } 
+}
+
+internal HL7V26Field _expirationDate;
+
+public HL7V26Field ExpirationDate
+{
+    get
+    {
+        if (_expirationDate != null)
+        {
+            return _expirationDate;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.27",
+            Type = @"Field",
+            Position = @"CER.27",
+            Name = @"Expiration Date",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the certificate expires or will expire.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _expirationDate = new HL7V26Field
+        {
+            field = message[@"CER"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_expirationDate.field.FieldRepetitions != null && _expirationDate.field.FieldRepetitions.Count > 0)
+        {
+            _expirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_expirationDate, fieldData);
+        }
+
+        return _expirationDate;
+    } 
+}
+
+internal HL7V26Field _renewalDate;
+
+public HL7V26Field RenewalDate
+{
+    get
+    {
+        if (_renewalDate != null)
+        {
+            return _renewalDate;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.28",
+            Type = @"Field",
+            Position = @"CER.28",
+            Name = @"Renewal Date",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the certificate must/will/ be / has been renewed.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _renewalDate = new HL7V26Field
+        {
+            field = message[@"CER"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_renewalDate.field.FieldRepetitions != null && _renewalDate.field.FieldRepetitions.Count > 0)
+        {
+            _renewalDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_renewalDate, fieldData);
+        }
+
+        return _renewalDate;
+    } 
+}
+
+internal HL7V26Field _revocationDate;
+
+public HL7V26Field RevocationDate
+{
+    get
+    {
+        if (_revocationDate != null)
+        {
+            return _revocationDate;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.29",
+            Type = @"Field",
+            Position = @"CER.29",
+            Name = @"Revocation Date",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the certificate has been revoked.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _revocationDate = new HL7V26Field
+        {
+            field = message[@"CER"][29],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_revocationDate.field.FieldRepetitions != null && _revocationDate.field.FieldRepetitions.Count > 0)
+        {
+            _revocationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_revocationDate, fieldData);
+        }
+
+        return _revocationDate;
+    } 
+}
+
+internal HL7V26Field _revocationReasonCode;
+
+public HL7V26Field RevocationReasonCode
+{
+    get
+    {
+        if (_revocationReasonCode != null)
+        {
+            return _revocationReasonCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.30",
+            Type = @"Field",
+            Position = @"CER.30",
+            Name = @"Revocation Reason Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the reason for revoking the certificate (e.g., having been compromised, changes of conditions/environment, etc.)",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.23",
-                            Type = @"Field",
-                            Position = @"CER.23",
-                            Name = @"Granting Date",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date when the certificate was granted.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.24",
-                            Type = @"Field",
-                            Position = @"CER.24",
-                            Name = @"Issuing Date",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when the certificate was issued.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.25",
-                            Type = @"Field",
-                            Position = @"CER.25",
-                            Name = @"Activation Date",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when the certificate became or will become active.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.26",
-                            Type = @"Field",
-                            Position = @"CER.26",
-                            Name = @"Inactivation Date",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when the certificate became or will become inactive.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.27",
-                            Type = @"Field",
-                            Position = @"CER.27",
-                            Name = @"Expiration Date",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when the certificate expires or will expire.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.28",
-                            Type = @"Field",
-                            Position = @"CER.28",
-                            Name = @"Renewal Date",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when the certificate must/will/ be / has been renewed.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.29",
-                            Type = @"Field",
-                            Position = @"CER.29",
-                            Name = @"Revocation Date",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when the certificate has been revoked.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CER.30",
-                            Type = @"Field",
-                            Position = @"CER.30",
-                            Name = @"Revocation Reason Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the reason for revoking the certificate (e.g., having been compromised, changes of conditions/environment, etc.)",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.30.1",
                             Type = @"Component",
@@ -4034,25 +4871,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _revocationReasonCode = new HL7V26Field
+        {
+            field = message[@"CER"][30],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_revocationReasonCode.field.FieldRepetitions != null && _revocationReasonCode.field.FieldRepetitions.Count > 0)
+        {
+            _revocationReasonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_revocationReasonCode, fieldData);
+        }
+
+        return _revocationReasonCode;
+    } 
+}
+
+internal HL7V26Field _certificateStatusCode;
+
+public HL7V26Field CertificateStatusCode
+{
+    get
+    {
+        if (_certificateStatusCode != null)
+        {
+            return _certificateStatusCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"CER.31",
+            Type = @"Field",
+            Position = @"CER.31",
+            Name = @"Certificate Status Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0536",
+            TableName = @"Certificate Status",
+            Description = @"This field contains the state of the certificate held by the health professional. HL7 suggest using values in User-defined table 0536 - Certificate Status .",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CER.31",
-                            Type = @"Field",
-                            Position = @"CER.31",
-                            Name = @"Certificate Status Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0536",
-                            TableName = @"Certificate Status",
-                            Description = @"This field contains the state of the certificate held by the health professional. HL7 suggest using values in User-defined table 0536 - Certificate Status .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CER.31.1",
                             Type = @"Component",
@@ -4212,1285 +5079,23 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentCER(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field setIDCER;
-
-public HL7V26Field SetIDCER
-{
-    get
-    {
-        if (setIDCER != null)
-        {
-            return setIDCER;
-        }
-
-        setIDCER = new HL7V26Field
-        {
-            field = message[@"CER"][1],
-            Id = @"CER.1",
-            Type = @"Field",
-            Position = @"CER.1",
-            Name = @"Set ID – CER",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDCER.field.FieldRepetitions != null && setIDCER.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDCER.Id));
-            setIDCER.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(setIDCER, fieldData);
-        }
-
-        return setIDCER;
-    } 
-}
-
-internal HL7V26Field serialNumber;
-
-public HL7V26Field SerialNumber
-{
-    get
-    {
-        if (serialNumber != null)
-        {
-            return serialNumber;
-        }
-
-        serialNumber = new HL7V26Field
-        {
-            field = message[@"CER"][2],
-            Id = @"CER.2",
-            Type = @"Field",
-            Position = @"CER.2",
-            Name = @"Serial Number",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The serial number uniquely identifies the attribute certificate within the scope of its issuer. This field contains the number and/or characters that identify the certificate held by the health professional.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (serialNumber.field.FieldRepetitions != null && serialNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(serialNumber.Id));
-            serialNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(serialNumber, fieldData);
-        }
-
-        return serialNumber;
-    } 
-}
-
-internal HL7V26Field version;
-
-public HL7V26Field Version
-{
-    get
-    {
-        if (version != null)
-        {
-            return version;
-        }
-
-        version = new HL7V26Field
-        {
-            field = message[@"CER"][3],
-            Id = @"CER.3",
-            Type = @"Field",
-            Position = @"CER.3",
-            Name = @"Version",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The version number differentiates among different versions of the attribute certificate.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (version.field.FieldRepetitions != null && version.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(version.Id));
-            version.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(version, fieldData);
-        }
-
-        return version;
-    } 
-}
-
-internal HL7V26Field grantingAuthority;
-
-public HL7V26Field GrantingAuthority
-{
-    get
-    {
-        if (grantingAuthority != null)
-        {
-            return grantingAuthority;
-        }
-
-        grantingAuthority = new HL7V26Field
-        {
-            field = message[@"CER"][4],
-            Id = @"CER.4",
-            Type = @"Field",
-            Position = @"CER.4",
-            Name = @"Granting Authority",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"It specifies the authority that granted the certificate to the person.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (grantingAuthority.field.FieldRepetitions != null && grantingAuthority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(grantingAuthority.Id));
-            grantingAuthority.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(grantingAuthority, fieldData);
-        }
-
-        return grantingAuthority;
-    } 
-}
-
-internal HL7V26Field issuingAuthority;
-
-public HL7V26Field IssuingAuthority
-{
-    get
-    {
-        if (issuingAuthority != null)
-        {
-            return issuingAuthority;
-        }
-
-        issuingAuthority = new HL7V26Field
-        {
-            field = message[@"CER"][5],
-            Id = @"CER.5",
-            Type = @"Field",
-            Position = @"CER.5",
-            Name = @"Issuing Authority",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"Specifies the authority that issued the certificate to the person.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (issuingAuthority.field.FieldRepetitions != null && issuingAuthority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(issuingAuthority.Id));
-            issuingAuthority.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(issuingAuthority, fieldData);
-        }
-
-        return issuingAuthority;
-    } 
-}
-
-internal HL7V26Field signatureofIssuingAuthority;
-
-public HL7V26Field SignatureofIssuingAuthority
-{
-    get
-    {
-        if (signatureofIssuingAuthority != null)
-        {
-            return signatureofIssuingAuthority;
-        }
-
-        signatureofIssuingAuthority = new HL7V26Field
-        {
-            field = message[@"CER"][6],
-            Id = @"CER.6",
-            Type = @"Field",
-            Position = @"CER.6",
-            Name = @"Signature of Issuing Authority",
-            Length = 65536,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ED",
-            DataTypeName = @"Encapsulated Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Digital Signature of the certifying authority. The Digital Signature includes a seal concept and is verifiable.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (signatureofIssuingAuthority.field.FieldRepetitions != null && signatureofIssuingAuthority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(signatureofIssuingAuthority.Id));
-            signatureofIssuingAuthority.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(signatureofIssuingAuthority, fieldData);
-        }
-
-        return signatureofIssuingAuthority;
-    } 
-}
-
-internal HL7V26Field grantingCountry;
-
-public HL7V26Field GrantingCountry
-{
-    get
-    {
-        if (grantingCountry != null)
-        {
-            return grantingCountry;
-        }
-
-        grantingCountry = new HL7V26Field
-        {
-            field = message[@"CER"][7],
-            Id = @"CER.7",
-            Type = @"Field",
-            Position = @"CER.7",
-            Name = @"Granting Country",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0399",
-            TableName = @"Country Code",
-            Description = @"ID of the country granting the certificate. Refer to HL7 Table 0399 - Country Code for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (grantingCountry.field.FieldRepetitions != null && grantingCountry.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(grantingCountry.Id));
-            grantingCountry.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(grantingCountry, fieldData);
-        }
-
-        return grantingCountry;
-    } 
-}
-
-internal HL7V26Field grantingStateProvince;
-
-public HL7V26Field GrantingStateProvince
-{
-    get
-    {
-        if (grantingStateProvince != null)
-        {
-            return grantingStateProvince;
-        }
-
-        grantingStateProvince = new HL7V26Field
-        {
-            field = message[@"CER"][8],
-            Id = @"CER.8",
-            Type = @"Field",
-            Position = @"CER.8",
-            Name = @"Granting State/Province",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0347",
-            TableName = @"State/province",
-            Description = @"State/province granting the certificate. Refer to HL7 Table 0347 - State/Province for valid values (in Chapter 2)",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (grantingStateProvince.field.FieldRepetitions != null && grantingStateProvince.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(grantingStateProvince.Id));
-            grantingStateProvince.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(grantingStateProvince, fieldData);
-        }
-
-        return grantingStateProvince;
-    } 
-}
-
-internal HL7V26Field grantingCountyParish;
-
-public HL7V26Field GrantingCountyParish
-{
-    get
-    {
-        if (grantingCountyParish != null)
-        {
-            return grantingCountyParish;
-        }
-
-        grantingCountyParish = new HL7V26Field
-        {
-            field = message[@"CER"][9],
-            Id = @"CER.9",
-            Type = @"Field",
-            Position = @"CER.9",
-            Name = @"Granting County/Parish",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0289",
-            TableName = @"County/parish",
-            Description = @"County/parish granting the certificate. Refer to HL7 Table 0289 - County/Parish for valid values (in Chapter 2).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (grantingCountyParish.field.FieldRepetitions != null && grantingCountyParish.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(grantingCountyParish.Id));
-            grantingCountyParish.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(grantingCountyParish, fieldData);
-        }
-
-        return grantingCountyParish;
-    } 
-}
-
-internal HL7V26Field certificateType;
-
-public HL7V26Field CertificateType
-{
-    get
-    {
-        if (certificateType != null)
-        {
-            return certificateType;
-        }
-
-        certificateType = new HL7V26Field
-        {
-            field = message[@"CER"][10],
-            Id = @"CER.10",
-            Type = @"Field",
-            Position = @"CER.10",
-            Name = @"Certificate Type",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the certificate's classification, e.g., being a privilege, permission, or qualification certificate.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (certificateType.field.FieldRepetitions != null && certificateType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certificateType.Id));
-            certificateType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(certificateType, fieldData);
-        }
-
-        return certificateType;
-    } 
-}
-
-internal HL7V26Field certificateDomain;
-
-public HL7V26Field CertificateDomain
-{
-    get
-    {
-        if (certificateDomain != null)
-        {
-            return certificateDomain;
-        }
-
-        certificateDomain = new HL7V26Field
-        {
-            field = message[@"CER"][11],
-            Id = @"CER.11",
-            Type = @"Field",
-            Position = @"CER.11",
-            Name = @"Certificate Domain",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the subject area to which the certificate is applicable, e.g., administrative, medical, or nursing issues.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (certificateDomain.field.FieldRepetitions != null && certificateDomain.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certificateDomain.Id));
-            certificateDomain.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(certificateDomain, fieldData);
-        }
-
-        return certificateDomain;
-    } 
-}
-
-internal HL7V26Field subjectID;
-
-public HL7V26Field SubjectID
-{
-    get
-    {
-        if (subjectID != null)
-        {
-            return subjectID;
-        }
-
-        subjectID = new HL7V26Field
-        {
-            field = message[@"CER"][12],
-            Id = @"CER.12",
-            Type = @"Field",
-            Position = @"CER.12",
-            Name = @"Subject ID",
-            Length = 250,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = null,
-            TableName = null,
-            Description = @"This field expresses the identifier of the certificate's subject as used by the certifying body. (The subject is the owner of the certificate, e.g., person, organization, device, application, component.) If the certificate is expressed as a X.509 document this field is required.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (subjectID.field.FieldRepetitions != null && subjectID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(subjectID.Id));
-            subjectID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(subjectID, fieldData);
-        }
-
-        return subjectID;
-    } 
-}
-
-internal HL7V26Field subjectName;
-
-public HL7V26Field SubjectName
-{
-    get
-    {
-        if (subjectName != null)
-        {
-            return subjectName;
-        }
-
-        subjectName = new HL7V26Field
-        {
-            field = message[@"CER"][13],
-            Id = @"CER.13",
-            Type = @"Field",
-            Position = @"CER.13",
-            Name = @"Subject Name",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field defines the name of the subject of the certificate as used by the certifying body.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (subjectName.field.FieldRepetitions != null && subjectName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(subjectName.Id));
-            subjectName.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(subjectName, fieldData);
-        }
-
-        return subjectName;
-    } 
-}
-
-internal HL7V26Field subjectDirectoryAttributeExtension;
-
-public HL7V26Field SubjectDirectoryAttributeExtension
-{
-    get
-    {
-        if (subjectDirectoryAttributeExtension != null)
-        {
-            return subjectDirectoryAttributeExtension;
-        }
-
-        subjectDirectoryAttributeExtension = new HL7V26Field
-        {
-            field = message[@"CER"][14],
-            Id = @"CER.14",
-            Type = @"Field",
-            Position = @"CER.14",
-            Name = @"Subject Directory Attribute Extension",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"In individual identity certificates, this Subject Directory Attribute extension MAY contain a Healthcare Professional Role attribute and may contain a Qualified Certificate Statement attribute. In addition, Subject Directory Attributes MAY contain other attributes not specified by this technical specification.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (subjectDirectoryAttributeExtension.field.FieldRepetitions != null && subjectDirectoryAttributeExtension.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(subjectDirectoryAttributeExtension.Id));
-            subjectDirectoryAttributeExtension.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(subjectDirectoryAttributeExtension, fieldData);
-        }
-
-        return subjectDirectoryAttributeExtension;
-    } 
-}
-
-internal HL7V26Field subjectPublicKeyInfo;
-
-public HL7V26Field SubjectPublicKeyInfo
-{
-    get
-    {
-        if (subjectPublicKeyInfo != null)
-        {
-            return subjectPublicKeyInfo;
-        }
-
-        subjectPublicKeyInfo = new HL7V26Field
-        {
-            field = message[@"CER"][15],
-            Id = @"CER.15",
-            Type = @"Field",
-            Position = @"CER.15",
-            Name = @"Subject Public Key Info",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the algorithm identifier. Referred to this field, the X.509 extension field MAY contain a Subject Public Key Identifier to identify the public key used in the Subject Public Key Info.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (subjectPublicKeyInfo.field.FieldRepetitions != null && subjectPublicKeyInfo.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(subjectPublicKeyInfo.Id));
-            subjectPublicKeyInfo.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(subjectPublicKeyInfo, fieldData);
-        }
-
-        return subjectPublicKeyInfo;
-    } 
-}
-
-internal HL7V26Field authorityKeyIdentifier;
-
-public HL7V26Field AuthorityKeyIdentifier
-{
-    get
-    {
-        if (authorityKeyIdentifier != null)
-        {
-            return authorityKeyIdentifier;
-        }
-
-        authorityKeyIdentifier = new HL7V26Field
-        {
-            field = message[@"CER"][16],
-            Id = @"CER.16",
-            Type = @"Field",
-            Position = @"CER.16",
-            Name = @"Authority Key Identifier",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"The Authority Key Identifier extension SHALL identify the public key to be used to verify the signature of the certificate. It enables distinct keys, used by one CA, to be distinguished (e.g., as key updating occurs).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (authorityKeyIdentifier.field.FieldRepetitions != null && authorityKeyIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(authorityKeyIdentifier.Id));
-            authorityKeyIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(authorityKeyIdentifier, fieldData);
-        }
-
-        return authorityKeyIdentifier;
-    } 
-}
-
-internal HL7V26Field basicConstraint;
-
-public HL7V26Field BasicConstraint
-{
-    get
-    {
-        if (basicConstraint != null)
-        {
-            return basicConstraint;
-        }
-
-        basicConstraint = new HL7V26Field
-        {
-            field = message[@"CER"][17],
-            Id = @"CER.17",
-            Type = @"Field",
-            Position = @"CER.17",
-            Name = @"Basic Constraint",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"The Basic Constraints extension contains a boolean used to specify whether or not the subject can act as a CA (certificate authority), using the certified key to sign certificates.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (basicConstraint.field.FieldRepetitions != null && basicConstraint.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(basicConstraint.Id));
-            basicConstraint.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(basicConstraint, fieldData);
-        }
-
-        return basicConstraint;
-    } 
-}
-
-internal HL7V26Field cRLDistributionPoint;
-
-public HL7V26Field CRLDistributionPoint
-{
-    get
-    {
-        if (cRLDistributionPoint != null)
-        {
-            return cRLDistributionPoint;
-        }
-
-        cRLDistributionPoint = new HL7V26Field
-        {
-            field = message[@"CER"][18],
-            Id = @"CER.18",
-            Type = @"Field",
-            Position = @"CER.18",
-            Name = @"CRL Distribution Point",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"The Certificate Revocation List (CRL) Distribution Point extension SHALL identify the location of the associated CRL (or Authority Revocation List (ARL) for attribute certificates) in the PKI directory.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (cRLDistributionPoint.field.FieldRepetitions != null && cRLDistributionPoint.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(cRLDistributionPoint.Id));
-            cRLDistributionPoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(cRLDistributionPoint, fieldData);
-        }
-
-        return cRLDistributionPoint;
-    } 
-}
-
-internal HL7V26Field jurisdictionCountry;
-
-public HL7V26Field JurisdictionCountry
-{
-    get
-    {
-        if (jurisdictionCountry != null)
-        {
-            return jurisdictionCountry;
-        }
-
-        jurisdictionCountry = new HL7V26Field
-        {
-            field = message[@"CER"][19],
-            Id = @"CER.19",
-            Type = @"Field",
-            Position = @"CER.19",
-            Name = @"Jurisdiction Country",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0399",
-            TableName = @"Country Code",
-            Description = @"This field contains the country for which the qualification is valid. Refer to HL7 Table 0399 - Country Code for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (jurisdictionCountry.field.FieldRepetitions != null && jurisdictionCountry.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(jurisdictionCountry.Id));
-            jurisdictionCountry.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(jurisdictionCountry, fieldData);
-        }
-
-        return jurisdictionCountry;
-    } 
-}
-
-internal HL7V26Field jurisdictionStateProvince;
-
-public HL7V26Field JurisdictionStateProvince
-{
-    get
-    {
-        if (jurisdictionStateProvince != null)
-        {
-            return jurisdictionStateProvince;
-        }
-
-        jurisdictionStateProvince = new HL7V26Field
-        {
-            field = message[@"CER"][20],
-            Id = @"CER.20",
-            Type = @"Field",
-            Position = @"CER.20",
-            Name = @"Jurisdiction State/Province",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0347",
-            TableName = @"State/province",
-            Description = @"This field contains the state for which the qualification is valid. HL7 suggests using values in User-defined Table 0347 - State/Province.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (jurisdictionStateProvince.field.FieldRepetitions != null && jurisdictionStateProvince.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(jurisdictionStateProvince.Id));
-            jurisdictionStateProvince.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(jurisdictionStateProvince, fieldData);
-        }
-
-        return jurisdictionStateProvince;
-    } 
-}
-
-internal HL7V26Field jurisdictionCountyParish;
-
-public HL7V26Field JurisdictionCountyParish
-{
-    get
-    {
-        if (jurisdictionCountyParish != null)
-        {
-            return jurisdictionCountyParish;
-        }
-
-        jurisdictionCountyParish = new HL7V26Field
-        {
-            field = message[@"CER"][21],
-            Id = @"CER.21",
-            Type = @"Field",
-            Position = @"CER.21",
-            Name = @"Jurisdiction County/Parish",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0289",
-            TableName = @"County/parish",
-            Description = @"This field contains the county/parish for which the qualification is valid. HL7 suggests using values in User-defined Table 0289 - County/Parish.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (jurisdictionCountyParish.field.FieldRepetitions != null && jurisdictionCountyParish.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(jurisdictionCountyParish.Id));
-            jurisdictionCountyParish.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(jurisdictionCountyParish, fieldData);
-        }
-
-        return jurisdictionCountyParish;
-    } 
-}
-
-internal HL7V26Field jurisdictionBreadth;
-
-public HL7V26Field JurisdictionBreadth
-{
-    get
-    {
-        if (jurisdictionBreadth != null)
-        {
-            return jurisdictionBreadth;
-        }
-
-        jurisdictionBreadth = new HL7V26Field
-        {
-            field = message[@"CER"][22],
-            Id = @"CER.22",
-            Type = @"Field",
-            Position = @"CER.22",
-            Name = @"Jurisdiction Breadth",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0547",
-            TableName = @"Jurisdictional Breadth",
-            Description = @"This field contains the breadth/extent of the jurisdiction where the qualification is valid. HL7 suggests using values in User-defined Table 0547 - Jurisdictional Breadth .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (jurisdictionBreadth.field.FieldRepetitions != null && jurisdictionBreadth.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(jurisdictionBreadth.Id));
-            jurisdictionBreadth.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(jurisdictionBreadth, fieldData);
-        }
-
-        return jurisdictionBreadth;
-    } 
-}
-
-internal HL7V26Field grantingDate;
-
-public HL7V26Field GrantingDate
-{
-    get
-    {
-        if (grantingDate != null)
-        {
-            return grantingDate;
-        }
-
-        grantingDate = new HL7V26Field
-        {
-            field = message[@"CER"][23],
-            Id = @"CER.23",
-            Type = @"Field",
-            Position = @"CER.23",
-            Name = @"Granting Date",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date when the certificate was granted.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (grantingDate.field.FieldRepetitions != null && grantingDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(grantingDate.Id));
-            grantingDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(grantingDate, fieldData);
-        }
-
-        return grantingDate;
-    } 
-}
-
-internal HL7V26Field issuingDate;
-
-public HL7V26Field IssuingDate
-{
-    get
-    {
-        if (issuingDate != null)
-        {
-            return issuingDate;
-        }
-
-        issuingDate = new HL7V26Field
-        {
-            field = message[@"CER"][24],
-            Id = @"CER.24",
-            Type = @"Field",
-            Position = @"CER.24",
-            Name = @"Issuing Date",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when the certificate was issued.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (issuingDate.field.FieldRepetitions != null && issuingDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(issuingDate.Id));
-            issuingDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(issuingDate, fieldData);
-        }
-
-        return issuingDate;
-    } 
-}
-
-internal HL7V26Field activationDate;
-
-public HL7V26Field ActivationDate
-{
-    get
-    {
-        if (activationDate != null)
-        {
-            return activationDate;
-        }
-
-        activationDate = new HL7V26Field
-        {
-            field = message[@"CER"][25],
-            Id = @"CER.25",
-            Type = @"Field",
-            Position = @"CER.25",
-            Name = @"Activation Date",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when the certificate became or will become active.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (activationDate.field.FieldRepetitions != null && activationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(activationDate.Id));
-            activationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(activationDate, fieldData);
-        }
-
-        return activationDate;
-    } 
-}
-
-internal HL7V26Field inactivationDate;
-
-public HL7V26Field InactivationDate
-{
-    get
-    {
-        if (inactivationDate != null)
-        {
-            return inactivationDate;
-        }
-
-        inactivationDate = new HL7V26Field
-        {
-            field = message[@"CER"][26],
-            Id = @"CER.26",
-            Type = @"Field",
-            Position = @"CER.26",
-            Name = @"Inactivation Date",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when the certificate became or will become inactive.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inactivationDate.field.FieldRepetitions != null && inactivationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inactivationDate.Id));
-            inactivationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(inactivationDate, fieldData);
-        }
-
-        return inactivationDate;
-    } 
-}
-
-internal HL7V26Field expirationDate;
-
-public HL7V26Field ExpirationDate
-{
-    get
-    {
-        if (expirationDate != null)
-        {
-            return expirationDate;
-        }
-
-        expirationDate = new HL7V26Field
-        {
-            field = message[@"CER"][27],
-            Id = @"CER.27",
-            Type = @"Field",
-            Position = @"CER.27",
-            Name = @"Expiration Date",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when the certificate expires or will expire.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (expirationDate.field.FieldRepetitions != null && expirationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(expirationDate.Id));
-            expirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(expirationDate, fieldData);
-        }
-
-        return expirationDate;
-    } 
-}
-
-internal HL7V26Field renewalDate;
-
-public HL7V26Field RenewalDate
-{
-    get
-    {
-        if (renewalDate != null)
-        {
-            return renewalDate;
-        }
-
-        renewalDate = new HL7V26Field
-        {
-            field = message[@"CER"][28],
-            Id = @"CER.28",
-            Type = @"Field",
-            Position = @"CER.28",
-            Name = @"Renewal Date",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when the certificate must/will/ be / has been renewed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (renewalDate.field.FieldRepetitions != null && renewalDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(renewalDate.Id));
-            renewalDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(renewalDate, fieldData);
-        }
-
-        return renewalDate;
-    } 
-}
-
-internal HL7V26Field revocationDate;
-
-public HL7V26Field RevocationDate
-{
-    get
-    {
-        if (revocationDate != null)
-        {
-            return revocationDate;
-        }
-
-        revocationDate = new HL7V26Field
-        {
-            field = message[@"CER"][29],
-            Id = @"CER.29",
-            Type = @"Field",
-            Position = @"CER.29",
-            Name = @"Revocation Date",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when the certificate has been revoked.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (revocationDate.field.FieldRepetitions != null && revocationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(revocationDate.Id));
-            revocationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(revocationDate, fieldData);
-        }
-
-        return revocationDate;
-    } 
-}
-
-internal HL7V26Field revocationReasonCode;
-
-public HL7V26Field RevocationReasonCode
-{
-    get
-    {
-        if (revocationReasonCode != null)
-        {
-            return revocationReasonCode;
-        }
-
-        revocationReasonCode = new HL7V26Field
-        {
-            field = message[@"CER"][30],
-            Id = @"CER.30",
-            Type = @"Field",
-            Position = @"CER.30",
-            Name = @"Revocation Reason Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the reason for revoking the certificate (e.g., having been compromised, changes of conditions/environment, etc.)",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (revocationReasonCode.field.FieldRepetitions != null && revocationReasonCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(revocationReasonCode.Id));
-            revocationReasonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(revocationReasonCode, fieldData);
-        }
-
-        return revocationReasonCode;
-    } 
-}
-
-internal HL7V26Field certificateStatusCode;
-
-public HL7V26Field CertificateStatusCode
-{
-    get
-    {
-        if (certificateStatusCode != null)
-        {
-            return certificateStatusCode;
-        }
-
-        certificateStatusCode = new HL7V26Field
+        _certificateStatusCode = new HL7V26Field
         {
             field = message[@"CER"][31],
-            Id = @"CER.31",
-            Type = @"Field",
-            Position = @"CER.31",
-            Name = @"Certificate Status Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0536",
-            TableName = @"Certificate Status",
-            Description = @"This field contains the state of the certificate held by the health professional. HL7 suggest using values in User-defined table 0536 - Certificate Status .",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (certificateStatusCode.field.FieldRepetitions != null && certificateStatusCode.field.FieldRepetitions.Count > 0)
+        if (_certificateStatusCode.field.FieldRepetitions != null && _certificateStatusCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certificateStatusCode.Id));
-            certificateStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(certificateStatusCode, fieldData);
+            _certificateStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_certificateStatusCode, fieldData);
         }
 
-        return certificateStatusCode;
+        return _certificateStatusCode;
     } 
 }
     }

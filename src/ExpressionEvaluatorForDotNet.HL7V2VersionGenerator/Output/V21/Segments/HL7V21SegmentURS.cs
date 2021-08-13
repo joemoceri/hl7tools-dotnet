@@ -25,124 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"URS.1",
-                            Type = @"Field",
-                            Position = @"URS.1",
-                            Name = @"R/U Where Subject Definition",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URS.2",
-                            Type = @"Field",
-                            Position = @"URS.2",
-                            Name = @"R/U When Data Start Date/Time",
-                            Length = 19,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URS.3",
-                            Type = @"Field",
-                            Position = @"URS.3",
-                            Name = @"R/U When Data End Date/Time",
-                            Length = 19,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URS.4",
-                            Type = @"Field",
-                            Position = @"URS.4",
-                            Name = @"R/U What User Qualifier",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"URS.5",
-                            Type = @"Field",
-                            Position = @"URS.5",
-                            Name = @"R/U Other Results Subject Defini",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentURS(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field rUWhereSubjectDefinition;
+        internal HL7V21Field _rUWhereSubjectDefinition;
 
 public HL7V21Field RUWhereSubjectDefinition
 {
     get
     {
-        if (rUWhereSubjectDefinition != null)
+        if (_rUWhereSubjectDefinition != null)
         {
-            return rUWhereSubjectDefinition;
+            return _rUWhereSubjectDefinition;
         }
 
-        rUWhereSubjectDefinition = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"URS"][1],
             Id = @"URS.1",
             Type = @"Field",
             Position = @"URS.1",
@@ -156,34 +56,38 @@ public HL7V21Field RUWhereSubjectDefinition
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _rUWhereSubjectDefinition = new HL7V21Field
+        {
+            field = message[@"URS"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (rUWhereSubjectDefinition.field.FieldRepetitions != null && rUWhereSubjectDefinition.field.FieldRepetitions.Count > 0)
+        if (_rUWhereSubjectDefinition.field.FieldRepetitions != null && _rUWhereSubjectDefinition.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUWhereSubjectDefinition.Id));
-            rUWhereSubjectDefinition.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(rUWhereSubjectDefinition, fieldData);
+            _rUWhereSubjectDefinition.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_rUWhereSubjectDefinition, fieldData);
         }
 
-        return rUWhereSubjectDefinition;
+        return _rUWhereSubjectDefinition;
     } 
 }
 
-internal HL7V21Field rUWhenDataStartDateTime;
+internal HL7V21Field _rUWhenDataStartDateTime;
 
 public HL7V21Field RUWhenDataStartDateTime
 {
     get
     {
-        if (rUWhenDataStartDateTime != null)
+        if (_rUWhenDataStartDateTime != null)
         {
-            return rUWhenDataStartDateTime;
+            return _rUWhenDataStartDateTime;
         }
 
-        rUWhenDataStartDateTime = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"URS"][2],
             Id = @"URS.2",
             Type = @"Field",
             Position = @"URS.2",
@@ -197,34 +101,38 @@ public HL7V21Field RUWhenDataStartDateTime
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _rUWhenDataStartDateTime = new HL7V21Field
+        {
+            field = message[@"URS"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (rUWhenDataStartDateTime.field.FieldRepetitions != null && rUWhenDataStartDateTime.field.FieldRepetitions.Count > 0)
+        if (_rUWhenDataStartDateTime.field.FieldRepetitions != null && _rUWhenDataStartDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUWhenDataStartDateTime.Id));
-            rUWhenDataStartDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(rUWhenDataStartDateTime, fieldData);
+            _rUWhenDataStartDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_rUWhenDataStartDateTime, fieldData);
         }
 
-        return rUWhenDataStartDateTime;
+        return _rUWhenDataStartDateTime;
     } 
 }
 
-internal HL7V21Field rUWhenDataEndDateTime;
+internal HL7V21Field _rUWhenDataEndDateTime;
 
 public HL7V21Field RUWhenDataEndDateTime
 {
     get
     {
-        if (rUWhenDataEndDateTime != null)
+        if (_rUWhenDataEndDateTime != null)
         {
-            return rUWhenDataEndDateTime;
+            return _rUWhenDataEndDateTime;
         }
 
-        rUWhenDataEndDateTime = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"URS"][3],
             Id = @"URS.3",
             Type = @"Field",
             Position = @"URS.3",
@@ -238,34 +146,38 @@ public HL7V21Field RUWhenDataEndDateTime
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _rUWhenDataEndDateTime = new HL7V21Field
+        {
+            field = message[@"URS"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (rUWhenDataEndDateTime.field.FieldRepetitions != null && rUWhenDataEndDateTime.field.FieldRepetitions.Count > 0)
+        if (_rUWhenDataEndDateTime.field.FieldRepetitions != null && _rUWhenDataEndDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUWhenDataEndDateTime.Id));
-            rUWhenDataEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(rUWhenDataEndDateTime, fieldData);
+            _rUWhenDataEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_rUWhenDataEndDateTime, fieldData);
         }
 
-        return rUWhenDataEndDateTime;
+        return _rUWhenDataEndDateTime;
     } 
 }
 
-internal HL7V21Field rUWhatUserQualifier;
+internal HL7V21Field _rUWhatUserQualifier;
 
 public HL7V21Field RUWhatUserQualifier
 {
     get
     {
-        if (rUWhatUserQualifier != null)
+        if (_rUWhatUserQualifier != null)
         {
-            return rUWhatUserQualifier;
+            return _rUWhatUserQualifier;
         }
 
-        rUWhatUserQualifier = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"URS"][4],
             Id = @"URS.4",
             Type = @"Field",
             Position = @"URS.4",
@@ -279,34 +191,38 @@ public HL7V21Field RUWhatUserQualifier
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _rUWhatUserQualifier = new HL7V21Field
+        {
+            field = message[@"URS"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (rUWhatUserQualifier.field.FieldRepetitions != null && rUWhatUserQualifier.field.FieldRepetitions.Count > 0)
+        if (_rUWhatUserQualifier.field.FieldRepetitions != null && _rUWhatUserQualifier.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUWhatUserQualifier.Id));
-            rUWhatUserQualifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(rUWhatUserQualifier, fieldData);
+            _rUWhatUserQualifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_rUWhatUserQualifier, fieldData);
         }
 
-        return rUWhatUserQualifier;
+        return _rUWhatUserQualifier;
     } 
 }
 
-internal HL7V21Field rUOtherResultsSubjectDefini;
+internal HL7V21Field _rUOtherResultsSubjectDefini;
 
 public HL7V21Field RUOtherResultsSubjectDefini
 {
     get
     {
-        if (rUOtherResultsSubjectDefini != null)
+        if (_rUOtherResultsSubjectDefini != null)
         {
-            return rUOtherResultsSubjectDefini;
+            return _rUOtherResultsSubjectDefini;
         }
 
-        rUOtherResultsSubjectDefini = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"URS"][5],
             Id = @"URS.5",
             Type = @"Field",
             Position = @"URS.5",
@@ -320,17 +236,22 @@ public HL7V21Field RUOtherResultsSubjectDefini
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _rUOtherResultsSubjectDefini = new HL7V21Field
+        {
+            field = message[@"URS"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (rUOtherResultsSubjectDefini.field.FieldRepetitions != null && rUOtherResultsSubjectDefini.field.FieldRepetitions.Count > 0)
+        if (_rUOtherResultsSubjectDefini.field.FieldRepetitions != null && _rUOtherResultsSubjectDefini.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rUOtherResultsSubjectDefini.Id));
-            rUOtherResultsSubjectDefini.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(rUOtherResultsSubjectDefini, fieldData);
+            _rUOtherResultsSubjectDefini.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_rUOtherResultsSubjectDefini, fieldData);
         }
 
-        return rUOtherResultsSubjectDefini;
+        return _rUOtherResultsSubjectDefini;
     } 
 }
     }

@@ -10,9 +10,8 @@ public HL7V[{-VERSION-}]Field [{-FIELD_NAME_PROPERTY_NAME-}]
             return [{-FIELD_NAME_PROPERTY_NAME_LOWER-}];
         }
 
-        [{-FIELD_NAME_PROPERTY_NAME_LOWER-}] = new HL7V[{-VERSION-}]Field
+        var fieldData = new HL7V[{-VERSION-}]FieldData
         {
-            field = message[[{-SEGMENT_ID-}]][[{-FIELD_PROPERTY_ID-}]],
             Id = [{-ID-}],
             Type = [{-TYPE-}],
             Position = [{-POSITION-}],
@@ -26,13 +25,18 @@ public HL7V[{-VERSION-}]Field [{-FIELD_NAME_PROPERTY_NAME-}]
             TableName = [{-TABLE_NAME-}],
             Description = [{-DESCRIPTION-}],
             Sample = [{-SAMPLE-}],
+            Fields = [{-FIELD_DATAS-}]
+        }
+
+        [{-FIELD_NAME_PROPERTY_NAME_LOWER-}] = new HL7V[{-VERSION-}]Field
+        {
+            field = message[[{-SEGMENT_ID-}]][[{-FIELD_PROPERTY_ID-}]],
+            fieldData = fieldData
         };
 
         // check for repetitions
         if ([{-FIELD_NAME_PROPERTY_NAME_LOWER-}].field.FieldRepetitions != null && [{-FIELD_NAME_PROPERTY_NAME_LOWER-}].field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals([{-FIELD_NAME_PROPERTY_NAME_LOWER-}].Id));
             [{-FIELD_NAME_PROPERTY_NAME_LOWER-}].fieldRepetitions = HL7V2FieldGenerator.GenerateV[{-VERSION-}]FieldRepetitions([{-FIELD_NAME_PROPERTY_NAME_LOWER-}], fieldData);
         }
 

@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             } 
         }
@@ -89,6 +90,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Very important person or celebrity",
                             Comment = null
                         },
+                        
                     };
             } 
         }

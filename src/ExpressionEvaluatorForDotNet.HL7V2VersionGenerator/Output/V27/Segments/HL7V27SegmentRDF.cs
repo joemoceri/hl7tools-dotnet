@@ -31,50 +31,89 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"RDF.1",
-                            Type = @"Field",
-                            Position = @"RDF.1",
-                            Name = @"Number Of Columns Per Row",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the number of data columns (and therefore the number of fields) contained within each row of returned data.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RDF.2",
-                            Type = @"Field",
-                            Position = @"RDF.2",
-                            Name = @"Column Description",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"RCD",
-                            DataTypeName = @"Row Column Definition",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Each repetition of this field consists of three components:
+        public HL7V27SegmentRDF(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _numberOfColumnsPerRow;
+
+public HL7V27Field NumberOfColumnsPerRow
+{
+    get
+    {
+        if (_numberOfColumnsPerRow != null)
+        {
+            return _numberOfColumnsPerRow;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"RDF.1",
+            Type = @"Field",
+            Position = @"RDF.1",
+            Name = @"Number Of Columns Per Row",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the number of data columns (and therefore the number of fields) contained within each row of returned data.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _numberOfColumnsPerRow = new HL7V27Field
+        {
+            field = message[@"RDF"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_numberOfColumnsPerRow.field.FieldRepetitions != null && _numberOfColumnsPerRow.field.FieldRepetitions.Count > 0)
+        {
+            _numberOfColumnsPerRow.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_numberOfColumnsPerRow, fieldData);
+        }
+
+        return _numberOfColumnsPerRow;
+    } 
+}
+
+internal HL7V27Field _columnDescription;
+
+public HL7V27Field ColumnDescription
+{
+    get
+    {
+        if (_columnDescription != null)
+        {
+            return _columnDescription;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"RDF.2",
+            Type = @"Field",
+            Position = @"RDF.2",
+            Name = @"Column Description",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"RCD",
+            DataTypeName = @"Row Column Definition",
+            TableId = null,
+            TableName = null,
+            Description = @"Each repetition of this field consists of three components:
 
 The segment field name that identifies the field occupying the column.  The segment field name SHALL agree with the column name as it appears in the Query Profile. Use of the @ sign as prefix to the column name is optional.
 - The 2 or 3 character HL7 data type, as defined in Chapter 2.  Refer to HL7 Table 0440 - Data types for valid values.
 - The maximum width of the column, as dictated by the responding system.  (This may vary from the HL7-defined maximum field length.)",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RDF.2.1",
                             Type = @"Component",
@@ -134,100 +173,23 @@ Note: If the “@” is being used as one of the delimiter characters defined in
                             Description = @"The maximum width of the column, as dictated by the responding system. This may vary from the HL7-defined maximum field length.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentRDF(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field numberOfColumnsPerRow;
-
-public HL7V27Field NumberOfColumnsPerRow
-{
-    get
-    {
-        if (numberOfColumnsPerRow != null)
-        {
-            return numberOfColumnsPerRow;
-        }
-
-        numberOfColumnsPerRow = new HL7V27Field
-        {
-            field = message[@"RDF"][1],
-            Id = @"RDF.1",
-            Type = @"Field",
-            Position = @"RDF.1",
-            Name = @"Number Of Columns Per Row",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the number of data columns (and therefore the number of fields) contained within each row of returned data.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (numberOfColumnsPerRow.field.FieldRepetitions != null && numberOfColumnsPerRow.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfColumnsPerRow.Id));
-            numberOfColumnsPerRow.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(numberOfColumnsPerRow, fieldData);
-        }
-
-        return numberOfColumnsPerRow;
-    } 
-}
-
-internal HL7V27Field columnDescription;
-
-public HL7V27Field ColumnDescription
-{
-    get
-    {
-        if (columnDescription != null)
-        {
-            return columnDescription;
-        }
-
-        columnDescription = new HL7V27Field
+        _columnDescription = new HL7V27Field
         {
             field = message[@"RDF"][2],
-            Id = @"RDF.2",
-            Type = @"Field",
-            Position = @"RDF.2",
-            Name = @"Column Description",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"RCD",
-            DataTypeName = @"Row Column Definition",
-            TableId = null,
-            TableName = null,
-            Description = @"Each repetition of this field consists of three components:
-
-The segment field name that identifies the field occupying the column.  The segment field name SHALL agree with the column name as it appears in the Query Profile. Use of the @ sign as prefix to the column name is optional.
-- The 2 or 3 character HL7 data type, as defined in Chapter 2.  Refer to HL7 Table 0440 - Data types for valid values.
-- The maximum width of the column, as dictated by the responding system.  (This may vary from the HL7-defined maximum field length.)",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (columnDescription.field.FieldRepetitions != null && columnDescription.field.FieldRepetitions.Count > 0)
+        if (_columnDescription.field.FieldRepetitions != null && _columnDescription.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(columnDescription.Id));
-            columnDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(columnDescription, fieldData);
+            _columnDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_columnDescription, fieldData);
         }
 
-        return columnDescription;
+        return _columnDescription;
     } 
 }
     }

@@ -29,48 +29,87 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"PAC.1",
-                            Type = @"Field",
-                            Position = @"PAC.1",
-                            Name = @"Set Id - Pac",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the sequence number. This field is used to identify PAC segment instances in message structures where the PAC segment repeats",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PAC.2",
-                            Type = @"Field",
-                            Position = @"PAC.2",
-                            Name = @"Package Id",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Package ID uniquely identifies this package from all other packages within its shipment.
+        public HL7V271SegmentPAC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _setIdPac;
+
+public HL7V271Field SetIdPac
+{
+    get
+    {
+        if (_setIdPac != null)
+        {
+            return _setIdPac;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PAC.1",
+            Type = @"Field",
+            Position = @"PAC.1",
+            Name = @"Set Id - Pac",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the sequence number. This field is used to identify PAC segment instances in message structures where the PAC segment repeats",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdPac = new HL7V271Field
+        {
+            field = message[@"PAC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdPac.field.FieldRepetitions != null && _setIdPac.field.FieldRepetitions.Count > 0)
+        {
+            _setIdPac.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_setIdPac, fieldData);
+        }
+
+        return _setIdPac;
+    } 
+}
+
+internal HL7V271Field _packageId;
+
+public HL7V271Field PackageId
+{
+    get
+    {
+        if (_packageId != null)
+        {
+            return _packageId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PAC.2",
+            Type = @"Field",
+            Position = @"PAC.2",
+            Name = @"Package Id",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The Package ID uniquely identifies this package from all other packages within its shipment.
 
 Condition: If SHP-8 Number of Packages in Shipment is greater then 1, then Package ID must be valued.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PAC.2.1",
                             Type = @"Component",
@@ -148,25 +187,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _packageId = new HL7V271Field
+        {
+            field = message[@"PAC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_packageId.field.FieldRepetitions != null && _packageId.field.FieldRepetitions.Count > 0)
+        {
+            _packageId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_packageId, fieldData);
+        }
+
+        return _packageId;
+    } 
+}
+
+internal HL7V271Field _parentPackageId;
+
+public HL7V271Field ParentPackageId
+{
+    get
+    {
+        if (_parentPackageId != null)
+        {
+            return _parentPackageId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PAC.3",
+            Type = @"Field",
+            Position = @"PAC.3",
+            Name = @"Parent Package Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The parent package id identifies the package which contains this package. This is used to link a nested set of packages. For instance a shipping container may itself contain several smaller packages. These contained packages would identify the shipping container as their parent package. Multiple layers of nested packaging can be documented in this fashion.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PAC.3",
-                            Type = @"Field",
-                            Position = @"PAC.3",
-                            Name = @"Parent Package Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The parent package id identifies the package which contains this package. This is used to link a nested set of packages. For instance a shipping container may itself contain several smaller packages. These contained packages would identify the shipping container as their parent package. Multiple layers of nested packaging can be documented in this fashion.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PAC.3.1",
                             Type = @"Component",
@@ -244,25 +313,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _parentPackageId = new HL7V271Field
+        {
+            field = message[@"PAC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_parentPackageId.field.FieldRepetitions != null && _parentPackageId.field.FieldRepetitions.Count > 0)
+        {
+            _parentPackageId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_parentPackageId, fieldData);
+        }
+
+        return _parentPackageId;
+    } 
+}
+
+internal HL7V271Field _positionInParentPackage;
+
+public HL7V271Field PositionInParentPackage
+{
+    get
+    {
+        if (_positionInParentPackage != null)
+        {
+            return _positionInParentPackage;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PAC.4",
+            Type = @"Field",
+            Position = @"PAC.4",
+            Name = @"Position In Parent Package",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NA",
+            DataTypeName = @"Numeric Array",
+            TableId = null,
+            TableName = null,
+            Description = @"The position in parent package field is used when it is important to communicate specifically where in the parent package this package resides. Each position is identified with a position number. The NA (numeric array) data type is used to allow, if necessary, to transfer multiple axis information, e.g., 2-dimensional tray (X^Y).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PAC.4",
-                            Type = @"Field",
-                            Position = @"PAC.4",
-                            Name = @"Position In Parent Package",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NA",
-                            DataTypeName = @"Numeric Array",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The position in parent package field is used when it is important to communicate specifically where in the parent package this package resides. Each position is identified with a position number. The NA (numeric array) data type is used to allow, if necessary, to transfer multiple axis information, e.g., 2-dimensional tray (X^Y).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PAC.4.1",
                             Type = @"Component",
@@ -332,25 +431,55 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _positionInParentPackage = new HL7V271Field
+        {
+            field = message[@"PAC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_positionInParentPackage.field.FieldRepetitions != null && _positionInParentPackage.field.FieldRepetitions.Count > 0)
+        {
+            _positionInParentPackage.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_positionInParentPackage, fieldData);
+        }
+
+        return _positionInParentPackage;
+    } 
+}
+
+internal HL7V271Field _packageType;
+
+public HL7V271Field PackageType
+{
+    get
+    {
+        if (_packageType != null)
+        {
+            return _packageType;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PAC.5",
+            Type = @"Field",
+            Position = @"PAC.5",
+            Name = @"Package Type",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0908",
+            TableName = @"Package Type",
+            Description = @"The package type field identifies the type of container. See User-defined Table 0908 – Package Type for values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PAC.5",
-                            Type = @"Field",
-                            Position = @"PAC.5",
-                            Name = @"Package Type",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0908",
-                            TableName = @"Package Type",
-                            Description = @"The package type field identifies the type of container. See User-defined Table 0908 – Package Type for values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PAC.5.1",
                             Type = @"Component",
@@ -776,25 +905,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _packageType = new HL7V271Field
+        {
+            field = message[@"PAC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_packageType.field.FieldRepetitions != null && _packageType.field.FieldRepetitions.Count > 0)
+        {
+            _packageType.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_packageType, fieldData);
+        }
+
+        return _packageType;
+    } 
+}
+
+internal HL7V271Field _packageCondition;
+
+public HL7V271Field PackageCondition
+{
+    get
+    {
+        if (_packageCondition != null)
+        {
+            return _packageCondition;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PAC.6",
+            Type = @"Field",
+            Position = @"PAC.6",
+            Name = @"Package Condition",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0544",
+            TableName = @"Container Condition",
+            Description = @"The package condition field describes the condition of the package at the time of the message. Refer to HL7 Table 0544 – Container Condition for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PAC.6",
-                            Type = @"Field",
-                            Position = @"PAC.6",
-                            Name = @"Package Condition",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0544",
-                            TableName = @"Container Condition",
-                            Description = @"The package condition field describes the condition of the package at the time of the message. Refer to HL7 Table 0544 – Container Condition for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PAC.6.1",
                             Type = @"Component",
@@ -1220,25 +1379,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _packageCondition = new HL7V271Field
+        {
+            field = message[@"PAC"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_packageCondition.field.FieldRepetitions != null && _packageCondition.field.FieldRepetitions.Count > 0)
+        {
+            _packageCondition.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_packageCondition, fieldData);
+        }
+
+        return _packageCondition;
+    } 
+}
+
+internal HL7V271Field _packageHandlingCode;
+
+public HL7V271Field PackageHandlingCode
+{
+    get
+    {
+        if (_packageHandlingCode != null)
+        {
+            return _packageHandlingCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PAC.7",
+            Type = @"Field",
+            Position = @"PAC.7",
+            Name = @"Package Handling Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0376",
+            TableName = @"Special Handling Code",
+            Description = @"This describes how the package needs to be handled during transport. Refer to User-defined Table 0376 – Special Handling Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PAC.7",
-                            Type = @"Field",
-                            Position = @"PAC.7",
-                            Name = @"Package Handling Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0376",
-                            TableName = @"Special Handling Code",
-                            Description = @"This describes how the package needs to be handled during transport. Refer to User-defined Table 0376 – Special Handling Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PAC.7.1",
                             Type = @"Component",
@@ -1664,25 +1853,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _packageHandlingCode = new HL7V271Field
+        {
+            field = message[@"PAC"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_packageHandlingCode.field.FieldRepetitions != null && _packageHandlingCode.field.FieldRepetitions.Count > 0)
+        {
+            _packageHandlingCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_packageHandlingCode, fieldData);
+        }
+
+        return _packageHandlingCode;
+    } 
+}
+
+internal HL7V271Field _packageRiskCode;
+
+public HL7V271Field PackageRiskCode
+{
+    get
+    {
+        if (_packageRiskCode != null)
+        {
+            return _packageRiskCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PAC.8",
+            Type = @"Field",
+            Position = @"PAC.8",
+            Name = @"Package Risk Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0489",
+            TableName = @"Risk Codes",
+            Description = @"This field contains any known or suspected hazards associated with this package, e.g., exceptionally infectious agent or blood from a hepatitis patient. Refer to User-defined Table 0489 – Risk Codes for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PAC.8",
-                            Type = @"Field",
-                            Position = @"PAC.8",
-                            Name = @"Package Risk Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0489",
-                            TableName = @"Risk Codes",
-                            Description = @"This field contains any known or suspected hazards associated with this package, e.g., exceptionally infectious agent or blood from a hepatitis patient. Refer to User-defined Table 0489 – Risk Codes for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PAC.8.1",
                             Type = @"Component",
@@ -2108,344 +2327,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentPAC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field setIdPac;
-
-public HL7V271Field SetIdPac
-{
-    get
-    {
-        if (setIdPac != null)
-        {
-            return setIdPac;
-        }
-
-        setIdPac = new HL7V271Field
-        {
-            field = message[@"PAC"][1],
-            Id = @"PAC.1",
-            Type = @"Field",
-            Position = @"PAC.1",
-            Name = @"Set Id - Pac",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the sequence number. This field is used to identify PAC segment instances in message structures where the PAC segment repeats",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdPac.field.FieldRepetitions != null && setIdPac.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdPac.Id));
-            setIdPac.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(setIdPac, fieldData);
-        }
-
-        return setIdPac;
-    } 
-}
-
-internal HL7V271Field packageId;
-
-public HL7V271Field PackageId
-{
-    get
-    {
-        if (packageId != null)
-        {
-            return packageId;
-        }
-
-        packageId = new HL7V271Field
-        {
-            field = message[@"PAC"][2],
-            Id = @"PAC.2",
-            Type = @"Field",
-            Position = @"PAC.2",
-            Name = @"Package Id",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The Package ID uniquely identifies this package from all other packages within its shipment.
-
-Condition: If SHP-8 Number of Packages in Shipment is greater then 1, then Package ID must be valued.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (packageId.field.FieldRepetitions != null && packageId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(packageId.Id));
-            packageId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(packageId, fieldData);
-        }
-
-        return packageId;
-    } 
-}
-
-internal HL7V271Field parentPackageId;
-
-public HL7V271Field ParentPackageId
-{
-    get
-    {
-        if (parentPackageId != null)
-        {
-            return parentPackageId;
-        }
-
-        parentPackageId = new HL7V271Field
-        {
-            field = message[@"PAC"][3],
-            Id = @"PAC.3",
-            Type = @"Field",
-            Position = @"PAC.3",
-            Name = @"Parent Package Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The parent package id identifies the package which contains this package. This is used to link a nested set of packages. For instance a shipping container may itself contain several smaller packages. These contained packages would identify the shipping container as their parent package. Multiple layers of nested packaging can be documented in this fashion.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (parentPackageId.field.FieldRepetitions != null && parentPackageId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(parentPackageId.Id));
-            parentPackageId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(parentPackageId, fieldData);
-        }
-
-        return parentPackageId;
-    } 
-}
-
-internal HL7V271Field positionInParentPackage;
-
-public HL7V271Field PositionInParentPackage
-{
-    get
-    {
-        if (positionInParentPackage != null)
-        {
-            return positionInParentPackage;
-        }
-
-        positionInParentPackage = new HL7V271Field
-        {
-            field = message[@"PAC"][4],
-            Id = @"PAC.4",
-            Type = @"Field",
-            Position = @"PAC.4",
-            Name = @"Position In Parent Package",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NA",
-            DataTypeName = @"Numeric Array",
-            TableId = null,
-            TableName = null,
-            Description = @"The position in parent package field is used when it is important to communicate specifically where in the parent package this package resides. Each position is identified with a position number. The NA (numeric array) data type is used to allow, if necessary, to transfer multiple axis information, e.g., 2-dimensional tray (X^Y).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (positionInParentPackage.field.FieldRepetitions != null && positionInParentPackage.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(positionInParentPackage.Id));
-            positionInParentPackage.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(positionInParentPackage, fieldData);
-        }
-
-        return positionInParentPackage;
-    } 
-}
-
-internal HL7V271Field packageType;
-
-public HL7V271Field PackageType
-{
-    get
-    {
-        if (packageType != null)
-        {
-            return packageType;
-        }
-
-        packageType = new HL7V271Field
-        {
-            field = message[@"PAC"][5],
-            Id = @"PAC.5",
-            Type = @"Field",
-            Position = @"PAC.5",
-            Name = @"Package Type",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0908",
-            TableName = @"Package Type",
-            Description = @"The package type field identifies the type of container. See User-defined Table 0908 – Package Type for values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (packageType.field.FieldRepetitions != null && packageType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(packageType.Id));
-            packageType.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(packageType, fieldData);
-        }
-
-        return packageType;
-    } 
-}
-
-internal HL7V271Field packageCondition;
-
-public HL7V271Field PackageCondition
-{
-    get
-    {
-        if (packageCondition != null)
-        {
-            return packageCondition;
-        }
-
-        packageCondition = new HL7V271Field
-        {
-            field = message[@"PAC"][6],
-            Id = @"PAC.6",
-            Type = @"Field",
-            Position = @"PAC.6",
-            Name = @"Package Condition",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0544",
-            TableName = @"Container Condition",
-            Description = @"The package condition field describes the condition of the package at the time of the message. Refer to HL7 Table 0544 – Container Condition for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (packageCondition.field.FieldRepetitions != null && packageCondition.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(packageCondition.Id));
-            packageCondition.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(packageCondition, fieldData);
-        }
-
-        return packageCondition;
-    } 
-}
-
-internal HL7V271Field packageHandlingCode;
-
-public HL7V271Field PackageHandlingCode
-{
-    get
-    {
-        if (packageHandlingCode != null)
-        {
-            return packageHandlingCode;
-        }
-
-        packageHandlingCode = new HL7V271Field
-        {
-            field = message[@"PAC"][7],
-            Id = @"PAC.7",
-            Type = @"Field",
-            Position = @"PAC.7",
-            Name = @"Package Handling Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0376",
-            TableName = @"Special Handling Code",
-            Description = @"This describes how the package needs to be handled during transport. Refer to User-defined Table 0376 – Special Handling Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (packageHandlingCode.field.FieldRepetitions != null && packageHandlingCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(packageHandlingCode.Id));
-            packageHandlingCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(packageHandlingCode, fieldData);
-        }
-
-        return packageHandlingCode;
-    } 
-}
-
-internal HL7V271Field packageRiskCode;
-
-public HL7V271Field PackageRiskCode
-{
-    get
-    {
-        if (packageRiskCode != null)
-        {
-            return packageRiskCode;
-        }
-
-        packageRiskCode = new HL7V271Field
+        _packageRiskCode = new HL7V271Field
         {
             field = message[@"PAC"][8],
-            Id = @"PAC.8",
-            Type = @"Field",
-            Position = @"PAC.8",
-            Name = @"Package Risk Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0489",
-            TableName = @"Risk Codes",
-            Description = @"This field contains any known or suspected hazards associated with this package, e.g., exceptionally infectious agent or blood from a hepatitis patient. Refer to User-defined Table 0489 – Risk Codes for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (packageRiskCode.field.FieldRepetitions != null && packageRiskCode.field.FieldRepetitions.Count > 0)
+        if (_packageRiskCode.field.FieldRepetitions != null && _packageRiskCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(packageRiskCode.Id));
-            packageRiskCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(packageRiskCode, fieldData);
+            _packageRiskCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_packageRiskCode, fieldData);
         }
 
-        return packageRiskCode;
+        return _packageRiskCode;
     } 
 }
     }

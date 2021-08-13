@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentIVC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _providerInvoiceNumber;
+
+public HL7V26Field ProviderInvoiceNumber
+{
+    get
+    {
+        if (_providerInvoiceNumber != null)
+        {
+            return _providerInvoiceNumber;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.1",
+            Type = @"Field",
+            Position = @"IVC.1",
+            Name = @"Provider Invoice Number",
+            Length = 74,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique Invoice Number assigned by the Provider Application.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"IVC.1",
-                            Type = @"Field",
-                            Position = @"IVC.1",
-                            Name = @"Provider Invoice Number",
-                            Length = 74,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique Invoice Number assigned by the Provider Application.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IVC.1.1",
                             Type = @"Component",
@@ -120,25 +132,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerInvoiceNumber = new HL7V26Field
+        {
+            field = message[@"IVC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerInvoiceNumber.field.FieldRepetitions != null && _providerInvoiceNumber.field.FieldRepetitions.Count > 0)
+        {
+            _providerInvoiceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_providerInvoiceNumber, fieldData);
+        }
+
+        return _providerInvoiceNumber;
+    } 
+}
+
+internal HL7V26Field _payerInvoiceNumber;
+
+public HL7V26Field PayerInvoiceNumber
+{
+    get
+    {
+        if (_payerInvoiceNumber != null)
+        {
+            return _payerInvoiceNumber;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.2",
+            Type = @"Field",
+            Position = @"IVC.2",
+            Name = @"Payer Invoice Number",
+            Length = 74,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique Invoice Number assigned by the Payer Application.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVC.2",
-                            Type = @"Field",
-                            Position = @"IVC.2",
-                            Name = @"Payer Invoice Number",
-                            Length = 74,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique Invoice Number assigned by the Payer Application.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVC.2.1",
                             Type = @"Component",
@@ -208,25 +250,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _payerInvoiceNumber = new HL7V26Field
+        {
+            field = message[@"IVC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payerInvoiceNumber.field.FieldRepetitions != null && _payerInvoiceNumber.field.FieldRepetitions.Count > 0)
+        {
+            _payerInvoiceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_payerInvoiceNumber, fieldData);
+        }
+
+        return _payerInvoiceNumber;
+    } 
+}
+
+internal HL7V26Field _contractAgreementNumber;
+
+public HL7V26Field ContractAgreementNumber
+{
+    get
+    {
+        if (_contractAgreementNumber != null)
+        {
+            return _contractAgreementNumber;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.3",
+            Type = @"Field",
+            Position = @"IVC.3",
+            Name = @"Contract/Agreement Number",
+            Length = 74,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Contract/agreement number issued by Payer which must be specified in some circumstances by the Provider.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVC.3",
-                            Type = @"Field",
-                            Position = @"IVC.3",
-                            Name = @"Contract/Agreement Number",
-                            Length = 74,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Contract/agreement number issued by Payer which must be specified in some circumstances by the Provider.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVC.3.1",
                             Type = @"Component",
@@ -296,97 +368,235 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contractAgreementNumber = new HL7V26Field
+        {
+            field = message[@"IVC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contractAgreementNumber.field.FieldRepetitions != null && _contractAgreementNumber.field.FieldRepetitions.Count > 0)
+        {
+            _contractAgreementNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_contractAgreementNumber, fieldData);
+        }
+
+        return _contractAgreementNumber;
+    } 
+}
+
+internal HL7V26Field _invoiceControl;
+
+public HL7V26Field InvoiceControl
+{
+    get
+    {
+        if (_invoiceControl != null)
+        {
+            return _invoiceControl;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.4",
+            Type = @"Field",
+            Position = @"IVC.4",
+            Name = @"Invoice Control",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0553",
+            TableName = @"Invoice Control Code",
+            Description = @"Code indicating what action is being performed by this message. Refer to User-defined Table 0553 - Invoice Control Code for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _invoiceControl = new HL7V26Field
+        {
+            field = message[@"IVC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_invoiceControl.field.FieldRepetitions != null && _invoiceControl.field.FieldRepetitions.Count > 0)
+        {
+            _invoiceControl.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_invoiceControl, fieldData);
+        }
+
+        return _invoiceControl;
+    } 
+}
+
+internal HL7V26Field _invoiceReason;
+
+public HL7V26Field InvoiceReason
+{
+    get
+    {
+        if (_invoiceReason != null)
+        {
+            return _invoiceReason;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.5",
+            Type = @"Field",
+            Position = @"IVC.5",
+            Name = @"Invoice Reason",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0554",
+            TableName = @"Invoice Reason Codes",
+            Description = @"Code describing reason for this Invoice. Refer to User-defined Table 0554 - Invoice Reason Codes for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _invoiceReason = new HL7V26Field
+        {
+            field = message[@"IVC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_invoiceReason.field.FieldRepetitions != null && _invoiceReason.field.FieldRepetitions.Count > 0)
+        {
+            _invoiceReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_invoiceReason, fieldData);
+        }
+
+        return _invoiceReason;
+    } 
+}
+
+internal HL7V26Field _invoiceType;
+
+public HL7V26Field InvoiceType
+{
+    get
+    {
+        if (_invoiceType != null)
+        {
+            return _invoiceType;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.6",
+            Type = @"Field",
+            Position = @"IVC.6",
+            Name = @"Invoice Type",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0555",
+            TableName = @"Invoice Type",
+            Description = @"Code indicating the type of Invoice. Refer to User-defined Table 0555 - Invoice Type for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _invoiceType = new HL7V26Field
+        {
+            field = message[@"IVC"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_invoiceType.field.FieldRepetitions != null && _invoiceType.field.FieldRepetitions.Count > 0)
+        {
+            _invoiceType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_invoiceType, fieldData);
+        }
+
+        return _invoiceType;
+    } 
+}
+
+internal HL7V26Field _invoiceDateTime;
+
+public HL7V26Field InvoiceDateTime
+{
+    get
+    {
+        if (_invoiceDateTime != null)
+        {
+            return _invoiceDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.7",
+            Type = @"Field",
+            Position = @"IVC.7",
+            Name = @"Invoice Date/Time",
+            Length = 24,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"Date Invoice was created.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _invoiceDateTime = new HL7V26Field
+        {
+            field = message[@"IVC"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_invoiceDateTime.field.FieldRepetitions != null && _invoiceDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _invoiceDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_invoiceDateTime, fieldData);
+        }
+
+        return _invoiceDateTime;
+    } 
+}
+
+internal HL7V26Field _invoiceAmount;
+
+public HL7V26Field InvoiceAmount
+{
+    get
+    {
+        if (_invoiceAmount != null)
+        {
+            return _invoiceAmount;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.8",
+            Type = @"Field",
+            Position = @"IVC.8",
+            Name = @"Invoice Amount",
+            Length = 254,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Sum total of Product/Service Billed Amount on PSL for all Product/Service Line Items for this Invoice.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVC.4",
-                            Type = @"Field",
-                            Position = @"IVC.4",
-                            Name = @"Invoice Control",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0553",
-                            TableName = @"Invoice Control Code",
-                            Description = @"Code indicating what action is being performed by this message. Refer to User-defined Table 0553 - Invoice Control Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.5",
-                            Type = @"Field",
-                            Position = @"IVC.5",
-                            Name = @"Invoice Reason",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0554",
-                            TableName = @"Invoice Reason Codes",
-                            Description = @"Code describing reason for this Invoice. Refer to User-defined Table 0554 - Invoice Reason Codes for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.6",
-                            Type = @"Field",
-                            Position = @"IVC.6",
-                            Name = @"Invoice Type",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0555",
-                            TableName = @"Invoice Type",
-                            Description = @"Code indicating the type of Invoice. Refer to User-defined Table 0555 - Invoice Type for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.7",
-                            Type = @"Field",
-                            Position = @"IVC.7",
-                            Name = @"Invoice Date/Time",
-                            Length = 24,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Date Invoice was created.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.8",
-                            Type = @"Field",
-                            Position = @"IVC.8",
-                            Name = @"Invoice Amount",
-                            Length = 254,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Sum total of Product/Service Billed Amount on PSL for all Product/Service Line Items for this Invoice.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVC.8.1",
                             Type = @"Component",
@@ -686,43 +896,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _invoiceAmount = new HL7V26Field
+        {
+            field = message[@"IVC"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_invoiceAmount.field.FieldRepetitions != null && _invoiceAmount.field.FieldRepetitions.Count > 0)
+        {
+            _invoiceAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_invoiceAmount, fieldData);
+        }
+
+        return _invoiceAmount;
+    } 
+}
+
+internal HL7V26Field _paymentTerms;
+
+public HL7V26Field PaymentTerms
+{
+    get
+    {
+        if (_paymentTerms != null)
+        {
+            return _paymentTerms;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.9",
+            Type = @"Field",
+            Position = @"IVC.9",
+            Name = @"Payment Terms",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Terms for Payer payment of Invoice (e.g., 24% net 30 days).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _paymentTerms = new HL7V26Field
+        {
+            field = message[@"IVC"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_paymentTerms.field.FieldRepetitions != null && _paymentTerms.field.FieldRepetitions.Count > 0)
+        {
+            _paymentTerms.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_paymentTerms, fieldData);
+        }
+
+        return _paymentTerms;
+    } 
+}
+
+internal HL7V26Field _providerOrganization;
+
+public HL7V26Field ProviderOrganization
+{
+    get
+    {
+        if (_providerOrganization != null)
+        {
+            return _providerOrganization;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.10",
+            Type = @"Field",
+            Position = @"IVC.10",
+            Name = @"Provider Organization",
+            Length = 183,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"Business organization that is responsible for the invoice (e.g., Provider organization, clinic organization).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVC.9",
-                            Type = @"Field",
-                            Position = @"IVC.9",
-                            Name = @"Payment Terms",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Terms for Payer payment of Invoice (e.g., 24% net 30 days).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.10",
-                            Type = @"Field",
-                            Position = @"IVC.10",
-                            Name = @"Provider Organization",
-                            Length = 183,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Business organization that is responsible for the invoice (e.g., Provider organization, clinic organization).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVC.10.1",
                             Type = @"Component",
@@ -1004,25 +1271,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerOrganization = new HL7V26Field
+        {
+            field = message[@"IVC"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerOrganization.field.FieldRepetitions != null && _providerOrganization.field.FieldRepetitions.Count > 0)
+        {
+            _providerOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_providerOrganization, fieldData);
+        }
+
+        return _providerOrganization;
+    } 
+}
+
+internal HL7V26Field _payerOrganization;
+
+public HL7V26Field PayerOrganization
+{
+    get
+    {
+        if (_payerOrganization != null)
+        {
+            return _payerOrganization;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.11",
+            Type = @"Field",
+            Position = @"IVC.11",
+            Name = @"Payer Organization",
+            Length = 183,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"The business organization that is designated as Payer for this Invoice. This Payer may be the primary, secondary, tertiary Payer, depending on Insurance Information specified in the Invoice",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVC.11",
-                            Type = @"Field",
-                            Position = @"IVC.11",
-                            Name = @"Payer Organization",
-                            Length = 183,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The business organization that is designated as Payer for this Invoice. This Payer may be the primary, secondary, tertiary Payer, depending on Insurance Information specified in the Invoice",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVC.11.1",
                             Type = @"Component",
@@ -1304,25 +1601,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _payerOrganization = new HL7V26Field
+        {
+            field = message[@"IVC"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payerOrganization.field.FieldRepetitions != null && _payerOrganization.field.FieldRepetitions.Count > 0)
+        {
+            _payerOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_payerOrganization, fieldData);
+        }
+
+        return _payerOrganization;
+    } 
+}
+
+internal HL7V26Field _attention;
+
+public HL7V26Field Attention
+{
+    get
+    {
+        if (_attention != null)
+        {
+            return _attention;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.12",
+            Type = @"Field",
+            Position = @"IVC.12",
+            Name = @"Attention",
+            Length = 637,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"Attention to individual in Payer Organization who needs to review this Invoice.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVC.12",
-                            Type = @"Field",
-                            Position = @"IVC.12",
-                            Name = @"Attention",
-                            Length = 637,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention to individual in Payer Organization who needs to review this Invoice.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVC.12.1",
                             Type = @"Component",
@@ -2442,79 +2769,190 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _attention = new HL7V26Field
+        {
+            field = message[@"IVC"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_attention.field.FieldRepetitions != null && _attention.field.FieldRepetitions.Count > 0)
+        {
+            _attention.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_attention, fieldData);
+        }
+
+        return _attention;
+    } 
+}
+
+internal HL7V26Field _lastInvoiceIndicator;
+
+public HL7V26Field LastInvoiceIndicator
+{
+    get
+    {
+        if (_lastInvoiceIndicator != null)
+        {
+            return _lastInvoiceIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.13",
+            Type = @"Field",
+            Position = @"IVC.13",
+            Name = @"Last Invoice Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"Can be set to indicate that this is the last Invoice for a particular Case, Claim and/or Encounter (1). Refer to HL7-Table 0136 - Yes/No-Indicator for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _lastInvoiceIndicator = new HL7V26Field
+        {
+            field = message[@"IVC"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_lastInvoiceIndicator.field.FieldRepetitions != null && _lastInvoiceIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _lastInvoiceIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_lastInvoiceIndicator, fieldData);
+        }
+
+        return _lastInvoiceIndicator;
+    } 
+}
+
+internal HL7V26Field _invoiceBookingPeriod;
+
+public HL7V26Field InvoiceBookingPeriod
+{
+    get
+    {
+        if (_invoiceBookingPeriod != null)
+        {
+            return _invoiceBookingPeriod;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.14",
+            Type = @"Field",
+            Position = @"IVC.14",
+            Name = @"Invoice Booking Period",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"Period in which the invoice must be booked.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _invoiceBookingPeriod = new HL7V26Field
+        {
+            field = message[@"IVC"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_invoiceBookingPeriod.field.FieldRepetitions != null && _invoiceBookingPeriod.field.FieldRepetitions.Count > 0)
+        {
+            _invoiceBookingPeriod.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_invoiceBookingPeriod, fieldData);
+        }
+
+        return _invoiceBookingPeriod;
+    } 
+}
+
+internal HL7V26Field _origin;
+
+public HL7V26Field Origin
+{
+    get
+    {
+        if (_origin != null)
+        {
+            return _origin;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.15",
+            Type = @"Field",
+            Position = @"IVC.15",
+            Name = @"Origin",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Responsible Person for this specific invoice. For more structured output use CTD-Segment instead.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _origin = new HL7V26Field
+        {
+            field = message[@"IVC"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_origin.field.FieldRepetitions != null && _origin.field.FieldRepetitions.Count > 0)
+        {
+            _origin.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_origin, fieldData);
+        }
+
+        return _origin;
+    } 
+}
+
+internal HL7V26Field _invoiceFixedAmount;
+
+public HL7V26Field InvoiceFixedAmount
+{
+    get
+    {
+        if (_invoiceFixedAmount != null)
+        {
+            return _invoiceFixedAmount;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.16",
+            Type = @"Field",
+            Position = @"IVC.16",
+            Name = @"Invoice Fixed Amount",
+            Length = 254,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Fixed Amount for this invoice.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVC.13",
-                            Type = @"Field",
-                            Position = @"IVC.13",
-                            Name = @"Last Invoice Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"Can be set to indicate that this is the last Invoice for a particular Case, Claim and/or Encounter (1). Refer to HL7-Table 0136 - Yes/No-Indicator for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.14",
-                            Type = @"Field",
-                            Position = @"IVC.14",
-                            Name = @"Invoice Booking Period",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Period in which the invoice must be booked.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.15",
-                            Type = @"Field",
-                            Position = @"IVC.15",
-                            Name = @"Origin",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Responsible Person for this specific invoice. For more structured output use CTD-Segment instead.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.16",
-                            Type = @"Field",
-                            Position = @"IVC.16",
-                            Name = @"Invoice Fixed Amount",
-                            Length = 254,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Fixed Amount for this invoice.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVC.16.1",
                             Type = @"Component",
@@ -2814,25 +3252,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _invoiceFixedAmount = new HL7V26Field
+        {
+            field = message[@"IVC"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_invoiceFixedAmount.field.FieldRepetitions != null && _invoiceFixedAmount.field.FieldRepetitions.Count > 0)
+        {
+            _invoiceFixedAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_invoiceFixedAmount, fieldData);
+        }
+
+        return _invoiceFixedAmount;
+    } 
+}
+
+internal HL7V26Field _specialCosts;
+
+public HL7V26Field SpecialCosts
+{
+    get
+    {
+        if (_specialCosts != null)
+        {
+            return _specialCosts;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.17",
+            Type = @"Field",
+            Position = @"IVC.17",
+            Name = @"Special Costs",
+            Length = 254,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Special costs for this invoice.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVC.17",
-                            Type = @"Field",
-                            Position = @"IVC.17",
-                            Name = @"Special Costs",
-                            Length = 254,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Special costs for this invoice.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVC.17.1",
                             Type = @"Component",
@@ -3132,25 +3600,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specialCosts = new HL7V26Field
+        {
+            field = message[@"IVC"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specialCosts.field.FieldRepetitions != null && _specialCosts.field.FieldRepetitions.Count > 0)
+        {
+            _specialCosts.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_specialCosts, fieldData);
+        }
+
+        return _specialCosts;
+    } 
+}
+
+internal HL7V26Field _amountforDoctorsTreatment;
+
+public HL7V26Field AmountforDoctorsTreatment
+{
+    get
+    {
+        if (_amountforDoctorsTreatment != null)
+        {
+            return _amountforDoctorsTreatment;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.18",
+            Type = @"Field",
+            Position = @"IVC.18",
+            Name = @"Amount for Doctors Treatment",
+            Length = 254,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Special amount for doctor's treatment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVC.18",
-                            Type = @"Field",
-                            Position = @"IVC.18",
-                            Name = @"Amount for Doctors Treatment",
-                            Length = 254,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Special amount for doctor's treatment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVC.18.1",
                             Type = @"Component",
@@ -3450,25 +3948,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _amountforDoctorsTreatment = new HL7V26Field
+        {
+            field = message[@"IVC"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_amountforDoctorsTreatment.field.FieldRepetitions != null && _amountforDoctorsTreatment.field.FieldRepetitions.Count > 0)
+        {
+            _amountforDoctorsTreatment.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_amountforDoctorsTreatment, fieldData);
+        }
+
+        return _amountforDoctorsTreatment;
+    } 
+}
+
+internal HL7V26Field _responsiblePhysician;
+
+public HL7V26Field ResponsiblePhysician
+{
+    get
+    {
+        if (_responsiblePhysician != null)
+        {
+            return _responsiblePhysician;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.19",
+            Type = @"Field",
+            Position = @"IVC.19",
+            Name = @"Responsible Physician",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"Doctor who is responsible for this invoice.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVC.19",
-                            Type = @"Field",
-                            Position = @"IVC.19",
-                            Name = @"Responsible Physician",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Doctor who is responsible for this invoice.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVC.19.1",
                             Type = @"Component",
@@ -4588,25 +5116,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _responsiblePhysician = new HL7V26Field
+        {
+            field = message[@"IVC"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_responsiblePhysician.field.FieldRepetitions != null && _responsiblePhysician.field.FieldRepetitions.Count > 0)
+        {
+            _responsiblePhysician.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_responsiblePhysician, fieldData);
+        }
+
+        return _responsiblePhysician;
+    } 
+}
+
+internal HL7V26Field _costCenter;
+
+public HL7V26Field CostCenter
+{
+    get
+    {
+        if (_costCenter != null)
+        {
+            return _costCenter;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.20",
+            Type = @"Field",
+            Position = @"IVC.20",
+            Name = @"Cost Center",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID with Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"Cost centers are organizational units or activities that provide goods and services. In this context,it would bethe department which delivered the Service/Product Line Item, e.g., Radiology, Emergency Room.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVC.20",
-                            Type = @"Field",
-                            Position = @"IVC.20",
-                            Name = @"Cost Center",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID with Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Cost centers are organizational units or activities that provide goods and services. In this context,it would bethe department which delivered the Service/Product Line Item, e.g., Radiology, Emergency Room.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVC.20.1",
                             Type = @"Component",
@@ -5208,25 +5766,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _costCenter = new HL7V26Field
+        {
+            field = message[@"IVC"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_costCenter.field.FieldRepetitions != null && _costCenter.field.FieldRepetitions.Count > 0)
+        {
+            _costCenter.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_costCenter, fieldData);
+        }
+
+        return _costCenter;
+    } 
+}
+
+internal HL7V26Field _invoicePrepaidAmount;
+
+public HL7V26Field InvoicePrepaidAmount
+{
+    get
+    {
+        if (_invoicePrepaidAmount != null)
+        {
+            return _invoicePrepaidAmount;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.21",
+            Type = @"Field",
+            Position = @"IVC.21",
+            Name = @"Invoice Prepaid Amount",
+            Length = 254,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Deposit paid to the service Provider prior to admission",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVC.21",
-                            Type = @"Field",
-                            Position = @"IVC.21",
-                            Name = @"Invoice Prepaid Amount",
-                            Length = 254,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Deposit paid to the service Provider prior to admission",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVC.21.1",
                             Type = @"Component",
@@ -5526,25 +6114,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _invoicePrepaidAmount = new HL7V26Field
+        {
+            field = message[@"IVC"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_invoicePrepaidAmount.field.FieldRepetitions != null && _invoicePrepaidAmount.field.FieldRepetitions.Count > 0)
+        {
+            _invoicePrepaidAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_invoicePrepaidAmount, fieldData);
+        }
+
+        return _invoicePrepaidAmount;
+    } 
+}
+
+internal HL7V26Field _totalInvoiceAmountwithoutPrepaidAmount;
+
+public HL7V26Field TotalInvoiceAmountwithoutPrepaidAmount
+{
+    get
+    {
+        if (_totalInvoiceAmountwithoutPrepaidAmount != null)
+        {
+            return _totalInvoiceAmountwithoutPrepaidAmount;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.22",
+            Type = @"Field",
+            Position = @"IVC.22",
+            Name = @"Total Invoice Amount without Prepaid Amount",
+            Length = 254,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Amount of Invoice without the prepaid deposit (IV-8 minus IVC-21)",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVC.22",
-                            Type = @"Field",
-                            Position = @"IVC.22",
-                            Name = @"Total Invoice Amount without Prepaid Amount",
-                            Length = 254,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Amount of Invoice without the prepaid deposit (IV-8 minus IVC-21)",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVC.22.1",
                             Type = @"Component",
@@ -5844,25 +6462,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _totalInvoiceAmountwithoutPrepaidAmount = new HL7V26Field
+        {
+            field = message[@"IVC"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_totalInvoiceAmountwithoutPrepaidAmount.field.FieldRepetitions != null && _totalInvoiceAmountwithoutPrepaidAmount.field.FieldRepetitions.Count > 0)
+        {
+            _totalInvoiceAmountwithoutPrepaidAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_totalInvoiceAmountwithoutPrepaidAmount, fieldData);
+        }
+
+        return _totalInvoiceAmountwithoutPrepaidAmount;
+    } 
+}
+
+internal HL7V26Field _totalAmountofVAT;
+
+public HL7V26Field TotalAmountofVAT
+{
+    get
+    {
+        if (_totalAmountofVAT != null)
+        {
+            return _totalAmountofVAT;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"IVC.23",
+            Type = @"Field",
+            Position = @"IVC.23",
+            Name = @"Total-Amount of VAT",
+            Length = 254,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Total Amount of VAT included in the Total Invoice Amount (IVC-8)",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IVC.23",
-                            Type = @"Field",
-                            Position = @"IVC.23",
-                            Name = @"Total-Amount of VAT",
-                            Length = 254,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Total Amount of VAT included in the Total Invoice Amount (IVC-8)",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IVC.23.1",
                             Type = @"Component",
@@ -6162,1100 +6810,39 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.24",
-                            Type = @"Field",
-                            Position = @"IVC.24",
-                            Name = @"VAT-Rates applied",
-                            Length = 1024,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Applied VAT Rates on Invoice. Multiple VAT-rates may be applied according to the type of service",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.25",
-                            Type = @"Field",
-                            Position = @"IVC.25",
-                            Name = @"Benefit Group",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0556",
-                            TableName = @"Benefit Group",
-                            Description = @"Code indicating the Benefit group. Refer to User-defined Table 0556 - Benefit Group for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.26",
-                            Type = @"Field",
-                            Position = @"IVC.26",
-                            Name = @"Provider Tax ID",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Tax ID of the Provider (general Tax identification number or VAT number).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.27",
-                            Type = @"Field",
-                            Position = @"IVC.27",
-                            Name = @"Payer Tax ID",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Tax ID of the Payer (general Tax identification number or VAT number)",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.28",
-                            Type = @"Field",
-                            Position = @"IVC.28",
-                            Name = @"Provider Tax status",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0572",
-                            TableName = @"Tax status",
-                            Description = @"Code indicating the tax status of the provider. Refer to User-defined Table 0572 - Tax status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.29",
-                            Type = @"Field",
-                            Position = @"IVC.29",
-                            Name = @"Payer Tax status",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0572",
-                            TableName = @"Tax status",
-                            Description = @"Code indicating the tax status of the payer. Refer to User-defined Table 0572 - Tax status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IVC.30",
-                            Type = @"Field",
-                            Position = @"IVC.30",
-                            Name = @"Sales Tax ID",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Tax ID specific to Sales Tax",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentIVC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field providerInvoiceNumber;
-
-public HL7V26Field ProviderInvoiceNumber
-{
-    get
-    {
-        if (providerInvoiceNumber != null)
-        {
-            return providerInvoiceNumber;
-        }
-
-        providerInvoiceNumber = new HL7V26Field
-        {
-            field = message[@"IVC"][1],
-            Id = @"IVC.1",
-            Type = @"Field",
-            Position = @"IVC.1",
-            Name = @"Provider Invoice Number",
-            Length = 74,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique Invoice Number assigned by the Provider Application.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerInvoiceNumber.field.FieldRepetitions != null && providerInvoiceNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerInvoiceNumber.Id));
-            providerInvoiceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(providerInvoiceNumber, fieldData);
-        }
-
-        return providerInvoiceNumber;
-    } 
-}
-
-internal HL7V26Field payerInvoiceNumber;
-
-public HL7V26Field PayerInvoiceNumber
-{
-    get
-    {
-        if (payerInvoiceNumber != null)
-        {
-            return payerInvoiceNumber;
-        }
-
-        payerInvoiceNumber = new HL7V26Field
-        {
-            field = message[@"IVC"][2],
-            Id = @"IVC.2",
-            Type = @"Field",
-            Position = @"IVC.2",
-            Name = @"Payer Invoice Number",
-            Length = 74,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique Invoice Number assigned by the Payer Application.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payerInvoiceNumber.field.FieldRepetitions != null && payerInvoiceNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payerInvoiceNumber.Id));
-            payerInvoiceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(payerInvoiceNumber, fieldData);
-        }
-
-        return payerInvoiceNumber;
-    } 
-}
-
-internal HL7V26Field contractAgreementNumber;
-
-public HL7V26Field ContractAgreementNumber
-{
-    get
-    {
-        if (contractAgreementNumber != null)
-        {
-            return contractAgreementNumber;
-        }
-
-        contractAgreementNumber = new HL7V26Field
-        {
-            field = message[@"IVC"][3],
-            Id = @"IVC.3",
-            Type = @"Field",
-            Position = @"IVC.3",
-            Name = @"Contract/Agreement Number",
-            Length = 74,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Contract/agreement number issued by Payer which must be specified in some circumstances by the Provider.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contractAgreementNumber.field.FieldRepetitions != null && contractAgreementNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contractAgreementNumber.Id));
-            contractAgreementNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(contractAgreementNumber, fieldData);
-        }
-
-        return contractAgreementNumber;
-    } 
-}
-
-internal HL7V26Field invoiceControl;
-
-public HL7V26Field InvoiceControl
-{
-    get
-    {
-        if (invoiceControl != null)
-        {
-            return invoiceControl;
-        }
-
-        invoiceControl = new HL7V26Field
-        {
-            field = message[@"IVC"][4],
-            Id = @"IVC.4",
-            Type = @"Field",
-            Position = @"IVC.4",
-            Name = @"Invoice Control",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0553",
-            TableName = @"Invoice Control Code",
-            Description = @"Code indicating what action is being performed by this message. Refer to User-defined Table 0553 - Invoice Control Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (invoiceControl.field.FieldRepetitions != null && invoiceControl.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(invoiceControl.Id));
-            invoiceControl.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(invoiceControl, fieldData);
-        }
-
-        return invoiceControl;
-    } 
-}
-
-internal HL7V26Field invoiceReason;
-
-public HL7V26Field InvoiceReason
-{
-    get
-    {
-        if (invoiceReason != null)
-        {
-            return invoiceReason;
-        }
-
-        invoiceReason = new HL7V26Field
-        {
-            field = message[@"IVC"][5],
-            Id = @"IVC.5",
-            Type = @"Field",
-            Position = @"IVC.5",
-            Name = @"Invoice Reason",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0554",
-            TableName = @"Invoice Reason Codes",
-            Description = @"Code describing reason for this Invoice. Refer to User-defined Table 0554 - Invoice Reason Codes for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (invoiceReason.field.FieldRepetitions != null && invoiceReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(invoiceReason.Id));
-            invoiceReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(invoiceReason, fieldData);
-        }
-
-        return invoiceReason;
-    } 
-}
-
-internal HL7V26Field invoiceType;
-
-public HL7V26Field InvoiceType
-{
-    get
-    {
-        if (invoiceType != null)
-        {
-            return invoiceType;
-        }
-
-        invoiceType = new HL7V26Field
-        {
-            field = message[@"IVC"][6],
-            Id = @"IVC.6",
-            Type = @"Field",
-            Position = @"IVC.6",
-            Name = @"Invoice Type",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0555",
-            TableName = @"Invoice Type",
-            Description = @"Code indicating the type of Invoice. Refer to User-defined Table 0555 - Invoice Type for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (invoiceType.field.FieldRepetitions != null && invoiceType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(invoiceType.Id));
-            invoiceType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(invoiceType, fieldData);
-        }
-
-        return invoiceType;
-    } 
-}
-
-internal HL7V26Field invoiceDateTime;
-
-public HL7V26Field InvoiceDateTime
-{
-    get
-    {
-        if (invoiceDateTime != null)
-        {
-            return invoiceDateTime;
-        }
-
-        invoiceDateTime = new HL7V26Field
-        {
-            field = message[@"IVC"][7],
-            Id = @"IVC.7",
-            Type = @"Field",
-            Position = @"IVC.7",
-            Name = @"Invoice Date/Time",
-            Length = 24,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"Date Invoice was created.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (invoiceDateTime.field.FieldRepetitions != null && invoiceDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(invoiceDateTime.Id));
-            invoiceDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(invoiceDateTime, fieldData);
-        }
-
-        return invoiceDateTime;
-    } 
-}
-
-internal HL7V26Field invoiceAmount;
-
-public HL7V26Field InvoiceAmount
-{
-    get
-    {
-        if (invoiceAmount != null)
-        {
-            return invoiceAmount;
-        }
-
-        invoiceAmount = new HL7V26Field
-        {
-            field = message[@"IVC"][8],
-            Id = @"IVC.8",
-            Type = @"Field",
-            Position = @"IVC.8",
-            Name = @"Invoice Amount",
-            Length = 254,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Sum total of Product/Service Billed Amount on PSL for all Product/Service Line Items for this Invoice.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (invoiceAmount.field.FieldRepetitions != null && invoiceAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(invoiceAmount.Id));
-            invoiceAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(invoiceAmount, fieldData);
-        }
-
-        return invoiceAmount;
-    } 
-}
-
-internal HL7V26Field paymentTerms;
-
-public HL7V26Field PaymentTerms
-{
-    get
-    {
-        if (paymentTerms != null)
-        {
-            return paymentTerms;
-        }
-
-        paymentTerms = new HL7V26Field
-        {
-            field = message[@"IVC"][9],
-            Id = @"IVC.9",
-            Type = @"Field",
-            Position = @"IVC.9",
-            Name = @"Payment Terms",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Terms for Payer payment of Invoice (e.g., 24% net 30 days).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (paymentTerms.field.FieldRepetitions != null && paymentTerms.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(paymentTerms.Id));
-            paymentTerms.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(paymentTerms, fieldData);
-        }
-
-        return paymentTerms;
-    } 
-}
-
-internal HL7V26Field providerOrganization;
-
-public HL7V26Field ProviderOrganization
-{
-    get
-    {
-        if (providerOrganization != null)
-        {
-            return providerOrganization;
-        }
-
-        providerOrganization = new HL7V26Field
-        {
-            field = message[@"IVC"][10],
-            Id = @"IVC.10",
-            Type = @"Field",
-            Position = @"IVC.10",
-            Name = @"Provider Organization",
-            Length = 183,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"Business organization that is responsible for the invoice (e.g., Provider organization, clinic organization).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerOrganization.field.FieldRepetitions != null && providerOrganization.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerOrganization.Id));
-            providerOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(providerOrganization, fieldData);
-        }
-
-        return providerOrganization;
-    } 
-}
-
-internal HL7V26Field payerOrganization;
-
-public HL7V26Field PayerOrganization
-{
-    get
-    {
-        if (payerOrganization != null)
-        {
-            return payerOrganization;
-        }
-
-        payerOrganization = new HL7V26Field
-        {
-            field = message[@"IVC"][11],
-            Id = @"IVC.11",
-            Type = @"Field",
-            Position = @"IVC.11",
-            Name = @"Payer Organization",
-            Length = 183,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"The business organization that is designated as Payer for this Invoice. This Payer may be the primary, secondary, tertiary Payer, depending on Insurance Information specified in the Invoice",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payerOrganization.field.FieldRepetitions != null && payerOrganization.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payerOrganization.Id));
-            payerOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(payerOrganization, fieldData);
-        }
-
-        return payerOrganization;
-    } 
-}
-
-internal HL7V26Field attention;
-
-public HL7V26Field Attention
-{
-    get
-    {
-        if (attention != null)
-        {
-            return attention;
-        }
-
-        attention = new HL7V26Field
-        {
-            field = message[@"IVC"][12],
-            Id = @"IVC.12",
-            Type = @"Field",
-            Position = @"IVC.12",
-            Name = @"Attention",
-            Length = 637,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"Attention to individual in Payer Organization who needs to review this Invoice.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (attention.field.FieldRepetitions != null && attention.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(attention.Id));
-            attention.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(attention, fieldData);
-        }
-
-        return attention;
-    } 
-}
-
-internal HL7V26Field lastInvoiceIndicator;
-
-public HL7V26Field LastInvoiceIndicator
-{
-    get
-    {
-        if (lastInvoiceIndicator != null)
-        {
-            return lastInvoiceIndicator;
-        }
-
-        lastInvoiceIndicator = new HL7V26Field
-        {
-            field = message[@"IVC"][13],
-            Id = @"IVC.13",
-            Type = @"Field",
-            Position = @"IVC.13",
-            Name = @"Last Invoice Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"Can be set to indicate that this is the last Invoice for a particular Case, Claim and/or Encounter (1). Refer to HL7-Table 0136 - Yes/No-Indicator for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (lastInvoiceIndicator.field.FieldRepetitions != null && lastInvoiceIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(lastInvoiceIndicator.Id));
-            lastInvoiceIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(lastInvoiceIndicator, fieldData);
-        }
-
-        return lastInvoiceIndicator;
-    } 
-}
-
-internal HL7V26Field invoiceBookingPeriod;
-
-public HL7V26Field InvoiceBookingPeriod
-{
-    get
-    {
-        if (invoiceBookingPeriod != null)
-        {
-            return invoiceBookingPeriod;
-        }
-
-        invoiceBookingPeriod = new HL7V26Field
-        {
-            field = message[@"IVC"][14],
-            Id = @"IVC.14",
-            Type = @"Field",
-            Position = @"IVC.14",
-            Name = @"Invoice Booking Period",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"Period in which the invoice must be booked.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (invoiceBookingPeriod.field.FieldRepetitions != null && invoiceBookingPeriod.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(invoiceBookingPeriod.Id));
-            invoiceBookingPeriod.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(invoiceBookingPeriod, fieldData);
-        }
-
-        return invoiceBookingPeriod;
-    } 
-}
-
-internal HL7V26Field origin;
-
-public HL7V26Field Origin
-{
-    get
-    {
-        if (origin != null)
-        {
-            return origin;
-        }
-
-        origin = new HL7V26Field
-        {
-            field = message[@"IVC"][15],
-            Id = @"IVC.15",
-            Type = @"Field",
-            Position = @"IVC.15",
-            Name = @"Origin",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Responsible Person for this specific invoice. For more structured output use CTD-Segment instead.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (origin.field.FieldRepetitions != null && origin.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(origin.Id));
-            origin.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(origin, fieldData);
-        }
-
-        return origin;
-    } 
-}
-
-internal HL7V26Field invoiceFixedAmount;
-
-public HL7V26Field InvoiceFixedAmount
-{
-    get
-    {
-        if (invoiceFixedAmount != null)
-        {
-            return invoiceFixedAmount;
-        }
-
-        invoiceFixedAmount = new HL7V26Field
-        {
-            field = message[@"IVC"][16],
-            Id = @"IVC.16",
-            Type = @"Field",
-            Position = @"IVC.16",
-            Name = @"Invoice Fixed Amount",
-            Length = 254,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Fixed Amount for this invoice.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (invoiceFixedAmount.field.FieldRepetitions != null && invoiceFixedAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(invoiceFixedAmount.Id));
-            invoiceFixedAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(invoiceFixedAmount, fieldData);
-        }
-
-        return invoiceFixedAmount;
-    } 
-}
-
-internal HL7V26Field specialCosts;
-
-public HL7V26Field SpecialCosts
-{
-    get
-    {
-        if (specialCosts != null)
-        {
-            return specialCosts;
-        }
-
-        specialCosts = new HL7V26Field
-        {
-            field = message[@"IVC"][17],
-            Id = @"IVC.17",
-            Type = @"Field",
-            Position = @"IVC.17",
-            Name = @"Special Costs",
-            Length = 254,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Special costs for this invoice.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specialCosts.field.FieldRepetitions != null && specialCosts.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specialCosts.Id));
-            specialCosts.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(specialCosts, fieldData);
-        }
-
-        return specialCosts;
-    } 
-}
-
-internal HL7V26Field amountforDoctorsTreatment;
-
-public HL7V26Field AmountforDoctorsTreatment
-{
-    get
-    {
-        if (amountforDoctorsTreatment != null)
-        {
-            return amountforDoctorsTreatment;
-        }
-
-        amountforDoctorsTreatment = new HL7V26Field
-        {
-            field = message[@"IVC"][18],
-            Id = @"IVC.18",
-            Type = @"Field",
-            Position = @"IVC.18",
-            Name = @"Amount for Doctors Treatment",
-            Length = 254,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Special amount for doctor's treatment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (amountforDoctorsTreatment.field.FieldRepetitions != null && amountforDoctorsTreatment.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(amountforDoctorsTreatment.Id));
-            amountforDoctorsTreatment.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(amountforDoctorsTreatment, fieldData);
-        }
-
-        return amountforDoctorsTreatment;
-    } 
-}
-
-internal HL7V26Field responsiblePhysician;
-
-public HL7V26Field ResponsiblePhysician
-{
-    get
-    {
-        if (responsiblePhysician != null)
-        {
-            return responsiblePhysician;
-        }
-
-        responsiblePhysician = new HL7V26Field
-        {
-            field = message[@"IVC"][19],
-            Id = @"IVC.19",
-            Type = @"Field",
-            Position = @"IVC.19",
-            Name = @"Responsible Physician",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"Doctor who is responsible for this invoice.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (responsiblePhysician.field.FieldRepetitions != null && responsiblePhysician.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(responsiblePhysician.Id));
-            responsiblePhysician.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(responsiblePhysician, fieldData);
-        }
-
-        return responsiblePhysician;
-    } 
-}
-
-internal HL7V26Field costCenter;
-
-public HL7V26Field CostCenter
-{
-    get
-    {
-        if (costCenter != null)
-        {
-            return costCenter;
-        }
-
-        costCenter = new HL7V26Field
-        {
-            field = message[@"IVC"][20],
-            Id = @"IVC.20",
-            Type = @"Field",
-            Position = @"IVC.20",
-            Name = @"Cost Center",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID with Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"Cost centers are organizational units or activities that provide goods and services. In this context,it would bethe department which delivered the Service/Product Line Item, e.g., Radiology, Emergency Room.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (costCenter.field.FieldRepetitions != null && costCenter.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(costCenter.Id));
-            costCenter.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(costCenter, fieldData);
-        }
-
-        return costCenter;
-    } 
-}
-
-internal HL7V26Field invoicePrepaidAmount;
-
-public HL7V26Field InvoicePrepaidAmount
-{
-    get
-    {
-        if (invoicePrepaidAmount != null)
-        {
-            return invoicePrepaidAmount;
-        }
-
-        invoicePrepaidAmount = new HL7V26Field
-        {
-            field = message[@"IVC"][21],
-            Id = @"IVC.21",
-            Type = @"Field",
-            Position = @"IVC.21",
-            Name = @"Invoice Prepaid Amount",
-            Length = 254,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Deposit paid to the service Provider prior to admission",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (invoicePrepaidAmount.field.FieldRepetitions != null && invoicePrepaidAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(invoicePrepaidAmount.Id));
-            invoicePrepaidAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(invoicePrepaidAmount, fieldData);
-        }
-
-        return invoicePrepaidAmount;
-    } 
-}
-
-internal HL7V26Field totalInvoiceAmountwithoutPrepaidAmount;
-
-public HL7V26Field TotalInvoiceAmountwithoutPrepaidAmount
-{
-    get
-    {
-        if (totalInvoiceAmountwithoutPrepaidAmount != null)
-        {
-            return totalInvoiceAmountwithoutPrepaidAmount;
-        }
-
-        totalInvoiceAmountwithoutPrepaidAmount = new HL7V26Field
-        {
-            field = message[@"IVC"][22],
-            Id = @"IVC.22",
-            Type = @"Field",
-            Position = @"IVC.22",
-            Name = @"Total Invoice Amount without Prepaid Amount",
-            Length = 254,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Amount of Invoice without the prepaid deposit (IV-8 minus IVC-21)",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (totalInvoiceAmountwithoutPrepaidAmount.field.FieldRepetitions != null && totalInvoiceAmountwithoutPrepaidAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(totalInvoiceAmountwithoutPrepaidAmount.Id));
-            totalInvoiceAmountwithoutPrepaidAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(totalInvoiceAmountwithoutPrepaidAmount, fieldData);
-        }
-
-        return totalInvoiceAmountwithoutPrepaidAmount;
-    } 
-}
-
-internal HL7V26Field totalAmountofVAT;
-
-public HL7V26Field TotalAmountofVAT
-{
-    get
-    {
-        if (totalAmountofVAT != null)
-        {
-            return totalAmountofVAT;
-        }
-
-        totalAmountofVAT = new HL7V26Field
+        _totalAmountofVAT = new HL7V26Field
         {
             field = message[@"IVC"][23],
-            Id = @"IVC.23",
-            Type = @"Field",
-            Position = @"IVC.23",
-            Name = @"Total-Amount of VAT",
-            Length = 254,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Total Amount of VAT included in the Total Invoice Amount (IVC-8)",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (totalAmountofVAT.field.FieldRepetitions != null && totalAmountofVAT.field.FieldRepetitions.Count > 0)
+        if (_totalAmountofVAT.field.FieldRepetitions != null && _totalAmountofVAT.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(totalAmountofVAT.Id));
-            totalAmountofVAT.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(totalAmountofVAT, fieldData);
+            _totalAmountofVAT.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_totalAmountofVAT, fieldData);
         }
 
-        return totalAmountofVAT;
+        return _totalAmountofVAT;
     } 
 }
 
-internal HL7V26Field vATRatesapplied;
+internal HL7V26Field _vATRatesapplied;
 
 public HL7V26Field VATRatesapplied
 {
     get
     {
-        if (vATRatesapplied != null)
+        if (_vATRatesapplied != null)
         {
-            return vATRatesapplied;
+            return _vATRatesapplied;
         }
 
-        vATRatesapplied = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"IVC"][24],
             Id = @"IVC.24",
             Type = @"Field",
             Position = @"IVC.24",
@@ -7269,34 +6856,38 @@ public HL7V26Field VATRatesapplied
             TableName = null,
             Description = @"Applied VAT Rates on Invoice. Multiple VAT-rates may be applied according to the type of service",
             Sample = @"",
+            Fields = null
+        }
+
+        _vATRatesapplied = new HL7V26Field
+        {
+            field = message[@"IVC"][24],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (vATRatesapplied.field.FieldRepetitions != null && vATRatesapplied.field.FieldRepetitions.Count > 0)
+        if (_vATRatesapplied.field.FieldRepetitions != null && _vATRatesapplied.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(vATRatesapplied.Id));
-            vATRatesapplied.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(vATRatesapplied, fieldData);
+            _vATRatesapplied.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_vATRatesapplied, fieldData);
         }
 
-        return vATRatesapplied;
+        return _vATRatesapplied;
     } 
 }
 
-internal HL7V26Field benefitGroup;
+internal HL7V26Field _benefitGroup;
 
 public HL7V26Field BenefitGroup
 {
     get
     {
-        if (benefitGroup != null)
+        if (_benefitGroup != null)
         {
-            return benefitGroup;
+            return _benefitGroup;
         }
 
-        benefitGroup = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"IVC"][25],
             Id = @"IVC.25",
             Type = @"Field",
             Position = @"IVC.25",
@@ -7310,34 +6901,38 @@ public HL7V26Field BenefitGroup
             TableName = @"Benefit Group",
             Description = @"Code indicating the Benefit group. Refer to User-defined Table 0556 - Benefit Group for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _benefitGroup = new HL7V26Field
+        {
+            field = message[@"IVC"][25],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (benefitGroup.field.FieldRepetitions != null && benefitGroup.field.FieldRepetitions.Count > 0)
+        if (_benefitGroup.field.FieldRepetitions != null && _benefitGroup.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(benefitGroup.Id));
-            benefitGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(benefitGroup, fieldData);
+            _benefitGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_benefitGroup, fieldData);
         }
 
-        return benefitGroup;
+        return _benefitGroup;
     } 
 }
 
-internal HL7V26Field providerTaxID;
+internal HL7V26Field _providerTaxID;
 
 public HL7V26Field ProviderTaxID
 {
     get
     {
-        if (providerTaxID != null)
+        if (_providerTaxID != null)
         {
-            return providerTaxID;
+            return _providerTaxID;
         }
 
-        providerTaxID = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"IVC"][26],
             Id = @"IVC.26",
             Type = @"Field",
             Position = @"IVC.26",
@@ -7351,34 +6946,38 @@ public HL7V26Field ProviderTaxID
             TableName = null,
             Description = @"The Tax ID of the Provider (general Tax identification number or VAT number).",
             Sample = @"",
+            Fields = null
+        }
+
+        _providerTaxID = new HL7V26Field
+        {
+            field = message[@"IVC"][26],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (providerTaxID.field.FieldRepetitions != null && providerTaxID.field.FieldRepetitions.Count > 0)
+        if (_providerTaxID.field.FieldRepetitions != null && _providerTaxID.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerTaxID.Id));
-            providerTaxID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(providerTaxID, fieldData);
+            _providerTaxID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_providerTaxID, fieldData);
         }
 
-        return providerTaxID;
+        return _providerTaxID;
     } 
 }
 
-internal HL7V26Field payerTaxID;
+internal HL7V26Field _payerTaxID;
 
 public HL7V26Field PayerTaxID
 {
     get
     {
-        if (payerTaxID != null)
+        if (_payerTaxID != null)
         {
-            return payerTaxID;
+            return _payerTaxID;
         }
 
-        payerTaxID = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"IVC"][27],
             Id = @"IVC.27",
             Type = @"Field",
             Position = @"IVC.27",
@@ -7392,34 +6991,38 @@ public HL7V26Field PayerTaxID
             TableName = null,
             Description = @"The Tax ID of the Payer (general Tax identification number or VAT number)",
             Sample = @"",
+            Fields = null
+        }
+
+        _payerTaxID = new HL7V26Field
+        {
+            field = message[@"IVC"][27],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (payerTaxID.field.FieldRepetitions != null && payerTaxID.field.FieldRepetitions.Count > 0)
+        if (_payerTaxID.field.FieldRepetitions != null && _payerTaxID.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payerTaxID.Id));
-            payerTaxID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(payerTaxID, fieldData);
+            _payerTaxID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_payerTaxID, fieldData);
         }
 
-        return payerTaxID;
+        return _payerTaxID;
     } 
 }
 
-internal HL7V26Field providerTaxstatus;
+internal HL7V26Field _providerTaxstatus;
 
 public HL7V26Field ProviderTaxstatus
 {
     get
     {
-        if (providerTaxstatus != null)
+        if (_providerTaxstatus != null)
         {
-            return providerTaxstatus;
+            return _providerTaxstatus;
         }
 
-        providerTaxstatus = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"IVC"][28],
             Id = @"IVC.28",
             Type = @"Field",
             Position = @"IVC.28",
@@ -7433,34 +7036,38 @@ public HL7V26Field ProviderTaxstatus
             TableName = @"Tax status",
             Description = @"Code indicating the tax status of the provider. Refer to User-defined Table 0572 - Tax status for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _providerTaxstatus = new HL7V26Field
+        {
+            field = message[@"IVC"][28],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (providerTaxstatus.field.FieldRepetitions != null && providerTaxstatus.field.FieldRepetitions.Count > 0)
+        if (_providerTaxstatus.field.FieldRepetitions != null && _providerTaxstatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerTaxstatus.Id));
-            providerTaxstatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(providerTaxstatus, fieldData);
+            _providerTaxstatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_providerTaxstatus, fieldData);
         }
 
-        return providerTaxstatus;
+        return _providerTaxstatus;
     } 
 }
 
-internal HL7V26Field payerTaxstatus;
+internal HL7V26Field _payerTaxstatus;
 
 public HL7V26Field PayerTaxstatus
 {
     get
     {
-        if (payerTaxstatus != null)
+        if (_payerTaxstatus != null)
         {
-            return payerTaxstatus;
+            return _payerTaxstatus;
         }
 
-        payerTaxstatus = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"IVC"][29],
             Id = @"IVC.29",
             Type = @"Field",
             Position = @"IVC.29",
@@ -7474,34 +7081,38 @@ public HL7V26Field PayerTaxstatus
             TableName = @"Tax status",
             Description = @"Code indicating the tax status of the payer. Refer to User-defined Table 0572 - Tax status for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _payerTaxstatus = new HL7V26Field
+        {
+            field = message[@"IVC"][29],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (payerTaxstatus.field.FieldRepetitions != null && payerTaxstatus.field.FieldRepetitions.Count > 0)
+        if (_payerTaxstatus.field.FieldRepetitions != null && _payerTaxstatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payerTaxstatus.Id));
-            payerTaxstatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(payerTaxstatus, fieldData);
+            _payerTaxstatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_payerTaxstatus, fieldData);
         }
 
-        return payerTaxstatus;
+        return _payerTaxstatus;
     } 
 }
 
-internal HL7V26Field salesTaxID;
+internal HL7V26Field _salesTaxID;
 
 public HL7V26Field SalesTaxID
 {
     get
     {
-        if (salesTaxID != null)
+        if (_salesTaxID != null)
         {
-            return salesTaxID;
+            return _salesTaxID;
         }
 
-        salesTaxID = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"IVC"][30],
             Id = @"IVC.30",
             Type = @"Field",
             Position = @"IVC.30",
@@ -7515,17 +7126,22 @@ public HL7V26Field SalesTaxID
             TableName = null,
             Description = @"The Tax ID specific to Sales Tax",
             Sample = @"",
+            Fields = null
+        }
+
+        _salesTaxID = new HL7V26Field
+        {
+            field = message[@"IVC"][30],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (salesTaxID.field.FieldRepetitions != null && salesTaxID.field.FieldRepetitions.Count > 0)
+        if (_salesTaxID.field.FieldRepetitions != null && _salesTaxID.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(salesTaxID.Id));
-            salesTaxID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(salesTaxID, fieldData);
+            _salesTaxID.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_salesTaxID, fieldData);
         }
 
-        return salesTaxID;
+        return _salesTaxID;
     } 
 }
     }

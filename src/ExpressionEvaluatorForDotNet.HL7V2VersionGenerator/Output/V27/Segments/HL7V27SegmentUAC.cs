@@ -48,28 +48,40 @@ The processing rules for the ERR segment are outside of HL7's scope."; } }
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentUAC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _userAuthenticationCredentialTypeCode;
+
+public HL7V27Field UserAuthenticationCredentialTypeCode
+{
+    get
+    {
+        if (_userAuthenticationCredentialTypeCode != null)
+        {
+            return _userAuthenticationCredentialTypeCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"UAC.1",
+            Type = @"Field",
+            Position = @"UAC.1",
+            Name = @"User Authentication Credential Type Code",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0615",
+            TableName = @"User Authentication Credential Type Code",
+            Description = @"This an identifier code for the type of user authentication credential. Refer to HL7 Table 0615 – User Authentication Credential Type Code for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"UAC.1",
-                            Type = @"Field",
-                            Position = @"UAC.1",
-                            Name = @"User Authentication Credential Type Code",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0615",
-                            TableName = @"User Authentication Credential Type Code",
-                            Description = @"This an identifier code for the type of user authentication credential. Refer to HL7 Table 0615 – User Authentication Credential Type Code for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UAC.1.1",
                             Type = @"Component",
@@ -495,25 +507,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _userAuthenticationCredentialTypeCode = new HL7V27Field
+        {
+            field = message[@"UAC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_userAuthenticationCredentialTypeCode.field.FieldRepetitions != null && _userAuthenticationCredentialTypeCode.field.FieldRepetitions.Count > 0)
+        {
+            _userAuthenticationCredentialTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_userAuthenticationCredentialTypeCode, fieldData);
+        }
+
+        return _userAuthenticationCredentialTypeCode;
+    } 
+}
+
+internal HL7V27Field _userAuthenticationCredential;
+
+public HL7V27Field UserAuthenticationCredential
+{
+    get
+    {
+        if (_userAuthenticationCredential != null)
+        {
+            return _userAuthenticationCredential;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"UAC.2",
+            Type = @"Field",
+            Position = @"UAC.2",
+            Name = @"User Authentication Credential",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ED",
+            DataTypeName = @"Encapsulated Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This is user credential data as supplied by the sender's operating platform. The content and structure of this is defined by other standards and contain no HL7-relevant data.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"UAC.2",
-                            Type = @"Field",
-                            Position = @"UAC.2",
-                            Name = @"User Authentication Credential",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ED",
-                            DataTypeName = @"Encapsulated Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This is user credential data as supplied by the sender's operating platform. The content and structure of this is defined by other standards and contain no HL7-relevant data.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"UAC.2.1",
                             Type = @"Component",
@@ -665,96 +707,23 @@ If the encoding component (see Section 2.A.24.4, ""Encoding (ID)"") = ""A"" (non
 If the encoding component ED.4 does not equal ""A"", then, after encoding, the (encoded) data must be scanned for HL7 delimiter characters, and any found must be escaped by using the HL7 escape sequences. Only then can the component be added to the HL7 segment/message. On the receiving application, the data field must be de-escaped after being parsed out of the message before being decoded. This can be expressed as ""encode"", ""escape"", ""parse"", ""de-escape"" or ""decode"".",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentUAC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field userAuthenticationCredentialTypeCode;
-
-public HL7V27Field UserAuthenticationCredentialTypeCode
-{
-    get
-    {
-        if (userAuthenticationCredentialTypeCode != null)
-        {
-            return userAuthenticationCredentialTypeCode;
-        }
-
-        userAuthenticationCredentialTypeCode = new HL7V27Field
-        {
-            field = message[@"UAC"][1],
-            Id = @"UAC.1",
-            Type = @"Field",
-            Position = @"UAC.1",
-            Name = @"User Authentication Credential Type Code",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0615",
-            TableName = @"User Authentication Credential Type Code",
-            Description = @"This an identifier code for the type of user authentication credential. Refer to HL7 Table 0615 – User Authentication Credential Type Code for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (userAuthenticationCredentialTypeCode.field.FieldRepetitions != null && userAuthenticationCredentialTypeCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(userAuthenticationCredentialTypeCode.Id));
-            userAuthenticationCredentialTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(userAuthenticationCredentialTypeCode, fieldData);
-        }
-
-        return userAuthenticationCredentialTypeCode;
-    } 
-}
-
-internal HL7V27Field userAuthenticationCredential;
-
-public HL7V27Field UserAuthenticationCredential
-{
-    get
-    {
-        if (userAuthenticationCredential != null)
-        {
-            return userAuthenticationCredential;
-        }
-
-        userAuthenticationCredential = new HL7V27Field
+        _userAuthenticationCredential = new HL7V27Field
         {
             field = message[@"UAC"][2],
-            Id = @"UAC.2",
-            Type = @"Field",
-            Position = @"UAC.2",
-            Name = @"User Authentication Credential",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ED",
-            DataTypeName = @"Encapsulated Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This is user credential data as supplied by the sender's operating platform. The content and structure of this is defined by other standards and contain no HL7-relevant data.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (userAuthenticationCredential.field.FieldRepetitions != null && userAuthenticationCredential.field.FieldRepetitions.Count > 0)
+        if (_userAuthenticationCredential.field.FieldRepetitions != null && _userAuthenticationCredential.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(userAuthenticationCredential.Id));
-            userAuthenticationCredential.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(userAuthenticationCredential, fieldData);
+            _userAuthenticationCredential.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_userAuthenticationCredential, fieldData);
         }
 
-        return userAuthenticationCredential;
+        return _userAuthenticationCredential;
     } 
 }
     }

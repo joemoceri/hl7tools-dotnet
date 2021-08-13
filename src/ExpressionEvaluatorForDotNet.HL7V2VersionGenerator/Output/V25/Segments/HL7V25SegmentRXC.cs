@@ -29,26 +29,36 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"RXC.1",
-                            Type = @"Field",
-                            Position = @"RXC.1",
-                            Name = @"RX Component Type",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0166",
-                            TableName = @"RX Component Type",
-                            Description = @" Refer To UHL7 Table 0166 - RX Component Type for valid values. 
+        public HL7V25SegmentRXC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V25Field _rXComponentType;
+
+public HL7V25Field RXComponentType
+{
+    get
+    {
+        if (_rXComponentType != null)
+        {
+            return _rXComponentType;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"RXC.1",
+            Type = @"Field",
+            Position = @"RXC.1",
+            Name = @"RX Component Type",
+            Length = 1,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0166",
+            TableName = @"RX Component Type",
+            Description = @" Refer To UHL7 Table 0166 - RX Component Type for valid values. 
 
 For the non-IV case, the ""B"" value may still apply.  For example, if a custom dermatologic salve is being prepared, the ""B"" item might be a standard base ointment into which other components are mixed. 
 
@@ -57,26 +67,55 @@ The amount of the ""base"" specified in the ""B"" segment(s) is defined to be th
 The amount specified in each ""A"" segment is defined to be the quantity to be added to the amount of the base as specified in its RXC segment. 
 
 If any ""base"" components are present then these should be transmitted first.  The first ""base"" component in the transmission should be considered the ""primary base"" if such a distinction is necessary.  Similarly, the first ""additive"" in the transmission should be considered the ""primary additive"" if such a distinction is necessary. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _rXComponentType = new HL7V25Field
+        {
+            field = message[@"RXC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rXComponentType.field.FieldRepetitions != null && _rXComponentType.field.FieldRepetitions.Count > 0)
+        {
+            _rXComponentType.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_rXComponentType, fieldData);
+        }
+
+        return _rXComponentType;
+    } 
+}
+
+internal HL7V25Field _componentCode;
+
+public HL7V25Field ComponentCode
+{
+    get
+    {
+        if (_componentCode != null)
+        {
+            return _componentCode;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"RXC.2",
+            Type = @"Field",
+            Position = @"RXC.2",
+            Name = @"Component Code",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is equivalent to OBR-4-universal service ID . It defines the base or component in the same manner as the give and dispense codes. As with the give and dispense codes, it may contain text only, code only, text + code, or text + code + units (implied or explicit). As with the give and dispense codes, if RXC-4-component units is present, this overrides the units implied by the code. If only text is present, the pharmacy or treatment application must include a manual review or reentering of the component drug or treatment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXC.2",
-                            Type = @"Field",
-                            Position = @"RXC.2",
-                            Name = @"Component Code",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is equivalent to OBR-4-universal service ID . It defines the base or component in the same manner as the give and dispense codes. As with the give and dispense codes, it may contain text only, code only, text + code, or text + code + units (implied or explicit). As with the give and dispense codes, if RXC-4-component units is present, this overrides the units implied by the code. If only text is present, the pharmacy or treatment application must include a manual review or reentering of the component drug or treatment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXC.2.1",
                             Type = @"Component",
@@ -182,43 +221,100 @@ If any ""base"" components are present then these should be transmitted first.  
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _componentCode = new HL7V25Field
+        {
+            field = message[@"RXC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_componentCode.field.FieldRepetitions != null && _componentCode.field.FieldRepetitions.Count > 0)
+        {
+            _componentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_componentCode, fieldData);
+        }
+
+        return _componentCode;
+    } 
+}
+
+internal HL7V25Field _componentAmount;
+
+public HL7V25Field ComponentAmount
+{
+    get
+    {
+        if (_componentAmount != null)
+        {
+            return _componentAmount;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"RXC.3",
+            Type = @"Field",
+            Position = @"RXC.3",
+            Name = @"Component Amount",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the amount of this component to be added to the specified amount of the base.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _componentAmount = new HL7V25Field
+        {
+            field = message[@"RXC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_componentAmount.field.FieldRepetitions != null && _componentAmount.field.FieldRepetitions.Count > 0)
+        {
+            _componentAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_componentAmount, fieldData);
+        }
+
+        return _componentAmount;
+    } 
+}
+
+internal HL7V25Field _componentUnits;
+
+public HL7V25Field ComponentUnits
+{
+    get
+    {
+        if (_componentUnits != null)
+        {
+            return _componentUnits;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"RXC.4",
+            Type = @"Field",
+            Position = @"RXC.4",
+            Name = @"Component Units",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the units for the component amount. If present, this overrides the units implied by RXC-2-component code . This must be in simple units that reflect the actual quantity of the component being added. It does not include compound units.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXC.3",
-                            Type = @"Field",
-                            Position = @"RXC.3",
-                            Name = @"Component Amount",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the amount of this component to be added to the specified amount of the base.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXC.4",
-                            Type = @"Field",
-                            Position = @"RXC.4",
-                            Name = @"Component Units",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the units for the component amount. If present, this overrides the units implied by RXC-2-component code . This must be in simple units that reflect the actual quantity of the component being added. It does not include compound units.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXC.4.1",
                             Type = @"Component",
@@ -324,45 +420,102 @@ If any ""base"" components are present then these should be transmitted first.  
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXC.5",
-                            Type = @"Field",
-                            Position = @"RXC.5",
-                            Name = @"Component Strength",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Use when RXC-2-component code does not specify the strength. This is the numeric part of the strength, used in combination with RXC-6-component strength units.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXC.6",
-                            Type = @"Field",
-                            Position = @"RXC.6",
-                            Name = @"Component Strength Units",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Use when RXC-2-component code does not specify the strength. This is the unit of the strength, used in combination with RXC-5-component strength.
+                        }
+        }
+
+        _componentUnits = new HL7V25Field
+        {
+            field = message[@"RXC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_componentUnits.field.FieldRepetitions != null && _componentUnits.field.FieldRepetitions.Count > 0)
+        {
+            _componentUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_componentUnits, fieldData);
+        }
+
+        return _componentUnits;
+    } 
+}
+
+internal HL7V25Field _componentStrength;
+
+public HL7V25Field ComponentStrength
+{
+    get
+    {
+        if (_componentStrength != null)
+        {
+            return _componentStrength;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"RXC.5",
+            Type = @"Field",
+            Position = @"RXC.5",
+            Name = @"Component Strength",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Use when RXC-2-component code does not specify the strength. This is the numeric part of the strength, used in combination with RXC-6-component strength units.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _componentStrength = new HL7V25Field
+        {
+            field = message[@"RXC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_componentStrength.field.FieldRepetitions != null && _componentStrength.field.FieldRepetitions.Count > 0)
+        {
+            _componentStrength.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_componentStrength, fieldData);
+        }
+
+        return _componentStrength;
+    } 
+}
+
+internal HL7V25Field _componentStrengthUnits;
+
+public HL7V25Field ComponentStrengthUnits
+{
+    get
+    {
+        if (_componentStrengthUnits != null)
+        {
+            return _componentStrengthUnits;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"RXC.6",
+            Type = @"Field",
+            Position = @"RXC.6",
+            Name = @"Component Strength Units",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"Use when RXC-2-component code does not specify the strength. This is the unit of the strength, used in combination with RXC-5-component strength.
 
 Note:  These units can be a ""compound quantity;"" i.e., the units may express a quantity per unit of time.  For example, micrograms per hour (micg/h) is an acceptable value.  These compound units are contained in the ISO+ table.  See Chapter 7 for full definition of ISO+ units. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXC.6.1",
                             Type = @"Component",
@@ -468,25 +621,55 @@ Note:  These units can be a ""compound quantity;"" i.e., the units may express a
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _componentStrengthUnits = new HL7V25Field
+        {
+            field = message[@"RXC"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_componentStrengthUnits.field.FieldRepetitions != null && _componentStrengthUnits.field.FieldRepetitions.Count > 0)
+        {
+            _componentStrengthUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_componentStrengthUnits, fieldData);
+        }
+
+        return _componentStrengthUnits;
+    } 
+}
+
+internal HL7V25Field _supplementaryCode;
+
+public HL7V25Field SupplementaryCode
+{
+    get
+    {
+        if (_supplementaryCode != null)
+        {
+            return _supplementaryCode;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"RXC.7",
+            Type = @"Field",
+            Position = @"RXC.7",
+            Name = @"Supplementary Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field accommodates the identification of any codes that might be associated with the pharmaceutical or other treatment substance. Common codes include: the Generic Product Identifier (GPI), Generic Code Number_Sequence Number (GCN_SEQNO), National Drug Code (NDC). ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXC.7",
-                            Type = @"Field",
-                            Position = @"RXC.7",
-                            Name = @"Supplementary Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field accommodates the identification of any codes that might be associated with the pharmaceutical or other treatment substance. Common codes include: the Generic Product Identifier (GPI), Generic Code Number_Sequence Number (GCN_SEQNO), National Drug Code (NDC). ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXC.7.1",
                             Type = @"Component",
@@ -592,43 +775,100 @@ Note:  These units can be a ""compound quantity;"" i.e., the units may express a
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _supplementaryCode = new HL7V25Field
+        {
+            field = message[@"RXC"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_supplementaryCode.field.FieldRepetitions != null && _supplementaryCode.field.FieldRepetitions.Count > 0)
+        {
+            _supplementaryCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_supplementaryCode, fieldData);
+        }
+
+        return _supplementaryCode;
+    } 
+}
+
+internal HL7V25Field _componentDrugStrengthVolume;
+
+public HL7V25Field ComponentDrugStrengthVolume
+{
+    get
+    {
+        if (_componentDrugStrengthVolume != null)
+        {
+            return _componentDrugStrengthVolume;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"RXC.8",
+            Type = @"Field",
+            Position = @"RXC.8",
+            Name = @"Component Drug Strength Volume",
+            Length = 5,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This numeric field defines the volume measurement in which the drug strength concentration is contained.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _componentDrugStrengthVolume = new HL7V25Field
+        {
+            field = message[@"RXC"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_componentDrugStrengthVolume.field.FieldRepetitions != null && _componentDrugStrengthVolume.field.FieldRepetitions.Count > 0)
+        {
+            _componentDrugStrengthVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_componentDrugStrengthVolume, fieldData);
+        }
+
+        return _componentDrugStrengthVolume;
+    } 
+}
+
+internal HL7V25Field _componentDrugStrengthVolumeUnits;
+
+public HL7V25Field ComponentDrugStrengthVolumeUnits
+{
+    get
+    {
+        if (_componentDrugStrengthVolumeUnits != null)
+        {
+            return _componentDrugStrengthVolumeUnits;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"RXC.9",
+            Type = @"Field",
+            Position = @"RXC.9",
+            Name = @"Component Drug Strength Volume Units",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the volumetric unit associated with RXC-8 Component Drug Strength Volume.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXC.8",
-                            Type = @"Field",
-                            Position = @"RXC.8",
-                            Name = @"Component Drug Strength Volume",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This numeric field defines the volume measurement in which the drug strength concentration is contained.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXC.9",
-                            Type = @"Field",
-                            Position = @"RXC.9",
-                            Name = @"Component Drug Strength Volume Units",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the volumetric unit associated with RXC-8 Component Drug Strength Volume.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXC.9.1",
                             Type = @"Component",
@@ -788,393 +1028,23 @@ Note:  These units can be a ""compound quantity;"" i.e., the units may express a
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V25SegmentRXC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V25Field rXComponentType;
-
-public HL7V25Field RXComponentType
-{
-    get
-    {
-        if (rXComponentType != null)
-        {
-            return rXComponentType;
-        }
-
-        rXComponentType = new HL7V25Field
-        {
-            field = message[@"RXC"][1],
-            Id = @"RXC.1",
-            Type = @"Field",
-            Position = @"RXC.1",
-            Name = @"RX Component Type",
-            Length = 1,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0166",
-            TableName = @"RX Component Type",
-            Description = @" Refer To UHL7 Table 0166 - RX Component Type for valid values. 
-
-For the non-IV case, the ""B"" value may still apply.  For example, if a custom dermatologic salve is being prepared, the ""B"" item might be a standard base ointment into which other components are mixed. 
-
-The amount of the ""base"" specified in the ""B"" segment(s) is defined to be the quantity into which amounts specified in the ""A"" components are mixed.  Thus the RXC segments as a group define the ""recipe"" for a particular amount (defined by the base segment(s)).  The give amount, as defined in the RXO, does not need to correspond to this base amount.  For example, the RXC segments may specify a recipe for a liter of a standard type of saline with 1 gram of a particular antimicrobial, while the give amount (from the RXO) may specify the administration of 2 liters of this IV-solution every 24 hours. 
-
-The amount specified in each ""A"" segment is defined to be the quantity to be added to the amount of the base as specified in its RXC segment. 
-
-If any ""base"" components are present then these should be transmitted first.  The first ""base"" component in the transmission should be considered the ""primary base"" if such a distinction is necessary.  Similarly, the first ""additive"" in the transmission should be considered the ""primary additive"" if such a distinction is necessary. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rXComponentType.field.FieldRepetitions != null && rXComponentType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rXComponentType.Id));
-            rXComponentType.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(rXComponentType, fieldData);
-        }
-
-        return rXComponentType;
-    } 
-}
-
-internal HL7V25Field componentCode;
-
-public HL7V25Field ComponentCode
-{
-    get
-    {
-        if (componentCode != null)
-        {
-            return componentCode;
-        }
-
-        componentCode = new HL7V25Field
-        {
-            field = message[@"RXC"][2],
-            Id = @"RXC.2",
-            Type = @"Field",
-            Position = @"RXC.2",
-            Name = @"Component Code",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is equivalent to OBR-4-universal service ID . It defines the base or component in the same manner as the give and dispense codes. As with the give and dispense codes, it may contain text only, code only, text + code, or text + code + units (implied or explicit). As with the give and dispense codes, if RXC-4-component units is present, this overrides the units implied by the code. If only text is present, the pharmacy or treatment application must include a manual review or reentering of the component drug or treatment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (componentCode.field.FieldRepetitions != null && componentCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(componentCode.Id));
-            componentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(componentCode, fieldData);
-        }
-
-        return componentCode;
-    } 
-}
-
-internal HL7V25Field componentAmount;
-
-public HL7V25Field ComponentAmount
-{
-    get
-    {
-        if (componentAmount != null)
-        {
-            return componentAmount;
-        }
-
-        componentAmount = new HL7V25Field
-        {
-            field = message[@"RXC"][3],
-            Id = @"RXC.3",
-            Type = @"Field",
-            Position = @"RXC.3",
-            Name = @"Component Amount",
-            Length = 20,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the amount of this component to be added to the specified amount of the base.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (componentAmount.field.FieldRepetitions != null && componentAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(componentAmount.Id));
-            componentAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(componentAmount, fieldData);
-        }
-
-        return componentAmount;
-    } 
-}
-
-internal HL7V25Field componentUnits;
-
-public HL7V25Field ComponentUnits
-{
-    get
-    {
-        if (componentUnits != null)
-        {
-            return componentUnits;
-        }
-
-        componentUnits = new HL7V25Field
-        {
-            field = message[@"RXC"][4],
-            Id = @"RXC.4",
-            Type = @"Field",
-            Position = @"RXC.4",
-            Name = @"Component Units",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the units for the component amount. If present, this overrides the units implied by RXC-2-component code . This must be in simple units that reflect the actual quantity of the component being added. It does not include compound units.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (componentUnits.field.FieldRepetitions != null && componentUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(componentUnits.Id));
-            componentUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(componentUnits, fieldData);
-        }
-
-        return componentUnits;
-    } 
-}
-
-internal HL7V25Field componentStrength;
-
-public HL7V25Field ComponentStrength
-{
-    get
-    {
-        if (componentStrength != null)
-        {
-            return componentStrength;
-        }
-
-        componentStrength = new HL7V25Field
-        {
-            field = message[@"RXC"][5],
-            Id = @"RXC.5",
-            Type = @"Field",
-            Position = @"RXC.5",
-            Name = @"Component Strength",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Use when RXC-2-component code does not specify the strength. This is the numeric part of the strength, used in combination with RXC-6-component strength units.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (componentStrength.field.FieldRepetitions != null && componentStrength.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(componentStrength.Id));
-            componentStrength.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(componentStrength, fieldData);
-        }
-
-        return componentStrength;
-    } 
-}
-
-internal HL7V25Field componentStrengthUnits;
-
-public HL7V25Field ComponentStrengthUnits
-{
-    get
-    {
-        if (componentStrengthUnits != null)
-        {
-            return componentStrengthUnits;
-        }
-
-        componentStrengthUnits = new HL7V25Field
-        {
-            field = message[@"RXC"][6],
-            Id = @"RXC.6",
-            Type = @"Field",
-            Position = @"RXC.6",
-            Name = @"Component Strength Units",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"Use when RXC-2-component code does not specify the strength. This is the unit of the strength, used in combination with RXC-5-component strength.
-
-Note:  These units can be a ""compound quantity;"" i.e., the units may express a quantity per unit of time.  For example, micrograms per hour (micg/h) is an acceptable value.  These compound units are contained in the ISO+ table.  See Chapter 7 for full definition of ISO+ units. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (componentStrengthUnits.field.FieldRepetitions != null && componentStrengthUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(componentStrengthUnits.Id));
-            componentStrengthUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(componentStrengthUnits, fieldData);
-        }
-
-        return componentStrengthUnits;
-    } 
-}
-
-internal HL7V25Field supplementaryCode;
-
-public HL7V25Field SupplementaryCode
-{
-    get
-    {
-        if (supplementaryCode != null)
-        {
-            return supplementaryCode;
-        }
-
-        supplementaryCode = new HL7V25Field
-        {
-            field = message[@"RXC"][7],
-            Id = @"RXC.7",
-            Type = @"Field",
-            Position = @"RXC.7",
-            Name = @"Supplementary Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field accommodates the identification of any codes that might be associated with the pharmaceutical or other treatment substance. Common codes include: the Generic Product Identifier (GPI), Generic Code Number_Sequence Number (GCN_SEQNO), National Drug Code (NDC). ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (supplementaryCode.field.FieldRepetitions != null && supplementaryCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(supplementaryCode.Id));
-            supplementaryCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(supplementaryCode, fieldData);
-        }
-
-        return supplementaryCode;
-    } 
-}
-
-internal HL7V25Field componentDrugStrengthVolume;
-
-public HL7V25Field ComponentDrugStrengthVolume
-{
-    get
-    {
-        if (componentDrugStrengthVolume != null)
-        {
-            return componentDrugStrengthVolume;
-        }
-
-        componentDrugStrengthVolume = new HL7V25Field
-        {
-            field = message[@"RXC"][8],
-            Id = @"RXC.8",
-            Type = @"Field",
-            Position = @"RXC.8",
-            Name = @"Component Drug Strength Volume",
-            Length = 5,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This numeric field defines the volume measurement in which the drug strength concentration is contained.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (componentDrugStrengthVolume.field.FieldRepetitions != null && componentDrugStrengthVolume.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(componentDrugStrengthVolume.Id));
-            componentDrugStrengthVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(componentDrugStrengthVolume, fieldData);
-        }
-
-        return componentDrugStrengthVolume;
-    } 
-}
-
-internal HL7V25Field componentDrugStrengthVolumeUnits;
-
-public HL7V25Field ComponentDrugStrengthVolumeUnits
-{
-    get
-    {
-        if (componentDrugStrengthVolumeUnits != null)
-        {
-            return componentDrugStrengthVolumeUnits;
-        }
-
-        componentDrugStrengthVolumeUnits = new HL7V25Field
+        _componentDrugStrengthVolumeUnits = new HL7V25Field
         {
             field = message[@"RXC"][9],
-            Id = @"RXC.9",
-            Type = @"Field",
-            Position = @"RXC.9",
-            Name = @"Component Drug Strength Volume Units",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the volumetric unit associated with RXC-8 Component Drug Strength Volume.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (componentDrugStrengthVolumeUnits.field.FieldRepetitions != null && componentDrugStrengthVolumeUnits.field.FieldRepetitions.Count > 0)
+        if (_componentDrugStrengthVolumeUnits.field.FieldRepetitions != null && _componentDrugStrengthVolumeUnits.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(componentDrugStrengthVolumeUnits.Id));
-            componentDrugStrengthVolumeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(componentDrugStrengthVolumeUnits, fieldData);
+            _componentDrugStrengthVolumeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_componentDrugStrengthVolumeUnits, fieldData);
         }
 
-        return componentDrugStrengthVolumeUnits;
+        return _componentDrugStrengthVolumeUnits;
     } 
 }
     }

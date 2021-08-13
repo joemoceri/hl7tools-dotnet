@@ -33,32 +33,44 @@ The positional location of the PRT segment indicates the relationship. When the 
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"PRT.1",
-                            Type = @"Field",
-                            Position = @"PRT.1",
-                            Name = @"Participation Instance Id",
-                            Length = 4,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a unique identifier of the specific participation record.
+        public HL7V27SegmentPRT(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _participationInstanceId;
+
+public HL7V27Field ParticipationInstanceId
+{
+    get
+    {
+        if (_participationInstanceId != null)
+        {
+            return _participationInstanceId;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.1",
+            Type = @"Field",
+            Position = @"PRT.1",
+            Name = @"Participation Instance Id",
+            Length = 4,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a unique identifier of the specific participation record.
 
 In the case of waypoints tracked for a shipment, it identifies the waypoint.
 
 Condition: The identifier is required when known, but there are times we may only know a name but do not have an identifier.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PRT.1.1",
                             Type = @"Component",
@@ -136,43 +148,100 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _participationInstanceId = new HL7V27Field
+        {
+            field = message[@"PRT"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_participationInstanceId.field.FieldRepetitions != null && _participationInstanceId.field.FieldRepetitions.Count > 0)
+        {
+            _participationInstanceId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_participationInstanceId, fieldData);
+        }
+
+        return _participationInstanceId;
+    } 
+}
+
+internal HL7V27Field _actionCode;
+
+public HL7V27Field ActionCode
+{
+    get
+    {
+        if (_actionCode != null)
+        {
+            return _actionCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.2",
+            Type = @"Field",
+            Position = @"PRT.2",
+            Name = @"Action Code",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0287",
+            TableName = @"Problem/Goal Action Code",
+            Description = @"This field reveals the intent of the message. Refer to HL7 Table 0287 – Problem/goal action code for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _actionCode = new HL7V27Field
+        {
+            field = message[@"PRT"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_actionCode.field.FieldRepetitions != null && _actionCode.field.FieldRepetitions.Count > 0)
+        {
+            _actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_actionCode, fieldData);
+        }
+
+        return _actionCode;
+    } 
+}
+
+internal HL7V27Field _actionReason;
+
+public HL7V27Field ActionReason
+{
+    get
+    {
+        if (_actionReason != null)
+        {
+            return _actionReason;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.3",
+            Type = @"Field",
+            Position = @"PRT.3",
+            Name = @"Action Reason",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the reason why the person, organization, location, or device is assuming (or changing) the role (e.g., shift change, new primary nurse, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRT.2",
-                            Type = @"Field",
-                            Position = @"PRT.2",
-                            Name = @"Action Code",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0287",
-                            TableName = @"Problem/Goal Action Code",
-                            Description = @"This field reveals the intent of the message. Refer to HL7 Table 0287 – Problem/goal action code for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRT.3",
-                            Type = @"Field",
-                            Position = @"PRT.3",
-                            Name = @"Action Reason",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the reason why the person, organization, location, or device is assuming (or changing) the role (e.g., shift change, new primary nurse, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRT.3.1",
                             Type = @"Component",
@@ -598,25 +667,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _actionReason = new HL7V27Field
+        {
+            field = message[@"PRT"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_actionReason.field.FieldRepetitions != null && _actionReason.field.FieldRepetitions.Count > 0)
+        {
+            _actionReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_actionReason, fieldData);
+        }
+
+        return _actionReason;
+    } 
+}
+
+internal HL7V27Field _participation;
+
+public HL7V27Field Participation
+{
+    get
+    {
+        if (_participation != null)
+        {
+            return _participation;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.4",
+            Type = @"Field",
+            Position = @"PRT.4",
+            Name = @"Participation",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0912",
+            TableName = @"Participation",
+            Description = @"This field indicates the functional involvement with the activity being transmitted (e.g., Case Manager, Evaluator, Transcriber, Nurse Care Practitioner, Midwife, Physician Assistant, etc.). Refer to HL7 Table 0912 – Participation for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRT.4",
-                            Type = @"Field",
-                            Position = @"PRT.4",
-                            Name = @"Participation",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0912",
-                            TableName = @"Participation",
-                            Description = @"This field indicates the functional involvement with the activity being transmitted (e.g., Case Manager, Evaluator, Transcriber, Nurse Care Practitioner, Midwife, Physician Assistant, etc.). Refer to HL7 Table 0912 – Participation for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRT.4.1",
                             Type = @"Component",
@@ -1042,29 +1141,59 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRT.5",
-                            Type = @"Field",
-                            Position = @"PRT.5",
-                            Name = @"Participation Person",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the identity of the person who is represented in the participation that is being transmitted.
+                        }
+        }
+
+        _participation = new HL7V27Field
+        {
+            field = message[@"PRT"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_participation.field.FieldRepetitions != null && _participation.field.FieldRepetitions.Count > 0)
+        {
+            _participation.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_participation, fieldData);
+        }
+
+        return _participation;
+    } 
+}
+
+internal HL7V27Field _participationPerson;
+
+public HL7V27Field ParticipationPerson
+{
+    get
+    {
+        if (_participationPerson != null)
+        {
+            return _participationPerson;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.5",
+            Type = @"Field",
+            Position = @"PRT.5",
+            Name = @"Participation Person",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identity of the person who is represented in the participation that is being transmitted.
 
 If this attribute repeats, all instances must represent the same person.
 
 Condition: At least one of the Participation Person, Participation Organization, Participation Location, or Participation Device fields must be valued.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PRT.5.1",
                             Type = @"Component",
@@ -3463,27 +3592,57 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRT.6",
-                            Type = @"Field",
-                            Position = @"PRT.6",
-                            Name = @"Participation Person Provider Type",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a code identifying the provider type for the participating person. This attribute correlates to the following master file attribute: STF-4 Staff Type. Coded values from the correlated master file table are used; the user defined master file table is used as the coding system for this attribute. For example, if you are using values from STF-2 Staff Type, the coding system would be HL70182 which is the table number for the user defined Staff Type table. This field is included in this segment to support international requirements. When ROL is used in an encounter message, it is not intended as a master file update.
+                        }
+        }
+
+        _participationPerson = new HL7V27Field
+        {
+            field = message[@"PRT"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_participationPerson.field.FieldRepetitions != null && _participationPerson.field.FieldRepetitions.Count > 0)
+        {
+            _participationPerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_participationPerson, fieldData);
+        }
+
+        return _participationPerson;
+    } 
+}
+
+internal HL7V27Field _participationPersonProviderType;
+
+public HL7V27Field ParticipationPersonProviderType
+{
+    get
+    {
+        if (_participationPersonProviderType != null)
+        {
+            return _participationPersonProviderType;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.6",
+            Type = @"Field",
+            Position = @"PRT.6",
+            Name = @"Participation Person Provider Type",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a code identifying the provider type for the participating person. This attribute correlates to the following master file attribute: STF-4 Staff Type. Coded values from the correlated master file table are used; the user defined master file table is used as the coding system for this attribute. For example, if you are using values from STF-2 Staff Type, the coding system would be HL70182 which is the table number for the user defined Staff Type table. This field is included in this segment to support international requirements. When ROL is used in an encounter message, it is not intended as a master file update.
 
 Condition: This field may only be valued if PRT-5 Participation Person is valued.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PRT.6.1",
                             Type = @"Component",
@@ -3909,29 +4068,59 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRT.7",
-                            Type = @"Field",
-                            Position = @"PRT.7",
-                            Name = @"Participant Organization Unit Type",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0406",
-                            TableName = @"Organization Unit Type",
-                            Description = @"This field identifies the environment in which the participant acts in the role specified in PRT-3 Action Reason. In the case of a person, the environment is not the specialty for the provider. The specialty information for the provider is defined in the PRA segment.
+                        }
+        }
+
+        _participationPersonProviderType = new HL7V27Field
+        {
+            field = message[@"PRT"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_participationPersonProviderType.field.FieldRepetitions != null && _participationPersonProviderType.field.FieldRepetitions.Count > 0)
+        {
+            _participationPersonProviderType.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_participationPersonProviderType, fieldData);
+        }
+
+        return _participationPersonProviderType;
+    } 
+}
+
+internal HL7V27Field _participantOrganizationUnitType;
+
+public HL7V27Field ParticipantOrganizationUnitType
+{
+    get
+    {
+        if (_participantOrganizationUnitType != null)
+        {
+            return _participantOrganizationUnitType;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.7",
+            Type = @"Field",
+            Position = @"PRT.7",
+            Name = @"Participant Organization Unit Type",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0406",
+            TableName = @"Organization Unit Type",
+            Description = @"This field identifies the environment in which the participant acts in the role specified in PRT-3 Action Reason. In the case of a person, the environment is not the specialty for the provider. The specialty information for the provider is defined in the PRA segment.
 
 This attribute is included in the PRT segment to allow communication of this data when the participant information may not have been communicated previously in a master file or to provide better context. Refer to User-defined table 0406 - Organization unit type. This field is included in this segment to support international requirements, and is not intended as a master file update.
 
 Condition: This field may only be valued if PRT-5 Participation Person is valued.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PRT.7.1",
                             Type = @"Component",
@@ -4357,29 +4546,59 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRT.8",
-                            Type = @"Field",
-                            Position = @"PRT.8",
-                            Name = @"Participation Organization",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The organization that is involved in the participation. If PRT-5 Participation Person is valued, it reflects the affiliation of the individual participating as identified in PRT-4 Participation. Otherwise the organization is directly participating as identified in PRT-4 Participation.
+                        }
+        }
+
+        _participantOrganizationUnitType = new HL7V27Field
+        {
+            field = message[@"PRT"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_participantOrganizationUnitType.field.FieldRepetitions != null && _participantOrganizationUnitType.field.FieldRepetitions.Count > 0)
+        {
+            _participantOrganizationUnitType.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_participantOrganizationUnitType, fieldData);
+        }
+
+        return _participantOrganizationUnitType;
+    } 
+}
+
+internal HL7V27Field _participationOrganization;
+
+public HL7V27Field ParticipationOrganization
+{
+    get
+    {
+        if (_participationOrganization != null)
+        {
+            return _participationOrganization;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.8",
+            Type = @"Field",
+            Position = @"PRT.8",
+            Name = @"Participation Organization",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"The organization that is involved in the participation. If PRT-5 Participation Person is valued, it reflects the affiliation of the individual participating as identified in PRT-4 Participation. Otherwise the organization is directly participating as identified in PRT-4 Participation.
 
 If this attribute repeats, all instances must represent the same organization.
 
 Condition: At least one of the Participation Person, Participation Organization, Participation Location, or Participation Device fields must be valued.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PRT.8.1",
                             Type = @"Component",
@@ -5112,29 +5331,59 @@ In general this component provides an indication of the representation provided 
 Note: The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRT.9",
-                            Type = @"Field",
-                            Position = @"PRT.9",
-                            Name = @"Participant Location",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the physical location (e.g., nurse station, ancillary service location, clinic, or floor) that is participating. If either PRT-5 Participation Person or PRT-8 Participation Organization is valued, it reflects the location of the individual or organization participating as identified in PRT-4 Participation. Otherwise the location is directly participating as identified in PRT-4 Participation.
+                        }
+        }
+
+        _participationOrganization = new HL7V27Field
+        {
+            field = message[@"PRT"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_participationOrganization.field.FieldRepetitions != null && _participationOrganization.field.FieldRepetitions.Count > 0)
+        {
+            _participationOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_participationOrganization, fieldData);
+        }
+
+        return _participationOrganization;
+    } 
+}
+
+internal HL7V27Field _participantLocation;
+
+public HL7V27Field ParticipantLocation
+{
+    get
+    {
+        if (_participantLocation != null)
+        {
+            return _participantLocation;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.9",
+            Type = @"Field",
+            Position = @"PRT.9",
+            Name = @"Participant Location",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the physical location (e.g., nurse station, ancillary service location, clinic, or floor) that is participating. If either PRT-5 Participation Person or PRT-8 Participation Organization is valued, it reflects the location of the individual or organization participating as identified in PRT-4 Participation. Otherwise the location is directly participating as identified in PRT-4 Participation.
 
 If this attribute repeats, all instances must represent the same organization.
 
 Condition: At least one of the Participation Person, Participation Organization, Participation Location, or Participation Device fields must be valued.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PRT.9.1",
                             Type = @"Component",
@@ -5810,31 +6059,61 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRT.10",
-                            Type = @"Field",
-                            Position = @"PRT.10",
-                            Name = @"Participation Device",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identifier for the device participating.
+                        }
+        }
+
+        _participantLocation = new HL7V27Field
+        {
+            field = message[@"PRT"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_participantLocation.field.FieldRepetitions != null && _participantLocation.field.FieldRepetitions.Count > 0)
+        {
+            _participantLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_participantLocation, fieldData);
+        }
+
+        return _participantLocation;
+    } 
+}
+
+internal HL7V27Field _participationDevice;
+
+public HL7V27Field ParticipationDevice
+{
+    get
+    {
+        if (_participationDevice != null)
+        {
+            return _participationDevice;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.10",
+            Type = @"Field",
+            Position = @"PRT.10",
+            Name = @"Participation Device",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Identifier for the device participating.
 
 Example: The device used to register the shipment at the waypoint.
 
 If this attribute repeats, all instances must represent the same device.
 
 Condition: At least one of the Participation Person, Participation Organization, Participation Location, or Participation Device fields must be valued.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PRT.10.1",
                             Type = @"Component",
@@ -5912,65 +6191,149 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRT.11",
-                            Type = @"Field",
-                            Position = @"PRT.11",
-                            Name = @"Participation Begin Date/Time (arrival Time)",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when the participation began.
+                        }
+        }
+
+        _participationDevice = new HL7V27Field
+        {
+            field = message[@"PRT"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_participationDevice.field.FieldRepetitions != null && _participationDevice.field.FieldRepetitions.Count > 0)
+        {
+            _participationDevice.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_participationDevice, fieldData);
+        }
+
+        return _participationDevice;
+    } 
+}
+
+internal HL7V27Field _participationBeginDateTimearrivalTime;
+
+public HL7V27Field ParticipationBeginDateTimearrivalTime
+{
+    get
+    {
+        if (_participationBeginDateTimearrivalTime != null)
+        {
+            return _participationBeginDateTimearrivalTime;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.11",
+            Type = @"Field",
+            Position = @"PRT.11",
+            Name = @"Participation Begin Date/Time (arrival Time)",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the participation began.
 
 In the case of waypoints, this reflects the time a shipment arrives at the waypoint.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRT.12",
-                            Type = @"Field",
-                            Position = @"PRT.12",
-                            Name = @"Participation End Date/Time (departure Time)",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when the participation ended.
+            Sample = @"",
+            Fields = null
+        }
+
+        _participationBeginDateTimearrivalTime = new HL7V27Field
+        {
+            field = message[@"PRT"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_participationBeginDateTimearrivalTime.field.FieldRepetitions != null && _participationBeginDateTimearrivalTime.field.FieldRepetitions.Count > 0)
+        {
+            _participationBeginDateTimearrivalTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_participationBeginDateTimearrivalTime, fieldData);
+        }
+
+        return _participationBeginDateTimearrivalTime;
+    } 
+}
+
+internal HL7V27Field _participationEndDateTimedepartureTime;
+
+public HL7V27Field ParticipationEndDateTimedepartureTime
+{
+    get
+    {
+        if (_participationEndDateTimedepartureTime != null)
+        {
+            return _participationEndDateTimedepartureTime;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.12",
+            Type = @"Field",
+            Position = @"PRT.12",
+            Name = @"Participation End Date/Time (departure Time)",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when the participation ended.
 
 In the case of waypoints, this reflects the time a shipment departs from the waypoint.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _participationEndDateTimedepartureTime = new HL7V27Field
+        {
+            field = message[@"PRT"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_participationEndDateTimedepartureTime.field.FieldRepetitions != null && _participationEndDateTimedepartureTime.field.FieldRepetitions.Count > 0)
+        {
+            _participationEndDateTimedepartureTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_participationEndDateTimedepartureTime, fieldData);
+        }
+
+        return _participationEndDateTimedepartureTime;
+    } 
+}
+
+internal HL7V27Field _participationQualitativeDuration;
+
+public HL7V27Field ParticipationQualitativeDuration
+{
+    get
+    {
+        if (_participationQualitativeDuration != null)
+        {
+            return _participationQualitativeDuration;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.13",
+            Type = @"Field",
+            Position = @"PRT.13",
+            Name = @"Participation Qualitative Duration",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the qualitative length of time for participation (e.g., until the next assessment, four days, until discharge, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRT.13",
-                            Type = @"Field",
-                            Position = @"PRT.13",
-                            Name = @"Participation Qualitative Duration",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the qualitative length of time for participation (e.g., until the next assessment, four days, until discharge, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRT.13.1",
                             Type = @"Component",
@@ -6396,27 +6759,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRT.14",
-                            Type = @"Field",
-                            Position = @"PRT.14",
-                            Name = @"Participation Address",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains addresses associated with the participation. The address can repeat to indicate alternate addresses or an alternate expression of the same address.
+                        }
+        }
+
+        _participationQualitativeDuration = new HL7V27Field
+        {
+            field = message[@"PRT"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_participationQualitativeDuration.field.FieldRepetitions != null && _participationQualitativeDuration.field.FieldRepetitions.Count > 0)
+        {
+            _participationQualitativeDuration.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_participationQualitativeDuration, fieldData);
+        }
+
+        return _participationQualitativeDuration;
+    } 
+}
+
+internal HL7V27Field _participationAddress;
+
+public HL7V27Field ParticipationAddress
+{
+    get
+    {
+        if (_participationAddress != null)
+        {
+            return _participationAddress;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.14",
+            Type = @"Field",
+            Position = @"PRT.14",
+            Name = @"Participation Address",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains addresses associated with the participation. The address can repeat to indicate alternate addresses or an alternate expression of the same address.
 
 Condition: The address must be present if the Participation is Performing Organization Medical Director.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PRT.14.1",
                             Type = @"Component",
@@ -8682,25 +9075,55 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _participationAddress = new HL7V27Field
+        {
+            field = message[@"PRT"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_participationAddress.field.FieldRepetitions != null && _participationAddress.field.FieldRepetitions.Count > 0)
+        {
+            _participationAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_participationAddress, fieldData);
+        }
+
+        return _participationAddress;
+    } 
+}
+
+internal HL7V27Field _participantTelecommunicationAddress;
+
+public HL7V27Field ParticipantTelecommunicationAddress
+{
+    get
+    {
+        if (_participantTelecommunicationAddress != null)
+        {
+            return _participantTelecommunicationAddress;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PRT.15",
+            Type = @"Field",
+            Position = @"PRT.15",
+            Name = @"Participant Telecommunication Address",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"The waypoint telecommunication address field carries telecommunications addresses for the waypoint. These telecommunications addresses are used to contact the waypoint for additional information regarding the receipt of the shipment. The address can repeat to indicate alternate addresses or an alternate expression of the same address.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRT.15",
-                            Type = @"Field",
-                            Position = @"PRT.15",
-                            Name = @"Participant Telecommunication Address",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The waypoint telecommunication address field carries telecommunications addresses for the waypoint. These telecommunications addresses are used to contact the waypoint for additional information regarding the receipt of the shipment. The address can repeat to indicate alternate addresses or an alternate expression of the same address.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRT.15.1",
                             Type = @"Component",
@@ -9975,663 +10398,23 @@ If the preference order is unique across all usages for a given type, then it in
 Preference order numbers need not be sequential (i.e., three numbers with the priority orders of 0, 5 and 15 are legitimate).  The preference order numbers must be non-negative.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentPRT(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field participationInstanceId;
-
-public HL7V27Field ParticipationInstanceId
-{
-    get
-    {
-        if (participationInstanceId != null)
-        {
-            return participationInstanceId;
-        }
-
-        participationInstanceId = new HL7V27Field
-        {
-            field = message[@"PRT"][1],
-            Id = @"PRT.1",
-            Type = @"Field",
-            Position = @"PRT.1",
-            Name = @"Participation Instance Id",
-            Length = 4,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a unique identifier of the specific participation record.
-
-In the case of waypoints tracked for a shipment, it identifies the waypoint.
-
-Condition: The identifier is required when known, but there are times we may only know a name but do not have an identifier.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (participationInstanceId.field.FieldRepetitions != null && participationInstanceId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participationInstanceId.Id));
-            participationInstanceId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(participationInstanceId, fieldData);
-        }
-
-        return participationInstanceId;
-    } 
-}
-
-internal HL7V27Field actionCode;
-
-public HL7V27Field ActionCode
-{
-    get
-    {
-        if (actionCode != null)
-        {
-            return actionCode;
-        }
-
-        actionCode = new HL7V27Field
-        {
-            field = message[@"PRT"][2],
-            Id = @"PRT.2",
-            Type = @"Field",
-            Position = @"PRT.2",
-            Name = @"Action Code",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0287",
-            TableName = @"Problem/Goal Action Code",
-            Description = @"This field reveals the intent of the message. Refer to HL7 Table 0287 – Problem/goal action code for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (actionCode.field.FieldRepetitions != null && actionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actionCode.Id));
-            actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(actionCode, fieldData);
-        }
-
-        return actionCode;
-    } 
-}
-
-internal HL7V27Field actionReason;
-
-public HL7V27Field ActionReason
-{
-    get
-    {
-        if (actionReason != null)
-        {
-            return actionReason;
-        }
-
-        actionReason = new HL7V27Field
-        {
-            field = message[@"PRT"][3],
-            Id = @"PRT.3",
-            Type = @"Field",
-            Position = @"PRT.3",
-            Name = @"Action Reason",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the reason why the person, organization, location, or device is assuming (or changing) the role (e.g., shift change, new primary nurse, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (actionReason.field.FieldRepetitions != null && actionReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actionReason.Id));
-            actionReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(actionReason, fieldData);
-        }
-
-        return actionReason;
-    } 
-}
-
-internal HL7V27Field participation;
-
-public HL7V27Field Participation
-{
-    get
-    {
-        if (participation != null)
-        {
-            return participation;
-        }
-
-        participation = new HL7V27Field
-        {
-            field = message[@"PRT"][4],
-            Id = @"PRT.4",
-            Type = @"Field",
-            Position = @"PRT.4",
-            Name = @"Participation",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0912",
-            TableName = @"Participation",
-            Description = @"This field indicates the functional involvement with the activity being transmitted (e.g., Case Manager, Evaluator, Transcriber, Nurse Care Practitioner, Midwife, Physician Assistant, etc.). Refer to HL7 Table 0912 – Participation for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (participation.field.FieldRepetitions != null && participation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participation.Id));
-            participation.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(participation, fieldData);
-        }
-
-        return participation;
-    } 
-}
-
-internal HL7V27Field participationPerson;
-
-public HL7V27Field ParticipationPerson
-{
-    get
-    {
-        if (participationPerson != null)
-        {
-            return participationPerson;
-        }
-
-        participationPerson = new HL7V27Field
-        {
-            field = message[@"PRT"][5],
-            Id = @"PRT.5",
-            Type = @"Field",
-            Position = @"PRT.5",
-            Name = @"Participation Person",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the identity of the person who is represented in the participation that is being transmitted.
-
-If this attribute repeats, all instances must represent the same person.
-
-Condition: At least one of the Participation Person, Participation Organization, Participation Location, or Participation Device fields must be valued.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (participationPerson.field.FieldRepetitions != null && participationPerson.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participationPerson.Id));
-            participationPerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(participationPerson, fieldData);
-        }
-
-        return participationPerson;
-    } 
-}
-
-internal HL7V27Field participationPersonProviderType;
-
-public HL7V27Field ParticipationPersonProviderType
-{
-    get
-    {
-        if (participationPersonProviderType != null)
-        {
-            return participationPersonProviderType;
-        }
-
-        participationPersonProviderType = new HL7V27Field
-        {
-            field = message[@"PRT"][6],
-            Id = @"PRT.6",
-            Type = @"Field",
-            Position = @"PRT.6",
-            Name = @"Participation Person Provider Type",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a code identifying the provider type for the participating person. This attribute correlates to the following master file attribute: STF-4 Staff Type. Coded values from the correlated master file table are used; the user defined master file table is used as the coding system for this attribute. For example, if you are using values from STF-2 Staff Type, the coding system would be HL70182 which is the table number for the user defined Staff Type table. This field is included in this segment to support international requirements. When ROL is used in an encounter message, it is not intended as a master file update.
-
-Condition: This field may only be valued if PRT-5 Participation Person is valued.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (participationPersonProviderType.field.FieldRepetitions != null && participationPersonProviderType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participationPersonProviderType.Id));
-            participationPersonProviderType.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(participationPersonProviderType, fieldData);
-        }
-
-        return participationPersonProviderType;
-    } 
-}
-
-internal HL7V27Field participantOrganizationUnitType;
-
-public HL7V27Field ParticipantOrganizationUnitType
-{
-    get
-    {
-        if (participantOrganizationUnitType != null)
-        {
-            return participantOrganizationUnitType;
-        }
-
-        participantOrganizationUnitType = new HL7V27Field
-        {
-            field = message[@"PRT"][7],
-            Id = @"PRT.7",
-            Type = @"Field",
-            Position = @"PRT.7",
-            Name = @"Participant Organization Unit Type",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0406",
-            TableName = @"Organization Unit Type",
-            Description = @"This field identifies the environment in which the participant acts in the role specified in PRT-3 Action Reason. In the case of a person, the environment is not the specialty for the provider. The specialty information for the provider is defined in the PRA segment.
-
-This attribute is included in the PRT segment to allow communication of this data when the participant information may not have been communicated previously in a master file or to provide better context. Refer to User-defined table 0406 - Organization unit type. This field is included in this segment to support international requirements, and is not intended as a master file update.
-
-Condition: This field may only be valued if PRT-5 Participation Person is valued.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (participantOrganizationUnitType.field.FieldRepetitions != null && participantOrganizationUnitType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participantOrganizationUnitType.Id));
-            participantOrganizationUnitType.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(participantOrganizationUnitType, fieldData);
-        }
-
-        return participantOrganizationUnitType;
-    } 
-}
-
-internal HL7V27Field participationOrganization;
-
-public HL7V27Field ParticipationOrganization
-{
-    get
-    {
-        if (participationOrganization != null)
-        {
-            return participationOrganization;
-        }
-
-        participationOrganization = new HL7V27Field
-        {
-            field = message[@"PRT"][8],
-            Id = @"PRT.8",
-            Type = @"Field",
-            Position = @"PRT.8",
-            Name = @"Participation Organization",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"The organization that is involved in the participation. If PRT-5 Participation Person is valued, it reflects the affiliation of the individual participating as identified in PRT-4 Participation. Otherwise the organization is directly participating as identified in PRT-4 Participation.
-
-If this attribute repeats, all instances must represent the same organization.
-
-Condition: At least one of the Participation Person, Participation Organization, Participation Location, or Participation Device fields must be valued.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (participationOrganization.field.FieldRepetitions != null && participationOrganization.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participationOrganization.Id));
-            participationOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(participationOrganization, fieldData);
-        }
-
-        return participationOrganization;
-    } 
-}
-
-internal HL7V27Field participantLocation;
-
-public HL7V27Field ParticipantLocation
-{
-    get
-    {
-        if (participantLocation != null)
-        {
-            return participantLocation;
-        }
-
-        participantLocation = new HL7V27Field
-        {
-            field = message[@"PRT"][9],
-            Id = @"PRT.9",
-            Type = @"Field",
-            Position = @"PRT.9",
-            Name = @"Participant Location",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the physical location (e.g., nurse station, ancillary service location, clinic, or floor) that is participating. If either PRT-5 Participation Person or PRT-8 Participation Organization is valued, it reflects the location of the individual or organization participating as identified in PRT-4 Participation. Otherwise the location is directly participating as identified in PRT-4 Participation.
-
-If this attribute repeats, all instances must represent the same organization.
-
-Condition: At least one of the Participation Person, Participation Organization, Participation Location, or Participation Device fields must be valued.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (participantLocation.field.FieldRepetitions != null && participantLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participantLocation.Id));
-            participantLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(participantLocation, fieldData);
-        }
-
-        return participantLocation;
-    } 
-}
-
-internal HL7V27Field participationDevice;
-
-public HL7V27Field ParticipationDevice
-{
-    get
-    {
-        if (participationDevice != null)
-        {
-            return participationDevice;
-        }
-
-        participationDevice = new HL7V27Field
-        {
-            field = message[@"PRT"][10],
-            Id = @"PRT.10",
-            Type = @"Field",
-            Position = @"PRT.10",
-            Name = @"Participation Device",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Identifier for the device participating.
-
-Example: The device used to register the shipment at the waypoint.
-
-If this attribute repeats, all instances must represent the same device.
-
-Condition: At least one of the Participation Person, Participation Organization, Participation Location, or Participation Device fields must be valued.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (participationDevice.field.FieldRepetitions != null && participationDevice.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participationDevice.Id));
-            participationDevice.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(participationDevice, fieldData);
-        }
-
-        return participationDevice;
-    } 
-}
-
-internal HL7V27Field participationBeginDateTimearrivalTime;
-
-public HL7V27Field ParticipationBeginDateTimearrivalTime
-{
-    get
-    {
-        if (participationBeginDateTimearrivalTime != null)
-        {
-            return participationBeginDateTimearrivalTime;
-        }
-
-        participationBeginDateTimearrivalTime = new HL7V27Field
-        {
-            field = message[@"PRT"][11],
-            Id = @"PRT.11",
-            Type = @"Field",
-            Position = @"PRT.11",
-            Name = @"Participation Begin Date/Time (arrival Time)",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when the participation began.
-
-In the case of waypoints, this reflects the time a shipment arrives at the waypoint.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (participationBeginDateTimearrivalTime.field.FieldRepetitions != null && participationBeginDateTimearrivalTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participationBeginDateTimearrivalTime.Id));
-            participationBeginDateTimearrivalTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(participationBeginDateTimearrivalTime, fieldData);
-        }
-
-        return participationBeginDateTimearrivalTime;
-    } 
-}
-
-internal HL7V27Field participationEndDateTimedepartureTime;
-
-public HL7V27Field ParticipationEndDateTimedepartureTime
-{
-    get
-    {
-        if (participationEndDateTimedepartureTime != null)
-        {
-            return participationEndDateTimedepartureTime;
-        }
-
-        participationEndDateTimedepartureTime = new HL7V27Field
-        {
-            field = message[@"PRT"][12],
-            Id = @"PRT.12",
-            Type = @"Field",
-            Position = @"PRT.12",
-            Name = @"Participation End Date/Time (departure Time)",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when the participation ended.
-
-In the case of waypoints, this reflects the time a shipment departs from the waypoint.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (participationEndDateTimedepartureTime.field.FieldRepetitions != null && participationEndDateTimedepartureTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participationEndDateTimedepartureTime.Id));
-            participationEndDateTimedepartureTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(participationEndDateTimedepartureTime, fieldData);
-        }
-
-        return participationEndDateTimedepartureTime;
-    } 
-}
-
-internal HL7V27Field participationQualitativeDuration;
-
-public HL7V27Field ParticipationQualitativeDuration
-{
-    get
-    {
-        if (participationQualitativeDuration != null)
-        {
-            return participationQualitativeDuration;
-        }
-
-        participationQualitativeDuration = new HL7V27Field
-        {
-            field = message[@"PRT"][13],
-            Id = @"PRT.13",
-            Type = @"Field",
-            Position = @"PRT.13",
-            Name = @"Participation Qualitative Duration",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the qualitative length of time for participation (e.g., until the next assessment, four days, until discharge, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (participationQualitativeDuration.field.FieldRepetitions != null && participationQualitativeDuration.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participationQualitativeDuration.Id));
-            participationQualitativeDuration.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(participationQualitativeDuration, fieldData);
-        }
-
-        return participationQualitativeDuration;
-    } 
-}
-
-internal HL7V27Field participationAddress;
-
-public HL7V27Field ParticipationAddress
-{
-    get
-    {
-        if (participationAddress != null)
-        {
-            return participationAddress;
-        }
-
-        participationAddress = new HL7V27Field
-        {
-            field = message[@"PRT"][14],
-            Id = @"PRT.14",
-            Type = @"Field",
-            Position = @"PRT.14",
-            Name = @"Participation Address",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains addresses associated with the participation. The address can repeat to indicate alternate addresses or an alternate expression of the same address.
-
-Condition: The address must be present if the Participation is Performing Organization Medical Director.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (participationAddress.field.FieldRepetitions != null && participationAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participationAddress.Id));
-            participationAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(participationAddress, fieldData);
-        }
-
-        return participationAddress;
-    } 
-}
-
-internal HL7V27Field participantTelecommunicationAddress;
-
-public HL7V27Field ParticipantTelecommunicationAddress
-{
-    get
-    {
-        if (participantTelecommunicationAddress != null)
-        {
-            return participantTelecommunicationAddress;
-        }
-
-        participantTelecommunicationAddress = new HL7V27Field
+        _participantTelecommunicationAddress = new HL7V27Field
         {
             field = message[@"PRT"][15],
-            Id = @"PRT.15",
-            Type = @"Field",
-            Position = @"PRT.15",
-            Name = @"Participant Telecommunication Address",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"The waypoint telecommunication address field carries telecommunications addresses for the waypoint. These telecommunications addresses are used to contact the waypoint for additional information regarding the receipt of the shipment. The address can repeat to indicate alternate addresses or an alternate expression of the same address.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (participantTelecommunicationAddress.field.FieldRepetitions != null && participantTelecommunicationAddress.field.FieldRepetitions.Count > 0)
+        if (_participantTelecommunicationAddress.field.FieldRepetitions != null && _participantTelecommunicationAddress.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(participantTelecommunicationAddress.Id));
-            participantTelecommunicationAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(participantTelecommunicationAddress, fieldData);
+            _participantTelecommunicationAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_participantTelecommunicationAddress, fieldData);
         }
 
-        return participantTelecommunicationAddress;
+        return _participantTelecommunicationAddress;
     } 
 }
     }

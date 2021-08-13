@@ -29,26 +29,36 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"APR.1",
-                            Type = @"Field",
-                            Position = @"APR.1",
-                            Name = @"Time Selection Criteria",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"SCV",
-                            DataTypeName = @"Scheduling Class Value Pair",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate time slot for an appointment.  The first component of this field is a code identifying the parameter or preference being passed to the filler application.  The second component is the actual data value for that parameter.
+        public HL7V28SegmentAPR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _timeSelectionCriteria;
+
+public HL7V28Field TimeSelectionCriteria
+{
+    get
+    {
+        if (_timeSelectionCriteria != null)
+        {
+            return _timeSelectionCriteria;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"APR.1",
+            Type = @"Field",
+            Position = @"APR.1",
+            Name = @"Time Selection Criteria",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"SCV",
+            DataTypeName = @"Scheduling Class Value Pair",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate time slot for an appointment.  The first component of this field is a code identifying the parameter or preference being passed to the filler application.  The second component is the actual data value for that parameter.
 
 For example, if a filler application allows preference parameters to be passed to specify a preferred start time, a preferred end time, and preferred days of the week for the appointment, it may define the parameter class codes and valid data sets based on suggested codes from User-defined Table 0294 - Time Selection Criteria Parameter Class Codes in Chapter 2C, Code Tables, for suggested values.
 
@@ -56,8 +66,10 @@ Given the set of parameter class codes and valid value sets from User-Defined ta
 ...|PREFSTART^0800~MON^OK~WED^OK~FRI^OK~TUE^NO~THU^NO~SAT^NO~SUN^NO|...
 
 The valid set of preferences should be determined by the placer and filler applications during implementation of the interface.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"APR.1.1",
                             Type = @"Component",
@@ -521,29 +533,59 @@ Value set version ID is required if CWE.21 is populated.",
 For example, if a filler application allows preference parameters to be passed to specify a preferred start time, a preferred end time, and preferred days of the week for the appointment, it may define the following parameter class codes and valid data sets.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"APR.2",
-                            Type = @"Field",
-                            Position = @"APR.2",
-                            Name = @"Resource Selection Criteria",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"SCV",
-                            DataTypeName = @"Scheduling Class Value Pair",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate resource for an appointment.  The first component of this field is a code identifying the parameter or preference being passed to the filler application.  The second component is the actual data value for that parameter.
+                        }
+        }
+
+        _timeSelectionCriteria = new HL7V28Field
+        {
+            field = message[@"APR"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_timeSelectionCriteria.field.FieldRepetitions != null && _timeSelectionCriteria.field.FieldRepetitions.Count > 0)
+        {
+            _timeSelectionCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_timeSelectionCriteria, fieldData);
+        }
+
+        return _timeSelectionCriteria;
+    } 
+}
+
+internal HL7V28Field _resourceSelectionCriteria;
+
+public HL7V28Field ResourceSelectionCriteria
+{
+    get
+    {
+        if (_resourceSelectionCriteria != null)
+        {
+            return _resourceSelectionCriteria;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"APR.2",
+            Type = @"Field",
+            Position = @"APR.2",
+            Name = @"Resource Selection Criteria",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"SCV",
+            DataTypeName = @"Scheduling Class Value Pair",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate resource for an appointment.  The first component of this field is a code identifying the parameter or preference being passed to the filler application.  The second component is the actual data value for that parameter.
 
 Refer to Section 10.6.8.1, ""APR-1   Time Selection Criteria   (SCV)   00908,"" for an example illustrating how this mechanism works within an interface.
 
 The valid set of preferences should be determined by the placer and filler applications during implementation of the interface.  Refer to User-defined Table 0294 - Time Selection Criteria Parameter Class Codes in Chapter 2C, Code Tables, for suggested examples.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"APR.2.1",
                             Type = @"Component",
@@ -1007,29 +1049,59 @@ Value set version ID is required if CWE.21 is populated.",
 For example, if a filler application allows preference parameters to be passed to specify a preferred start time, a preferred end time, and preferred days of the week for the appointment, it may define the following parameter class codes and valid data sets.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"APR.3",
-                            Type = @"Field",
-                            Position = @"APR.3",
-                            Name = @"Location Selection Criteria",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"SCV",
-                            DataTypeName = @"Scheduling Class Value Pair",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate location for the appointment.  The first component of this field is a code identifying the parameter or preference being passed to the filler application.  The second component is the actual data value for that parameter.
+                        }
+        }
+
+        _resourceSelectionCriteria = new HL7V28Field
+        {
+            field = message[@"APR"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_resourceSelectionCriteria.field.FieldRepetitions != null && _resourceSelectionCriteria.field.FieldRepetitions.Count > 0)
+        {
+            _resourceSelectionCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_resourceSelectionCriteria, fieldData);
+        }
+
+        return _resourceSelectionCriteria;
+    } 
+}
+
+internal HL7V28Field _locationSelectionCriteria;
+
+public HL7V28Field LocationSelectionCriteria
+{
+    get
+    {
+        if (_locationSelectionCriteria != null)
+        {
+            return _locationSelectionCriteria;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"APR.3",
+            Type = @"Field",
+            Position = @"APR.3",
+            Name = @"Location Selection Criteria",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"SCV",
+            DataTypeName = @"Scheduling Class Value Pair",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate location for the appointment.  The first component of this field is a code identifying the parameter or preference being passed to the filler application.  The second component is the actual data value for that parameter.
 
 Refer to Section 10.6.8.1, ""APR-1   Time Selection Criteria   (SCV)   00908,"" for an example illustrating how this mechanism works within an interface.
 
 The valid set of preferences should be determined by the placer and filler applications during implementation of the interface.  Refer to User-defined Table 0294 - Time Selection Criteria Parameter Class Codes in Chapter 2C, Code Tables, for suggested examples.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"APR.3.1",
                             Type = @"Component",
@@ -1493,23 +1565,51 @@ Value set version ID is required if CWE.21 is populated.",
 For example, if a filler application allows preference parameters to be passed to specify a preferred start time, a preferred end time, and preferred days of the week for the appointment, it may define the following parameter class codes and valid data sets.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"APR.4",
-                            Type = @"Field",
-                            Position = @"APR.4",
-                            Name = @"Slot Spacing Criteria",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used in queries returning lists of possible appointment slots, or other lists of slots.  If the filler application allows it, the querying application may indicate the spacing of the slots returned to the querying application, in relation to the requested start date/time in the ARQ segment.  The value in this field should be a positive integer, representing the number of minutes between slot starting times that is returned in the query.
+                        }
+        }
+
+        _locationSelectionCriteria = new HL7V28Field
+        {
+            field = message[@"APR"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_locationSelectionCriteria.field.FieldRepetitions != null && _locationSelectionCriteria.field.FieldRepetitions.Count > 0)
+        {
+            _locationSelectionCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_locationSelectionCriteria, fieldData);
+        }
+
+        return _locationSelectionCriteria;
+    } 
+}
+
+internal HL7V28Field _slotSpacingCriteria;
+
+public HL7V28Field SlotSpacingCriteria
+{
+    get
+    {
+        if (_slotSpacingCriteria != null)
+        {
+            return _slotSpacingCriteria;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"APR.4",
+            Type = @"Field",
+            Position = @"APR.4",
+            Name = @"Slot Spacing Criteria",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used in queries returning lists of possible appointment slots, or other lists of slots.  If the filler application allows it, the querying application may indicate the spacing of the slots returned to the querying application, in relation to the requested start date/time in the ARQ segment.  The value in this field should be a positive integer, representing the number of minutes between slot starting times that is returned in the query.
 
 For example, if there is a request that an appointment with a duration of 1.5 hours be scheduled some time between 9:00 AM and 11:30 AM, and the APR-4 Slot Spacing Criteria field contains a value of 15, then the list of slots returned should read as follows:
 9:00 - 10:30
@@ -1517,31 +1617,60 @@ For example, if there is a request that an appointment with a duration of 1.5 ho
 9:30 - 11:00
 9:45 - 11:15
 10:00 - 11:30",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"APR.5",
-                            Type = @"Field",
-                            Position = @"APR.5",
-                            Name = @"Filler Override Criteria",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"SCV",
-                            DataTypeName = @"Scheduling Class Value Pair",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to communicate override parameters to the filler application.  These override parameters allow placer applications to override specific features of filler applications such as conflict checking.  It is assumed that the placer and filler applications will pass enough information to determine whether the requestor is allowed to override such features.  This chapter does not provide any security or permission information.  
+            Sample = @"",
+            Fields = null
+        }
+
+        _slotSpacingCriteria = new HL7V28Field
+        {
+            field = message[@"APR"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_slotSpacingCriteria.field.FieldRepetitions != null && _slotSpacingCriteria.field.FieldRepetitions.Count > 0)
+        {
+            _slotSpacingCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_slotSpacingCriteria, fieldData);
+        }
+
+        return _slotSpacingCriteria;
+    } 
+}
+
+internal HL7V28Field _fillerOverrideCriteria;
+
+public HL7V28Field FillerOverrideCriteria
+{
+    get
+    {
+        if (_fillerOverrideCriteria != null)
+        {
+            return _fillerOverrideCriteria;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"APR.5",
+            Type = @"Field",
+            Position = @"APR.5",
+            Name = @"Filler Override Criteria",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"SCV",
+            DataTypeName = @"Scheduling Class Value Pair",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to communicate override parameters to the filler application.  These override parameters allow placer applications to override specific features of filler applications such as conflict checking.  It is assumed that the placer and filler applications will pass enough information to determine whether the requestor is allowed to override such features.  This chapter does not provide any security or permission information.  
 The first component of this field is a code identifying the parameter being passed to the filler application.  The second component is the actual data value for that parameter.
 
 Refer to Section 10.6.8.1, ""APR-1   Time Selection Criteria   (SCV)   00908,"" for an example illustrating how this mechanism works within an interface.
 
 The valid set of parameters should be determined by the placer and filler applications during implementation of the interface.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"APR.5.1",
                             Type = @"Component",
@@ -2005,246 +2134,23 @@ Value set version ID is required if CWE.21 is populated.",
 For example, if a filler application allows preference parameters to be passed to specify a preferred start time, a preferred end time, and preferred days of the week for the appointment, it may define the following parameter class codes and valid data sets.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentAPR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field timeSelectionCriteria;
-
-public HL7V28Field TimeSelectionCriteria
-{
-    get
-    {
-        if (timeSelectionCriteria != null)
-        {
-            return timeSelectionCriteria;
-        }
-
-        timeSelectionCriteria = new HL7V28Field
-        {
-            field = message[@"APR"][1],
-            Id = @"APR.1",
-            Type = @"Field",
-            Position = @"APR.1",
-            Name = @"Time Selection Criteria",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"SCV",
-            DataTypeName = @"Scheduling Class Value Pair",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate time slot for an appointment.  The first component of this field is a code identifying the parameter or preference being passed to the filler application.  The second component is the actual data value for that parameter.
-
-For example, if a filler application allows preference parameters to be passed to specify a preferred start time, a preferred end time, and preferred days of the week for the appointment, it may define the parameter class codes and valid data sets based on suggested codes from User-defined Table 0294 - Time Selection Criteria Parameter Class Codes in Chapter 2C, Code Tables, for suggested values.
-
-Given the set of parameter class codes and valid value sets from User-Defined table 0294, a placer may indicate a preferred start time of 8:00 AM on Monday, Wednesday or Friday by specifying the following in APR-1 Time Selection Criteria:
-...|PREFSTART^0800~MON^OK~WED^OK~FRI^OK~TUE^NO~THU^NO~SAT^NO~SUN^NO|...
-
-The valid set of preferences should be determined by the placer and filler applications during implementation of the interface.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (timeSelectionCriteria.field.FieldRepetitions != null && timeSelectionCriteria.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(timeSelectionCriteria.Id));
-            timeSelectionCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(timeSelectionCriteria, fieldData);
-        }
-
-        return timeSelectionCriteria;
-    } 
-}
-
-internal HL7V28Field resourceSelectionCriteria;
-
-public HL7V28Field ResourceSelectionCriteria
-{
-    get
-    {
-        if (resourceSelectionCriteria != null)
-        {
-            return resourceSelectionCriteria;
-        }
-
-        resourceSelectionCriteria = new HL7V28Field
-        {
-            field = message[@"APR"][2],
-            Id = @"APR.2",
-            Type = @"Field",
-            Position = @"APR.2",
-            Name = @"Resource Selection Criteria",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"SCV",
-            DataTypeName = @"Scheduling Class Value Pair",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate resource for an appointment.  The first component of this field is a code identifying the parameter or preference being passed to the filler application.  The second component is the actual data value for that parameter.
-
-Refer to Section 10.6.8.1, ""APR-1   Time Selection Criteria   (SCV)   00908,"" for an example illustrating how this mechanism works within an interface.
-
-The valid set of preferences should be determined by the placer and filler applications during implementation of the interface.  Refer to User-defined Table 0294 - Time Selection Criteria Parameter Class Codes in Chapter 2C, Code Tables, for suggested examples.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (resourceSelectionCriteria.field.FieldRepetitions != null && resourceSelectionCriteria.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resourceSelectionCriteria.Id));
-            resourceSelectionCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(resourceSelectionCriteria, fieldData);
-        }
-
-        return resourceSelectionCriteria;
-    } 
-}
-
-internal HL7V28Field locationSelectionCriteria;
-
-public HL7V28Field LocationSelectionCriteria
-{
-    get
-    {
-        if (locationSelectionCriteria != null)
-        {
-            return locationSelectionCriteria;
-        }
-
-        locationSelectionCriteria = new HL7V28Field
-        {
-            field = message[@"APR"][3],
-            Id = @"APR.3",
-            Type = @"Field",
-            Position = @"APR.3",
-            Name = @"Location Selection Criteria",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"SCV",
-            DataTypeName = @"Scheduling Class Value Pair",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to communicate parameters and preferences to the filler application regarding the selection of an appropriate location for the appointment.  The first component of this field is a code identifying the parameter or preference being passed to the filler application.  The second component is the actual data value for that parameter.
-
-Refer to Section 10.6.8.1, ""APR-1   Time Selection Criteria   (SCV)   00908,"" for an example illustrating how this mechanism works within an interface.
-
-The valid set of preferences should be determined by the placer and filler applications during implementation of the interface.  Refer to User-defined Table 0294 - Time Selection Criteria Parameter Class Codes in Chapter 2C, Code Tables, for suggested examples.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (locationSelectionCriteria.field.FieldRepetitions != null && locationSelectionCriteria.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(locationSelectionCriteria.Id));
-            locationSelectionCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(locationSelectionCriteria, fieldData);
-        }
-
-        return locationSelectionCriteria;
-    } 
-}
-
-internal HL7V28Field slotSpacingCriteria;
-
-public HL7V28Field SlotSpacingCriteria
-{
-    get
-    {
-        if (slotSpacingCriteria != null)
-        {
-            return slotSpacingCriteria;
-        }
-
-        slotSpacingCriteria = new HL7V28Field
-        {
-            field = message[@"APR"][4],
-            Id = @"APR.4",
-            Type = @"Field",
-            Position = @"APR.4",
-            Name = @"Slot Spacing Criteria",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used in queries returning lists of possible appointment slots, or other lists of slots.  If the filler application allows it, the querying application may indicate the spacing of the slots returned to the querying application, in relation to the requested start date/time in the ARQ segment.  The value in this field should be a positive integer, representing the number of minutes between slot starting times that is returned in the query.
-
-For example, if there is a request that an appointment with a duration of 1.5 hours be scheduled some time between 9:00 AM and 11:30 AM, and the APR-4 Slot Spacing Criteria field contains a value of 15, then the list of slots returned should read as follows:
-9:00 - 10:30
-9:15 - 10:45
-9:30 - 11:00
-9:45 - 11:15
-10:00 - 11:30",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (slotSpacingCriteria.field.FieldRepetitions != null && slotSpacingCriteria.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(slotSpacingCriteria.Id));
-            slotSpacingCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(slotSpacingCriteria, fieldData);
-        }
-
-        return slotSpacingCriteria;
-    } 
-}
-
-internal HL7V28Field fillerOverrideCriteria;
-
-public HL7V28Field FillerOverrideCriteria
-{
-    get
-    {
-        if (fillerOverrideCriteria != null)
-        {
-            return fillerOverrideCriteria;
-        }
-
-        fillerOverrideCriteria = new HL7V28Field
+        _fillerOverrideCriteria = new HL7V28Field
         {
             field = message[@"APR"][5],
-            Id = @"APR.5",
-            Type = @"Field",
-            Position = @"APR.5",
-            Name = @"Filler Override Criteria",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"SCV",
-            DataTypeName = @"Scheduling Class Value Pair",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to communicate override parameters to the filler application.  These override parameters allow placer applications to override specific features of filler applications such as conflict checking.  It is assumed that the placer and filler applications will pass enough information to determine whether the requestor is allowed to override such features.  This chapter does not provide any security or permission information.  
-The first component of this field is a code identifying the parameter being passed to the filler application.  The second component is the actual data value for that parameter.
-
-Refer to Section 10.6.8.1, ""APR-1   Time Selection Criteria   (SCV)   00908,"" for an example illustrating how this mechanism works within an interface.
-
-The valid set of parameters should be determined by the placer and filler applications during implementation of the interface.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fillerOverrideCriteria.field.FieldRepetitions != null && fillerOverrideCriteria.field.FieldRepetitions.Count > 0)
+        if (_fillerOverrideCriteria.field.FieldRepetitions != null && _fillerOverrideCriteria.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerOverrideCriteria.Id));
-            fillerOverrideCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(fillerOverrideCriteria, fieldData);
+            _fillerOverrideCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_fillerOverrideCriteria, fieldData);
         }
 
-        return fillerOverrideCriteria;
+        return _fillerOverrideCriteria;
     } 
 }
     }

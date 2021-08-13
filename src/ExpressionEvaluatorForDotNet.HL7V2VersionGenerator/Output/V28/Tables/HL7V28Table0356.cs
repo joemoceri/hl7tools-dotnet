@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -47,6 +48,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This standard is titled ""Information Technology - Character Code Structure and Extension Technique"". .",
                             Comment = null
                         },
+                        
                     };
             } 
         }

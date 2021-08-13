@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentEQP(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _eventtype;
+
+public HL7V26Field Eventtype
+{
+    get
+    {
+        if (_eventtype != null)
+        {
+            return _eventtype;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"EQP.1",
+            Type = @"Field",
+            Position = @"EQP.1",
+            Name = @"Event type",
+            Length = 705,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0450",
+            TableName = @"Event type",
+            Description = @"This field identifies the type of event of the message. Refer to HL7 Table 0450 - Event typ e for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"EQP.1",
-                            Type = @"Field",
-                            Position = @"EQP.1",
-                            Name = @"Event type",
-                            Length = 705,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0450",
-                            TableName = @"Event type",
-                            Description = @"This field identifies the type of event of the message. Refer to HL7 Table 0450 - Event typ e for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"EQP.1.1",
                             Type = @"Component",
@@ -210,144 +222,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EQP.2",
-                            Type = @"Field",
-                            Position = @"EQP.2",
-                            Name = @"File Name",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the physical file name that is being used to store information about the transmitted log and/or service event.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EQP.3",
-                            Type = @"Field",
-                            Position = @"EQP.3",
-                            Name = @"Start Date/Time",
-                            Length = 24,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the date/time that the event started.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EQP.4",
-                            Type = @"Field",
-                            Position = @"EQP.4",
-                            Name = @"End Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the date/time that the event was completed.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EQP.5",
-                            Type = @"Field",
-                            Position = @"EQP.5",
-                            Name = @"Transaction Data",
-                            Length = 65536,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the data that the log and/or service event was about and is to be logged.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentEQP(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field eventtype;
-
-public HL7V26Field Eventtype
-{
-    get
-    {
-        if (eventtype != null)
-        {
-            return eventtype;
-        }
-
-        eventtype = new HL7V26Field
+        _eventtype = new HL7V26Field
         {
             field = message[@"EQP"][1],
-            Id = @"EQP.1",
-            Type = @"Field",
-            Position = @"EQP.1",
-            Name = @"Event type",
-            Length = 705,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0450",
-            TableName = @"Event type",
-            Description = @"This field identifies the type of event of the message. Refer to HL7 Table 0450 - Event typ e for valid values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (eventtype.field.FieldRepetitions != null && eventtype.field.FieldRepetitions.Count > 0)
+        if (_eventtype.field.FieldRepetitions != null && _eventtype.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventtype.Id));
-            eventtype.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventtype, fieldData);
+            _eventtype.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventtype, fieldData);
         }
 
-        return eventtype;
+        return _eventtype;
     } 
 }
 
-internal HL7V26Field fileName;
+internal HL7V26Field _fileName;
 
 public HL7V26Field FileName
 {
     get
     {
-        if (fileName != null)
+        if (_fileName != null)
         {
-            return fileName;
+            return _fileName;
         }
 
-        fileName = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"EQP"][2],
             Id = @"EQP.2",
             Type = @"Field",
             Position = @"EQP.2",
@@ -361,34 +268,38 @@ public HL7V26Field FileName
             TableName = null,
             Description = @"This field is the physical file name that is being used to store information about the transmitted log and/or service event.",
             Sample = @"",
+            Fields = null
+        }
+
+        _fileName = new HL7V26Field
+        {
+            field = message[@"EQP"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fileName.field.FieldRepetitions != null && fileName.field.FieldRepetitions.Count > 0)
+        if (_fileName.field.FieldRepetitions != null && _fileName.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fileName.Id));
-            fileName.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(fileName, fieldData);
+            _fileName.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_fileName, fieldData);
         }
 
-        return fileName;
+        return _fileName;
     } 
 }
 
-internal HL7V26Field startDateTime;
+internal HL7V26Field _startDateTime;
 
 public HL7V26Field StartDateTime
 {
     get
     {
-        if (startDateTime != null)
+        if (_startDateTime != null)
         {
-            return startDateTime;
+            return _startDateTime;
         }
 
-        startDateTime = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"EQP"][3],
             Id = @"EQP.3",
             Type = @"Field",
             Position = @"EQP.3",
@@ -402,34 +313,38 @@ public HL7V26Field StartDateTime
             TableName = null,
             Description = @"This field is the date/time that the event started.",
             Sample = @"",
+            Fields = null
+        }
+
+        _startDateTime = new HL7V26Field
+        {
+            field = message[@"EQP"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (startDateTime.field.FieldRepetitions != null && startDateTime.field.FieldRepetitions.Count > 0)
+        if (_startDateTime.field.FieldRepetitions != null && _startDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(startDateTime.Id));
-            startDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(startDateTime, fieldData);
+            _startDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_startDateTime, fieldData);
         }
 
-        return startDateTime;
+        return _startDateTime;
     } 
 }
 
-internal HL7V26Field endDateTime;
+internal HL7V26Field _endDateTime;
 
 public HL7V26Field EndDateTime
 {
     get
     {
-        if (endDateTime != null)
+        if (_endDateTime != null)
         {
-            return endDateTime;
+            return _endDateTime;
         }
 
-        endDateTime = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"EQP"][4],
             Id = @"EQP.4",
             Type = @"Field",
             Position = @"EQP.4",
@@ -443,34 +358,38 @@ public HL7V26Field EndDateTime
             TableName = null,
             Description = @"This field is the date/time that the event was completed.",
             Sample = @"",
+            Fields = null
+        }
+
+        _endDateTime = new HL7V26Field
+        {
+            field = message[@"EQP"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (endDateTime.field.FieldRepetitions != null && endDateTime.field.FieldRepetitions.Count > 0)
+        if (_endDateTime.field.FieldRepetitions != null && _endDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(endDateTime.Id));
-            endDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(endDateTime, fieldData);
+            _endDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_endDateTime, fieldData);
         }
 
-        return endDateTime;
+        return _endDateTime;
     } 
 }
 
-internal HL7V26Field transactionData;
+internal HL7V26Field _transactionData;
 
 public HL7V26Field TransactionData
 {
     get
     {
-        if (transactionData != null)
+        if (_transactionData != null)
         {
-            return transactionData;
+            return _transactionData;
         }
 
-        transactionData = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"EQP"][5],
             Id = @"EQP.5",
             Type = @"Field",
             Position = @"EQP.5",
@@ -484,17 +403,22 @@ public HL7V26Field TransactionData
             TableName = null,
             Description = @"This field is the data that the log and/or service event was about and is to be logged.",
             Sample = @"",
+            Fields = null
+        }
+
+        _transactionData = new HL7V26Field
+        {
+            field = message[@"EQP"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transactionData.field.FieldRepetitions != null && transactionData.field.FieldRepetitions.Count > 0)
+        if (_transactionData.field.FieldRepetitions != null && _transactionData.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionData.Id));
-            transactionData.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(transactionData, fieldData);
+            _transactionData.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_transactionData, fieldData);
         }
 
-        return transactionData;
+        return _transactionData;
     } 
 }
     }

@@ -25,574 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"RX1.1",
-                            Type = @"Field",
-                            Position = @"RX1.1",
-                            Name = @"Unused",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.2",
-                            Type = @"Field",
-                            Position = @"RX1.2",
-                            Name = @"Unused",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.3",
-                            Type = @"Field",
-                            Position = @"RX1.3",
-                            Name = @"Route",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = @"0033",
-                            TableName = @"ROUTE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.4",
-                            Type = @"Field",
-                            Position = @"RX1.4",
-                            Name = @"Site Administered",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = @"0034",
-                            TableName = @"SITE ADMINISTERED",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.5",
-                            Type = @"Field",
-                            Position = @"RX1.5",
-                            Name = @"Iv Solution Rate",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.6",
-                            Type = @"Field",
-                            Position = @"RX1.6",
-                            Name = @"Drug Strength",
-                            Length = 14,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.7",
-                            Type = @"Field",
-                            Position = @"RX1.7",
-                            Name = @"Final Concentration",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.8",
-                            Type = @"Field",
-                            Position = @"RX1.8",
-                            Name = @"Final Volume In Ml.",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.9",
-                            Type = @"Field",
-                            Position = @"RX1.9",
-                            Name = @"Drug Dose",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM",
-                            DataTypeName = @"",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.10",
-                            Type = @"Field",
-                            Position = @"RX1.10",
-                            Name = @"Drug Role",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.11",
-                            Type = @"Field",
-                            Position = @"RX1.11",
-                            Name = @"Prescription Sequence #",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.12",
-                            Type = @"Field",
-                            Position = @"RX1.12",
-                            Name = @"Quantity Dispensed",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.13",
-                            Type = @"Field",
-                            Position = @"RX1.13",
-                            Name = @"Unused",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.14",
-                            Type = @"Field",
-                            Position = @"RX1.14",
-                            Name = @"Drug Id",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE_0057",
-                            DataTypeName = @"",
-                            TableId = @"0057",
-                            TableName = @"DRUG CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.15",
-                            Type = @"Field",
-                            Position = @"RX1.15",
-                            Name = @"Component Drug Ids",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"5",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.16",
-                            Type = @"Field",
-                            Position = @"RX1.16",
-                            Name = @"Prescription Type",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.17",
-                            Type = @"Field",
-                            Position = @"RX1.17",
-                            Name = @"Substitution Status",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.18",
-                            Type = @"Field",
-                            Position = @"RX1.18",
-                            Name = @"Rx Order Status",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0038",
-                            TableName = @"ORDER STATUS",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.19",
-                            Type = @"Field",
-                            Position = @"RX1.19",
-                            Name = @"Number Of Refills",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.20",
-                            Type = @"Field",
-                            Position = @"RX1.20",
-                            Name = @"Unused",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.21",
-                            Type = @"Field",
-                            Position = @"RX1.21",
-                            Name = @"Refills Remaining",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.22",
-                            Type = @"Field",
-                            Position = @"RX1.22",
-                            Name = @"Dea Class",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.23",
-                            Type = @"Field",
-                            Position = @"RX1.23",
-                            Name = @"Ordering Md's Dea Number",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.24",
-                            Type = @"Field",
-                            Position = @"RX1.24",
-                            Name = @"Unused",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.25",
-                            Type = @"Field",
-                            Position = @"RX1.25",
-                            Name = @"Last Refill Date/Time",
-                            Length = 19,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.26",
-                            Type = @"Field",
-                            Position = @"RX1.26",
-                            Name = @"Rx Number",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.27",
-                            Type = @"Field",
-                            Position = @"RX1.27",
-                            Name = @"Prn Status",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.28",
-                            Type = @"Field",
-                            Position = @"RX1.28",
-                            Name = @"Pharmacy Instructions",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"5",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.29",
-                            Type = @"Field",
-                            Position = @"RX1.29",
-                            Name = @"Patient Instructions",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"5",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RX1.30",
-                            Type = @"Field",
-                            Position = @"RX1.30",
-                            Name = @"Instructions (sig)",
-                            Length = 500,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentRX1(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field unused;
+        internal HL7V21Field _unused;
 
 public HL7V21Field Unused
 {
     get
     {
-        if (unused != null)
+        if (_unused != null)
         {
-            return unused;
+            return _unused;
         }
 
-        unused = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][1],
             Id = @"RX1.1",
             Type = @"Field",
             Position = @"RX1.1",
@@ -606,34 +56,38 @@ public HL7V21Field Unused
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _unused = new HL7V21Field
+        {
+            field = message[@"RX1"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (unused.field.FieldRepetitions != null && unused.field.FieldRepetitions.Count > 0)
+        if (_unused.field.FieldRepetitions != null && _unused.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(unused.Id));
-            unused.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(unused, fieldData);
+            _unused.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_unused, fieldData);
         }
 
-        return unused;
+        return _unused;
     } 
 }
 
-internal HL7V21Field unused;
+internal HL7V21Field _unused;
 
 public HL7V21Field Unused
 {
     get
     {
-        if (unused != null)
+        if (_unused != null)
         {
-            return unused;
+            return _unused;
         }
 
-        unused = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][2],
             Id = @"RX1.2",
             Type = @"Field",
             Position = @"RX1.2",
@@ -647,34 +101,38 @@ public HL7V21Field Unused
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _unused = new HL7V21Field
+        {
+            field = message[@"RX1"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (unused.field.FieldRepetitions != null && unused.field.FieldRepetitions.Count > 0)
+        if (_unused.field.FieldRepetitions != null && _unused.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(unused.Id));
-            unused.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(unused, fieldData);
+            _unused.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_unused, fieldData);
         }
 
-        return unused;
+        return _unused;
     } 
 }
 
-internal HL7V21Field route;
+internal HL7V21Field _route;
 
 public HL7V21Field Route
 {
     get
     {
-        if (route != null)
+        if (_route != null)
         {
-            return route;
+            return _route;
         }
 
-        route = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][3],
             Id = @"RX1.3",
             Type = @"Field",
             Position = @"RX1.3",
@@ -688,34 +146,38 @@ public HL7V21Field Route
             TableName = @"ROUTE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _route = new HL7V21Field
+        {
+            field = message[@"RX1"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (route.field.FieldRepetitions != null && route.field.FieldRepetitions.Count > 0)
+        if (_route.field.FieldRepetitions != null && _route.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(route.Id));
-            route.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(route, fieldData);
+            _route.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_route, fieldData);
         }
 
-        return route;
+        return _route;
     } 
 }
 
-internal HL7V21Field siteAdministered;
+internal HL7V21Field _siteAdministered;
 
 public HL7V21Field SiteAdministered
 {
     get
     {
-        if (siteAdministered != null)
+        if (_siteAdministered != null)
         {
-            return siteAdministered;
+            return _siteAdministered;
         }
 
-        siteAdministered = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][4],
             Id = @"RX1.4",
             Type = @"Field",
             Position = @"RX1.4",
@@ -729,34 +191,38 @@ public HL7V21Field SiteAdministered
             TableName = @"SITE ADMINISTERED",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _siteAdministered = new HL7V21Field
+        {
+            field = message[@"RX1"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (siteAdministered.field.FieldRepetitions != null && siteAdministered.field.FieldRepetitions.Count > 0)
+        if (_siteAdministered.field.FieldRepetitions != null && _siteAdministered.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(siteAdministered.Id));
-            siteAdministered.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(siteAdministered, fieldData);
+            _siteAdministered.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_siteAdministered, fieldData);
         }
 
-        return siteAdministered;
+        return _siteAdministered;
     } 
 }
 
-internal HL7V21Field ivSolutionRate;
+internal HL7V21Field _ivSolutionRate;
 
 public HL7V21Field IvSolutionRate
 {
     get
     {
-        if (ivSolutionRate != null)
+        if (_ivSolutionRate != null)
         {
-            return ivSolutionRate;
+            return _ivSolutionRate;
         }
 
-        ivSolutionRate = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][5],
             Id = @"RX1.5",
             Type = @"Field",
             Position = @"RX1.5",
@@ -770,34 +236,38 @@ public HL7V21Field IvSolutionRate
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _ivSolutionRate = new HL7V21Field
+        {
+            field = message[@"RX1"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (ivSolutionRate.field.FieldRepetitions != null && ivSolutionRate.field.FieldRepetitions.Count > 0)
+        if (_ivSolutionRate.field.FieldRepetitions != null && _ivSolutionRate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ivSolutionRate.Id));
-            ivSolutionRate.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(ivSolutionRate, fieldData);
+            _ivSolutionRate.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_ivSolutionRate, fieldData);
         }
 
-        return ivSolutionRate;
+        return _ivSolutionRate;
     } 
 }
 
-internal HL7V21Field drugStrength;
+internal HL7V21Field _drugStrength;
 
 public HL7V21Field DrugStrength
 {
     get
     {
-        if (drugStrength != null)
+        if (_drugStrength != null)
         {
-            return drugStrength;
+            return _drugStrength;
         }
 
-        drugStrength = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][6],
             Id = @"RX1.6",
             Type = @"Field",
             Position = @"RX1.6",
@@ -811,34 +281,38 @@ public HL7V21Field DrugStrength
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _drugStrength = new HL7V21Field
+        {
+            field = message[@"RX1"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (drugStrength.field.FieldRepetitions != null && drugStrength.field.FieldRepetitions.Count > 0)
+        if (_drugStrength.field.FieldRepetitions != null && _drugStrength.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(drugStrength.Id));
-            drugStrength.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(drugStrength, fieldData);
+            _drugStrength.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_drugStrength, fieldData);
         }
 
-        return drugStrength;
+        return _drugStrength;
     } 
 }
 
-internal HL7V21Field finalConcentration;
+internal HL7V21Field _finalConcentration;
 
 public HL7V21Field FinalConcentration
 {
     get
     {
-        if (finalConcentration != null)
+        if (_finalConcentration != null)
         {
-            return finalConcentration;
+            return _finalConcentration;
         }
 
-        finalConcentration = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][7],
             Id = @"RX1.7",
             Type = @"Field",
             Position = @"RX1.7",
@@ -852,34 +326,38 @@ public HL7V21Field FinalConcentration
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _finalConcentration = new HL7V21Field
+        {
+            field = message[@"RX1"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (finalConcentration.field.FieldRepetitions != null && finalConcentration.field.FieldRepetitions.Count > 0)
+        if (_finalConcentration.field.FieldRepetitions != null && _finalConcentration.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(finalConcentration.Id));
-            finalConcentration.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(finalConcentration, fieldData);
+            _finalConcentration.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_finalConcentration, fieldData);
         }
 
-        return finalConcentration;
+        return _finalConcentration;
     } 
 }
 
-internal HL7V21Field finalVolumeInMl;
+internal HL7V21Field _finalVolumeInMl;
 
 public HL7V21Field FinalVolumeInMl
 {
     get
     {
-        if (finalVolumeInMl != null)
+        if (_finalVolumeInMl != null)
         {
-            return finalVolumeInMl;
+            return _finalVolumeInMl;
         }
 
-        finalVolumeInMl = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][8],
             Id = @"RX1.8",
             Type = @"Field",
             Position = @"RX1.8",
@@ -893,34 +371,38 @@ public HL7V21Field FinalVolumeInMl
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _finalVolumeInMl = new HL7V21Field
+        {
+            field = message[@"RX1"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (finalVolumeInMl.field.FieldRepetitions != null && finalVolumeInMl.field.FieldRepetitions.Count > 0)
+        if (_finalVolumeInMl.field.FieldRepetitions != null && _finalVolumeInMl.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(finalVolumeInMl.Id));
-            finalVolumeInMl.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(finalVolumeInMl, fieldData);
+            _finalVolumeInMl.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_finalVolumeInMl, fieldData);
         }
 
-        return finalVolumeInMl;
+        return _finalVolumeInMl;
     } 
 }
 
-internal HL7V21Field drugDose;
+internal HL7V21Field _drugDose;
 
 public HL7V21Field DrugDose
 {
     get
     {
-        if (drugDose != null)
+        if (_drugDose != null)
         {
-            return drugDose;
+            return _drugDose;
         }
 
-        drugDose = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][9],
             Id = @"RX1.9",
             Type = @"Field",
             Position = @"RX1.9",
@@ -934,34 +416,38 @@ public HL7V21Field DrugDose
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _drugDose = new HL7V21Field
+        {
+            field = message[@"RX1"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (drugDose.field.FieldRepetitions != null && drugDose.field.FieldRepetitions.Count > 0)
+        if (_drugDose.field.FieldRepetitions != null && _drugDose.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(drugDose.Id));
-            drugDose.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(drugDose, fieldData);
+            _drugDose.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_drugDose, fieldData);
         }
 
-        return drugDose;
+        return _drugDose;
     } 
 }
 
-internal HL7V21Field drugRole;
+internal HL7V21Field _drugRole;
 
 public HL7V21Field DrugRole
 {
     get
     {
-        if (drugRole != null)
+        if (_drugRole != null)
         {
-            return drugRole;
+            return _drugRole;
         }
 
-        drugRole = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][10],
             Id = @"RX1.10",
             Type = @"Field",
             Position = @"RX1.10",
@@ -975,34 +461,38 @@ public HL7V21Field DrugRole
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _drugRole = new HL7V21Field
+        {
+            field = message[@"RX1"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (drugRole.field.FieldRepetitions != null && drugRole.field.FieldRepetitions.Count > 0)
+        if (_drugRole.field.FieldRepetitions != null && _drugRole.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(drugRole.Id));
-            drugRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(drugRole, fieldData);
+            _drugRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_drugRole, fieldData);
         }
 
-        return drugRole;
+        return _drugRole;
     } 
 }
 
-internal HL7V21Field prescriptionSequence#;
+internal HL7V21Field _prescriptionSequence#;
 
 public HL7V21Field PrescriptionSequence#
 {
     get
     {
-        if (prescriptionSequence# != null)
+        if (_prescriptionSequence# != null)
         {
-            return prescriptionSequence#;
+            return _prescriptionSequence#;
         }
 
-        prescriptionSequence# = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][11],
             Id = @"RX1.11",
             Type = @"Field",
             Position = @"RX1.11",
@@ -1016,34 +506,38 @@ public HL7V21Field PrescriptionSequence#
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _prescriptionSequence# = new HL7V21Field
+        {
+            field = message[@"RX1"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (prescriptionSequence#.field.FieldRepetitions != null && prescriptionSequence#.field.FieldRepetitions.Count > 0)
+        if (_prescriptionSequence#.field.FieldRepetitions != null && _prescriptionSequence#.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(prescriptionSequence#.Id));
-            prescriptionSequence#.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(prescriptionSequence#, fieldData);
+            _prescriptionSequence#.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_prescriptionSequence#, fieldData);
         }
 
-        return prescriptionSequence#;
+        return _prescriptionSequence#;
     } 
 }
 
-internal HL7V21Field quantityDispensed;
+internal HL7V21Field _quantityDispensed;
 
 public HL7V21Field QuantityDispensed
 {
     get
     {
-        if (quantityDispensed != null)
+        if (_quantityDispensed != null)
         {
-            return quantityDispensed;
+            return _quantityDispensed;
         }
 
-        quantityDispensed = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][12],
             Id = @"RX1.12",
             Type = @"Field",
             Position = @"RX1.12",
@@ -1057,34 +551,38 @@ public HL7V21Field QuantityDispensed
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _quantityDispensed = new HL7V21Field
+        {
+            field = message[@"RX1"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (quantityDispensed.field.FieldRepetitions != null && quantityDispensed.field.FieldRepetitions.Count > 0)
+        if (_quantityDispensed.field.FieldRepetitions != null && _quantityDispensed.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(quantityDispensed.Id));
-            quantityDispensed.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(quantityDispensed, fieldData);
+            _quantityDispensed.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_quantityDispensed, fieldData);
         }
 
-        return quantityDispensed;
+        return _quantityDispensed;
     } 
 }
 
-internal HL7V21Field unused;
+internal HL7V21Field _unused;
 
 public HL7V21Field Unused
 {
     get
     {
-        if (unused != null)
+        if (_unused != null)
         {
-            return unused;
+            return _unused;
         }
 
-        unused = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][13],
             Id = @"RX1.13",
             Type = @"Field",
             Position = @"RX1.13",
@@ -1098,34 +596,38 @@ public HL7V21Field Unused
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _unused = new HL7V21Field
+        {
+            field = message[@"RX1"][13],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (unused.field.FieldRepetitions != null && unused.field.FieldRepetitions.Count > 0)
+        if (_unused.field.FieldRepetitions != null && _unused.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(unused.Id));
-            unused.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(unused, fieldData);
+            _unused.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_unused, fieldData);
         }
 
-        return unused;
+        return _unused;
     } 
 }
 
-internal HL7V21Field drugId;
+internal HL7V21Field _drugId;
 
 public HL7V21Field DrugId
 {
     get
     {
-        if (drugId != null)
+        if (_drugId != null)
         {
-            return drugId;
+            return _drugId;
         }
 
-        drugId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][14],
             Id = @"RX1.14",
             Type = @"Field",
             Position = @"RX1.14",
@@ -1139,34 +641,38 @@ public HL7V21Field DrugId
             TableName = @"DRUG CODE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _drugId = new HL7V21Field
+        {
+            field = message[@"RX1"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (drugId.field.FieldRepetitions != null && drugId.field.FieldRepetitions.Count > 0)
+        if (_drugId.field.FieldRepetitions != null && _drugId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(drugId.Id));
-            drugId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(drugId, fieldData);
+            _drugId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_drugId, fieldData);
         }
 
-        return drugId;
+        return _drugId;
     } 
 }
 
-internal HL7V21Field componentDrugIds;
+internal HL7V21Field _componentDrugIds;
 
 public HL7V21Field ComponentDrugIds
 {
     get
     {
-        if (componentDrugIds != null)
+        if (_componentDrugIds != null)
         {
-            return componentDrugIds;
+            return _componentDrugIds;
         }
 
-        componentDrugIds = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][15],
             Id = @"RX1.15",
             Type = @"Field",
             Position = @"RX1.15",
@@ -1180,34 +686,38 @@ public HL7V21Field ComponentDrugIds
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _componentDrugIds = new HL7V21Field
+        {
+            field = message[@"RX1"][15],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (componentDrugIds.field.FieldRepetitions != null && componentDrugIds.field.FieldRepetitions.Count > 0)
+        if (_componentDrugIds.field.FieldRepetitions != null && _componentDrugIds.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(componentDrugIds.Id));
-            componentDrugIds.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(componentDrugIds, fieldData);
+            _componentDrugIds.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_componentDrugIds, fieldData);
         }
 
-        return componentDrugIds;
+        return _componentDrugIds;
     } 
 }
 
-internal HL7V21Field prescriptionType;
+internal HL7V21Field _prescriptionType;
 
 public HL7V21Field PrescriptionType
 {
     get
     {
-        if (prescriptionType != null)
+        if (_prescriptionType != null)
         {
-            return prescriptionType;
+            return _prescriptionType;
         }
 
-        prescriptionType = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][16],
             Id = @"RX1.16",
             Type = @"Field",
             Position = @"RX1.16",
@@ -1221,34 +731,38 @@ public HL7V21Field PrescriptionType
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _prescriptionType = new HL7V21Field
+        {
+            field = message[@"RX1"][16],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (prescriptionType.field.FieldRepetitions != null && prescriptionType.field.FieldRepetitions.Count > 0)
+        if (_prescriptionType.field.FieldRepetitions != null && _prescriptionType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(prescriptionType.Id));
-            prescriptionType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(prescriptionType, fieldData);
+            _prescriptionType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_prescriptionType, fieldData);
         }
 
-        return prescriptionType;
+        return _prescriptionType;
     } 
 }
 
-internal HL7V21Field substitutionStatus;
+internal HL7V21Field _substitutionStatus;
 
 public HL7V21Field SubstitutionStatus
 {
     get
     {
-        if (substitutionStatus != null)
+        if (_substitutionStatus != null)
         {
-            return substitutionStatus;
+            return _substitutionStatus;
         }
 
-        substitutionStatus = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][17],
             Id = @"RX1.17",
             Type = @"Field",
             Position = @"RX1.17",
@@ -1262,34 +776,38 @@ public HL7V21Field SubstitutionStatus
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _substitutionStatus = new HL7V21Field
+        {
+            field = message[@"RX1"][17],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (substitutionStatus.field.FieldRepetitions != null && substitutionStatus.field.FieldRepetitions.Count > 0)
+        if (_substitutionStatus.field.FieldRepetitions != null && _substitutionStatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substitutionStatus.Id));
-            substitutionStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(substitutionStatus, fieldData);
+            _substitutionStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_substitutionStatus, fieldData);
         }
 
-        return substitutionStatus;
+        return _substitutionStatus;
     } 
 }
 
-internal HL7V21Field rxOrderStatus;
+internal HL7V21Field _rxOrderStatus;
 
 public HL7V21Field RxOrderStatus
 {
     get
     {
-        if (rxOrderStatus != null)
+        if (_rxOrderStatus != null)
         {
-            return rxOrderStatus;
+            return _rxOrderStatus;
         }
 
-        rxOrderStatus = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][18],
             Id = @"RX1.18",
             Type = @"Field",
             Position = @"RX1.18",
@@ -1303,34 +821,38 @@ public HL7V21Field RxOrderStatus
             TableName = @"ORDER STATUS",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _rxOrderStatus = new HL7V21Field
+        {
+            field = message[@"RX1"][18],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (rxOrderStatus.field.FieldRepetitions != null && rxOrderStatus.field.FieldRepetitions.Count > 0)
+        if (_rxOrderStatus.field.FieldRepetitions != null && _rxOrderStatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rxOrderStatus.Id));
-            rxOrderStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(rxOrderStatus, fieldData);
+            _rxOrderStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_rxOrderStatus, fieldData);
         }
 
-        return rxOrderStatus;
+        return _rxOrderStatus;
     } 
 }
 
-internal HL7V21Field numberOfRefills;
+internal HL7V21Field _numberOfRefills;
 
 public HL7V21Field NumberOfRefills
 {
     get
     {
-        if (numberOfRefills != null)
+        if (_numberOfRefills != null)
         {
-            return numberOfRefills;
+            return _numberOfRefills;
         }
 
-        numberOfRefills = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][19],
             Id = @"RX1.19",
             Type = @"Field",
             Position = @"RX1.19",
@@ -1344,34 +866,38 @@ public HL7V21Field NumberOfRefills
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _numberOfRefills = new HL7V21Field
+        {
+            field = message[@"RX1"][19],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (numberOfRefills.field.FieldRepetitions != null && numberOfRefills.field.FieldRepetitions.Count > 0)
+        if (_numberOfRefills.field.FieldRepetitions != null && _numberOfRefills.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfRefills.Id));
-            numberOfRefills.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(numberOfRefills, fieldData);
+            _numberOfRefills.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_numberOfRefills, fieldData);
         }
 
-        return numberOfRefills;
+        return _numberOfRefills;
     } 
 }
 
-internal HL7V21Field unused;
+internal HL7V21Field _unused;
 
 public HL7V21Field Unused
 {
     get
     {
-        if (unused != null)
+        if (_unused != null)
         {
-            return unused;
+            return _unused;
         }
 
-        unused = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][20],
             Id = @"RX1.20",
             Type = @"Field",
             Position = @"RX1.20",
@@ -1385,34 +911,38 @@ public HL7V21Field Unused
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _unused = new HL7V21Field
+        {
+            field = message[@"RX1"][20],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (unused.field.FieldRepetitions != null && unused.field.FieldRepetitions.Count > 0)
+        if (_unused.field.FieldRepetitions != null && _unused.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(unused.Id));
-            unused.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(unused, fieldData);
+            _unused.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_unused, fieldData);
         }
 
-        return unused;
+        return _unused;
     } 
 }
 
-internal HL7V21Field refillsRemaining;
+internal HL7V21Field _refillsRemaining;
 
 public HL7V21Field RefillsRemaining
 {
     get
     {
-        if (refillsRemaining != null)
+        if (_refillsRemaining != null)
         {
-            return refillsRemaining;
+            return _refillsRemaining;
         }
 
-        refillsRemaining = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][21],
             Id = @"RX1.21",
             Type = @"Field",
             Position = @"RX1.21",
@@ -1426,34 +956,38 @@ public HL7V21Field RefillsRemaining
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _refillsRemaining = new HL7V21Field
+        {
+            field = message[@"RX1"][21],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (refillsRemaining.field.FieldRepetitions != null && refillsRemaining.field.FieldRepetitions.Count > 0)
+        if (_refillsRemaining.field.FieldRepetitions != null && _refillsRemaining.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(refillsRemaining.Id));
-            refillsRemaining.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(refillsRemaining, fieldData);
+            _refillsRemaining.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_refillsRemaining, fieldData);
         }
 
-        return refillsRemaining;
+        return _refillsRemaining;
     } 
 }
 
-internal HL7V21Field deaClass;
+internal HL7V21Field _deaClass;
 
 public HL7V21Field DeaClass
 {
     get
     {
-        if (deaClass != null)
+        if (_deaClass != null)
         {
-            return deaClass;
+            return _deaClass;
         }
 
-        deaClass = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][22],
             Id = @"RX1.22",
             Type = @"Field",
             Position = @"RX1.22",
@@ -1467,34 +1001,38 @@ public HL7V21Field DeaClass
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _deaClass = new HL7V21Field
+        {
+            field = message[@"RX1"][22],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (deaClass.field.FieldRepetitions != null && deaClass.field.FieldRepetitions.Count > 0)
+        if (_deaClass.field.FieldRepetitions != null && _deaClass.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deaClass.Id));
-            deaClass.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(deaClass, fieldData);
+            _deaClass.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_deaClass, fieldData);
         }
 
-        return deaClass;
+        return _deaClass;
     } 
 }
 
-internal HL7V21Field orderingMdsDeaNumber;
+internal HL7V21Field _orderingMdsDeaNumber;
 
 public HL7V21Field OrderingMdsDeaNumber
 {
     get
     {
-        if (orderingMdsDeaNumber != null)
+        if (_orderingMdsDeaNumber != null)
         {
-            return orderingMdsDeaNumber;
+            return _orderingMdsDeaNumber;
         }
 
-        orderingMdsDeaNumber = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][23],
             Id = @"RX1.23",
             Type = @"Field",
             Position = @"RX1.23",
@@ -1508,34 +1046,38 @@ public HL7V21Field OrderingMdsDeaNumber
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _orderingMdsDeaNumber = new HL7V21Field
+        {
+            field = message[@"RX1"][23],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (orderingMdsDeaNumber.field.FieldRepetitions != null && orderingMdsDeaNumber.field.FieldRepetitions.Count > 0)
+        if (_orderingMdsDeaNumber.field.FieldRepetitions != null && _orderingMdsDeaNumber.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderingMdsDeaNumber.Id));
-            orderingMdsDeaNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(orderingMdsDeaNumber, fieldData);
+            _orderingMdsDeaNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_orderingMdsDeaNumber, fieldData);
         }
 
-        return orderingMdsDeaNumber;
+        return _orderingMdsDeaNumber;
     } 
 }
 
-internal HL7V21Field unused;
+internal HL7V21Field _unused;
 
 public HL7V21Field Unused
 {
     get
     {
-        if (unused != null)
+        if (_unused != null)
         {
-            return unused;
+            return _unused;
         }
 
-        unused = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][24],
             Id = @"RX1.24",
             Type = @"Field",
             Position = @"RX1.24",
@@ -1549,34 +1091,38 @@ public HL7V21Field Unused
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _unused = new HL7V21Field
+        {
+            field = message[@"RX1"][24],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (unused.field.FieldRepetitions != null && unused.field.FieldRepetitions.Count > 0)
+        if (_unused.field.FieldRepetitions != null && _unused.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(unused.Id));
-            unused.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(unused, fieldData);
+            _unused.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_unused, fieldData);
         }
 
-        return unused;
+        return _unused;
     } 
 }
 
-internal HL7V21Field lastRefillDateTime;
+internal HL7V21Field _lastRefillDateTime;
 
 public HL7V21Field LastRefillDateTime
 {
     get
     {
-        if (lastRefillDateTime != null)
+        if (_lastRefillDateTime != null)
         {
-            return lastRefillDateTime;
+            return _lastRefillDateTime;
         }
 
-        lastRefillDateTime = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][25],
             Id = @"RX1.25",
             Type = @"Field",
             Position = @"RX1.25",
@@ -1590,34 +1136,38 @@ public HL7V21Field LastRefillDateTime
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _lastRefillDateTime = new HL7V21Field
+        {
+            field = message[@"RX1"][25],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (lastRefillDateTime.field.FieldRepetitions != null && lastRefillDateTime.field.FieldRepetitions.Count > 0)
+        if (_lastRefillDateTime.field.FieldRepetitions != null && _lastRefillDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(lastRefillDateTime.Id));
-            lastRefillDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(lastRefillDateTime, fieldData);
+            _lastRefillDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_lastRefillDateTime, fieldData);
         }
 
-        return lastRefillDateTime;
+        return _lastRefillDateTime;
     } 
 }
 
-internal HL7V21Field rxNumber;
+internal HL7V21Field _rxNumber;
 
 public HL7V21Field RxNumber
 {
     get
     {
-        if (rxNumber != null)
+        if (_rxNumber != null)
         {
-            return rxNumber;
+            return _rxNumber;
         }
 
-        rxNumber = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][26],
             Id = @"RX1.26",
             Type = @"Field",
             Position = @"RX1.26",
@@ -1631,34 +1181,38 @@ public HL7V21Field RxNumber
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _rxNumber = new HL7V21Field
+        {
+            field = message[@"RX1"][26],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (rxNumber.field.FieldRepetitions != null && rxNumber.field.FieldRepetitions.Count > 0)
+        if (_rxNumber.field.FieldRepetitions != null && _rxNumber.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rxNumber.Id));
-            rxNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(rxNumber, fieldData);
+            _rxNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_rxNumber, fieldData);
         }
 
-        return rxNumber;
+        return _rxNumber;
     } 
 }
 
-internal HL7V21Field prnStatus;
+internal HL7V21Field _prnStatus;
 
 public HL7V21Field PrnStatus
 {
     get
     {
-        if (prnStatus != null)
+        if (_prnStatus != null)
         {
-            return prnStatus;
+            return _prnStatus;
         }
 
-        prnStatus = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][27],
             Id = @"RX1.27",
             Type = @"Field",
             Position = @"RX1.27",
@@ -1672,34 +1226,38 @@ public HL7V21Field PrnStatus
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _prnStatus = new HL7V21Field
+        {
+            field = message[@"RX1"][27],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (prnStatus.field.FieldRepetitions != null && prnStatus.field.FieldRepetitions.Count > 0)
+        if (_prnStatus.field.FieldRepetitions != null && _prnStatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(prnStatus.Id));
-            prnStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(prnStatus, fieldData);
+            _prnStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_prnStatus, fieldData);
         }
 
-        return prnStatus;
+        return _prnStatus;
     } 
 }
 
-internal HL7V21Field pharmacyInstructions;
+internal HL7V21Field _pharmacyInstructions;
 
 public HL7V21Field PharmacyInstructions
 {
     get
     {
-        if (pharmacyInstructions != null)
+        if (_pharmacyInstructions != null)
         {
-            return pharmacyInstructions;
+            return _pharmacyInstructions;
         }
 
-        pharmacyInstructions = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][28],
             Id = @"RX1.28",
             Type = @"Field",
             Position = @"RX1.28",
@@ -1713,34 +1271,38 @@ public HL7V21Field PharmacyInstructions
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _pharmacyInstructions = new HL7V21Field
+        {
+            field = message[@"RX1"][28],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (pharmacyInstructions.field.FieldRepetitions != null && pharmacyInstructions.field.FieldRepetitions.Count > 0)
+        if (_pharmacyInstructions.field.FieldRepetitions != null && _pharmacyInstructions.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pharmacyInstructions.Id));
-            pharmacyInstructions.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(pharmacyInstructions, fieldData);
+            _pharmacyInstructions.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_pharmacyInstructions, fieldData);
         }
 
-        return pharmacyInstructions;
+        return _pharmacyInstructions;
     } 
 }
 
-internal HL7V21Field patientInstructions;
+internal HL7V21Field _patientInstructions;
 
 public HL7V21Field PatientInstructions
 {
     get
     {
-        if (patientInstructions != null)
+        if (_patientInstructions != null)
         {
-            return patientInstructions;
+            return _patientInstructions;
         }
 
-        patientInstructions = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][29],
             Id = @"RX1.29",
             Type = @"Field",
             Position = @"RX1.29",
@@ -1754,34 +1316,38 @@ public HL7V21Field PatientInstructions
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _patientInstructions = new HL7V21Field
+        {
+            field = message[@"RX1"][29],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientInstructions.field.FieldRepetitions != null && patientInstructions.field.FieldRepetitions.Count > 0)
+        if (_patientInstructions.field.FieldRepetitions != null && _patientInstructions.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientInstructions.Id));
-            patientInstructions.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(patientInstructions, fieldData);
+            _patientInstructions.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_patientInstructions, fieldData);
         }
 
-        return patientInstructions;
+        return _patientInstructions;
     } 
 }
 
-internal HL7V21Field instructionssig;
+internal HL7V21Field _instructionssig;
 
 public HL7V21Field Instructionssig
 {
     get
     {
-        if (instructionssig != null)
+        if (_instructionssig != null)
         {
-            return instructionssig;
+            return _instructionssig;
         }
 
-        instructionssig = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"RX1"][30],
             Id = @"RX1.30",
             Type = @"Field",
             Position = @"RX1.30",
@@ -1795,17 +1361,22 @@ public HL7V21Field Instructionssig
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _instructionssig = new HL7V21Field
+        {
+            field = message[@"RX1"][30],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (instructionssig.field.FieldRepetitions != null && instructionssig.field.FieldRepetitions.Count > 0)
+        if (_instructionssig.field.FieldRepetitions != null && _instructionssig.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(instructionssig.Id));
-            instructionssig.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(instructionssig, fieldData);
+            _instructionssig.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_instructionssig, fieldData);
         }
 
-        return instructionssig;
+        return _instructionssig;
     } 
 }
     }

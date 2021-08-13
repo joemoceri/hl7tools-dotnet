@@ -31,48 +31,87 @@ The Observation Request segment defines the attributes of a particular request f
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"OBR.1",
-                            Type = @"Field",
-                            Position = @"OBR.1",
-                            Name = @"Set ID - Observation Request",
-                            Length = 4,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"For the first order transmitted, the sequence number shall be 1; for the second order, it shall be 2; and so on",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.2",
-                            Type = @"Field",
-                            Position = @"OBR.2",
-                            Name = @"Placer Order Number",
-                            Length = 75,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is identical to ORC-2-placer order number.
+        public HL7V23SegmentOBR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field _setIDObservationRequest;
+
+public HL7V23Field SetIDObservationRequest
+{
+    get
+    {
+        if (_setIDObservationRequest != null)
+        {
+            return _setIDObservationRequest;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.1",
+            Type = @"Field",
+            Position = @"OBR.1",
+            Name = @"Set ID - Observation Request",
+            Length = 4,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"For the first order transmitted, the sequence number shall be 1; for the second order, it shall be 2; and so on",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDObservationRequest = new HL7V23Field
+        {
+            field = message[@"OBR"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDObservationRequest.field.FieldRepetitions != null && _setIDObservationRequest.field.FieldRepetitions.Count > 0)
+        {
+            _setIDObservationRequest.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_setIDObservationRequest, fieldData);
+        }
+
+        return _setIDObservationRequest;
+    } 
+}
+
+internal HL7V23Field _placerOrderNumber;
+
+public HL7V23Field PlacerOrderNumber
+{
+    get
+    {
+        if (_placerOrderNumber != null)
+        {
+            return _placerOrderNumber;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.2",
+            Type = @"Field",
+            Position = @"OBR.2",
+            Name = @"Placer Order Number",
+            Length = 75,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is identical to ORC-2-placer order number.
 
 This  field is a special case of the Entity Identifier data type. The first component is a string that identifies an individual order (e.g., OBR).  A limit of fifteen (15) characters is suggested but not required.  It is assigned by the placer (ordering application).  It identifies an order uniquely among all orders from a particular ordering application.  The second through fourth components contain the application ID of the placing application in the same form as the HD data type (Section 2.8.18, “HD - Hierarchic designator”). The second component, namespace ID, is a user-defined coded value that will be uniquely associated with an application.  A limit of six (6) characters is suggested but not required. A given institution or group of intercommunicating institutions should establish a unique list of applications that may be potential placers and fillers and assign unique application IDs. The components are separated by component delimiters.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.2.1",
                             Type = @"Component",
@@ -142,29 +181,59 @@ This  field is a special case of the Entity Identifier data type. The first comp
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.3",
-                            Type = @"Field",
-                            Position = @"OBR.3",
-                            Name = @"Filler Order Number",
-                            Length = 75,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This is a permanent identifier for an order and its associated observations.  It is a special case of the Entity Identifier data type.
+                        }
+        }
+
+        _placerOrderNumber = new HL7V23Field
+        {
+            field = message[@"OBR"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_placerOrderNumber.field.FieldRepetitions != null && _placerOrderNumber.field.FieldRepetitions.Count > 0)
+        {
+            _placerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_placerOrderNumber, fieldData);
+        }
+
+        return _placerOrderNumber;
+    } 
+}
+
+internal HL7V23Field _fillerOrderNumber;
+
+public HL7V23Field FillerOrderNumber
+{
+    get
+    {
+        if (_fillerOrderNumber != null)
+        {
+            return _fillerOrderNumber;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.3",
+            Type = @"Field",
+            Position = @"OBR.3",
+            Name = @"Filler Order Number",
+            Length = 75,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This is a permanent identifier for an order and its associated observations.  It is a special case of the Entity Identifier data type.
 
 The first component is a string that identifies an individual order segment (e.g., OBR).  It is assigned by the order filling (receiving) application.  It identifies an order uniquely among all orders from a particular filling application (e.g., clinical laboratory). A limit of fifteen (15) characters is suggested but not required. 
 
 The second through fourth components contain the filler application ID, in the form of the HD data type (see Section 2.8.18, “HD - hierarchic designator”). The second component is a user-defined coded value  that uniquely defines the application from other applications on the network.  A limit of six (6) characters is suggested but not required.  The second component of the filler order number always identifies the actual filler of an order",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.3.1",
                             Type = @"Component",
@@ -234,25 +303,55 @@ The second through fourth components contain the filler application ID, in the f
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _fillerOrderNumber = new HL7V23Field
+        {
+            field = message[@"OBR"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fillerOrderNumber.field.FieldRepetitions != null && _fillerOrderNumber.field.FieldRepetitions.Count > 0)
+        {
+            _fillerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_fillerOrderNumber, fieldData);
+        }
+
+        return _fillerOrderNumber;
+    } 
+}
+
+internal HL7V23Field _universalServiceIdentifier;
+
+public HL7V23Field UniversalServiceIdentifier
+{
+    get
+    {
+        if (_universalServiceIdentifier != null)
+        {
+            return _universalServiceIdentifier;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.4",
+            Type = @"Field",
+            Position = @"OBR.4",
+            Name = @"Universal Service Identifier",
+            Length = 200,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the identifier code for the requested observation/test/battery.  This can be based on local and/or “universal” codes.  We recommend the “universal” procedure identifier.  The structure of this CE data type is described in the control section.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.4",
-                            Type = @"Field",
-                            Position = @"OBR.4",
-                            Name = @"Universal Service Identifier",
-                            Length = 200,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the identifier code for the requested observation/test/battery.  This can be based on local and/or “universal” codes.  We recommend the “universal” procedure identifier.  The structure of this CE data type is described in the control section.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.4.1",
                             Type = @"Component",
@@ -358,43 +457,100 @@ The second through fourth components contain the filler application ID, in the f
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _universalServiceIdentifier = new HL7V23Field
+        {
+            field = message[@"OBR"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_universalServiceIdentifier.field.FieldRepetitions != null && _universalServiceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _universalServiceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_universalServiceIdentifier, fieldData);
+        }
+
+        return _universalServiceIdentifier;
+    } 
+}
+
+internal HL7V23Field _priority;
+
+public HL7V23Field Priority
+{
+    get
+    {
+        if (_priority != null)
+        {
+            return _priority;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.5",
+            Type = @"Field",
+            Position = @"OBR.5",
+            Name = @"Priority",
+            Length = 2,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has been retained for backward compatibility only.  It is not used.  Previously priority (e.g., STAT, ASAP), but this information is carried as the sixth component of OBR-27quantity/timing",
+            Sample = @"",
+            Fields = null
+        }
+
+        _priority = new HL7V23Field
+        {
+            field = message[@"OBR"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priority.field.FieldRepetitions != null && _priority.field.FieldRepetitions.Count > 0)
+        {
+            _priority.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_priority, fieldData);
+        }
+
+        return _priority;
+    } 
+}
+
+internal HL7V23Field _requestedDateTime;
+
+public HL7V23Field RequestedDateTime
+{
+    get
+    {
+        if (_requestedDateTime != null)
+        {
+            return _requestedDateTime;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.6",
+            Type = @"Field",
+            Position = @"OBR.6",
+            Name = @"Requested Date/Time",
+            Length = 26,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has been retained for backward compatibility only.  It is not used.  Previously requested date/time.  This information is now carried in the fourth component of the OBR-27quantity/timing",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.5",
-                            Type = @"Field",
-                            Position = @"OBR.5",
-                            Name = @"Priority",
-                            Length = 2,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has been retained for backward compatibility only.  It is not used.  Previously priority (e.g., STAT, ASAP), but this information is carried as the sixth component of OBR-27quantity/timing",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.6",
-                            Type = @"Field",
-                            Position = @"OBR.6",
-                            Name = @"Requested Date/Time",
-                            Length = 26,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has been retained for backward compatibility only.  It is not used.  Previously requested date/time.  This information is now carried in the fourth component of the OBR-27quantity/timing",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.6.1",
                             Type = @"Component",
@@ -410,25 +566,55 @@ The second through fourth components contain the filler application ID, in the f
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _requestedDateTime = new HL7V23Field
+        {
+            field = message[@"OBR"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedDateTime.field.FieldRepetitions != null && _requestedDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _requestedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_requestedDateTime, fieldData);
+        }
+
+        return _requestedDateTime;
+    } 
+}
+
+internal HL7V23Field _observationDateTime;
+
+public HL7V23Field ObservationDateTime
+{
+    get
+    {
+        if (_observationDateTime != null)
+        {
+            return _observationDateTime;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.7",
+            Type = @"Field",
+            Position = @"OBR.7",
+            Name = @"Observation Date/Time",
+            Length = 26,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the clinically relevant date/time of the observation.  In the case of observations taken directly from a subject, it is the actual date and time the observation was obtained.  In the case of a specimen-associated study, this field shall represent the date and time the specimen was collected or obtained.  (This is a results-only field except when the placer or a third-party has already drawn the specimen.)  This field is conditionally required. When the OBR is transmitted as part of a report message, the field must be filled in.  If it is transmitted as part of a request and a sample has been sent along as part of the request, this field must be filled in because this specimen time is the physiologically relevant date/time of the observation",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.7",
-                            Type = @"Field",
-                            Position = @"OBR.7",
-                            Name = @"Observation Date/Time",
-                            Length = 26,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the clinically relevant date/time of the observation.  In the case of observations taken directly from a subject, it is the actual date and time the observation was obtained.  In the case of a specimen-associated study, this field shall represent the date and time the specimen was collected or obtained.  (This is a results-only field except when the placer or a third-party has already drawn the specimen.)  This field is conditionally required. When the OBR is transmitted as part of a report message, the field must be filled in.  If it is transmitted as part of a request and a sample has been sent along as part of the request, this field must be filled in because this specimen time is the physiologically relevant date/time of the observation",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.7.1",
                             Type = @"Component",
@@ -444,25 +630,55 @@ The second through fourth components contain the filler application ID, in the f
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _observationDateTime = new HL7V23Field
+        {
+            field = message[@"OBR"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationDateTime.field.FieldRepetitions != null && _observationDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _observationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_observationDateTime, fieldData);
+        }
+
+        return _observationDateTime;
+    } 
+}
+
+internal HL7V23Field _observationEndDateTime;
+
+public HL7V23Field ObservationEndDateTime
+{
+    get
+    {
+        if (_observationEndDateTime != null)
+        {
+            return _observationEndDateTime;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.8",
+            Type = @"Field",
+            Position = @"OBR.8",
+            Name = @"Observation End Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the end date and time of a study or timed specimen collection.  If an observation takes place over a substantial period of time, it will indicate when the observation period ended.  For observations made at a point in time, it will be null.  This is a results field except when the placer or a party other than the filler has already drawn the specimen",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.8",
-                            Type = @"Field",
-                            Position = @"OBR.8",
-                            Name = @"Observation End Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the end date and time of a study or timed specimen collection.  If an observation takes place over a substantial period of time, it will indicate when the observation period ended.  For observations made at a point in time, it will be null.  This is a results field except when the placer or a party other than the filler has already drawn the specimen",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.8.1",
                             Type = @"Component",
@@ -478,25 +694,55 @@ The second through fourth components contain the filler application ID, in the f
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _observationEndDateTime = new HL7V23Field
+        {
+            field = message[@"OBR"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationEndDateTime.field.FieldRepetitions != null && _observationEndDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _observationEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_observationEndDateTime, fieldData);
+        }
+
+        return _observationEndDateTime;
+    } 
+}
+
+internal HL7V23Field _collectionVolume;
+
+public HL7V23Field CollectionVolume
+{
+    get
+    {
+        if (_collectionVolume != null)
+        {
+            return _collectionVolume;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.9",
+            Type = @"Field",
+            Position = @"OBR.9",
+            Name = @"Collection Volume",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"For laboratory tests, the collection volume is the volume of a specimen.  The default unit is ML.  Specifically, units should be expressed in the ISO Standard unit abbreviations (ISO-2955,1977).  This is a results-only field except when the placer or a party has already drawn the specimen.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.9",
-                            Type = @"Field",
-                            Position = @"OBR.9",
-                            Name = @"Collection Volume",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"For laboratory tests, the collection volume is the volume of a specimen.  The default unit is ML.  Specifically, units should be expressed in the ISO Standard unit abbreviations (ISO-2955,1977).  This is a results-only field except when the placer or a party has already drawn the specimen.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.9.1",
                             Type = @"Component",
@@ -530,25 +776,55 @@ The second through fourth components contain the filler application ID, in the f
                             Description = @"The units in which the quantity is expressed.  Field-by-field, default units may be defined within the specifications.  When the observation is measured in the default units, the units need not be transmitted.  If the measure is recorded in units different from the default, the measurement units must be transmitted as the second component.  If the units are ISO+ units, then units should be recorded as lowercase abbreviations as specified in Chapter 7.  If the units are ANSI or local, the units and the source table must be recorded as specified in Chapter 7.  But in these cases the component separator should be replaced by the subcomponent delimiter ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _collectionVolume = new HL7V23Field
+        {
+            field = message[@"OBR"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_collectionVolume.field.FieldRepetitions != null && _collectionVolume.field.FieldRepetitions.Count > 0)
+        {
+            _collectionVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_collectionVolume, fieldData);
+        }
+
+        return _collectionVolume;
+    } 
+}
+
+internal HL7V23Field _collectorIdentifier;
+
+public HL7V23Field CollectorIdentifier
+{
+    get
+    {
+        if (_collectorIdentifier != null)
+        {
+            return _collectorIdentifier;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.10",
+            Type = @"Field",
+            Position = @"OBR.10",
+            Name = @"Collector Identifier",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name",
+            TableId = null,
+            TableName = null,
+            Description = @"When a specimen is required for the study, this field will identify the person, department, or facility that collected the specimen.  Either name or ID code, or both, may be present.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.10",
-                            Type = @"Field",
-                            Position = @"OBR.10",
-                            Name = @"Collector Identifier",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"When a specimen is required for the study, this field will identify the person, department, or facility that collected the specimen.  Either name or ID code, or both, may be present.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.10.1",
                             Type = @"Component",
@@ -902,43 +1178,100 @@ The second through fourth components contain the filler application ID, in the f
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _collectorIdentifier = new HL7V23Field
+        {
+            field = message[@"OBR"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_collectorIdentifier.field.FieldRepetitions != null && _collectorIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _collectorIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_collectorIdentifier, fieldData);
+        }
+
+        return _collectorIdentifier;
+    } 
+}
+
+internal HL7V23Field _specimenActionCode;
+
+public HL7V23Field SpecimenActionCode
+{
+    get
+    {
+        if (_specimenActionCode != null)
+        {
+            return _specimenActionCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.11",
+            Type = @"Field",
+            Position = @"OBR.11",
+            Name = @"Specimen Action Code",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0065",
+            TableName = @"Specimen action code",
+            Description = @"This field is the action to be taken with respect to the specimens that accompany or precede this order.  The purpose of this field is to further qualify (when appropriate) the general action indicated by the order control code contained in the accompanying ORC segment.  For example, when a new order (ORC - “NW”) is sent to the lab, this field would be used to tell the lab whether or not to collect the specimen (“L” or “O”).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _specimenActionCode = new HL7V23Field
+        {
+            field = message[@"OBR"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenActionCode.field.FieldRepetitions != null && _specimenActionCode.field.FieldRepetitions.Count > 0)
+        {
+            _specimenActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_specimenActionCode, fieldData);
+        }
+
+        return _specimenActionCode;
+    } 
+}
+
+internal HL7V23Field _dangerCode;
+
+public HL7V23Field DangerCode
+{
+    get
+    {
+        if (_dangerCode != null)
+        {
+            return _dangerCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.12",
+            Type = @"Field",
+            Position = @"OBR.12",
+            Name = @"Danger Code",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the code and/or text indicating any known or suspected patient or specimen hazards, e.g., patient with active tuberculosis or blood from a hepatitis patient.  Either code and/or text may be absent.  However, the code is always placed in the first component position and any free text in the second component.  Thus, free text without a code must be preceded by a component delimiter.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.11",
-                            Type = @"Field",
-                            Position = @"OBR.11",
-                            Name = @"Specimen Action Code",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0065",
-                            TableName = @"Specimen action code",
-                            Description = @"This field is the action to be taken with respect to the specimens that accompany or precede this order.  The purpose of this field is to further qualify (when appropriate) the general action indicated by the order control code contained in the accompanying ORC segment.  For example, when a new order (ORC - “NW”) is sent to the lab, this field would be used to tell the lab whether or not to collect the specimen (“L” or “O”).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.12",
-                            Type = @"Field",
-                            Position = @"OBR.12",
-                            Name = @"Danger Code",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the code and/or text indicating any known or suspected patient or specimen hazards, e.g., patient with active tuberculosis or blood from a hepatitis patient.  Either code and/or text may be absent.  However, the code is always placed in the first component position and any free text in the second component.  Thus, free text without a code must be preceded by a component delimiter.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.12.1",
                             Type = @"Component",
@@ -1044,43 +1377,100 @@ The second through fourth components contain the filler application ID, in the f
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dangerCode = new HL7V23Field
+        {
+            field = message[@"OBR"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dangerCode.field.FieldRepetitions != null && _dangerCode.field.FieldRepetitions.Count > 0)
+        {
+            _dangerCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_dangerCode, fieldData);
+        }
+
+        return _dangerCode;
+    } 
+}
+
+internal HL7V23Field _relevantClinicalInformation;
+
+public HL7V23Field RelevantClinicalInformation
+{
+    get
+    {
+        if (_relevantClinicalInformation != null)
+        {
+            return _relevantClinicalInformation;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.13",
+            Type = @"Field",
+            Position = @"OBR.13",
+            Name = @"Relevant Clinical Information",
+            Length = 300,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the additional clinical information about the patient or specimen.  This field is used to report the suspected diagnosis and clinical findings on requests for interpreted diagnostic studies.  Examples include reporting the amount of inspired carbon dioxide for blood gasses, the point in the menstrual cycle for cervical pap tests, and other conditions that influence test interpretations.  For some orders this information may be sent on a more structured form as a series of OBX segments (see Chapter 7) that immediately follow the order segment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _relevantClinicalInformation = new HL7V23Field
+        {
+            field = message[@"OBR"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_relevantClinicalInformation.field.FieldRepetitions != null && _relevantClinicalInformation.field.FieldRepetitions.Count > 0)
+        {
+            _relevantClinicalInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_relevantClinicalInformation, fieldData);
+        }
+
+        return _relevantClinicalInformation;
+    } 
+}
+
+internal HL7V23Field _specimenReceivedDateTime;
+
+public HL7V23Field SpecimenReceivedDateTime
+{
+    get
+    {
+        if (_specimenReceivedDateTime != null)
+        {
+            return _specimenReceivedDateTime;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.14",
+            Type = @"Field",
+            Position = @"OBR.14",
+            Name = @"Specimen Received Date/Time",
+            Length = 26,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"For observations requiring a specimen, the specimen received date/time is the actual login time at the diagnostic service.  This field must contain a value when the order is accompanied by a specimen, or when the observation required a specimen and the message is a report.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.13",
-                            Type = @"Field",
-                            Position = @"OBR.13",
-                            Name = @"Relevant Clinical Information",
-                            Length = 300,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the additional clinical information about the patient or specimen.  This field is used to report the suspected diagnosis and clinical findings on requests for interpreted diagnostic studies.  Examples include reporting the amount of inspired carbon dioxide for blood gasses, the point in the menstrual cycle for cervical pap tests, and other conditions that influence test interpretations.  For some orders this information may be sent on a more structured form as a series of OBX segments (see Chapter 7) that immediately follow the order segment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.14",
-                            Type = @"Field",
-                            Position = @"OBR.14",
-                            Name = @"Specimen Received Date/Time",
-                            Length = 26,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"For observations requiring a specimen, the specimen received date/time is the actual login time at the diagnostic service.  This field must contain a value when the order is accompanied by a specimen, or when the observation required a specimen and the message is a report.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.14.1",
                             Type = @"Component",
@@ -1096,23 +1486,51 @@ The second through fourth components contain the filler application ID, in the f
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.15",
-                            Type = @"Field",
-                            Position = @"OBR.15",
-                            Name = @"Specimen Source",
-                            Length = 300,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM_SPS",
-                            DataTypeName = @"Specimen Source",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the site where the specimen should be obtained or where the service should be performed.   
+                        }
+        }
+
+        _specimenReceivedDateTime = new HL7V23Field
+        {
+            field = message[@"OBR"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenReceivedDateTime.field.FieldRepetitions != null && _specimenReceivedDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _specimenReceivedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_specimenReceivedDateTime, fieldData);
+        }
+
+        return _specimenReceivedDateTime;
+    } 
+}
+
+internal HL7V23Field _specimenSource;
+
+public HL7V23Field SpecimenSource
+{
+    get
+    {
+        if (_specimenSource != null)
+        {
+            return _specimenSource;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.15",
+            Type = @"Field",
+            Position = @"OBR.15",
+            Name = @"Specimen Source",
+            Length = 300,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CM_SPS",
+            DataTypeName = @"Specimen Source",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the site where the specimen should be obtained or where the service should be performed.   
 
 The first component contains the specimen source name or code (as a CE data type component).  (Even in the case of observations whose name implies the source, a source may be required, e.g., blood culture-heart blood.)  Refer to HL7 table 0070 - Source of specimen for valid entries. 
 
@@ -1123,8 +1541,10 @@ The third is a free text component describing the method of collection when that
 The fourth component specifies the body site from which the specimen was obtained, and the fifth is the site modifier.  For example, the site could be anticubital foss, and the site modifier “right.”  The components of the CE fields become subcomponents.   Refer to HL7 table 0163 - Administrative site for valid entries
 
 The fifth component indicates whether the specimen is frozen as part of the collection method.  Suggested values are F (Frozen); R (Refrigerated).  If the component is blank, the specimen is assumed to be at room temperature Table 0070 - Specimen source codes ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.15.1",
                             Type = @"Component",
@@ -1654,25 +2074,55 @@ The fifth component indicates whether the specimen is frozen as part of the coll
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _specimenSource = new HL7V23Field
+        {
+            field = message[@"OBR"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenSource.field.FieldRepetitions != null && _specimenSource.field.FieldRepetitions.Count > 0)
+        {
+            _specimenSource.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_specimenSource, fieldData);
+        }
+
+        return _specimenSource;
+    } 
+}
+
+internal HL7V23Field _orderingProvider;
+
+public HL7V23Field OrderingProvider
+{
+    get
+    {
+        if (_orderingProvider != null)
+        {
+            return _orderingProvider;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.16",
+            Type = @"Field",
+            Position = @"OBR.16",
+            Name = @"Ordering Provider",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the provider who ordered the test.  Either the ID code or the name, or both, may be present.  This is the same as ORC-12-ordering provider",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.16",
-                            Type = @"Field",
-                            Position = @"OBR.16",
-                            Name = @"Ordering Provider",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the provider who ordered the test.  Either the ID code or the name, or both, may be present.  This is the same as ORC-12-ordering provider",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.16.1",
                             Type = @"Component",
@@ -2026,25 +2476,55 @@ The fifth component indicates whether the specimen is frozen as part of the coll
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _orderingProvider = new HL7V23Field
+        {
+            field = message[@"OBR"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_orderingProvider.field.FieldRepetitions != null && _orderingProvider.field.FieldRepetitions.Count > 0)
+        {
+            _orderingProvider.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_orderingProvider, fieldData);
+        }
+
+        return _orderingProvider;
+    } 
+}
+
+internal HL7V23Field _orderCallbackPhoneNumber;
+
+public HL7V23Field OrderCallbackPhoneNumber
+{
+    get
+    {
+        if (_orderCallbackPhoneNumber != null)
+        {
+            return _orderCallbackPhoneNumber;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.17",
+            Type = @"Field",
+            Position = @"OBR.17",
+            Name = @"Order Callback Phone Number",
+            Length = 40,
+            Usage = @"O",
+            Rpt = @"2",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the telephone number for reporting a status or a result using the standard format with extension and/or beeper number when applicable.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.17",
-                            Type = @"Field",
-                            Position = @"OBR.17",
-                            Name = @"Order Callback Phone Number",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"2",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the telephone number for reporting a status or a result using the standard format with extension and/or beeper number when applicable.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.17.1",
                             Type = @"Component",
@@ -2204,97 +2684,235 @@ The fifth component indicates whether the specimen is frozen as part of the coll
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _orderCallbackPhoneNumber = new HL7V23Field
+        {
+            field = message[@"OBR"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_orderCallbackPhoneNumber.field.FieldRepetitions != null && _orderCallbackPhoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            _orderCallbackPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_orderCallbackPhoneNumber, fieldData);
+        }
+
+        return _orderCallbackPhoneNumber;
+    } 
+}
+
+internal HL7V23Field _placerField1;
+
+public HL7V23Field PlacerField1
+{
+    get
+    {
+        if (_placerField1 != null)
+        {
+            return _placerField1;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.18",
+            Type = @"Field",
+            Position = @"OBR.18",
+            Name = @"Placer Field 1",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is user field #1.  Text sent by the placer will be returned with the results.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _placerField1 = new HL7V23Field
+        {
+            field = message[@"OBR"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_placerField1.field.FieldRepetitions != null && _placerField1.field.FieldRepetitions.Count > 0)
+        {
+            _placerField1.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_placerField1, fieldData);
+        }
+
+        return _placerField1;
+    } 
+}
+
+internal HL7V23Field _placerField2;
+
+public HL7V23Field PlacerField2
+{
+    get
+    {
+        if (_placerField2 != null)
+        {
+            return _placerField2;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.19",
+            Type = @"Field",
+            Position = @"OBR.19",
+            Name = @"Placer Field 2",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is similar to placer field #1",
+            Sample = @"",
+            Fields = null
+        }
+
+        _placerField2 = new HL7V23Field
+        {
+            field = message[@"OBR"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_placerField2.field.FieldRepetitions != null && _placerField2.field.FieldRepetitions.Count > 0)
+        {
+            _placerField2.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_placerField2, fieldData);
+        }
+
+        return _placerField2;
+    } 
+}
+
+internal HL7V23Field _fillerField1;
+
+public HL7V23Field FillerField1
+{
+    get
+    {
+        if (_fillerField1 != null)
+        {
+            return _fillerField1;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.20",
+            Type = @"Field",
+            Position = @"OBR.20",
+            Name = @"Filler Field 1",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is definable for any use by the filler (diagnostic service)",
+            Sample = @"",
+            Fields = null
+        }
+
+        _fillerField1 = new HL7V23Field
+        {
+            field = message[@"OBR"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fillerField1.field.FieldRepetitions != null && _fillerField1.field.FieldRepetitions.Count > 0)
+        {
+            _fillerField1.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_fillerField1, fieldData);
+        }
+
+        return _fillerField1;
+    } 
+}
+
+internal HL7V23Field _fillerField2;
+
+public HL7V23Field FillerField2
+{
+    get
+    {
+        if (_fillerField2 != null)
+        {
+            return _fillerField2;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.21",
+            Type = @"Field",
+            Position = @"OBR.21",
+            Name = @"Filler Field 2",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is similar to filler field #1",
+            Sample = @"",
+            Fields = null
+        }
+
+        _fillerField2 = new HL7V23Field
+        {
+            field = message[@"OBR"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fillerField2.field.FieldRepetitions != null && _fillerField2.field.FieldRepetitions.Count > 0)
+        {
+            _fillerField2.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_fillerField2, fieldData);
+        }
+
+        return _fillerField2;
+    } 
+}
+
+internal HL7V23Field _resultsRptStatusChngDateTime;
+
+public HL7V23Field ResultsRptStatusChngDateTime
+{
+    get
+    {
+        if (_resultsRptStatusChngDateTime != null)
+        {
+            return _resultsRptStatusChngDateTime;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.22",
+            Type = @"Field",
+            Position = @"OBR.22",
+            Name = @"Results Rpt/Status Chng - Date/Time",
+            Length = 26,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the date/time when the results were reported or status changed.  This field is used to indicate the date and time that the results are composed into a report and released, or that a status, as defined in ORC-5 order status, is entered or changed.  (This is a results field only.)  When other applications (such as office or clinical database applications) query the laboratory application for untransmitted results, the information in this field may be used to control processing on the communications link.  Usually, the ordering service would want only those results for which the reporting date/time is greater than the date/time the inquiring application last received results",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.18",
-                            Type = @"Field",
-                            Position = @"OBR.18",
-                            Name = @"Placer Field 1",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is user field #1.  Text sent by the placer will be returned with the results.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.19",
-                            Type = @"Field",
-                            Position = @"OBR.19",
-                            Name = @"Placer Field 2",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is similar to placer field #1",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.20",
-                            Type = @"Field",
-                            Position = @"OBR.20",
-                            Name = @"Filler Field 1",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is definable for any use by the filler (diagnostic service)",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.21",
-                            Type = @"Field",
-                            Position = @"OBR.21",
-                            Name = @"Filler Field 2",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is similar to filler field #1",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.22",
-                            Type = @"Field",
-                            Position = @"OBR.22",
-                            Name = @"Results Rpt/Status Chng - Date/Time",
-                            Length = 26,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the date/time when the results were reported or status changed.  This field is used to indicate the date and time that the results are composed into a report and released, or that a status, as defined in ORC-5 order status, is entered or changed.  (This is a results field only.)  When other applications (such as office or clinical database applications) query the laboratory application for untransmitted results, the information in this field may be used to control processing on the communications link.  Usually, the ordering service would want only those results for which the reporting date/time is greater than the date/time the inquiring application last received results",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.22.1",
                             Type = @"Component",
@@ -2310,25 +2928,55 @@ The fifth component indicates whether the specimen is frozen as part of the coll
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _resultsRptStatusChngDateTime = new HL7V23Field
+        {
+            field = message[@"OBR"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_resultsRptStatusChngDateTime.field.FieldRepetitions != null && _resultsRptStatusChngDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _resultsRptStatusChngDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_resultsRptStatusChngDateTime, fieldData);
+        }
+
+        return _resultsRptStatusChngDateTime;
+    } 
+}
+
+internal HL7V23Field _chargeToPractice;
+
+public HL7V23Field ChargeToPractice
+{
+    get
+    {
+        if (_chargeToPractice != null)
+        {
+            return _chargeToPractice;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.23",
+            Type = @"Field",
+            Position = @"OBR.23",
+            Name = @"Charge To Practice",
+            Length = 40,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CM_MOC",
+            DataTypeName = @"Charge To Practise",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the charge to the ordering entity for the studies performed when applicable. The first component is a dollar amount when known by the filler.  The second is a charge code when known by the filler (results only)",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.23",
-                            Type = @"Field",
-                            Position = @"OBR.23",
-                            Name = @"Charge To Practice",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM_MOC",
-                            DataTypeName = @"Charge To Practise",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the charge to the ordering entity for the studies performed when applicable. The first component is a dollar amount when known by the filler.  The second is a charge code when known by the filler (results only)",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.23.1",
                             Type = @"Component",
@@ -2506,63 +3154,145 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.24",
-                            Type = @"Field",
-                            Position = @"OBR.24",
-                            Name = @"Diagnostic Service Section ID",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0074",
-                            TableName = @"Diagnostic service section ID",
-                            Description = @"This field is the section of the diagnostic service where the observation was performed.  If the study was performed by an outside service, the identification of that service should be recorded here.  Refer to HL7 table 0074 - Diagnostic service section ID for valid entries",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.25",
-                            Type = @"Field",
-                            Position = @"OBR.25",
-                            Name = @"Result Status",
-                            Length = 1,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0123",
-                            TableName = @"Result status",
-                            Description = @"his field is the status of results for this order.  This conditional field is required whenever the OBR is contained in a report message.  It is not required as part of an initial order. 
+                        }
+        }
+
+        _chargeToPractice = new HL7V23Field
+        {
+            field = message[@"OBR"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_chargeToPractice.field.FieldRepetitions != null && _chargeToPractice.field.FieldRepetitions.Count > 0)
+        {
+            _chargeToPractice.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_chargeToPractice, fieldData);
+        }
+
+        return _chargeToPractice;
+    } 
+}
+
+internal HL7V23Field _diagnosticServiceSectionID;
+
+public HL7V23Field DiagnosticServiceSectionID
+{
+    get
+    {
+        if (_diagnosticServiceSectionID != null)
+        {
+            return _diagnosticServiceSectionID;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.24",
+            Type = @"Field",
+            Position = @"OBR.24",
+            Name = @"Diagnostic Service Section ID",
+            Length = 10,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0074",
+            TableName = @"Diagnostic service section ID",
+            Description = @"This field is the section of the diagnostic service where the observation was performed.  If the study was performed by an outside service, the identification of that service should be recorded here.  Refer to HL7 table 0074 - Diagnostic service section ID for valid entries",
+            Sample = @"",
+            Fields = null
+        }
+
+        _diagnosticServiceSectionID = new HL7V23Field
+        {
+            field = message[@"OBR"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_diagnosticServiceSectionID.field.FieldRepetitions != null && _diagnosticServiceSectionID.field.FieldRepetitions.Count > 0)
+        {
+            _diagnosticServiceSectionID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_diagnosticServiceSectionID, fieldData);
+        }
+
+        return _diagnosticServiceSectionID;
+    } 
+}
+
+internal HL7V23Field _resultStatus;
+
+public HL7V23Field ResultStatus
+{
+    get
+    {
+        if (_resultStatus != null)
+        {
+            return _resultStatus;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.25",
+            Type = @"Field",
+            Position = @"OBR.25",
+            Name = @"Result Status",
+            Length = 1,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0123",
+            TableName = @"Result status",
+            Description = @"his field is the status of results for this order.  This conditional field is required whenever the OBR is contained in a report message.  It is not required as part of an initial order. 
 
 There are two methods of sending status information. If the status is that of the entire order, use ORC-15order effective date/time and ORC-5-order status.  If the status pertains to the order detail segment, use OBR-25-result status and OBR-22-results report/status change - date/time.  If both are present, the OBR values override the ORC values.  
 
 This field would typically be used in a response to an order status query where the level of detail requested does not include the OBX segments.  When the individual status of each result is necessary, OBX-11observ result status may be used.  Refer to HL7 table 0123 - Result status for valid entries",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.26",
-                            Type = @"Field",
-                            Position = @"OBR.26",
-                            Name = @"Parent Result",
-                            Length = 400,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM_PRL",
-                            DataTypeName = @"Parent Result Link",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is defined to make it available for other types of linkages (e.g., toxicology).  This important information, together with the information in OBR-29-parent number, uniquely identifies the parent result’s OBX segment related to this order.  The value of this OBX segment in the parent result is the organism or chemical species about which this battery reports.  For example, if the current battery is an antimicrobial susceptibility, the parent results identified OBX contains a result which identifies the organism on which the susceptibility was run.  This indirect linkage is preferred because the name of the organism in the parent result may undergo several preliminary values prior to finalization.
+            Sample = @"",
+            Fields = null
+        }
+
+        _resultStatus = new HL7V23Field
+        {
+            field = message[@"OBR"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_resultStatus.field.FieldRepetitions != null && _resultStatus.field.FieldRepetitions.Count > 0)
+        {
+            _resultStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_resultStatus, fieldData);
+        }
+
+        return _resultStatus;
+    } 
+}
+
+internal HL7V23Field _parentResult;
+
+public HL7V23Field ParentResult
+{
+    get
+    {
+        if (_parentResult != null)
+        {
+            return _parentResult;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.26",
+            Type = @"Field",
+            Position = @"OBR.26",
+            Name = @"Parent Result",
+            Length = 400,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CM_PRL",
+            DataTypeName = @"Parent Result Link",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is defined to make it available for other types of linkages (e.g., toxicology).  This important information, together with the information in OBR-29-parent number, uniquely identifies the parent result’s OBX segment related to this order.  The value of this OBX segment in the parent result is the organism or chemical species about which this battery reports.  For example, if the current battery is an antimicrobial susceptibility, the parent results identified OBX contains a result which identifies the organism on which the susceptibility was run.  This indirect linkage is preferred because the name of the organism in the parent result may undergo several preliminary values prior to finalization.
 
 The third component may be used to record the name of the microorganism identified by the parent result directly.  The organism in this case should be identified exactly as it is in the parent culture. 
 
@@ -2571,8 +3301,10 @@ We emphasize that this field does not take the entire result field from the pare
 This field is present only when the parent result is identified by OBR-29-parent number and the parent spawns child orders for each of many results.  (See Chapter 7 for more details about this linkage.) 
 
 A second mode of conveying this information is to use a standard observation result segment (OBX).  If more than one organism is present, OBX-4-subID is used to distinguish them.  In this case, the first OBX with subID N will contain a value identifying the Nth microorganism, and each additional OBX with subID N will contain susceptibility values for a given antimicrobial test on this organism",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.26.1",
                             Type = @"Component",
@@ -2730,25 +3462,55 @@ A second mode of conveying this information is to use a standard observation res
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _parentResult = new HL7V23Field
+        {
+            field = message[@"OBR"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_parentResult.field.FieldRepetitions != null && _parentResult.field.FieldRepetitions.Count > 0)
+        {
+            _parentResult.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_parentResult, fieldData);
+        }
+
+        return _parentResult;
+    } 
+}
+
+internal HL7V23Field _quantityTiming;
+
+public HL7V23Field QuantityTiming
+{
+    get
+    {
+        if (_quantityTiming != null)
+        {
+            return _quantityTiming;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.27",
+            Type = @"Field",
+            Position = @"OBR.27",
+            Name = @"Quantity/Timing",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"TQ",
+            DataTypeName = @"Timing Quantity",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains information about how many services to perform at one service time and how often the service times are repeated, and to fix duration of the request.  See Section 4.4, “QUANTITY/TIMING (TQ) DEFINITION.”",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.27",
-                            Type = @"Field",
-                            Position = @"OBR.27",
-                            Name = @"Quantity/Timing",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"TQ",
-                            DataTypeName = @"Timing Quantity",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains information about how many services to perform at one service time and how often the service times are repeated, and to fix duration of the request.  See Section 4.4, “QUANTITY/TIMING (TQ) DEFINITION.”",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.27.1",
                             Type = @"Component",
@@ -3285,25 +4047,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _quantityTiming = new HL7V23Field
+        {
+            field = message[@"OBR"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_quantityTiming.field.FieldRepetitions != null && _quantityTiming.field.FieldRepetitions.Count > 0)
+        {
+            _quantityTiming.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_quantityTiming, fieldData);
+        }
+
+        return _quantityTiming;
+    } 
+}
+
+internal HL7V23Field _resultCopiesTo;
+
+public HL7V23Field ResultCopiesTo
+{
+    get
+    {
+        if (_resultCopiesTo != null)
+        {
+            return _resultCopiesTo;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.28",
+            Type = @"Field",
+            Position = @"OBR.28",
+            Name = @"Result Copies To",
+            Length = 150,
+            Usage = @"O",
+            Rpt = @"5",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the people who are to receive copies of the results.  By local convention, either the ID number or the name may be absent",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.28",
-                            Type = @"Field",
-                            Position = @"OBR.28",
-                            Name = @"Result Copies To",
-                            Length = 150,
-                            Usage = @"O",
-                            Rpt = @"5",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the people who are to receive copies of the results.  By local convention, either the ID number or the name may be absent",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.28.1",
                             Type = @"Component",
@@ -3657,27 +4449,57 @@ The time specifies the interval between the predecessor and successor starts or 
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.29",
-                            Type = @"Field",
-                            Position = @"OBR.29",
-                            Name = @"Parent Number",
-                            Length = 150,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM_EIP",
-                            DataTypeName = @"Parent Order",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is identical to ORC-8-parent.  This field relates a child to its parent when a parent-child relationship exists.  For example, observations that are spawned by previous observations, e.g., antimicrobial susceptibilities spawned by blood cultures, need to record the parent (blood culture) filler order number here.  The parent-child mechanism is described under the order control field notes (see Section 4.3.1.1.1, “Table notes for order control codes of ORC”).  It is required when the order is a child.   
+                        }
+        }
+
+        _resultCopiesTo = new HL7V23Field
+        {
+            field = message[@"OBR"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_resultCopiesTo.field.FieldRepetitions != null && _resultCopiesTo.field.FieldRepetitions.Count > 0)
+        {
+            _resultCopiesTo.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_resultCopiesTo, fieldData);
+        }
+
+        return _resultCopiesTo;
+    } 
+}
+
+internal HL7V23Field _parentNumber;
+
+public HL7V23Field ParentNumber
+{
+    get
+    {
+        if (_parentNumber != null)
+        {
+            return _parentNumber;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.29",
+            Type = @"Field",
+            Position = @"OBR.29",
+            Name = @"Parent Number",
+            Length = 150,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CM_EIP",
+            DataTypeName = @"Parent Order",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is identical to ORC-8-parent.  This field relates a child to its parent when a parent-child relationship exists.  For example, observations that are spawned by previous observations, e.g., antimicrobial susceptibilities spawned by blood cultures, need to record the parent (blood culture) filler order number here.  The parent-child mechanism is described under the order control field notes (see Section 4.3.1.1.1, “Table notes for order control codes of ORC”).  It is required when the order is a child.   
 
 Parent is a two-component field. The components of the placer order number and the filler order number are transmitted in subcomponents of the two components of this field",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.29.1",
                             Type = @"Component",
@@ -3851,43 +4673,100 @@ Parent is a two-component field. The components of the placer order number and t
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _parentNumber = new HL7V23Field
+        {
+            field = message[@"OBR"][29],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_parentNumber.field.FieldRepetitions != null && _parentNumber.field.FieldRepetitions.Count > 0)
+        {
+            _parentNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_parentNumber, fieldData);
+        }
+
+        return _parentNumber;
+    } 
+}
+
+internal HL7V23Field _transportationMode;
+
+public HL7V23Field TransportationMode
+{
+    get
+    {
+        if (_transportationMode != null)
+        {
+            return _transportationMode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.30",
+            Type = @"Field",
+            Position = @"OBR.30",
+            Name = @"Transportation Mode",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0124",
+            TableName = @"Transportation mode",
+            Description = @"This field identifies how (or whether) to transport a patient, when applicable.  Refer to HL7 table 0124 - Transportation mode for valid codes",
+            Sample = @"",
+            Fields = null
+        }
+
+        _transportationMode = new HL7V23Field
+        {
+            field = message[@"OBR"][30],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transportationMode.field.FieldRepetitions != null && _transportationMode.field.FieldRepetitions.Count > 0)
+        {
+            _transportationMode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transportationMode, fieldData);
+        }
+
+        return _transportationMode;
+    } 
+}
+
+internal HL7V23Field _reasonForStudy;
+
+public HL7V23Field ReasonForStudy
+{
+    get
+    {
+        if (_reasonForStudy != null)
+        {
+            return _reasonForStudy;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.31",
+            Type = @"Field",
+            Position = @"OBR.31",
+            Name = @"Reason For Study",
+            Length = 300,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the code or text using the conventions for coded fields given in the Control/Query Chapter (Chapter 2).  This is required for some studies to obtain proper reimbursement",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.30",
-                            Type = @"Field",
-                            Position = @"OBR.30",
-                            Name = @"Transportation Mode",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0124",
-                            TableName = @"Transportation mode",
-                            Description = @"This field identifies how (or whether) to transport a patient, when applicable.  Refer to HL7 table 0124 - Transportation mode for valid codes",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.31",
-                            Type = @"Field",
-                            Position = @"OBR.31",
-                            Name = @"Reason For Study",
-                            Length = 300,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the code or text using the conventions for coded fields given in the Control/Query Chapter (Chapter 2).  This is required for some studies to obtain proper reimbursement",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.31.1",
                             Type = @"Component",
@@ -3993,25 +4872,55 @@ Parent is a two-component field. The components of the placer order number and t
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _reasonForStudy = new HL7V23Field
+        {
+            field = message[@"OBR"][31],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reasonForStudy.field.FieldRepetitions != null && _reasonForStudy.field.FieldRepetitions.Count > 0)
+        {
+            _reasonForStudy.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_reasonForStudy, fieldData);
+        }
+
+        return _reasonForStudy;
+    } 
+}
+
+internal HL7V23Field _principalResultInterpreter;
+
+public HL7V23Field PrincipalResultInterpreter
+{
+    get
+    {
+        if (_principalResultInterpreter != null)
+        {
+            return _principalResultInterpreter;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.32",
+            Type = @"Field",
+            Position = @"OBR.32",
+            Name = @"Principal Result Interpreter",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CM_NDL",
+            DataTypeName = @"Observing Practitioner",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the physician or other clinician who interpreted the observation and is responsible for the report content",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.32",
-                            Type = @"Field",
-                            Position = @"OBR.32",
-                            Name = @"Principal Result Interpreter",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM_NDL",
-                            DataTypeName = @"Observing Practitioner",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the physician or other clinician who interpreted the observation and is responsible for the report content",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.32.1",
                             Type = @"Component",
@@ -4451,25 +5360,55 @@ Parent is a two-component field. The components of the placer order number and t
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _principalResultInterpreter = new HL7V23Field
+        {
+            field = message[@"OBR"][32],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_principalResultInterpreter.field.FieldRepetitions != null && _principalResultInterpreter.field.FieldRepetitions.Count > 0)
+        {
+            _principalResultInterpreter.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_principalResultInterpreter, fieldData);
+        }
+
+        return _principalResultInterpreter;
+    } 
+}
+
+internal HL7V23Field _assistantResultInterpreter;
+
+public HL7V23Field AssistantResultInterpreter
+{
+    get
+    {
+        if (_assistantResultInterpreter != null)
+        {
+            return _assistantResultInterpreter;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.33",
+            Type = @"Field",
+            Position = @"OBR.33",
+            Name = @"Assistant Result Interpreter",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CM_NDL",
+            DataTypeName = @"Observing Practitioner",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the clinical observer who assisted with the interpretation of this study",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.33",
-                            Type = @"Field",
-                            Position = @"OBR.33",
-                            Name = @"Assistant Result Interpreter",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CM_NDL",
-                            DataTypeName = @"Observing Practitioner",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the clinical observer who assisted with the interpretation of this study",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.33.1",
                             Type = @"Component",
@@ -4909,25 +5848,55 @@ Parent is a two-component field. The components of the placer order number and t
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _assistantResultInterpreter = new HL7V23Field
+        {
+            field = message[@"OBR"][33],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_assistantResultInterpreter.field.FieldRepetitions != null && _assistantResultInterpreter.field.FieldRepetitions.Count > 0)
+        {
+            _assistantResultInterpreter.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_assistantResultInterpreter, fieldData);
+        }
+
+        return _assistantResultInterpreter;
+    } 
+}
+
+internal HL7V23Field _technician;
+
+public HL7V23Field Technician
+{
+    get
+    {
+        if (_technician != null)
+        {
+            return _technician;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.34",
+            Type = @"Field",
+            Position = @"OBR.34",
+            Name = @"Technician",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CM_NDL",
+            DataTypeName = @"Observing Practitioner",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the performing technician",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.34",
-                            Type = @"Field",
-                            Position = @"OBR.34",
-                            Name = @"Technician",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CM_NDL",
-                            DataTypeName = @"Observing Practitioner",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the performing technician",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.34.1",
                             Type = @"Component",
@@ -5367,25 +6336,55 @@ Parent is a two-component field. The components of the placer order number and t
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _technician = new HL7V23Field
+        {
+            field = message[@"OBR"][34],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_technician.field.FieldRepetitions != null && _technician.field.FieldRepetitions.Count > 0)
+        {
+            _technician.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_technician, fieldData);
+        }
+
+        return _technician;
+    } 
+}
+
+internal HL7V23Field _transcriptionist;
+
+public HL7V23Field Transcriptionist
+{
+    get
+    {
+        if (_transcriptionist != null)
+        {
+            return _transcriptionist;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.35",
+            Type = @"Field",
+            Position = @"OBR.35",
+            Name = @"Transcriptionist",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CM_NDL",
+            DataTypeName = @"Observing Practitioner",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the report transcriber",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.35",
-                            Type = @"Field",
-                            Position = @"OBR.35",
-                            Name = @"Transcriptionist",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CM_NDL",
-                            DataTypeName = @"Observing Practitioner",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the report transcriber",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.35.1",
                             Type = @"Component",
@@ -5825,25 +6824,55 @@ Parent is a two-component field. The components of the placer order number and t
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transcriptionist = new HL7V23Field
+        {
+            field = message[@"OBR"][35],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transcriptionist.field.FieldRepetitions != null && _transcriptionist.field.FieldRepetitions.Count > 0)
+        {
+            _transcriptionist.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transcriptionist, fieldData);
+        }
+
+        return _transcriptionist;
+    } 
+}
+
+internal HL7V23Field _scheduledDateTime;
+
+public HL7V23Field ScheduledDateTime
+{
+    get
+    {
+        if (_scheduledDateTime != null)
+        {
+            return _scheduledDateTime;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.36",
+            Type = @"Field",
+            Position = @"OBR.36",
+            Name = @"Scheduled Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the date/time the filler scheduled an observation, when applicable (e.g., action code in OBR-11-specimen action code  = “S”).  This is a result of a request to schedule a particular test and provides a way to inform the placer of the date/time a study is scheduled (result only).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.36",
-                            Type = @"Field",
-                            Position = @"OBR.36",
-                            Name = @"Scheduled Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the date/time the filler scheduled an observation, when applicable (e.g., action code in OBR-11-specimen action code  = “S”).  This is a result of a request to schedule a particular test and provides a way to inform the placer of the date/time a study is scheduled (result only).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.36.1",
                             Type = @"Component",
@@ -5859,43 +6888,100 @@ Parent is a two-component field. The components of the placer order number and t
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _scheduledDateTime = new HL7V23Field
+        {
+            field = message[@"OBR"][36],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_scheduledDateTime.field.FieldRepetitions != null && _scheduledDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _scheduledDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_scheduledDateTime, fieldData);
+        }
+
+        return _scheduledDateTime;
+    } 
+}
+
+internal HL7V23Field _numberOfSampleContainers;
+
+public HL7V23Field NumberOfSampleContainers
+{
+    get
+    {
+        if (_numberOfSampleContainers != null)
+        {
+            return _numberOfSampleContainers;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.37",
+            Type = @"Field",
+            Position = @"OBR.37",
+            Name = @"Number Of Sample Containers",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the number of containers for a given sample.  For sample receipt verification purposes; may be different from the total number of samples which accompany the order.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _numberOfSampleContainers = new HL7V23Field
+        {
+            field = message[@"OBR"][37],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_numberOfSampleContainers.field.FieldRepetitions != null && _numberOfSampleContainers.field.FieldRepetitions.Count > 0)
+        {
+            _numberOfSampleContainers.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_numberOfSampleContainers, fieldData);
+        }
+
+        return _numberOfSampleContainers;
+    } 
+}
+
+internal HL7V23Field _transportLogisticsOfCollectedSample;
+
+public HL7V23Field TransportLogisticsOfCollectedSample
+{
+    get
+    {
+        if (_transportLogisticsOfCollectedSample != null)
+        {
+            return _transportLogisticsOfCollectedSample;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.38",
+            Type = @"Field",
+            Position = @"OBR.38",
+            Name = @"Transport Logistics Of Collected Sample",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the means by which a sample reaches the diagnostic service provider.  This information is to aid the lab in scheduling or interpretation of results.  Possible answers: routine transport van, public postal service, etc.  If coded, requires a user-defined table.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.37",
-                            Type = @"Field",
-                            Position = @"OBR.37",
-                            Name = @"Number Of Sample Containers",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the number of containers for a given sample.  For sample receipt verification purposes; may be different from the total number of samples which accompany the order.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.38",
-                            Type = @"Field",
-                            Position = @"OBR.38",
-                            Name = @"Transport Logistics Of Collected Sample",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the means by which a sample reaches the diagnostic service provider.  This information is to aid the lab in scheduling or interpretation of results.  Possible answers: routine transport van, public postal service, etc.  If coded, requires a user-defined table.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.38.1",
                             Type = @"Component",
@@ -6001,25 +7087,55 @@ Parent is a two-component field. The components of the placer order number and t
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transportLogisticsOfCollectedSample = new HL7V23Field
+        {
+            field = message[@"OBR"][38],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transportLogisticsOfCollectedSample.field.FieldRepetitions != null && _transportLogisticsOfCollectedSample.field.FieldRepetitions.Count > 0)
+        {
+            _transportLogisticsOfCollectedSample.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transportLogisticsOfCollectedSample, fieldData);
+        }
+
+        return _transportLogisticsOfCollectedSample;
+    } 
+}
+
+internal HL7V23Field _collectorsComment;
+
+public HL7V23Field CollectorsComment
+{
+    get
+    {
+        if (_collectorsComment != null)
+        {
+            return _collectorsComment;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.39",
+            Type = @"Field",
+            Position = @"OBR.39",
+            Name = @"Collector s Comment",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is for reporting additional comments related to the sample. If coded, requires a userdefined table.  If only free text is reported, it is placed in the second component with a null in the first component, e.g., ^difficult clotting after venipuncture and echymosis.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.39",
-                            Type = @"Field",
-                            Position = @"OBR.39",
-                            Name = @"Collector s Comment",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is for reporting additional comments related to the sample. If coded, requires a userdefined table.  If only free text is reported, it is placed in the second component with a null in the first component, e.g., ^difficult clotting after venipuncture and echymosis.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.39.1",
                             Type = @"Component",
@@ -6125,25 +7241,55 @@ Parent is a two-component field. The components of the placer order number and t
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _collectorsComment = new HL7V23Field
+        {
+            field = message[@"OBR"][39],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_collectorsComment.field.FieldRepetitions != null && _collectorsComment.field.FieldRepetitions.Count > 0)
+        {
+            _collectorsComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_collectorsComment, fieldData);
+        }
+
+        return _collectorsComment;
+    } 
+}
+
+internal HL7V23Field _transportArrangementResponsibility;
+
+public HL7V23Field TransportArrangementResponsibility
+{
+    get
+    {
+        if (_transportArrangementResponsibility != null)
+        {
+            return _transportArrangementResponsibility;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.40",
+            Type = @"Field",
+            Position = @"OBR.40",
+            Name = @"Transport Arrangement Responsibility",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is an indicator of who is responsible for arranging transport to the planned diagnostic service.  Examples: Requester, Provider, Patient.  If coded, requires a user-defined table.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.40",
-                            Type = @"Field",
-                            Position = @"OBR.40",
-                            Name = @"Transport Arrangement Responsibility",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is an indicator of who is responsible for arranging transport to the planned diagnostic service.  Examples: Requester, Provider, Patient.  If coded, requires a user-defined table.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.40.1",
                             Type = @"Component",
@@ -6249,61 +7395,145 @@ Parent is a two-component field. The components of the placer order number and t
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transportArrangementResponsibility = new HL7V23Field
+        {
+            field = message[@"OBR"][40],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transportArrangementResponsibility.field.FieldRepetitions != null && _transportArrangementResponsibility.field.FieldRepetitions.Count > 0)
+        {
+            _transportArrangementResponsibility.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transportArrangementResponsibility, fieldData);
+        }
+
+        return _transportArrangementResponsibility;
+    } 
+}
+
+internal HL7V23Field _transportArranged;
+
+public HL7V23Field TransportArranged
+{
+    get
+    {
+        if (_transportArranged != null)
+        {
+            return _transportArranged;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.41",
+            Type = @"Field",
+            Position = @"OBR.41",
+            Name = @"Transport Arranged",
+            Length = 30,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0224",
+            TableName = @"Transport arranged",
+            Description = @"This field is an indicator of whether transport arrangements are known to have been made.  Refer to HL7 table 0224 - Transport arranged for valid codes.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _transportArranged = new HL7V23Field
+        {
+            field = message[@"OBR"][41],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transportArranged.field.FieldRepetitions != null && _transportArranged.field.FieldRepetitions.Count > 0)
+        {
+            _transportArranged.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_transportArranged, fieldData);
+        }
+
+        return _transportArranged;
+    } 
+}
+
+internal HL7V23Field _escortRequired;
+
+public HL7V23Field EscortRequired
+{
+    get
+    {
+        if (_escortRequired != null)
+        {
+            return _escortRequired;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.42",
+            Type = @"Field",
+            Position = @"OBR.42",
+            Name = @"Escort Required",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0225",
+            TableName = @"Escort required",
+            Description = @"This field is an indicator that the patient needs to be escorted to the diagnostic service department.  Note: The nature of the escort requirements should be stated in OBR-43 planned patient transport comment.  See HL7 table 0225 - Escort required for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _escortRequired = new HL7V23Field
+        {
+            field = message[@"OBR"][42],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_escortRequired.field.FieldRepetitions != null && _escortRequired.field.FieldRepetitions.Count > 0)
+        {
+            _escortRequired.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_escortRequired, fieldData);
+        }
+
+        return _escortRequired;
+    } 
+}
+
+internal HL7V23Field _plannedPatientTransportComment;
+
+public HL7V23Field PlannedPatientTransportComment
+{
+    get
+    {
+        if (_plannedPatientTransportComment != null)
+        {
+            return _plannedPatientTransportComment;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OBR.43",
+            Type = @"Field",
+            Position = @"OBR.43",
+            Name = @"Planned Patient Transport Comment",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the code or free text comments on special requirements for the transport of the patient to the diagnostic service department.  If coded, requires a user-defined table.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OBR.41",
-                            Type = @"Field",
-                            Position = @"OBR.41",
-                            Name = @"Transport Arranged",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0224",
-                            TableName = @"Transport arranged",
-                            Description = @"This field is an indicator of whether transport arrangements are known to have been made.  Refer to HL7 table 0224 - Transport arranged for valid codes.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.42",
-                            Type = @"Field",
-                            Position = @"OBR.42",
-                            Name = @"Escort Required",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0225",
-                            TableName = @"Escort required",
-                            Description = @"This field is an indicator that the patient needs to be escorted to the diagnostic service department.  Note: The nature of the escort requirements should be stated in OBR-43 planned patient transport comment.  See HL7 table 0225 - Escort required for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OBR.43",
-                            Type = @"Field",
-                            Position = @"OBR.43",
-                            Name = @"Planned Patient Transport Comment",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the code or free text comments on special requirements for the transport of the patient to the diagnostic service department.  If coded, requires a user-defined table.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OBR.43.1",
                             Type = @"Component",
@@ -6409,1807 +7639,23 @@ Parent is a two-component field. The components of the placer order number and t
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V23SegmentOBR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V23Field setIDObservationRequest;
-
-public HL7V23Field SetIDObservationRequest
-{
-    get
-    {
-        if (setIDObservationRequest != null)
-        {
-            return setIDObservationRequest;
-        }
-
-        setIDObservationRequest = new HL7V23Field
-        {
-            field = message[@"OBR"][1],
-            Id = @"OBR.1",
-            Type = @"Field",
-            Position = @"OBR.1",
-            Name = @"Set ID - Observation Request",
-            Length = 4,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"For the first order transmitted, the sequence number shall be 1; for the second order, it shall be 2; and so on",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDObservationRequest.field.FieldRepetitions != null && setIDObservationRequest.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDObservationRequest.Id));
-            setIDObservationRequest.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(setIDObservationRequest, fieldData);
-        }
-
-        return setIDObservationRequest;
-    } 
-}
-
-internal HL7V23Field placerOrderNumber;
-
-public HL7V23Field PlacerOrderNumber
-{
-    get
-    {
-        if (placerOrderNumber != null)
-        {
-            return placerOrderNumber;
-        }
-
-        placerOrderNumber = new HL7V23Field
-        {
-            field = message[@"OBR"][2],
-            Id = @"OBR.2",
-            Type = @"Field",
-            Position = @"OBR.2",
-            Name = @"Placer Order Number",
-            Length = 75,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is identical to ORC-2-placer order number.
-
-This  field is a special case of the Entity Identifier data type. The first component is a string that identifies an individual order (e.g., OBR).  A limit of fifteen (15) characters is suggested but not required.  It is assigned by the placer (ordering application).  It identifies an order uniquely among all orders from a particular ordering application.  The second through fourth components contain the application ID of the placing application in the same form as the HD data type (Section 2.8.18, “HD - Hierarchic designator”). The second component, namespace ID, is a user-defined coded value that will be uniquely associated with an application.  A limit of six (6) characters is suggested but not required. A given institution or group of intercommunicating institutions should establish a unique list of applications that may be potential placers and fillers and assign unique application IDs. The components are separated by component delimiters.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (placerOrderNumber.field.FieldRepetitions != null && placerOrderNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerOrderNumber.Id));
-            placerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(placerOrderNumber, fieldData);
-        }
-
-        return placerOrderNumber;
-    } 
-}
-
-internal HL7V23Field fillerOrderNumber;
-
-public HL7V23Field FillerOrderNumber
-{
-    get
-    {
-        if (fillerOrderNumber != null)
-        {
-            return fillerOrderNumber;
-        }
-
-        fillerOrderNumber = new HL7V23Field
-        {
-            field = message[@"OBR"][3],
-            Id = @"OBR.3",
-            Type = @"Field",
-            Position = @"OBR.3",
-            Name = @"Filler Order Number",
-            Length = 75,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This is a permanent identifier for an order and its associated observations.  It is a special case of the Entity Identifier data type.
-
-The first component is a string that identifies an individual order segment (e.g., OBR).  It is assigned by the order filling (receiving) application.  It identifies an order uniquely among all orders from a particular filling application (e.g., clinical laboratory). A limit of fifteen (15) characters is suggested but not required. 
-
-The second through fourth components contain the filler application ID, in the form of the HD data type (see Section 2.8.18, “HD - hierarchic designator”). The second component is a user-defined coded value  that uniquely defines the application from other applications on the network.  A limit of six (6) characters is suggested but not required.  The second component of the filler order number always identifies the actual filler of an order",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fillerOrderNumber.field.FieldRepetitions != null && fillerOrderNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerOrderNumber.Id));
-            fillerOrderNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(fillerOrderNumber, fieldData);
-        }
-
-        return fillerOrderNumber;
-    } 
-}
-
-internal HL7V23Field universalServiceIdentifier;
-
-public HL7V23Field UniversalServiceIdentifier
-{
-    get
-    {
-        if (universalServiceIdentifier != null)
-        {
-            return universalServiceIdentifier;
-        }
-
-        universalServiceIdentifier = new HL7V23Field
-        {
-            field = message[@"OBR"][4],
-            Id = @"OBR.4",
-            Type = @"Field",
-            Position = @"OBR.4",
-            Name = @"Universal Service Identifier",
-            Length = 200,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the identifier code for the requested observation/test/battery.  This can be based on local and/or “universal” codes.  We recommend the “universal” procedure identifier.  The structure of this CE data type is described in the control section.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (universalServiceIdentifier.field.FieldRepetitions != null && universalServiceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(universalServiceIdentifier.Id));
-            universalServiceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(universalServiceIdentifier, fieldData);
-        }
-
-        return universalServiceIdentifier;
-    } 
-}
-
-internal HL7V23Field priority;
-
-public HL7V23Field Priority
-{
-    get
-    {
-        if (priority != null)
-        {
-            return priority;
-        }
-
-        priority = new HL7V23Field
-        {
-            field = message[@"OBR"][5],
-            Id = @"OBR.5",
-            Type = @"Field",
-            Position = @"OBR.5",
-            Name = @"Priority",
-            Length = 2,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has been retained for backward compatibility only.  It is not used.  Previously priority (e.g., STAT, ASAP), but this information is carried as the sixth component of OBR-27quantity/timing",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priority.field.FieldRepetitions != null && priority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priority.Id));
-            priority.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(priority, fieldData);
-        }
-
-        return priority;
-    } 
-}
-
-internal HL7V23Field requestedDateTime;
-
-public HL7V23Field RequestedDateTime
-{
-    get
-    {
-        if (requestedDateTime != null)
-        {
-            return requestedDateTime;
-        }
-
-        requestedDateTime = new HL7V23Field
-        {
-            field = message[@"OBR"][6],
-            Id = @"OBR.6",
-            Type = @"Field",
-            Position = @"OBR.6",
-            Name = @"Requested Date/Time",
-            Length = 26,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has been retained for backward compatibility only.  It is not used.  Previously requested date/time.  This information is now carried in the fourth component of the OBR-27quantity/timing",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedDateTime.field.FieldRepetitions != null && requestedDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedDateTime.Id));
-            requestedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(requestedDateTime, fieldData);
-        }
-
-        return requestedDateTime;
-    } 
-}
-
-internal HL7V23Field observationDateTime;
-
-public HL7V23Field ObservationDateTime
-{
-    get
-    {
-        if (observationDateTime != null)
-        {
-            return observationDateTime;
-        }
-
-        observationDateTime = new HL7V23Field
-        {
-            field = message[@"OBR"][7],
-            Id = @"OBR.7",
-            Type = @"Field",
-            Position = @"OBR.7",
-            Name = @"Observation Date/Time",
-            Length = 26,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the clinically relevant date/time of the observation.  In the case of observations taken directly from a subject, it is the actual date and time the observation was obtained.  In the case of a specimen-associated study, this field shall represent the date and time the specimen was collected or obtained.  (This is a results-only field except when the placer or a third-party has already drawn the specimen.)  This field is conditionally required. When the OBR is transmitted as part of a report message, the field must be filled in.  If it is transmitted as part of a request and a sample has been sent along as part of the request, this field must be filled in because this specimen time is the physiologically relevant date/time of the observation",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationDateTime.field.FieldRepetitions != null && observationDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationDateTime.Id));
-            observationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(observationDateTime, fieldData);
-        }
-
-        return observationDateTime;
-    } 
-}
-
-internal HL7V23Field observationEndDateTime;
-
-public HL7V23Field ObservationEndDateTime
-{
-    get
-    {
-        if (observationEndDateTime != null)
-        {
-            return observationEndDateTime;
-        }
-
-        observationEndDateTime = new HL7V23Field
-        {
-            field = message[@"OBR"][8],
-            Id = @"OBR.8",
-            Type = @"Field",
-            Position = @"OBR.8",
-            Name = @"Observation End Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the end date and time of a study or timed specimen collection.  If an observation takes place over a substantial period of time, it will indicate when the observation period ended.  For observations made at a point in time, it will be null.  This is a results field except when the placer or a party other than the filler has already drawn the specimen",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationEndDateTime.field.FieldRepetitions != null && observationEndDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationEndDateTime.Id));
-            observationEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(observationEndDateTime, fieldData);
-        }
-
-        return observationEndDateTime;
-    } 
-}
-
-internal HL7V23Field collectionVolume;
-
-public HL7V23Field CollectionVolume
-{
-    get
-    {
-        if (collectionVolume != null)
-        {
-            return collectionVolume;
-        }
-
-        collectionVolume = new HL7V23Field
-        {
-            field = message[@"OBR"][9],
-            Id = @"OBR.9",
-            Type = @"Field",
-            Position = @"OBR.9",
-            Name = @"Collection Volume",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"For laboratory tests, the collection volume is the volume of a specimen.  The default unit is ML.  Specifically, units should be expressed in the ISO Standard unit abbreviations (ISO-2955,1977).  This is a results-only field except when the placer or a party has already drawn the specimen.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (collectionVolume.field.FieldRepetitions != null && collectionVolume.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(collectionVolume.Id));
-            collectionVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(collectionVolume, fieldData);
-        }
-
-        return collectionVolume;
-    } 
-}
-
-internal HL7V23Field collectorIdentifier;
-
-public HL7V23Field CollectorIdentifier
-{
-    get
-    {
-        if (collectorIdentifier != null)
-        {
-            return collectorIdentifier;
-        }
-
-        collectorIdentifier = new HL7V23Field
-        {
-            field = message[@"OBR"][10],
-            Id = @"OBR.10",
-            Type = @"Field",
-            Position = @"OBR.10",
-            Name = @"Collector Identifier",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name",
-            TableId = null,
-            TableName = null,
-            Description = @"When a specimen is required for the study, this field will identify the person, department, or facility that collected the specimen.  Either name or ID code, or both, may be present.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (collectorIdentifier.field.FieldRepetitions != null && collectorIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(collectorIdentifier.Id));
-            collectorIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(collectorIdentifier, fieldData);
-        }
-
-        return collectorIdentifier;
-    } 
-}
-
-internal HL7V23Field specimenActionCode;
-
-public HL7V23Field SpecimenActionCode
-{
-    get
-    {
-        if (specimenActionCode != null)
-        {
-            return specimenActionCode;
-        }
-
-        specimenActionCode = new HL7V23Field
-        {
-            field = message[@"OBR"][11],
-            Id = @"OBR.11",
-            Type = @"Field",
-            Position = @"OBR.11",
-            Name = @"Specimen Action Code",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0065",
-            TableName = @"Specimen action code",
-            Description = @"This field is the action to be taken with respect to the specimens that accompany or precede this order.  The purpose of this field is to further qualify (when appropriate) the general action indicated by the order control code contained in the accompanying ORC segment.  For example, when a new order (ORC - “NW”) is sent to the lab, this field would be used to tell the lab whether or not to collect the specimen (“L” or “O”).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenActionCode.field.FieldRepetitions != null && specimenActionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenActionCode.Id));
-            specimenActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(specimenActionCode, fieldData);
-        }
-
-        return specimenActionCode;
-    } 
-}
-
-internal HL7V23Field dangerCode;
-
-public HL7V23Field DangerCode
-{
-    get
-    {
-        if (dangerCode != null)
-        {
-            return dangerCode;
-        }
-
-        dangerCode = new HL7V23Field
-        {
-            field = message[@"OBR"][12],
-            Id = @"OBR.12",
-            Type = @"Field",
-            Position = @"OBR.12",
-            Name = @"Danger Code",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the code and/or text indicating any known or suspected patient or specimen hazards, e.g., patient with active tuberculosis or blood from a hepatitis patient.  Either code and/or text may be absent.  However, the code is always placed in the first component position and any free text in the second component.  Thus, free text without a code must be preceded by a component delimiter.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dangerCode.field.FieldRepetitions != null && dangerCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dangerCode.Id));
-            dangerCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(dangerCode, fieldData);
-        }
-
-        return dangerCode;
-    } 
-}
-
-internal HL7V23Field relevantClinicalInformation;
-
-public HL7V23Field RelevantClinicalInformation
-{
-    get
-    {
-        if (relevantClinicalInformation != null)
-        {
-            return relevantClinicalInformation;
-        }
-
-        relevantClinicalInformation = new HL7V23Field
-        {
-            field = message[@"OBR"][13],
-            Id = @"OBR.13",
-            Type = @"Field",
-            Position = @"OBR.13",
-            Name = @"Relevant Clinical Information",
-            Length = 300,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the additional clinical information about the patient or specimen.  This field is used to report the suspected diagnosis and clinical findings on requests for interpreted diagnostic studies.  Examples include reporting the amount of inspired carbon dioxide for blood gasses, the point in the menstrual cycle for cervical pap tests, and other conditions that influence test interpretations.  For some orders this information may be sent on a more structured form as a series of OBX segments (see Chapter 7) that immediately follow the order segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (relevantClinicalInformation.field.FieldRepetitions != null && relevantClinicalInformation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(relevantClinicalInformation.Id));
-            relevantClinicalInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(relevantClinicalInformation, fieldData);
-        }
-
-        return relevantClinicalInformation;
-    } 
-}
-
-internal HL7V23Field specimenReceivedDateTime;
-
-public HL7V23Field SpecimenReceivedDateTime
-{
-    get
-    {
-        if (specimenReceivedDateTime != null)
-        {
-            return specimenReceivedDateTime;
-        }
-
-        specimenReceivedDateTime = new HL7V23Field
-        {
-            field = message[@"OBR"][14],
-            Id = @"OBR.14",
-            Type = @"Field",
-            Position = @"OBR.14",
-            Name = @"Specimen Received Date/Time",
-            Length = 26,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"For observations requiring a specimen, the specimen received date/time is the actual login time at the diagnostic service.  This field must contain a value when the order is accompanied by a specimen, or when the observation required a specimen and the message is a report.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenReceivedDateTime.field.FieldRepetitions != null && specimenReceivedDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenReceivedDateTime.Id));
-            specimenReceivedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(specimenReceivedDateTime, fieldData);
-        }
-
-        return specimenReceivedDateTime;
-    } 
-}
-
-internal HL7V23Field specimenSource;
-
-public HL7V23Field SpecimenSource
-{
-    get
-    {
-        if (specimenSource != null)
-        {
-            return specimenSource;
-        }
-
-        specimenSource = new HL7V23Field
-        {
-            field = message[@"OBR"][15],
-            Id = @"OBR.15",
-            Type = @"Field",
-            Position = @"OBR.15",
-            Name = @"Specimen Source",
-            Length = 300,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CM_SPS",
-            DataTypeName = @"Specimen Source",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the site where the specimen should be obtained or where the service should be performed.   
-
-The first component contains the specimen source name or code (as a CE data type component).  (Even in the case of observations whose name implies the source, a source may be required, e.g., blood culture-heart blood.)  Refer to HL7 table 0070 - Source of specimen for valid entries. 
-
-The second component should include free text additives to the specimen such as Heparin, EDTA, or Oxlate, when applicable.   
-
-The third is a free text component describing the method of collection when that information is a part of the order.  When the method of collection is logically an observation result, it should be included as a result segment. 
-
-The fourth component specifies the body site from which the specimen was obtained, and the fifth is the site modifier.  For example, the site could be anticubital foss, and the site modifier “right.”  The components of the CE fields become subcomponents.   Refer to HL7 table 0163 - Administrative site for valid entries
-
-The fifth component indicates whether the specimen is frozen as part of the collection method.  Suggested values are F (Frozen); R (Refrigerated).  If the component is blank, the specimen is assumed to be at room temperature Table 0070 - Specimen source codes ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenSource.field.FieldRepetitions != null && specimenSource.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenSource.Id));
-            specimenSource.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(specimenSource, fieldData);
-        }
-
-        return specimenSource;
-    } 
-}
-
-internal HL7V23Field orderingProvider;
-
-public HL7V23Field OrderingProvider
-{
-    get
-    {
-        if (orderingProvider != null)
-        {
-            return orderingProvider;
-        }
-
-        orderingProvider = new HL7V23Field
-        {
-            field = message[@"OBR"][16],
-            Id = @"OBR.16",
-            Type = @"Field",
-            Position = @"OBR.16",
-            Name = @"Ordering Provider",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the provider who ordered the test.  Either the ID code or the name, or both, may be present.  This is the same as ORC-12-ordering provider",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (orderingProvider.field.FieldRepetitions != null && orderingProvider.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderingProvider.Id));
-            orderingProvider.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(orderingProvider, fieldData);
-        }
-
-        return orderingProvider;
-    } 
-}
-
-internal HL7V23Field orderCallbackPhoneNumber;
-
-public HL7V23Field OrderCallbackPhoneNumber
-{
-    get
-    {
-        if (orderCallbackPhoneNumber != null)
-        {
-            return orderCallbackPhoneNumber;
-        }
-
-        orderCallbackPhoneNumber = new HL7V23Field
-        {
-            field = message[@"OBR"][17],
-            Id = @"OBR.17",
-            Type = @"Field",
-            Position = @"OBR.17",
-            Name = @"Order Callback Phone Number",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"2",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the telephone number for reporting a status or a result using the standard format with extension and/or beeper number when applicable.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (orderCallbackPhoneNumber.field.FieldRepetitions != null && orderCallbackPhoneNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderCallbackPhoneNumber.Id));
-            orderCallbackPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(orderCallbackPhoneNumber, fieldData);
-        }
-
-        return orderCallbackPhoneNumber;
-    } 
-}
-
-internal HL7V23Field placerField1;
-
-public HL7V23Field PlacerField1
-{
-    get
-    {
-        if (placerField1 != null)
-        {
-            return placerField1;
-        }
-
-        placerField1 = new HL7V23Field
-        {
-            field = message[@"OBR"][18],
-            Id = @"OBR.18",
-            Type = @"Field",
-            Position = @"OBR.18",
-            Name = @"Placer Field 1",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is user field #1.  Text sent by the placer will be returned with the results.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (placerField1.field.FieldRepetitions != null && placerField1.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerField1.Id));
-            placerField1.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(placerField1, fieldData);
-        }
-
-        return placerField1;
-    } 
-}
-
-internal HL7V23Field placerField2;
-
-public HL7V23Field PlacerField2
-{
-    get
-    {
-        if (placerField2 != null)
-        {
-            return placerField2;
-        }
-
-        placerField2 = new HL7V23Field
-        {
-            field = message[@"OBR"][19],
-            Id = @"OBR.19",
-            Type = @"Field",
-            Position = @"OBR.19",
-            Name = @"Placer Field 2",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is similar to placer field #1",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (placerField2.field.FieldRepetitions != null && placerField2.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(placerField2.Id));
-            placerField2.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(placerField2, fieldData);
-        }
-
-        return placerField2;
-    } 
-}
-
-internal HL7V23Field fillerField1;
-
-public HL7V23Field FillerField1
-{
-    get
-    {
-        if (fillerField1 != null)
-        {
-            return fillerField1;
-        }
-
-        fillerField1 = new HL7V23Field
-        {
-            field = message[@"OBR"][20],
-            Id = @"OBR.20",
-            Type = @"Field",
-            Position = @"OBR.20",
-            Name = @"Filler Field 1",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is definable for any use by the filler (diagnostic service)",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fillerField1.field.FieldRepetitions != null && fillerField1.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerField1.Id));
-            fillerField1.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(fillerField1, fieldData);
-        }
-
-        return fillerField1;
-    } 
-}
-
-internal HL7V23Field fillerField2;
-
-public HL7V23Field FillerField2
-{
-    get
-    {
-        if (fillerField2 != null)
-        {
-            return fillerField2;
-        }
-
-        fillerField2 = new HL7V23Field
-        {
-            field = message[@"OBR"][21],
-            Id = @"OBR.21",
-            Type = @"Field",
-            Position = @"OBR.21",
-            Name = @"Filler Field 2",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is similar to filler field #1",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fillerField2.field.FieldRepetitions != null && fillerField2.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerField2.Id));
-            fillerField2.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(fillerField2, fieldData);
-        }
-
-        return fillerField2;
-    } 
-}
-
-internal HL7V23Field resultsRptStatusChngDateTime;
-
-public HL7V23Field ResultsRptStatusChngDateTime
-{
-    get
-    {
-        if (resultsRptStatusChngDateTime != null)
-        {
-            return resultsRptStatusChngDateTime;
-        }
-
-        resultsRptStatusChngDateTime = new HL7V23Field
-        {
-            field = message[@"OBR"][22],
-            Id = @"OBR.22",
-            Type = @"Field",
-            Position = @"OBR.22",
-            Name = @"Results Rpt/Status Chng - Date/Time",
-            Length = 26,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the date/time when the results were reported or status changed.  This field is used to indicate the date and time that the results are composed into a report and released, or that a status, as defined in ORC-5 order status, is entered or changed.  (This is a results field only.)  When other applications (such as office or clinical database applications) query the laboratory application for untransmitted results, the information in this field may be used to control processing on the communications link.  Usually, the ordering service would want only those results for which the reporting date/time is greater than the date/time the inquiring application last received results",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (resultsRptStatusChngDateTime.field.FieldRepetitions != null && resultsRptStatusChngDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resultsRptStatusChngDateTime.Id));
-            resultsRptStatusChngDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(resultsRptStatusChngDateTime, fieldData);
-        }
-
-        return resultsRptStatusChngDateTime;
-    } 
-}
-
-internal HL7V23Field chargeToPractice;
-
-public HL7V23Field ChargeToPractice
-{
-    get
-    {
-        if (chargeToPractice != null)
-        {
-            return chargeToPractice;
-        }
-
-        chargeToPractice = new HL7V23Field
-        {
-            field = message[@"OBR"][23],
-            Id = @"OBR.23",
-            Type = @"Field",
-            Position = @"OBR.23",
-            Name = @"Charge To Practice",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CM_MOC",
-            DataTypeName = @"Charge To Practise",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the charge to the ordering entity for the studies performed when applicable. The first component is a dollar amount when known by the filler.  The second is a charge code when known by the filler (results only)",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (chargeToPractice.field.FieldRepetitions != null && chargeToPractice.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(chargeToPractice.Id));
-            chargeToPractice.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(chargeToPractice, fieldData);
-        }
-
-        return chargeToPractice;
-    } 
-}
-
-internal HL7V23Field diagnosticServiceSectionID;
-
-public HL7V23Field DiagnosticServiceSectionID
-{
-    get
-    {
-        if (diagnosticServiceSectionID != null)
-        {
-            return diagnosticServiceSectionID;
-        }
-
-        diagnosticServiceSectionID = new HL7V23Field
-        {
-            field = message[@"OBR"][24],
-            Id = @"OBR.24",
-            Type = @"Field",
-            Position = @"OBR.24",
-            Name = @"Diagnostic Service Section ID",
-            Length = 10,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0074",
-            TableName = @"Diagnostic service section ID",
-            Description = @"This field is the section of the diagnostic service where the observation was performed.  If the study was performed by an outside service, the identification of that service should be recorded here.  Refer to HL7 table 0074 - Diagnostic service section ID for valid entries",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (diagnosticServiceSectionID.field.FieldRepetitions != null && diagnosticServiceSectionID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosticServiceSectionID.Id));
-            diagnosticServiceSectionID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(diagnosticServiceSectionID, fieldData);
-        }
-
-        return diagnosticServiceSectionID;
-    } 
-}
-
-internal HL7V23Field resultStatus;
-
-public HL7V23Field ResultStatus
-{
-    get
-    {
-        if (resultStatus != null)
-        {
-            return resultStatus;
-        }
-
-        resultStatus = new HL7V23Field
-        {
-            field = message[@"OBR"][25],
-            Id = @"OBR.25",
-            Type = @"Field",
-            Position = @"OBR.25",
-            Name = @"Result Status",
-            Length = 1,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0123",
-            TableName = @"Result status",
-            Description = @"his field is the status of results for this order.  This conditional field is required whenever the OBR is contained in a report message.  It is not required as part of an initial order. 
-
-There are two methods of sending status information. If the status is that of the entire order, use ORC-15order effective date/time and ORC-5-order status.  If the status pertains to the order detail segment, use OBR-25-result status and OBR-22-results report/status change - date/time.  If both are present, the OBR values override the ORC values.  
-
-This field would typically be used in a response to an order status query where the level of detail requested does not include the OBX segments.  When the individual status of each result is necessary, OBX-11observ result status may be used.  Refer to HL7 table 0123 - Result status for valid entries",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (resultStatus.field.FieldRepetitions != null && resultStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resultStatus.Id));
-            resultStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(resultStatus, fieldData);
-        }
-
-        return resultStatus;
-    } 
-}
-
-internal HL7V23Field parentResult;
-
-public HL7V23Field ParentResult
-{
-    get
-    {
-        if (parentResult != null)
-        {
-            return parentResult;
-        }
-
-        parentResult = new HL7V23Field
-        {
-            field = message[@"OBR"][26],
-            Id = @"OBR.26",
-            Type = @"Field",
-            Position = @"OBR.26",
-            Name = @"Parent Result",
-            Length = 400,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CM_PRL",
-            DataTypeName = @"Parent Result Link",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is defined to make it available for other types of linkages (e.g., toxicology).  This important information, together with the information in OBR-29-parent number, uniquely identifies the parent result’s OBX segment related to this order.  The value of this OBX segment in the parent result is the organism or chemical species about which this battery reports.  For example, if the current battery is an antimicrobial susceptibility, the parent results identified OBX contains a result which identifies the organism on which the susceptibility was run.  This indirect linkage is preferred because the name of the organism in the parent result may undergo several preliminary values prior to finalization.
-
-The third component may be used to record the name of the microorganism identified by the parent result directly.  The organism in this case should be identified exactly as it is in the parent culture. 
-
-We emphasize that this field does not take the entire result field from the parent.  It is meant only for the text name of the organism or chemical subspecies identified.  This field is included only to provide a method for linking back to the parent result for those systems that could not generate unambiguous Observation IDs and sub-IDs. 
-
-This field is present only when the parent result is identified by OBR-29-parent number and the parent spawns child orders for each of many results.  (See Chapter 7 for more details about this linkage.) 
-
-A second mode of conveying this information is to use a standard observation result segment (OBX).  If more than one organism is present, OBX-4-subID is used to distinguish them.  In this case, the first OBX with subID N will contain a value identifying the Nth microorganism, and each additional OBX with subID N will contain susceptibility values for a given antimicrobial test on this organism",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (parentResult.field.FieldRepetitions != null && parentResult.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(parentResult.Id));
-            parentResult.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(parentResult, fieldData);
-        }
-
-        return parentResult;
-    } 
-}
-
-internal HL7V23Field quantityTiming;
-
-public HL7V23Field QuantityTiming
-{
-    get
-    {
-        if (quantityTiming != null)
-        {
-            return quantityTiming;
-        }
-
-        quantityTiming = new HL7V23Field
-        {
-            field = message[@"OBR"][27],
-            Id = @"OBR.27",
-            Type = @"Field",
-            Position = @"OBR.27",
-            Name = @"Quantity/Timing",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"TQ",
-            DataTypeName = @"Timing Quantity",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains information about how many services to perform at one service time and how often the service times are repeated, and to fix duration of the request.  See Section 4.4, “QUANTITY/TIMING (TQ) DEFINITION.”",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (quantityTiming.field.FieldRepetitions != null && quantityTiming.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(quantityTiming.Id));
-            quantityTiming.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(quantityTiming, fieldData);
-        }
-
-        return quantityTiming;
-    } 
-}
-
-internal HL7V23Field resultCopiesTo;
-
-public HL7V23Field ResultCopiesTo
-{
-    get
-    {
-        if (resultCopiesTo != null)
-        {
-            return resultCopiesTo;
-        }
-
-        resultCopiesTo = new HL7V23Field
-        {
-            field = message[@"OBR"][28],
-            Id = @"OBR.28",
-            Type = @"Field",
-            Position = @"OBR.28",
-            Name = @"Result Copies To",
-            Length = 150,
-            Usage = @"O",
-            Rpt = @"5",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the people who are to receive copies of the results.  By local convention, either the ID number or the name may be absent",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (resultCopiesTo.field.FieldRepetitions != null && resultCopiesTo.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resultCopiesTo.Id));
-            resultCopiesTo.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(resultCopiesTo, fieldData);
-        }
-
-        return resultCopiesTo;
-    } 
-}
-
-internal HL7V23Field parentNumber;
-
-public HL7V23Field ParentNumber
-{
-    get
-    {
-        if (parentNumber != null)
-        {
-            return parentNumber;
-        }
-
-        parentNumber = new HL7V23Field
-        {
-            field = message[@"OBR"][29],
-            Id = @"OBR.29",
-            Type = @"Field",
-            Position = @"OBR.29",
-            Name = @"Parent Number",
-            Length = 150,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CM_EIP",
-            DataTypeName = @"Parent Order",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is identical to ORC-8-parent.  This field relates a child to its parent when a parent-child relationship exists.  For example, observations that are spawned by previous observations, e.g., antimicrobial susceptibilities spawned by blood cultures, need to record the parent (blood culture) filler order number here.  The parent-child mechanism is described under the order control field notes (see Section 4.3.1.1.1, “Table notes for order control codes of ORC”).  It is required when the order is a child.   
-
-Parent is a two-component field. The components of the placer order number and the filler order number are transmitted in subcomponents of the two components of this field",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (parentNumber.field.FieldRepetitions != null && parentNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(parentNumber.Id));
-            parentNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(parentNumber, fieldData);
-        }
-
-        return parentNumber;
-    } 
-}
-
-internal HL7V23Field transportationMode;
-
-public HL7V23Field TransportationMode
-{
-    get
-    {
-        if (transportationMode != null)
-        {
-            return transportationMode;
-        }
-
-        transportationMode = new HL7V23Field
-        {
-            field = message[@"OBR"][30],
-            Id = @"OBR.30",
-            Type = @"Field",
-            Position = @"OBR.30",
-            Name = @"Transportation Mode",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0124",
-            TableName = @"Transportation mode",
-            Description = @"This field identifies how (or whether) to transport a patient, when applicable.  Refer to HL7 table 0124 - Transportation mode for valid codes",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transportationMode.field.FieldRepetitions != null && transportationMode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transportationMode.Id));
-            transportationMode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transportationMode, fieldData);
-        }
-
-        return transportationMode;
-    } 
-}
-
-internal HL7V23Field reasonForStudy;
-
-public HL7V23Field ReasonForStudy
-{
-    get
-    {
-        if (reasonForStudy != null)
-        {
-            return reasonForStudy;
-        }
-
-        reasonForStudy = new HL7V23Field
-        {
-            field = message[@"OBR"][31],
-            Id = @"OBR.31",
-            Type = @"Field",
-            Position = @"OBR.31",
-            Name = @"Reason For Study",
-            Length = 300,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the code or text using the conventions for coded fields given in the Control/Query Chapter (Chapter 2).  This is required for some studies to obtain proper reimbursement",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reasonForStudy.field.FieldRepetitions != null && reasonForStudy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reasonForStudy.Id));
-            reasonForStudy.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(reasonForStudy, fieldData);
-        }
-
-        return reasonForStudy;
-    } 
-}
-
-internal HL7V23Field principalResultInterpreter;
-
-public HL7V23Field PrincipalResultInterpreter
-{
-    get
-    {
-        if (principalResultInterpreter != null)
-        {
-            return principalResultInterpreter;
-        }
-
-        principalResultInterpreter = new HL7V23Field
-        {
-            field = message[@"OBR"][32],
-            Id = @"OBR.32",
-            Type = @"Field",
-            Position = @"OBR.32",
-            Name = @"Principal Result Interpreter",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CM_NDL",
-            DataTypeName = @"Observing Practitioner",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the physician or other clinician who interpreted the observation and is responsible for the report content",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (principalResultInterpreter.field.FieldRepetitions != null && principalResultInterpreter.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(principalResultInterpreter.Id));
-            principalResultInterpreter.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(principalResultInterpreter, fieldData);
-        }
-
-        return principalResultInterpreter;
-    } 
-}
-
-internal HL7V23Field assistantResultInterpreter;
-
-public HL7V23Field AssistantResultInterpreter
-{
-    get
-    {
-        if (assistantResultInterpreter != null)
-        {
-            return assistantResultInterpreter;
-        }
-
-        assistantResultInterpreter = new HL7V23Field
-        {
-            field = message[@"OBR"][33],
-            Id = @"OBR.33",
-            Type = @"Field",
-            Position = @"OBR.33",
-            Name = @"Assistant Result Interpreter",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CM_NDL",
-            DataTypeName = @"Observing Practitioner",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the clinical observer who assisted with the interpretation of this study",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (assistantResultInterpreter.field.FieldRepetitions != null && assistantResultInterpreter.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(assistantResultInterpreter.Id));
-            assistantResultInterpreter.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(assistantResultInterpreter, fieldData);
-        }
-
-        return assistantResultInterpreter;
-    } 
-}
-
-internal HL7V23Field technician;
-
-public HL7V23Field Technician
-{
-    get
-    {
-        if (technician != null)
-        {
-            return technician;
-        }
-
-        technician = new HL7V23Field
-        {
-            field = message[@"OBR"][34],
-            Id = @"OBR.34",
-            Type = @"Field",
-            Position = @"OBR.34",
-            Name = @"Technician",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CM_NDL",
-            DataTypeName = @"Observing Practitioner",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the performing technician",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (technician.field.FieldRepetitions != null && technician.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(technician.Id));
-            technician.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(technician, fieldData);
-        }
-
-        return technician;
-    } 
-}
-
-internal HL7V23Field transcriptionist;
-
-public HL7V23Field Transcriptionist
-{
-    get
-    {
-        if (transcriptionist != null)
-        {
-            return transcriptionist;
-        }
-
-        transcriptionist = new HL7V23Field
-        {
-            field = message[@"OBR"][35],
-            Id = @"OBR.35",
-            Type = @"Field",
-            Position = @"OBR.35",
-            Name = @"Transcriptionist",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CM_NDL",
-            DataTypeName = @"Observing Practitioner",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the report transcriber",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transcriptionist.field.FieldRepetitions != null && transcriptionist.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transcriptionist.Id));
-            transcriptionist.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transcriptionist, fieldData);
-        }
-
-        return transcriptionist;
-    } 
-}
-
-internal HL7V23Field scheduledDateTime;
-
-public HL7V23Field ScheduledDateTime
-{
-    get
-    {
-        if (scheduledDateTime != null)
-        {
-            return scheduledDateTime;
-        }
-
-        scheduledDateTime = new HL7V23Field
-        {
-            field = message[@"OBR"][36],
-            Id = @"OBR.36",
-            Type = @"Field",
-            Position = @"OBR.36",
-            Name = @"Scheduled Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the date/time the filler scheduled an observation, when applicable (e.g., action code in OBR-11-specimen action code  = “S”).  This is a result of a request to schedule a particular test and provides a way to inform the placer of the date/time a study is scheduled (result only).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (scheduledDateTime.field.FieldRepetitions != null && scheduledDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(scheduledDateTime.Id));
-            scheduledDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(scheduledDateTime, fieldData);
-        }
-
-        return scheduledDateTime;
-    } 
-}
-
-internal HL7V23Field numberOfSampleContainers;
-
-public HL7V23Field NumberOfSampleContainers
-{
-    get
-    {
-        if (numberOfSampleContainers != null)
-        {
-            return numberOfSampleContainers;
-        }
-
-        numberOfSampleContainers = new HL7V23Field
-        {
-            field = message[@"OBR"][37],
-            Id = @"OBR.37",
-            Type = @"Field",
-            Position = @"OBR.37",
-            Name = @"Number Of Sample Containers",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the number of containers for a given sample.  For sample receipt verification purposes; may be different from the total number of samples which accompany the order.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (numberOfSampleContainers.field.FieldRepetitions != null && numberOfSampleContainers.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfSampleContainers.Id));
-            numberOfSampleContainers.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(numberOfSampleContainers, fieldData);
-        }
-
-        return numberOfSampleContainers;
-    } 
-}
-
-internal HL7V23Field transportLogisticsOfCollectedSample;
-
-public HL7V23Field TransportLogisticsOfCollectedSample
-{
-    get
-    {
-        if (transportLogisticsOfCollectedSample != null)
-        {
-            return transportLogisticsOfCollectedSample;
-        }
-
-        transportLogisticsOfCollectedSample = new HL7V23Field
-        {
-            field = message[@"OBR"][38],
-            Id = @"OBR.38",
-            Type = @"Field",
-            Position = @"OBR.38",
-            Name = @"Transport Logistics Of Collected Sample",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the means by which a sample reaches the diagnostic service provider.  This information is to aid the lab in scheduling or interpretation of results.  Possible answers: routine transport van, public postal service, etc.  If coded, requires a user-defined table.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transportLogisticsOfCollectedSample.field.FieldRepetitions != null && transportLogisticsOfCollectedSample.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transportLogisticsOfCollectedSample.Id));
-            transportLogisticsOfCollectedSample.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transportLogisticsOfCollectedSample, fieldData);
-        }
-
-        return transportLogisticsOfCollectedSample;
-    } 
-}
-
-internal HL7V23Field collectorsComment;
-
-public HL7V23Field CollectorsComment
-{
-    get
-    {
-        if (collectorsComment != null)
-        {
-            return collectorsComment;
-        }
-
-        collectorsComment = new HL7V23Field
-        {
-            field = message[@"OBR"][39],
-            Id = @"OBR.39",
-            Type = @"Field",
-            Position = @"OBR.39",
-            Name = @"Collector s Comment",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is for reporting additional comments related to the sample. If coded, requires a userdefined table.  If only free text is reported, it is placed in the second component with a null in the first component, e.g., ^difficult clotting after venipuncture and echymosis.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (collectorsComment.field.FieldRepetitions != null && collectorsComment.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(collectorsComment.Id));
-            collectorsComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(collectorsComment, fieldData);
-        }
-
-        return collectorsComment;
-    } 
-}
-
-internal HL7V23Field transportArrangementResponsibility;
-
-public HL7V23Field TransportArrangementResponsibility
-{
-    get
-    {
-        if (transportArrangementResponsibility != null)
-        {
-            return transportArrangementResponsibility;
-        }
-
-        transportArrangementResponsibility = new HL7V23Field
-        {
-            field = message[@"OBR"][40],
-            Id = @"OBR.40",
-            Type = @"Field",
-            Position = @"OBR.40",
-            Name = @"Transport Arrangement Responsibility",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is an indicator of who is responsible for arranging transport to the planned diagnostic service.  Examples: Requester, Provider, Patient.  If coded, requires a user-defined table.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transportArrangementResponsibility.field.FieldRepetitions != null && transportArrangementResponsibility.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transportArrangementResponsibility.Id));
-            transportArrangementResponsibility.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transportArrangementResponsibility, fieldData);
-        }
-
-        return transportArrangementResponsibility;
-    } 
-}
-
-internal HL7V23Field transportArranged;
-
-public HL7V23Field TransportArranged
-{
-    get
-    {
-        if (transportArranged != null)
-        {
-            return transportArranged;
-        }
-
-        transportArranged = new HL7V23Field
-        {
-            field = message[@"OBR"][41],
-            Id = @"OBR.41",
-            Type = @"Field",
-            Position = @"OBR.41",
-            Name = @"Transport Arranged",
-            Length = 30,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0224",
-            TableName = @"Transport arranged",
-            Description = @"This field is an indicator of whether transport arrangements are known to have been made.  Refer to HL7 table 0224 - Transport arranged for valid codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transportArranged.field.FieldRepetitions != null && transportArranged.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transportArranged.Id));
-            transportArranged.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(transportArranged, fieldData);
-        }
-
-        return transportArranged;
-    } 
-}
-
-internal HL7V23Field escortRequired;
-
-public HL7V23Field EscortRequired
-{
-    get
-    {
-        if (escortRequired != null)
-        {
-            return escortRequired;
-        }
-
-        escortRequired = new HL7V23Field
-        {
-            field = message[@"OBR"][42],
-            Id = @"OBR.42",
-            Type = @"Field",
-            Position = @"OBR.42",
-            Name = @"Escort Required",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0225",
-            TableName = @"Escort required",
-            Description = @"This field is an indicator that the patient needs to be escorted to the diagnostic service department.  Note: The nature of the escort requirements should be stated in OBR-43 planned patient transport comment.  See HL7 table 0225 - Escort required for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (escortRequired.field.FieldRepetitions != null && escortRequired.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(escortRequired.Id));
-            escortRequired.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(escortRequired, fieldData);
-        }
-
-        return escortRequired;
-    } 
-}
-
-internal HL7V23Field plannedPatientTransportComment;
-
-public HL7V23Field PlannedPatientTransportComment
-{
-    get
-    {
-        if (plannedPatientTransportComment != null)
-        {
-            return plannedPatientTransportComment;
-        }
-
-        plannedPatientTransportComment = new HL7V23Field
+        _plannedPatientTransportComment = new HL7V23Field
         {
             field = message[@"OBR"][43],
-            Id = @"OBR.43",
-            Type = @"Field",
-            Position = @"OBR.43",
-            Name = @"Planned Patient Transport Comment",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the code or free text comments on special requirements for the transport of the patient to the diagnostic service department.  If coded, requires a user-defined table.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (plannedPatientTransportComment.field.FieldRepetitions != null && plannedPatientTransportComment.field.FieldRepetitions.Count > 0)
+        if (_plannedPatientTransportComment.field.FieldRepetitions != null && _plannedPatientTransportComment.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(plannedPatientTransportComment.Id));
-            plannedPatientTransportComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(plannedPatientTransportComment, fieldData);
+            _plannedPatientTransportComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_plannedPatientTransportComment, fieldData);
         }
 
-        return plannedPatientTransportComment;
+        return _plannedPatientTransportComment;
     } 
 }
     }

@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentDB1(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _setIdDb1;
+
+public HL7V27Field SetIdDb1
+{
+    get
+    {
+        if (_setIdDb1 != null)
+        {
+            return _setIdDb1;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"DB1.1",
+            Type = @"Field",
+            Position = @"DB1.1",
+            Name = @"Set Id - Db1",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdDb1 = new HL7V27Field
+        {
+            field = message[@"DB1"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdDb1.field.FieldRepetitions != null && _setIdDb1.field.FieldRepetitions.Count > 0)
+        {
+            _setIdDb1.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_setIdDb1, fieldData);
+        }
+
+        return _setIdDb1;
+    } 
+}
+
+internal HL7V27Field _disabledPersonCode;
+
+public HL7V27Field DisabledPersonCode
+{
+    get
+    {
+        if (_disabledPersonCode != null)
+        {
+            return _disabledPersonCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"DB1.2",
+            Type = @"Field",
+            Position = @"DB1.2",
+            Name = @"Disabled Person Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0334",
+            TableName = @"Disabled Person Code  	",
+            Description = @"This is the identifier (or identifiers) for the person whose disability information is sent on the segment.  The assigning authority and identifier type code are strongly recommended for all CX data types.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"DB1.1",
-                            Type = @"Field",
-                            Position = @"DB1.1",
-                            Name = @"Set Id - Db1",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DB1.2",
-                            Type = @"Field",
-                            Position = @"DB1.2",
-                            Name = @"Disabled Person Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0334",
-                            TableName = @"Disabled Person Code  	",
-                            Description = @"This is the identifier (or identifiers) for the person whose disability information is sent on the segment.  The assigning authority and identifier type code are strongly recommended for all CX data types.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DB1.2.1",
                             Type = @"Component",
@@ -494,25 +533,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _disabledPersonCode = new HL7V27Field
+        {
+            field = message[@"DB1"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_disabledPersonCode.field.FieldRepetitions != null && _disabledPersonCode.field.FieldRepetitions.Count > 0)
+        {
+            _disabledPersonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_disabledPersonCode, fieldData);
+        }
+
+        return _disabledPersonCode;
+    } 
+}
+
+internal HL7V27Field _disabledPersonIdentifier;
+
+public HL7V27Field DisabledPersonIdentifier
+{
+    get
+    {
+        if (_disabledPersonIdentifier != null)
+        {
+            return _disabledPersonIdentifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"DB1.3",
+            Type = @"Field",
+            Position = @"DB1.3",
+            Name = @"Disabled Person Identifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This is the identifier (or identifiers) for the person whose disability information is sent on the segment. The assigning authority and identifier type code are strongly recommended for all CX data types.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DB1.3",
-                            Type = @"Field",
-                            Position = @"DB1.3",
-                            Name = @"Disabled Person Identifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This is the identifier (or identifiers) for the person whose disability information is sent on the segment. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DB1.3.1",
                             Type = @"Component",
@@ -1714,246 +1783,39 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DB1.4",
-                            Type = @"Field",
-                            Position = @"DB1.4",
-                            Name = @"Disability Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This field indicates if the person's visit is a disability visit. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.
-Y - a disability visit
-N - not a disability visit",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DB1.5",
-                            Type = @"Field",
-                            Position = @"DB1.5",
-                            Name = @"Disability Start Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the date the person became disabled.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DB1.6",
-                            Type = @"Field",
-                            Position = @"DB1.6",
-                            Name = @"Disability End Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the ending date of the person's disability.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DB1.7",
-                            Type = @"Field",
-                            Position = @"DB1.7",
-                            Name = @"Disability Return To Work Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the authorized date on which the patient can return to work for a specified disability case..",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DB1.8",
-                            Type = @"Field",
-                            Position = @"DB1.8",
-                            Name = @"Disability Unable To Work Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the first date in the date span that the patient is unable to work due to disability.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentDB1(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field setIdDb1;
-
-public HL7V27Field SetIdDb1
-{
-    get
-    {
-        if (setIdDb1 != null)
-        {
-            return setIdDb1;
-        }
-
-        setIdDb1 = new HL7V27Field
-        {
-            field = message[@"DB1"][1],
-            Id = @"DB1.1",
-            Type = @"Field",
-            Position = @"DB1.1",
-            Name = @"Set Id - Db1",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdDb1.field.FieldRepetitions != null && setIdDb1.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdDb1.Id));
-            setIdDb1.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(setIdDb1, fieldData);
-        }
-
-        return setIdDb1;
-    } 
-}
-
-internal HL7V27Field disabledPersonCode;
-
-public HL7V27Field DisabledPersonCode
-{
-    get
-    {
-        if (disabledPersonCode != null)
-        {
-            return disabledPersonCode;
-        }
-
-        disabledPersonCode = new HL7V27Field
-        {
-            field = message[@"DB1"][2],
-            Id = @"DB1.2",
-            Type = @"Field",
-            Position = @"DB1.2",
-            Name = @"Disabled Person Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0334",
-            TableName = @"Disabled Person Code  	",
-            Description = @"This is the identifier (or identifiers) for the person whose disability information is sent on the segment.  The assigning authority and identifier type code are strongly recommended for all CX data types.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (disabledPersonCode.field.FieldRepetitions != null && disabledPersonCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(disabledPersonCode.Id));
-            disabledPersonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(disabledPersonCode, fieldData);
-        }
-
-        return disabledPersonCode;
-    } 
-}
-
-internal HL7V27Field disabledPersonIdentifier;
-
-public HL7V27Field DisabledPersonIdentifier
-{
-    get
-    {
-        if (disabledPersonIdentifier != null)
-        {
-            return disabledPersonIdentifier;
-        }
-
-        disabledPersonIdentifier = new HL7V27Field
+        _disabledPersonIdentifier = new HL7V27Field
         {
             field = message[@"DB1"][3],
-            Id = @"DB1.3",
-            Type = @"Field",
-            Position = @"DB1.3",
-            Name = @"Disabled Person Identifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This is the identifier (or identifiers) for the person whose disability information is sent on the segment. The assigning authority and identifier type code are strongly recommended for all CX data types.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (disabledPersonIdentifier.field.FieldRepetitions != null && disabledPersonIdentifier.field.FieldRepetitions.Count > 0)
+        if (_disabledPersonIdentifier.field.FieldRepetitions != null && _disabledPersonIdentifier.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(disabledPersonIdentifier.Id));
-            disabledPersonIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(disabledPersonIdentifier, fieldData);
+            _disabledPersonIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_disabledPersonIdentifier, fieldData);
         }
 
-        return disabledPersonIdentifier;
+        return _disabledPersonIdentifier;
     } 
 }
 
-internal HL7V27Field disabilityIndicator;
+internal HL7V27Field _disabilityIndicator;
 
 public HL7V27Field DisabilityIndicator
 {
     get
     {
-        if (disabilityIndicator != null)
+        if (_disabilityIndicator != null)
         {
-            return disabilityIndicator;
+            return _disabilityIndicator;
         }
 
-        disabilityIndicator = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"DB1"][4],
             Id = @"DB1.4",
             Type = @"Field",
             Position = @"DB1.4",
@@ -1969,34 +1831,38 @@ public HL7V27Field DisabilityIndicator
 Y - a disability visit
 N - not a disability visit",
             Sample = @"",
+            Fields = null
+        }
+
+        _disabilityIndicator = new HL7V27Field
+        {
+            field = message[@"DB1"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (disabilityIndicator.field.FieldRepetitions != null && disabilityIndicator.field.FieldRepetitions.Count > 0)
+        if (_disabilityIndicator.field.FieldRepetitions != null && _disabilityIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(disabilityIndicator.Id));
-            disabilityIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(disabilityIndicator, fieldData);
+            _disabilityIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_disabilityIndicator, fieldData);
         }
 
-        return disabilityIndicator;
+        return _disabilityIndicator;
     } 
 }
 
-internal HL7V27Field disabilityStartDate;
+internal HL7V27Field _disabilityStartDate;
 
 public HL7V27Field DisabilityStartDate
 {
     get
     {
-        if (disabilityStartDate != null)
+        if (_disabilityStartDate != null)
         {
-            return disabilityStartDate;
+            return _disabilityStartDate;
         }
 
-        disabilityStartDate = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"DB1"][5],
             Id = @"DB1.5",
             Type = @"Field",
             Position = @"DB1.5",
@@ -2010,34 +1876,38 @@ public HL7V27Field DisabilityStartDate
             TableName = null,
             Description = @"This field specifies the date the person became disabled.",
             Sample = @"",
+            Fields = null
+        }
+
+        _disabilityStartDate = new HL7V27Field
+        {
+            field = message[@"DB1"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (disabilityStartDate.field.FieldRepetitions != null && disabilityStartDate.field.FieldRepetitions.Count > 0)
+        if (_disabilityStartDate.field.FieldRepetitions != null && _disabilityStartDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(disabilityStartDate.Id));
-            disabilityStartDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(disabilityStartDate, fieldData);
+            _disabilityStartDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_disabilityStartDate, fieldData);
         }
 
-        return disabilityStartDate;
+        return _disabilityStartDate;
     } 
 }
 
-internal HL7V27Field disabilityEndDate;
+internal HL7V27Field _disabilityEndDate;
 
 public HL7V27Field DisabilityEndDate
 {
     get
     {
-        if (disabilityEndDate != null)
+        if (_disabilityEndDate != null)
         {
-            return disabilityEndDate;
+            return _disabilityEndDate;
         }
 
-        disabilityEndDate = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"DB1"][6],
             Id = @"DB1.6",
             Type = @"Field",
             Position = @"DB1.6",
@@ -2051,34 +1921,38 @@ public HL7V27Field DisabilityEndDate
             TableName = null,
             Description = @"This field specifies the ending date of the person's disability.",
             Sample = @"",
+            Fields = null
+        }
+
+        _disabilityEndDate = new HL7V27Field
+        {
+            field = message[@"DB1"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (disabilityEndDate.field.FieldRepetitions != null && disabilityEndDate.field.FieldRepetitions.Count > 0)
+        if (_disabilityEndDate.field.FieldRepetitions != null && _disabilityEndDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(disabilityEndDate.Id));
-            disabilityEndDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(disabilityEndDate, fieldData);
+            _disabilityEndDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_disabilityEndDate, fieldData);
         }
 
-        return disabilityEndDate;
+        return _disabilityEndDate;
     } 
 }
 
-internal HL7V27Field disabilityReturnToWorkDate;
+internal HL7V27Field _disabilityReturnToWorkDate;
 
 public HL7V27Field DisabilityReturnToWorkDate
 {
     get
     {
-        if (disabilityReturnToWorkDate != null)
+        if (_disabilityReturnToWorkDate != null)
         {
-            return disabilityReturnToWorkDate;
+            return _disabilityReturnToWorkDate;
         }
 
-        disabilityReturnToWorkDate = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"DB1"][7],
             Id = @"DB1.7",
             Type = @"Field",
             Position = @"DB1.7",
@@ -2092,34 +1966,38 @@ public HL7V27Field DisabilityReturnToWorkDate
             TableName = null,
             Description = @"This field indicates the authorized date on which the patient can return to work for a specified disability case..",
             Sample = @"",
+            Fields = null
+        }
+
+        _disabilityReturnToWorkDate = new HL7V27Field
+        {
+            field = message[@"DB1"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (disabilityReturnToWorkDate.field.FieldRepetitions != null && disabilityReturnToWorkDate.field.FieldRepetitions.Count > 0)
+        if (_disabilityReturnToWorkDate.field.FieldRepetitions != null && _disabilityReturnToWorkDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(disabilityReturnToWorkDate.Id));
-            disabilityReturnToWorkDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(disabilityReturnToWorkDate, fieldData);
+            _disabilityReturnToWorkDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_disabilityReturnToWorkDate, fieldData);
         }
 
-        return disabilityReturnToWorkDate;
+        return _disabilityReturnToWorkDate;
     } 
 }
 
-internal HL7V27Field disabilityUnableToWorkDate;
+internal HL7V27Field _disabilityUnableToWorkDate;
 
 public HL7V27Field DisabilityUnableToWorkDate
 {
     get
     {
-        if (disabilityUnableToWorkDate != null)
+        if (_disabilityUnableToWorkDate != null)
         {
-            return disabilityUnableToWorkDate;
+            return _disabilityUnableToWorkDate;
         }
 
-        disabilityUnableToWorkDate = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"DB1"][8],
             Id = @"DB1.8",
             Type = @"Field",
             Position = @"DB1.8",
@@ -2133,17 +2011,22 @@ public HL7V27Field DisabilityUnableToWorkDate
             TableName = null,
             Description = @"This field specifies the first date in the date span that the patient is unable to work due to disability.",
             Sample = @"",
+            Fields = null
+        }
+
+        _disabilityUnableToWorkDate = new HL7V27Field
+        {
+            field = message[@"DB1"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (disabilityUnableToWorkDate.field.FieldRepetitions != null && disabilityUnableToWorkDate.field.FieldRepetitions.Count > 0)
+        if (_disabilityUnableToWorkDate.field.FieldRepetitions != null && _disabilityUnableToWorkDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(disabilityUnableToWorkDate.Id));
-            disabilityUnableToWorkDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(disabilityUnableToWorkDate, fieldData);
+            _disabilityUnableToWorkDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_disabilityUnableToWorkDate, fieldData);
         }
 
-        return disabilityUnableToWorkDate;
+        return _disabilityUnableToWorkDate;
     } 
 }
     }

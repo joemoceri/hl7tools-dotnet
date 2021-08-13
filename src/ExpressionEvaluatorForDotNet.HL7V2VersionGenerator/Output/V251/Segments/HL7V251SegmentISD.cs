@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentISD(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _referenceInteractionNumberuniqueidentifier;
+
+public HL7V251Field ReferenceInteractionNumberuniqueidentifier
+{
+    get
+    {
+        if (_referenceInteractionNumberuniqueidentifier != null)
+        {
+            return _referenceInteractionNumberuniqueidentifier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ISD.1",
+            Type = @"Field",
+            Position = @"ISD.1",
+            Name = @"Reference Interaction Number (unique identifier)",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This number uniquely identifies the interaction. If the interaction is performed as the result of a previous command, then the Reference Command Number should be used. (See ECD-1 Reference Command Number(NM) 01390)",
+            Sample = @"",
+            Fields = null
+        }
+
+        _referenceInteractionNumberuniqueidentifier = new HL7V251Field
+        {
+            field = message[@"ISD"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_referenceInteractionNumberuniqueidentifier.field.FieldRepetitions != null && _referenceInteractionNumberuniqueidentifier.field.FieldRepetitions.Count > 0)
+        {
+            _referenceInteractionNumberuniqueidentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_referenceInteractionNumberuniqueidentifier, fieldData);
+        }
+
+        return _referenceInteractionNumberuniqueidentifier;
+    } 
+}
+
+internal HL7V251Field _interactionTypeIdentifier;
+
+public HL7V251Field InteractionTypeIdentifier
+{
+    get
+    {
+        if (_interactionTypeIdentifier != null)
+        {
+            return _interactionTypeIdentifier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ISD.2",
+            Type = @"Field",
+            Position = @"ISD.2",
+            Name = @"Interaction Type Identifier",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0368",
+            TableName = @"Remote control command",
+            Description = @"This field specifies the type of interaction. If the interaction is performed as the result of a previous command, then the interaction type as specified in User-defined Table 0368 - Remote control command should be used.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ISD.1",
-                            Type = @"Field",
-                            Position = @"ISD.1",
-                            Name = @"Reference Interaction Number (unique identifier)",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This number uniquely identifies the interaction. If the interaction is performed as the result of a previous command, then the Reference Command Number should be used. (See ECD-1 Reference Command Number(NM) 01390)",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ISD.2",
-                            Type = @"Field",
-                            Position = @"ISD.2",
-                            Name = @"Interaction Type Identifier",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0368",
-                            TableName = @"Remote control command",
-                            Description = @"This field specifies the type of interaction. If the interaction is performed as the result of a previous command, then the interaction type as specified in User-defined Table 0368 - Remote control command should be used.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ISD.2.1",
                             Type = @"Component",
@@ -174,25 +213,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _interactionTypeIdentifier = new HL7V251Field
+        {
+            field = message[@"ISD"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_interactionTypeIdentifier.field.FieldRepetitions != null && _interactionTypeIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _interactionTypeIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_interactionTypeIdentifier, fieldData);
+        }
+
+        return _interactionTypeIdentifier;
+    } 
+}
+
+internal HL7V251Field _interactionActiveState;
+
+public HL7V251Field InteractionActiveState
+{
+    get
+    {
+        if (_interactionActiveState != null)
+        {
+            return _interactionActiveState;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"ISD.3",
+            Type = @"Field",
+            Position = @"ISD.3",
+            Name = @"Interaction Active State",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0387",
+            TableName = @"Command response",
+            Description = @"This field transfers the state of the interaction. If the interaction is performed as the result of a previous command, then the interaction state should be one of the Command Responses (Refer to User-defined Table 0387 - Command response ). If the interaction is not performed as a result of a command (e.g., periodically time triggered automatic maintenance) then this state is interaction specific, and should refer to either the LECIS state transitions for interactions or a user or equipment specific table.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ISD.3",
-                            Type = @"Field",
-                            Position = @"ISD.3",
-                            Name = @"Interaction Active State",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0387",
-                            TableName = @"Command response",
-                            Description = @"This field transfers the state of the interaction. If the interaction is performed as the result of a previous command, then the interaction state should be one of the Command Responses (Refer to User-defined Table 0387 - Command response ). If the interaction is not performed as a result of a command (e.g., periodically time triggered automatic maintenance) then this state is interaction specific, and should refer to either the LECIS state transitions for interactions or a user or equipment specific table.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ISD.3.1",
                             Type = @"Component",
@@ -298,137 +367,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentISD(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field referenceInteractionNumberuniqueidentifier;
-
-public HL7V251Field ReferenceInteractionNumberuniqueidentifier
-{
-    get
-    {
-        if (referenceInteractionNumberuniqueidentifier != null)
-        {
-            return referenceInteractionNumberuniqueidentifier;
-        }
-
-        referenceInteractionNumberuniqueidentifier = new HL7V251Field
-        {
-            field = message[@"ISD"][1],
-            Id = @"ISD.1",
-            Type = @"Field",
-            Position = @"ISD.1",
-            Name = @"Reference Interaction Number (unique identifier)",
-            Length = 20,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This number uniquely identifies the interaction. If the interaction is performed as the result of a previous command, then the Reference Command Number should be used. (See ECD-1 Reference Command Number(NM) 01390)",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (referenceInteractionNumberuniqueidentifier.field.FieldRepetitions != null && referenceInteractionNumberuniqueidentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(referenceInteractionNumberuniqueidentifier.Id));
-            referenceInteractionNumberuniqueidentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(referenceInteractionNumberuniqueidentifier, fieldData);
-        }
-
-        return referenceInteractionNumberuniqueidentifier;
-    } 
-}
-
-internal HL7V251Field interactionTypeIdentifier;
-
-public HL7V251Field InteractionTypeIdentifier
-{
-    get
-    {
-        if (interactionTypeIdentifier != null)
-        {
-            return interactionTypeIdentifier;
-        }
-
-        interactionTypeIdentifier = new HL7V251Field
-        {
-            field = message[@"ISD"][2],
-            Id = @"ISD.2",
-            Type = @"Field",
-            Position = @"ISD.2",
-            Name = @"Interaction Type Identifier",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0368",
-            TableName = @"Remote control command",
-            Description = @"This field specifies the type of interaction. If the interaction is performed as the result of a previous command, then the interaction type as specified in User-defined Table 0368 - Remote control command should be used.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (interactionTypeIdentifier.field.FieldRepetitions != null && interactionTypeIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(interactionTypeIdentifier.Id));
-            interactionTypeIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(interactionTypeIdentifier, fieldData);
-        }
-
-        return interactionTypeIdentifier;
-    } 
-}
-
-internal HL7V251Field interactionActiveState;
-
-public HL7V251Field InteractionActiveState
-{
-    get
-    {
-        if (interactionActiveState != null)
-        {
-            return interactionActiveState;
-        }
-
-        interactionActiveState = new HL7V251Field
+        _interactionActiveState = new HL7V251Field
         {
             field = message[@"ISD"][3],
-            Id = @"ISD.3",
-            Type = @"Field",
-            Position = @"ISD.3",
-            Name = @"Interaction Active State",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0387",
-            TableName = @"Command response",
-            Description = @"This field transfers the state of the interaction. If the interaction is performed as the result of a previous command, then the interaction state should be one of the Command Responses (Refer to User-defined Table 0387 - Command response ). If the interaction is not performed as a result of a command (e.g., periodically time triggered automatic maintenance) then this state is interaction specific, and should refer to either the LECIS state transitions for interactions or a user or equipment specific table.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (interactionActiveState.field.FieldRepetitions != null && interactionActiveState.field.FieldRepetitions.Count > 0)
+        if (_interactionActiveState.field.FieldRepetitions != null && _interactionActiveState.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(interactionActiveState.Id));
-            interactionActiveState.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(interactionActiveState, fieldData);
+            _interactionActiveState.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_interactionActiveState, fieldData);
         }
 
-        return interactionActiveState;
+        return _interactionActiveState;
     } 
 }
     }

@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V23SegmentEQL(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field _querytag;
+
+public HL7V23Field Querytag
+{
+    get
+    {
+        if (_querytag != null)
+        {
+            return _querytag;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"EQL.1",
+            Type = @"Field",
+            Position = @"EQL.1",
+            Name = @"Query tag",
+            Length = 32,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field may be valued by the initiating system to identify the query, and may be used to match response messages to the originating query.  If it is valued, the responding system is required to echo it back as the first field in the query acknowledgment segment (QAK).  This field differs from MSA-2-message control ID  in that its value remains constant for each message (i.e., all continuation messages) associated with the query, whereas MSA-2-message control ID may vary with each continuation message, since it is associated with each individual message, not the query as a whole",
+            Sample = @"",
+            Fields = null
+        }
+
+        _querytag = new HL7V23Field
+        {
+            field = message[@"EQL"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_querytag.field.FieldRepetitions != null && _querytag.field.FieldRepetitions.Count > 0)
+        {
+            _querytag.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_querytag, fieldData);
+        }
+
+        return _querytag;
+    } 
+}
+
+internal HL7V23Field _queryResponseFormatCode;
+
+public HL7V23Field QueryResponseFormatCode
+{
+    get
+    {
+        if (_queryResponseFormatCode != null)
+        {
+            return _queryResponseFormatCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"EQL.2",
+            Type = @"Field",
+            Position = @"EQL.2",
+            Name = @"Query/ Response Format Code",
+            Length = 1,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0106",
+            TableName = @"Query/response format code",
+            Description = @"This field refers to HL7 table 0106 - Query/response format code for valid values",
+            Sample = @"",
+            Fields = null
+        }
+
+        _queryResponseFormatCode = new HL7V23Field
+        {
+            field = message[@"EQL"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_queryResponseFormatCode.field.FieldRepetitions != null && _queryResponseFormatCode.field.FieldRepetitions.Count > 0)
+        {
+            _queryResponseFormatCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_queryResponseFormatCode, fieldData);
+        }
+
+        return _queryResponseFormatCode;
+    } 
+}
+
+internal HL7V23Field _eQLQueryName;
+
+public HL7V23Field EQLQueryName
+{
+    get
+    {
+        if (_eQLQueryName != null)
+        {
+            return _eQLQueryName;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"EQL.3",
+            Type = @"Field",
+            Position = @"EQL.3",
+            Name = @"EQL Query Name",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the query.  Where the default HL7 coding system is used, these names are assigned by the function-specific chapters of this specification.  The values for this field are equivalent to those of  SPR-3-stored procedure name (see Section 2.24.20, “SPR - stored procedure request definition segment”). ",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"EQL.1",
-                            Type = @"Field",
-                            Position = @"EQL.1",
-                            Name = @"Query tag",
-                            Length = 32,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field may be valued by the initiating system to identify the query, and may be used to match response messages to the originating query.  If it is valued, the responding system is required to echo it back as the first field in the query acknowledgment segment (QAK).  This field differs from MSA-2-message control ID  in that its value remains constant for each message (i.e., all continuation messages) associated with the query, whereas MSA-2-message control ID may vary with each continuation message, since it is associated with each individual message, not the query as a whole",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EQL.2",
-                            Type = @"Field",
-                            Position = @"EQL.2",
-                            Name = @"Query/ Response Format Code",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0106",
-                            TableName = @"Query/response format code",
-                            Description = @"This field refers to HL7 table 0106 - Query/response format code for valid values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EQL.3",
-                            Type = @"Field",
-                            Position = @"EQL.3",
-                            Name = @"EQL Query Name",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the query.  Where the default HL7 coding system is used, these names are assigned by the function-specific chapters of this specification.  The values for this field are equivalent to those of  SPR-3-stored procedure name (see Section 2.24.20, “SPR - stored procedure request definition segment”). ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"EQL.3.1",
                             Type = @"Component",
@@ -192,178 +258,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EQL.4",
-                            Type = @"Field",
-                            Position = @"EQL.4",
-                            Name = @"EQL Query Statement",
-                            Length = 4096,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the EQL select statement that is the basis of the query. 
-
-Fields are designated by the “@” symbol concatenated with the HL7 item number for the field.  If the field is divided into components, the designation may be suffixed with “.nn,” to identify a particular component (a suffix of “.3” indicates the third component of the field); otherwise, the whole field is assumed.  If the field is further divided into subcomponents, the designation is suffixed with “.nn.mm,” which identifies the component and subcomponent requested by relative position. 
-
-Site-specific fields may be used, provided that they begin with the letter “Z.” Note that in this case sitedefined “z”-item numbers that do not conflict with HL7 items numbers must be negotiated as part of the site specification. 
-
-Values for this field are defined in the function-specific chapters of this specification",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V23SegmentEQL(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V23Field querytag;
-
-public HL7V23Field Querytag
-{
-    get
-    {
-        if (querytag != null)
-        {
-            return querytag;
-        }
-
-        querytag = new HL7V23Field
-        {
-            field = message[@"EQL"][1],
-            Id = @"EQL.1",
-            Type = @"Field",
-            Position = @"EQL.1",
-            Name = @"Query tag",
-            Length = 32,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field may be valued by the initiating system to identify the query, and may be used to match response messages to the originating query.  If it is valued, the responding system is required to echo it back as the first field in the query acknowledgment segment (QAK).  This field differs from MSA-2-message control ID  in that its value remains constant for each message (i.e., all continuation messages) associated with the query, whereas MSA-2-message control ID may vary with each continuation message, since it is associated with each individual message, not the query as a whole",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (querytag.field.FieldRepetitions != null && querytag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(querytag.Id));
-            querytag.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(querytag, fieldData);
-        }
-
-        return querytag;
-    } 
-}
-
-internal HL7V23Field queryResponseFormatCode;
-
-public HL7V23Field QueryResponseFormatCode
-{
-    get
-    {
-        if (queryResponseFormatCode != null)
-        {
-            return queryResponseFormatCode;
-        }
-
-        queryResponseFormatCode = new HL7V23Field
-        {
-            field = message[@"EQL"][2],
-            Id = @"EQL.2",
-            Type = @"Field",
-            Position = @"EQL.2",
-            Name = @"Query/ Response Format Code",
-            Length = 1,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0106",
-            TableName = @"Query/response format code",
-            Description = @"This field refers to HL7 table 0106 - Query/response format code for valid values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (queryResponseFormatCode.field.FieldRepetitions != null && queryResponseFormatCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(queryResponseFormatCode.Id));
-            queryResponseFormatCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(queryResponseFormatCode, fieldData);
-        }
-
-        return queryResponseFormatCode;
-    } 
-}
-
-internal HL7V23Field eQLQueryName;
-
-public HL7V23Field EQLQueryName
-{
-    get
-    {
-        if (eQLQueryName != null)
-        {
-            return eQLQueryName;
-        }
-
-        eQLQueryName = new HL7V23Field
+        _eQLQueryName = new HL7V23Field
         {
             field = message[@"EQL"][3],
-            Id = @"EQL.3",
-            Type = @"Field",
-            Position = @"EQL.3",
-            Name = @"EQL Query Name",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the query.  Where the default HL7 coding system is used, these names are assigned by the function-specific chapters of this specification.  The values for this field are equivalent to those of  SPR-3-stored procedure name (see Section 2.24.20, “SPR - stored procedure request definition segment”). ",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (eQLQueryName.field.FieldRepetitions != null && eQLQueryName.field.FieldRepetitions.Count > 0)
+        if (_eQLQueryName.field.FieldRepetitions != null && _eQLQueryName.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eQLQueryName.Id));
-            eQLQueryName.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(eQLQueryName, fieldData);
+            _eQLQueryName.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_eQLQueryName, fieldData);
         }
 
-        return eQLQueryName;
+        return _eQLQueryName;
     } 
 }
 
-internal HL7V23Field eQLQueryStatement;
+internal HL7V23Field _eQLQueryStatement;
 
 public HL7V23Field EQLQueryStatement
 {
     get
     {
-        if (eQLQueryStatement != null)
+        if (_eQLQueryStatement != null)
         {
-            return eQLQueryStatement;
+            return _eQLQueryStatement;
         }
 
-        eQLQueryStatement = new HL7V23Field
+        var fieldData = new HL7V23FieldData
         {
-            field = message[@"EQL"][4],
             Id = @"EQL.4",
             Type = @"Field",
             Position = @"EQL.4",
@@ -383,17 +310,22 @@ Site-specific fields may be used, provided that they begin with the letter “Z.
 
 Values for this field are defined in the function-specific chapters of this specification",
             Sample = @"",
+            Fields = null
+        }
+
+        _eQLQueryStatement = new HL7V23Field
+        {
+            field = message[@"EQL"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (eQLQueryStatement.field.FieldRepetitions != null && eQLQueryStatement.field.FieldRepetitions.Count > 0)
+        if (_eQLQueryStatement.field.FieldRepetitions != null && _eQLQueryStatement.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eQLQueryStatement.Id));
-            eQLQueryStatement.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(eQLQueryStatement, fieldData);
+            _eQLQueryStatement.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_eQLQueryStatement, fieldData);
         }
 
-        return eQLQueryStatement;
+        return _eQLQueryStatement;
     } 
 }
     }

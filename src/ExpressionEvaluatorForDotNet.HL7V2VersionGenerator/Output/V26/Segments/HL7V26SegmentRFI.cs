@@ -29,106 +29,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"RFI.1",
-                            Type = @"Field",
-                            Position = @"RFI.1",
-                            Name = @"Request Date",
-                            Length = 24,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RFI.2",
-                            Type = @"Field",
-                            Position = @"RFI.2",
-                            Name = @"Response Due Date",
-                            Length = 24,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The latest date by which the additional information is to be returned to requestor.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RFI.3",
-                            Type = @"Field",
-                            Position = @"RFI.3",
-                            Name = @"Patient Consent",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"Code indicating if the Payer has obtained patient consent for release of information (1) - Optional. Refer to HL7-Table 0136 - Yes/No-Indicator for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RFI.4",
-                            Type = @"Field",
-                            Position = @"RFI.4",
-                            Name = @"Date Additional Information was submitted",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The date on which the information was assembled for transmission to the Payer. Not necessarily the same as the message date.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V26SegmentRFI(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V26Field requestDate;
+        internal HL7V26Field _requestDate;
 
 public HL7V26Field RequestDate
 {
     get
     {
-        if (requestDate != null)
+        if (_requestDate != null)
         {
-            return requestDate;
+            return _requestDate;
         }
 
-        requestDate = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"RFI"][1],
             Id = @"RFI.1",
             Type = @"Field",
             Position = @"RFI.1",
@@ -142,34 +60,38 @@ public HL7V26Field RequestDate
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _requestDate = new HL7V26Field
+        {
+            field = message[@"RFI"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (requestDate.field.FieldRepetitions != null && requestDate.field.FieldRepetitions.Count > 0)
+        if (_requestDate.field.FieldRepetitions != null && _requestDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestDate.Id));
-            requestDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(requestDate, fieldData);
+            _requestDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_requestDate, fieldData);
         }
 
-        return requestDate;
+        return _requestDate;
     } 
 }
 
-internal HL7V26Field responseDueDate;
+internal HL7V26Field _responseDueDate;
 
 public HL7V26Field ResponseDueDate
 {
     get
     {
-        if (responseDueDate != null)
+        if (_responseDueDate != null)
         {
-            return responseDueDate;
+            return _responseDueDate;
         }
 
-        responseDueDate = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"RFI"][2],
             Id = @"RFI.2",
             Type = @"Field",
             Position = @"RFI.2",
@@ -183,34 +105,38 @@ public HL7V26Field ResponseDueDate
             TableName = null,
             Description = @"The latest date by which the additional information is to be returned to requestor.",
             Sample = @"",
+            Fields = null
+        }
+
+        _responseDueDate = new HL7V26Field
+        {
+            field = message[@"RFI"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (responseDueDate.field.FieldRepetitions != null && responseDueDate.field.FieldRepetitions.Count > 0)
+        if (_responseDueDate.field.FieldRepetitions != null && _responseDueDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(responseDueDate.Id));
-            responseDueDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(responseDueDate, fieldData);
+            _responseDueDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_responseDueDate, fieldData);
         }
 
-        return responseDueDate;
+        return _responseDueDate;
     } 
 }
 
-internal HL7V26Field patientConsent;
+internal HL7V26Field _patientConsent;
 
 public HL7V26Field PatientConsent
 {
     get
     {
-        if (patientConsent != null)
+        if (_patientConsent != null)
         {
-            return patientConsent;
+            return _patientConsent;
         }
 
-        patientConsent = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"RFI"][3],
             Id = @"RFI.3",
             Type = @"Field",
             Position = @"RFI.3",
@@ -224,34 +150,38 @@ public HL7V26Field PatientConsent
             TableName = @"Yes/no indicator",
             Description = @"Code indicating if the Payer has obtained patient consent for release of information (1) - Optional. Refer to HL7-Table 0136 - Yes/No-Indicator for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _patientConsent = new HL7V26Field
+        {
+            field = message[@"RFI"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientConsent.field.FieldRepetitions != null && patientConsent.field.FieldRepetitions.Count > 0)
+        if (_patientConsent.field.FieldRepetitions != null && _patientConsent.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientConsent.Id));
-            patientConsent.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(patientConsent, fieldData);
+            _patientConsent.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_patientConsent, fieldData);
         }
 
-        return patientConsent;
+        return _patientConsent;
     } 
 }
 
-internal HL7V26Field dateAdditionalInformationwassubmitted;
+internal HL7V26Field _dateAdditionalInformationwassubmitted;
 
 public HL7V26Field DateAdditionalInformationwassubmitted
 {
     get
     {
-        if (dateAdditionalInformationwassubmitted != null)
+        if (_dateAdditionalInformationwassubmitted != null)
         {
-            return dateAdditionalInformationwassubmitted;
+            return _dateAdditionalInformationwassubmitted;
         }
 
-        dateAdditionalInformationwassubmitted = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"RFI"][4],
             Id = @"RFI.4",
             Type = @"Field",
             Position = @"RFI.4",
@@ -265,17 +195,22 @@ public HL7V26Field DateAdditionalInformationwassubmitted
             TableName = null,
             Description = @"The date on which the information was assembled for transmission to the Payer. Not necessarily the same as the message date.",
             Sample = @"",
+            Fields = null
+        }
+
+        _dateAdditionalInformationwassubmitted = new HL7V26Field
+        {
+            field = message[@"RFI"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dateAdditionalInformationwassubmitted.field.FieldRepetitions != null && dateAdditionalInformationwassubmitted.field.FieldRepetitions.Count > 0)
+        if (_dateAdditionalInformationwassubmitted.field.FieldRepetitions != null && _dateAdditionalInformationwassubmitted.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateAdditionalInformationwassubmitted.Id));
-            dateAdditionalInformationwassubmitted.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(dateAdditionalInformationwassubmitted, fieldData);
+            _dateAdditionalInformationwassubmitted.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_dateAdditionalInformationwassubmitted, fieldData);
         }
 
-        return dateAdditionalInformationwassubmitted;
+        return _dateAdditionalInformationwassubmitted;
     } 
 }
     }

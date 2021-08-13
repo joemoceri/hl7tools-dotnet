@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V25SegmentIPC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V25Field _accessionIdentifier;
+
+public HL7V25Field AccessionIdentifier
+{
+    get
+    {
+        if (_accessionIdentifier != null)
+        {
+            return _accessionIdentifier;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IPC.1",
+            Type = @"Field",
+            Position = @"IPC.1",
+            Name = @"Accession Identifier",
+            Length = 80,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"A workflow-management IDIS generated number that identifies the Filler Order for an Imaging Service (Imaging Service Request). This identifier corresponds one-to-one to the Order Filler number but is used in internal tracking of the work by the IDIS and in communication between IDIS within the department. It also has specific requirements to assure its compatibility with DICOM. It is a case of the Entity Identifier data type. Its first component is a string that identifies the Imaging Service Request. A limit of sixteen (16) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0008,0050) that conveys information identical to the component one of this field.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"IPC.1",
-                            Type = @"Field",
-                            Position = @"IPC.1",
-                            Name = @"Accession Identifier",
-                            Length = 80,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A workflow-management IDIS generated number that identifies the Filler Order for an Imaging Service (Imaging Service Request). This identifier corresponds one-to-one to the Order Filler number but is used in internal tracking of the work by the IDIS and in communication between IDIS within the department. It also has specific requirements to assure its compatibility with DICOM. It is a case of the Entity Identifier data type. Its first component is a string that identifies the Imaging Service Request. A limit of sixteen (16) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0008,0050) that conveys information identical to the component one of this field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IPC.1.1",
                             Type = @"Component",
@@ -120,25 +132,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _accessionIdentifier = new HL7V25Field
+        {
+            field = message[@"IPC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accessionIdentifier.field.FieldRepetitions != null && _accessionIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _accessionIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_accessionIdentifier, fieldData);
+        }
+
+        return _accessionIdentifier;
+    } 
+}
+
+internal HL7V25Field _requestedProcedureID;
+
+public HL7V25Field RequestedProcedureID
+{
+    get
+    {
+        if (_requestedProcedureID != null)
+        {
+            return _requestedProcedureID;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IPC.2",
+            Type = @"Field",
+            Position = @"IPC.2",
+            Name = @"Requested Procedure ID",
+            Length = 22,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the identifier of the Requested Procedure that the workflow management IDIS selected to perform as a part of the order for the imaging service. It is a case of the Entity Identifier data type. The first component of this field is a string that identifies the Requested Procedure. A limit of sixteen (16) characters is required to allow compatibility with DICOM. This string must uniquely identify the Requested Procedure within the scope of the order (as specified by accession number). This uniqueness must persist over time. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0001) that conveys information identical to the component one of this field.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IPC.2",
-                            Type = @"Field",
-                            Position = @"IPC.2",
-                            Name = @"Requested Procedure ID",
-                            Length = 22,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the identifier of the Requested Procedure that the workflow management IDIS selected to perform as a part of the order for the imaging service. It is a case of the Entity Identifier data type. The first component of this field is a string that identifies the Requested Procedure. A limit of sixteen (16) characters is required to allow compatibility with DICOM. This string must uniquely identify the Requested Procedure within the scope of the order (as specified by accession number). This uniqueness must persist over time. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0001) that conveys information identical to the component one of this field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.2.1",
                             Type = @"Component",
@@ -208,25 +250,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _requestedProcedureID = new HL7V25Field
+        {
+            field = message[@"IPC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedProcedureID.field.FieldRepetitions != null && _requestedProcedureID.field.FieldRepetitions.Count > 0)
+        {
+            _requestedProcedureID.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_requestedProcedureID, fieldData);
+        }
+
+        return _requestedProcedureID;
+    } 
+}
+
+internal HL7V25Field _studyInstanceUID;
+
+public HL7V25Field StudyInstanceUID
+{
+    get
+    {
+        if (_studyInstanceUID != null)
+        {
+            return _studyInstanceUID;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IPC.3",
+            Type = @"Field",
+            Position = @"IPC.3",
+            Name = @"Study Instance UID",
+            Length = 70,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Globally unique identifier assigned by the workflow management IDIS to the Imaging Study under which all images and other DICOM objects produced in the course of the Requested Procedure shall be collected. It is a case of the Entity Identifier data type (Section 2.A.28). Its first component is a string that identifies the Study. A limit of sixty-four (64) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0020,000D) that conveys information identical to component one of this field. The second through fourth components contain the ID of the workflow management IDIS, in the form of the HD data type. The second component is a user-defined coded value that uniquely defines the application from other applications on the network. A limit of five (5) characters is suggested but not required. The second component of the Study Instance UID always identifies the actual filler of an order.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IPC.3",
-                            Type = @"Field",
-                            Position = @"IPC.3",
-                            Name = @"Study Instance UID",
-                            Length = 70,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Globally unique identifier assigned by the workflow management IDIS to the Imaging Study under which all images and other DICOM objects produced in the course of the Requested Procedure shall be collected. It is a case of the Entity Identifier data type (Section 2.A.28). Its first component is a string that identifies the Study. A limit of sixty-four (64) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0020,000D) that conveys information identical to component one of this field. The second through fourth components contain the ID of the workflow management IDIS, in the form of the HD data type. The second component is a user-defined coded value that uniquely defines the application from other applications on the network. A limit of five (5) characters is suggested but not required. The second component of the Study Instance UID always identifies the actual filler of an order.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.3.1",
                             Type = @"Component",
@@ -296,25 +368,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _studyInstanceUID = new HL7V25Field
+        {
+            field = message[@"IPC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_studyInstanceUID.field.FieldRepetitions != null && _studyInstanceUID.field.FieldRepetitions.Count > 0)
+        {
+            _studyInstanceUID.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_studyInstanceUID, fieldData);
+        }
+
+        return _studyInstanceUID;
+    } 
+}
+
+internal HL7V25Field _scheduledProcedureStepID;
+
+public HL7V25Field ScheduledProcedureStepID
+{
+    get
+    {
+        if (_scheduledProcedureStepID != null)
+        {
+            return _scheduledProcedureStepID;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IPC.4",
+            Type = @"Field",
+            Position = @"IPC.4",
+            Name = @"Scheduled Procedure Step ID",
+            Length = 22,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the identifier of a particular Procedure Step (sub-procedure) of the Requested Procedure that the workflow management IDIS selected to perform as a part of the order for imaging service. It is a case of the Entity Identifier data type. Its first component is a string that identifies the Procedure Step. A limit of sixteen (16) characters is required to allow compatibility with DICOM. This string must uniquely identify the Procedure Step within the scope of the Requested Procedure. This uniqueness must persist over time. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0009) that conveys information identical to the component one of this field.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IPC.4",
-                            Type = @"Field",
-                            Position = @"IPC.4",
-                            Name = @"Scheduled Procedure Step ID",
-                            Length = 22,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the identifier of a particular Procedure Step (sub-procedure) of the Requested Procedure that the workflow management IDIS selected to perform as a part of the order for imaging service. It is a case of the Entity Identifier data type. Its first component is a string that identifies the Procedure Step. A limit of sixteen (16) characters is required to allow compatibility with DICOM. This string must uniquely identify the Procedure Step within the scope of the Requested Procedure. This uniqueness must persist over time. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0009) that conveys information identical to the component one of this field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.4.1",
                             Type = @"Component",
@@ -384,25 +486,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _scheduledProcedureStepID = new HL7V25Field
+        {
+            field = message[@"IPC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_scheduledProcedureStepID.field.FieldRepetitions != null && _scheduledProcedureStepID.field.FieldRepetitions.Count > 0)
+        {
+            _scheduledProcedureStepID.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_scheduledProcedureStepID, fieldData);
+        }
+
+        return _scheduledProcedureStepID;
+    } 
+}
+
+internal HL7V25Field _modality;
+
+public HL7V25Field Modality
+{
+    get
+    {
+        if (_modality != null)
+        {
+            return _modality;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IPC.5",
+            Type = @"Field",
+            Position = @"IPC.5",
+            Name = @"Modality",
+            Length = 16,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"The type of equipment requested to acquire data during performance of a Procedure Step. The acquired data will be used to create the images for the Imaging Study corresponding to the Requested Procedure.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IPC.5",
-                            Type = @"Field",
-                            Position = @"IPC.5",
-                            Name = @"Modality",
-                            Length = 16,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The type of equipment requested to acquire data during performance of a Procedure Step. The acquired data will be used to create the images for the Imaging Study corresponding to the Requested Procedure.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.5.1",
                             Type = @"Component",
@@ -508,25 +640,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _modality = new HL7V25Field
+        {
+            field = message[@"IPC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_modality.field.FieldRepetitions != null && _modality.field.FieldRepetitions.Count > 0)
+        {
+            _modality.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_modality, fieldData);
+        }
+
+        return _modality;
+    } 
+}
+
+internal HL7V25Field _protocolCode;
+
+public HL7V25Field ProtocolCode
+{
+    get
+    {
+        if (_protocolCode != null)
+        {
+            return _protocolCode;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IPC.6",
+            Type = @"Field",
+            Position = @"IPC.6",
+            Name = @"Protocol Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"One or more coded entries identifying the protocol according to which the Scheduled Procedure Step shall be performed. Protocol Code(s) may identify particular equipment settings as well as operator's manipulations.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IPC.6",
-                            Type = @"Field",
-                            Position = @"IPC.6",
-                            Name = @"Protocol Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"One or more coded entries identifying the protocol according to which the Scheduled Procedure Step shall be performed. Protocol Code(s) may identify particular equipment settings as well as operator's manipulations.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.6.1",
                             Type = @"Component",
@@ -632,25 +794,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _protocolCode = new HL7V25Field
+        {
+            field = message[@"IPC"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_protocolCode.field.FieldRepetitions != null && _protocolCode.field.FieldRepetitions.Count > 0)
+        {
+            _protocolCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_protocolCode, fieldData);
+        }
+
+        return _protocolCode;
+    } 
+}
+
+internal HL7V25Field _scheduledStationName;
+
+public HL7V25Field ScheduledStationName
+{
+    get
+    {
+        if (_scheduledStationName != null)
+        {
+            return _scheduledStationName;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IPC.7",
+            Type = @"Field",
+            Position = @"IPC.7",
+            Name = @"Scheduled Station Name",
+            Length = 22,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the instance of the modality resource being requested for the performance of a particular Scheduled Procedure Step. It is a case of the Entity Identifier data type. The first component of this field is a string that identifies the particular piece of equipment. A limit of sixteen (16) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0010) that conveys information identical to the component one of this field.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IPC.7",
-                            Type = @"Field",
-                            Position = @"IPC.7",
-                            Name = @"Scheduled Station Name",
-                            Length = 22,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the instance of the modality resource being requested for the performance of a particular Scheduled Procedure Step. It is a case of the Entity Identifier data type. The first component of this field is a string that identifies the particular piece of equipment. A limit of sixteen (16) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0010) that conveys information identical to the component one of this field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.7.1",
                             Type = @"Component",
@@ -720,25 +912,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _scheduledStationName = new HL7V25Field
+        {
+            field = message[@"IPC"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_scheduledStationName.field.FieldRepetitions != null && _scheduledStationName.field.FieldRepetitions.Count > 0)
+        {
+            _scheduledStationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_scheduledStationName, fieldData);
+        }
+
+        return _scheduledStationName;
+    } 
+}
+
+internal HL7V25Field _scheduledProcedureStepLocation;
+
+public HL7V25Field ScheduledProcedureStepLocation
+{
+    get
+    {
+        if (_scheduledProcedureStepLocation != null)
+        {
+            return _scheduledProcedureStepLocation;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"IPC.8",
+            Type = @"Field",
+            Position = @"IPC.8",
+            Name = @"Scheduled Procedure Step Location",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies a locally defined physical location of the modality resource being requested for performance of particular Scheduled Procedure Step. Although location is usually defined geographically (such as identification of a campus, building, floor, etc.) it may be used for identification of a pool of equipment (resources) formed by any other means. Values for the field shall be drawn from a locally defined coding scheme.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IPC.8",
-                            Type = @"Field",
-                            Position = @"IPC.8",
-                            Name = @"Scheduled Procedure Step Location",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies a locally defined physical location of the modality resource being requested for performance of particular Scheduled Procedure Step. Although location is usually defined geographically (such as identification of a campus, building, floor, etc.) it may be used for identification of a pool of equipment (resources) formed by any other means. Values for the field shall be drawn from a locally defined coding scheme.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IPC.8.1",
                             Type = @"Component",
@@ -844,377 +1066,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IPC.9",
-                            Type = @"Field",
-                            Position = @"IPC.9",
-                            Name = @"Scheduled AE Title",
-                            Length = 16,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the Application Entity Title of the modality resource being requested for performance of a particular Scheduled Procedure Step. Application Entity Title is the identifier that identifies an instance of DICOM-compatible equipment for the purpose of addressing during communication. See DICOM Standard, Part 3 for further details on the DICOM Attribute (0040,0001) that conveys equivalent information. A limit of sixteen (16) characters is required to allow compatibility with DICOM.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V25SegmentIPC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V25Field accessionIdentifier;
-
-public HL7V25Field AccessionIdentifier
-{
-    get
-    {
-        if (accessionIdentifier != null)
-        {
-            return accessionIdentifier;
-        }
-
-        accessionIdentifier = new HL7V25Field
-        {
-            field = message[@"IPC"][1],
-            Id = @"IPC.1",
-            Type = @"Field",
-            Position = @"IPC.1",
-            Name = @"Accession Identifier",
-            Length = 80,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"A workflow-management IDIS generated number that identifies the Filler Order for an Imaging Service (Imaging Service Request). This identifier corresponds one-to-one to the Order Filler number but is used in internal tracking of the work by the IDIS and in communication between IDIS within the department. It also has specific requirements to assure its compatibility with DICOM. It is a case of the Entity Identifier data type. Its first component is a string that identifies the Imaging Service Request. A limit of sixteen (16) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0008,0050) that conveys information identical to the component one of this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accessionIdentifier.field.FieldRepetitions != null && accessionIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accessionIdentifier.Id));
-            accessionIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(accessionIdentifier, fieldData);
-        }
-
-        return accessionIdentifier;
-    } 
-}
-
-internal HL7V25Field requestedProcedureID;
-
-public HL7V25Field RequestedProcedureID
-{
-    get
-    {
-        if (requestedProcedureID != null)
-        {
-            return requestedProcedureID;
-        }
-
-        requestedProcedureID = new HL7V25Field
-        {
-            field = message[@"IPC"][2],
-            Id = @"IPC.2",
-            Type = @"Field",
-            Position = @"IPC.2",
-            Name = @"Requested Procedure ID",
-            Length = 22,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the identifier of the Requested Procedure that the workflow management IDIS selected to perform as a part of the order for the imaging service. It is a case of the Entity Identifier data type. The first component of this field is a string that identifies the Requested Procedure. A limit of sixteen (16) characters is required to allow compatibility with DICOM. This string must uniquely identify the Requested Procedure within the scope of the order (as specified by accession number). This uniqueness must persist over time. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0001) that conveys information identical to the component one of this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedProcedureID.field.FieldRepetitions != null && requestedProcedureID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedProcedureID.Id));
-            requestedProcedureID.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(requestedProcedureID, fieldData);
-        }
-
-        return requestedProcedureID;
-    } 
-}
-
-internal HL7V25Field studyInstanceUID;
-
-public HL7V25Field StudyInstanceUID
-{
-    get
-    {
-        if (studyInstanceUID != null)
-        {
-            return studyInstanceUID;
-        }
-
-        studyInstanceUID = new HL7V25Field
-        {
-            field = message[@"IPC"][3],
-            Id = @"IPC.3",
-            Type = @"Field",
-            Position = @"IPC.3",
-            Name = @"Study Instance UID",
-            Length = 70,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Globally unique identifier assigned by the workflow management IDIS to the Imaging Study under which all images and other DICOM objects produced in the course of the Requested Procedure shall be collected. It is a case of the Entity Identifier data type (Section 2.A.28). Its first component is a string that identifies the Study. A limit of sixty-four (64) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0020,000D) that conveys information identical to component one of this field. The second through fourth components contain the ID of the workflow management IDIS, in the form of the HD data type. The second component is a user-defined coded value that uniquely defines the application from other applications on the network. A limit of five (5) characters is suggested but not required. The second component of the Study Instance UID always identifies the actual filler of an order.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (studyInstanceUID.field.FieldRepetitions != null && studyInstanceUID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studyInstanceUID.Id));
-            studyInstanceUID.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(studyInstanceUID, fieldData);
-        }
-
-        return studyInstanceUID;
-    } 
-}
-
-internal HL7V25Field scheduledProcedureStepID;
-
-public HL7V25Field ScheduledProcedureStepID
-{
-    get
-    {
-        if (scheduledProcedureStepID != null)
-        {
-            return scheduledProcedureStepID;
-        }
-
-        scheduledProcedureStepID = new HL7V25Field
-        {
-            field = message[@"IPC"][4],
-            Id = @"IPC.4",
-            Type = @"Field",
-            Position = @"IPC.4",
-            Name = @"Scheduled Procedure Step ID",
-            Length = 22,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the identifier of a particular Procedure Step (sub-procedure) of the Requested Procedure that the workflow management IDIS selected to perform as a part of the order for imaging service. It is a case of the Entity Identifier data type. Its first component is a string that identifies the Procedure Step. A limit of sixteen (16) characters is required to allow compatibility with DICOM. This string must uniquely identify the Procedure Step within the scope of the Requested Procedure. This uniqueness must persist over time. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0009) that conveys information identical to the component one of this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (scheduledProcedureStepID.field.FieldRepetitions != null && scheduledProcedureStepID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(scheduledProcedureStepID.Id));
-            scheduledProcedureStepID.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(scheduledProcedureStepID, fieldData);
-        }
-
-        return scheduledProcedureStepID;
-    } 
-}
-
-internal HL7V25Field modality;
-
-public HL7V25Field Modality
-{
-    get
-    {
-        if (modality != null)
-        {
-            return modality;
-        }
-
-        modality = new HL7V25Field
-        {
-            field = message[@"IPC"][5],
-            Id = @"IPC.5",
-            Type = @"Field",
-            Position = @"IPC.5",
-            Name = @"Modality",
-            Length = 16,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"The type of equipment requested to acquire data during performance of a Procedure Step. The acquired data will be used to create the images for the Imaging Study corresponding to the Requested Procedure.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (modality.field.FieldRepetitions != null && modality.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(modality.Id));
-            modality.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(modality, fieldData);
-        }
-
-        return modality;
-    } 
-}
-
-internal HL7V25Field protocolCode;
-
-public HL7V25Field ProtocolCode
-{
-    get
-    {
-        if (protocolCode != null)
-        {
-            return protocolCode;
-        }
-
-        protocolCode = new HL7V25Field
-        {
-            field = message[@"IPC"][6],
-            Id = @"IPC.6",
-            Type = @"Field",
-            Position = @"IPC.6",
-            Name = @"Protocol Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"One or more coded entries identifying the protocol according to which the Scheduled Procedure Step shall be performed. Protocol Code(s) may identify particular equipment settings as well as operator's manipulations.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (protocolCode.field.FieldRepetitions != null && protocolCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(protocolCode.Id));
-            protocolCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(protocolCode, fieldData);
-        }
-
-        return protocolCode;
-    } 
-}
-
-internal HL7V25Field scheduledStationName;
-
-public HL7V25Field ScheduledStationName
-{
-    get
-    {
-        if (scheduledStationName != null)
-        {
-            return scheduledStationName;
-        }
-
-        scheduledStationName = new HL7V25Field
-        {
-            field = message[@"IPC"][7],
-            Id = @"IPC.7",
-            Type = @"Field",
-            Position = @"IPC.7",
-            Name = @"Scheduled Station Name",
-            Length = 22,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the instance of the modality resource being requested for the performance of a particular Scheduled Procedure Step. It is a case of the Entity Identifier data type. The first component of this field is a string that identifies the particular piece of equipment. A limit of sixteen (16) characters is required to allow compatibility with DICOM. See DICOM Standard Part 3 for further details on DICOM Attribute (0040,0010) that conveys information identical to the component one of this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (scheduledStationName.field.FieldRepetitions != null && scheduledStationName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(scheduledStationName.Id));
-            scheduledStationName.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(scheduledStationName, fieldData);
-        }
-
-        return scheduledStationName;
-    } 
-}
-
-internal HL7V25Field scheduledProcedureStepLocation;
-
-public HL7V25Field ScheduledProcedureStepLocation
-{
-    get
-    {
-        if (scheduledProcedureStepLocation != null)
-        {
-            return scheduledProcedureStepLocation;
-        }
-
-        scheduledProcedureStepLocation = new HL7V25Field
+        _scheduledProcedureStepLocation = new HL7V25Field
         {
             field = message[@"IPC"][8],
-            Id = @"IPC.8",
-            Type = @"Field",
-            Position = @"IPC.8",
-            Name = @"Scheduled Procedure Step Location",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies a locally defined physical location of the modality resource being requested for performance of particular Scheduled Procedure Step. Although location is usually defined geographically (such as identification of a campus, building, floor, etc.) it may be used for identification of a pool of equipment (resources) formed by any other means. Values for the field shall be drawn from a locally defined coding scheme.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (scheduledProcedureStepLocation.field.FieldRepetitions != null && scheduledProcedureStepLocation.field.FieldRepetitions.Count > 0)
+        if (_scheduledProcedureStepLocation.field.FieldRepetitions != null && _scheduledProcedureStepLocation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(scheduledProcedureStepLocation.Id));
-            scheduledProcedureStepLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(scheduledProcedureStepLocation, fieldData);
+            _scheduledProcedureStepLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_scheduledProcedureStepLocation, fieldData);
         }
 
-        return scheduledProcedureStepLocation;
+        return _scheduledProcedureStepLocation;
     } 
 }
 
-internal HL7V25Field scheduledAETitle;
+internal HL7V25Field _scheduledAETitle;
 
 public HL7V25Field ScheduledAETitle
 {
     get
     {
-        if (scheduledAETitle != null)
+        if (_scheduledAETitle != null)
         {
-            return scheduledAETitle;
+            return _scheduledAETitle;
         }
 
-        scheduledAETitle = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"IPC"][9],
             Id = @"IPC.9",
             Type = @"Field",
             Position = @"IPC.9",
@@ -1228,17 +1112,22 @@ public HL7V25Field ScheduledAETitle
             TableName = null,
             Description = @"This field contains the Application Entity Title of the modality resource being requested for performance of a particular Scheduled Procedure Step. Application Entity Title is the identifier that identifies an instance of DICOM-compatible equipment for the purpose of addressing during communication. See DICOM Standard, Part 3 for further details on the DICOM Attribute (0040,0001) that conveys equivalent information. A limit of sixteen (16) characters is required to allow compatibility with DICOM.",
             Sample = @"",
+            Fields = null
+        }
+
+        _scheduledAETitle = new HL7V25Field
+        {
+            field = message[@"IPC"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (scheduledAETitle.field.FieldRepetitions != null && scheduledAETitle.field.FieldRepetitions.Count > 0)
+        if (_scheduledAETitle.field.FieldRepetitions != null && _scheduledAETitle.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(scheduledAETitle.Id));
-            scheduledAETitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(scheduledAETitle, fieldData);
+            _scheduledAETitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_scheduledAETitle, fieldData);
         }
 
-        return scheduledAETitle;
+        return _scheduledAETitle;
     } 
 }
     }

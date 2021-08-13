@@ -35,64 +35,130 @@ With HL7 V2.3, the nomenclature for the fourth component of the patient identifi
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentPID(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _setIdPid;
+
+public HL7V27Field SetIdPid
+{
+    get
+    {
+        if (_setIdPid != null)
+        {
+            return _setIdPid;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.1",
+            Type = @"Field",
+            Position = @"PID.1",
+            Name = @"Set Id - Pid",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdPid = new HL7V27Field
+        {
+            field = message[@"PID"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdPid.field.FieldRepetitions != null && _setIdPid.field.FieldRepetitions.Count > 0)
+        {
+            _setIdPid.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_setIdPid, fieldData);
+        }
+
+        return _setIdPid;
+    } 
+}
+
+internal HL7V27Field _patientId;
+
+public HL7V27Field PatientId
+{
+    get
+    {
+        if (_patientId != null)
+        {
+            return _patientId;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.2",
+            Type = @"Field",
+            Position = @"PID.2",
+            Name = @"Patient Id",
+            Length = 0,
+            Usage = @"W",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Attention: The PID-2 field was retained for backward compatibility only as of v2.3.1 and was withdrawn and removed from this message structure as of v2.7. It is recommended to use PID-3 - Patient Identifier List for all patient identifiers.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _patientId = new HL7V27Field
+        {
+            field = message[@"PID"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientId.field.FieldRepetitions != null && _patientId.field.FieldRepetitions.Count > 0)
+        {
+            _patientId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_patientId, fieldData);
+        }
+
+        return _patientId;
+    } 
+}
+
+internal HL7V27Field _patientIdentifierList;
+
+public HL7V27Field PatientIdentifierList
+{
+    get
+    {
+        if (_patientIdentifierList != null)
+        {
+            return _patientIdentifierList;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.3",
+            Type = @"Field",
+            Position = @"PID.3",
+            Name = @"Patient Identifier List",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the list of identifiers (one or more) used by the healthcare facility to uniquely identify a patient (e.g., medical record number, billing number, birth registry, national unique individual identifier, etc.). In Canada, the Canadian Provincial Healthcare Number should be sent in this field. The arbitrary term of ""internal ID"" has been removed from the name of this field for clarity.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PID.1",
-                            Type = @"Field",
-                            Position = @"PID.1",
-                            Name = @"Set Id - Pid",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.2",
-                            Type = @"Field",
-                            Position = @"PID.2",
-                            Name = @"Patient Id",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: The PID-2 field was retained for backward compatibility only as of v2.3.1 and was withdrawn and removed from this message structure as of v2.7. It is recommended to use PID-3 - Patient Identifier List for all patient identifiers.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.3",
-                            Type = @"Field",
-                            Position = @"PID.3",
-                            Name = @"Patient Identifier List",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the list of identifiers (one or more) used by the healthcare facility to uniquely identify a patient (e.g., medical record number, billing number, birth registry, national unique individual identifier, etc.). In Canada, the Canadian Provincial Healthcare Number should be sent in this field. The arbitrary term of ""internal ID"" has been removed from the name of this field for clarity.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PID.3.1",
                             Type = @"Component",
@@ -1294,41 +1360,96 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.4",
-                            Type = @"Field",
-                            Position = @"PID.4",
-                            Name = @"Alternate Patient Id - Pid",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: The PID-4 field was retained for backward compatibility only as of v2.3.1 and was withdrawn and removed from this message structure as of v2.7. It is recommended to use PID-3 - Patient Identifier List for all patient identifiers.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.5",
-                            Type = @"Field",
-                            Position = @"PID.5",
-                            Name = @"Patient Name",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains one or more of the names of the patient. The XPN.7 Name Type Code, and not the order, conveys how the name should be interpreted. 
+                        }
+        }
+
+        _patientIdentifierList = new HL7V27Field
+        {
+            field = message[@"PID"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientIdentifierList.field.FieldRepetitions != null && _patientIdentifierList.field.FieldRepetitions.Count > 0)
+        {
+            _patientIdentifierList.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_patientIdentifierList, fieldData);
+        }
+
+        return _patientIdentifierList;
+    } 
+}
+
+internal HL7V27Field _alternatePatientIdPid;
+
+public HL7V27Field AlternatePatientIdPid
+{
+    get
+    {
+        if (_alternatePatientIdPid != null)
+        {
+            return _alternatePatientIdPid;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.4",
+            Type = @"Field",
+            Position = @"PID.4",
+            Name = @"Alternate Patient Id - Pid",
+            Length = 0,
+            Usage = @"W",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Attention: The PID-4 field was retained for backward compatibility only as of v2.3.1 and was withdrawn and removed from this message structure as of v2.7. It is recommended to use PID-3 - Patient Identifier List for all patient identifiers.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _alternatePatientIdPid = new HL7V27Field
+        {
+            field = message[@"PID"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_alternatePatientIdPid.field.FieldRepetitions != null && _alternatePatientIdPid.field.FieldRepetitions.Count > 0)
+        {
+            _alternatePatientIdPid.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_alternatePatientIdPid, fieldData);
+        }
+
+        return _alternatePatientIdPid;
+    } 
+}
+
+internal HL7V27Field _patientName;
+
+public HL7V27Field PatientName
+{
+    get
+    {
+        if (_patientName != null)
+        {
+            return _patientName;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.5",
+            Type = @"Field",
+            Position = @"PID.5",
+            Name = @"Patient Name",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains one or more of the names of the patient. The XPN.7 Name Type Code, and not the order, conveys how the name should be interpreted. 
 As of v2.7, Name Type Code is Required. Refer to HL7 Table 0200 - Name Type for valid values. Specification of meaning based on sequence is deprecated.
 
 In addition to allowing repetition of this field for transmitting multiple names with different Name Type Codes, repetition also allows for representing the same name in different character sets based on the value in XPN.8 Name Representation Code.
@@ -1336,8 +1457,10 @@ In addition to allowing repetition of this field for transmitting multiple names
 Multiple given names and/or initials are separated by spaces.
 
 For animals, if a Name Type of ""R"" is used, use ""Name Context"" to identify the authority with which the animal's name is registered.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PID.5.1",
                             Type = @"Component",
@@ -2147,25 +2270,55 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _patientName = new HL7V27Field
+        {
+            field = message[@"PID"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientName.field.FieldRepetitions != null && _patientName.field.FieldRepetitions.Count > 0)
+        {
+            _patientName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_patientName, fieldData);
+        }
+
+        return _patientName;
+    } 
+}
+
+internal HL7V27Field _mothersMaidenName;
+
+public HL7V27Field MothersMaidenName
+{
+    get
+    {
+        if (_mothersMaidenName != null)
+        {
+            return _mothersMaidenName;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.6",
+            Type = @"Field",
+            Position = @"PID.6",
+            Name = @"Mother's Maiden Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the family name under which the mother was born (i.e., before marriage). It is used to distinguish between patients with the same last name.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.6",
-                            Type = @"Field",
-                            Position = @"PID.6",
-                            Name = @"Mother's Maiden Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the family name under which the mother was born (i.e., before marriage). It is used to distinguish between patients with the same last name.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.6.1",
                             Type = @"Component",
@@ -2975,43 +3128,100 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _mothersMaidenName = new HL7V27Field
+        {
+            field = message[@"PID"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_mothersMaidenName.field.FieldRepetitions != null && _mothersMaidenName.field.FieldRepetitions.Count > 0)
+        {
+            _mothersMaidenName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_mothersMaidenName, fieldData);
+        }
+
+        return _mothersMaidenName;
+    } 
+}
+
+internal HL7V27Field _dateTimeOfBirth;
+
+public HL7V27Field DateTimeOfBirth
+{
+    get
+    {
+        if (_dateTimeOfBirth != null)
+        {
+            return _dateTimeOfBirth;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.7",
+            Type = @"Field",
+            Position = @"PID.7",
+            Name = @"Date/Time Of Birth",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the patient's date and time of birth.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dateTimeOfBirth = new HL7V27Field
+        {
+            field = message[@"PID"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeOfBirth.field.FieldRepetitions != null && _dateTimeOfBirth.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeOfBirth.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_dateTimeOfBirth, fieldData);
+        }
+
+        return _dateTimeOfBirth;
+    } 
+}
+
+internal HL7V27Field _administrativeSex;
+
+public HL7V27Field AdministrativeSex
+{
+    get
+    {
+        if (_administrativeSex != null)
+        {
+            return _administrativeSex;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.8",
+            Type = @"Field",
+            Position = @"PID.8",
+            Name = @"Administrative Sex",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0001",
+            TableName = @"Administrative Sex",
+            Description = @"This field contains the patient's sex. Refer to User-defined Table 0001 - Administrative Sex for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.7",
-                            Type = @"Field",
-                            Position = @"PID.7",
-                            Name = @"Date/Time Of Birth",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the patient's date and time of birth.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.8",
-                            Type = @"Field",
-                            Position = @"PID.8",
-                            Name = @"Administrative Sex",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0001",
-                            TableName = @"Administrative Sex",
-                            Description = @"This field contains the patient's sex. Refer to User-defined Table 0001 - Administrative Sex for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.8.1",
                             Type = @"Component",
@@ -3437,43 +3647,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _administrativeSex = new HL7V27Field
+        {
+            field = message[@"PID"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_administrativeSex.field.FieldRepetitions != null && _administrativeSex.field.FieldRepetitions.Count > 0)
+        {
+            _administrativeSex.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_administrativeSex, fieldData);
+        }
+
+        return _administrativeSex;
+    } 
+}
+
+internal HL7V27Field _patientAlias;
+
+public HL7V27Field PatientAlias
+{
+    get
+    {
+        if (_patientAlias != null)
+        {
+            return _patientAlias;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.9",
+            Type = @"Field",
+            Position = @"PID.9",
+            Name = @"Patient Alias",
+            Length = 0,
+            Usage = @"W",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The PID-9 field was retained for backward compatibility only as of v2.4 and was withdrawn and removed from this message structure as of v2.7. it is recommended to use PID-5 - Patient Name for all patient names.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _patientAlias = new HL7V27Field
+        {
+            field = message[@"PID"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientAlias.field.FieldRepetitions != null && _patientAlias.field.FieldRepetitions.Count > 0)
+        {
+            _patientAlias.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_patientAlias, fieldData);
+        }
+
+        return _patientAlias;
+    } 
+}
+
+internal HL7V27Field _race;
+
+public HL7V27Field Race
+{
+    get
+    {
+        if (_race != null)
+        {
+            return _race;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.10",
+            Type = @"Field",
+            Position = @"PID.10",
+            Name = @"Race",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0005",
+            TableName = @"Race",
+            Description = @"This field refers to the patient's race. Refer to User-defined Table 0005 - Race for suggested values. The second triplet of the CWE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.9",
-                            Type = @"Field",
-                            Position = @"PID.9",
-                            Name = @"Patient Alias",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The PID-9 field was retained for backward compatibility only as of v2.4 and was withdrawn and removed from this message structure as of v2.7. it is recommended to use PID-5 - Patient Name for all patient names.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.10",
-                            Type = @"Field",
-                            Position = @"PID.10",
-                            Name = @"Race",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0005",
-                            TableName = @"Race",
-                            Description = @"This field refers to the patient's race. Refer to User-defined Table 0005 - Race for suggested values. The second triplet of the CWE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.10.1",
                             Type = @"Component",
@@ -3899,25 +4166,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _race = new HL7V27Field
+        {
+            field = message[@"PID"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_race.field.FieldRepetitions != null && _race.field.FieldRepetitions.Count > 0)
+        {
+            _race.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_race, fieldData);
+        }
+
+        return _race;
+    } 
+}
+
+internal HL7V27Field _patientAddress;
+
+public HL7V27Field PatientAddress
+{
+    get
+    {
+        if (_patientAddress != null)
+        {
+            return _patientAddress;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.11",
+            Type = @"Field",
+            Position = @"PID.11",
+            Name = @"Patient Address",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the address of the patient. Multiple addresses for the same person may be sent. As of v2.7 the ""primary mailing address"" constraint as the first sequence has been removed...",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.11",
-                            Type = @"Field",
-                            Position = @"PID.11",
-                            Name = @"Patient Address",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the address of the patient. Multiple addresses for the same person may be sent. As of v2.7 the ""primary mailing address"" constraint as the first sequence has been removed...",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.11.1",
                             Type = @"Component",
@@ -6183,45 +6480,102 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.12",
-                            Type = @"Field",
-                            Position = @"PID.12",
-                            Name = @"County Code",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: The PID-12 field was retained for backward compatibility only as of v2.3 and was withdrawn and removed from this message structure as of v2.7. The county can now be supported in the county/parish code component of the XAD data type (PID-11 - Patient Address).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.13",
-                            Type = @"Field",
-                            Position = @"PID.13",
-                            Name = @"Phone Number - Home",
-                            Length = 0,
-                            Usage = @"B",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The PID13 field has been retained for backward compatibility only as of v2.7. The reader is referrred to section 3.4.2.40, PID-40 – Patient Telecommunication Information instead, which replaces PID-13 – Phone Number - Home with the intention that the components of the XTN data type be used to identify phone usage (Telecommunication use code) and type of equipment (telecommunication equipment type).
+                        }
+        }
+
+        _patientAddress = new HL7V27Field
+        {
+            field = message[@"PID"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientAddress.field.FieldRepetitions != null && _patientAddress.field.FieldRepetitions.Count > 0)
+        {
+            _patientAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_patientAddress, fieldData);
+        }
+
+        return _patientAddress;
+    } 
+}
+
+internal HL7V27Field _countyCode;
+
+public HL7V27Field CountyCode
+{
+    get
+    {
+        if (_countyCode != null)
+        {
+            return _countyCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.12",
+            Type = @"Field",
+            Position = @"PID.12",
+            Name = @"County Code",
+            Length = 0,
+            Usage = @"W",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Attention: The PID-12 field was retained for backward compatibility only as of v2.3 and was withdrawn and removed from this message structure as of v2.7. The county can now be supported in the county/parish code component of the XAD data type (PID-11 - Patient Address).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _countyCode = new HL7V27Field
+        {
+            field = message[@"PID"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_countyCode.field.FieldRepetitions != null && _countyCode.field.FieldRepetitions.Count > 0)
+        {
+            _countyCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_countyCode, fieldData);
+        }
+
+        return _countyCode;
+    } 
+}
+
+internal HL7V27Field _phoneNumberHome;
+
+public HL7V27Field PhoneNumberHome
+{
+    get
+    {
+        if (_phoneNumberHome != null)
+        {
+            return _phoneNumberHome;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.13",
+            Type = @"Field",
+            Position = @"PID.13",
+            Name = @"Phone Number - Home",
+            Length = 0,
+            Usage = @"B",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"The PID13 field has been retained for backward compatibility only as of v2.7. The reader is referrred to section 3.4.2.40, PID-40 – Patient Telecommunication Information instead, which replaces PID-13 – Phone Number - Home with the intention that the components of the XTN data type be used to identify phone usage (Telecommunication use code) and type of equipment (telecommunication equipment type).
 
 This field contains the patient's personal phone numbers. All personal phone numbers for the patient are sent in the following sequence. The first sequence is considered the primary number (for backward compatibility). If the primary number is not sent, then a repeat delimiter is sent in the first sequence. Refer to HL7 Table 0201 - Telecommunication Use Code and HL7 Table 0202 - Telecommunication Equipment Type for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PID.13.1",
                             Type = @"Component",
@@ -7496,27 +7850,57 @@ If the preference order is unique across all usages for a given type, then it in
 Preference order numbers need not be sequential (i.e., three numbers with the priority orders of 0, 5 and 15 are legitimate).  The preference order numbers must be non-negative.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.14",
-                            Type = @"Field",
-                            Position = @"PID.14",
-                            Name = @"Phone Number - Business",
-                            Length = 0,
-                            Usage = @"B",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The PID-14 field has been retained for backward compatibility only as of v2.7. The reader is referred to section 3.4.2.40, PID-40 – Patient Telecommunication Information instead, which replaces PID-14 – Phone Number - Business with the intention that the components of the XTN data type be used to identify phone usage (Telecommunication use code) and type of equipment (telecommunication equipment type).
+                        }
+        }
+
+        _phoneNumberHome = new HL7V27Field
+        {
+            field = message[@"PID"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_phoneNumberHome.field.FieldRepetitions != null && _phoneNumberHome.field.FieldRepetitions.Count > 0)
+        {
+            _phoneNumberHome.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_phoneNumberHome, fieldData);
+        }
+
+        return _phoneNumberHome;
+    } 
+}
+
+internal HL7V27Field _phoneNumberBusiness;
+
+public HL7V27Field PhoneNumberBusiness
+{
+    get
+    {
+        if (_phoneNumberBusiness != null)
+        {
+            return _phoneNumberBusiness;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.14",
+            Type = @"Field",
+            Position = @"PID.14",
+            Name = @"Phone Number - Business",
+            Length = 0,
+            Usage = @"B",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"The PID-14 field has been retained for backward compatibility only as of v2.7. The reader is referred to section 3.4.2.40, PID-40 – Patient Telecommunication Information instead, which replaces PID-14 – Phone Number - Business with the intention that the components of the XTN data type be used to identify phone usage (Telecommunication use code) and type of equipment (telecommunication equipment type).
 
 This field contains the patient's business telephone numbers. All business numbers for the patient are sent in the following sequence. The first sequence is considered the patient's primary business phone number (for backward compatibility). If the primary business phone number is not sent, then a repeat delimiter must be sent in the first sequence. Refer to HL7 Table 0201 - Telecommunication Use Code and HL7 Table 0202 - Telecommunication Equipment Type for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PID.14.1",
                             Type = @"Component",
@@ -8791,25 +9175,55 @@ If the preference order is unique across all usages for a given type, then it in
 Preference order numbers need not be sequential (i.e., three numbers with the priority orders of 0, 5 and 15 are legitimate).  The preference order numbers must be non-negative.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _phoneNumberBusiness = new HL7V27Field
+        {
+            field = message[@"PID"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_phoneNumberBusiness.field.FieldRepetitions != null && _phoneNumberBusiness.field.FieldRepetitions.Count > 0)
+        {
+            _phoneNumberBusiness.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_phoneNumberBusiness, fieldData);
+        }
+
+        return _phoneNumberBusiness;
+    } 
+}
+
+internal HL7V27Field _primaryLanguage;
+
+public HL7V27Field PrimaryLanguage
+{
+    get
+    {
+        if (_primaryLanguage != null)
+        {
+            return _primaryLanguage;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.15",
+            Type = @"Field",
+            Position = @"PID.15",
+            Name = @"Primary Language",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0296",
+            TableName = @"Primary Language",
+            Description = @"This field contains the patient's primary language. HL7 recommends using ISO table 639 as the suggested values in User-defined Table 0296 - Primary Language.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.15",
-                            Type = @"Field",
-                            Position = @"PID.15",
-                            Name = @"Primary Language",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0296",
-                            TableName = @"Primary Language",
-                            Description = @"This field contains the patient's primary language. HL7 recommends using ISO table 639 as the suggested values in User-defined Table 0296 - Primary Language.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.15.1",
                             Type = @"Component",
@@ -9235,25 +9649,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primaryLanguage = new HL7V27Field
+        {
+            field = message[@"PID"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryLanguage.field.FieldRepetitions != null && _primaryLanguage.field.FieldRepetitions.Count > 0)
+        {
+            _primaryLanguage.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_primaryLanguage, fieldData);
+        }
+
+        return _primaryLanguage;
+    } 
+}
+
+internal HL7V27Field _maritalStatus;
+
+public HL7V27Field MaritalStatus
+{
+    get
+    {
+        if (_maritalStatus != null)
+        {
+            return _maritalStatus;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.16",
+            Type = @"Field",
+            Position = @"PID.16",
+            Name = @"Marital Status",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0002",
+            TableName = @"Marital Status",
+            Description = @"This field contains the patient's marital (civil) status. Refer to User-defined Table 0002 - Marital Status for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.16",
-                            Type = @"Field",
-                            Position = @"PID.16",
-                            Name = @"Marital Status",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0002",
-                            TableName = @"Marital Status",
-                            Description = @"This field contains the patient's marital (civil) status. Refer to User-defined Table 0002 - Marital Status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.16.1",
                             Type = @"Component",
@@ -9679,25 +10123,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _maritalStatus = new HL7V27Field
+        {
+            field = message[@"PID"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_maritalStatus.field.FieldRepetitions != null && _maritalStatus.field.FieldRepetitions.Count > 0)
+        {
+            _maritalStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_maritalStatus, fieldData);
+        }
+
+        return _maritalStatus;
+    } 
+}
+
+internal HL7V27Field _religion;
+
+public HL7V27Field Religion
+{
+    get
+    {
+        if (_religion != null)
+        {
+            return _religion;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.17",
+            Type = @"Field",
+            Position = @"PID.17",
+            Name = @"Religion",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0006",
+            TableName = @"Religion",
+            Description = @"This field contains the patient's religion. Refer to User-defined Table 0006 - Religion for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.17",
-                            Type = @"Field",
-                            Position = @"PID.17",
-                            Name = @"Religion",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0006",
-                            TableName = @"Religion",
-                            Description = @"This field contains the patient's religion. Refer to User-defined Table 0006 - Religion for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.17.1",
                             Type = @"Component",
@@ -10123,25 +10597,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _religion = new HL7V27Field
+        {
+            field = message[@"PID"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_religion.field.FieldRepetitions != null && _religion.field.FieldRepetitions.Count > 0)
+        {
+            _religion.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_religion, fieldData);
+        }
+
+        return _religion;
+    } 
+}
+
+internal HL7V27Field _patientAccountNumber;
+
+public HL7V27Field PatientAccountNumber
+{
+    get
+    {
+        if (_patientAccountNumber != null)
+        {
+            return _patientAccountNumber;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.18",
+            Type = @"Field",
+            Position = @"PID.18",
+            Name = @"Patient Account Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the patient account number assigned by accounting to which all charges, payments, etc., are recorded. It is used to identify the patient's account. Refer to HL7 Table 0061 - Check Digit Scheme for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.18",
-                            Type = @"Field",
-                            Position = @"PID.18",
-                            Name = @"Patient Account Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the patient account number assigned by accounting to which all charges, payments, etc., are recorded. It is used to identify the patient's account. Refer to HL7 Table 0061 - Check Digit Scheme for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.18.1",
                             Type = @"Component",
@@ -11343,61 +11847,145 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _patientAccountNumber = new HL7V27Field
+        {
+            field = message[@"PID"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientAccountNumber.field.FieldRepetitions != null && _patientAccountNumber.field.FieldRepetitions.Count > 0)
+        {
+            _patientAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_patientAccountNumber, fieldData);
+        }
+
+        return _patientAccountNumber;
+    } 
+}
+
+internal HL7V27Field _ssnNumberPatient;
+
+public HL7V27Field SsnNumberPatient
+{
+    get
+    {
+        if (_ssnNumberPatient != null)
+        {
+            return _ssnNumberPatient;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.19",
+            Type = @"Field",
+            Position = @"PID.19",
+            Name = @"Ssn Number - Patient",
+            Length = 0,
+            Usage = @"W",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Attention: The PID-19 field was retained for backward compatibility only as of v2.3.1 and was withdrawn and removed from this message structure as of v2.7. It is recommended to use PID-3 - Patient Identifier List for all patient identifiers.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _ssnNumberPatient = new HL7V27Field
+        {
+            field = message[@"PID"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_ssnNumberPatient.field.FieldRepetitions != null && _ssnNumberPatient.field.FieldRepetitions.Count > 0)
+        {
+            _ssnNumberPatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_ssnNumberPatient, fieldData);
+        }
+
+        return _ssnNumberPatient;
+    } 
+}
+
+internal HL7V27Field _driversLicenseNumberPatient;
+
+public HL7V27Field DriversLicenseNumberPatient
+{
+    get
+    {
+        if (_driversLicenseNumberPatient != null)
+        {
+            return _driversLicenseNumberPatient;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.20",
+            Type = @"Field",
+            Position = @"PID.20",
+            Name = @"Driver's License Number - Patient",
+            Length = 0,
+            Usage = @"W",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Attention: The PID-20 field was retained for backward compatibility only as of v2.5 and was withdrawn and removed from this message structure as of v2.7. It is recommended to use PID-3 - Patient Identifier List for all patient identifiers.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _driversLicenseNumberPatient = new HL7V27Field
+        {
+            field = message[@"PID"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_driversLicenseNumberPatient.field.FieldRepetitions != null && _driversLicenseNumberPatient.field.FieldRepetitions.Count > 0)
+        {
+            _driversLicenseNumberPatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_driversLicenseNumberPatient, fieldData);
+        }
+
+        return _driversLicenseNumberPatient;
+    } 
+}
+
+internal HL7V27Field _mothersIdentifier;
+
+public HL7V27Field MothersIdentifier
+{
+    get
+    {
+        if (_mothersIdentifier != null)
+        {
+            return _mothersIdentifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.21",
+            Type = @"Field",
+            Position = @"PID.21",
+            Name = @"Mother's Identifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used, for example, as a link field for newborns. Typically a patient ID or account number may be used. This field can contain multiple identifiers for the same mother. Refer to HL7 Table 0061 - Check Digit Scheme for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.19",
-                            Type = @"Field",
-                            Position = @"PID.19",
-                            Name = @"Ssn Number - Patient",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: The PID-19 field was retained for backward compatibility only as of v2.3.1 and was withdrawn and removed from this message structure as of v2.7. It is recommended to use PID-3 - Patient Identifier List for all patient identifiers.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.20",
-                            Type = @"Field",
-                            Position = @"PID.20",
-                            Name = @"Driver's License Number - Patient",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: The PID-20 field was retained for backward compatibility only as of v2.5 and was withdrawn and removed from this message structure as of v2.7. It is recommended to use PID-3 - Patient Identifier List for all patient identifiers.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.21",
-                            Type = @"Field",
-                            Position = @"PID.21",
-                            Name = @"Mother's Identifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used, for example, as a link field for newborns. Typically a patient ID or account number may be used. This field can contain multiple identifiers for the same mother. Refer to HL7 Table 0061 - Check Digit Scheme for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.21.1",
                             Type = @"Component",
@@ -12599,25 +13187,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _mothersIdentifier = new HL7V27Field
+        {
+            field = message[@"PID"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_mothersIdentifier.field.FieldRepetitions != null && _mothersIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _mothersIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_mothersIdentifier, fieldData);
+        }
+
+        return _mothersIdentifier;
+    } 
+}
+
+internal HL7V27Field _ethnicGroup;
+
+public HL7V27Field EthnicGroup
+{
+    get
+    {
+        if (_ethnicGroup != null)
+        {
+            return _ethnicGroup;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.22",
+            Type = @"Field",
+            Position = @"PID.22",
+            Name = @"Ethnic Group",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0189",
+            TableName = @"Ethnic Group",
+            Description = @"This field further defines the patient's ancestry. Refer to User-defined Table 0189 - Ethnic Group for suggested values. The second triplet of the CWE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes. In the US, a current use is to report ethnicity in line with US federal standards for Hispanic origin.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.22",
-                            Type = @"Field",
-                            Position = @"PID.22",
-                            Name = @"Ethnic Group",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0189",
-                            TableName = @"Ethnic Group",
-                            Description = @"This field further defines the patient's ancestry. Refer to User-defined Table 0189 - Ethnic Group for suggested values. The second triplet of the CWE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes. In the US, a current use is to report ethnicity in line with US federal standards for Hispanic origin.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.22.1",
                             Type = @"Component",
@@ -13043,85 +13661,196 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.23",
-                            Type = @"Field",
-                            Position = @"PID.23",
-                            Name = @"Birth Place",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the location of the patient's birth, for example ""St. Francis Community Hospital of Lower South Side"". The actual address is reported in PID-11 with an identifier of ""N"".",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.24",
-                            Type = @"Field",
-                            Position = @"PID.24",
-                            Name = @"Multiple Birth Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This field indicates whether the patient was part of a multiple birth. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.
+                        }
+        }
+
+        _ethnicGroup = new HL7V27Field
+        {
+            field = message[@"PID"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_ethnicGroup.field.FieldRepetitions != null && _ethnicGroup.field.FieldRepetitions.Count > 0)
+        {
+            _ethnicGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_ethnicGroup, fieldData);
+        }
+
+        return _ethnicGroup;
+    } 
+}
+
+internal HL7V27Field _birthPlace;
+
+public HL7V27Field BirthPlace
+{
+    get
+    {
+        if (_birthPlace != null)
+        {
+            return _birthPlace;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.23",
+            Type = @"Field",
+            Position = @"PID.23",
+            Name = @"Birth Place",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the location of the patient's birth, for example ""St. Francis Community Hospital of Lower South Side"". The actual address is reported in PID-11 with an identifier of ""N"".",
+            Sample = @"",
+            Fields = null
+        }
+
+        _birthPlace = new HL7V27Field
+        {
+            field = message[@"PID"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_birthPlace.field.FieldRepetitions != null && _birthPlace.field.FieldRepetitions.Count > 0)
+        {
+            _birthPlace.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_birthPlace, fieldData);
+        }
+
+        return _birthPlace;
+    } 
+}
+
+internal HL7V27Field _multipleBirthIndicator;
+
+public HL7V27Field MultipleBirthIndicator
+{
+    get
+    {
+        if (_multipleBirthIndicator != null)
+        {
+            return _multipleBirthIndicator;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.24",
+            Type = @"Field",
+            Position = @"PID.24",
+            Name = @"Multiple Birth Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"This field indicates whether the patient was part of a multiple birth. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.
 Y - the patient was part of a multiple birth
 N - the patient was a single birth",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.25",
-                            Type = @"Field",
-                            Position = @"PID.25",
-                            Name = @"Birth Order",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"When a patient was part of a multiple birth, a value (number) indicating the patient's birth order is entered in this field.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.26",
-                            Type = @"Field",
-                            Position = @"PID.26",
-                            Name = @"Citizenship",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0171",
-                            TableName = @"Citizenship",
-                            Description = @"This field contains the information related to a person's country citizenship. For country citizenship HL7 recommends using ISO table 3166. For a local definition, User-defined Table 0171 - Citizenship should be used.
+            Sample = @"",
+            Fields = null
+        }
+
+        _multipleBirthIndicator = new HL7V27Field
+        {
+            field = message[@"PID"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_multipleBirthIndicator.field.FieldRepetitions != null && _multipleBirthIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _multipleBirthIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_multipleBirthIndicator, fieldData);
+        }
+
+        return _multipleBirthIndicator;
+    } 
+}
+
+internal HL7V27Field _birthOrder;
+
+public HL7V27Field BirthOrder
+{
+    get
+    {
+        if (_birthOrder != null)
+        {
+            return _birthOrder;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.25",
+            Type = @"Field",
+            Position = @"PID.25",
+            Name = @"Birth Order",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"When a patient was part of a multiple birth, a value (number) indicating the patient's birth order is entered in this field.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _birthOrder = new HL7V27Field
+        {
+            field = message[@"PID"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_birthOrder.field.FieldRepetitions != null && _birthOrder.field.FieldRepetitions.Count > 0)
+        {
+            _birthOrder.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_birthOrder, fieldData);
+        }
+
+        return _birthOrder;
+    } 
+}
+
+internal HL7V27Field _citizenship;
+
+public HL7V27Field Citizenship
+{
+    get
+    {
+        if (_citizenship != null)
+        {
+            return _citizenship;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.26",
+            Type = @"Field",
+            Position = @"PID.26",
+            Name = @"Citizenship",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0171",
+            TableName = @"Citizenship",
+            Description = @"This field contains the information related to a person's country citizenship. For country citizenship HL7 recommends using ISO table 3166. For a local definition, User-defined Table 0171 - Citizenship should be used.
 
 This field repeats since persons can be citizens of more than one country. The Name of Coding System component(s) of the CWE datatype should be used to identify the table from which citizenship membership is drawn.
 
 In the Netherlands, this field is used for ""Nationaliteit"".",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PID.26.1",
                             Type = @"Component",
@@ -13547,25 +14276,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _citizenship = new HL7V27Field
+        {
+            field = message[@"PID"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_citizenship.field.FieldRepetitions != null && _citizenship.field.FieldRepetitions.Count > 0)
+        {
+            _citizenship.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_citizenship, fieldData);
+        }
+
+        return _citizenship;
+    } 
+}
+
+internal HL7V27Field _veteransMilitaryStatus;
+
+public HL7V27Field VeteransMilitaryStatus
+{
+    get
+    {
+        if (_veteransMilitaryStatus != null)
+        {
+            return _veteransMilitaryStatus;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.27",
+            Type = @"Field",
+            Position = @"PID.27",
+            Name = @"Veterans Military Status",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0172",
+            TableName = @"Veterans Military Status",
+            Description = @"This field contains the military status assigned to a veteran. Refer to User-defined Table 0172 - Veterans Military Status for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.27",
-                            Type = @"Field",
-                            Position = @"PID.27",
-                            Name = @"Veterans Military Status",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0172",
-                            TableName = @"Veterans Military Status",
-                            Description = @"This field contains the military status assigned to a veteran. Refer to User-defined Table 0172 - Veterans Military Status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.27.1",
                             Type = @"Component",
@@ -13991,25 +14750,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _veteransMilitaryStatus = new HL7V27Field
+        {
+            field = message[@"PID"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_veteransMilitaryStatus.field.FieldRepetitions != null && _veteransMilitaryStatus.field.FieldRepetitions.Count > 0)
+        {
+            _veteransMilitaryStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_veteransMilitaryStatus, fieldData);
+        }
+
+        return _veteransMilitaryStatus;
+    } 
+}
+
+internal HL7V27Field _nationality;
+
+public HL7V27Field Nationality
+{
+    get
+    {
+        if (_nationality != null)
+        {
+            return _nationality;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.28",
+            Type = @"Field",
+            Position = @"PID.28",
+            Name = @"Nationality",
+            Length = 0,
+            Usage = @"W",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0212",
+            TableName = @"Nationality",
+            Description = @"Attention: The PID-28 field was retained for backward compatibility only as of v2.4 and was withdrawn and removed from this message structure as of v2.7. It is recommended to refer to PID-10 - Race, PID-22 - Ethnic group and PID-26 - Citizenship.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.28",
-                            Type = @"Field",
-                            Position = @"PID.28",
-                            Name = @"Nationality",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0212",
-                            TableName = @"Nationality",
-                            Description = @"Attention: The PID-28 field was retained for backward compatibility only as of v2.4 and was withdrawn and removed from this message structure as of v2.7. It is recommended to refer to PID-10 - Race, PID-22 - Ethnic group and PID-26 - Citizenship.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.28.1",
                             Type = @"Component",
@@ -14435,83 +15224,194 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.29",
-                            Type = @"Field",
-                            Position = @"PID.29",
-                            Name = @"Patient Death Date And Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time at which the patient death occurred.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.30",
-                            Type = @"Field",
-                            Position = @"PID.30",
-                            Name = @"Patient Death Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This field indicates whether the patient is deceased. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.
+                        }
+        }
+
+        _nationality = new HL7V27Field
+        {
+            field = message[@"PID"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_nationality.field.FieldRepetitions != null && _nationality.field.FieldRepetitions.Count > 0)
+        {
+            _nationality.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_nationality, fieldData);
+        }
+
+        return _nationality;
+    } 
+}
+
+internal HL7V27Field _patientDeathDateAndTime;
+
+public HL7V27Field PatientDeathDateAndTime
+{
+    get
+    {
+        if (_patientDeathDateAndTime != null)
+        {
+            return _patientDeathDateAndTime;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.29",
+            Type = @"Field",
+            Position = @"PID.29",
+            Name = @"Patient Death Date And Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time at which the patient death occurred.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _patientDeathDateAndTime = new HL7V27Field
+        {
+            field = message[@"PID"][29],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientDeathDateAndTime.field.FieldRepetitions != null && _patientDeathDateAndTime.field.FieldRepetitions.Count > 0)
+        {
+            _patientDeathDateAndTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_patientDeathDateAndTime, fieldData);
+        }
+
+        return _patientDeathDateAndTime;
+    } 
+}
+
+internal HL7V27Field _patientDeathIndicator;
+
+public HL7V27Field PatientDeathIndicator
+{
+    get
+    {
+        if (_patientDeathIndicator != null)
+        {
+            return _patientDeathIndicator;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.30",
+            Type = @"Field",
+            Position = @"PID.30",
+            Name = @"Patient Death Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"This field indicates whether the patient is deceased. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.
 Y - the patient is deceased
 N - the patient is not deceased",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.31",
-                            Type = @"Field",
-                            Position = @"PID.31",
-                            Name = @"Identity Unknown Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This field indicates whether or not the patient's/person's identity is known. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.
+            Sample = @"",
+            Fields = null
+        }
+
+        _patientDeathIndicator = new HL7V27Field
+        {
+            field = message[@"PID"][30],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientDeathIndicator.field.FieldRepetitions != null && _patientDeathIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _patientDeathIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_patientDeathIndicator, fieldData);
+        }
+
+        return _patientDeathIndicator;
+    } 
+}
+
+internal HL7V27Field _identityUnknownIndicator;
+
+public HL7V27Field IdentityUnknownIndicator
+{
+    get
+    {
+        if (_identityUnknownIndicator != null)
+        {
+            return _identityUnknownIndicator;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.31",
+            Type = @"Field",
+            Position = @"PID.31",
+            Name = @"Identity Unknown Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"This field indicates whether or not the patient's/person's identity is known. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.
 Y - the patient's/person's identity is unknown
 N - the patient's/person's identity is known",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _identityUnknownIndicator = new HL7V27Field
+        {
+            field = message[@"PID"][31],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_identityUnknownIndicator.field.FieldRepetitions != null && _identityUnknownIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _identityUnknownIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_identityUnknownIndicator, fieldData);
+        }
+
+        return _identityUnknownIndicator;
+    } 
+}
+
+internal HL7V27Field _identityReliabilityCode;
+
+public HL7V27Field IdentityReliabilityCode
+{
+    get
+    {
+        if (_identityReliabilityCode != null)
+        {
+            return _identityReliabilityCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.32",
+            Type = @"Field",
+            Position = @"PID.32",
+            Name = @"Identity Reliability Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0445",
+            TableName = @"Identity Reliability Code",
+            Description = @"This field contains a coded value used to communicate information regarding the reliability of patient/person identifying data transmitted via a transaction. Values could indicate that certain fields on a PID segment for a given patient/person are known to be false (e.g., use of default or system-generated values for Date of Birth or Social Security Number). Refer to User-defined Table 0445 - Identity Reliability Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.32",
-                            Type = @"Field",
-                            Position = @"PID.32",
-                            Name = @"Identity Reliability Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0445",
-                            TableName = @"Identity Reliability Code",
-                            Description = @"This field contains a coded value used to communicate information regarding the reliability of patient/person identifying data transmitted via a transaction. Values could indicate that certain fields on a PID segment for a given patient/person are known to be false (e.g., use of default or system-generated values for Date of Birth or Social Security Number). Refer to User-defined Table 0445 - Identity Reliability Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.32.1",
                             Type = @"Component",
@@ -14937,43 +15837,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _identityReliabilityCode = new HL7V27Field
+        {
+            field = message[@"PID"][32],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_identityReliabilityCode.field.FieldRepetitions != null && _identityReliabilityCode.field.FieldRepetitions.Count > 0)
+        {
+            _identityReliabilityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_identityReliabilityCode, fieldData);
+        }
+
+        return _identityReliabilityCode;
+    } 
+}
+
+internal HL7V27Field _lastUpdateDateTime;
+
+public HL7V27Field LastUpdateDateTime
+{
+    get
+    {
+        if (_lastUpdateDateTime != null)
+        {
+            return _lastUpdateDateTime;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.33",
+            Type = @"Field",
+            Position = @"PID.33",
+            Name = @"Last Update Date/Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the last update date and time for the patient's/person's identifying and demographic data, as defined in the PID segment. Receiving systems will use this field to determine how to apply the transaction to their systems. If the receiving system (such as an enterprise master patient index) already has a record for the person with a later last update date/time, then the EMPI could decide not to apply the patient's/person's demographic and identifying data from this transaction.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _lastUpdateDateTime = new HL7V27Field
+        {
+            field = message[@"PID"][33],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_lastUpdateDateTime.field.FieldRepetitions != null && _lastUpdateDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _lastUpdateDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_lastUpdateDateTime, fieldData);
+        }
+
+        return _lastUpdateDateTime;
+    } 
+}
+
+internal HL7V27Field _lastUpdateFacility;
+
+public HL7V27Field LastUpdateFacility
+{
+    get
+    {
+        if (_lastUpdateFacility != null)
+        {
+            return _lastUpdateFacility;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.34",
+            Type = @"Field",
+            Position = @"PID.34",
+            Name = @"Last Update Facility",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"HD",
+            DataTypeName = @"Hierarchic Designator",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the facility of the last update to a patient's/person's identifying and demographic data, as defined in the PID segment. Receiving systems or users will use this field to determine how to apply the transaction to their systems. If the receiving system (such as a hospital's patient management system) already has a record for the patient/person, then it may decide to only update its data if the source is a ""trusted"" source. A hospital might consider other hospitals trusted sources, but not ""trust"" updates from non-acute care facilities. For example: ...|GOOD HEALTH Hospital|...",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.33",
-                            Type = @"Field",
-                            Position = @"PID.33",
-                            Name = @"Last Update Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the last update date and time for the patient's/person's identifying and demographic data, as defined in the PID segment. Receiving systems will use this field to determine how to apply the transaction to their systems. If the receiving system (such as an enterprise master patient index) already has a record for the person with a later last update date/time, then the EMPI could decide not to apply the patient's/person's demographic and identifying data from this transaction.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.34",
-                            Type = @"Field",
-                            Position = @"PID.34",
-                            Name = @"Last Update Facility",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"HD",
-                            DataTypeName = @"Hierarchic Designator",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the facility of the last update to a patient's/person's identifying and demographic data, as defined in the PID segment. Receiving systems or users will use this field to determine how to apply the transaction to their systems. If the receiving system (such as a hospital's patient management system) already has a record for the patient/person, then it may decide to only update its data if the source is a ""trusted"" source. A hospital might consider other hospitals trusted sources, but not ""trust"" updates from non-acute care facilities. For example: ...|GOOD HEALTH Hospital|...",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.34.1",
                             Type = @"Component",
@@ -15029,25 +15986,55 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _lastUpdateFacility = new HL7V27Field
+        {
+            field = message[@"PID"][34],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_lastUpdateFacility.field.FieldRepetitions != null && _lastUpdateFacility.field.FieldRepetitions.Count > 0)
+        {
+            _lastUpdateFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_lastUpdateFacility, fieldData);
+        }
+
+        return _lastUpdateFacility;
+    } 
+}
+
+internal HL7V27Field _speciesCode;
+
+public HL7V27Field SpeciesCode
+{
+    get
+    {
+        if (_speciesCode != null)
+        {
+            return _speciesCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.35",
+            Type = @"Field",
+            Position = @"PID.35",
+            Name = @"Species Code",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0446",
+            TableName = @"Species Code",
+            Description = @"The species of living organism. This may include the common or scientific name, based on the coding system(s) used. SNOMED is the recommended coding system. If this field is not valued, a human is assumed. Refer to User-defined Table 0446 - Species Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.35",
-                            Type = @"Field",
-                            Position = @"PID.35",
-                            Name = @"Species Code",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0446",
-                            TableName = @"Species Code",
-                            Description = @"The species of living organism. This may include the common or scientific name, based on the coding system(s) used. SNOMED is the recommended coding system. If this field is not valued, a human is assumed. Refer to User-defined Table 0446 - Species Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.35.1",
                             Type = @"Component",
@@ -15473,30 +16460,60 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.36",
-                            Type = @"Field",
-                            Position = @"PID.36",
-                            Name = @"Breed Code",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0447",
-                            TableName = @"Breed Code",
-                            Description = @"The specific breed of animal. This field, unlike Species and Strain is specific to animals and cannot be generally used for all living organisms. SNOMED is the recommended coding system. Refer to User-defined Table 0447 - Breed Code for suggested values.
+                        }
+        }
+
+        _speciesCode = new HL7V27Field
+        {
+            field = message[@"PID"][35],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_speciesCode.field.FieldRepetitions != null && _speciesCode.field.FieldRepetitions.Count > 0)
+        {
+            _speciesCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_speciesCode, fieldData);
+        }
+
+        return _speciesCode;
+    } 
+}
+
+internal HL7V27Field _breedCode;
+
+public HL7V27Field BreedCode
+{
+    get
+    {
+        if (_breedCode != null)
+        {
+            return _breedCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.36",
+            Type = @"Field",
+            Position = @"PID.36",
+            Name = @"Breed Code",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0447",
+            TableName = @"Breed Code",
+            Description = @"The specific breed of animal. This field, unlike Species and Strain is specific to animals and cannot be generally used for all living organisms. SNOMED is the recommended coding system. Refer to User-defined Table 0447 - Breed Code for suggested values.
 
 Conditionality Rule: This field must be valued if PID-37 - Strain is valued.
 For example, (showing primary and alternative coding systems, using locally defined ""American Kennel Club"" nom
 enclature): 3^^American Staffordshire Terrier^99AKC|...
 ...|L‐80733^ Staffordshire bull terrier^SNM...|L‐80900^Weimaraner^SNM3|... ...|L‐80439^Peruvian Paso Horse^SNM3|...",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PID.36.1",
                             Type = @"Component",
@@ -15922,48 +16939,105 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.37",
-                            Type = @"Field",
-                            Position = @"PID.37",
-                            Name = @"Strain",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the specific strain of animal. It can also be expanded to include strain of any living organism and is not restricted to animals.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.38",
-                            Type = @"Field",
-                            Position = @"PID.38",
-                            Name = @"Production Class Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"2",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0429",
-                            TableName = @"Production Class Code",
-                            Description = @"This field contains the code and/or text indicating the primary use for which the living subject was bred or grown. Refer to User-defined Table 0429 - Production Class Code for suggested values. 
+                        }
+        }
+
+        _breedCode = new HL7V27Field
+        {
+            field = message[@"PID"][36],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_breedCode.field.FieldRepetitions != null && _breedCode.field.FieldRepetitions.Count > 0)
+        {
+            _breedCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_breedCode, fieldData);
+        }
+
+        return _breedCode;
+    } 
+}
+
+internal HL7V27Field _strain;
+
+public HL7V27Field Strain
+{
+    get
+    {
+        if (_strain != null)
+        {
+            return _strain;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.37",
+            Type = @"Field",
+            Position = @"PID.37",
+            Name = @"Strain",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the specific strain of animal. It can also be expanded to include strain of any living organism and is not restricted to animals.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _strain = new HL7V27Field
+        {
+            field = message[@"PID"][37],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_strain.field.FieldRepetitions != null && _strain.field.FieldRepetitions.Count > 0)
+        {
+            _strain.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_strain, fieldData);
+        }
+
+        return _strain;
+    } 
+}
+
+internal HL7V27Field _productionClassCode;
+
+public HL7V27Field ProductionClassCode
+{
+    get
+    {
+        if (_productionClassCode != null)
+        {
+            return _productionClassCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.38",
+            Type = @"Field",
+            Position = @"PID.38",
+            Name = @"Production Class Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"2",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0429",
+            TableName = @"Production Class Code",
+            Description = @"This field contains the code and/or text indicating the primary use for which the living subject was bred or grown. Refer to User-defined Table 0429 - Production Class Code for suggested values. 
 
 For example:
 ...|DA^Dairy^L|... 
 ...|MT^Meat^L|... 
 ...|RA^Racing^L|...",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PID.38.1",
                             Type = @"Component",
@@ -16389,27 +17463,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PID.39",
-                            Type = @"Field",
-                            Position = @"PID.39",
-                            Name = @"Tribal Citizenship",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0171",
-                            TableName = @"Citizenship",
-                            Description = @"This field contains the information related to a person's tribal citizenship. For tribal citizenship, in the United States, HL7 recommends using the Bureau of Indian Affairs (BIA) Tribal Identity List. For a local definition, User-defined Table 0171 - Citizenship should be used.
+                        }
+        }
+
+        _productionClassCode = new HL7V27Field
+        {
+            field = message[@"PID"][38],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productionClassCode.field.FieldRepetitions != null && _productionClassCode.field.FieldRepetitions.Count > 0)
+        {
+            _productionClassCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_productionClassCode, fieldData);
+        }
+
+        return _productionClassCode;
+    } 
+}
+
+internal HL7V27Field _tribalCitizenship;
+
+public HL7V27Field TribalCitizenship
+{
+    get
+    {
+        if (_tribalCitizenship != null)
+        {
+            return _tribalCitizenship;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.39",
+            Type = @"Field",
+            Position = @"PID.39",
+            Name = @"Tribal Citizenship",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0171",
+            TableName = @"Citizenship",
+            Description = @"This field contains the information related to a person's tribal citizenship. For tribal citizenship, in the United States, HL7 recommends using the Bureau of Indian Affairs (BIA) Tribal Identity List. For a local definition, User-defined Table 0171 - Citizenship should be used.
 
 This field repeats since persons can have tribal membership(s) and can be members of more than one tribe. The Name of Coding System component(s) of the CWE datatype should be used to identify the table from which tribal membership is drawn.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PID.39.1",
                             Type = @"Component",
@@ -16835,25 +17939,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _tribalCitizenship = new HL7V27Field
+        {
+            field = message[@"PID"][39],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_tribalCitizenship.field.FieldRepetitions != null && _tribalCitizenship.field.FieldRepetitions.Count > 0)
+        {
+            _tribalCitizenship.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_tribalCitizenship, fieldData);
+        }
+
+        return _tribalCitizenship;
+    } 
+}
+
+internal HL7V27Field _patientTelecommunicationInformation;
+
+public HL7V27Field PatientTelecommunicationInformation
+{
+    get
+    {
+        if (_patientTelecommunicationInformation != null)
+        {
+            return _patientTelecommunicationInformation;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PID.40",
+            Type = @"Field",
+            Position = @"PID.40",
+            Name = @"Patient Telecommunication Information",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the patient's personal telecommunication contact information. This field replaces PID-13 – Phone Number - Home and PID-14 – Phone Number – Business with the intention that the components of the XTN data type be used to identify phone usage (Telecommunication use code) and type of equipment (telecommunication equipment type). Jointly, these components will describe the nature of the telecommunication data contained in this field and removes the sequenced-based assumptions in PID-13 and PID-14.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PID.40",
-                            Type = @"Field",
-                            Position = @"PID.40",
-                            Name = @"Patient Telecommunication Information",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the patient's personal telecommunication contact information. This field replaces PID-13 – Phone Number - Home and PID-14 – Phone Number – Business with the intention that the components of the XTN data type be used to identify phone usage (Telecommunication use code) and type of equipment (telecommunication equipment type). Jointly, these components will describe the nature of the telecommunication data contained in this field and removes the sequenced-based assumptions in PID-13 and PID-14.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PID.40.1",
                             Type = @"Component",
@@ -18128,1687 +19262,23 @@ If the preference order is unique across all usages for a given type, then it in
 Preference order numbers need not be sequential (i.e., three numbers with the priority orders of 0, 5 and 15 are legitimate).  The preference order numbers must be non-negative.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentPID(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field setIdPid;
-
-public HL7V27Field SetIdPid
-{
-    get
-    {
-        if (setIdPid != null)
-        {
-            return setIdPid;
-        }
-
-        setIdPid = new HL7V27Field
-        {
-            field = message[@"PID"][1],
-            Id = @"PID.1",
-            Type = @"Field",
-            Position = @"PID.1",
-            Name = @"Set Id - Pid",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one, for the second occurrence, the sequence number shall be two, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdPid.field.FieldRepetitions != null && setIdPid.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdPid.Id));
-            setIdPid.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(setIdPid, fieldData);
-        }
-
-        return setIdPid;
-    } 
-}
-
-internal HL7V27Field patientId;
-
-public HL7V27Field PatientId
-{
-    get
-    {
-        if (patientId != null)
-        {
-            return patientId;
-        }
-
-        patientId = new HL7V27Field
-        {
-            field = message[@"PID"][2],
-            Id = @"PID.2",
-            Type = @"Field",
-            Position = @"PID.2",
-            Name = @"Patient Id",
-            Length = 0,
-            Usage = @"W",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Attention: The PID-2 field was retained for backward compatibility only as of v2.3.1 and was withdrawn and removed from this message structure as of v2.7. It is recommended to use PID-3 - Patient Identifier List for all patient identifiers.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientId.field.FieldRepetitions != null && patientId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientId.Id));
-            patientId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(patientId, fieldData);
-        }
-
-        return patientId;
-    } 
-}
-
-internal HL7V27Field patientIdentifierList;
-
-public HL7V27Field PatientIdentifierList
-{
-    get
-    {
-        if (patientIdentifierList != null)
-        {
-            return patientIdentifierList;
-        }
-
-        patientIdentifierList = new HL7V27Field
-        {
-            field = message[@"PID"][3],
-            Id = @"PID.3",
-            Type = @"Field",
-            Position = @"PID.3",
-            Name = @"Patient Identifier List",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the list of identifiers (one or more) used by the healthcare facility to uniquely identify a patient (e.g., medical record number, billing number, birth registry, national unique individual identifier, etc.). In Canada, the Canadian Provincial Healthcare Number should be sent in this field. The arbitrary term of ""internal ID"" has been removed from the name of this field for clarity.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientIdentifierList.field.FieldRepetitions != null && patientIdentifierList.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientIdentifierList.Id));
-            patientIdentifierList.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(patientIdentifierList, fieldData);
-        }
-
-        return patientIdentifierList;
-    } 
-}
-
-internal HL7V27Field alternatePatientIdPid;
-
-public HL7V27Field AlternatePatientIdPid
-{
-    get
-    {
-        if (alternatePatientIdPid != null)
-        {
-            return alternatePatientIdPid;
-        }
-
-        alternatePatientIdPid = new HL7V27Field
-        {
-            field = message[@"PID"][4],
-            Id = @"PID.4",
-            Type = @"Field",
-            Position = @"PID.4",
-            Name = @"Alternate Patient Id - Pid",
-            Length = 0,
-            Usage = @"W",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Attention: The PID-4 field was retained for backward compatibility only as of v2.3.1 and was withdrawn and removed from this message structure as of v2.7. It is recommended to use PID-3 - Patient Identifier List for all patient identifiers.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (alternatePatientIdPid.field.FieldRepetitions != null && alternatePatientIdPid.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(alternatePatientIdPid.Id));
-            alternatePatientIdPid.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(alternatePatientIdPid, fieldData);
-        }
-
-        return alternatePatientIdPid;
-    } 
-}
-
-internal HL7V27Field patientName;
-
-public HL7V27Field PatientName
-{
-    get
-    {
-        if (patientName != null)
-        {
-            return patientName;
-        }
-
-        patientName = new HL7V27Field
-        {
-            field = message[@"PID"][5],
-            Id = @"PID.5",
-            Type = @"Field",
-            Position = @"PID.5",
-            Name = @"Patient Name",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains one or more of the names of the patient. The XPN.7 Name Type Code, and not the order, conveys how the name should be interpreted. 
-As of v2.7, Name Type Code is Required. Refer to HL7 Table 0200 - Name Type for valid values. Specification of meaning based on sequence is deprecated.
-
-In addition to allowing repetition of this field for transmitting multiple names with different Name Type Codes, repetition also allows for representing the same name in different character sets based on the value in XPN.8 Name Representation Code.
-
-Multiple given names and/or initials are separated by spaces.
-
-For animals, if a Name Type of ""R"" is used, use ""Name Context"" to identify the authority with which the animal's name is registered.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientName.field.FieldRepetitions != null && patientName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientName.Id));
-            patientName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(patientName, fieldData);
-        }
-
-        return patientName;
-    } 
-}
-
-internal HL7V27Field mothersMaidenName;
-
-public HL7V27Field MothersMaidenName
-{
-    get
-    {
-        if (mothersMaidenName != null)
-        {
-            return mothersMaidenName;
-        }
-
-        mothersMaidenName = new HL7V27Field
-        {
-            field = message[@"PID"][6],
-            Id = @"PID.6",
-            Type = @"Field",
-            Position = @"PID.6",
-            Name = @"Mother's Maiden Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the family name under which the mother was born (i.e., before marriage). It is used to distinguish between patients with the same last name.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (mothersMaidenName.field.FieldRepetitions != null && mothersMaidenName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mothersMaidenName.Id));
-            mothersMaidenName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(mothersMaidenName, fieldData);
-        }
-
-        return mothersMaidenName;
-    } 
-}
-
-internal HL7V27Field dateTimeOfBirth;
-
-public HL7V27Field DateTimeOfBirth
-{
-    get
-    {
-        if (dateTimeOfBirth != null)
-        {
-            return dateTimeOfBirth;
-        }
-
-        dateTimeOfBirth = new HL7V27Field
-        {
-            field = message[@"PID"][7],
-            Id = @"PID.7",
-            Type = @"Field",
-            Position = @"PID.7",
-            Name = @"Date/Time Of Birth",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the patient's date and time of birth.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeOfBirth.field.FieldRepetitions != null && dateTimeOfBirth.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeOfBirth.Id));
-            dateTimeOfBirth.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(dateTimeOfBirth, fieldData);
-        }
-
-        return dateTimeOfBirth;
-    } 
-}
-
-internal HL7V27Field administrativeSex;
-
-public HL7V27Field AdministrativeSex
-{
-    get
-    {
-        if (administrativeSex != null)
-        {
-            return administrativeSex;
-        }
-
-        administrativeSex = new HL7V27Field
-        {
-            field = message[@"PID"][8],
-            Id = @"PID.8",
-            Type = @"Field",
-            Position = @"PID.8",
-            Name = @"Administrative Sex",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0001",
-            TableName = @"Administrative Sex",
-            Description = @"This field contains the patient's sex. Refer to User-defined Table 0001 - Administrative Sex for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (administrativeSex.field.FieldRepetitions != null && administrativeSex.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(administrativeSex.Id));
-            administrativeSex.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(administrativeSex, fieldData);
-        }
-
-        return administrativeSex;
-    } 
-}
-
-internal HL7V27Field patientAlias;
-
-public HL7V27Field PatientAlias
-{
-    get
-    {
-        if (patientAlias != null)
-        {
-            return patientAlias;
-        }
-
-        patientAlias = new HL7V27Field
-        {
-            field = message[@"PID"][9],
-            Id = @"PID.9",
-            Type = @"Field",
-            Position = @"PID.9",
-            Name = @"Patient Alias",
-            Length = 0,
-            Usage = @"W",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The PID-9 field was retained for backward compatibility only as of v2.4 and was withdrawn and removed from this message structure as of v2.7. it is recommended to use PID-5 - Patient Name for all patient names.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientAlias.field.FieldRepetitions != null && patientAlias.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientAlias.Id));
-            patientAlias.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(patientAlias, fieldData);
-        }
-
-        return patientAlias;
-    } 
-}
-
-internal HL7V27Field race;
-
-public HL7V27Field Race
-{
-    get
-    {
-        if (race != null)
-        {
-            return race;
-        }
-
-        race = new HL7V27Field
-        {
-            field = message[@"PID"][10],
-            Id = @"PID.10",
-            Type = @"Field",
-            Position = @"PID.10",
-            Name = @"Race",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0005",
-            TableName = @"Race",
-            Description = @"This field refers to the patient's race. Refer to User-defined Table 0005 - Race for suggested values. The second triplet of the CWE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (race.field.FieldRepetitions != null && race.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(race.Id));
-            race.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(race, fieldData);
-        }
-
-        return race;
-    } 
-}
-
-internal HL7V27Field patientAddress;
-
-public HL7V27Field PatientAddress
-{
-    get
-    {
-        if (patientAddress != null)
-        {
-            return patientAddress;
-        }
-
-        patientAddress = new HL7V27Field
-        {
-            field = message[@"PID"][11],
-            Id = @"PID.11",
-            Type = @"Field",
-            Position = @"PID.11",
-            Name = @"Patient Address",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the address of the patient. Multiple addresses for the same person may be sent. As of v2.7 the ""primary mailing address"" constraint as the first sequence has been removed...",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientAddress.field.FieldRepetitions != null && patientAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientAddress.Id));
-            patientAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(patientAddress, fieldData);
-        }
-
-        return patientAddress;
-    } 
-}
-
-internal HL7V27Field countyCode;
-
-public HL7V27Field CountyCode
-{
-    get
-    {
-        if (countyCode != null)
-        {
-            return countyCode;
-        }
-
-        countyCode = new HL7V27Field
-        {
-            field = message[@"PID"][12],
-            Id = @"PID.12",
-            Type = @"Field",
-            Position = @"PID.12",
-            Name = @"County Code",
-            Length = 0,
-            Usage = @"W",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Attention: The PID-12 field was retained for backward compatibility only as of v2.3 and was withdrawn and removed from this message structure as of v2.7. The county can now be supported in the county/parish code component of the XAD data type (PID-11 - Patient Address).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (countyCode.field.FieldRepetitions != null && countyCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(countyCode.Id));
-            countyCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(countyCode, fieldData);
-        }
-
-        return countyCode;
-    } 
-}
-
-internal HL7V27Field phoneNumberHome;
-
-public HL7V27Field PhoneNumberHome
-{
-    get
-    {
-        if (phoneNumberHome != null)
-        {
-            return phoneNumberHome;
-        }
-
-        phoneNumberHome = new HL7V27Field
-        {
-            field = message[@"PID"][13],
-            Id = @"PID.13",
-            Type = @"Field",
-            Position = @"PID.13",
-            Name = @"Phone Number - Home",
-            Length = 0,
-            Usage = @"B",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"The PID13 field has been retained for backward compatibility only as of v2.7. The reader is referrred to section 3.4.2.40, PID-40 – Patient Telecommunication Information instead, which replaces PID-13 – Phone Number - Home with the intention that the components of the XTN data type be used to identify phone usage (Telecommunication use code) and type of equipment (telecommunication equipment type).
-
-This field contains the patient's personal phone numbers. All personal phone numbers for the patient are sent in the following sequence. The first sequence is considered the primary number (for backward compatibility). If the primary number is not sent, then a repeat delimiter is sent in the first sequence. Refer to HL7 Table 0201 - Telecommunication Use Code and HL7 Table 0202 - Telecommunication Equipment Type for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phoneNumberHome.field.FieldRepetitions != null && phoneNumberHome.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phoneNumberHome.Id));
-            phoneNumberHome.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(phoneNumberHome, fieldData);
-        }
-
-        return phoneNumberHome;
-    } 
-}
-
-internal HL7V27Field phoneNumberBusiness;
-
-public HL7V27Field PhoneNumberBusiness
-{
-    get
-    {
-        if (phoneNumberBusiness != null)
-        {
-            return phoneNumberBusiness;
-        }
-
-        phoneNumberBusiness = new HL7V27Field
-        {
-            field = message[@"PID"][14],
-            Id = @"PID.14",
-            Type = @"Field",
-            Position = @"PID.14",
-            Name = @"Phone Number - Business",
-            Length = 0,
-            Usage = @"B",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"The PID-14 field has been retained for backward compatibility only as of v2.7. The reader is referred to section 3.4.2.40, PID-40 – Patient Telecommunication Information instead, which replaces PID-14 – Phone Number - Business with the intention that the components of the XTN data type be used to identify phone usage (Telecommunication use code) and type of equipment (telecommunication equipment type).
-
-This field contains the patient's business telephone numbers. All business numbers for the patient are sent in the following sequence. The first sequence is considered the patient's primary business phone number (for backward compatibility). If the primary business phone number is not sent, then a repeat delimiter must be sent in the first sequence. Refer to HL7 Table 0201 - Telecommunication Use Code and HL7 Table 0202 - Telecommunication Equipment Type for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phoneNumberBusiness.field.FieldRepetitions != null && phoneNumberBusiness.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phoneNumberBusiness.Id));
-            phoneNumberBusiness.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(phoneNumberBusiness, fieldData);
-        }
-
-        return phoneNumberBusiness;
-    } 
-}
-
-internal HL7V27Field primaryLanguage;
-
-public HL7V27Field PrimaryLanguage
-{
-    get
-    {
-        if (primaryLanguage != null)
-        {
-            return primaryLanguage;
-        }
-
-        primaryLanguage = new HL7V27Field
-        {
-            field = message[@"PID"][15],
-            Id = @"PID.15",
-            Type = @"Field",
-            Position = @"PID.15",
-            Name = @"Primary Language",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0296",
-            TableName = @"Primary Language",
-            Description = @"This field contains the patient's primary language. HL7 recommends using ISO table 639 as the suggested values in User-defined Table 0296 - Primary Language.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryLanguage.field.FieldRepetitions != null && primaryLanguage.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryLanguage.Id));
-            primaryLanguage.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(primaryLanguage, fieldData);
-        }
-
-        return primaryLanguage;
-    } 
-}
-
-internal HL7V27Field maritalStatus;
-
-public HL7V27Field MaritalStatus
-{
-    get
-    {
-        if (maritalStatus != null)
-        {
-            return maritalStatus;
-        }
-
-        maritalStatus = new HL7V27Field
-        {
-            field = message[@"PID"][16],
-            Id = @"PID.16",
-            Type = @"Field",
-            Position = @"PID.16",
-            Name = @"Marital Status",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0002",
-            TableName = @"Marital Status",
-            Description = @"This field contains the patient's marital (civil) status. Refer to User-defined Table 0002 - Marital Status for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (maritalStatus.field.FieldRepetitions != null && maritalStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maritalStatus.Id));
-            maritalStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(maritalStatus, fieldData);
-        }
-
-        return maritalStatus;
-    } 
-}
-
-internal HL7V27Field religion;
-
-public HL7V27Field Religion
-{
-    get
-    {
-        if (religion != null)
-        {
-            return religion;
-        }
-
-        religion = new HL7V27Field
-        {
-            field = message[@"PID"][17],
-            Id = @"PID.17",
-            Type = @"Field",
-            Position = @"PID.17",
-            Name = @"Religion",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0006",
-            TableName = @"Religion",
-            Description = @"This field contains the patient's religion. Refer to User-defined Table 0006 - Religion for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (religion.field.FieldRepetitions != null && religion.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(religion.Id));
-            religion.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(religion, fieldData);
-        }
-
-        return religion;
-    } 
-}
-
-internal HL7V27Field patientAccountNumber;
-
-public HL7V27Field PatientAccountNumber
-{
-    get
-    {
-        if (patientAccountNumber != null)
-        {
-            return patientAccountNumber;
-        }
-
-        patientAccountNumber = new HL7V27Field
-        {
-            field = message[@"PID"][18],
-            Id = @"PID.18",
-            Type = @"Field",
-            Position = @"PID.18",
-            Name = @"Patient Account Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the patient account number assigned by accounting to which all charges, payments, etc., are recorded. It is used to identify the patient's account. Refer to HL7 Table 0061 - Check Digit Scheme for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientAccountNumber.field.FieldRepetitions != null && patientAccountNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientAccountNumber.Id));
-            patientAccountNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(patientAccountNumber, fieldData);
-        }
-
-        return patientAccountNumber;
-    } 
-}
-
-internal HL7V27Field ssnNumberPatient;
-
-public HL7V27Field SsnNumberPatient
-{
-    get
-    {
-        if (ssnNumberPatient != null)
-        {
-            return ssnNumberPatient;
-        }
-
-        ssnNumberPatient = new HL7V27Field
-        {
-            field = message[@"PID"][19],
-            Id = @"PID.19",
-            Type = @"Field",
-            Position = @"PID.19",
-            Name = @"Ssn Number - Patient",
-            Length = 0,
-            Usage = @"W",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Attention: The PID-19 field was retained for backward compatibility only as of v2.3.1 and was withdrawn and removed from this message structure as of v2.7. It is recommended to use PID-3 - Patient Identifier List for all patient identifiers.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (ssnNumberPatient.field.FieldRepetitions != null && ssnNumberPatient.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ssnNumberPatient.Id));
-            ssnNumberPatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(ssnNumberPatient, fieldData);
-        }
-
-        return ssnNumberPatient;
-    } 
-}
-
-internal HL7V27Field driversLicenseNumberPatient;
-
-public HL7V27Field DriversLicenseNumberPatient
-{
-    get
-    {
-        if (driversLicenseNumberPatient != null)
-        {
-            return driversLicenseNumberPatient;
-        }
-
-        driversLicenseNumberPatient = new HL7V27Field
-        {
-            field = message[@"PID"][20],
-            Id = @"PID.20",
-            Type = @"Field",
-            Position = @"PID.20",
-            Name = @"Driver's License Number - Patient",
-            Length = 0,
-            Usage = @"W",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Attention: The PID-20 field was retained for backward compatibility only as of v2.5 and was withdrawn and removed from this message structure as of v2.7. It is recommended to use PID-3 - Patient Identifier List for all patient identifiers.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (driversLicenseNumberPatient.field.FieldRepetitions != null && driversLicenseNumberPatient.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(driversLicenseNumberPatient.Id));
-            driversLicenseNumberPatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(driversLicenseNumberPatient, fieldData);
-        }
-
-        return driversLicenseNumberPatient;
-    } 
-}
-
-internal HL7V27Field mothersIdentifier;
-
-public HL7V27Field MothersIdentifier
-{
-    get
-    {
-        if (mothersIdentifier != null)
-        {
-            return mothersIdentifier;
-        }
-
-        mothersIdentifier = new HL7V27Field
-        {
-            field = message[@"PID"][21],
-            Id = @"PID.21",
-            Type = @"Field",
-            Position = @"PID.21",
-            Name = @"Mother's Identifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used, for example, as a link field for newborns. Typically a patient ID or account number may be used. This field can contain multiple identifiers for the same mother. Refer to HL7 Table 0061 - Check Digit Scheme for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (mothersIdentifier.field.FieldRepetitions != null && mothersIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mothersIdentifier.Id));
-            mothersIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(mothersIdentifier, fieldData);
-        }
-
-        return mothersIdentifier;
-    } 
-}
-
-internal HL7V27Field ethnicGroup;
-
-public HL7V27Field EthnicGroup
-{
-    get
-    {
-        if (ethnicGroup != null)
-        {
-            return ethnicGroup;
-        }
-
-        ethnicGroup = new HL7V27Field
-        {
-            field = message[@"PID"][22],
-            Id = @"PID.22",
-            Type = @"Field",
-            Position = @"PID.22",
-            Name = @"Ethnic Group",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0189",
-            TableName = @"Ethnic Group",
-            Description = @"This field further defines the patient's ancestry. Refer to User-defined Table 0189 - Ethnic Group for suggested values. The second triplet of the CWE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes. In the US, a current use is to report ethnicity in line with US federal standards for Hispanic origin.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (ethnicGroup.field.FieldRepetitions != null && ethnicGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ethnicGroup.Id));
-            ethnicGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(ethnicGroup, fieldData);
-        }
-
-        return ethnicGroup;
-    } 
-}
-
-internal HL7V27Field birthPlace;
-
-public HL7V27Field BirthPlace
-{
-    get
-    {
-        if (birthPlace != null)
-        {
-            return birthPlace;
-        }
-
-        birthPlace = new HL7V27Field
-        {
-            field = message[@"PID"][23],
-            Id = @"PID.23",
-            Type = @"Field",
-            Position = @"PID.23",
-            Name = @"Birth Place",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the location of the patient's birth, for example ""St. Francis Community Hospital of Lower South Side"". The actual address is reported in PID-11 with an identifier of ""N"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (birthPlace.field.FieldRepetitions != null && birthPlace.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(birthPlace.Id));
-            birthPlace.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(birthPlace, fieldData);
-        }
-
-        return birthPlace;
-    } 
-}
-
-internal HL7V27Field multipleBirthIndicator;
-
-public HL7V27Field MultipleBirthIndicator
-{
-    get
-    {
-        if (multipleBirthIndicator != null)
-        {
-            return multipleBirthIndicator;
-        }
-
-        multipleBirthIndicator = new HL7V27Field
-        {
-            field = message[@"PID"][24],
-            Id = @"PID.24",
-            Type = @"Field",
-            Position = @"PID.24",
-            Name = @"Multiple Birth Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"This field indicates whether the patient was part of a multiple birth. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.
-Y - the patient was part of a multiple birth
-N - the patient was a single birth",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (multipleBirthIndicator.field.FieldRepetitions != null && multipleBirthIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(multipleBirthIndicator.Id));
-            multipleBirthIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(multipleBirthIndicator, fieldData);
-        }
-
-        return multipleBirthIndicator;
-    } 
-}
-
-internal HL7V27Field birthOrder;
-
-public HL7V27Field BirthOrder
-{
-    get
-    {
-        if (birthOrder != null)
-        {
-            return birthOrder;
-        }
-
-        birthOrder = new HL7V27Field
-        {
-            field = message[@"PID"][25],
-            Id = @"PID.25",
-            Type = @"Field",
-            Position = @"PID.25",
-            Name = @"Birth Order",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"When a patient was part of a multiple birth, a value (number) indicating the patient's birth order is entered in this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (birthOrder.field.FieldRepetitions != null && birthOrder.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(birthOrder.Id));
-            birthOrder.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(birthOrder, fieldData);
-        }
-
-        return birthOrder;
-    } 
-}
-
-internal HL7V27Field citizenship;
-
-public HL7V27Field Citizenship
-{
-    get
-    {
-        if (citizenship != null)
-        {
-            return citizenship;
-        }
-
-        citizenship = new HL7V27Field
-        {
-            field = message[@"PID"][26],
-            Id = @"PID.26",
-            Type = @"Field",
-            Position = @"PID.26",
-            Name = @"Citizenship",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0171",
-            TableName = @"Citizenship",
-            Description = @"This field contains the information related to a person's country citizenship. For country citizenship HL7 recommends using ISO table 3166. For a local definition, User-defined Table 0171 - Citizenship should be used.
-
-This field repeats since persons can be citizens of more than one country. The Name of Coding System component(s) of the CWE datatype should be used to identify the table from which citizenship membership is drawn.
-
-In the Netherlands, this field is used for ""Nationaliteit"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (citizenship.field.FieldRepetitions != null && citizenship.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(citizenship.Id));
-            citizenship.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(citizenship, fieldData);
-        }
-
-        return citizenship;
-    } 
-}
-
-internal HL7V27Field veteransMilitaryStatus;
-
-public HL7V27Field VeteransMilitaryStatus
-{
-    get
-    {
-        if (veteransMilitaryStatus != null)
-        {
-            return veteransMilitaryStatus;
-        }
-
-        veteransMilitaryStatus = new HL7V27Field
-        {
-            field = message[@"PID"][27],
-            Id = @"PID.27",
-            Type = @"Field",
-            Position = @"PID.27",
-            Name = @"Veterans Military Status",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0172",
-            TableName = @"Veterans Military Status",
-            Description = @"This field contains the military status assigned to a veteran. Refer to User-defined Table 0172 - Veterans Military Status for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (veteransMilitaryStatus.field.FieldRepetitions != null && veteransMilitaryStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(veteransMilitaryStatus.Id));
-            veteransMilitaryStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(veteransMilitaryStatus, fieldData);
-        }
-
-        return veteransMilitaryStatus;
-    } 
-}
-
-internal HL7V27Field nationality;
-
-public HL7V27Field Nationality
-{
-    get
-    {
-        if (nationality != null)
-        {
-            return nationality;
-        }
-
-        nationality = new HL7V27Field
-        {
-            field = message[@"PID"][28],
-            Id = @"PID.28",
-            Type = @"Field",
-            Position = @"PID.28",
-            Name = @"Nationality",
-            Length = 0,
-            Usage = @"W",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0212",
-            TableName = @"Nationality",
-            Description = @"Attention: The PID-28 field was retained for backward compatibility only as of v2.4 and was withdrawn and removed from this message structure as of v2.7. It is recommended to refer to PID-10 - Race, PID-22 - Ethnic group and PID-26 - Citizenship.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (nationality.field.FieldRepetitions != null && nationality.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nationality.Id));
-            nationality.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(nationality, fieldData);
-        }
-
-        return nationality;
-    } 
-}
-
-internal HL7V27Field patientDeathDateAndTime;
-
-public HL7V27Field PatientDeathDateAndTime
-{
-    get
-    {
-        if (patientDeathDateAndTime != null)
-        {
-            return patientDeathDateAndTime;
-        }
-
-        patientDeathDateAndTime = new HL7V27Field
-        {
-            field = message[@"PID"][29],
-            Id = @"PID.29",
-            Type = @"Field",
-            Position = @"PID.29",
-            Name = @"Patient Death Date And Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time at which the patient death occurred.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientDeathDateAndTime.field.FieldRepetitions != null && patientDeathDateAndTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientDeathDateAndTime.Id));
-            patientDeathDateAndTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(patientDeathDateAndTime, fieldData);
-        }
-
-        return patientDeathDateAndTime;
-    } 
-}
-
-internal HL7V27Field patientDeathIndicator;
-
-public HL7V27Field PatientDeathIndicator
-{
-    get
-    {
-        if (patientDeathIndicator != null)
-        {
-            return patientDeathIndicator;
-        }
-
-        patientDeathIndicator = new HL7V27Field
-        {
-            field = message[@"PID"][30],
-            Id = @"PID.30",
-            Type = @"Field",
-            Position = @"PID.30",
-            Name = @"Patient Death Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"This field indicates whether the patient is deceased. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.
-Y - the patient is deceased
-N - the patient is not deceased",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientDeathIndicator.field.FieldRepetitions != null && patientDeathIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientDeathIndicator.Id));
-            patientDeathIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(patientDeathIndicator, fieldData);
-        }
-
-        return patientDeathIndicator;
-    } 
-}
-
-internal HL7V27Field identityUnknownIndicator;
-
-public HL7V27Field IdentityUnknownIndicator
-{
-    get
-    {
-        if (identityUnknownIndicator != null)
-        {
-            return identityUnknownIndicator;
-        }
-
-        identityUnknownIndicator = new HL7V27Field
-        {
-            field = message[@"PID"][31],
-            Id = @"PID.31",
-            Type = @"Field",
-            Position = @"PID.31",
-            Name = @"Identity Unknown Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"This field indicates whether or not the patient's/person's identity is known. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.
-Y - the patient's/person's identity is unknown
-N - the patient's/person's identity is known",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (identityUnknownIndicator.field.FieldRepetitions != null && identityUnknownIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(identityUnknownIndicator.Id));
-            identityUnknownIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(identityUnknownIndicator, fieldData);
-        }
-
-        return identityUnknownIndicator;
-    } 
-}
-
-internal HL7V27Field identityReliabilityCode;
-
-public HL7V27Field IdentityReliabilityCode
-{
-    get
-    {
-        if (identityReliabilityCode != null)
-        {
-            return identityReliabilityCode;
-        }
-
-        identityReliabilityCode = new HL7V27Field
-        {
-            field = message[@"PID"][32],
-            Id = @"PID.32",
-            Type = @"Field",
-            Position = @"PID.32",
-            Name = @"Identity Reliability Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0445",
-            TableName = @"Identity Reliability Code",
-            Description = @"This field contains a coded value used to communicate information regarding the reliability of patient/person identifying data transmitted via a transaction. Values could indicate that certain fields on a PID segment for a given patient/person are known to be false (e.g., use of default or system-generated values for Date of Birth or Social Security Number). Refer to User-defined Table 0445 - Identity Reliability Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (identityReliabilityCode.field.FieldRepetitions != null && identityReliabilityCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(identityReliabilityCode.Id));
-            identityReliabilityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(identityReliabilityCode, fieldData);
-        }
-
-        return identityReliabilityCode;
-    } 
-}
-
-internal HL7V27Field lastUpdateDateTime;
-
-public HL7V27Field LastUpdateDateTime
-{
-    get
-    {
-        if (lastUpdateDateTime != null)
-        {
-            return lastUpdateDateTime;
-        }
-
-        lastUpdateDateTime = new HL7V27Field
-        {
-            field = message[@"PID"][33],
-            Id = @"PID.33",
-            Type = @"Field",
-            Position = @"PID.33",
-            Name = @"Last Update Date/Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the last update date and time for the patient's/person's identifying and demographic data, as defined in the PID segment. Receiving systems will use this field to determine how to apply the transaction to their systems. If the receiving system (such as an enterprise master patient index) already has a record for the person with a later last update date/time, then the EMPI could decide not to apply the patient's/person's demographic and identifying data from this transaction.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (lastUpdateDateTime.field.FieldRepetitions != null && lastUpdateDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(lastUpdateDateTime.Id));
-            lastUpdateDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(lastUpdateDateTime, fieldData);
-        }
-
-        return lastUpdateDateTime;
-    } 
-}
-
-internal HL7V27Field lastUpdateFacility;
-
-public HL7V27Field LastUpdateFacility
-{
-    get
-    {
-        if (lastUpdateFacility != null)
-        {
-            return lastUpdateFacility;
-        }
-
-        lastUpdateFacility = new HL7V27Field
-        {
-            field = message[@"PID"][34],
-            Id = @"PID.34",
-            Type = @"Field",
-            Position = @"PID.34",
-            Name = @"Last Update Facility",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"HD",
-            DataTypeName = @"Hierarchic Designator",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the facility of the last update to a patient's/person's identifying and demographic data, as defined in the PID segment. Receiving systems or users will use this field to determine how to apply the transaction to their systems. If the receiving system (such as a hospital's patient management system) already has a record for the patient/person, then it may decide to only update its data if the source is a ""trusted"" source. A hospital might consider other hospitals trusted sources, but not ""trust"" updates from non-acute care facilities. For example: ...|GOOD HEALTH Hospital|...",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (lastUpdateFacility.field.FieldRepetitions != null && lastUpdateFacility.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(lastUpdateFacility.Id));
-            lastUpdateFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(lastUpdateFacility, fieldData);
-        }
-
-        return lastUpdateFacility;
-    } 
-}
-
-internal HL7V27Field speciesCode;
-
-public HL7V27Field SpeciesCode
-{
-    get
-    {
-        if (speciesCode != null)
-        {
-            return speciesCode;
-        }
-
-        speciesCode = new HL7V27Field
-        {
-            field = message[@"PID"][35],
-            Id = @"PID.35",
-            Type = @"Field",
-            Position = @"PID.35",
-            Name = @"Species Code",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0446",
-            TableName = @"Species Code",
-            Description = @"The species of living organism. This may include the common or scientific name, based on the coding system(s) used. SNOMED is the recommended coding system. If this field is not valued, a human is assumed. Refer to User-defined Table 0446 - Species Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (speciesCode.field.FieldRepetitions != null && speciesCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(speciesCode.Id));
-            speciesCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(speciesCode, fieldData);
-        }
-
-        return speciesCode;
-    } 
-}
-
-internal HL7V27Field breedCode;
-
-public HL7V27Field BreedCode
-{
-    get
-    {
-        if (breedCode != null)
-        {
-            return breedCode;
-        }
-
-        breedCode = new HL7V27Field
-        {
-            field = message[@"PID"][36],
-            Id = @"PID.36",
-            Type = @"Field",
-            Position = @"PID.36",
-            Name = @"Breed Code",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0447",
-            TableName = @"Breed Code",
-            Description = @"The specific breed of animal. This field, unlike Species and Strain is specific to animals and cannot be generally used for all living organisms. SNOMED is the recommended coding system. Refer to User-defined Table 0447 - Breed Code for suggested values.
-
-Conditionality Rule: This field must be valued if PID-37 - Strain is valued.
-For example, (showing primary and alternative coding systems, using locally defined ""American Kennel Club"" nom
-enclature): 3^^American Staffordshire Terrier^99AKC|...
-...|L‐80733^ Staffordshire bull terrier^SNM...|L‐80900^Weimaraner^SNM3|... ...|L‐80439^Peruvian Paso Horse^SNM3|...",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (breedCode.field.FieldRepetitions != null && breedCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(breedCode.Id));
-            breedCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(breedCode, fieldData);
-        }
-
-        return breedCode;
-    } 
-}
-
-internal HL7V27Field strain;
-
-public HL7V27Field Strain
-{
-    get
-    {
-        if (strain != null)
-        {
-            return strain;
-        }
-
-        strain = new HL7V27Field
-        {
-            field = message[@"PID"][37],
-            Id = @"PID.37",
-            Type = @"Field",
-            Position = @"PID.37",
-            Name = @"Strain",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the specific strain of animal. It can also be expanded to include strain of any living organism and is not restricted to animals.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (strain.field.FieldRepetitions != null && strain.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(strain.Id));
-            strain.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(strain, fieldData);
-        }
-
-        return strain;
-    } 
-}
-
-internal HL7V27Field productionClassCode;
-
-public HL7V27Field ProductionClassCode
-{
-    get
-    {
-        if (productionClassCode != null)
-        {
-            return productionClassCode;
-        }
-
-        productionClassCode = new HL7V27Field
-        {
-            field = message[@"PID"][38],
-            Id = @"PID.38",
-            Type = @"Field",
-            Position = @"PID.38",
-            Name = @"Production Class Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"2",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0429",
-            TableName = @"Production Class Code",
-            Description = @"This field contains the code and/or text indicating the primary use for which the living subject was bred or grown. Refer to User-defined Table 0429 - Production Class Code for suggested values. 
-
-For example:
-...|DA^Dairy^L|... 
-...|MT^Meat^L|... 
-...|RA^Racing^L|...",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productionClassCode.field.FieldRepetitions != null && productionClassCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productionClassCode.Id));
-            productionClassCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(productionClassCode, fieldData);
-        }
-
-        return productionClassCode;
-    } 
-}
-
-internal HL7V27Field tribalCitizenship;
-
-public HL7V27Field TribalCitizenship
-{
-    get
-    {
-        if (tribalCitizenship != null)
-        {
-            return tribalCitizenship;
-        }
-
-        tribalCitizenship = new HL7V27Field
-        {
-            field = message[@"PID"][39],
-            Id = @"PID.39",
-            Type = @"Field",
-            Position = @"PID.39",
-            Name = @"Tribal Citizenship",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0171",
-            TableName = @"Citizenship",
-            Description = @"This field contains the information related to a person's tribal citizenship. For tribal citizenship, in the United States, HL7 recommends using the Bureau of Indian Affairs (BIA) Tribal Identity List. For a local definition, User-defined Table 0171 - Citizenship should be used.
-
-This field repeats since persons can have tribal membership(s) and can be members of more than one tribe. The Name of Coding System component(s) of the CWE datatype should be used to identify the table from which tribal membership is drawn.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (tribalCitizenship.field.FieldRepetitions != null && tribalCitizenship.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(tribalCitizenship.Id));
-            tribalCitizenship.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(tribalCitizenship, fieldData);
-        }
-
-        return tribalCitizenship;
-    } 
-}
-
-internal HL7V27Field patientTelecommunicationInformation;
-
-public HL7V27Field PatientTelecommunicationInformation
-{
-    get
-    {
-        if (patientTelecommunicationInformation != null)
-        {
-            return patientTelecommunicationInformation;
-        }
-
-        patientTelecommunicationInformation = new HL7V27Field
+        _patientTelecommunicationInformation = new HL7V27Field
         {
             field = message[@"PID"][40],
-            Id = @"PID.40",
-            Type = @"Field",
-            Position = @"PID.40",
-            Name = @"Patient Telecommunication Information",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the patient's personal telecommunication contact information. This field replaces PID-13 – Phone Number - Home and PID-14 – Phone Number – Business with the intention that the components of the XTN data type be used to identify phone usage (Telecommunication use code) and type of equipment (telecommunication equipment type). Jointly, these components will describe the nature of the telecommunication data contained in this field and removes the sequenced-based assumptions in PID-13 and PID-14.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientTelecommunicationInformation.field.FieldRepetitions != null && patientTelecommunicationInformation.field.FieldRepetitions.Count > 0)
+        if (_patientTelecommunicationInformation.field.FieldRepetitions != null && _patientTelecommunicationInformation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientTelecommunicationInformation.Id));
-            patientTelecommunicationInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(patientTelecommunicationInformation, fieldData);
+            _patientTelecommunicationInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_patientTelecommunicationInformation, fieldData);
         }
 
-        return patientTelecommunicationInformation;
+        return _patientTelecommunicationInformation;
     } 
 }
     }

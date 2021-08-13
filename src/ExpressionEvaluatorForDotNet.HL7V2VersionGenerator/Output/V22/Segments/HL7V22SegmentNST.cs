@@ -29,82 +29,175 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V22SegmentNST(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V22Field _statisticsAvailable;
+
+public HL7V22Field StatisticsAvailable
+{
+    get
+    {
+        if (_statisticsAvailable != null)
+        {
+            return _statisticsAvailable;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"NST.1",
+            Type = @"Field",
+            Position = @"NST.1",
+            Name = @"Statistics Available",
+            Length = 1,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"0136",
+            TableName = @"Y/N INDICATOR",
+            Description = @"If the responding system does not keep any statistics, this field has a value : ""N"". If the value ""N"" is specified, the response message is used to signify to the initiating application that the particular link is operational (and fields 2-15 will be empty in the response message). If the responding system does keep statistics, this field has the value ""Y"", fields 4 and 5 are required, (and the response message will contain one or more non-null fields in the range 2-3, 6-15).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _statisticsAvailable = new HL7V22Field
+        {
+            field = message[@"NST"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_statisticsAvailable.field.FieldRepetitions != null && _statisticsAvailable.field.FieldRepetitions.Count > 0)
+        {
+            _statisticsAvailable.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_statisticsAvailable, fieldData);
+        }
+
+        return _statisticsAvailable;
+    } 
+}
+
+internal HL7V22Field _sourceIdentifier;
+
+public HL7V22Field SourceIdentifier
+{
+    get
+    {
+        if (_sourceIdentifier != null)
+        {
+            return _sourceIdentifier;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"NST.2",
+            Type = @"Field",
+            Position = @"NST.2",
+            Name = @"Source Identifier",
+            Length = 30,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to identify a particular lower level link (e.g., a port number).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sourceIdentifier = new HL7V22Field
+        {
+            field = message[@"NST"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sourceIdentifier.field.FieldRepetitions != null && _sourceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _sourceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_sourceIdentifier, fieldData);
+        }
+
+        return _sourceIdentifier;
+    } 
+}
+
+internal HL7V22Field _sourceType;
+
+public HL7V22Field SourceType
+{
+    get
+    {
+        if (_sourceType != null)
+        {
+            return _sourceType;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"NST.3",
+            Type = @"Field",
+            Position = @"NST.3",
+            Name = @"Source Type",
+            Length = 3,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"NST3",
+            TableName = @"Network Source Type",
+            Description = @"This field is used to identify (in certain systems) whether a lower level source identifier is an initiate or accept type",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sourceType = new HL7V22Field
+        {
+            field = message[@"NST"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sourceType.field.FieldRepetitions != null && _sourceType.field.FieldRepetitions.Count > 0)
+        {
+            _sourceType.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_sourceType, fieldData);
+        }
+
+        return _sourceType;
+    } 
+}
+
+internal HL7V22Field _statisticsStart;
+
+public HL7V22Field StatisticsStart
+{
+    get
+    {
+        if (_statisticsStart != null)
+        {
+            return _statisticsStart;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"NST.4",
+            Type = @"Field",
+            Position = @"NST.4",
+            Name = @"Statistics Start",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"Date/time stamp of the start of the collection of the statistics reported in fields 6-15 of this segment. It is strongly recommended that this value include seconds.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"NST.1",
-                            Type = @"Field",
-                            Position = @"NST.1",
-                            Name = @"Statistics Available",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0136",
-                            TableName = @"Y/N INDICATOR",
-                            Description = @"If the responding system does not keep any statistics, this field has a value : ""N"". If the value ""N"" is specified, the response message is used to signify to the initiating application that the particular link is operational (and fields 2-15 will be empty in the response message). If the responding system does keep statistics, this field has the value ""Y"", fields 4 and 5 are required, (and the response message will contain one or more non-null fields in the range 2-3, 6-15).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NST.2",
-                            Type = @"Field",
-                            Position = @"NST.2",
-                            Name = @"Source Identifier",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to identify a particular lower level link (e.g., a port number).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NST.3",
-                            Type = @"Field",
-                            Position = @"NST.3",
-                            Name = @"Source Type",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"NST3",
-                            TableName = @"Network Source Type",
-                            Description = @"This field is used to identify (in certain systems) whether a lower level source identifier is an initiate or accept type",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NST.4",
-                            Type = @"Field",
-                            Position = @"NST.4",
-                            Name = @"Statistics Start",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Date/time stamp of the start of the collection of the statistics reported in fields 6-15 of this segment. It is strongly recommended that this value include seconds.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NST.4.1",
                             Type = @"Component",
@@ -138,25 +231,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _statisticsStart = new HL7V22Field
+        {
+            field = message[@"NST"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_statisticsStart.field.FieldRepetitions != null && _statisticsStart.field.FieldRepetitions.Count > 0)
+        {
+            _statisticsStart.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_statisticsStart, fieldData);
+        }
+
+        return _statisticsStart;
+    } 
+}
+
+internal HL7V22Field _statisticsEnd;
+
+public HL7V22Field StatisticsEnd
+{
+    get
+    {
+        if (_statisticsEnd != null)
+        {
+            return _statisticsEnd;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"NST.5",
+            Type = @"Field",
+            Position = @"NST.5",
+            Name = @"Statistics End",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"Date/time stamp of the end of the statistics collection period reported in fields 6-15 of this segment. It is strongly recommended that this value include seconds",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NST.5",
-                            Type = @"Field",
-                            Position = @"NST.5",
-                            Name = @"Statistics End",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Date/time stamp of the end of the statistics collection period reported in fields 6-15 of this segment. It is strongly recommended that this value include seconds",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NST.5.1",
                             Type = @"Component",
@@ -190,416 +313,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NST.6",
-                            Type = @"Field",
-                            Position = @"NST.6",
-                            Name = @"Receive Character Count",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Number of characters received.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NST.7",
-                            Type = @"Field",
-                            Position = @"NST.7",
-                            Name = @"Send Character Count",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Number of characters sent.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NST.8",
-                            Type = @"Field",
-                            Position = @"NST.8",
-                            Name = @"Message Received",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Number of messages received.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NST.9",
-                            Type = @"Field",
-                            Position = @"NST.9",
-                            Name = @"Message Sent",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Number of messages sent.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NST.10",
-                            Type = @"Field",
-                            Position = @"NST.10",
-                            Name = @"Checksum Errors Received",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Number of messages received with checksum errors.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NST.11",
-                            Type = @"Field",
-                            Position = @"NST.11",
-                            Name = @"Length Errors Received",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Number of messages received with length errors.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NST.12",
-                            Type = @"Field",
-                            Position = @"NST.12",
-                            Name = @"Other Errors Received",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Number of ""other"" invalid messages received (excluding length and checksum errors).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NST.13",
-                            Type = @"Field",
-                            Position = @"NST.13",
-                            Name = @"Connect Timeouts",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Number of connect timeout errors.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NST.14",
-                            Type = @"Field",
-                            Position = @"NST.14",
-                            Name = @"Receive Timeouts",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Number of timeouts while waiting for a response to an initiated message.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NST.15",
-                            Type = @"Field",
-                            Position = @"NST.15",
-                            Name = @"Network Errors",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Number of network errors in response to an initiated message.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V22SegmentNST(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V22Field statisticsAvailable;
-
-public HL7V22Field StatisticsAvailable
-{
-    get
-    {
-        if (statisticsAvailable != null)
-        {
-            return statisticsAvailable;
-        }
-
-        statisticsAvailable = new HL7V22Field
-        {
-            field = message[@"NST"][1],
-            Id = @"NST.1",
-            Type = @"Field",
-            Position = @"NST.1",
-            Name = @"Statistics Available",
-            Length = 1,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0136",
-            TableName = @"Y/N INDICATOR",
-            Description = @"If the responding system does not keep any statistics, this field has a value : ""N"". If the value ""N"" is specified, the response message is used to signify to the initiating application that the particular link is operational (and fields 2-15 will be empty in the response message). If the responding system does keep statistics, this field has the value ""Y"", fields 4 and 5 are required, (and the response message will contain one or more non-null fields in the range 2-3, 6-15).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (statisticsAvailable.field.FieldRepetitions != null && statisticsAvailable.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(statisticsAvailable.Id));
-            statisticsAvailable.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(statisticsAvailable, fieldData);
-        }
-
-        return statisticsAvailable;
-    } 
-}
-
-internal HL7V22Field sourceIdentifier;
-
-public HL7V22Field SourceIdentifier
-{
-    get
-    {
-        if (sourceIdentifier != null)
-        {
-            return sourceIdentifier;
-        }
-
-        sourceIdentifier = new HL7V22Field
-        {
-            field = message[@"NST"][2],
-            Id = @"NST.2",
-            Type = @"Field",
-            Position = @"NST.2",
-            Name = @"Source Identifier",
-            Length = 30,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to identify a particular lower level link (e.g., a port number).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sourceIdentifier.field.FieldRepetitions != null && sourceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sourceIdentifier.Id));
-            sourceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(sourceIdentifier, fieldData);
-        }
-
-        return sourceIdentifier;
-    } 
-}
-
-internal HL7V22Field sourceType;
-
-public HL7V22Field SourceType
-{
-    get
-    {
-        if (sourceType != null)
-        {
-            return sourceType;
-        }
-
-        sourceType = new HL7V22Field
-        {
-            field = message[@"NST"][3],
-            Id = @"NST.3",
-            Type = @"Field",
-            Position = @"NST.3",
-            Name = @"Source Type",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"NST3",
-            TableName = @"Network Source Type",
-            Description = @"This field is used to identify (in certain systems) whether a lower level source identifier is an initiate or accept type",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sourceType.field.FieldRepetitions != null && sourceType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sourceType.Id));
-            sourceType.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(sourceType, fieldData);
-        }
-
-        return sourceType;
-    } 
-}
-
-internal HL7V22Field statisticsStart;
-
-public HL7V22Field StatisticsStart
-{
-    get
-    {
-        if (statisticsStart != null)
-        {
-            return statisticsStart;
-        }
-
-        statisticsStart = new HL7V22Field
-        {
-            field = message[@"NST"][4],
-            Id = @"NST.4",
-            Type = @"Field",
-            Position = @"NST.4",
-            Name = @"Statistics Start",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"Date/time stamp of the start of the collection of the statistics reported in fields 6-15 of this segment. It is strongly recommended that this value include seconds.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (statisticsStart.field.FieldRepetitions != null && statisticsStart.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(statisticsStart.Id));
-            statisticsStart.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(statisticsStart, fieldData);
-        }
-
-        return statisticsStart;
-    } 
-}
-
-internal HL7V22Field statisticsEnd;
-
-public HL7V22Field StatisticsEnd
-{
-    get
-    {
-        if (statisticsEnd != null)
-        {
-            return statisticsEnd;
-        }
-
-        statisticsEnd = new HL7V22Field
+        _statisticsEnd = new HL7V22Field
         {
             field = message[@"NST"][5],
-            Id = @"NST.5",
-            Type = @"Field",
-            Position = @"NST.5",
-            Name = @"Statistics End",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"Date/time stamp of the end of the statistics collection period reported in fields 6-15 of this segment. It is strongly recommended that this value include seconds",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (statisticsEnd.field.FieldRepetitions != null && statisticsEnd.field.FieldRepetitions.Count > 0)
+        if (_statisticsEnd.field.FieldRepetitions != null && _statisticsEnd.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(statisticsEnd.Id));
-            statisticsEnd.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(statisticsEnd, fieldData);
+            _statisticsEnd.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_statisticsEnd, fieldData);
         }
 
-        return statisticsEnd;
+        return _statisticsEnd;
     } 
 }
 
-internal HL7V22Field receiveCharacterCount;
+internal HL7V22Field _receiveCharacterCount;
 
 public HL7V22Field ReceiveCharacterCount
 {
     get
     {
-        if (receiveCharacterCount != null)
+        if (_receiveCharacterCount != null)
         {
-            return receiveCharacterCount;
+            return _receiveCharacterCount;
         }
 
-        receiveCharacterCount = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NST"][6],
             Id = @"NST.6",
             Type = @"Field",
             Position = @"NST.6",
@@ -613,34 +359,38 @@ public HL7V22Field ReceiveCharacterCount
             TableName = null,
             Description = @"Number of characters received.",
             Sample = @"",
+            Fields = null
+        }
+
+        _receiveCharacterCount = new HL7V22Field
+        {
+            field = message[@"NST"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (receiveCharacterCount.field.FieldRepetitions != null && receiveCharacterCount.field.FieldRepetitions.Count > 0)
+        if (_receiveCharacterCount.field.FieldRepetitions != null && _receiveCharacterCount.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(receiveCharacterCount.Id));
-            receiveCharacterCount.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(receiveCharacterCount, fieldData);
+            _receiveCharacterCount.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_receiveCharacterCount, fieldData);
         }
 
-        return receiveCharacterCount;
+        return _receiveCharacterCount;
     } 
 }
 
-internal HL7V22Field sendCharacterCount;
+internal HL7V22Field _sendCharacterCount;
 
 public HL7V22Field SendCharacterCount
 {
     get
     {
-        if (sendCharacterCount != null)
+        if (_sendCharacterCount != null)
         {
-            return sendCharacterCount;
+            return _sendCharacterCount;
         }
 
-        sendCharacterCount = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NST"][7],
             Id = @"NST.7",
             Type = @"Field",
             Position = @"NST.7",
@@ -654,34 +404,38 @@ public HL7V22Field SendCharacterCount
             TableName = null,
             Description = @"Number of characters sent.",
             Sample = @"",
+            Fields = null
+        }
+
+        _sendCharacterCount = new HL7V22Field
+        {
+            field = message[@"NST"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (sendCharacterCount.field.FieldRepetitions != null && sendCharacterCount.field.FieldRepetitions.Count > 0)
+        if (_sendCharacterCount.field.FieldRepetitions != null && _sendCharacterCount.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sendCharacterCount.Id));
-            sendCharacterCount.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(sendCharacterCount, fieldData);
+            _sendCharacterCount.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_sendCharacterCount, fieldData);
         }
 
-        return sendCharacterCount;
+        return _sendCharacterCount;
     } 
 }
 
-internal HL7V22Field messageReceived;
+internal HL7V22Field _messageReceived;
 
 public HL7V22Field MessageReceived
 {
     get
     {
-        if (messageReceived != null)
+        if (_messageReceived != null)
         {
-            return messageReceived;
+            return _messageReceived;
         }
 
-        messageReceived = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NST"][8],
             Id = @"NST.8",
             Type = @"Field",
             Position = @"NST.8",
@@ -695,34 +449,38 @@ public HL7V22Field MessageReceived
             TableName = null,
             Description = @"Number of messages received.",
             Sample = @"",
+            Fields = null
+        }
+
+        _messageReceived = new HL7V22Field
+        {
+            field = message[@"NST"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (messageReceived.field.FieldRepetitions != null && messageReceived.field.FieldRepetitions.Count > 0)
+        if (_messageReceived.field.FieldRepetitions != null && _messageReceived.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(messageReceived.Id));
-            messageReceived.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(messageReceived, fieldData);
+            _messageReceived.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_messageReceived, fieldData);
         }
 
-        return messageReceived;
+        return _messageReceived;
     } 
 }
 
-internal HL7V22Field messageSent;
+internal HL7V22Field _messageSent;
 
 public HL7V22Field MessageSent
 {
     get
     {
-        if (messageSent != null)
+        if (_messageSent != null)
         {
-            return messageSent;
+            return _messageSent;
         }
 
-        messageSent = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NST"][9],
             Id = @"NST.9",
             Type = @"Field",
             Position = @"NST.9",
@@ -736,34 +494,38 @@ public HL7V22Field MessageSent
             TableName = null,
             Description = @"Number of messages sent.",
             Sample = @"",
+            Fields = null
+        }
+
+        _messageSent = new HL7V22Field
+        {
+            field = message[@"NST"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (messageSent.field.FieldRepetitions != null && messageSent.field.FieldRepetitions.Count > 0)
+        if (_messageSent.field.FieldRepetitions != null && _messageSent.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(messageSent.Id));
-            messageSent.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(messageSent, fieldData);
+            _messageSent.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_messageSent, fieldData);
         }
 
-        return messageSent;
+        return _messageSent;
     } 
 }
 
-internal HL7V22Field checksumErrorsReceived;
+internal HL7V22Field _checksumErrorsReceived;
 
 public HL7V22Field ChecksumErrorsReceived
 {
     get
     {
-        if (checksumErrorsReceived != null)
+        if (_checksumErrorsReceived != null)
         {
-            return checksumErrorsReceived;
+            return _checksumErrorsReceived;
         }
 
-        checksumErrorsReceived = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NST"][10],
             Id = @"NST.10",
             Type = @"Field",
             Position = @"NST.10",
@@ -777,34 +539,38 @@ public HL7V22Field ChecksumErrorsReceived
             TableName = null,
             Description = @"Number of messages received with checksum errors.",
             Sample = @"",
+            Fields = null
+        }
+
+        _checksumErrorsReceived = new HL7V22Field
+        {
+            field = message[@"NST"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (checksumErrorsReceived.field.FieldRepetitions != null && checksumErrorsReceived.field.FieldRepetitions.Count > 0)
+        if (_checksumErrorsReceived.field.FieldRepetitions != null && _checksumErrorsReceived.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(checksumErrorsReceived.Id));
-            checksumErrorsReceived.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(checksumErrorsReceived, fieldData);
+            _checksumErrorsReceived.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_checksumErrorsReceived, fieldData);
         }
 
-        return checksumErrorsReceived;
+        return _checksumErrorsReceived;
     } 
 }
 
-internal HL7V22Field lengthErrorsReceived;
+internal HL7V22Field _lengthErrorsReceived;
 
 public HL7V22Field LengthErrorsReceived
 {
     get
     {
-        if (lengthErrorsReceived != null)
+        if (_lengthErrorsReceived != null)
         {
-            return lengthErrorsReceived;
+            return _lengthErrorsReceived;
         }
 
-        lengthErrorsReceived = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NST"][11],
             Id = @"NST.11",
             Type = @"Field",
             Position = @"NST.11",
@@ -818,34 +584,38 @@ public HL7V22Field LengthErrorsReceived
             TableName = null,
             Description = @"Number of messages received with length errors.",
             Sample = @"",
+            Fields = null
+        }
+
+        _lengthErrorsReceived = new HL7V22Field
+        {
+            field = message[@"NST"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (lengthErrorsReceived.field.FieldRepetitions != null && lengthErrorsReceived.field.FieldRepetitions.Count > 0)
+        if (_lengthErrorsReceived.field.FieldRepetitions != null && _lengthErrorsReceived.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(lengthErrorsReceived.Id));
-            lengthErrorsReceived.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(lengthErrorsReceived, fieldData);
+            _lengthErrorsReceived.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_lengthErrorsReceived, fieldData);
         }
 
-        return lengthErrorsReceived;
+        return _lengthErrorsReceived;
     } 
 }
 
-internal HL7V22Field otherErrorsReceived;
+internal HL7V22Field _otherErrorsReceived;
 
 public HL7V22Field OtherErrorsReceived
 {
     get
     {
-        if (otherErrorsReceived != null)
+        if (_otherErrorsReceived != null)
         {
-            return otherErrorsReceived;
+            return _otherErrorsReceived;
         }
 
-        otherErrorsReceived = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NST"][12],
             Id = @"NST.12",
             Type = @"Field",
             Position = @"NST.12",
@@ -859,34 +629,38 @@ public HL7V22Field OtherErrorsReceived
             TableName = null,
             Description = @"Number of ""other"" invalid messages received (excluding length and checksum errors).",
             Sample = @"",
+            Fields = null
+        }
+
+        _otherErrorsReceived = new HL7V22Field
+        {
+            field = message[@"NST"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (otherErrorsReceived.field.FieldRepetitions != null && otherErrorsReceived.field.FieldRepetitions.Count > 0)
+        if (_otherErrorsReceived.field.FieldRepetitions != null && _otherErrorsReceived.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(otherErrorsReceived.Id));
-            otherErrorsReceived.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(otherErrorsReceived, fieldData);
+            _otherErrorsReceived.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_otherErrorsReceived, fieldData);
         }
 
-        return otherErrorsReceived;
+        return _otherErrorsReceived;
     } 
 }
 
-internal HL7V22Field connectTimeouts;
+internal HL7V22Field _connectTimeouts;
 
 public HL7V22Field ConnectTimeouts
 {
     get
     {
-        if (connectTimeouts != null)
+        if (_connectTimeouts != null)
         {
-            return connectTimeouts;
+            return _connectTimeouts;
         }
 
-        connectTimeouts = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NST"][13],
             Id = @"NST.13",
             Type = @"Field",
             Position = @"NST.13",
@@ -900,34 +674,38 @@ public HL7V22Field ConnectTimeouts
             TableName = null,
             Description = @"Number of connect timeout errors.",
             Sample = @"",
+            Fields = null
+        }
+
+        _connectTimeouts = new HL7V22Field
+        {
+            field = message[@"NST"][13],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (connectTimeouts.field.FieldRepetitions != null && connectTimeouts.field.FieldRepetitions.Count > 0)
+        if (_connectTimeouts.field.FieldRepetitions != null && _connectTimeouts.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(connectTimeouts.Id));
-            connectTimeouts.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(connectTimeouts, fieldData);
+            _connectTimeouts.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_connectTimeouts, fieldData);
         }
 
-        return connectTimeouts;
+        return _connectTimeouts;
     } 
 }
 
-internal HL7V22Field receiveTimeouts;
+internal HL7V22Field _receiveTimeouts;
 
 public HL7V22Field ReceiveTimeouts
 {
     get
     {
-        if (receiveTimeouts != null)
+        if (_receiveTimeouts != null)
         {
-            return receiveTimeouts;
+            return _receiveTimeouts;
         }
 
-        receiveTimeouts = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NST"][14],
             Id = @"NST.14",
             Type = @"Field",
             Position = @"NST.14",
@@ -941,34 +719,38 @@ public HL7V22Field ReceiveTimeouts
             TableName = null,
             Description = @"Number of timeouts while waiting for a response to an initiated message.",
             Sample = @"",
+            Fields = null
+        }
+
+        _receiveTimeouts = new HL7V22Field
+        {
+            field = message[@"NST"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (receiveTimeouts.field.FieldRepetitions != null && receiveTimeouts.field.FieldRepetitions.Count > 0)
+        if (_receiveTimeouts.field.FieldRepetitions != null && _receiveTimeouts.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(receiveTimeouts.Id));
-            receiveTimeouts.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(receiveTimeouts, fieldData);
+            _receiveTimeouts.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_receiveTimeouts, fieldData);
         }
 
-        return receiveTimeouts;
+        return _receiveTimeouts;
     } 
 }
 
-internal HL7V22Field networkErrors;
+internal HL7V22Field _networkErrors;
 
 public HL7V22Field NetworkErrors
 {
     get
     {
-        if (networkErrors != null)
+        if (_networkErrors != null)
         {
-            return networkErrors;
+            return _networkErrors;
         }
 
-        networkErrors = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"NST"][15],
             Id = @"NST.15",
             Type = @"Field",
             Position = @"NST.15",
@@ -982,17 +764,22 @@ public HL7V22Field NetworkErrors
             TableName = null,
             Description = @"Number of network errors in response to an initiated message.",
             Sample = @"",
+            Fields = null
+        }
+
+        _networkErrors = new HL7V22Field
+        {
+            field = message[@"NST"][15],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (networkErrors.field.FieldRepetitions != null && networkErrors.field.FieldRepetitions.Count > 0)
+        if (_networkErrors.field.FieldRepetitions != null && _networkErrors.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(networkErrors.Id));
-            networkErrors.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(networkErrors, fieldData);
+            _networkErrors.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_networkErrors, fieldData);
         }
 
-        return networkErrors;
+        return _networkErrors;
     } 
 }
     }

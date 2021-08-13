@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -71,6 +72,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Timing critical (do as near as possible to requested time)",
                             Comment = null
                         },
+                        
                     };
             } 
         }

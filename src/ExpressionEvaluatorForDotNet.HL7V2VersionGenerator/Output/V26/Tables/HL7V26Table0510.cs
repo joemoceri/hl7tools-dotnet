@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_04",
+
                     };
             } 
         }
@@ -95,6 +96,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Wasted (product no longer viable)",
                             Comment = @"Status determined by Filler"
                         },
+                        
                     };
             } 
         }

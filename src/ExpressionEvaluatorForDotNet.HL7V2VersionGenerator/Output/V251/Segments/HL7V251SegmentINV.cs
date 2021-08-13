@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentINV(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _substanceIdentifier;
+
+public HL7V251Field SubstanceIdentifier
+{
+    get
+    {
+        if (_substanceIdentifier != null)
+        {
+            return _substanceIdentifier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.1",
+            Type = @"Field",
+            Position = @"INV.1",
+            Name = @"Substance Identifier",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0451",
+            TableName = @"Substance identifier",
+            Description = @"Unique identifier for the substance that is in inventory. This is a manufacturer-specific identifier.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"INV.1",
-                            Type = @"Field",
-                            Position = @"INV.1",
-                            Name = @"Substance Identifier",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0451",
-                            TableName = @"Substance identifier",
-                            Description = @"Unique identifier for the substance that is in inventory. This is a manufacturer-specific identifier.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"INV.1.1",
                             Type = @"Component",
@@ -156,25 +168,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _substanceIdentifier = new HL7V251Field
+        {
+            field = message[@"INV"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_substanceIdentifier.field.FieldRepetitions != null && _substanceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _substanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_substanceIdentifier, fieldData);
+        }
+
+        return _substanceIdentifier;
+    } 
+}
+
+internal HL7V251Field _substanceStatus;
+
+public HL7V251Field SubstanceStatus
+{
+    get
+    {
+        if (_substanceStatus != null)
+        {
+            return _substanceStatus;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.2",
+            Type = @"Field",
+            Position = @"INV.2",
+            Name = @"Substance Status",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0383",
+            TableName = @"Substance status",
+            Description = @"The status of the inventoried item. The status indicates the current status of the substance. Refer toHL7 Table 0383 - Substance status for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"INV.2",
-                            Type = @"Field",
-                            Position = @"INV.2",
-                            Name = @"Substance Status",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0383",
-                            TableName = @"Substance status",
-                            Description = @"The status of the inventoried item. The status indicates the current status of the substance. Refer toHL7 Table 0383 - Substance status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"INV.2.1",
                             Type = @"Component",
@@ -280,25 +322,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _substanceStatus = new HL7V251Field
+        {
+            field = message[@"INV"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_substanceStatus.field.FieldRepetitions != null && _substanceStatus.field.FieldRepetitions.Count > 0)
+        {
+            _substanceStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_substanceStatus, fieldData);
+        }
+
+        return _substanceStatus;
+    } 
+}
+
+internal HL7V251Field _substanceType;
+
+public HL7V251Field SubstanceType
+{
+    get
+    {
+        if (_substanceType != null)
+        {
+            return _substanceType;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.3",
+            Type = @"Field",
+            Position = @"INV.3",
+            Name = @"Substance Type",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0384",
+            TableName = @"Substance type",
+            Description = @"The type of substance. Refer to HL7 Table 0384 - Substance type for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"INV.3",
-                            Type = @"Field",
-                            Position = @"INV.3",
-                            Name = @"Substance Type",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0384",
-                            TableName = @"Substance type",
-                            Description = @"The type of substance. Refer to HL7 Table 0384 - Substance type for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"INV.3.1",
                             Type = @"Component",
@@ -404,25 +476,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _substanceType = new HL7V251Field
+        {
+            field = message[@"INV"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_substanceType.field.FieldRepetitions != null && _substanceType.field.FieldRepetitions.Count > 0)
+        {
+            _substanceType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_substanceType, fieldData);
+        }
+
+        return _substanceType;
+    } 
+}
+
+internal HL7V251Field _inventoryContainerIdentifier;
+
+public HL7V251Field InventoryContainerIdentifier
+{
+    get
+    {
+        if (_inventoryContainerIdentifier != null)
+        {
+            return _inventoryContainerIdentifier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.4",
+            Type = @"Field",
+            Position = @"INV.4",
+            Name = @"Inventory Container Identifier",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"Identifies the inventory container, e.g., unique identifier of a specific package instance of a specific substance. This is a manufacturer-specific identifier.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"INV.4",
-                            Type = @"Field",
-                            Position = @"INV.4",
-                            Name = @"Inventory Container Identifier",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identifies the inventory container, e.g., unique identifier of a specific package instance of a specific substance. This is a manufacturer-specific identifier.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"INV.4.1",
                             Type = @"Component",
@@ -528,25 +630,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _inventoryContainerIdentifier = new HL7V251Field
+        {
+            field = message[@"INV"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_inventoryContainerIdentifier.field.FieldRepetitions != null && _inventoryContainerIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _inventoryContainerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_inventoryContainerIdentifier, fieldData);
+        }
+
+        return _inventoryContainerIdentifier;
+    } 
+}
+
+internal HL7V251Field _containerCarrierIdentifier;
+
+public HL7V251Field ContainerCarrierIdentifier
+{
+    get
+    {
+        if (_containerCarrierIdentifier != null)
+        {
+            return _containerCarrierIdentifier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.5",
+            Type = @"Field",
+            Position = @"INV.5",
+            Name = @"Container Carrier Identifier",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This is the carrier used to transport the substance containers, (e.g., a removable rotor with reagent bottles).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"INV.5",
-                            Type = @"Field",
-                            Position = @"INV.5",
-                            Name = @"Container Carrier Identifier",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This is the carrier used to transport the substance containers, (e.g., a removable rotor with reagent bottles).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"INV.5.1",
                             Type = @"Component",
@@ -652,25 +784,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _containerCarrierIdentifier = new HL7V251Field
+        {
+            field = message[@"INV"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_containerCarrierIdentifier.field.FieldRepetitions != null && _containerCarrierIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _containerCarrierIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_containerCarrierIdentifier, fieldData);
+        }
+
+        return _containerCarrierIdentifier;
+    } 
+}
+
+internal HL7V251Field _positiononCarrier;
+
+public HL7V251Field PositiononCarrier
+{
+    get
+    {
+        if (_positiononCarrier != null)
+        {
+            return _positiononCarrier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.6",
+            Type = @"Field",
+            Position = @"INV.6",
+            Name = @"Position on Carrier",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"Identifies the position (e.g., index) on the carrier.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"INV.6",
-                            Type = @"Field",
-                            Position = @"INV.6",
-                            Name = @"Position on Carrier",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identifies the position (e.g., index) on the carrier.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"INV.6.1",
                             Type = @"Component",
@@ -776,97 +938,235 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _positiononCarrier = new HL7V251Field
+        {
+            field = message[@"INV"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_positiononCarrier.field.FieldRepetitions != null && _positiononCarrier.field.FieldRepetitions.Count > 0)
+        {
+            _positiononCarrier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_positiononCarrier, fieldData);
+        }
+
+        return _positiononCarrier;
+    } 
+}
+
+internal HL7V251Field _initialQuantity;
+
+public HL7V251Field InitialQuantity
+{
+    get
+    {
+        if (_initialQuantity != null)
+        {
+            return _initialQuantity;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.7",
+            Type = @"Field",
+            Position = @"INV.7",
+            Name = @"Initial Quantity",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the initial quantity of the substance in inventory.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _initialQuantity = new HL7V251Field
+        {
+            field = message[@"INV"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_initialQuantity.field.FieldRepetitions != null && _initialQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _initialQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_initialQuantity, fieldData);
+        }
+
+        return _initialQuantity;
+    } 
+}
+
+internal HL7V251Field _currentQuantity;
+
+public HL7V251Field CurrentQuantity
+{
+    get
+    {
+        if (_currentQuantity != null)
+        {
+            return _currentQuantity;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.8",
+            Type = @"Field",
+            Position = @"INV.8",
+            Name = @"Current Quantity",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the current quantity, i.e., initial quantity minus what has been actually used.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _currentQuantity = new HL7V251Field
+        {
+            field = message[@"INV"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_currentQuantity.field.FieldRepetitions != null && _currentQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _currentQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_currentQuantity, fieldData);
+        }
+
+        return _currentQuantity;
+    } 
+}
+
+internal HL7V251Field _availableQuantity;
+
+public HL7V251Field AvailableQuantity
+{
+    get
+    {
+        if (_availableQuantity != null)
+        {
+            return _availableQuantity;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.9",
+            Type = @"Field",
+            Position = @"INV.9",
+            Name = @"Available Quantity",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the available quantity of substance. This is the current quantity minus any planned consumption (e.g., tests that are planned).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _availableQuantity = new HL7V251Field
+        {
+            field = message[@"INV"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_availableQuantity.field.FieldRepetitions != null && _availableQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _availableQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_availableQuantity, fieldData);
+        }
+
+        return _availableQuantity;
+    } 
+}
+
+internal HL7V251Field _consumptionQuantity;
+
+public HL7V251Field ConsumptionQuantity
+{
+    get
+    {
+        if (_consumptionQuantity != null)
+        {
+            return _consumptionQuantity;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.10",
+            Type = @"Field",
+            Position = @"INV.10",
+            Name = @"Consumption Quantity",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the consumption that is used each time the equipment uses this substance.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consumptionQuantity = new HL7V251Field
+        {
+            field = message[@"INV"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consumptionQuantity.field.FieldRepetitions != null && _consumptionQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _consumptionQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_consumptionQuantity, fieldData);
+        }
+
+        return _consumptionQuantity;
+    } 
+}
+
+internal HL7V251Field _quantityUnits;
+
+public HL7V251Field QuantityUnits
+{
+    get
+    {
+        if (_quantityUnits != null)
+        {
+            return _quantityUnits;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.11",
+            Type = @"Field",
+            Position = @"INV.11",
+            Name = @"Quantity Units",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the units of measure of the available quantity. If the units are ISO+ units, they should be recorded as single case abbreviations. If the units are ANS+ or L (local), the units and the source code table must be recorded, except that in this case, component delimiters should be replaced by sub-component delimiters. For example, ""l"" indicates liters, whereas pt&&ANS+ indicates pints (ANSI units). The default unit is milliliters (ml), which should be assumed if no units are reported.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"INV.7",
-                            Type = @"Field",
-                            Position = @"INV.7",
-                            Name = @"Initial Quantity",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the initial quantity of the substance in inventory.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"INV.8",
-                            Type = @"Field",
-                            Position = @"INV.8",
-                            Name = @"Current Quantity",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the current quantity, i.e., initial quantity minus what has been actually used.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"INV.9",
-                            Type = @"Field",
-                            Position = @"INV.9",
-                            Name = @"Available Quantity",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the available quantity of substance. This is the current quantity minus any planned consumption (e.g., tests that are planned).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"INV.10",
-                            Type = @"Field",
-                            Position = @"INV.10",
-                            Name = @"Consumption Quantity",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the consumption that is used each time the equipment uses this substance.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"INV.11",
-                            Type = @"Field",
-                            Position = @"INV.11",
-                            Name = @"Quantity Units",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the units of measure of the available quantity. If the units are ISO+ units, they should be recorded as single case abbreviations. If the units are ANS+ or L (local), the units and the source code table must be recorded, except that in this case, component delimiters should be replaced by sub-component delimiters. For example, ""l"" indicates liters, whereas pt&&ANS+ indicates pints (ANSI units). The default unit is milliliters (ml), which should be assumed if no units are reported.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"INV.11.1",
                             Type = @"Component",
@@ -972,25 +1272,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _quantityUnits = new HL7V251Field
+        {
+            field = message[@"INV"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_quantityUnits.field.FieldRepetitions != null && _quantityUnits.field.FieldRepetitions.Count > 0)
+        {
+            _quantityUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_quantityUnits, fieldData);
+        }
+
+        return _quantityUnits;
+    } 
+}
+
+internal HL7V251Field _expirationDateTime;
+
+public HL7V251Field ExpirationDateTime
+{
+    get
+    {
+        if (_expirationDateTime != null)
+        {
+            return _expirationDateTime;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.12",
+            Type = @"Field",
+            Position = @"INV.12",
+            Name = @"Expiration Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the expiration date/time of the substance.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"INV.12",
-                            Type = @"Field",
-                            Position = @"INV.12",
-                            Name = @"Expiration Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the expiration date/time of the substance.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"INV.12.1",
                             Type = @"Component",
@@ -1026,25 +1356,55 @@ namespace ExpressionEvaluatorForDotNet
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _expirationDateTime = new HL7V251Field
+        {
+            field = message[@"INV"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_expirationDateTime.field.FieldRepetitions != null && _expirationDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _expirationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_expirationDateTime, fieldData);
+        }
+
+        return _expirationDateTime;
+    } 
+}
+
+internal HL7V251Field _firstUsedDateTime;
+
+public HL7V251Field FirstUsedDateTime
+{
+    get
+    {
+        if (_firstUsedDateTime != null)
+        {
+            return _firstUsedDateTime;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.13",
+            Type = @"Field",
+            Position = @"INV.13",
+            Name = @"First Used Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the time and date when the substance was first used. This date and time can be necessary to determine the stability of the substance. The meaning of the ""first used"" element depends on the substance. In certain cases it means the time when the substance was put on board of the instrument or prepared (mixed), without actually using it in the analysis.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"INV.13",
-                            Type = @"Field",
-                            Position = @"INV.13",
-                            Name = @"First Used Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the time and date when the substance was first used. This date and time can be necessary to determine the stability of the substance. The meaning of the ""first used"" element depends on the substance. In certain cases it means the time when the substance was put on board of the instrument or prepared (mixed), without actually using it in the analysis.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"INV.13.1",
                             Type = @"Component",
@@ -1080,25 +1440,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _firstUsedDateTime = new HL7V251Field
+        {
+            field = message[@"INV"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_firstUsedDateTime.field.FieldRepetitions != null && _firstUsedDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _firstUsedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_firstUsedDateTime, fieldData);
+        }
+
+        return _firstUsedDateTime;
+    } 
+}
+
+internal HL7V251Field _onBoardStabilityDuration;
+
+public HL7V251Field OnBoardStabilityDuration
+{
+    get
+    {
+        if (_onBoardStabilityDuration != null)
+        {
+            return _onBoardStabilityDuration;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.14",
+            Type = @"Field",
+            Position = @"INV.14",
+            Name = @"On Board Stability Duration",
+            Length = 200,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"TQ",
+            DataTypeName = @"Timing Quantity",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the time duration that the substance is stable. This field is left for backward compatibility only.  The TQ data type was deprecated.. The field INV-19 ""On board stability time"" should be used to represent this concept.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"INV.14",
-                            Type = @"Field",
-                            Position = @"INV.14",
-                            Name = @"On Board Stability Duration",
-                            Length = 200,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"TQ",
-                            DataTypeName = @"Timing Quantity",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the time duration that the substance is stable. This field is left for backward compatibility only.  The TQ data type was deprecated.. The field INV-19 ""On board stability time"" should be used to represent this concept.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"INV.14.1",
                             Type = @"Component",
@@ -1860,25 +2250,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"This component contains the total number of occurrences of a service that should result from this order. It is optional within TQ and does not repeat. If both the end date/time and the total occurrences are valued and the occurrences would extend beyond the end date/time, then the end date/time takes precedence. Otherwise the number of occurrences takes precedence.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _onBoardStabilityDuration = new HL7V251Field
+        {
+            field = message[@"INV"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_onBoardStabilityDuration.field.FieldRepetitions != null && _onBoardStabilityDuration.field.FieldRepetitions.Count > 0)
+        {
+            _onBoardStabilityDuration.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_onBoardStabilityDuration, fieldData);
+        }
+
+        return _onBoardStabilityDuration;
+    } 
+}
+
+internal HL7V251Field _testFluidIdentifiers;
+
+public HL7V251Field TestFluidIdentifiers
+{
+    get
+    {
+        if (_testFluidIdentifiers != null)
+        {
+            return _testFluidIdentifiers;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.15",
+            Type = @"Field",
+            Position = @"INV.15",
+            Name = @"Test/Fluid Identifier(s)",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the list of tests and body fluid that apply to this substance. This is a repeating field. An empty field means that this substance is not test specific, i.e., it applies to all tests.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"INV.15",
-                            Type = @"Field",
-                            Position = @"INV.15",
-                            Name = @"Test/Fluid Identifier(s)",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the list of tests and body fluid that apply to this substance. This is a repeating field. An empty field means that this substance is not test specific, i.e., it applies to all tests.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"INV.15.1",
                             Type = @"Component",
@@ -1984,43 +2404,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _testFluidIdentifiers = new HL7V251Field
+        {
+            field = message[@"INV"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_testFluidIdentifiers.field.FieldRepetitions != null && _testFluidIdentifiers.field.FieldRepetitions.Count > 0)
+        {
+            _testFluidIdentifiers.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_testFluidIdentifiers, fieldData);
+        }
+
+        return _testFluidIdentifiers;
+    } 
+}
+
+internal HL7V251Field _manufacturerLotNumber;
+
+public HL7V251Field ManufacturerLotNumber
+{
+    get
+    {
+        if (_manufacturerLotNumber != null)
+        {
+            return _manufacturerLotNumber;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.16",
+            Type = @"Field",
+            Position = @"INV.16",
+            Name = @"Manufacturer Lot Number",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the lot number assigned by the manufacturer during production of the substance.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _manufacturerLotNumber = new HL7V251Field
+        {
+            field = message[@"INV"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_manufacturerLotNumber.field.FieldRepetitions != null && _manufacturerLotNumber.field.FieldRepetitions.Count > 0)
+        {
+            _manufacturerLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_manufacturerLotNumber, fieldData);
+        }
+
+        return _manufacturerLotNumber;
+    } 
+}
+
+internal HL7V251Field _manufacturerIdentifier;
+
+public HL7V251Field ManufacturerIdentifier
+{
+    get
+    {
+        if (_manufacturerIdentifier != null)
+        {
+            return _manufacturerIdentifier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.17",
+            Type = @"Field",
+            Position = @"INV.17",
+            Name = @"Manufacturer Identifier",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0385",
+            TableName = @"Manufacturer identifier",
+            Description = @"This field identifies the manufacturer of this substance. Refer to User-defined Table 0385 - Manufacturer identifier for suggested values. Relevant external code systems may be used, e.g., HIBCC Manufacturers Labeler ID Code (LIC), UPC, NDC, etc.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"INV.16",
-                            Type = @"Field",
-                            Position = @"INV.16",
-                            Name = @"Manufacturer Lot Number",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the lot number assigned by the manufacturer during production of the substance.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"INV.17",
-                            Type = @"Field",
-                            Position = @"INV.17",
-                            Name = @"Manufacturer Identifier",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0385",
-                            TableName = @"Manufacturer identifier",
-                            Description = @"This field identifies the manufacturer of this substance. Refer to User-defined Table 0385 - Manufacturer identifier for suggested values. Relevant external code systems may be used, e.g., HIBCC Manufacturers Labeler ID Code (LIC), UPC, NDC, etc.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"INV.17.1",
                             Type = @"Component",
@@ -2126,25 +2603,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _manufacturerIdentifier = new HL7V251Field
+        {
+            field = message[@"INV"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_manufacturerIdentifier.field.FieldRepetitions != null && _manufacturerIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _manufacturerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_manufacturerIdentifier, fieldData);
+        }
+
+        return _manufacturerIdentifier;
+    } 
+}
+
+internal HL7V251Field _supplierIdentifier;
+
+public HL7V251Field SupplierIdentifier
+{
+    get
+    {
+        if (_supplierIdentifier != null)
+        {
+            return _supplierIdentifier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.18",
+            Type = @"Field",
+            Position = @"INV.18",
+            Name = @"Supplier Identifier",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0386",
+            TableName = @"Supplier identifier",
+            Description = @"This field identifies the supplier of this substance. Refer to User-defined Table 0386 - Supplier identifier for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"INV.18",
-                            Type = @"Field",
-                            Position = @"INV.18",
-                            Name = @"Supplier Identifier",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0386",
-                            TableName = @"Supplier identifier",
-                            Description = @"This field identifies the supplier of this substance. Refer to User-defined Table 0386 - Supplier identifier for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"INV.18.1",
                             Type = @"Component",
@@ -2250,25 +2757,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _supplierIdentifier = new HL7V251Field
+        {
+            field = message[@"INV"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_supplierIdentifier.field.FieldRepetitions != null && _supplierIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _supplierIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_supplierIdentifier, fieldData);
+        }
+
+        return _supplierIdentifier;
+    } 
+}
+
+internal HL7V251Field _onBoardStabilityTime;
+
+public HL7V251Field OnBoardStabilityTime
+{
+    get
+    {
+        if (_onBoardStabilityTime != null)
+        {
+            return _onBoardStabilityTime;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.19",
+            Type = @"Field",
+            Position = @"INV.19",
+            Name = @"On Board Stability Time",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity with Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the duration of time that the calibration / usability of the substance is stable. The duration is used to calculate the date / time when this calibration is no longer valid by adding this ""On board stability time"" (INV-19) to the ""First used date / time"" (INV-13).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"INV.19",
-                            Type = @"Field",
-                            Position = @"INV.19",
-                            Name = @"On Board Stability Time",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity with Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the duration of time that the calibration / usability of the substance is stable. The duration is used to calculate the date / time when this calibration is no longer valid by adding this ""On board stability time"" (INV-19) to the ""First used date / time"" (INV-13).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"INV.19.1",
                             Type = @"Component",
@@ -2408,25 +2945,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _onBoardStabilityTime = new HL7V251Field
+        {
+            field = message[@"INV"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_onBoardStabilityTime.field.FieldRepetitions != null && _onBoardStabilityTime.field.FieldRepetitions.Count > 0)
+        {
+            _onBoardStabilityTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_onBoardStabilityTime, fieldData);
+        }
+
+        return _onBoardStabilityTime;
+    } 
+}
+
+internal HL7V251Field _targetValue;
+
+public HL7V251Field TargetValue
+{
+    get
+    {
+        if (_targetValue != null)
+        {
+            return _targetValue;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"INV.20",
+            Type = @"Field",
+            Position = @"INV.20",
+            Name = @"Target Value",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity with Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the target analytical value for a particular test for a specific lot of a manufactured material. Target values for QC purposes are usually selected for their relevance to a reference (normal) range or to a clinically significant decision level.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"INV.20",
-                            Type = @"Field",
-                            Position = @"INV.20",
-                            Name = @"Target Value",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity with Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the target analytical value for a particular test for a specific lot of a manufactured material. Target values for QC purposes are usually selected for their relevance to a reference (normal) range or to a clinically significant decision level.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"INV.20.1",
                             Type = @"Component",
@@ -2566,834 +3133,23 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentINV(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field substanceIdentifier;
-
-public HL7V251Field SubstanceIdentifier
-{
-    get
-    {
-        if (substanceIdentifier != null)
-        {
-            return substanceIdentifier;
-        }
-
-        substanceIdentifier = new HL7V251Field
-        {
-            field = message[@"INV"][1],
-            Id = @"INV.1",
-            Type = @"Field",
-            Position = @"INV.1",
-            Name = @"Substance Identifier",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0451",
-            TableName = @"Substance identifier",
-            Description = @"Unique identifier for the substance that is in inventory. This is a manufacturer-specific identifier.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (substanceIdentifier.field.FieldRepetitions != null && substanceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substanceIdentifier.Id));
-            substanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(substanceIdentifier, fieldData);
-        }
-
-        return substanceIdentifier;
-    } 
-}
-
-internal HL7V251Field substanceStatus;
-
-public HL7V251Field SubstanceStatus
-{
-    get
-    {
-        if (substanceStatus != null)
-        {
-            return substanceStatus;
-        }
-
-        substanceStatus = new HL7V251Field
-        {
-            field = message[@"INV"][2],
-            Id = @"INV.2",
-            Type = @"Field",
-            Position = @"INV.2",
-            Name = @"Substance Status",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0383",
-            TableName = @"Substance status",
-            Description = @"The status of the inventoried item. The status indicates the current status of the substance. Refer toHL7 Table 0383 - Substance status for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (substanceStatus.field.FieldRepetitions != null && substanceStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substanceStatus.Id));
-            substanceStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(substanceStatus, fieldData);
-        }
-
-        return substanceStatus;
-    } 
-}
-
-internal HL7V251Field substanceType;
-
-public HL7V251Field SubstanceType
-{
-    get
-    {
-        if (substanceType != null)
-        {
-            return substanceType;
-        }
-
-        substanceType = new HL7V251Field
-        {
-            field = message[@"INV"][3],
-            Id = @"INV.3",
-            Type = @"Field",
-            Position = @"INV.3",
-            Name = @"Substance Type",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0384",
-            TableName = @"Substance type",
-            Description = @"The type of substance. Refer to HL7 Table 0384 - Substance type for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (substanceType.field.FieldRepetitions != null && substanceType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substanceType.Id));
-            substanceType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(substanceType, fieldData);
-        }
-
-        return substanceType;
-    } 
-}
-
-internal HL7V251Field inventoryContainerIdentifier;
-
-public HL7V251Field InventoryContainerIdentifier
-{
-    get
-    {
-        if (inventoryContainerIdentifier != null)
-        {
-            return inventoryContainerIdentifier;
-        }
-
-        inventoryContainerIdentifier = new HL7V251Field
-        {
-            field = message[@"INV"][4],
-            Id = @"INV.4",
-            Type = @"Field",
-            Position = @"INV.4",
-            Name = @"Inventory Container Identifier",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"Identifies the inventory container, e.g., unique identifier of a specific package instance of a specific substance. This is a manufacturer-specific identifier.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (inventoryContainerIdentifier.field.FieldRepetitions != null && inventoryContainerIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inventoryContainerIdentifier.Id));
-            inventoryContainerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(inventoryContainerIdentifier, fieldData);
-        }
-
-        return inventoryContainerIdentifier;
-    } 
-}
-
-internal HL7V251Field containerCarrierIdentifier;
-
-public HL7V251Field ContainerCarrierIdentifier
-{
-    get
-    {
-        if (containerCarrierIdentifier != null)
-        {
-            return containerCarrierIdentifier;
-        }
-
-        containerCarrierIdentifier = new HL7V251Field
-        {
-            field = message[@"INV"][5],
-            Id = @"INV.5",
-            Type = @"Field",
-            Position = @"INV.5",
-            Name = @"Container Carrier Identifier",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This is the carrier used to transport the substance containers, (e.g., a removable rotor with reagent bottles).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (containerCarrierIdentifier.field.FieldRepetitions != null && containerCarrierIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(containerCarrierIdentifier.Id));
-            containerCarrierIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(containerCarrierIdentifier, fieldData);
-        }
-
-        return containerCarrierIdentifier;
-    } 
-}
-
-internal HL7V251Field positiononCarrier;
-
-public HL7V251Field PositiononCarrier
-{
-    get
-    {
-        if (positiononCarrier != null)
-        {
-            return positiononCarrier;
-        }
-
-        positiononCarrier = new HL7V251Field
-        {
-            field = message[@"INV"][6],
-            Id = @"INV.6",
-            Type = @"Field",
-            Position = @"INV.6",
-            Name = @"Position on Carrier",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"Identifies the position (e.g., index) on the carrier.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (positiononCarrier.field.FieldRepetitions != null && positiononCarrier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(positiononCarrier.Id));
-            positiononCarrier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(positiononCarrier, fieldData);
-        }
-
-        return positiononCarrier;
-    } 
-}
-
-internal HL7V251Field initialQuantity;
-
-public HL7V251Field InitialQuantity
-{
-    get
-    {
-        if (initialQuantity != null)
-        {
-            return initialQuantity;
-        }
-
-        initialQuantity = new HL7V251Field
-        {
-            field = message[@"INV"][7],
-            Id = @"INV.7",
-            Type = @"Field",
-            Position = @"INV.7",
-            Name = @"Initial Quantity",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the initial quantity of the substance in inventory.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (initialQuantity.field.FieldRepetitions != null && initialQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(initialQuantity.Id));
-            initialQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(initialQuantity, fieldData);
-        }
-
-        return initialQuantity;
-    } 
-}
-
-internal HL7V251Field currentQuantity;
-
-public HL7V251Field CurrentQuantity
-{
-    get
-    {
-        if (currentQuantity != null)
-        {
-            return currentQuantity;
-        }
-
-        currentQuantity = new HL7V251Field
-        {
-            field = message[@"INV"][8],
-            Id = @"INV.8",
-            Type = @"Field",
-            Position = @"INV.8",
-            Name = @"Current Quantity",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the current quantity, i.e., initial quantity minus what has been actually used.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (currentQuantity.field.FieldRepetitions != null && currentQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(currentQuantity.Id));
-            currentQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(currentQuantity, fieldData);
-        }
-
-        return currentQuantity;
-    } 
-}
-
-internal HL7V251Field availableQuantity;
-
-public HL7V251Field AvailableQuantity
-{
-    get
-    {
-        if (availableQuantity != null)
-        {
-            return availableQuantity;
-        }
-
-        availableQuantity = new HL7V251Field
-        {
-            field = message[@"INV"][9],
-            Id = @"INV.9",
-            Type = @"Field",
-            Position = @"INV.9",
-            Name = @"Available Quantity",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the available quantity of substance. This is the current quantity minus any planned consumption (e.g., tests that are planned).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (availableQuantity.field.FieldRepetitions != null && availableQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(availableQuantity.Id));
-            availableQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(availableQuantity, fieldData);
-        }
-
-        return availableQuantity;
-    } 
-}
-
-internal HL7V251Field consumptionQuantity;
-
-public HL7V251Field ConsumptionQuantity
-{
-    get
-    {
-        if (consumptionQuantity != null)
-        {
-            return consumptionQuantity;
-        }
-
-        consumptionQuantity = new HL7V251Field
-        {
-            field = message[@"INV"][10],
-            Id = @"INV.10",
-            Type = @"Field",
-            Position = @"INV.10",
-            Name = @"Consumption Quantity",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the consumption that is used each time the equipment uses this substance.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consumptionQuantity.field.FieldRepetitions != null && consumptionQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consumptionQuantity.Id));
-            consumptionQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(consumptionQuantity, fieldData);
-        }
-
-        return consumptionQuantity;
-    } 
-}
-
-internal HL7V251Field quantityUnits;
-
-public HL7V251Field QuantityUnits
-{
-    get
-    {
-        if (quantityUnits != null)
-        {
-            return quantityUnits;
-        }
-
-        quantityUnits = new HL7V251Field
-        {
-            field = message[@"INV"][11],
-            Id = @"INV.11",
-            Type = @"Field",
-            Position = @"INV.11",
-            Name = @"Quantity Units",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the units of measure of the available quantity. If the units are ISO+ units, they should be recorded as single case abbreviations. If the units are ANS+ or L (local), the units and the source code table must be recorded, except that in this case, component delimiters should be replaced by sub-component delimiters. For example, ""l"" indicates liters, whereas pt&&ANS+ indicates pints (ANSI units). The default unit is milliliters (ml), which should be assumed if no units are reported.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (quantityUnits.field.FieldRepetitions != null && quantityUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(quantityUnits.Id));
-            quantityUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(quantityUnits, fieldData);
-        }
-
-        return quantityUnits;
-    } 
-}
-
-internal HL7V251Field expirationDateTime;
-
-public HL7V251Field ExpirationDateTime
-{
-    get
-    {
-        if (expirationDateTime != null)
-        {
-            return expirationDateTime;
-        }
-
-        expirationDateTime = new HL7V251Field
-        {
-            field = message[@"INV"][12],
-            Id = @"INV.12",
-            Type = @"Field",
-            Position = @"INV.12",
-            Name = @"Expiration Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the expiration date/time of the substance.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (expirationDateTime.field.FieldRepetitions != null && expirationDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(expirationDateTime.Id));
-            expirationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(expirationDateTime, fieldData);
-        }
-
-        return expirationDateTime;
-    } 
-}
-
-internal HL7V251Field firstUsedDateTime;
-
-public HL7V251Field FirstUsedDateTime
-{
-    get
-    {
-        if (firstUsedDateTime != null)
-        {
-            return firstUsedDateTime;
-        }
-
-        firstUsedDateTime = new HL7V251Field
-        {
-            field = message[@"INV"][13],
-            Id = @"INV.13",
-            Type = @"Field",
-            Position = @"INV.13",
-            Name = @"First Used Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the time and date when the substance was first used. This date and time can be necessary to determine the stability of the substance. The meaning of the ""first used"" element depends on the substance. In certain cases it means the time when the substance was put on board of the instrument or prepared (mixed), without actually using it in the analysis.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (firstUsedDateTime.field.FieldRepetitions != null && firstUsedDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(firstUsedDateTime.Id));
-            firstUsedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(firstUsedDateTime, fieldData);
-        }
-
-        return firstUsedDateTime;
-    } 
-}
-
-internal HL7V251Field onBoardStabilityDuration;
-
-public HL7V251Field OnBoardStabilityDuration
-{
-    get
-    {
-        if (onBoardStabilityDuration != null)
-        {
-            return onBoardStabilityDuration;
-        }
-
-        onBoardStabilityDuration = new HL7V251Field
-        {
-            field = message[@"INV"][14],
-            Id = @"INV.14",
-            Type = @"Field",
-            Position = @"INV.14",
-            Name = @"On Board Stability Duration",
-            Length = 200,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"TQ",
-            DataTypeName = @"Timing Quantity",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the time duration that the substance is stable. This field is left for backward compatibility only.  The TQ data type was deprecated.. The field INV-19 ""On board stability time"" should be used to represent this concept.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (onBoardStabilityDuration.field.FieldRepetitions != null && onBoardStabilityDuration.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(onBoardStabilityDuration.Id));
-            onBoardStabilityDuration.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(onBoardStabilityDuration, fieldData);
-        }
-
-        return onBoardStabilityDuration;
-    } 
-}
-
-internal HL7V251Field testFluidIdentifiers;
-
-public HL7V251Field TestFluidIdentifiers
-{
-    get
-    {
-        if (testFluidIdentifiers != null)
-        {
-            return testFluidIdentifiers;
-        }
-
-        testFluidIdentifiers = new HL7V251Field
-        {
-            field = message[@"INV"][15],
-            Id = @"INV.15",
-            Type = @"Field",
-            Position = @"INV.15",
-            Name = @"Test/Fluid Identifier(s)",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the list of tests and body fluid that apply to this substance. This is a repeating field. An empty field means that this substance is not test specific, i.e., it applies to all tests.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (testFluidIdentifiers.field.FieldRepetitions != null && testFluidIdentifiers.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(testFluidIdentifiers.Id));
-            testFluidIdentifiers.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(testFluidIdentifiers, fieldData);
-        }
-
-        return testFluidIdentifiers;
-    } 
-}
-
-internal HL7V251Field manufacturerLotNumber;
-
-public HL7V251Field ManufacturerLotNumber
-{
-    get
-    {
-        if (manufacturerLotNumber != null)
-        {
-            return manufacturerLotNumber;
-        }
-
-        manufacturerLotNumber = new HL7V251Field
-        {
-            field = message[@"INV"][16],
-            Id = @"INV.16",
-            Type = @"Field",
-            Position = @"INV.16",
-            Name = @"Manufacturer Lot Number",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the lot number assigned by the manufacturer during production of the substance.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (manufacturerLotNumber.field.FieldRepetitions != null && manufacturerLotNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(manufacturerLotNumber.Id));
-            manufacturerLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(manufacturerLotNumber, fieldData);
-        }
-
-        return manufacturerLotNumber;
-    } 
-}
-
-internal HL7V251Field manufacturerIdentifier;
-
-public HL7V251Field ManufacturerIdentifier
-{
-    get
-    {
-        if (manufacturerIdentifier != null)
-        {
-            return manufacturerIdentifier;
-        }
-
-        manufacturerIdentifier = new HL7V251Field
-        {
-            field = message[@"INV"][17],
-            Id = @"INV.17",
-            Type = @"Field",
-            Position = @"INV.17",
-            Name = @"Manufacturer Identifier",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0385",
-            TableName = @"Manufacturer identifier",
-            Description = @"This field identifies the manufacturer of this substance. Refer to User-defined Table 0385 - Manufacturer identifier for suggested values. Relevant external code systems may be used, e.g., HIBCC Manufacturers Labeler ID Code (LIC), UPC, NDC, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (manufacturerIdentifier.field.FieldRepetitions != null && manufacturerIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(manufacturerIdentifier.Id));
-            manufacturerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(manufacturerIdentifier, fieldData);
-        }
-
-        return manufacturerIdentifier;
-    } 
-}
-
-internal HL7V251Field supplierIdentifier;
-
-public HL7V251Field SupplierIdentifier
-{
-    get
-    {
-        if (supplierIdentifier != null)
-        {
-            return supplierIdentifier;
-        }
-
-        supplierIdentifier = new HL7V251Field
-        {
-            field = message[@"INV"][18],
-            Id = @"INV.18",
-            Type = @"Field",
-            Position = @"INV.18",
-            Name = @"Supplier Identifier",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0386",
-            TableName = @"Supplier identifier",
-            Description = @"This field identifies the supplier of this substance. Refer to User-defined Table 0386 - Supplier identifier for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (supplierIdentifier.field.FieldRepetitions != null && supplierIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(supplierIdentifier.Id));
-            supplierIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(supplierIdentifier, fieldData);
-        }
-
-        return supplierIdentifier;
-    } 
-}
-
-internal HL7V251Field onBoardStabilityTime;
-
-public HL7V251Field OnBoardStabilityTime
-{
-    get
-    {
-        if (onBoardStabilityTime != null)
-        {
-            return onBoardStabilityTime;
-        }
-
-        onBoardStabilityTime = new HL7V251Field
-        {
-            field = message[@"INV"][19],
-            Id = @"INV.19",
-            Type = @"Field",
-            Position = @"INV.19",
-            Name = @"On Board Stability Time",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity with Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the duration of time that the calibration / usability of the substance is stable. The duration is used to calculate the date / time when this calibration is no longer valid by adding this ""On board stability time"" (INV-19) to the ""First used date / time"" (INV-13).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (onBoardStabilityTime.field.FieldRepetitions != null && onBoardStabilityTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(onBoardStabilityTime.Id));
-            onBoardStabilityTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(onBoardStabilityTime, fieldData);
-        }
-
-        return onBoardStabilityTime;
-    } 
-}
-
-internal HL7V251Field targetValue;
-
-public HL7V251Field TargetValue
-{
-    get
-    {
-        if (targetValue != null)
-        {
-            return targetValue;
-        }
-
-        targetValue = new HL7V251Field
+        _targetValue = new HL7V251Field
         {
             field = message[@"INV"][20],
-            Id = @"INV.20",
-            Type = @"Field",
-            Position = @"INV.20",
-            Name = @"Target Value",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity with Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the target analytical value for a particular test for a specific lot of a manufactured material. Target values for QC purposes are usually selected for their relevance to a reference (normal) range or to a clinically significant decision level.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (targetValue.field.FieldRepetitions != null && targetValue.field.FieldRepetitions.Count > 0)
+        if (_targetValue.field.FieldRepetitions != null && _targetValue.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(targetValue.Id));
-            targetValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(targetValue, fieldData);
+            _targetValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_targetValue, fieldData);
         }
 
-        return targetValue;
+        return _targetValue;
     } 
 }
     }

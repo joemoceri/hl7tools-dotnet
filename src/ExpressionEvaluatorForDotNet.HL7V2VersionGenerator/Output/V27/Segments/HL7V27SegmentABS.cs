@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentABS(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _dischargeCareProvider;
+
+public HL7V27Field DischargeCareProvider
+{
+    get
+    {
+        if (_dischargeCareProvider != null)
+        {
+            return _dischargeCareProvider;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ABS.1",
+            Type = @"Field",
+            Position = @"ABS.1",
+            Name = @"Discharge Care Provider",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = @"0010",
+            TableName = @"Physician ID",
+            Description = @"Identification number of the provider responsible for the discharge of the patient from his/her care. Refer to User-defined Table 0010 - Physician ID in Chapter 3, ""Patient Administration"", for suggested values..",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ABS.1",
-                            Type = @"Field",
-                            Position = @"ABS.1",
-                            Name = @"Discharge Care Provider",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = @"0010",
-                            TableName = @"Physician ID",
-                            Description = @"Identification number of the provider responsible for the discharge of the patient from his/her care. Refer to User-defined Table 0010 - Physician ID in Chapter 3, ""Patient Administration"", for suggested values..",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ABS.1.1",
                             Type = @"Component",
@@ -2449,25 +2461,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dischargeCareProvider = new HL7V27Field
+        {
+            field = message[@"ABS"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dischargeCareProvider.field.FieldRepetitions != null && _dischargeCareProvider.field.FieldRepetitions.Count > 0)
+        {
+            _dischargeCareProvider.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_dischargeCareProvider, fieldData);
+        }
+
+        return _dischargeCareProvider;
+    } 
+}
+
+internal HL7V27Field _transferMedicalServiceCode;
+
+public HL7V27Field TransferMedicalServiceCode
+{
+    get
+    {
+        if (_transferMedicalServiceCode != null)
+        {
+            return _transferMedicalServiceCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ABS.2",
+            Type = @"Field",
+            Position = @"ABS.2",
+            Name = @"Transfer Medical Service Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0069",
+            TableName = @"Hospital Service",
+            Description = @"Medical code representing the patient’s medical services when they are transferred. Refer to User-defined Table 0069 - Hospital Service in Chapter 3, ""Patient Administration"", for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ABS.2",
-                            Type = @"Field",
-                            Position = @"ABS.2",
-                            Name = @"Transfer Medical Service Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0069",
-                            TableName = @"Hospital Service",
-                            Description = @"Medical code representing the patient’s medical services when they are transferred. Refer to User-defined Table 0069 - Hospital Service in Chapter 3, ""Patient Administration"", for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ABS.2.1",
                             Type = @"Component",
@@ -2893,25 +2935,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transferMedicalServiceCode = new HL7V27Field
+        {
+            field = message[@"ABS"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transferMedicalServiceCode.field.FieldRepetitions != null && _transferMedicalServiceCode.field.FieldRepetitions.Count > 0)
+        {
+            _transferMedicalServiceCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_transferMedicalServiceCode, fieldData);
+        }
+
+        return _transferMedicalServiceCode;
+    } 
+}
+
+internal HL7V27Field _severityOfIllnessCode;
+
+public HL7V27Field SeverityOfIllnessCode
+{
+    get
+    {
+        if (_severityOfIllnessCode != null)
+        {
+            return _severityOfIllnessCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ABS.3",
+            Type = @"Field",
+            Position = @"ABS.3",
+            Name = @"Severity Of Illness Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0421",
+            TableName = @"Severity of Illness Code",
+            Description = @"Code representing the ranking of a patient’s illness. Refer to User-defined Table 0421 - Severity of Illness Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ABS.3",
-                            Type = @"Field",
-                            Position = @"ABS.3",
-                            Name = @"Severity Of Illness Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0421",
-                            TableName = @"Severity of Illness Code",
-                            Description = @"Code representing the ranking of a patient’s illness. Refer to User-defined Table 0421 - Severity of Illness Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ABS.3.1",
                             Type = @"Component",
@@ -3337,43 +3409,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _severityOfIllnessCode = new HL7V27Field
+        {
+            field = message[@"ABS"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_severityOfIllnessCode.field.FieldRepetitions != null && _severityOfIllnessCode.field.FieldRepetitions.Count > 0)
+        {
+            _severityOfIllnessCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_severityOfIllnessCode, fieldData);
+        }
+
+        return _severityOfIllnessCode;
+    } 
+}
+
+internal HL7V27Field _dateTimeOfAttestation;
+
+public HL7V27Field DateTimeOfAttestation
+{
+    get
+    {
+        if (_dateTimeOfAttestation != null)
+        {
+            return _dateTimeOfAttestation;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ABS.4",
+            Type = @"Field",
+            Position = @"ABS.4",
+            Name = @"Date/Time Of Attestation",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"Date/time that the medical record was reviewed and accepted.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dateTimeOfAttestation = new HL7V27Field
+        {
+            field = message[@"ABS"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeOfAttestation.field.FieldRepetitions != null && _dateTimeOfAttestation.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeOfAttestation.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_dateTimeOfAttestation, fieldData);
+        }
+
+        return _dateTimeOfAttestation;
+    } 
+}
+
+internal HL7V27Field _attestedBy;
+
+public HL7V27Field AttestedBy
+{
+    get
+    {
+        if (_attestedBy != null)
+        {
+            return _attestedBy;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ABS.5",
+            Type = @"Field",
+            Position = @"ABS.5",
+            Name = @"Attested By",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"Identification number of the person (usually a provider) who reviewed and accepted the abstract of the medical record.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ABS.4",
-                            Type = @"Field",
-                            Position = @"ABS.4",
-                            Name = @"Date/Time Of Attestation",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Date/time that the medical record was reviewed and accepted.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ABS.5",
-                            Type = @"Field",
-                            Position = @"ABS.5",
-                            Name = @"Attested By",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identification number of the person (usually a provider) who reviewed and accepted the abstract of the medical record.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ABS.5.1",
                             Type = @"Component",
@@ -5772,25 +5901,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _attestedBy = new HL7V27Field
+        {
+            field = message[@"ABS"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_attestedBy.field.FieldRepetitions != null && _attestedBy.field.FieldRepetitions.Count > 0)
+        {
+            _attestedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_attestedBy, fieldData);
+        }
+
+        return _attestedBy;
+    } 
+}
+
+internal HL7V27Field _triageCode;
+
+public HL7V27Field TriageCode
+{
+    get
+    {
+        if (_triageCode != null)
+        {
+            return _triageCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ABS.6",
+            Type = @"Field",
+            Position = @"ABS.6",
+            Name = @"Triage Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0422",
+            TableName = @"Triage Code",
+            Description = @"Code representing a patient’s prioritization within the context of this abstract. Refer to User-defined Table 0422 - Triage Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ABS.6",
-                            Type = @"Field",
-                            Position = @"ABS.6",
-                            Name = @"Triage Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0422",
-                            TableName = @"Triage Code",
-                            Description = @"Code representing a patient’s prioritization within the context of this abstract. Refer to User-defined Table 0422 - Triage Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ABS.6.1",
                             Type = @"Component",
@@ -6216,43 +6375,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _triageCode = new HL7V27Field
+        {
+            field = message[@"ABS"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_triageCode.field.FieldRepetitions != null && _triageCode.field.FieldRepetitions.Count > 0)
+        {
+            _triageCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_triageCode, fieldData);
+        }
+
+        return _triageCode;
+    } 
+}
+
+internal HL7V27Field _abstractCompletionDateTime;
+
+public HL7V27Field AbstractCompletionDateTime
+{
+    get
+    {
+        if (_abstractCompletionDateTime != null)
+        {
+            return _abstractCompletionDateTime;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ABS.7",
+            Type = @"Field",
+            Position = @"ABS.7",
+            Name = @"Abstract Completion Date/Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"Date/time the abstraction was completed.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _abstractCompletionDateTime = new HL7V27Field
+        {
+            field = message[@"ABS"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_abstractCompletionDateTime.field.FieldRepetitions != null && _abstractCompletionDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _abstractCompletionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_abstractCompletionDateTime, fieldData);
+        }
+
+        return _abstractCompletionDateTime;
+    } 
+}
+
+internal HL7V27Field _abstractedBy;
+
+public HL7V27Field AbstractedBy
+{
+    get
+    {
+        if (_abstractedBy != null)
+        {
+            return _abstractedBy;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ABS.8",
+            Type = @"Field",
+            Position = @"ABS.8",
+            Name = @"Abstracted By",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"Identification number of the person completing the Abstract.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ABS.7",
-                            Type = @"Field",
-                            Position = @"ABS.7",
-                            Name = @"Abstract Completion Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Date/time the abstraction was completed.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ABS.8",
-                            Type = @"Field",
-                            Position = @"ABS.8",
-                            Name = @"Abstracted By",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identification number of the person completing the Abstract.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ABS.8.1",
                             Type = @"Component",
@@ -8651,25 +8867,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _abstractedBy = new HL7V27Field
+        {
+            field = message[@"ABS"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_abstractedBy.field.FieldRepetitions != null && _abstractedBy.field.FieldRepetitions.Count > 0)
+        {
+            _abstractedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_abstractedBy, fieldData);
+        }
+
+        return _abstractedBy;
+    } 
+}
+
+internal HL7V27Field _caseCategoryCode;
+
+public HL7V27Field CaseCategoryCode
+{
+    get
+    {
+        if (_caseCategoryCode != null)
+        {
+            return _caseCategoryCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ABS.9",
+            Type = @"Field",
+            Position = @"ABS.9",
+            Name = @"Case Category Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0423",
+            TableName = @"Case Category Code",
+            Description = @"Code indicating the reason a non-urgent patient presents to the Emergency Room for treatment instead of a clinic or physician office. Refer to User-defined Table 0423 - Case Category Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ABS.9",
-                            Type = @"Field",
-                            Position = @"ABS.9",
-                            Name = @"Case Category Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0423",
-                            TableName = @"Case Category Code",
-                            Description = @"Code indicating the reason a non-urgent patient presents to the Emergency Room for treatment instead of a clinic or physician office. Refer to User-defined Table 0423 - Case Category Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ABS.9.1",
                             Type = @"Component",
@@ -9095,45 +9341,102 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ABS.10",
-                            Type = @"Field",
-                            Position = @"ABS.10",
-                            Name = @"Caesarian Section Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"Indicates if the delivery was by Caesarian Section. Refer to HL7 Table 0136 - Yes/no Indicator in Chapter 2C, ""Code Tables"", for valid values.
+                        }
+        }
+
+        _caseCategoryCode = new HL7V27Field
+        {
+            field = message[@"ABS"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_caseCategoryCode.field.FieldRepetitions != null && _caseCategoryCode.field.FieldRepetitions.Count > 0)
+        {
+            _caseCategoryCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_caseCategoryCode, fieldData);
+        }
+
+        return _caseCategoryCode;
+    } 
+}
+
+internal HL7V27Field _caesarianSectionIndicator;
+
+public HL7V27Field CaesarianSectionIndicator
+{
+    get
+    {
+        if (_caesarianSectionIndicator != null)
+        {
+            return _caesarianSectionIndicator;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ABS.10",
+            Type = @"Field",
+            Position = @"ABS.10",
+            Name = @"Caesarian Section Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"Indicates if the delivery was by Caesarian Section. Refer to HL7 Table 0136 - Yes/no Indicator in Chapter 2C, ""Code Tables"", for valid values.
 Y - Delivery was by Caesarian Section.
 N - Delivery was not by Caesarian Section.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _caesarianSectionIndicator = new HL7V27Field
+        {
+            field = message[@"ABS"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_caesarianSectionIndicator.field.FieldRepetitions != null && _caesarianSectionIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _caesarianSectionIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_caesarianSectionIndicator, fieldData);
+        }
+
+        return _caesarianSectionIndicator;
+    } 
+}
+
+internal HL7V27Field _gestationCategoryCode;
+
+public HL7V27Field GestationCategoryCode
+{
+    get
+    {
+        if (_gestationCategoryCode != null)
+        {
+            return _gestationCategoryCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ABS.11",
+            Type = @"Field",
+            Position = @"ABS.11",
+            Name = @"Gestation Category Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0424",
+            TableName = @"Gestation Category Code",
+            Description = @"The gestation category code is used to indicate the status of the birth in relation to the gestation. Refer to User-defined Table 0424 - Gestation Category Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ABS.11",
-                            Type = @"Field",
-                            Position = @"ABS.11",
-                            Name = @"Gestation Category Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0424",
-                            TableName = @"Gestation Category Code",
-                            Description = @"The gestation category code is used to indicate the status of the birth in relation to the gestation. Refer to User-defined Table 0424 - Gestation Category Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ABS.11.1",
                             Type = @"Component",
@@ -9559,43 +9862,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _gestationCategoryCode = new HL7V27Field
+        {
+            field = message[@"ABS"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_gestationCategoryCode.field.FieldRepetitions != null && _gestationCategoryCode.field.FieldRepetitions.Count > 0)
+        {
+            _gestationCategoryCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_gestationCategoryCode, fieldData);
+        }
+
+        return _gestationCategoryCode;
+    } 
+}
+
+internal HL7V27Field _gestationPeriodWeeks;
+
+public HL7V27Field GestationPeriodWeeks
+{
+    get
+    {
+        if (_gestationPeriodWeeks != null)
+        {
+            return _gestationPeriodWeeks;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ABS.12",
+            Type = @"Field",
+            Position = @"ABS.12",
+            Name = @"Gestation Period - Weeks",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Newborn’s gestation period expressed as a number of weeks.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _gestationPeriodWeeks = new HL7V27Field
+        {
+            field = message[@"ABS"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_gestationPeriodWeeks.field.FieldRepetitions != null && _gestationPeriodWeeks.field.FieldRepetitions.Count > 0)
+        {
+            _gestationPeriodWeeks.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_gestationPeriodWeeks, fieldData);
+        }
+
+        return _gestationPeriodWeeks;
+    } 
+}
+
+internal HL7V27Field _newbornCode;
+
+public HL7V27Field NewbornCode
+{
+    get
+    {
+        if (_newbornCode != null)
+        {
+            return _newbornCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"ABS.13",
+            Type = @"Field",
+            Position = @"ABS.13",
+            Name = @"Newborn Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0425",
+            TableName = @"Newborn Code",
+            Description = @"The newborn code is used to indicate whether the baby was born in or out of the facility. Refer to User-defined Table 0425 - Newborn Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ABS.12",
-                            Type = @"Field",
-                            Position = @"ABS.12",
-                            Name = @"Gestation Period - Weeks",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Newborn’s gestation period expressed as a number of weeks.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ABS.13",
-                            Type = @"Field",
-                            Position = @"ABS.13",
-                            Name = @"Newborn Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0425",
-                            TableName = @"Newborn Code",
-                            Description = @"The newborn code is used to indicate whether the baby was born in or out of the facility. Refer to User-defined Table 0425 - Newborn Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ABS.13.1",
                             Type = @"Component",
@@ -10021,586 +10381,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ABS.14",
-                            Type = @"Field",
-                            Position = @"ABS.14",
-                            Name = @"Stillborn Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"Indicates whether or not a newborn was stillborn. Refer to HL7 Table 0136 - Yes/no Indicator in Chapter 2C, ""Code Tables"", for valid values.
-Y - Stillborn.
-N - Not stillborn.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentABS(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field dischargeCareProvider;
-
-public HL7V27Field DischargeCareProvider
-{
-    get
-    {
-        if (dischargeCareProvider != null)
-        {
-            return dischargeCareProvider;
-        }
-
-        dischargeCareProvider = new HL7V27Field
-        {
-            field = message[@"ABS"][1],
-            Id = @"ABS.1",
-            Type = @"Field",
-            Position = @"ABS.1",
-            Name = @"Discharge Care Provider",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = @"0010",
-            TableName = @"Physician ID",
-            Description = @"Identification number of the provider responsible for the discharge of the patient from his/her care. Refer to User-defined Table 0010 - Physician ID in Chapter 3, ""Patient Administration"", for suggested values..",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dischargeCareProvider.field.FieldRepetitions != null && dischargeCareProvider.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dischargeCareProvider.Id));
-            dischargeCareProvider.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(dischargeCareProvider, fieldData);
-        }
-
-        return dischargeCareProvider;
-    } 
-}
-
-internal HL7V27Field transferMedicalServiceCode;
-
-public HL7V27Field TransferMedicalServiceCode
-{
-    get
-    {
-        if (transferMedicalServiceCode != null)
-        {
-            return transferMedicalServiceCode;
-        }
-
-        transferMedicalServiceCode = new HL7V27Field
-        {
-            field = message[@"ABS"][2],
-            Id = @"ABS.2",
-            Type = @"Field",
-            Position = @"ABS.2",
-            Name = @"Transfer Medical Service Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0069",
-            TableName = @"Hospital Service",
-            Description = @"Medical code representing the patient’s medical services when they are transferred. Refer to User-defined Table 0069 - Hospital Service in Chapter 3, ""Patient Administration"", for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transferMedicalServiceCode.field.FieldRepetitions != null && transferMedicalServiceCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transferMedicalServiceCode.Id));
-            transferMedicalServiceCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(transferMedicalServiceCode, fieldData);
-        }
-
-        return transferMedicalServiceCode;
-    } 
-}
-
-internal HL7V27Field severityOfIllnessCode;
-
-public HL7V27Field SeverityOfIllnessCode
-{
-    get
-    {
-        if (severityOfIllnessCode != null)
-        {
-            return severityOfIllnessCode;
-        }
-
-        severityOfIllnessCode = new HL7V27Field
-        {
-            field = message[@"ABS"][3],
-            Id = @"ABS.3",
-            Type = @"Field",
-            Position = @"ABS.3",
-            Name = @"Severity Of Illness Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0421",
-            TableName = @"Severity of Illness Code",
-            Description = @"Code representing the ranking of a patient’s illness. Refer to User-defined Table 0421 - Severity of Illness Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (severityOfIllnessCode.field.FieldRepetitions != null && severityOfIllnessCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(severityOfIllnessCode.Id));
-            severityOfIllnessCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(severityOfIllnessCode, fieldData);
-        }
-
-        return severityOfIllnessCode;
-    } 
-}
-
-internal HL7V27Field dateTimeOfAttestation;
-
-public HL7V27Field DateTimeOfAttestation
-{
-    get
-    {
-        if (dateTimeOfAttestation != null)
-        {
-            return dateTimeOfAttestation;
-        }
-
-        dateTimeOfAttestation = new HL7V27Field
-        {
-            field = message[@"ABS"][4],
-            Id = @"ABS.4",
-            Type = @"Field",
-            Position = @"ABS.4",
-            Name = @"Date/Time Of Attestation",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"Date/time that the medical record was reviewed and accepted.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeOfAttestation.field.FieldRepetitions != null && dateTimeOfAttestation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeOfAttestation.Id));
-            dateTimeOfAttestation.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(dateTimeOfAttestation, fieldData);
-        }
-
-        return dateTimeOfAttestation;
-    } 
-}
-
-internal HL7V27Field attestedBy;
-
-public HL7V27Field AttestedBy
-{
-    get
-    {
-        if (attestedBy != null)
-        {
-            return attestedBy;
-        }
-
-        attestedBy = new HL7V27Field
-        {
-            field = message[@"ABS"][5],
-            Id = @"ABS.5",
-            Type = @"Field",
-            Position = @"ABS.5",
-            Name = @"Attested By",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"Identification number of the person (usually a provider) who reviewed and accepted the abstract of the medical record.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (attestedBy.field.FieldRepetitions != null && attestedBy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(attestedBy.Id));
-            attestedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(attestedBy, fieldData);
-        }
-
-        return attestedBy;
-    } 
-}
-
-internal HL7V27Field triageCode;
-
-public HL7V27Field TriageCode
-{
-    get
-    {
-        if (triageCode != null)
-        {
-            return triageCode;
-        }
-
-        triageCode = new HL7V27Field
-        {
-            field = message[@"ABS"][6],
-            Id = @"ABS.6",
-            Type = @"Field",
-            Position = @"ABS.6",
-            Name = @"Triage Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0422",
-            TableName = @"Triage Code",
-            Description = @"Code representing a patient’s prioritization within the context of this abstract. Refer to User-defined Table 0422 - Triage Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (triageCode.field.FieldRepetitions != null && triageCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(triageCode.Id));
-            triageCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(triageCode, fieldData);
-        }
-
-        return triageCode;
-    } 
-}
-
-internal HL7V27Field abstractCompletionDateTime;
-
-public HL7V27Field AbstractCompletionDateTime
-{
-    get
-    {
-        if (abstractCompletionDateTime != null)
-        {
-            return abstractCompletionDateTime;
-        }
-
-        abstractCompletionDateTime = new HL7V27Field
-        {
-            field = message[@"ABS"][7],
-            Id = @"ABS.7",
-            Type = @"Field",
-            Position = @"ABS.7",
-            Name = @"Abstract Completion Date/Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"Date/time the abstraction was completed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (abstractCompletionDateTime.field.FieldRepetitions != null && abstractCompletionDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(abstractCompletionDateTime.Id));
-            abstractCompletionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(abstractCompletionDateTime, fieldData);
-        }
-
-        return abstractCompletionDateTime;
-    } 
-}
-
-internal HL7V27Field abstractedBy;
-
-public HL7V27Field AbstractedBy
-{
-    get
-    {
-        if (abstractedBy != null)
-        {
-            return abstractedBy;
-        }
-
-        abstractedBy = new HL7V27Field
-        {
-            field = message[@"ABS"][8],
-            Id = @"ABS.8",
-            Type = @"Field",
-            Position = @"ABS.8",
-            Name = @"Abstracted By",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"Identification number of the person completing the Abstract.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (abstractedBy.field.FieldRepetitions != null && abstractedBy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(abstractedBy.Id));
-            abstractedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(abstractedBy, fieldData);
-        }
-
-        return abstractedBy;
-    } 
-}
-
-internal HL7V27Field caseCategoryCode;
-
-public HL7V27Field CaseCategoryCode
-{
-    get
-    {
-        if (caseCategoryCode != null)
-        {
-            return caseCategoryCode;
-        }
-
-        caseCategoryCode = new HL7V27Field
-        {
-            field = message[@"ABS"][9],
-            Id = @"ABS.9",
-            Type = @"Field",
-            Position = @"ABS.9",
-            Name = @"Case Category Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0423",
-            TableName = @"Case Category Code",
-            Description = @"Code indicating the reason a non-urgent patient presents to the Emergency Room for treatment instead of a clinic or physician office. Refer to User-defined Table 0423 - Case Category Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (caseCategoryCode.field.FieldRepetitions != null && caseCategoryCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(caseCategoryCode.Id));
-            caseCategoryCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(caseCategoryCode, fieldData);
-        }
-
-        return caseCategoryCode;
-    } 
-}
-
-internal HL7V27Field caesarianSectionIndicator;
-
-public HL7V27Field CaesarianSectionIndicator
-{
-    get
-    {
-        if (caesarianSectionIndicator != null)
-        {
-            return caesarianSectionIndicator;
-        }
-
-        caesarianSectionIndicator = new HL7V27Field
-        {
-            field = message[@"ABS"][10],
-            Id = @"ABS.10",
-            Type = @"Field",
-            Position = @"ABS.10",
-            Name = @"Caesarian Section Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"Indicates if the delivery was by Caesarian Section. Refer to HL7 Table 0136 - Yes/no Indicator in Chapter 2C, ""Code Tables"", for valid values.
-Y - Delivery was by Caesarian Section.
-N - Delivery was not by Caesarian Section.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (caesarianSectionIndicator.field.FieldRepetitions != null && caesarianSectionIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(caesarianSectionIndicator.Id));
-            caesarianSectionIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(caesarianSectionIndicator, fieldData);
-        }
-
-        return caesarianSectionIndicator;
-    } 
-}
-
-internal HL7V27Field gestationCategoryCode;
-
-public HL7V27Field GestationCategoryCode
-{
-    get
-    {
-        if (gestationCategoryCode != null)
-        {
-            return gestationCategoryCode;
-        }
-
-        gestationCategoryCode = new HL7V27Field
-        {
-            field = message[@"ABS"][11],
-            Id = @"ABS.11",
-            Type = @"Field",
-            Position = @"ABS.11",
-            Name = @"Gestation Category Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0424",
-            TableName = @"Gestation Category Code",
-            Description = @"The gestation category code is used to indicate the status of the birth in relation to the gestation. Refer to User-defined Table 0424 - Gestation Category Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (gestationCategoryCode.field.FieldRepetitions != null && gestationCategoryCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(gestationCategoryCode.Id));
-            gestationCategoryCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(gestationCategoryCode, fieldData);
-        }
-
-        return gestationCategoryCode;
-    } 
-}
-
-internal HL7V27Field gestationPeriodWeeks;
-
-public HL7V27Field GestationPeriodWeeks
-{
-    get
-    {
-        if (gestationPeriodWeeks != null)
-        {
-            return gestationPeriodWeeks;
-        }
-
-        gestationPeriodWeeks = new HL7V27Field
-        {
-            field = message[@"ABS"][12],
-            Id = @"ABS.12",
-            Type = @"Field",
-            Position = @"ABS.12",
-            Name = @"Gestation Period - Weeks",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Newborn’s gestation period expressed as a number of weeks.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (gestationPeriodWeeks.field.FieldRepetitions != null && gestationPeriodWeeks.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(gestationPeriodWeeks.Id));
-            gestationPeriodWeeks.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(gestationPeriodWeeks, fieldData);
-        }
-
-        return gestationPeriodWeeks;
-    } 
-}
-
-internal HL7V27Field newbornCode;
-
-public HL7V27Field NewbornCode
-{
-    get
-    {
-        if (newbornCode != null)
-        {
-            return newbornCode;
-        }
-
-        newbornCode = new HL7V27Field
+        _newbornCode = new HL7V27Field
         {
             field = message[@"ABS"][13],
-            Id = @"ABS.13",
-            Type = @"Field",
-            Position = @"ABS.13",
-            Name = @"Newborn Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0425",
-            TableName = @"Newborn Code",
-            Description = @"The newborn code is used to indicate whether the baby was born in or out of the facility. Refer to User-defined Table 0425 - Newborn Code for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (newbornCode.field.FieldRepetitions != null && newbornCode.field.FieldRepetitions.Count > 0)
+        if (_newbornCode.field.FieldRepetitions != null && _newbornCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(newbornCode.Id));
-            newbornCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(newbornCode, fieldData);
+            _newbornCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_newbornCode, fieldData);
         }
 
-        return newbornCode;
+        return _newbornCode;
     } 
 }
 
-internal HL7V27Field stillbornIndicator;
+internal HL7V27Field _stillbornIndicator;
 
 public HL7V27Field StillbornIndicator
 {
     get
     {
-        if (stillbornIndicator != null)
+        if (_stillbornIndicator != null)
         {
-            return stillbornIndicator;
+            return _stillbornIndicator;
         }
 
-        stillbornIndicator = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"ABS"][14],
             Id = @"ABS.14",
             Type = @"Field",
             Position = @"ABS.14",
@@ -10616,17 +10429,22 @@ public HL7V27Field StillbornIndicator
 Y - Stillborn.
 N - Not stillborn.",
             Sample = @"",
+            Fields = null
+        }
+
+        _stillbornIndicator = new HL7V27Field
+        {
+            field = message[@"ABS"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (stillbornIndicator.field.FieldRepetitions != null && stillbornIndicator.field.FieldRepetitions.Count > 0)
+        if (_stillbornIndicator.field.FieldRepetitions != null && _stillbornIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(stillbornIndicator.Id));
-            stillbornIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(stillbornIndicator, fieldData);
+            _stillbornIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_stillbornIndicator, fieldData);
         }
 
-        return stillbornIndicator;
+        return _stillbornIndicator;
     } 
 }
     }

@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_05",
+
                     };
             } 
         }
@@ -53,6 +54,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Match on Social Security Number",
                             Comment = null
                         },
+                        
                     };
             } 
         }

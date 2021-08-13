@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -47,6 +48,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"hexadecimal encoding - consecutive pairs of hexadecimal digits represent consecutive single octets.",
                             Comment = null
                         },
+                        
                     };
             } 
         }

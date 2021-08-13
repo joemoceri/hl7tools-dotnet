@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentIPR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _iprIdentifier;
+
+public HL7V28Field IprIdentifier
+{
+    get
+    {
+        if (_iprIdentifier != null)
+        {
+            return _iprIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"IPR.1",
+            Type = @"Field",
+            Position = @"IPR.1",
+            Name = @"Ipr Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique IPR Number assigned by the Payer Application.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"IPR.1",
-                            Type = @"Field",
-                            Position = @"IPR.1",
-                            Name = @"Ipr Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique IPR Number assigned by the Payer Application.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IPR.1.1",
                             Type = @"Component",
@@ -126,25 +138,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _iprIdentifier = new HL7V28Field
+        {
+            field = message[@"IPR"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_iprIdentifier.field.FieldRepetitions != null && _iprIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _iprIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_iprIdentifier, fieldData);
+        }
+
+        return _iprIdentifier;
+    } 
+}
+
+internal HL7V28Field _providerCrossReferenceIdentifier;
+
+public HL7V28Field ProviderCrossReferenceIdentifier
+{
+    get
+    {
+        if (_providerCrossReferenceIdentifier != null)
+        {
+            return _providerCrossReferenceIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"IPR.2",
+            Type = @"Field",
+            Position = @"IPR.2",
+            Name = @"Provider Cross Reference Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Cross reference to Provider Product/Service Group Number or Provider Product/Service Line Item Number from original Invoice.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IPR.2",
-                            Type = @"Field",
-                            Position = @"IPR.2",
-                            Name = @"Provider Cross Reference Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Cross reference to Provider Product/Service Group Number or Provider Product/Service Line Item Number from original Invoice.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IPR.2.1",
                             Type = @"Component",
@@ -220,25 +262,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerCrossReferenceIdentifier = new HL7V28Field
+        {
+            field = message[@"IPR"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerCrossReferenceIdentifier.field.FieldRepetitions != null && _providerCrossReferenceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _providerCrossReferenceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_providerCrossReferenceIdentifier, fieldData);
+        }
+
+        return _providerCrossReferenceIdentifier;
+    } 
+}
+
+internal HL7V28Field _payerCrossReferenceIdentifier;
+
+public HL7V28Field PayerCrossReferenceIdentifier
+{
+    get
+    {
+        if (_payerCrossReferenceIdentifier != null)
+        {
+            return _payerCrossReferenceIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"IPR.3",
+            Type = @"Field",
+            Position = @"IPR.3",
+            Name = @"Payer Cross Reference Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Cross reference to Payer Product/Service Group Number or Payer Product/Service Line Item Number from original Invoice.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IPR.3",
-                            Type = @"Field",
-                            Position = @"IPR.3",
-                            Name = @"Payer Cross Reference Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Cross reference to Payer Product/Service Group Number or Payer Product/Service Line Item Number from original Invoice.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IPR.3.1",
                             Type = @"Component",
@@ -314,27 +386,57 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IPR.4",
-                            Type = @"Field",
-                            Position = @"IPR.4",
-                            Name = @"Ipr Status",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0571",
-                            TableName = @"Invoice Processing Results Status",
-                            Description = @"Processing status for the Product/Service Group (if Adjudicate as Group = ""Y"") or Product/Service Line Item.  Refer to User-defined Table 0571 – Invoice Processing Results Status in Chapter 2C, Code Tables, for suggested values.
+                        }
+        }
+
+        _payerCrossReferenceIdentifier = new HL7V28Field
+        {
+            field = message[@"IPR"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payerCrossReferenceIdentifier.field.FieldRepetitions != null && _payerCrossReferenceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _payerCrossReferenceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_payerCrossReferenceIdentifier, fieldData);
+        }
+
+        return _payerCrossReferenceIdentifier;
+    } 
+}
+
+internal HL7V28Field _iprStatus;
+
+public HL7V28Field IprStatus
+{
+    get
+    {
+        if (_iprStatus != null)
+        {
+            return _iprStatus;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"IPR.4",
+            Type = @"Field",
+            Position = @"IPR.4",
+            Name = @"Ipr Status",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0571",
+            TableName = @"Invoice Processing Results Status",
+            Description = @"Processing status for the Product/Service Group (if Adjudicate as Group = ""Y"") or Product/Service Line Item.  Refer to User-defined Table 0571 – Invoice Processing Results Status in Chapter 2C, Code Tables, for suggested values.
 
 The referenced status codes represent status codes for an IPR (Invoice Processing Result).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"IPR.4.1",
                             Type = @"Component",
@@ -762,43 +864,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _iprStatus = new HL7V28Field
+        {
+            field = message[@"IPR"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_iprStatus.field.FieldRepetitions != null && _iprStatus.field.FieldRepetitions.Count > 0)
+        {
+            _iprStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_iprStatus, fieldData);
+        }
+
+        return _iprStatus;
+    } 
+}
+
+internal HL7V28Field _iprDateTime;
+
+public HL7V28Field IprDateTime
+{
+    get
+    {
+        if (_iprDateTime != null)
+        {
+            return _iprDateTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"IPR.5",
+            Type = @"Field",
+            Position = @"IPR.5",
+            Name = @"Ipr Date/Time",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"Date/Time IPR was created. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _iprDateTime = new HL7V28Field
+        {
+            field = message[@"IPR"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_iprDateTime.field.FieldRepetitions != null && _iprDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _iprDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_iprDateTime, fieldData);
+        }
+
+        return _iprDateTime;
+    } 
+}
+
+internal HL7V28Field _adjudicatedPaidAmount;
+
+public HL7V28Field AdjudicatedPaidAmount
+{
+    get
+    {
+        if (_adjudicatedPaidAmount != null)
+        {
+            return _adjudicatedPaidAmount;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"IPR.6",
+            Type = @"Field",
+            Position = @"IPR.6",
+            Name = @"Adjudicated/Paid Amount",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Adjudicated Amount for the Product/Service Group or Product/Service Line Item, which could be 0 = sum of all Payer adjustments (Adjustment Amount on ADJ).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IPR.5",
-                            Type = @"Field",
-                            Position = @"IPR.5",
-                            Name = @"Ipr Date/Time",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Date/Time IPR was created. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IPR.6",
-                            Type = @"Field",
-                            Position = @"IPR.6",
-                            Name = @"Adjudicated/Paid Amount",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Adjudicated Amount for the Product/Service Group or Product/Service Line Item, which could be 0 = sum of all Payer adjustments (Adjustment Amount on ADJ).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IPR.6.1",
                             Type = @"Component",
@@ -1375,317 +1534,39 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IPR.7",
-                            Type = @"Field",
-                            Position = @"IPR.7",
-                            Name = @"Expected Payment Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Date payment is expected for this IPR.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IPR.8",
-                            Type = @"Field",
-                            Position = @"IPR.8",
-                            Name = @"Ipr Checksum",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Conditional, if Status = ""Accepted"", then Required, else Not Permitted.
-
-The field contains a checksum generated by the first Payer (referenced by Payer Organization in the IVC Segment) to ensure that the contents of IPR have not been altered before sending to subsequent Payers.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentIPR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field iprIdentifier;
-
-public HL7V28Field IprIdentifier
-{
-    get
-    {
-        if (iprIdentifier != null)
-        {
-            return iprIdentifier;
-        }
-
-        iprIdentifier = new HL7V28Field
-        {
-            field = message[@"IPR"][1],
-            Id = @"IPR.1",
-            Type = @"Field",
-            Position = @"IPR.1",
-            Name = @"Ipr Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique IPR Number assigned by the Payer Application.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (iprIdentifier.field.FieldRepetitions != null && iprIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(iprIdentifier.Id));
-            iprIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(iprIdentifier, fieldData);
-        }
-
-        return iprIdentifier;
-    } 
-}
-
-internal HL7V28Field providerCrossReferenceIdentifier;
-
-public HL7V28Field ProviderCrossReferenceIdentifier
-{
-    get
-    {
-        if (providerCrossReferenceIdentifier != null)
-        {
-            return providerCrossReferenceIdentifier;
-        }
-
-        providerCrossReferenceIdentifier = new HL7V28Field
-        {
-            field = message[@"IPR"][2],
-            Id = @"IPR.2",
-            Type = @"Field",
-            Position = @"IPR.2",
-            Name = @"Provider Cross Reference Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Cross reference to Provider Product/Service Group Number or Provider Product/Service Line Item Number from original Invoice.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerCrossReferenceIdentifier.field.FieldRepetitions != null && providerCrossReferenceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerCrossReferenceIdentifier.Id));
-            providerCrossReferenceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(providerCrossReferenceIdentifier, fieldData);
-        }
-
-        return providerCrossReferenceIdentifier;
-    } 
-}
-
-internal HL7V28Field payerCrossReferenceIdentifier;
-
-public HL7V28Field PayerCrossReferenceIdentifier
-{
-    get
-    {
-        if (payerCrossReferenceIdentifier != null)
-        {
-            return payerCrossReferenceIdentifier;
-        }
-
-        payerCrossReferenceIdentifier = new HL7V28Field
-        {
-            field = message[@"IPR"][3],
-            Id = @"IPR.3",
-            Type = @"Field",
-            Position = @"IPR.3",
-            Name = @"Payer Cross Reference Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Cross reference to Payer Product/Service Group Number or Payer Product/Service Line Item Number from original Invoice.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payerCrossReferenceIdentifier.field.FieldRepetitions != null && payerCrossReferenceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payerCrossReferenceIdentifier.Id));
-            payerCrossReferenceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(payerCrossReferenceIdentifier, fieldData);
-        }
-
-        return payerCrossReferenceIdentifier;
-    } 
-}
-
-internal HL7V28Field iprStatus;
-
-public HL7V28Field IprStatus
-{
-    get
-    {
-        if (iprStatus != null)
-        {
-            return iprStatus;
-        }
-
-        iprStatus = new HL7V28Field
-        {
-            field = message[@"IPR"][4],
-            Id = @"IPR.4",
-            Type = @"Field",
-            Position = @"IPR.4",
-            Name = @"Ipr Status",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0571",
-            TableName = @"Invoice Processing Results Status",
-            Description = @"Processing status for the Product/Service Group (if Adjudicate as Group = ""Y"") or Product/Service Line Item.  Refer to User-defined Table 0571 – Invoice Processing Results Status in Chapter 2C, Code Tables, for suggested values.
-
-The referenced status codes represent status codes for an IPR (Invoice Processing Result).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (iprStatus.field.FieldRepetitions != null && iprStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(iprStatus.Id));
-            iprStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(iprStatus, fieldData);
-        }
-
-        return iprStatus;
-    } 
-}
-
-internal HL7V28Field iprDateTime;
-
-public HL7V28Field IprDateTime
-{
-    get
-    {
-        if (iprDateTime != null)
-        {
-            return iprDateTime;
-        }
-
-        iprDateTime = new HL7V28Field
-        {
-            field = message[@"IPR"][5],
-            Id = @"IPR.5",
-            Type = @"Field",
-            Position = @"IPR.5",
-            Name = @"Ipr Date/Time",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"Date/Time IPR was created. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (iprDateTime.field.FieldRepetitions != null && iprDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(iprDateTime.Id));
-            iprDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(iprDateTime, fieldData);
-        }
-
-        return iprDateTime;
-    } 
-}
-
-internal HL7V28Field adjudicatedPaidAmount;
-
-public HL7V28Field AdjudicatedPaidAmount
-{
-    get
-    {
-        if (adjudicatedPaidAmount != null)
-        {
-            return adjudicatedPaidAmount;
-        }
-
-        adjudicatedPaidAmount = new HL7V28Field
+        _adjudicatedPaidAmount = new HL7V28Field
         {
             field = message[@"IPR"][6],
-            Id = @"IPR.6",
-            Type = @"Field",
-            Position = @"IPR.6",
-            Name = @"Adjudicated/Paid Amount",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Adjudicated Amount for the Product/Service Group or Product/Service Line Item, which could be 0 = sum of all Payer adjustments (Adjustment Amount on ADJ).",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (adjudicatedPaidAmount.field.FieldRepetitions != null && adjudicatedPaidAmount.field.FieldRepetitions.Count > 0)
+        if (_adjudicatedPaidAmount.field.FieldRepetitions != null && _adjudicatedPaidAmount.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(adjudicatedPaidAmount.Id));
-            adjudicatedPaidAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(adjudicatedPaidAmount, fieldData);
+            _adjudicatedPaidAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_adjudicatedPaidAmount, fieldData);
         }
 
-        return adjudicatedPaidAmount;
+        return _adjudicatedPaidAmount;
     } 
 }
 
-internal HL7V28Field expectedPaymentDateTime;
+internal HL7V28Field _expectedPaymentDateTime;
 
 public HL7V28Field ExpectedPaymentDateTime
 {
     get
     {
-        if (expectedPaymentDateTime != null)
+        if (_expectedPaymentDateTime != null)
         {
-            return expectedPaymentDateTime;
+            return _expectedPaymentDateTime;
         }
 
-        expectedPaymentDateTime = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"IPR"][7],
             Id = @"IPR.7",
             Type = @"Field",
             Position = @"IPR.7",
@@ -1699,34 +1580,38 @@ public HL7V28Field ExpectedPaymentDateTime
             TableName = null,
             Description = @"Date payment is expected for this IPR.",
             Sample = @"",
+            Fields = null
+        }
+
+        _expectedPaymentDateTime = new HL7V28Field
+        {
+            field = message[@"IPR"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (expectedPaymentDateTime.field.FieldRepetitions != null && expectedPaymentDateTime.field.FieldRepetitions.Count > 0)
+        if (_expectedPaymentDateTime.field.FieldRepetitions != null && _expectedPaymentDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(expectedPaymentDateTime.Id));
-            expectedPaymentDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(expectedPaymentDateTime, fieldData);
+            _expectedPaymentDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_expectedPaymentDateTime, fieldData);
         }
 
-        return expectedPaymentDateTime;
+        return _expectedPaymentDateTime;
     } 
 }
 
-internal HL7V28Field iprChecksum;
+internal HL7V28Field _iprChecksum;
 
 public HL7V28Field IprChecksum
 {
     get
     {
-        if (iprChecksum != null)
+        if (_iprChecksum != null)
         {
-            return iprChecksum;
+            return _iprChecksum;
         }
 
-        iprChecksum = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"IPR"][8],
             Id = @"IPR.8",
             Type = @"Field",
             Position = @"IPR.8",
@@ -1742,17 +1627,22 @@ public HL7V28Field IprChecksum
 
 The field contains a checksum generated by the first Payer (referenced by Payer Organization in the IVC Segment) to ensure that the contents of IPR have not been altered before sending to subsequent Payers.",
             Sample = @"",
+            Fields = null
+        }
+
+        _iprChecksum = new HL7V28Field
+        {
+            field = message[@"IPR"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (iprChecksum.field.FieldRepetitions != null && iprChecksum.field.FieldRepetitions.Count > 0)
+        if (_iprChecksum.field.FieldRepetitions != null && _iprChecksum.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(iprChecksum.Id));
-            iprChecksum.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(iprChecksum, fieldData);
+            _iprChecksum.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_iprChecksum, fieldData);
         }
 
-        return iprChecksum;
+        return _iprChecksum;
     } 
 }
     }

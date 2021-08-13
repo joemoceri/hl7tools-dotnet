@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentPDC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _manufacturerDistributor;
+
+public HL7V251Field ManufacturerDistributor
+{
+    get
+    {
+        if (_manufacturerDistributor != null)
+        {
+            return _manufacturerDistributor;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.1",
+            Type = @"Field",
+            Position = @"PDC.1",
+            Name = @"Manufacturer/Distributor",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identity of the manufacturer/distributor.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PDC.1",
-                            Type = @"Field",
-                            Position = @"PDC.1",
-                            Name = @"Manufacturer/Distributor",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the identity of the manufacturer/distributor.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PDC.1.1",
                             Type = @"Component",
@@ -336,25 +348,55 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _manufacturerDistributor = new HL7V251Field
+        {
+            field = message[@"PDC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_manufacturerDistributor.field.FieldRepetitions != null && _manufacturerDistributor.field.FieldRepetitions.Count > 0)
+        {
+            _manufacturerDistributor.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_manufacturerDistributor, fieldData);
+        }
+
+        return _manufacturerDistributor;
+    } 
+}
+
+internal HL7V251Field _country;
+
+public HL7V251Field Country
+{
+    get
+    {
+        if (_country != null)
+        {
+            return _country;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.2",
+            Type = @"Field",
+            Position = @"PDC.2",
+            Name = @"Country",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the country to which this product detail is relevant. ISO 3166 provides a list of country codes that may be used.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PDC.2",
-                            Type = @"Field",
-                            Position = @"PDC.2",
-                            Name = @"Country",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the country to which this product detail is relevant. ISO 3166 provides a list of country codes that may be used.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PDC.2.1",
                             Type = @"Component",
@@ -460,61 +502,145 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _country = new HL7V251Field
+        {
+            field = message[@"PDC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_country.field.FieldRepetitions != null && _country.field.FieldRepetitions.Count > 0)
+        {
+            _country.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_country, fieldData);
+        }
+
+        return _country;
+    } 
+}
+
+internal HL7V251Field _brandName;
+
+public HL7V251Field BrandName
+{
+    get
+    {
+        if (_brandName != null)
+        {
+            return _brandName;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.3",
+            Type = @"Field",
+            Position = @"PDC.3",
+            Name = @"Brand Name",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name under which the product is marketed by this manufacturer.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _brandName = new HL7V251Field
+        {
+            field = message[@"PDC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_brandName.field.FieldRepetitions != null && _brandName.field.FieldRepetitions.Count > 0)
+        {
+            _brandName.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_brandName, fieldData);
+        }
+
+        return _brandName;
+    } 
+}
+
+internal HL7V251Field _deviceFamilyName;
+
+public HL7V251Field DeviceFamilyName
+{
+    get
+    {
+        if (_deviceFamilyName != null)
+        {
+            return _deviceFamilyName;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.4",
+            Type = @"Field",
+            Position = @"PDC.4",
+            Name = @"Device Family Name",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name used by the manufacturer to describe the family of products to which this product belongs.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _deviceFamilyName = new HL7V251Field
+        {
+            field = message[@"PDC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_deviceFamilyName.field.FieldRepetitions != null && _deviceFamilyName.field.FieldRepetitions.Count > 0)
+        {
+            _deviceFamilyName.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_deviceFamilyName, fieldData);
+        }
+
+        return _deviceFamilyName;
+    } 
+}
+
+internal HL7V251Field _genericName;
+
+public HL7V251Field GenericName
+{
+    get
+    {
+        if (_genericName != null)
+        {
+            return _genericName;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.5",
+            Type = @"Field",
+            Position = @"PDC.5",
+            Name = @"Generic Name",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name generically used to identify the product.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PDC.3",
-                            Type = @"Field",
-                            Position = @"PDC.3",
-                            Name = @"Brand Name",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name under which the product is marketed by this manufacturer.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PDC.4",
-                            Type = @"Field",
-                            Position = @"PDC.4",
-                            Name = @"Device Family Name",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name used by the manufacturer to describe the family of products to which this product belongs.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PDC.5",
-                            Type = @"Field",
-                            Position = @"PDC.5",
-                            Name = @"Generic Name",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name generically used to identify the product.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PDC.5.1",
                             Type = @"Component",
@@ -620,79 +746,190 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _genericName = new HL7V251Field
+        {
+            field = message[@"PDC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_genericName.field.FieldRepetitions != null && _genericName.field.FieldRepetitions.Count > 0)
+        {
+            _genericName.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_genericName, fieldData);
+        }
+
+        return _genericName;
+    } 
+}
+
+internal HL7V251Field _modelIdentifier;
+
+public HL7V251Field ModelIdentifier
+{
+    get
+    {
+        if (_modelIdentifier != null)
+        {
+            return _modelIdentifier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.6",
+            Type = @"Field",
+            Position = @"PDC.6",
+            Name = @"Model Identifier",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the manufacturers model identifier for the product.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _modelIdentifier = new HL7V251Field
+        {
+            field = message[@"PDC"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_modelIdentifier.field.FieldRepetitions != null && _modelIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _modelIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_modelIdentifier, fieldData);
+        }
+
+        return _modelIdentifier;
+    } 
+}
+
+internal HL7V251Field _catalogueIdentifier;
+
+public HL7V251Field CatalogueIdentifier
+{
+    get
+    {
+        if (_catalogueIdentifier != null)
+        {
+            return _catalogueIdentifier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.7",
+            Type = @"Field",
+            Position = @"PDC.7",
+            Name = @"Catalogue Identifier",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the manufacturers catalogue identifier for the product.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _catalogueIdentifier = new HL7V251Field
+        {
+            field = message[@"PDC"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_catalogueIdentifier.field.FieldRepetitions != null && _catalogueIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _catalogueIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_catalogueIdentifier, fieldData);
+        }
+
+        return _catalogueIdentifier;
+    } 
+}
+
+internal HL7V251Field _otherIdentifier;
+
+public HL7V251Field OtherIdentifier
+{
+    get
+    {
+        if (_otherIdentifier != null)
+        {
+            return _otherIdentifier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.8",
+            Type = @"Field",
+            Position = @"PDC.8",
+            Name = @"Other Identifier",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains any other identifier used to for the product.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _otherIdentifier = new HL7V251Field
+        {
+            field = message[@"PDC"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_otherIdentifier.field.FieldRepetitions != null && _otherIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _otherIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_otherIdentifier, fieldData);
+        }
+
+        return _otherIdentifier;
+    } 
+}
+
+internal HL7V251Field _productCode;
+
+public HL7V251Field ProductCode
+{
+    get
+    {
+        if (_productCode != null)
+        {
+            return _productCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.9",
+            Type = @"Field",
+            Position = @"PDC.9",
+            Name = @"Product Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the product code from an external coding system such as that used by the CDRH at the FDA.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PDC.6",
-                            Type = @"Field",
-                            Position = @"PDC.6",
-                            Name = @"Model Identifier",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the manufacturers model identifier for the product.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PDC.7",
-                            Type = @"Field",
-                            Position = @"PDC.7",
-                            Name = @"Catalogue Identifier",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the manufacturers catalogue identifier for the product.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PDC.8",
-                            Type = @"Field",
-                            Position = @"PDC.8",
-                            Name = @"Other Identifier",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains any other identifier used to for the product.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PDC.9",
-                            Type = @"Field",
-                            Position = @"PDC.9",
-                            Name = @"Product Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the product code from an external coding system such as that used by the CDRH at the FDA.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PDC.9.1",
                             Type = @"Component",
@@ -798,61 +1035,145 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _productCode = new HL7V251Field
+        {
+            field = message[@"PDC"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productCode.field.FieldRepetitions != null && _productCode.field.FieldRepetitions.Count > 0)
+        {
+            _productCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_productCode, fieldData);
+        }
+
+        return _productCode;
+    } 
+}
+
+internal HL7V251Field _marketingBasis;
+
+public HL7V251Field MarketingBasis
+{
+    get
+    {
+        if (_marketingBasis != null)
+        {
+            return _marketingBasis;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.10",
+            Type = @"Field",
+            Position = @"PDC.10",
+            Name = @"Marketing Basis",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0330",
+            TableName = @"Marketing basis",
+            Description = @"This field contains the basis for marketing approval. Refer to HL7 Table 0330 - Marketing basis for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _marketingBasis = new HL7V251Field
+        {
+            field = message[@"PDC"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_marketingBasis.field.FieldRepetitions != null && _marketingBasis.field.FieldRepetitions.Count > 0)
+        {
+            _marketingBasis.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_marketingBasis, fieldData);
+        }
+
+        return _marketingBasis;
+    } 
+}
+
+internal HL7V251Field _marketingApprovalID;
+
+public HL7V251Field MarketingApprovalID
+{
+    get
+    {
+        if (_marketingApprovalID != null)
+        {
+            return _marketingApprovalID;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.11",
+            Type = @"Field",
+            Position = @"PDC.11",
+            Name = @"Marketing Approval ID",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the designation or description of the marketing basis.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _marketingApprovalID = new HL7V251Field
+        {
+            field = message[@"PDC"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_marketingApprovalID.field.FieldRepetitions != null && _marketingApprovalID.field.FieldRepetitions.Count > 0)
+        {
+            _marketingApprovalID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_marketingApprovalID, fieldData);
+        }
+
+        return _marketingApprovalID;
+    } 
+}
+
+internal HL7V251Field _labeledShelfLife;
+
+public HL7V251Field LabeledShelfLife
+{
+    get
+    {
+        if (_labeledShelfLife != null)
+        {
+            return _labeledShelfLife;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.12",
+            Type = @"Field",
+            Position = @"PDC.12",
+            Name = @"Labeled Shelf Life",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity with Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the shelf life of the product as labeled. This will usually be in months or years. If there is no shelf life indicated in the product labeling, this field will be empty.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PDC.10",
-                            Type = @"Field",
-                            Position = @"PDC.10",
-                            Name = @"Marketing Basis",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0330",
-                            TableName = @"Marketing basis",
-                            Description = @"This field contains the basis for marketing approval. Refer to HL7 Table 0330 - Marketing basis for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PDC.11",
-                            Type = @"Field",
-                            Position = @"PDC.11",
-                            Name = @"Marketing Approval ID",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the designation or description of the marketing basis.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PDC.12",
-                            Type = @"Field",
-                            Position = @"PDC.12",
-                            Name = @"Labeled Shelf Life",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity with Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the shelf life of the product as labeled. This will usually be in months or years. If there is no shelf life indicated in the product labeling, this field will be empty.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PDC.12.1",
                             Type = @"Component",
@@ -992,25 +1313,55 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _labeledShelfLife = new HL7V251Field
+        {
+            field = message[@"PDC"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_labeledShelfLife.field.FieldRepetitions != null && _labeledShelfLife.field.FieldRepetitions.Count > 0)
+        {
+            _labeledShelfLife.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_labeledShelfLife, fieldData);
+        }
+
+        return _labeledShelfLife;
+    } 
+}
+
+internal HL7V251Field _expectedShelfLife;
+
+public HL7V251Field ExpectedShelfLife
+{
+    get
+    {
+        if (_expectedShelfLife != null)
+        {
+            return _expectedShelfLife;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.13",
+            Type = @"Field",
+            Position = @"PDC.13",
+            Name = @"Expected Shelf Life",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity with Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the shelf life of the product expected by the manufacturer. This will usually be in months or years.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PDC.13",
-                            Type = @"Field",
-                            Position = @"PDC.13",
-                            Name = @"Expected Shelf Life",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity with Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the shelf life of the product expected by the manufacturer. This will usually be in months or years.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PDC.13.1",
                             Type = @"Component",
@@ -1150,25 +1501,55 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _expectedShelfLife = new HL7V251Field
+        {
+            field = message[@"PDC"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_expectedShelfLife.field.FieldRepetitions != null && _expectedShelfLife.field.FieldRepetitions.Count > 0)
+        {
+            _expectedShelfLife.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_expectedShelfLife, fieldData);
+        }
+
+        return _expectedShelfLife;
+    } 
+}
+
+internal HL7V251Field _dateFirstMarketed;
+
+public HL7V251Field DateFirstMarketed
+{
+    get
+    {
+        if (_dateFirstMarketed != null)
+        {
+            return _dateFirstMarketed;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.14",
+            Type = @"Field",
+            Position = @"PDC.14",
+            Name = @"Date First Marketed",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date the product was first marketed in the country.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PDC.14",
-                            Type = @"Field",
-                            Position = @"PDC.14",
-                            Name = @"Date First Marketed",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date the product was first marketed in the country.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PDC.14.1",
                             Type = @"Component",
@@ -1204,25 +1585,55 @@ Note: When the HD is used in a given segment (either as a field or as a componen
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dateFirstMarketed = new HL7V251Field
+        {
+            field = message[@"PDC"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateFirstMarketed.field.FieldRepetitions != null && _dateFirstMarketed.field.FieldRepetitions.Count > 0)
+        {
+            _dateFirstMarketed.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_dateFirstMarketed, fieldData);
+        }
+
+        return _dateFirstMarketed;
+    } 
+}
+
+internal HL7V251Field _dateLastMarketed;
+
+public HL7V251Field DateLastMarketed
+{
+    get
+    {
+        if (_dateLastMarketed != null)
+        {
+            return _dateLastMarketed;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"PDC.15",
+            Type = @"Field",
+            Position = @"PDC.15",
+            Name = @"Date Last Marketed",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date the product was last marketed in the country. This field will be omitted if the product is still being marketed.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PDC.15",
-                            Type = @"Field",
-                            Position = @"PDC.15",
-                            Name = @"Date Last Marketed",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date the product was last marketed in the country. This field will be omitted if the product is still being marketed.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PDC.15.1",
                             Type = @"Component",
@@ -1258,629 +1669,23 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentPDC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field manufacturerDistributor;
-
-public HL7V251Field ManufacturerDistributor
-{
-    get
-    {
-        if (manufacturerDistributor != null)
-        {
-            return manufacturerDistributor;
-        }
-
-        manufacturerDistributor = new HL7V251Field
-        {
-            field = message[@"PDC"][1],
-            Id = @"PDC.1",
-            Type = @"Field",
-            Position = @"PDC.1",
-            Name = @"Manufacturer/Distributor",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the identity of the manufacturer/distributor.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (manufacturerDistributor.field.FieldRepetitions != null && manufacturerDistributor.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(manufacturerDistributor.Id));
-            manufacturerDistributor.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(manufacturerDistributor, fieldData);
-        }
-
-        return manufacturerDistributor;
-    } 
-}
-
-internal HL7V251Field country;
-
-public HL7V251Field Country
-{
-    get
-    {
-        if (country != null)
-        {
-            return country;
-        }
-
-        country = new HL7V251Field
-        {
-            field = message[@"PDC"][2],
-            Id = @"PDC.2",
-            Type = @"Field",
-            Position = @"PDC.2",
-            Name = @"Country",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the country to which this product detail is relevant. ISO 3166 provides a list of country codes that may be used.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (country.field.FieldRepetitions != null && country.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(country.Id));
-            country.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(country, fieldData);
-        }
-
-        return country;
-    } 
-}
-
-internal HL7V251Field brandName;
-
-public HL7V251Field BrandName
-{
-    get
-    {
-        if (brandName != null)
-        {
-            return brandName;
-        }
-
-        brandName = new HL7V251Field
-        {
-            field = message[@"PDC"][3],
-            Id = @"PDC.3",
-            Type = @"Field",
-            Position = @"PDC.3",
-            Name = @"Brand Name",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name under which the product is marketed by this manufacturer.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (brandName.field.FieldRepetitions != null && brandName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(brandName.Id));
-            brandName.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(brandName, fieldData);
-        }
-
-        return brandName;
-    } 
-}
-
-internal HL7V251Field deviceFamilyName;
-
-public HL7V251Field DeviceFamilyName
-{
-    get
-    {
-        if (deviceFamilyName != null)
-        {
-            return deviceFamilyName;
-        }
-
-        deviceFamilyName = new HL7V251Field
-        {
-            field = message[@"PDC"][4],
-            Id = @"PDC.4",
-            Type = @"Field",
-            Position = @"PDC.4",
-            Name = @"Device Family Name",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name used by the manufacturer to describe the family of products to which this product belongs.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (deviceFamilyName.field.FieldRepetitions != null && deviceFamilyName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deviceFamilyName.Id));
-            deviceFamilyName.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(deviceFamilyName, fieldData);
-        }
-
-        return deviceFamilyName;
-    } 
-}
-
-internal HL7V251Field genericName;
-
-public HL7V251Field GenericName
-{
-    get
-    {
-        if (genericName != null)
-        {
-            return genericName;
-        }
-
-        genericName = new HL7V251Field
-        {
-            field = message[@"PDC"][5],
-            Id = @"PDC.5",
-            Type = @"Field",
-            Position = @"PDC.5",
-            Name = @"Generic Name",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name generically used to identify the product.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (genericName.field.FieldRepetitions != null && genericName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(genericName.Id));
-            genericName.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(genericName, fieldData);
-        }
-
-        return genericName;
-    } 
-}
-
-internal HL7V251Field modelIdentifier;
-
-public HL7V251Field ModelIdentifier
-{
-    get
-    {
-        if (modelIdentifier != null)
-        {
-            return modelIdentifier;
-        }
-
-        modelIdentifier = new HL7V251Field
-        {
-            field = message[@"PDC"][6],
-            Id = @"PDC.6",
-            Type = @"Field",
-            Position = @"PDC.6",
-            Name = @"Model Identifier",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the manufacturers model identifier for the product.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (modelIdentifier.field.FieldRepetitions != null && modelIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(modelIdentifier.Id));
-            modelIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(modelIdentifier, fieldData);
-        }
-
-        return modelIdentifier;
-    } 
-}
-
-internal HL7V251Field catalogueIdentifier;
-
-public HL7V251Field CatalogueIdentifier
-{
-    get
-    {
-        if (catalogueIdentifier != null)
-        {
-            return catalogueIdentifier;
-        }
-
-        catalogueIdentifier = new HL7V251Field
-        {
-            field = message[@"PDC"][7],
-            Id = @"PDC.7",
-            Type = @"Field",
-            Position = @"PDC.7",
-            Name = @"Catalogue Identifier",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the manufacturers catalogue identifier for the product.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (catalogueIdentifier.field.FieldRepetitions != null && catalogueIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(catalogueIdentifier.Id));
-            catalogueIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(catalogueIdentifier, fieldData);
-        }
-
-        return catalogueIdentifier;
-    } 
-}
-
-internal HL7V251Field otherIdentifier;
-
-public HL7V251Field OtherIdentifier
-{
-    get
-    {
-        if (otherIdentifier != null)
-        {
-            return otherIdentifier;
-        }
-
-        otherIdentifier = new HL7V251Field
-        {
-            field = message[@"PDC"][8],
-            Id = @"PDC.8",
-            Type = @"Field",
-            Position = @"PDC.8",
-            Name = @"Other Identifier",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains any other identifier used to for the product.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (otherIdentifier.field.FieldRepetitions != null && otherIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(otherIdentifier.Id));
-            otherIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(otherIdentifier, fieldData);
-        }
-
-        return otherIdentifier;
-    } 
-}
-
-internal HL7V251Field productCode;
-
-public HL7V251Field ProductCode
-{
-    get
-    {
-        if (productCode != null)
-        {
-            return productCode;
-        }
-
-        productCode = new HL7V251Field
-        {
-            field = message[@"PDC"][9],
-            Id = @"PDC.9",
-            Type = @"Field",
-            Position = @"PDC.9",
-            Name = @"Product Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the product code from an external coding system such as that used by the CDRH at the FDA.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productCode.field.FieldRepetitions != null && productCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productCode.Id));
-            productCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(productCode, fieldData);
-        }
-
-        return productCode;
-    } 
-}
-
-internal HL7V251Field marketingBasis;
-
-public HL7V251Field MarketingBasis
-{
-    get
-    {
-        if (marketingBasis != null)
-        {
-            return marketingBasis;
-        }
-
-        marketingBasis = new HL7V251Field
-        {
-            field = message[@"PDC"][10],
-            Id = @"PDC.10",
-            Type = @"Field",
-            Position = @"PDC.10",
-            Name = @"Marketing Basis",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0330",
-            TableName = @"Marketing basis",
-            Description = @"This field contains the basis for marketing approval. Refer to HL7 Table 0330 - Marketing basis for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (marketingBasis.field.FieldRepetitions != null && marketingBasis.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(marketingBasis.Id));
-            marketingBasis.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(marketingBasis, fieldData);
-        }
-
-        return marketingBasis;
-    } 
-}
-
-internal HL7V251Field marketingApprovalID;
-
-public HL7V251Field MarketingApprovalID
-{
-    get
-    {
-        if (marketingApprovalID != null)
-        {
-            return marketingApprovalID;
-        }
-
-        marketingApprovalID = new HL7V251Field
-        {
-            field = message[@"PDC"][11],
-            Id = @"PDC.11",
-            Type = @"Field",
-            Position = @"PDC.11",
-            Name = @"Marketing Approval ID",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the designation or description of the marketing basis.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (marketingApprovalID.field.FieldRepetitions != null && marketingApprovalID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(marketingApprovalID.Id));
-            marketingApprovalID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(marketingApprovalID, fieldData);
-        }
-
-        return marketingApprovalID;
-    } 
-}
-
-internal HL7V251Field labeledShelfLife;
-
-public HL7V251Field LabeledShelfLife
-{
-    get
-    {
-        if (labeledShelfLife != null)
-        {
-            return labeledShelfLife;
-        }
-
-        labeledShelfLife = new HL7V251Field
-        {
-            field = message[@"PDC"][12],
-            Id = @"PDC.12",
-            Type = @"Field",
-            Position = @"PDC.12",
-            Name = @"Labeled Shelf Life",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity with Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the shelf life of the product as labeled. This will usually be in months or years. If there is no shelf life indicated in the product labeling, this field will be empty.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (labeledShelfLife.field.FieldRepetitions != null && labeledShelfLife.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(labeledShelfLife.Id));
-            labeledShelfLife.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(labeledShelfLife, fieldData);
-        }
-
-        return labeledShelfLife;
-    } 
-}
-
-internal HL7V251Field expectedShelfLife;
-
-public HL7V251Field ExpectedShelfLife
-{
-    get
-    {
-        if (expectedShelfLife != null)
-        {
-            return expectedShelfLife;
-        }
-
-        expectedShelfLife = new HL7V251Field
-        {
-            field = message[@"PDC"][13],
-            Id = @"PDC.13",
-            Type = @"Field",
-            Position = @"PDC.13",
-            Name = @"Expected Shelf Life",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity with Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the shelf life of the product expected by the manufacturer. This will usually be in months or years.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (expectedShelfLife.field.FieldRepetitions != null && expectedShelfLife.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(expectedShelfLife.Id));
-            expectedShelfLife.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(expectedShelfLife, fieldData);
-        }
-
-        return expectedShelfLife;
-    } 
-}
-
-internal HL7V251Field dateFirstMarketed;
-
-public HL7V251Field DateFirstMarketed
-{
-    get
-    {
-        if (dateFirstMarketed != null)
-        {
-            return dateFirstMarketed;
-        }
-
-        dateFirstMarketed = new HL7V251Field
-        {
-            field = message[@"PDC"][14],
-            Id = @"PDC.14",
-            Type = @"Field",
-            Position = @"PDC.14",
-            Name = @"Date First Marketed",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date the product was first marketed in the country.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateFirstMarketed.field.FieldRepetitions != null && dateFirstMarketed.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateFirstMarketed.Id));
-            dateFirstMarketed.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(dateFirstMarketed, fieldData);
-        }
-
-        return dateFirstMarketed;
-    } 
-}
-
-internal HL7V251Field dateLastMarketed;
-
-public HL7V251Field DateLastMarketed
-{
-    get
-    {
-        if (dateLastMarketed != null)
-        {
-            return dateLastMarketed;
-        }
-
-        dateLastMarketed = new HL7V251Field
+        _dateLastMarketed = new HL7V251Field
         {
             field = message[@"PDC"][15],
-            Id = @"PDC.15",
-            Type = @"Field",
-            Position = @"PDC.15",
-            Name = @"Date Last Marketed",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date the product was last marketed in the country. This field will be omitted if the product is still being marketed.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dateLastMarketed.field.FieldRepetitions != null && dateLastMarketed.field.FieldRepetitions.Count > 0)
+        if (_dateLastMarketed.field.FieldRepetitions != null && _dateLastMarketed.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateLastMarketed.Id));
-            dateLastMarketed.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(dateLastMarketed, fieldData);
+            _dateLastMarketed.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_dateLastMarketed, fieldData);
         }
 
-        return dateLastMarketed;
+        return _dateLastMarketed;
     } 
 }
     }

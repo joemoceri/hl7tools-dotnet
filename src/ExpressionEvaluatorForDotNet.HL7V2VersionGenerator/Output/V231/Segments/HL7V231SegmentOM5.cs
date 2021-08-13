@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V231SegmentOM5(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V231Field _sequenceNumberTestObservationMasterFile;
+
+public HL7V231Field SequenceNumberTestObservationMasterFile
+{
+    get
+    {
+        if (_sequenceNumberTestObservationMasterFile != null)
+        {
+            return _sequenceNumberTestObservationMasterFile;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"OM5.1",
+            Type = @"Field",
+            Position = @"OM5.1",
+            Name = @"Sequence Number - Test/Observation Master File",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sequenceNumberTestObservationMasterFile = new HL7V231Field
+        {
+            field = message[@"OM5"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sequenceNumberTestObservationMasterFile.field.FieldRepetitions != null && _sequenceNumberTestObservationMasterFile.field.FieldRepetitions.Count > 0)
+        {
+            _sequenceNumberTestObservationMasterFile.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_sequenceNumberTestObservationMasterFile, fieldData);
+        }
+
+        return _sequenceNumberTestObservationMasterFile;
+    } 
+}
+
+internal HL7V231Field _testObservationsIncludedwithinanOrderedTestBattery;
+
+public HL7V231Field TestObservationsIncludedwithinanOrderedTestBattery
+{
+    get
+    {
+        if (_testObservationsIncludedwithinanOrderedTestBattery != null)
+        {
+            return _testObservationsIncludedwithinanOrderedTestBattery;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"OM5.2",
+            Type = @"Field",
+            Position = @"OM5.2",
+            Name = @"Test/Observations Included within an Ordered Test Battery",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the codes and names of all tests/observations included within a single battery (nature code P, as described in OM1-18-nature of test/observation), a single functional procedure (nature code F), or a given superset (nature code S). When a segment includes a list of component elements, the sending system should be sure that the segments defining all of the components are sent before the segment that references them. An entry in this list can itself be a battery.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"OM5.1",
-                            Type = @"Field",
-                            Position = @"OM5.1",
-                            Name = @"Sequence Number - Test/Observation Master File",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM5.2",
-                            Type = @"Field",
-                            Position = @"OM5.2",
-                            Name = @"Test/Observations Included within an Ordered Test Battery",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the codes and names of all tests/observations included within a single battery (nature code P, as described in OM1-18-nature of test/observation), a single functional procedure (nature code F), or a given superset (nature code S). When a segment includes a list of component elements, the sending system should be sure that the segments defining all of the components are sent before the segment that references them. An entry in this list can itself be a battery.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM5.2.1",
                             Type = @"Component",
@@ -174,131 +213,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM5.3",
-                            Type = @"Field",
-                            Position = @"OM5.3",
-                            Name = @"Observation ID Suffixes",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the tests or procedures that produce a type which uses observation ID suffixes following the test/observation ID code. This field lists the possible options. The applicable three-character mnemonics given in ASTM Table 20 (or others appropriate to the application) are listed, separated by repeat delimiters. For example, a chest X-ray may use the suffixes IMP, REC, DEV, or others. Each of the expected suffixes should be listed here.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V231SegmentOM5(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V231Field sequenceNumberTestObservationMasterFile;
-
-public HL7V231Field SequenceNumberTestObservationMasterFile
-{
-    get
-    {
-        if (sequenceNumberTestObservationMasterFile != null)
-        {
-            return sequenceNumberTestObservationMasterFile;
-        }
-
-        sequenceNumberTestObservationMasterFile = new HL7V231Field
-        {
-            field = message[@"OM5"][1],
-            Id = @"OM5.1",
-            Type = @"Field",
-            Position = @"OM5.1",
-            Name = @"Sequence Number - Test/Observation Master File",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sequenceNumberTestObservationMasterFile.field.FieldRepetitions != null && sequenceNumberTestObservationMasterFile.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sequenceNumberTestObservationMasterFile.Id));
-            sequenceNumberTestObservationMasterFile.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(sequenceNumberTestObservationMasterFile, fieldData);
-        }
-
-        return sequenceNumberTestObservationMasterFile;
-    } 
-}
-
-internal HL7V231Field testObservationsIncludedwithinanOrderedTestBattery;
-
-public HL7V231Field TestObservationsIncludedwithinanOrderedTestBattery
-{
-    get
-    {
-        if (testObservationsIncludedwithinanOrderedTestBattery != null)
-        {
-            return testObservationsIncludedwithinanOrderedTestBattery;
-        }
-
-        testObservationsIncludedwithinanOrderedTestBattery = new HL7V231Field
+        _testObservationsIncludedwithinanOrderedTestBattery = new HL7V231Field
         {
             field = message[@"OM5"][2],
-            Id = @"OM5.2",
-            Type = @"Field",
-            Position = @"OM5.2",
-            Name = @"Test/Observations Included within an Ordered Test Battery",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the codes and names of all tests/observations included within a single battery (nature code P, as described in OM1-18-nature of test/observation), a single functional procedure (nature code F), or a given superset (nature code S). When a segment includes a list of component elements, the sending system should be sure that the segments defining all of the components are sent before the segment that references them. An entry in this list can itself be a battery.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (testObservationsIncludedwithinanOrderedTestBattery.field.FieldRepetitions != null && testObservationsIncludedwithinanOrderedTestBattery.field.FieldRepetitions.Count > 0)
+        if (_testObservationsIncludedwithinanOrderedTestBattery.field.FieldRepetitions != null && _testObservationsIncludedwithinanOrderedTestBattery.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(testObservationsIncludedwithinanOrderedTestBattery.Id));
-            testObservationsIncludedwithinanOrderedTestBattery.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(testObservationsIncludedwithinanOrderedTestBattery, fieldData);
+            _testObservationsIncludedwithinanOrderedTestBattery.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_testObservationsIncludedwithinanOrderedTestBattery, fieldData);
         }
 
-        return testObservationsIncludedwithinanOrderedTestBattery;
+        return _testObservationsIncludedwithinanOrderedTestBattery;
     } 
 }
 
-internal HL7V231Field observationIDSuffixes;
+internal HL7V231Field _observationIDSuffixes;
 
 public HL7V231Field ObservationIDSuffixes
 {
     get
     {
-        if (observationIDSuffixes != null)
+        if (_observationIDSuffixes != null)
         {
-            return observationIDSuffixes;
+            return _observationIDSuffixes;
         }
 
-        observationIDSuffixes = new HL7V231Field
+        var fieldData = new HL7V231FieldData
         {
-            field = message[@"OM5"][3],
             Id = @"OM5.3",
             Type = @"Field",
             Position = @"OM5.3",
@@ -312,17 +259,22 @@ public HL7V231Field ObservationIDSuffixes
             TableName = null,
             Description = @"This field contains the tests or procedures that produce a type which uses observation ID suffixes following the test/observation ID code. This field lists the possible options. The applicable three-character mnemonics given in ASTM Table 20 (or others appropriate to the application) are listed, separated by repeat delimiters. For example, a chest X-ray may use the suffixes IMP, REC, DEV, or others. Each of the expected suffixes should be listed here.",
             Sample = @"",
+            Fields = null
+        }
+
+        _observationIDSuffixes = new HL7V231Field
+        {
+            field = message[@"OM5"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (observationIDSuffixes.field.FieldRepetitions != null && observationIDSuffixes.field.FieldRepetitions.Count > 0)
+        if (_observationIDSuffixes.field.FieldRepetitions != null && _observationIDSuffixes.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationIDSuffixes.Id));
-            observationIDSuffixes.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(observationIDSuffixes, fieldData);
+            _observationIDSuffixes.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_observationIDSuffixes, fieldData);
         }
 
-        return observationIDSuffixes;
+        return _observationIDSuffixes;
     } 
 }
     }

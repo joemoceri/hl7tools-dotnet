@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V231SegmentOM2(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V231Field _sequenceNumberTestObservationMasterFile;
+
+public HL7V231Field SequenceNumberTestObservationMasterFile
+{
+    get
+    {
+        if (_sequenceNumberTestObservationMasterFile != null)
+        {
+            return _sequenceNumberTestObservationMasterFile;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"OM2.1",
+            Type = @"Field",
+            Position = @"OM2.1",
+            Name = @"Sequence Number - Test/Observation Master File",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sequenceNumberTestObservationMasterFile = new HL7V231Field
+        {
+            field = message[@"OM2"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sequenceNumberTestObservationMasterFile.field.FieldRepetitions != null && _sequenceNumberTestObservationMasterFile.field.FieldRepetitions.Count > 0)
+        {
+            _sequenceNumberTestObservationMasterFile.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_sequenceNumberTestObservationMasterFile, fieldData);
+        }
+
+        return _sequenceNumberTestObservationMasterFile;
+    } 
+}
+
+internal HL7V231Field _unitsofMeasure;
+
+public HL7V231Field UnitsofMeasure
+{
+    get
+    {
+        if (_unitsofMeasure != null)
+        {
+            return _unitsofMeasure;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"OM2.2",
+            Type = @"Field",
+            Position = @"OM2.2",
+            Name = @"Units of Measure",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the single tests/observations (those with a nature code of A or C, as described in OM1-18-nature of test/observation ) that have numeric values. This field contains their customary units of measure.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"OM2.1",
-                            Type = @"Field",
-                            Position = @"OM2.1",
-                            Name = @"Sequence Number - Test/Observation Master File",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM2.2",
-                            Type = @"Field",
-                            Position = @"OM2.2",
-                            Name = @"Units of Measure",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the single tests/observations (those with a nature code of A or C, as described in OM1-18-nature of test/observation ) that have numeric values. This field contains their customary units of measure.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM2.2.1",
                             Type = @"Component",
@@ -174,43 +213,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _unitsofMeasure = new HL7V231Field
+        {
+            field = message[@"OM2"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_unitsofMeasure.field.FieldRepetitions != null && _unitsofMeasure.field.FieldRepetitions.Count > 0)
+        {
+            _unitsofMeasure.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_unitsofMeasure, fieldData);
+        }
+
+        return _unitsofMeasure;
+    } 
+}
+
+internal HL7V231Field _rangeofDecimalPrecision;
+
+public HL7V231Field RangeofDecimalPrecision
+{
+    get
+    {
+        if (_rangeofDecimalPrecision != null)
+        {
+            return _rangeofDecimalPrecision;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"OM2.3",
+            Type = @"Field",
+            Position = @"OM2.3",
+            Name = @"Range of Decimal Precision",
+            Length = 10,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the numerically valued single observations (code A or C as described in OM1-18-nature of test/observation ), specifies the total length in characters of the field needed to display the observation, and the number of digits displayed to the right of the decimal point. This is coded as a single number in the format <length>.<decimal-digits>. For example, a value of 6.2 implies 6 characters total (including the sign and decimal point) with 2 digits after the decimal point. For integer values, the period and <decimal-digits> portion may be omitted (that is, 5.0 and 5 are equivalent). More than one such mask may be transmitted (separated by repeat delimiters) when it is necessary to define multiple display formats that are possible.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _rangeofDecimalPrecision = new HL7V231Field
+        {
+            field = message[@"OM2"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rangeofDecimalPrecision.field.FieldRepetitions != null && _rangeofDecimalPrecision.field.FieldRepetitions.Count > 0)
+        {
+            _rangeofDecimalPrecision.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_rangeofDecimalPrecision, fieldData);
+        }
+
+        return _rangeofDecimalPrecision;
+    } 
+}
+
+internal HL7V231Field _correspondingSIUnitsofMeasure;
+
+public HL7V231Field CorrespondingSIUnitsofMeasure
+{
+    get
+    {
+        if (_correspondingSIUnitsofMeasure != null)
+        {
+            return _correspondingSIUnitsofMeasure;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"OM2.4",
+            Type = @"Field",
+            Position = @"OM2.4",
+            Name = @"Corresponding SI Units of Measure",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the single tests/observations - the corresponding SI units of measure in the format, when these differ from the customary units of measure given in the previous field.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM2.3",
-                            Type = @"Field",
-                            Position = @"OM2.3",
-                            Name = @"Range of Decimal Precision",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the numerically valued single observations (code A or C as described in OM1-18-nature of test/observation ), specifies the total length in characters of the field needed to display the observation, and the number of digits displayed to the right of the decimal point. This is coded as a single number in the format <length>.<decimal-digits>. For example, a value of 6.2 implies 6 characters total (including the sign and decimal point) with 2 digits after the decimal point. For integer values, the period and <decimal-digits> portion may be omitted (that is, 5.0 and 5 are equivalent). More than one such mask may be transmitted (separated by repeat delimiters) when it is necessary to define multiple display formats that are possible.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM2.4",
-                            Type = @"Field",
-                            Position = @"OM2.4",
-                            Name = @"Corresponding SI Units of Measure",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the single tests/observations - the corresponding SI units of measure in the format, when these differ from the customary units of measure given in the previous field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM2.4.1",
                             Type = @"Component",
@@ -316,43 +412,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _correspondingSIUnitsofMeasure = new HL7V231Field
+        {
+            field = message[@"OM2"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_correspondingSIUnitsofMeasure.field.FieldRepetitions != null && _correspondingSIUnitsofMeasure.field.FieldRepetitions.Count > 0)
+        {
+            _correspondingSIUnitsofMeasure.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_correspondingSIUnitsofMeasure, fieldData);
+        }
+
+        return _correspondingSIUnitsofMeasure;
+    } 
+}
+
+internal HL7V231Field _sIConversionFactor;
+
+public HL7V231Field SIConversionFactor
+{
+    get
+    {
+        if (_sIConversionFactor != null)
+        {
+            return _sIConversionFactor;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"OM2.5",
+            Type = @"Field",
+            Position = @"OM2.5",
+            Name = @"SI Conversion Factor",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the continuous, numerically valued tests/observations, with a nature code of A or C (see OM1-18-nature of test/observation ). This is a factor for converting the customary units to SI units.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sIConversionFactor = new HL7V231Field
+        {
+            field = message[@"OM2"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sIConversionFactor.field.FieldRepetitions != null && _sIConversionFactor.field.FieldRepetitions.Count > 0)
+        {
+            _sIConversionFactor.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_sIConversionFactor, fieldData);
+        }
+
+        return _sIConversionFactor;
+    } 
+}
+
+internal HL7V231Field _reference;
+
+public HL7V231Field Reference
+{
+    get
+    {
+        if (_reference != null)
+        {
+            return _reference;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"OM2.6",
+            Type = @"Field",
+            Position = @"OM2.6",
+            Name = @"Reference",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"RFR",
+            DataTypeName = @"Reference Range",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the reference (normal) ranges for 'numeric' observations/tests with a nature code of A or C (see OM1-18-nature of test/observation ). It can identify different reference (normal) ranges for different categories of patients according to age, sex, race, and other conditions.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM2.5",
-                            Type = @"Field",
-                            Position = @"OM2.5",
-                            Name = @"SI Conversion Factor",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the continuous, numerically valued tests/observations, with a nature code of A or C (see OM1-18-nature of test/observation ). This is a factor for converting the customary units to SI units.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM2.6",
-                            Type = @"Field",
-                            Position = @"OM2.6",
-                            Name = @"Reference",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"RFR",
-                            DataTypeName = @"Reference Range",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the reference (normal) ranges for 'numeric' observations/tests with a nature code of A or C (see OM1-18-nature of test/observation ). It can identify different reference (normal) ranges for different categories of patients according to age, sex, race, and other conditions.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM2.6.1",
                             Type = @"Component",
@@ -578,25 +731,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _reference = new HL7V231Field
+        {
+            field = message[@"OM2"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reference.field.FieldRepetitions != null && _reference.field.FieldRepetitions.Count > 0)
+        {
+            _reference.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_reference, fieldData);
+        }
+
+        return _reference;
+    } 
+}
+
+internal HL7V231Field _criticalRangeforOrdinalAndContinuousObs;
+
+public HL7V231Field CriticalRangeforOrdinalAndContinuousObs
+{
+    get
+    {
+        if (_criticalRangeforOrdinalAndContinuousObs != null)
+        {
+            return _criticalRangeforOrdinalAndContinuousObs;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"OM2.7",
+            Type = @"Field",
+            Position = @"OM2.7",
+            Name = @"Critical Range for Ordinal & Continuous Obs",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NR",
+            DataTypeName = @"Wertebereich",
+            TableId = null,
+            TableName = null,
+            Description = @"This field applies only to single tests/observations (i.e., a nature code of A or C, as described in OM1-18-nature of test/observation ) with numeric results. When a critical range is defined for such observations, it should be recorded here in the same format as the normal range (see OM2-6-reference (normal) range-ordinal & continuous obs ).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM2.7",
-                            Type = @"Field",
-                            Position = @"OM2.7",
-                            Name = @"Critical Range for Ordinal & Continuous Obs",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NR",
-                            DataTypeName = @"Wertebereich",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field applies only to single tests/observations (i.e., a nature code of A or C, as described in OM1-18-nature of test/observation ) with numeric results. When a critical range is defined for such observations, it should be recorded here in the same format as the normal range (see OM2-6-reference (normal) range-ordinal & continuous obs ).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM2.7.1",
                             Type = @"Component",
@@ -630,25 +813,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _criticalRangeforOrdinalAndContinuousObs = new HL7V231Field
+        {
+            field = message[@"OM2"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_criticalRangeforOrdinalAndContinuousObs.field.FieldRepetitions != null && _criticalRangeforOrdinalAndContinuousObs.field.FieldRepetitions.Count > 0)
+        {
+            _criticalRangeforOrdinalAndContinuousObs.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_criticalRangeforOrdinalAndContinuousObs, fieldData);
+        }
+
+        return _criticalRangeforOrdinalAndContinuousObs;
+    } 
+}
+
+internal HL7V231Field _absoluteRangeforOrdinalAndContinuousObs;
+
+public HL7V231Field AbsoluteRangeforOrdinalAndContinuousObs
+{
+    get
+    {
+        if (_absoluteRangeforOrdinalAndContinuousObs != null)
+        {
+            return _absoluteRangeforOrdinalAndContinuousObs;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"OM2.8",
+            Type = @"Field",
+            Position = @"OM2.8",
+            Name = @"Absolute Range for Ordinal & Continuous Obs",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CM_ABS_RANGE",
+            DataTypeName = @"Absolute Range",
+            TableId = null,
+            TableName = null,
+            Description = @"This field applies only to single tests/observations with a nature code of A or C (see OM1-18-nature of test/observation ). It defines the range of possible results. Results outside this range are not possible. The field should be recorded in the same format as the normal and critical ranges.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM2.8",
-                            Type = @"Field",
-                            Position = @"OM2.8",
-                            Name = @"Absolute Range for Ordinal & Continuous Obs",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM_ABS_RANGE",
-                            DataTypeName = @"Absolute Range",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field applies only to single tests/observations with a nature code of A or C (see OM1-18-nature of test/observation ). It defines the range of possible results. Results outside this range are not possible. The field should be recorded in the same format as the normal and critical ranges.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM2.8.1",
                             Type = @"Component",
@@ -752,25 +965,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _absoluteRangeforOrdinalAndContinuousObs = new HL7V231Field
+        {
+            field = message[@"OM2"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_absoluteRangeforOrdinalAndContinuousObs.field.FieldRepetitions != null && _absoluteRangeforOrdinalAndContinuousObs.field.FieldRepetitions.Count > 0)
+        {
+            _absoluteRangeforOrdinalAndContinuousObs.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_absoluteRangeforOrdinalAndContinuousObs, fieldData);
+        }
+
+        return _absoluteRangeforOrdinalAndContinuousObs;
+    } 
+}
+
+internal HL7V231Field _deltaCheckCriteria;
+
+public HL7V231Field DeltaCheckCriteria
+{
+    get
+    {
+        if (_deltaCheckCriteria != null)
+        {
+            return _deltaCheckCriteria;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"OM2.9",
+            Type = @"Field",
+            Position = @"OM2.9",
+            Name = @"Delta Check Criteria",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"DLT",
+            DataTypeName = @"Delta Check",
+            TableId = null,
+            TableName = null,
+            Description = @"This field applies to numeric tests/observations with a nature code of A or C (see OM1-18-nature of test/observation ). The field describes the information that controls delta check warnings and includes four components.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM2.9",
-                            Type = @"Field",
-                            Position = @"OM2.9",
-                            Name = @"Delta Check Criteria",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"DLT",
-                            DataTypeName = @"Delta Check",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field applies to numeric tests/observations with a nature code of A or C (see OM1-18-nature of test/observation ). The field describes the information that controls delta check warnings and includes four components.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM2.9.1",
                             Type = @"Component",
@@ -874,418 +1117,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM2.10",
-                            Type = @"Field",
-                            Position = @"OM2.10",
-                            Name = @"Minimum Meaningful Increments",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the numerically valued single observations (a nature code of A or C, as described in OM1-18-nature of test/observation ) and specifies the smallest meaningful difference between reported values (the effective resolution of the measuring instrument or technique for continuous data, or the smallest discrete interval that can occur for discrete data).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V231SegmentOM2(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V231Field sequenceNumberTestObservationMasterFile;
-
-public HL7V231Field SequenceNumberTestObservationMasterFile
-{
-    get
-    {
-        if (sequenceNumberTestObservationMasterFile != null)
-        {
-            return sequenceNumberTestObservationMasterFile;
-        }
-
-        sequenceNumberTestObservationMasterFile = new HL7V231Field
-        {
-            field = message[@"OM2"][1],
-            Id = @"OM2.1",
-            Type = @"Field",
-            Position = @"OM2.1",
-            Name = @"Sequence Number - Test/Observation Master File",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the same value as the sequence number of the associated OM1 segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sequenceNumberTestObservationMasterFile.field.FieldRepetitions != null && sequenceNumberTestObservationMasterFile.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sequenceNumberTestObservationMasterFile.Id));
-            sequenceNumberTestObservationMasterFile.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(sequenceNumberTestObservationMasterFile, fieldData);
-        }
-
-        return sequenceNumberTestObservationMasterFile;
-    } 
-}
-
-internal HL7V231Field unitsofMeasure;
-
-public HL7V231Field UnitsofMeasure
-{
-    get
-    {
-        if (unitsofMeasure != null)
-        {
-            return unitsofMeasure;
-        }
-
-        unitsofMeasure = new HL7V231Field
-        {
-            field = message[@"OM2"][2],
-            Id = @"OM2.2",
-            Type = @"Field",
-            Position = @"OM2.2",
-            Name = @"Units of Measure",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the single tests/observations (those with a nature code of A or C, as described in OM1-18-nature of test/observation ) that have numeric values. This field contains their customary units of measure.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (unitsofMeasure.field.FieldRepetitions != null && unitsofMeasure.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(unitsofMeasure.Id));
-            unitsofMeasure.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(unitsofMeasure, fieldData);
-        }
-
-        return unitsofMeasure;
-    } 
-}
-
-internal HL7V231Field rangeofDecimalPrecision;
-
-public HL7V231Field RangeofDecimalPrecision
-{
-    get
-    {
-        if (rangeofDecimalPrecision != null)
-        {
-            return rangeofDecimalPrecision;
-        }
-
-        rangeofDecimalPrecision = new HL7V231Field
-        {
-            field = message[@"OM2"][3],
-            Id = @"OM2.3",
-            Type = @"Field",
-            Position = @"OM2.3",
-            Name = @"Range of Decimal Precision",
-            Length = 10,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the numerically valued single observations (code A or C as described in OM1-18-nature of test/observation ), specifies the total length in characters of the field needed to display the observation, and the number of digits displayed to the right of the decimal point. This is coded as a single number in the format <length>.<decimal-digits>. For example, a value of 6.2 implies 6 characters total (including the sign and decimal point) with 2 digits after the decimal point. For integer values, the period and <decimal-digits> portion may be omitted (that is, 5.0 and 5 are equivalent). More than one such mask may be transmitted (separated by repeat delimiters) when it is necessary to define multiple display formats that are possible.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rangeofDecimalPrecision.field.FieldRepetitions != null && rangeofDecimalPrecision.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rangeofDecimalPrecision.Id));
-            rangeofDecimalPrecision.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(rangeofDecimalPrecision, fieldData);
-        }
-
-        return rangeofDecimalPrecision;
-    } 
-}
-
-internal HL7V231Field correspondingSIUnitsofMeasure;
-
-public HL7V231Field CorrespondingSIUnitsofMeasure
-{
-    get
-    {
-        if (correspondingSIUnitsofMeasure != null)
-        {
-            return correspondingSIUnitsofMeasure;
-        }
-
-        correspondingSIUnitsofMeasure = new HL7V231Field
-        {
-            field = message[@"OM2"][4],
-            Id = @"OM2.4",
-            Type = @"Field",
-            Position = @"OM2.4",
-            Name = @"Corresponding SI Units of Measure",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the single tests/observations - the corresponding SI units of measure in the format, when these differ from the customary units of measure given in the previous field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (correspondingSIUnitsofMeasure.field.FieldRepetitions != null && correspondingSIUnitsofMeasure.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(correspondingSIUnitsofMeasure.Id));
-            correspondingSIUnitsofMeasure.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(correspondingSIUnitsofMeasure, fieldData);
-        }
-
-        return correspondingSIUnitsofMeasure;
-    } 
-}
-
-internal HL7V231Field sIConversionFactor;
-
-public HL7V231Field SIConversionFactor
-{
-    get
-    {
-        if (sIConversionFactor != null)
-        {
-            return sIConversionFactor;
-        }
-
-        sIConversionFactor = new HL7V231Field
-        {
-            field = message[@"OM2"][5],
-            Id = @"OM2.5",
-            Type = @"Field",
-            Position = @"OM2.5",
-            Name = @"SI Conversion Factor",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the continuous, numerically valued tests/observations, with a nature code of A or C (see OM1-18-nature of test/observation ). This is a factor for converting the customary units to SI units.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sIConversionFactor.field.FieldRepetitions != null && sIConversionFactor.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sIConversionFactor.Id));
-            sIConversionFactor.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(sIConversionFactor, fieldData);
-        }
-
-        return sIConversionFactor;
-    } 
-}
-
-internal HL7V231Field reference;
-
-public HL7V231Field Reference
-{
-    get
-    {
-        if (reference != null)
-        {
-            return reference;
-        }
-
-        reference = new HL7V231Field
-        {
-            field = message[@"OM2"][6],
-            Id = @"OM2.6",
-            Type = @"Field",
-            Position = @"OM2.6",
-            Name = @"Reference",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"RFR",
-            DataTypeName = @"Reference Range",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the reference (normal) ranges for 'numeric' observations/tests with a nature code of A or C (see OM1-18-nature of test/observation ). It can identify different reference (normal) ranges for different categories of patients according to age, sex, race, and other conditions.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reference.field.FieldRepetitions != null && reference.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reference.Id));
-            reference.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(reference, fieldData);
-        }
-
-        return reference;
-    } 
-}
-
-internal HL7V231Field criticalRangeforOrdinalAndContinuousObs;
-
-public HL7V231Field CriticalRangeforOrdinalAndContinuousObs
-{
-    get
-    {
-        if (criticalRangeforOrdinalAndContinuousObs != null)
-        {
-            return criticalRangeforOrdinalAndContinuousObs;
-        }
-
-        criticalRangeforOrdinalAndContinuousObs = new HL7V231Field
-        {
-            field = message[@"OM2"][7],
-            Id = @"OM2.7",
-            Type = @"Field",
-            Position = @"OM2.7",
-            Name = @"Critical Range for Ordinal & Continuous Obs",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NR",
-            DataTypeName = @"Wertebereich",
-            TableId = null,
-            TableName = null,
-            Description = @"This field applies only to single tests/observations (i.e., a nature code of A or C, as described in OM1-18-nature of test/observation ) with numeric results. When a critical range is defined for such observations, it should be recorded here in the same format as the normal range (see OM2-6-reference (normal) range-ordinal & continuous obs ).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (criticalRangeforOrdinalAndContinuousObs.field.FieldRepetitions != null && criticalRangeforOrdinalAndContinuousObs.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(criticalRangeforOrdinalAndContinuousObs.Id));
-            criticalRangeforOrdinalAndContinuousObs.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(criticalRangeforOrdinalAndContinuousObs, fieldData);
-        }
-
-        return criticalRangeforOrdinalAndContinuousObs;
-    } 
-}
-
-internal HL7V231Field absoluteRangeforOrdinalAndContinuousObs;
-
-public HL7V231Field AbsoluteRangeforOrdinalAndContinuousObs
-{
-    get
-    {
-        if (absoluteRangeforOrdinalAndContinuousObs != null)
-        {
-            return absoluteRangeforOrdinalAndContinuousObs;
-        }
-
-        absoluteRangeforOrdinalAndContinuousObs = new HL7V231Field
-        {
-            field = message[@"OM2"][8],
-            Id = @"OM2.8",
-            Type = @"Field",
-            Position = @"OM2.8",
-            Name = @"Absolute Range for Ordinal & Continuous Obs",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CM_ABS_RANGE",
-            DataTypeName = @"Absolute Range",
-            TableId = null,
-            TableName = null,
-            Description = @"This field applies only to single tests/observations with a nature code of A or C (see OM1-18-nature of test/observation ). It defines the range of possible results. Results outside this range are not possible. The field should be recorded in the same format as the normal and critical ranges.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (absoluteRangeforOrdinalAndContinuousObs.field.FieldRepetitions != null && absoluteRangeforOrdinalAndContinuousObs.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(absoluteRangeforOrdinalAndContinuousObs.Id));
-            absoluteRangeforOrdinalAndContinuousObs.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(absoluteRangeforOrdinalAndContinuousObs, fieldData);
-        }
-
-        return absoluteRangeforOrdinalAndContinuousObs;
-    } 
-}
-
-internal HL7V231Field deltaCheckCriteria;
-
-public HL7V231Field DeltaCheckCriteria
-{
-    get
-    {
-        if (deltaCheckCriteria != null)
-        {
-            return deltaCheckCriteria;
-        }
-
-        deltaCheckCriteria = new HL7V231Field
+        _deltaCheckCriteria = new HL7V231Field
         {
             field = message[@"OM2"][9],
-            Id = @"OM2.9",
-            Type = @"Field",
-            Position = @"OM2.9",
-            Name = @"Delta Check Criteria",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"DLT",
-            DataTypeName = @"Delta Check",
-            TableId = null,
-            TableName = null,
-            Description = @"This field applies to numeric tests/observations with a nature code of A or C (see OM1-18-nature of test/observation ). The field describes the information that controls delta check warnings and includes four components.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (deltaCheckCriteria.field.FieldRepetitions != null && deltaCheckCriteria.field.FieldRepetitions.Count > 0)
+        if (_deltaCheckCriteria.field.FieldRepetitions != null && _deltaCheckCriteria.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deltaCheckCriteria.Id));
-            deltaCheckCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(deltaCheckCriteria, fieldData);
+            _deltaCheckCriteria.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_deltaCheckCriteria, fieldData);
         }
 
-        return deltaCheckCriteria;
+        return _deltaCheckCriteria;
     } 
 }
 
-internal HL7V231Field minimumMeaningfulIncrements;
+internal HL7V231Field _minimumMeaningfulIncrements;
 
 public HL7V231Field MinimumMeaningfulIncrements
 {
     get
     {
-        if (minimumMeaningfulIncrements != null)
+        if (_minimumMeaningfulIncrements != null)
         {
-            return minimumMeaningfulIncrements;
+            return _minimumMeaningfulIncrements;
         }
 
-        minimumMeaningfulIncrements = new HL7V231Field
+        var fieldData = new HL7V231FieldData
         {
-            field = message[@"OM2"][10],
             Id = @"OM2.10",
             Type = @"Field",
             Position = @"OM2.10",
@@ -1299,17 +1163,22 @@ public HL7V231Field MinimumMeaningfulIncrements
             TableName = null,
             Description = @"This field contains the numerically valued single observations (a nature code of A or C, as described in OM1-18-nature of test/observation ) and specifies the smallest meaningful difference between reported values (the effective resolution of the measuring instrument or technique for continuous data, or the smallest discrete interval that can occur for discrete data).",
             Sample = @"",
+            Fields = null
+        }
+
+        _minimumMeaningfulIncrements = new HL7V231Field
+        {
+            field = message[@"OM2"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (minimumMeaningfulIncrements.field.FieldRepetitions != null && minimumMeaningfulIncrements.field.FieldRepetitions.Count > 0)
+        if (_minimumMeaningfulIncrements.field.FieldRepetitions != null && _minimumMeaningfulIncrements.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(minimumMeaningfulIncrements.Id));
-            minimumMeaningfulIncrements.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(minimumMeaningfulIncrements, fieldData);
+            _minimumMeaningfulIncrements.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_minimumMeaningfulIncrements, fieldData);
         }
 
-        return minimumMeaningfulIncrements;
+        return _minimumMeaningfulIncrements;
     } 
 }
     }

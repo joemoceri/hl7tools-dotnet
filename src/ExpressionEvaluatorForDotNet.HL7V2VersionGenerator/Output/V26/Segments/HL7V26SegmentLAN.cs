@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentLAN(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _setIDLAN;
+
+public HL7V26Field SetIDLAN
+{
+    get
+    {
+        if (_setIDLAN != null)
+        {
+            return _setIDLAN;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"LAN.1",
+            Type = @"Field",
+            Position = @"LAN.1",
+            Name = @"Set ID – LAN",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDLAN = new HL7V26Field
+        {
+            field = message[@"LAN"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDLAN.field.FieldRepetitions != null && _setIDLAN.field.FieldRepetitions.Count > 0)
+        {
+            _setIDLAN.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_setIDLAN, fieldData);
+        }
+
+        return _setIDLAN;
+    } 
+}
+
+internal HL7V26Field _languageCode;
+
+public HL7V26Field LanguageCode
+{
+    get
+    {
+        if (_languageCode != null)
+        {
+            return _languageCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"LAN.2",
+            Type = @"Field",
+            Position = @"LAN.2",
+            Name = @"Language Code",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0296",
+            TableName = @"Primary Language",
+            Description = @"This field contains the language about which the Staff Member's has some knowledge. HL7 recommends using ISO table 639 as the suggested values in User-defined Table 0296 - Language .",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"LAN.1",
-                            Type = @"Field",
-                            Position = @"LAN.1",
-                            Name = @"Set ID – LAN",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"LAN.2",
-                            Type = @"Field",
-                            Position = @"LAN.2",
-                            Name = @"Language Code",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0296",
-                            TableName = @"Primary Language",
-                            Description = @"This field contains the language about which the Staff Member's has some knowledge. HL7 recommends using ISO table 639 as the suggested values in User-defined Table 0296 - Language .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"LAN.2.1",
                             Type = @"Component",
@@ -228,25 +267,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _languageCode = new HL7V26Field
+        {
+            field = message[@"LAN"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_languageCode.field.FieldRepetitions != null && _languageCode.field.FieldRepetitions.Count > 0)
+        {
+            _languageCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_languageCode, fieldData);
+        }
+
+        return _languageCode;
+    } 
+}
+
+internal HL7V26Field _languageAbilityCode;
+
+public HL7V26Field LanguageAbilityCode
+{
+    get
+    {
+        if (_languageAbilityCode != null)
+        {
+            return _languageAbilityCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"LAN.3",
+            Type = @"Field",
+            Position = @"LAN.3",
+            Name = @"Language Ability Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0403",
+            TableName = @"Language Ability",
+            Description = @"This field contains the ability the Staff Member possesses with respect to the language. HL7 recommends using values in HL7 Table 0403 - Language ability.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LAN.3",
-                            Type = @"Field",
-                            Position = @"LAN.3",
-                            Name = @"Language Ability Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0403",
-                            TableName = @"Language Ability",
-                            Description = @"This field contains the ability the Staff Member possesses with respect to the language. HL7 recommends using values in HL7 Table 0403 - Language ability.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LAN.3.1",
                             Type = @"Component",
@@ -406,25 +475,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _languageAbilityCode = new HL7V26Field
+        {
+            field = message[@"LAN"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_languageAbilityCode.field.FieldRepetitions != null && _languageAbilityCode.field.FieldRepetitions.Count > 0)
+        {
+            _languageAbilityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_languageAbilityCode, fieldData);
+        }
+
+        return _languageAbilityCode;
+    } 
+}
+
+internal HL7V26Field _languageProficiencyCode;
+
+public HL7V26Field LanguageProficiencyCode
+{
+    get
+    {
+        if (_languageProficiencyCode != null)
+        {
+            return _languageProficiencyCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"LAN.4",
+            Type = @"Field",
+            Position = @"LAN.4",
+            Name = @"Language Proficiency Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0404",
+            TableName = @"Language Proficiency",
+            Description = @"This field contains the level of knowledge the Staff Member possesses with respect to the language ability. HL7 suggests using values in HL7 Table 0404 - Language proficiency .",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"LAN.4",
-                            Type = @"Field",
-                            Position = @"LAN.4",
-                            Name = @"Language Proficiency Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0404",
-                            TableName = @"Language Proficiency",
-                            Description = @"This field contains the level of knowledge the Staff Member possesses with respect to the language ability. HL7 suggests using values in HL7 Table 0404 - Language proficiency .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"LAN.4.1",
                             Type = @"Component",
@@ -584,178 +683,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentLAN(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field setIDLAN;
-
-public HL7V26Field SetIDLAN
-{
-    get
-    {
-        if (setIDLAN != null)
-        {
-            return setIDLAN;
-        }
-
-        setIDLAN = new HL7V26Field
-        {
-            field = message[@"LAN"][1],
-            Id = @"LAN.1",
-            Type = @"Field",
-            Position = @"LAN.1",
-            Name = @"Set ID – LAN",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDLAN.field.FieldRepetitions != null && setIDLAN.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDLAN.Id));
-            setIDLAN.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(setIDLAN, fieldData);
-        }
-
-        return setIDLAN;
-    } 
-}
-
-internal HL7V26Field languageCode;
-
-public HL7V26Field LanguageCode
-{
-    get
-    {
-        if (languageCode != null)
-        {
-            return languageCode;
-        }
-
-        languageCode = new HL7V26Field
-        {
-            field = message[@"LAN"][2],
-            Id = @"LAN.2",
-            Type = @"Field",
-            Position = @"LAN.2",
-            Name = @"Language Code",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0296",
-            TableName = @"Primary Language",
-            Description = @"This field contains the language about which the Staff Member's has some knowledge. HL7 recommends using ISO table 639 as the suggested values in User-defined Table 0296 - Language .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (languageCode.field.FieldRepetitions != null && languageCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(languageCode.Id));
-            languageCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(languageCode, fieldData);
-        }
-
-        return languageCode;
-    } 
-}
-
-internal HL7V26Field languageAbilityCode;
-
-public HL7V26Field LanguageAbilityCode
-{
-    get
-    {
-        if (languageAbilityCode != null)
-        {
-            return languageAbilityCode;
-        }
-
-        languageAbilityCode = new HL7V26Field
-        {
-            field = message[@"LAN"][3],
-            Id = @"LAN.3",
-            Type = @"Field",
-            Position = @"LAN.3",
-            Name = @"Language Ability Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0403",
-            TableName = @"Language Ability",
-            Description = @"This field contains the ability the Staff Member possesses with respect to the language. HL7 recommends using values in HL7 Table 0403 - Language ability.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (languageAbilityCode.field.FieldRepetitions != null && languageAbilityCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(languageAbilityCode.Id));
-            languageAbilityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(languageAbilityCode, fieldData);
-        }
-
-        return languageAbilityCode;
-    } 
-}
-
-internal HL7V26Field languageProficiencyCode;
-
-public HL7V26Field LanguageProficiencyCode
-{
-    get
-    {
-        if (languageProficiencyCode != null)
-        {
-            return languageProficiencyCode;
-        }
-
-        languageProficiencyCode = new HL7V26Field
+        _languageProficiencyCode = new HL7V26Field
         {
             field = message[@"LAN"][4],
-            Id = @"LAN.4",
-            Type = @"Field",
-            Position = @"LAN.4",
-            Name = @"Language Proficiency Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0404",
-            TableName = @"Language Proficiency",
-            Description = @"This field contains the level of knowledge the Staff Member possesses with respect to the language ability. HL7 suggests using values in HL7 Table 0404 - Language proficiency .",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (languageProficiencyCode.field.FieldRepetitions != null && languageProficiencyCode.field.FieldRepetitions.Count > 0)
+        if (_languageProficiencyCode.field.FieldRepetitions != null && _languageProficiencyCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(languageProficiencyCode.Id));
-            languageProficiencyCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(languageProficiencyCode, fieldData);
+            _languageProficiencyCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_languageProficiencyCode, fieldData);
         }
 
-        return languageProficiencyCode;
+        return _languageProficiencyCode;
     } 
 }
     }

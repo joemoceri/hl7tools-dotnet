@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentNPU(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _bedLocation;
+
+public HL7V26Field BedLocation
+{
+    get
+    {
+        if (_bedLocation != null)
+        {
+            return _bedLocation;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"NPU.1",
+            Type = @"Field",
+            Position = @"NPU.1",
+            Name = @"Bed Location",
+            Length = 80,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the bed location that is a valid bed location.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"NPU.1",
-                            Type = @"Field",
-                            Position = @"NPU.1",
-                            Name = @"Bed Location",
-                            Length = 80,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the bed location that is a valid bed location.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NPU.1.1",
                             Type = @"Component",
@@ -420,90 +432,39 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NPU.2",
-                            Type = @"Field",
-                            Position = @"NPU.2",
-                            Name = @"Bed Status",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0116",
-                            TableName = @"Bed Status",
-                            Description = @"This field contains the bed status. Refer to User-defined Table 0116 - Bed Status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentNPU(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field bedLocation;
-
-public HL7V26Field BedLocation
-{
-    get
-    {
-        if (bedLocation != null)
-        {
-            return bedLocation;
-        }
-
-        bedLocation = new HL7V26Field
+        _bedLocation = new HL7V26Field
         {
             field = message[@"NPU"][1],
-            Id = @"NPU.1",
-            Type = @"Field",
-            Position = @"NPU.1",
-            Name = @"Bed Location",
-            Length = 80,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the bed location that is a valid bed location.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (bedLocation.field.FieldRepetitions != null && bedLocation.field.FieldRepetitions.Count > 0)
+        if (_bedLocation.field.FieldRepetitions != null && _bedLocation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bedLocation.Id));
-            bedLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(bedLocation, fieldData);
+            _bedLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_bedLocation, fieldData);
         }
 
-        return bedLocation;
+        return _bedLocation;
     } 
 }
 
-internal HL7V26Field bedStatus;
+internal HL7V26Field _bedStatus;
 
 public HL7V26Field BedStatus
 {
     get
     {
-        if (bedStatus != null)
+        if (_bedStatus != null)
         {
-            return bedStatus;
+            return _bedStatus;
         }
 
-        bedStatus = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"NPU"][2],
             Id = @"NPU.2",
             Type = @"Field",
             Position = @"NPU.2",
@@ -517,17 +478,22 @@ public HL7V26Field BedStatus
             TableName = @"Bed Status",
             Description = @"This field contains the bed status. Refer to User-defined Table 0116 - Bed Status for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _bedStatus = new HL7V26Field
+        {
+            field = message[@"NPU"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (bedStatus.field.FieldRepetitions != null && bedStatus.field.FieldRepetitions.Count > 0)
+        if (_bedStatus.field.FieldRepetitions != null && _bedStatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bedStatus.Id));
-            bedStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(bedStatus, fieldData);
+            _bedStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_bedStatus, fieldData);
         }
 
-        return bedStatus;
+        return _bedStatus;
     } 
 }
     }

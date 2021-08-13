@@ -26,29 +26,32 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
             {
                 //CreateTestData(version);
 
-                //// tables
-                //CreateTables(version);
+                // tables
+                CreateTables(version);
 
-                //// data types
-                //CreateDataTypes(version);
+                // data types
+                CreateDataTypes(version);
 
-                //// fields
-                //CreateFields(version);
+                // field datas
+                CreateFieldDatas(version);
 
-                //// field repetitions
-                //CreateFieldRepetitions(version);
+                // fields
+                CreateFields(version);
 
-                //// components
-                //CreateComponents(version);
+                // field repetitions
+                CreateFieldRepetitions(version);
 
-                //// sub components
-                //CreateSubComponents(version);
+                // components
+                CreateComponents(version);
+
+                // sub components
+                CreateSubComponents(version);
 
                 // segments
                 CreateSegments(version);
 
-                //// trigger events
-                //CreateTriggerEvents(version);
+                // trigger events
+                CreateTriggerEvents(version);
             }
 
             void CreateTestData(string version)
@@ -498,7 +501,7 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                     var lower = char.ToLower(field.Name[0]) + field.Name.Substring(1);
 
-                    result.Add("[{-FIELD_NAME_PROPERTY_NAME_LOWER-}]", ConvertToPropertyString(lower));
+                    result.Add("[{-FIELD_NAME_PROPERTY_NAME_LOWER-}]", $"_{ConvertToPropertyString(lower)}");
                     result.Add("[{-FIELD_NAME_PROPERTY_NAME-}]", ConvertToPropertyString(field.Name));
                     result.Add("[{-SEGMENT_ID-}]", WrapInQuotesOrNull(segmentId));
                     result.Add("[{-FIELD_PROPERTY_ID-}]", WrapInQuotesOrNull(field.Id.Split(".")[1], true));
@@ -515,6 +518,31 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                     result.Add("[{-TABLE_NAME-}]", WrapInQuotesOrNull(field.TableName));
                     result.Add("[{-DESCRIPTION-}]", WrapInQuotesOrNull(field.Description));
                     result.Add("[{-SAMPLE-}]", WrapInQuotesOrNull(field.Sample));
+
+                    // fieldDatas
+                    string fieldDatasStrings = null;
+                    if (field.Fields != null && field.Fields.Count > 0)
+                    {
+                        var r = new StringBuilder();
+                        for (var i = 0; i < field.Fields.Count; i++)
+                        {
+                            var f = field.Fields[i];
+
+                            r.Append(CreateFieldData(f));
+                        }
+
+                        fieldDatasStrings = r.ToString().Trim();
+                    }
+
+                    if (fieldDatasStrings != null)
+                    {
+                        fieldDatasStrings = @$"new[]
+                        {{
+                            {fieldDatasStrings}
+                        }}";
+                    }
+
+                    result.Add("[{-FIELD_DATAS-}]", WrapInQuotesOrNull(fieldDatasStrings, true));
 
                     return result;
                 }
@@ -582,6 +610,16 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                     Directory.CreateDirectory(Path.Combine(versionsBasePath, $"V{version.Replace(".", string.Empty)}", "TriggerEvents"));
                 }
+            }
+
+            void CreateFieldDatas(string version)
+            {
+                var v = version.Replace(".", string.Empty);
+                var fieldDataTemplate = File.ReadAllText(Path.Combine(basePath, "Templates", "HL7V2FieldData.template.cs.txt"));
+
+                fieldDataTemplate = fieldDataTemplate.Replace("[{-VERSION-}]", v);
+
+                File.WriteAllText(Path.Combine(basePath, "Output", $"V{v}", $"HL7V{v}FieldData.cs"), fieldDataTemplate);
             }
         }
     }

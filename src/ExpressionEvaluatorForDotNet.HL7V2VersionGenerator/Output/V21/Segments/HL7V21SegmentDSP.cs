@@ -25,124 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"DSP.1",
-                            Type = @"Field",
-                            Position = @"DSP.1",
-                            Name = @"Set Id - Display Data",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Set Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DSP.2",
-                            Type = @"Field",
-                            Position = @"DSP.2",
-                            Name = @"Display Level",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Set Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DSP.3",
-                            Type = @"Field",
-                            Position = @"DSP.3",
-                            Name = @"Data Line",
-                            Length = 300,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DSP.4",
-                            Type = @"Field",
-                            Position = @"DSP.4",
-                            Name = @"Logical Break Point",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DSP.5",
-                            Type = @"Field",
-                            Position = @"DSP.5",
-                            Name = @"Result Id",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentDSP(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field setIdDisplayData;
+        internal HL7V21Field _setIdDisplayData;
 
 public HL7V21Field SetIdDisplayData
 {
     get
     {
-        if (setIdDisplayData != null)
+        if (_setIdDisplayData != null)
         {
-            return setIdDisplayData;
+            return _setIdDisplayData;
         }
 
-        setIdDisplayData = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DSP"][1],
             Id = @"DSP.1",
             Type = @"Field",
             Position = @"DSP.1",
@@ -156,34 +56,38 @@ public HL7V21Field SetIdDisplayData
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _setIdDisplayData = new HL7V21Field
+        {
+            field = message[@"DSP"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (setIdDisplayData.field.FieldRepetitions != null && setIdDisplayData.field.FieldRepetitions.Count > 0)
+        if (_setIdDisplayData.field.FieldRepetitions != null && _setIdDisplayData.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdDisplayData.Id));
-            setIdDisplayData.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(setIdDisplayData, fieldData);
+            _setIdDisplayData.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_setIdDisplayData, fieldData);
         }
 
-        return setIdDisplayData;
+        return _setIdDisplayData;
     } 
 }
 
-internal HL7V21Field displayLevel;
+internal HL7V21Field _displayLevel;
 
 public HL7V21Field DisplayLevel
 {
     get
     {
-        if (displayLevel != null)
+        if (_displayLevel != null)
         {
-            return displayLevel;
+            return _displayLevel;
         }
 
-        displayLevel = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DSP"][2],
             Id = @"DSP.2",
             Type = @"Field",
             Position = @"DSP.2",
@@ -197,34 +101,38 @@ public HL7V21Field DisplayLevel
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _displayLevel = new HL7V21Field
+        {
+            field = message[@"DSP"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (displayLevel.field.FieldRepetitions != null && displayLevel.field.FieldRepetitions.Count > 0)
+        if (_displayLevel.field.FieldRepetitions != null && _displayLevel.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(displayLevel.Id));
-            displayLevel.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(displayLevel, fieldData);
+            _displayLevel.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_displayLevel, fieldData);
         }
 
-        return displayLevel;
+        return _displayLevel;
     } 
 }
 
-internal HL7V21Field dataLine;
+internal HL7V21Field _dataLine;
 
 public HL7V21Field DataLine
 {
     get
     {
-        if (dataLine != null)
+        if (_dataLine != null)
         {
-            return dataLine;
+            return _dataLine;
         }
 
-        dataLine = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DSP"][3],
             Id = @"DSP.3",
             Type = @"Field",
             Position = @"DSP.3",
@@ -238,34 +146,38 @@ public HL7V21Field DataLine
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _dataLine = new HL7V21Field
+        {
+            field = message[@"DSP"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dataLine.field.FieldRepetitions != null && dataLine.field.FieldRepetitions.Count > 0)
+        if (_dataLine.field.FieldRepetitions != null && _dataLine.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dataLine.Id));
-            dataLine.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(dataLine, fieldData);
+            _dataLine.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_dataLine, fieldData);
         }
 
-        return dataLine;
+        return _dataLine;
     } 
 }
 
-internal HL7V21Field logicalBreakPoint;
+internal HL7V21Field _logicalBreakPoint;
 
 public HL7V21Field LogicalBreakPoint
 {
     get
     {
-        if (logicalBreakPoint != null)
+        if (_logicalBreakPoint != null)
         {
-            return logicalBreakPoint;
+            return _logicalBreakPoint;
         }
 
-        logicalBreakPoint = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DSP"][4],
             Id = @"DSP.4",
             Type = @"Field",
             Position = @"DSP.4",
@@ -279,34 +191,38 @@ public HL7V21Field LogicalBreakPoint
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _logicalBreakPoint = new HL7V21Field
+        {
+            field = message[@"DSP"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (logicalBreakPoint.field.FieldRepetitions != null && logicalBreakPoint.field.FieldRepetitions.Count > 0)
+        if (_logicalBreakPoint.field.FieldRepetitions != null && _logicalBreakPoint.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(logicalBreakPoint.Id));
-            logicalBreakPoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(logicalBreakPoint, fieldData);
+            _logicalBreakPoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_logicalBreakPoint, fieldData);
         }
 
-        return logicalBreakPoint;
+        return _logicalBreakPoint;
     } 
 }
 
-internal HL7V21Field resultId;
+internal HL7V21Field _resultId;
 
 public HL7V21Field ResultId
 {
     get
     {
-        if (resultId != null)
+        if (_resultId != null)
         {
-            return resultId;
+            return _resultId;
         }
 
-        resultId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"DSP"][5],
             Id = @"DSP.5",
             Type = @"Field",
             Position = @"DSP.5",
@@ -320,17 +236,22 @@ public HL7V21Field ResultId
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _resultId = new HL7V21Field
+        {
+            field = message[@"DSP"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (resultId.field.FieldRepetitions != null && resultId.field.FieldRepetitions.Count > 0)
+        if (_resultId.field.FieldRepetitions != null && _resultId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resultId.Id));
-            resultId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(resultId, fieldData);
+            _resultId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_resultId, fieldData);
         }
 
-        return resultId;
+        return _resultId;
     } 
 }
     }

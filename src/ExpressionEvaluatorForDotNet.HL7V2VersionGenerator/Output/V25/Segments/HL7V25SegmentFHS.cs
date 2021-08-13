@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V25SegmentFHS(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V25Field _fileFieldSeparator;
+
+public HL7V25Field FileFieldSeparator
+{
+    get
+    {
+        if (_fileFieldSeparator != null)
+        {
+            return _fileFieldSeparator;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"FHS.1",
+            Type = @"Field",
+            Position = @"FHS.1",
+            Name = @"File Field Separator",
+            Length = 1,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has the same definition as the corresponding field in the MSH segment. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _fileFieldSeparator = new HL7V25Field
+        {
+            field = message[@"FHS"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fileFieldSeparator.field.FieldRepetitions != null && _fileFieldSeparator.field.FieldRepetitions.Count > 0)
+        {
+            _fileFieldSeparator.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_fileFieldSeparator, fieldData);
+        }
+
+        return _fileFieldSeparator;
+    } 
+}
+
+internal HL7V25Field _fileEncodingCharacters;
+
+public HL7V25Field FileEncodingCharacters
+{
+    get
+    {
+        if (_fileEncodingCharacters != null)
+        {
+            return _fileEncodingCharacters;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"FHS.2",
+            Type = @"Field",
+            Position = @"FHS.2",
+            Name = @"File Encoding Characters",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has the same definition as the corresponding field in the MSH segment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _fileEncodingCharacters = new HL7V25Field
+        {
+            field = message[@"FHS"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fileEncodingCharacters.field.FieldRepetitions != null && _fileEncodingCharacters.field.FieldRepetitions.Count > 0)
+        {
+            _fileEncodingCharacters.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_fileEncodingCharacters, fieldData);
+        }
+
+        return _fileEncodingCharacters;
+    } 
+}
+
+internal HL7V25Field _fileSendingApplication;
+
+public HL7V25Field FileSendingApplication
+{
+    get
+    {
+        if (_fileSendingApplication != null)
+        {
+            return _fileSendingApplication;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"FHS.3",
+            Type = @"Field",
+            Position = @"FHS.3",
+            Name = @"File Sending Application",
+            Length = 227,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"HD",
+            DataTypeName = @"Hierarchic Designator",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has the same definition as the corresponding field in the MSH segment.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"FHS.1",
-                            Type = @"Field",
-                            Position = @"FHS.1",
-                            Name = @"File Field Separator",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has the same definition as the corresponding field in the MSH segment. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FHS.2",
-                            Type = @"Field",
-                            Position = @"FHS.2",
-                            Name = @"File Encoding Characters",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has the same definition as the corresponding field in the MSH segment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FHS.3",
-                            Type = @"Field",
-                            Position = @"FHS.3",
-                            Name = @"File Sending Application",
-                            Length = 227,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"HD",
-                            DataTypeName = @"Hierarchic Designator",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has the same definition as the corresponding field in the MSH segment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"FHS.3.1",
                             Type = @"Component",
@@ -138,25 +204,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _fileSendingApplication = new HL7V25Field
+        {
+            field = message[@"FHS"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fileSendingApplication.field.FieldRepetitions != null && _fileSendingApplication.field.FieldRepetitions.Count > 0)
+        {
+            _fileSendingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_fileSendingApplication, fieldData);
+        }
+
+        return _fileSendingApplication;
+    } 
+}
+
+internal HL7V25Field _fileSendingFacility;
+
+public HL7V25Field FileSendingFacility
+{
+    get
+    {
+        if (_fileSendingFacility != null)
+        {
+            return _fileSendingFacility;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"FHS.4",
+            Type = @"Field",
+            Position = @"FHS.4",
+            Name = @"File Sending Facility",
+            Length = 227,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"HD",
+            DataTypeName = @"Hierarchic Designator",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has the same definition as the corresponding field in the MSH segment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FHS.4",
-                            Type = @"Field",
-                            Position = @"FHS.4",
-                            Name = @"File Sending Facility",
-                            Length = 227,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"HD",
-                            DataTypeName = @"Hierarchic Designator",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has the same definition as the corresponding field in the MSH segment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FHS.4.1",
                             Type = @"Component",
@@ -208,25 +304,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _fileSendingFacility = new HL7V25Field
+        {
+            field = message[@"FHS"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fileSendingFacility.field.FieldRepetitions != null && _fileSendingFacility.field.FieldRepetitions.Count > 0)
+        {
+            _fileSendingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_fileSendingFacility, fieldData);
+        }
+
+        return _fileSendingFacility;
+    } 
+}
+
+internal HL7V25Field _fileReceivingApplication;
+
+public HL7V25Field FileReceivingApplication
+{
+    get
+    {
+        if (_fileReceivingApplication != null)
+        {
+            return _fileReceivingApplication;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"FHS.5",
+            Type = @"Field",
+            Position = @"FHS.5",
+            Name = @"File Receiving Application",
+            Length = 227,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"HD",
+            DataTypeName = @"Hierarchic Designator",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has the same definition as the corresponding field in the MSH segment. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FHS.5",
-                            Type = @"Field",
-                            Position = @"FHS.5",
-                            Name = @"File Receiving Application",
-                            Length = 227,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"HD",
-                            DataTypeName = @"Hierarchic Designator",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has the same definition as the corresponding field in the MSH segment. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FHS.5.1",
                             Type = @"Component",
@@ -278,25 +404,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _fileReceivingApplication = new HL7V25Field
+        {
+            field = message[@"FHS"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fileReceivingApplication.field.FieldRepetitions != null && _fileReceivingApplication.field.FieldRepetitions.Count > 0)
+        {
+            _fileReceivingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_fileReceivingApplication, fieldData);
+        }
+
+        return _fileReceivingApplication;
+    } 
+}
+
+internal HL7V25Field _fileReceivingFacility;
+
+public HL7V25Field FileReceivingFacility
+{
+    get
+    {
+        if (_fileReceivingFacility != null)
+        {
+            return _fileReceivingFacility;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"FHS.6",
+            Type = @"Field",
+            Position = @"FHS.6",
+            Name = @"File Receiving Facility",
+            Length = 227,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"HD",
+            DataTypeName = @"Hierarchic Designator",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has the same definition as the corresponding field in the MSH segment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FHS.6",
-                            Type = @"Field",
-                            Position = @"FHS.6",
-                            Name = @"File Receiving Facility",
-                            Length = 227,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"HD",
-                            DataTypeName = @"Hierarchic Designator",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has the same definition as the corresponding field in the MSH segment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FHS.6.1",
                             Type = @"Component",
@@ -348,25 +504,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _fileReceivingFacility = new HL7V25Field
+        {
+            field = message[@"FHS"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fileReceivingFacility.field.FieldRepetitions != null && _fileReceivingFacility.field.FieldRepetitions.Count > 0)
+        {
+            _fileReceivingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_fileReceivingFacility, fieldData);
+        }
+
+        return _fileReceivingFacility;
+    } 
+}
+
+internal HL7V25Field _fileCreationDateTime;
+
+public HL7V25Field FileCreationDateTime
+{
+    get
+    {
+        if (_fileCreationDateTime != null)
+        {
+            return _fileCreationDateTime;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"FHS.7",
+            Type = @"Field",
+            Position = @"FHS.7",
+            Name = @"File Creation Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has the same definition as the corresponding field in the MSH segment. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"FHS.7",
-                            Type = @"Field",
-                            Position = @"FHS.7",
-                            Name = @"File Creation Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has the same definition as the corresponding field in the MSH segment. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"FHS.7.1",
                             Type = @"Component",
@@ -402,408 +588,39 @@ namespace ExpressionEvaluatorForDotNet
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FHS.8",
-                            Type = @"Field",
-                            Position = @"FHS.8",
-                            Name = @"File Security",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has the same definition as the corresponding field in the MSH segment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FHS.9",
-                            Type = @"Field",
-                            Position = @"FHS.9",
-                            Name = @"File Name/ID",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field can be used by the application processing file. Its use is not further specified. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FHS.10",
-                            Type = @"Field",
-                            Position = @"FHS.10",
-                            Name = @"File Header Comment",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the free text field, the use of which is not further specified.  ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FHS.11",
-                            Type = @"Field",
-                            Position = @"FHS.11",
-                            Name = @"File Control ID",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to identify a particular file uniquely. It can be echoed back in FHS-12reference file control ID. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FHS.12",
-                            Type = @"Field",
-                            Position = @"FHS.12",
-                            Name = @"Reference File Control ID",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the value of FHS-11-file control ID when this file was originally transmitted. Not present if this file is being transmitted for the first time. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V25SegmentFHS(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V25Field fileFieldSeparator;
-
-public HL7V25Field FileFieldSeparator
-{
-    get
-    {
-        if (fileFieldSeparator != null)
-        {
-            return fileFieldSeparator;
-        }
-
-        fileFieldSeparator = new HL7V25Field
-        {
-            field = message[@"FHS"][1],
-            Id = @"FHS.1",
-            Type = @"Field",
-            Position = @"FHS.1",
-            Name = @"File Field Separator",
-            Length = 1,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has the same definition as the corresponding field in the MSH segment. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fileFieldSeparator.field.FieldRepetitions != null && fileFieldSeparator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fileFieldSeparator.Id));
-            fileFieldSeparator.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(fileFieldSeparator, fieldData);
-        }
-
-        return fileFieldSeparator;
-    } 
-}
-
-internal HL7V25Field fileEncodingCharacters;
-
-public HL7V25Field FileEncodingCharacters
-{
-    get
-    {
-        if (fileEncodingCharacters != null)
-        {
-            return fileEncodingCharacters;
-        }
-
-        fileEncodingCharacters = new HL7V25Field
-        {
-            field = message[@"FHS"][2],
-            Id = @"FHS.2",
-            Type = @"Field",
-            Position = @"FHS.2",
-            Name = @"File Encoding Characters",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has the same definition as the corresponding field in the MSH segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fileEncodingCharacters.field.FieldRepetitions != null && fileEncodingCharacters.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fileEncodingCharacters.Id));
-            fileEncodingCharacters.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(fileEncodingCharacters, fieldData);
-        }
-
-        return fileEncodingCharacters;
-    } 
-}
-
-internal HL7V25Field fileSendingApplication;
-
-public HL7V25Field FileSendingApplication
-{
-    get
-    {
-        if (fileSendingApplication != null)
-        {
-            return fileSendingApplication;
-        }
-
-        fileSendingApplication = new HL7V25Field
-        {
-            field = message[@"FHS"][3],
-            Id = @"FHS.3",
-            Type = @"Field",
-            Position = @"FHS.3",
-            Name = @"File Sending Application",
-            Length = 227,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"HD",
-            DataTypeName = @"Hierarchic Designator",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has the same definition as the corresponding field in the MSH segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fileSendingApplication.field.FieldRepetitions != null && fileSendingApplication.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fileSendingApplication.Id));
-            fileSendingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(fileSendingApplication, fieldData);
-        }
-
-        return fileSendingApplication;
-    } 
-}
-
-internal HL7V25Field fileSendingFacility;
-
-public HL7V25Field FileSendingFacility
-{
-    get
-    {
-        if (fileSendingFacility != null)
-        {
-            return fileSendingFacility;
-        }
-
-        fileSendingFacility = new HL7V25Field
-        {
-            field = message[@"FHS"][4],
-            Id = @"FHS.4",
-            Type = @"Field",
-            Position = @"FHS.4",
-            Name = @"File Sending Facility",
-            Length = 227,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"HD",
-            DataTypeName = @"Hierarchic Designator",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has the same definition as the corresponding field in the MSH segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fileSendingFacility.field.FieldRepetitions != null && fileSendingFacility.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fileSendingFacility.Id));
-            fileSendingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(fileSendingFacility, fieldData);
-        }
-
-        return fileSendingFacility;
-    } 
-}
-
-internal HL7V25Field fileReceivingApplication;
-
-public HL7V25Field FileReceivingApplication
-{
-    get
-    {
-        if (fileReceivingApplication != null)
-        {
-            return fileReceivingApplication;
-        }
-
-        fileReceivingApplication = new HL7V25Field
-        {
-            field = message[@"FHS"][5],
-            Id = @"FHS.5",
-            Type = @"Field",
-            Position = @"FHS.5",
-            Name = @"File Receiving Application",
-            Length = 227,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"HD",
-            DataTypeName = @"Hierarchic Designator",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has the same definition as the corresponding field in the MSH segment. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fileReceivingApplication.field.FieldRepetitions != null && fileReceivingApplication.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fileReceivingApplication.Id));
-            fileReceivingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(fileReceivingApplication, fieldData);
-        }
-
-        return fileReceivingApplication;
-    } 
-}
-
-internal HL7V25Field fileReceivingFacility;
-
-public HL7V25Field FileReceivingFacility
-{
-    get
-    {
-        if (fileReceivingFacility != null)
-        {
-            return fileReceivingFacility;
-        }
-
-        fileReceivingFacility = new HL7V25Field
-        {
-            field = message[@"FHS"][6],
-            Id = @"FHS.6",
-            Type = @"Field",
-            Position = @"FHS.6",
-            Name = @"File Receiving Facility",
-            Length = 227,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"HD",
-            DataTypeName = @"Hierarchic Designator",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has the same definition as the corresponding field in the MSH segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fileReceivingFacility.field.FieldRepetitions != null && fileReceivingFacility.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fileReceivingFacility.Id));
-            fileReceivingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(fileReceivingFacility, fieldData);
-        }
-
-        return fileReceivingFacility;
-    } 
-}
-
-internal HL7V25Field fileCreationDateTime;
-
-public HL7V25Field FileCreationDateTime
-{
-    get
-    {
-        if (fileCreationDateTime != null)
-        {
-            return fileCreationDateTime;
-        }
-
-        fileCreationDateTime = new HL7V25Field
+        _fileCreationDateTime = new HL7V25Field
         {
             field = message[@"FHS"][7],
-            Id = @"FHS.7",
-            Type = @"Field",
-            Position = @"FHS.7",
-            Name = @"File Creation Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has the same definition as the corresponding field in the MSH segment. ",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fileCreationDateTime.field.FieldRepetitions != null && fileCreationDateTime.field.FieldRepetitions.Count > 0)
+        if (_fileCreationDateTime.field.FieldRepetitions != null && _fileCreationDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fileCreationDateTime.Id));
-            fileCreationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(fileCreationDateTime, fieldData);
+            _fileCreationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_fileCreationDateTime, fieldData);
         }
 
-        return fileCreationDateTime;
+        return _fileCreationDateTime;
     } 
 }
 
-internal HL7V25Field fileSecurity;
+internal HL7V25Field _fileSecurity;
 
 public HL7V25Field FileSecurity
 {
     get
     {
-        if (fileSecurity != null)
+        if (_fileSecurity != null)
         {
-            return fileSecurity;
+            return _fileSecurity;
         }
 
-        fileSecurity = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"FHS"][8],
             Id = @"FHS.8",
             Type = @"Field",
             Position = @"FHS.8",
@@ -817,34 +634,38 @@ public HL7V25Field FileSecurity
             TableName = null,
             Description = @"This field has the same definition as the corresponding field in the MSH segment.",
             Sample = @"",
+            Fields = null
+        }
+
+        _fileSecurity = new HL7V25Field
+        {
+            field = message[@"FHS"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fileSecurity.field.FieldRepetitions != null && fileSecurity.field.FieldRepetitions.Count > 0)
+        if (_fileSecurity.field.FieldRepetitions != null && _fileSecurity.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fileSecurity.Id));
-            fileSecurity.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(fileSecurity, fieldData);
+            _fileSecurity.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_fileSecurity, fieldData);
         }
 
-        return fileSecurity;
+        return _fileSecurity;
     } 
 }
 
-internal HL7V25Field fileNameID;
+internal HL7V25Field _fileNameID;
 
 public HL7V25Field FileNameID
 {
     get
     {
-        if (fileNameID != null)
+        if (_fileNameID != null)
         {
-            return fileNameID;
+            return _fileNameID;
         }
 
-        fileNameID = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"FHS"][9],
             Id = @"FHS.9",
             Type = @"Field",
             Position = @"FHS.9",
@@ -858,34 +679,38 @@ public HL7V25Field FileNameID
             TableName = null,
             Description = @"This field can be used by the application processing file. Its use is not further specified. ",
             Sample = @"",
+            Fields = null
+        }
+
+        _fileNameID = new HL7V25Field
+        {
+            field = message[@"FHS"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fileNameID.field.FieldRepetitions != null && fileNameID.field.FieldRepetitions.Count > 0)
+        if (_fileNameID.field.FieldRepetitions != null && _fileNameID.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fileNameID.Id));
-            fileNameID.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(fileNameID, fieldData);
+            _fileNameID.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_fileNameID, fieldData);
         }
 
-        return fileNameID;
+        return _fileNameID;
     } 
 }
 
-internal HL7V25Field fileHeaderComment;
+internal HL7V25Field _fileHeaderComment;
 
 public HL7V25Field FileHeaderComment
 {
     get
     {
-        if (fileHeaderComment != null)
+        if (_fileHeaderComment != null)
         {
-            return fileHeaderComment;
+            return _fileHeaderComment;
         }
 
-        fileHeaderComment = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"FHS"][10],
             Id = @"FHS.10",
             Type = @"Field",
             Position = @"FHS.10",
@@ -899,34 +724,38 @@ public HL7V25Field FileHeaderComment
             TableName = null,
             Description = @"This field contains the free text field, the use of which is not further specified.  ",
             Sample = @"",
+            Fields = null
+        }
+
+        _fileHeaderComment = new HL7V25Field
+        {
+            field = message[@"FHS"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fileHeaderComment.field.FieldRepetitions != null && fileHeaderComment.field.FieldRepetitions.Count > 0)
+        if (_fileHeaderComment.field.FieldRepetitions != null && _fileHeaderComment.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fileHeaderComment.Id));
-            fileHeaderComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(fileHeaderComment, fieldData);
+            _fileHeaderComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_fileHeaderComment, fieldData);
         }
 
-        return fileHeaderComment;
+        return _fileHeaderComment;
     } 
 }
 
-internal HL7V25Field fileControlID;
+internal HL7V25Field _fileControlID;
 
 public HL7V25Field FileControlID
 {
     get
     {
-        if (fileControlID != null)
+        if (_fileControlID != null)
         {
-            return fileControlID;
+            return _fileControlID;
         }
 
-        fileControlID = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"FHS"][11],
             Id = @"FHS.11",
             Type = @"Field",
             Position = @"FHS.11",
@@ -940,34 +769,38 @@ public HL7V25Field FileControlID
             TableName = null,
             Description = @"This field is used to identify a particular file uniquely. It can be echoed back in FHS-12reference file control ID. ",
             Sample = @"",
+            Fields = null
+        }
+
+        _fileControlID = new HL7V25Field
+        {
+            field = message[@"FHS"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fileControlID.field.FieldRepetitions != null && fileControlID.field.FieldRepetitions.Count > 0)
+        if (_fileControlID.field.FieldRepetitions != null && _fileControlID.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fileControlID.Id));
-            fileControlID.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(fileControlID, fieldData);
+            _fileControlID.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_fileControlID, fieldData);
         }
 
-        return fileControlID;
+        return _fileControlID;
     } 
 }
 
-internal HL7V25Field referenceFileControlID;
+internal HL7V25Field _referenceFileControlID;
 
 public HL7V25Field ReferenceFileControlID
 {
     get
     {
-        if (referenceFileControlID != null)
+        if (_referenceFileControlID != null)
         {
-            return referenceFileControlID;
+            return _referenceFileControlID;
         }
 
-        referenceFileControlID = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"FHS"][12],
             Id = @"FHS.12",
             Type = @"Field",
             Position = @"FHS.12",
@@ -981,17 +814,22 @@ public HL7V25Field ReferenceFileControlID
             TableName = null,
             Description = @"This field contains the value of FHS-11-file control ID when this file was originally transmitted. Not present if this file is being transmitted for the first time. ",
             Sample = @"",
+            Fields = null
+        }
+
+        _referenceFileControlID = new HL7V25Field
+        {
+            field = message[@"FHS"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (referenceFileControlID.field.FieldRepetitions != null && referenceFileControlID.field.FieldRepetitions.Count > 0)
+        if (_referenceFileControlID.field.FieldRepetitions != null && _referenceFileControlID.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(referenceFileControlID.Id));
-            referenceFileControlID.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(referenceFileControlID, fieldData);
+            _referenceFileControlID.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_referenceFileControlID, fieldData);
         }
 
-        return referenceFileControlID;
+        return _referenceFileControlID;
     } 
 }
     }

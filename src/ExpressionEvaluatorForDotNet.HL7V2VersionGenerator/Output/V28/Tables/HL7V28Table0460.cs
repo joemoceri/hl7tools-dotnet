@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             } 
         }
@@ -47,6 +48,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Line item is on a multiple-day claim. The line item is not denied or rejected, but occurs on a day that has been denied or rejected.",
                             Comment = null
                         },
+                        
                     };
             } 
         }

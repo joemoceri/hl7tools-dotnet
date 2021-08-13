@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentSHP(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _shipmentId;
+
+public HL7V271Field ShipmentId
+{
+    get
+    {
+        if (_shipmentId != null)
+        {
+            return _shipmentId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SHP.1",
+            Type = @"Field",
+            Position = @"SHP.1",
+            Name = @"Shipment Id",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The shipment id is the identifier assigned by the shipment transportation provider that uniquely identifies this shipment from all other shipments by the same provider. The addressee for the shipment should be able to use this identifier to match a physical shipment with the electronic manifest for the shipment.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"SHP.1",
-                            Type = @"Field",
-                            Position = @"SHP.1",
-                            Name = @"Shipment Id",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The shipment id is the identifier assigned by the shipment transportation provider that uniquely identifies this shipment from all other shipments by the same provider. The addressee for the shipment should be able to use this identifier to match a physical shipment with the electronic manifest for the shipment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SHP.1.1",
                             Type = @"Component",
@@ -128,25 +140,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _shipmentId = new HL7V271Field
+        {
+            field = message[@"SHP"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_shipmentId.field.FieldRepetitions != null && _shipmentId.field.FieldRepetitions.Count > 0)
+        {
+            _shipmentId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_shipmentId, fieldData);
+        }
+
+        return _shipmentId;
+    } 
+}
+
+internal HL7V271Field _internalShipmentId;
+
+public HL7V271Field InternalShipmentId
+{
+    get
+    {
+        if (_internalShipmentId != null)
+        {
+            return _internalShipmentId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SHP.2",
+            Type = @"Field",
+            Position = @"SHP.2",
+            Name = @"Internal Shipment Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The internal shipment id is an identifier assigned to the shipment by the sender or addressee of the shipment. The field repeats allowing multiple identifiers to be transmitted.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SHP.2",
-                            Type = @"Field",
-                            Position = @"SHP.2",
-                            Name = @"Internal Shipment Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The internal shipment id is an identifier assigned to the shipment by the sender or addressee of the shipment. The field repeats allowing multiple identifiers to be transmitted.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SHP.2.1",
                             Type = @"Component",
@@ -224,25 +266,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _internalShipmentId = new HL7V271Field
+        {
+            field = message[@"SHP"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_internalShipmentId.field.FieldRepetitions != null && _internalShipmentId.field.FieldRepetitions.Count > 0)
+        {
+            _internalShipmentId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_internalShipmentId, fieldData);
+        }
+
+        return _internalShipmentId;
+    } 
+}
+
+internal HL7V271Field _shipmentStatus;
+
+public HL7V271Field ShipmentStatus
+{
+    get
+    {
+        if (_shipmentStatus != null)
+        {
+            return _shipmentStatus;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SHP.3",
+            Type = @"Field",
+            Position = @"SHP.3",
+            Name = @"Shipment Status",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0905",
+            TableName = @"Shipment Status",
+            Description = @"The shipment status specifies where in the shipment process the package is at the time of messaging. Refer to HL7 Table 0905 – Shipment Status for specific values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SHP.3",
-                            Type = @"Field",
-                            Position = @"SHP.3",
-                            Name = @"Shipment Status",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0905",
-                            TableName = @"Shipment Status",
-                            Description = @"The shipment status specifies where in the shipment process the package is at the time of messaging. Refer to HL7 Table 0905 – Shipment Status for specific values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SHP.3.1",
                             Type = @"Component",
@@ -668,61 +740,145 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _shipmentStatus = new HL7V271Field
+        {
+            field = message[@"SHP"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_shipmentStatus.field.FieldRepetitions != null && _shipmentStatus.field.FieldRepetitions.Count > 0)
+        {
+            _shipmentStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_shipmentStatus, fieldData);
+        }
+
+        return _shipmentStatus;
+    } 
+}
+
+internal HL7V271Field _shipmentStatusDateTime;
+
+public HL7V271Field ShipmentStatusDateTime
+{
+    get
+    {
+        if (_shipmentStatusDateTime != null)
+        {
+            return _shipmentStatusDateTime;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SHP.4",
+            Type = @"Field",
+            Position = @"SHP.4",
+            Name = @"Shipment Status Date/Time",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"The shipment status date/time carries the date and time the status in SHP-3 Shipment Status occurred.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _shipmentStatusDateTime = new HL7V271Field
+        {
+            field = message[@"SHP"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_shipmentStatusDateTime.field.FieldRepetitions != null && _shipmentStatusDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _shipmentStatusDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_shipmentStatusDateTime, fieldData);
+        }
+
+        return _shipmentStatusDateTime;
+    } 
+}
+
+internal HL7V271Field _shipmentStatusReason;
+
+public HL7V271Field ShipmentStatusReason
+{
+    get
+    {
+        if (_shipmentStatusReason != null)
+        {
+            return _shipmentStatusReason;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SHP.5",
+            Type = @"Field",
+            Position = @"SHP.5",
+            Name = @"Shipment Status Reason",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The shipment status reason is used to document the reason for the status in SHP-3 Shipment Status. This reason field is of particular importance when a shipment is rejected.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _shipmentStatusReason = new HL7V271Field
+        {
+            field = message[@"SHP"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_shipmentStatusReason.field.FieldRepetitions != null && _shipmentStatusReason.field.FieldRepetitions.Count > 0)
+        {
+            _shipmentStatusReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_shipmentStatusReason, fieldData);
+        }
+
+        return _shipmentStatusReason;
+    } 
+}
+
+internal HL7V271Field _shipmentPriority;
+
+public HL7V271Field ShipmentPriority
+{
+    get
+    {
+        if (_shipmentPriority != null)
+        {
+            return _shipmentPriority;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SHP.6",
+            Type = @"Field",
+            Position = @"SHP.6",
+            Name = @"Shipment Priority",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0906",
+            TableName = @"ActPriority",
+            Description = @"The shipment priority documents the priority the shipment has been given by the sender. Refer to HL7 Table 0906 - ActPriority for specific values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SHP.4",
-                            Type = @"Field",
-                            Position = @"SHP.4",
-                            Name = @"Shipment Status Date/Time",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The shipment status date/time carries the date and time the status in SHP-3 Shipment Status occurred.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SHP.5",
-                            Type = @"Field",
-                            Position = @"SHP.5",
-                            Name = @"Shipment Status Reason",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The shipment status reason is used to document the reason for the status in SHP-3 Shipment Status. This reason field is of particular importance when a shipment is rejected.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SHP.6",
-                            Type = @"Field",
-                            Position = @"SHP.6",
-                            Name = @"Shipment Priority",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0906",
-                            TableName = @"ActPriority",
-                            Description = @"The shipment priority documents the priority the shipment has been given by the sender. Refer to HL7 Table 0906 - ActPriority for specific values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SHP.6.1",
                             Type = @"Component",
@@ -1148,25 +1304,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _shipmentPriority = new HL7V271Field
+        {
+            field = message[@"SHP"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_shipmentPriority.field.FieldRepetitions != null && _shipmentPriority.field.FieldRepetitions.Count > 0)
+        {
+            _shipmentPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_shipmentPriority, fieldData);
+        }
+
+        return _shipmentPriority;
+    } 
+}
+
+internal HL7V271Field _shipmentConfidentiality;
+
+public HL7V271Field ShipmentConfidentiality
+{
+    get
+    {
+        if (_shipmentConfidentiality != null)
+        {
+            return _shipmentConfidentiality;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SHP.7",
+            Type = @"Field",
+            Position = @"SHP.7",
+            Name = @"Shipment Confidentiality",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0907",
+            TableName = @"Confidentiality",
+            Description = @"The shipment confidentiality documents any confidentiality that may be associated with this particular shipment. Refer to HL7 Table 0907 – Confidentiality for specific values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SHP.7",
-                            Type = @"Field",
-                            Position = @"SHP.7",
-                            Name = @"Shipment Confidentiality",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0907",
-                            TableName = @"Confidentiality",
-                            Description = @"The shipment confidentiality documents any confidentiality that may be associated with this particular shipment. Refer to HL7 Table 0907 – Confidentiality for specific values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SHP.7.1",
                             Type = @"Component",
@@ -1592,44 +1778,101 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SHP.8",
-                            Type = @"Field",
-                            Position = @"SHP.8",
-                            Name = @"Number Of Packages In Shipment",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The number of packages in shipment field documents the total number of separate packages that are contained in the shipment. This total should not include packages that are nested inside of one another. For instance if a shipment consisted of 3 separate boxes, this field would contain the value
+                        }
+        }
+
+        _shipmentConfidentiality = new HL7V271Field
+        {
+            field = message[@"SHP"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_shipmentConfidentiality.field.FieldRepetitions != null && _shipmentConfidentiality.field.FieldRepetitions.Count > 0)
+        {
+            _shipmentConfidentiality.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_shipmentConfidentiality, fieldData);
+        }
+
+        return _shipmentConfidentiality;
+    } 
+}
+
+internal HL7V271Field _numberOfPackagesInShipment;
+
+public HL7V271Field NumberOfPackagesInShipment
+{
+    get
+    {
+        if (_numberOfPackagesInShipment != null)
+        {
+            return _numberOfPackagesInShipment;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SHP.8",
+            Type = @"Field",
+            Position = @"SHP.8",
+            Name = @"Number Of Packages In Shipment",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"The number of packages in shipment field documents the total number of separate packages that are contained in the shipment. This total should not include packages that are nested inside of one another. For instance if a shipment consisted of 3 separate boxes, this field would contain the value
 ""…|3|…"".",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _numberOfPackagesInShipment = new HL7V271Field
+        {
+            field = message[@"SHP"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_numberOfPackagesInShipment.field.FieldRepetitions != null && _numberOfPackagesInShipment.field.FieldRepetitions.Count > 0)
+        {
+            _numberOfPackagesInShipment.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_numberOfPackagesInShipment, fieldData);
+        }
+
+        return _numberOfPackagesInShipment;
+    } 
+}
+
+internal HL7V271Field _shipmentCondition;
+
+public HL7V271Field ShipmentCondition
+{
+    get
+    {
+        if (_shipmentCondition != null)
+        {
+            return _shipmentCondition;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SHP.9",
+            Type = @"Field",
+            Position = @"SHP.9",
+            Name = @"Shipment Condition",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0544",
+            TableName = @"Container Condition",
+            Description = @"The shipment condition field allows the receiver of the shipment to document the condition of the shipment when it was received. Refer to HL7 Table 0544 – Container Condition for suggested values. Many of the values found in Table 0544 are associated with values found in Table 0376 (Special Handling Codes). Values from Table 0376 have had an X placed in front of them, and the meaning of the code has been changed to indicate that the type of handling has failed during shipment. For instance if a handling code indicated that the shipment was to be kept at body temperature (C37), and the shipment arrived at some other temperature, the XC37 condition code would be used to indicate the shipment arrived with a temperature outside the range indicated by the handling code.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SHP.9",
-                            Type = @"Field",
-                            Position = @"SHP.9",
-                            Name = @"Shipment Condition",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0544",
-                            TableName = @"Container Condition",
-                            Description = @"The shipment condition field allows the receiver of the shipment to document the condition of the shipment when it was received. Refer to HL7 Table 0544 – Container Condition for suggested values. Many of the values found in Table 0544 are associated with values found in Table 0376 (Special Handling Codes). Values from Table 0376 have had an X placed in front of them, and the meaning of the code has been changed to indicate that the type of handling has failed during shipment. For instance if a handling code indicated that the shipment was to be kept at body temperature (C37), and the shipment arrived at some other temperature, the XC37 condition code would be used to indicate the shipment arrived with a temperature outside the range indicated by the handling code.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SHP.9.1",
                             Type = @"Component",
@@ -2055,25 +2298,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _shipmentCondition = new HL7V271Field
+        {
+            field = message[@"SHP"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_shipmentCondition.field.FieldRepetitions != null && _shipmentCondition.field.FieldRepetitions.Count > 0)
+        {
+            _shipmentCondition.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_shipmentCondition, fieldData);
+        }
+
+        return _shipmentCondition;
+    } 
+}
+
+internal HL7V271Field _shipmentHandlingCode;
+
+public HL7V271Field ShipmentHandlingCode
+{
+    get
+    {
+        if (_shipmentHandlingCode != null)
+        {
+            return _shipmentHandlingCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SHP.10",
+            Type = @"Field",
+            Position = @"SHP.10",
+            Name = @"Shipment Handling Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0376",
+            TableName = @"Special Handling Code",
+            Description = @"This describes how the shipment needs to be handled during transport. Refer to User-defined Table 0376 – Special Handling Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SHP.10",
-                            Type = @"Field",
-                            Position = @"SHP.10",
-                            Name = @"Shipment Handling Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0376",
-                            TableName = @"Special Handling Code",
-                            Description = @"This describes how the shipment needs to be handled during transport. Refer to User-defined Table 0376 – Special Handling Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SHP.10.1",
                             Type = @"Component",
@@ -2499,25 +2772,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _shipmentHandlingCode = new HL7V271Field
+        {
+            field = message[@"SHP"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_shipmentHandlingCode.field.FieldRepetitions != null && _shipmentHandlingCode.field.FieldRepetitions.Count > 0)
+        {
+            _shipmentHandlingCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_shipmentHandlingCode, fieldData);
+        }
+
+        return _shipmentHandlingCode;
+    } 
+}
+
+internal HL7V271Field _shipmentRiskCode;
+
+public HL7V271Field ShipmentRiskCode
+{
+    get
+    {
+        if (_shipmentRiskCode != null)
+        {
+            return _shipmentRiskCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SHP.11",
+            Type = @"Field",
+            Position = @"SHP.11",
+            Name = @"Shipment Risk Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0489",
+            TableName = @"Risk Codes",
+            Description = @"This field contains any known or suspected hazards associated with this shipment, e.g., exceptionally infectious agent or blood from a hepatitis patient. Refer to User-defined Table 0489 – Risk Codes for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SHP.11",
-                            Type = @"Field",
-                            Position = @"SHP.11",
-                            Name = @"Shipment Risk Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0489",
-                            TableName = @"Risk Codes",
-                            Description = @"This field contains any known or suspected hazards associated with this shipment, e.g., exceptionally infectious agent or blood from a hepatitis patient. Refer to User-defined Table 0489 – Risk Codes for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SHP.11.1",
                             Type = @"Component",
@@ -2943,466 +3246,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentSHP(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field shipmentId;
-
-public HL7V271Field ShipmentId
-{
-    get
-    {
-        if (shipmentId != null)
-        {
-            return shipmentId;
-        }
-
-        shipmentId = new HL7V271Field
-        {
-            field = message[@"SHP"][1],
-            Id = @"SHP.1",
-            Type = @"Field",
-            Position = @"SHP.1",
-            Name = @"Shipment Id",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The shipment id is the identifier assigned by the shipment transportation provider that uniquely identifies this shipment from all other shipments by the same provider. The addressee for the shipment should be able to use this identifier to match a physical shipment with the electronic manifest for the shipment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (shipmentId.field.FieldRepetitions != null && shipmentId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(shipmentId.Id));
-            shipmentId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(shipmentId, fieldData);
-        }
-
-        return shipmentId;
-    } 
-}
-
-internal HL7V271Field internalShipmentId;
-
-public HL7V271Field InternalShipmentId
-{
-    get
-    {
-        if (internalShipmentId != null)
-        {
-            return internalShipmentId;
-        }
-
-        internalShipmentId = new HL7V271Field
-        {
-            field = message[@"SHP"][2],
-            Id = @"SHP.2",
-            Type = @"Field",
-            Position = @"SHP.2",
-            Name = @"Internal Shipment Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The internal shipment id is an identifier assigned to the shipment by the sender or addressee of the shipment. The field repeats allowing multiple identifiers to be transmitted.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (internalShipmentId.field.FieldRepetitions != null && internalShipmentId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(internalShipmentId.Id));
-            internalShipmentId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(internalShipmentId, fieldData);
-        }
-
-        return internalShipmentId;
-    } 
-}
-
-internal HL7V271Field shipmentStatus;
-
-public HL7V271Field ShipmentStatus
-{
-    get
-    {
-        if (shipmentStatus != null)
-        {
-            return shipmentStatus;
-        }
-
-        shipmentStatus = new HL7V271Field
-        {
-            field = message[@"SHP"][3],
-            Id = @"SHP.3",
-            Type = @"Field",
-            Position = @"SHP.3",
-            Name = @"Shipment Status",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0905",
-            TableName = @"Shipment Status",
-            Description = @"The shipment status specifies where in the shipment process the package is at the time of messaging. Refer to HL7 Table 0905 – Shipment Status for specific values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (shipmentStatus.field.FieldRepetitions != null && shipmentStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(shipmentStatus.Id));
-            shipmentStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(shipmentStatus, fieldData);
-        }
-
-        return shipmentStatus;
-    } 
-}
-
-internal HL7V271Field shipmentStatusDateTime;
-
-public HL7V271Field ShipmentStatusDateTime
-{
-    get
-    {
-        if (shipmentStatusDateTime != null)
-        {
-            return shipmentStatusDateTime;
-        }
-
-        shipmentStatusDateTime = new HL7V271Field
-        {
-            field = message[@"SHP"][4],
-            Id = @"SHP.4",
-            Type = @"Field",
-            Position = @"SHP.4",
-            Name = @"Shipment Status Date/Time",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"The shipment status date/time carries the date and time the status in SHP-3 Shipment Status occurred.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (shipmentStatusDateTime.field.FieldRepetitions != null && shipmentStatusDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(shipmentStatusDateTime.Id));
-            shipmentStatusDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(shipmentStatusDateTime, fieldData);
-        }
-
-        return shipmentStatusDateTime;
-    } 
-}
-
-internal HL7V271Field shipmentStatusReason;
-
-public HL7V271Field ShipmentStatusReason
-{
-    get
-    {
-        if (shipmentStatusReason != null)
-        {
-            return shipmentStatusReason;
-        }
-
-        shipmentStatusReason = new HL7V271Field
-        {
-            field = message[@"SHP"][5],
-            Id = @"SHP.5",
-            Type = @"Field",
-            Position = @"SHP.5",
-            Name = @"Shipment Status Reason",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The shipment status reason is used to document the reason for the status in SHP-3 Shipment Status. This reason field is of particular importance when a shipment is rejected.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (shipmentStatusReason.field.FieldRepetitions != null && shipmentStatusReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(shipmentStatusReason.Id));
-            shipmentStatusReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(shipmentStatusReason, fieldData);
-        }
-
-        return shipmentStatusReason;
-    } 
-}
-
-internal HL7V271Field shipmentPriority;
-
-public HL7V271Field ShipmentPriority
-{
-    get
-    {
-        if (shipmentPriority != null)
-        {
-            return shipmentPriority;
-        }
-
-        shipmentPriority = new HL7V271Field
-        {
-            field = message[@"SHP"][6],
-            Id = @"SHP.6",
-            Type = @"Field",
-            Position = @"SHP.6",
-            Name = @"Shipment Priority",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0906",
-            TableName = @"ActPriority",
-            Description = @"The shipment priority documents the priority the shipment has been given by the sender. Refer to HL7 Table 0906 - ActPriority for specific values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (shipmentPriority.field.FieldRepetitions != null && shipmentPriority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(shipmentPriority.Id));
-            shipmentPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(shipmentPriority, fieldData);
-        }
-
-        return shipmentPriority;
-    } 
-}
-
-internal HL7V271Field shipmentConfidentiality;
-
-public HL7V271Field ShipmentConfidentiality
-{
-    get
-    {
-        if (shipmentConfidentiality != null)
-        {
-            return shipmentConfidentiality;
-        }
-
-        shipmentConfidentiality = new HL7V271Field
-        {
-            field = message[@"SHP"][7],
-            Id = @"SHP.7",
-            Type = @"Field",
-            Position = @"SHP.7",
-            Name = @"Shipment Confidentiality",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0907",
-            TableName = @"Confidentiality",
-            Description = @"The shipment confidentiality documents any confidentiality that may be associated with this particular shipment. Refer to HL7 Table 0907 – Confidentiality for specific values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (shipmentConfidentiality.field.FieldRepetitions != null && shipmentConfidentiality.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(shipmentConfidentiality.Id));
-            shipmentConfidentiality.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(shipmentConfidentiality, fieldData);
-        }
-
-        return shipmentConfidentiality;
-    } 
-}
-
-internal HL7V271Field numberOfPackagesInShipment;
-
-public HL7V271Field NumberOfPackagesInShipment
-{
-    get
-    {
-        if (numberOfPackagesInShipment != null)
-        {
-            return numberOfPackagesInShipment;
-        }
-
-        numberOfPackagesInShipment = new HL7V271Field
-        {
-            field = message[@"SHP"][8],
-            Id = @"SHP.8",
-            Type = @"Field",
-            Position = @"SHP.8",
-            Name = @"Number Of Packages In Shipment",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"The number of packages in shipment field documents the total number of separate packages that are contained in the shipment. This total should not include packages that are nested inside of one another. For instance if a shipment consisted of 3 separate boxes, this field would contain the value
-""…|3|…"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (numberOfPackagesInShipment.field.FieldRepetitions != null && numberOfPackagesInShipment.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfPackagesInShipment.Id));
-            numberOfPackagesInShipment.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(numberOfPackagesInShipment, fieldData);
-        }
-
-        return numberOfPackagesInShipment;
-    } 
-}
-
-internal HL7V271Field shipmentCondition;
-
-public HL7V271Field ShipmentCondition
-{
-    get
-    {
-        if (shipmentCondition != null)
-        {
-            return shipmentCondition;
-        }
-
-        shipmentCondition = new HL7V271Field
-        {
-            field = message[@"SHP"][9],
-            Id = @"SHP.9",
-            Type = @"Field",
-            Position = @"SHP.9",
-            Name = @"Shipment Condition",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0544",
-            TableName = @"Container Condition",
-            Description = @"The shipment condition field allows the receiver of the shipment to document the condition of the shipment when it was received. Refer to HL7 Table 0544 – Container Condition for suggested values. Many of the values found in Table 0544 are associated with values found in Table 0376 (Special Handling Codes). Values from Table 0376 have had an X placed in front of them, and the meaning of the code has been changed to indicate that the type of handling has failed during shipment. For instance if a handling code indicated that the shipment was to be kept at body temperature (C37), and the shipment arrived at some other temperature, the XC37 condition code would be used to indicate the shipment arrived with a temperature outside the range indicated by the handling code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (shipmentCondition.field.FieldRepetitions != null && shipmentCondition.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(shipmentCondition.Id));
-            shipmentCondition.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(shipmentCondition, fieldData);
-        }
-
-        return shipmentCondition;
-    } 
-}
-
-internal HL7V271Field shipmentHandlingCode;
-
-public HL7V271Field ShipmentHandlingCode
-{
-    get
-    {
-        if (shipmentHandlingCode != null)
-        {
-            return shipmentHandlingCode;
-        }
-
-        shipmentHandlingCode = new HL7V271Field
-        {
-            field = message[@"SHP"][10],
-            Id = @"SHP.10",
-            Type = @"Field",
-            Position = @"SHP.10",
-            Name = @"Shipment Handling Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0376",
-            TableName = @"Special Handling Code",
-            Description = @"This describes how the shipment needs to be handled during transport. Refer to User-defined Table 0376 – Special Handling Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (shipmentHandlingCode.field.FieldRepetitions != null && shipmentHandlingCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(shipmentHandlingCode.Id));
-            shipmentHandlingCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(shipmentHandlingCode, fieldData);
-        }
-
-        return shipmentHandlingCode;
-    } 
-}
-
-internal HL7V271Field shipmentRiskCode;
-
-public HL7V271Field ShipmentRiskCode
-{
-    get
-    {
-        if (shipmentRiskCode != null)
-        {
-            return shipmentRiskCode;
-        }
-
-        shipmentRiskCode = new HL7V271Field
+        _shipmentRiskCode = new HL7V271Field
         {
             field = message[@"SHP"][11],
-            Id = @"SHP.11",
-            Type = @"Field",
-            Position = @"SHP.11",
-            Name = @"Shipment Risk Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0489",
-            TableName = @"Risk Codes",
-            Description = @"This field contains any known or suspected hazards associated with this shipment, e.g., exceptionally infectious agent or blood from a hepatitis patient. Refer to User-defined Table 0489 – Risk Codes for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (shipmentRiskCode.field.FieldRepetitions != null && shipmentRiskCode.field.FieldRepetitions.Count > 0)
+        if (_shipmentRiskCode.field.FieldRepetitions != null && _shipmentRiskCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(shipmentRiskCode.Id));
-            shipmentRiskCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(shipmentRiskCode, fieldData);
+            _shipmentRiskCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_shipmentRiskCode, fieldData);
         }
 
-        return shipmentRiskCode;
+        return _shipmentRiskCode;
     } 
 }
     }

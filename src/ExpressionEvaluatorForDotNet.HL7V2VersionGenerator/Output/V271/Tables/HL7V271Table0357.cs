@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -113,6 +114,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Application internal error",
                             Comment = null
                         },
+                        
                     };
             } 
         }

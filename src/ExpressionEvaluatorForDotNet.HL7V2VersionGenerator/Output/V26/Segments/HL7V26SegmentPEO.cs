@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentPEO(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _eventIdentifiersUsed;
+
+public HL7V26Field EventIdentifiersUsed
+{
+    get
+    {
+        if (_eventIdentifiersUsed != null)
+        {
+            return _eventIdentifiersUsed;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.1",
+            Type = @"Field",
+            Position = @"PEO.1",
+            Name = @"Event Identifiers Used",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field may be used to transmit the event identifier used by other entities for this event. The entry would typically contain a unique alphanumeric identifier assigned by an entity with the text component null or repeating the unique alphanumeric identifier followed by the organizations identifier. An event identifier might be GB1234^GB1234^PharmaGiant for example.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PEO.1",
-                            Type = @"Field",
-                            Position = @"PEO.1",
-                            Name = @"Event Identifiers Used",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field may be used to transmit the event identifier used by other entities for this event. The entry would typically contain a unique alphanumeric identifier assigned by an entity with the text component null or repeating the unique alphanumeric identifier followed by the organizations identifier. An event identifier might be GB1234^GB1234^PharmaGiant for example.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PEO.1.1",
                             Type = @"Component",
@@ -210,25 +222,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _eventIdentifiersUsed = new HL7V26Field
+        {
+            field = message[@"PEO"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventIdentifiersUsed.field.FieldRepetitions != null && _eventIdentifiersUsed.field.FieldRepetitions.Count > 0)
+        {
+            _eventIdentifiersUsed.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventIdentifiersUsed, fieldData);
+        }
+
+        return _eventIdentifiersUsed;
+    } 
+}
+
+internal HL7V26Field _eventSymptomDiagnosisCode;
+
+public HL7V26Field EventSymptomDiagnosisCode
+{
+    get
+    {
+        if (_eventSymptomDiagnosisCode != null)
+        {
+            return _eventSymptomDiagnosisCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.2",
+            Type = @"Field",
+            Position = @"PEO.2",
+            Name = @"Event Symptom/Diagnosis Code",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the coded diagnosis or problem description which best describes the event. A text representation of the coded item should routinely be included. MEDDRA and WHO-ART are examples of appropriate coding schemes, as are the patient and device codes included in the FDA Center for Devices and Radiologic Healths coding manual for Form 3500A.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PEO.2",
-                            Type = @"Field",
-                            Position = @"PEO.2",
-                            Name = @"Event Symptom/Diagnosis Code",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the coded diagnosis or problem description which best describes the event. A text representation of the coded item should routinely be included. MEDDRA and WHO-ART are examples of appropriate coding schemes, as are the patient and device codes included in the FDA Center for Devices and Radiologic Healths coding manual for Form 3500A.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PEO.2.1",
                             Type = @"Component",
@@ -388,97 +430,235 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _eventSymptomDiagnosisCode = new HL7V26Field
+        {
+            field = message[@"PEO"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventSymptomDiagnosisCode.field.FieldRepetitions != null && _eventSymptomDiagnosisCode.field.FieldRepetitions.Count > 0)
+        {
+            _eventSymptomDiagnosisCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventSymptomDiagnosisCode, fieldData);
+        }
+
+        return _eventSymptomDiagnosisCode;
+    } 
+}
+
+internal HL7V26Field _eventOnsetDateTime;
+
+public HL7V26Field EventOnsetDateTime
+{
+    get
+    {
+        if (_eventOnsetDateTime != null)
+        {
+            return _eventOnsetDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.3",
+            Type = @"Field",
+            Position = @"PEO.3",
+            Name = @"Event Onset Date/Time",
+            Length = 24,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a report or best estimate of the date/time of onset of the event. The date/time can be recorded to any level of precision it is known (hour, day, month, year).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventOnsetDateTime = new HL7V26Field
+        {
+            field = message[@"PEO"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventOnsetDateTime.field.FieldRepetitions != null && _eventOnsetDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _eventOnsetDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventOnsetDateTime, fieldData);
+        }
+
+        return _eventOnsetDateTime;
+    } 
+}
+
+internal HL7V26Field _eventExacerbationDateTime;
+
+public HL7V26Field EventExacerbationDateTime
+{
+    get
+    {
+        if (_eventExacerbationDateTime != null)
+        {
+            return _eventExacerbationDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.4",
+            Type = @"Field",
+            Position = @"PEO.4",
+            Name = @"Event Exacerbation Date/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the best estimate of the date/time the event was exacerbated.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventExacerbationDateTime = new HL7V26Field
+        {
+            field = message[@"PEO"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventExacerbationDateTime.field.FieldRepetitions != null && _eventExacerbationDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _eventExacerbationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventExacerbationDateTime, fieldData);
+        }
+
+        return _eventExacerbationDateTime;
+    } 
+}
+
+internal HL7V26Field _eventImprovedDateTime;
+
+public HL7V26Field EventImprovedDateTime
+{
+    get
+    {
+        if (_eventImprovedDateTime != null)
+        {
+            return _eventImprovedDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.5",
+            Type = @"Field",
+            Position = @"PEO.5",
+            Name = @"Event Improved Date/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the best estimate of the date/time the event improved.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventImprovedDateTime = new HL7V26Field
+        {
+            field = message[@"PEO"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventImprovedDateTime.field.FieldRepetitions != null && _eventImprovedDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _eventImprovedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventImprovedDateTime, fieldData);
+        }
+
+        return _eventImprovedDateTime;
+    } 
+}
+
+internal HL7V26Field _eventEndedDataTime;
+
+public HL7V26Field EventEndedDataTime
+{
+    get
+    {
+        if (_eventEndedDataTime != null)
+        {
+            return _eventEndedDataTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.6",
+            Type = @"Field",
+            Position = @"PEO.6",
+            Name = @"Event Ended Data/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the best estimate of the date/time the event resolved.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventEndedDataTime = new HL7V26Field
+        {
+            field = message[@"PEO"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventEndedDataTime.field.FieldRepetitions != null && _eventEndedDataTime.field.FieldRepetitions.Count > 0)
+        {
+            _eventEndedDataTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventEndedDataTime, fieldData);
+        }
+
+        return _eventEndedDataTime;
+    } 
+}
+
+internal HL7V26Field _eventLocationOccurredAddress;
+
+public HL7V26Field EventLocationOccurredAddress
+{
+    get
+    {
+        if (_eventLocationOccurredAddress != null)
+        {
+            return _eventLocationOccurredAddress;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.7",
+            Type = @"Field",
+            Position = @"PEO.7",
+            Name = @"Event Location Occurred Address",
+            Length = 2915,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the location at which the event started. Often this will specify only the country in which the event started.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PEO.3",
-                            Type = @"Field",
-                            Position = @"PEO.3",
-                            Name = @"Event Onset Date/Time",
-                            Length = 24,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a report or best estimate of the date/time of onset of the event. The date/time can be recorded to any level of precision it is known (hour, day, month, year).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.4",
-                            Type = @"Field",
-                            Position = @"PEO.4",
-                            Name = @"Event Exacerbation Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the best estimate of the date/time the event was exacerbated.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.5",
-                            Type = @"Field",
-                            Position = @"PEO.5",
-                            Name = @"Event Improved Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the best estimate of the date/time the event improved.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.6",
-                            Type = @"Field",
-                            Position = @"PEO.6",
-                            Name = @"Event Ended Data/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the best estimate of the date/time the event resolved.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.7",
-                            Type = @"Field",
-                            Position = @"PEO.7",
-                            Name = @"Event Location Occurred Address",
-                            Length = 2915,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the location at which the event started. Often this will specify only the country in which the event started.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PEO.7.1",
                             Type = @"Component",
@@ -1366,205 +1546,505 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _eventLocationOccurredAddress = new HL7V26Field
+        {
+            field = message[@"PEO"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventLocationOccurredAddress.field.FieldRepetitions != null && _eventLocationOccurredAddress.field.FieldRepetitions.Count > 0)
+        {
+            _eventLocationOccurredAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventLocationOccurredAddress, fieldData);
+        }
+
+        return _eventLocationOccurredAddress;
+    } 
+}
+
+internal HL7V26Field _eventQualification;
+
+public HL7V26Field EventQualification
+{
+    get
+    {
+        if (_eventQualification != null)
+        {
+            return _eventQualification;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.8",
+            Type = @"Field",
+            Position = @"PEO.8",
+            Name = @"Event Qualification",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0237",
+            TableName = @"Event Qualification",
+            Description = @"This field is contains a classification of the type of product experience this event is considered to represent. Refer to HL7 Table 0237 - Event Qualification for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventQualification = new HL7V26Field
+        {
+            field = message[@"PEO"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventQualification.field.FieldRepetitions != null && _eventQualification.field.FieldRepetitions.Count > 0)
+        {
+            _eventQualification.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventQualification, fieldData);
+        }
+
+        return _eventQualification;
+    } 
+}
+
+internal HL7V26Field _eventSerious;
+
+public HL7V26Field EventSerious
+{
+    get
+    {
+        if (_eventSerious != null)
+        {
+            return _eventSerious;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.9",
+            Type = @"Field",
+            Position = @"PEO.9",
+            Name = @"Event Serious",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0238",
+            TableName = @"Event Seriousness",
+            Description = @"This field indicates whether the event was judged as serious. If the event did not meet the criteria for seriousness but the sender judges the event significant on other grounds, the event can be identified as significant [but not serious]. Refer to HL7 Table 0238 - Event Seriousness for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventSerious = new HL7V26Field
+        {
+            field = message[@"PEO"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventSerious.field.FieldRepetitions != null && _eventSerious.field.FieldRepetitions.Count > 0)
+        {
+            _eventSerious.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventSerious, fieldData);
+        }
+
+        return _eventSerious;
+    } 
+}
+
+internal HL7V26Field _eventExpected;
+
+public HL7V26Field EventExpected
+{
+    get
+    {
+        if (_eventExpected != null)
+        {
+            return _eventExpected;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.10",
+            Type = @"Field",
+            Position = @"PEO.10",
+            Name = @"Event Expected",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0239",
+            TableName = @"Event Expected",
+            Description = @"This field indicates whether the observed event was expected or unexpected as judged. Refer to HL7 Table 0239 - Event Expected for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventExpected = new HL7V26Field
+        {
+            field = message[@"PEO"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventExpected.field.FieldRepetitions != null && _eventExpected.field.FieldRepetitions.Count > 0)
+        {
+            _eventExpected.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventExpected, fieldData);
+        }
+
+        return _eventExpected;
+    } 
+}
+
+internal HL7V26Field _eventOutcome;
+
+public HL7V26Field EventOutcome
+{
+    get
+    {
+        if (_eventOutcome != null)
+        {
+            return _eventOutcome;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.11",
+            Type = @"Field",
+            Position = @"PEO.11",
+            Name = @"Event Outcome",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0240",
+            TableName = @"Event Consequence",
+            Description = @"This field identifies the consequence of the event on the patient. If the consequence of the event is not understood or not available, the patient outcome element may be used although neither is required. May be repeated if more than one is appropriate. Refer to HL7 Table 0240 - Event consequence for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventOutcome = new HL7V26Field
+        {
+            field = message[@"PEO"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventOutcome.field.FieldRepetitions != null && _eventOutcome.field.FieldRepetitions.Count > 0)
+        {
+            _eventOutcome.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventOutcome, fieldData);
+        }
+
+        return _eventOutcome;
+    } 
+}
+
+internal HL7V26Field _patientOutcome;
+
+public HL7V26Field PatientOutcome
+{
+    get
+    {
+        if (_patientOutcome != null)
+        {
+            return _patientOutcome;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.12",
+            Type = @"Field",
+            Position = @"PEO.12",
+            Name = @"Patient Outcome",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0241",
+            TableName = @"Patient Outcome",
+            Description = @"When an event specific outcome is not available, the patient outcome element may be used to represent the patient’s overall outcome if that information is known.  Refer to HL7 Table 0241 - Patient outcome for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _patientOutcome = new HL7V26Field
+        {
+            field = message[@"PEO"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientOutcome.field.FieldRepetitions != null && _patientOutcome.field.FieldRepetitions.Count > 0)
+        {
+            _patientOutcome.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_patientOutcome, fieldData);
+        }
+
+        return _patientOutcome;
+    } 
+}
+
+internal HL7V26Field _eventDescriptionFromOthers;
+
+public HL7V26Field EventDescriptionFromOthers
+{
+    get
+    {
+        if (_eventDescriptionFromOthers != null)
+        {
+            return _eventDescriptionFromOthers;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.13",
+            Type = @"Field",
+            Position = @"PEO.13",
+            Name = @"Event Description From Others",
+            Length = 600,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"FT",
+            DataTypeName = @"Formatted Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a summary narrative text description of the event that occurred written by the sender. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative. By representing clinical information in OBX segments rather than in the narrative, these data become much more useful and flexible.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventDescriptionFromOthers = new HL7V26Field
+        {
+            field = message[@"PEO"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventDescriptionFromOthers.field.FieldRepetitions != null && _eventDescriptionFromOthers.field.FieldRepetitions.Count > 0)
+        {
+            _eventDescriptionFromOthers.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventDescriptionFromOthers, fieldData);
+        }
+
+        return _eventDescriptionFromOthers;
+    } 
+}
+
+internal HL7V26Field _eventDescriptionFromOriginalReporter;
+
+public HL7V26Field EventDescriptionFromOriginalReporter
+{
+    get
+    {
+        if (_eventDescriptionFromOriginalReporter != null)
+        {
+            return _eventDescriptionFromOriginalReporter;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.14",
+            Type = @"Field",
+            Position = @"PEO.14",
+            Name = @"Event Description From Original Reporter",
+            Length = 600,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"FT",
+            DataTypeName = @"Formatted Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a summary narrative text description of the event provided by the original reporter. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventDescriptionFromOriginalReporter = new HL7V26Field
+        {
+            field = message[@"PEO"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventDescriptionFromOriginalReporter.field.FieldRepetitions != null && _eventDescriptionFromOriginalReporter.field.FieldRepetitions.Count > 0)
+        {
+            _eventDescriptionFromOriginalReporter.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventDescriptionFromOriginalReporter, fieldData);
+        }
+
+        return _eventDescriptionFromOriginalReporter;
+    } 
+}
+
+internal HL7V26Field _eventDescriptionFromPatient;
+
+public HL7V26Field EventDescriptionFromPatient
+{
+    get
+    {
+        if (_eventDescriptionFromPatient != null)
+        {
+            return _eventDescriptionFromPatient;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.15",
+            Type = @"Field",
+            Position = @"PEO.15",
+            Name = @"Event Description From Patient",
+            Length = 600,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"FT",
+            DataTypeName = @"Formatted Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a summary narrative text description of the event obtained directly from the patient. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative, which will allow the data to be more readily represented and manipulated.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventDescriptionFromPatient = new HL7V26Field
+        {
+            field = message[@"PEO"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventDescriptionFromPatient.field.FieldRepetitions != null && _eventDescriptionFromPatient.field.FieldRepetitions.Count > 0)
+        {
+            _eventDescriptionFromPatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventDescriptionFromPatient, fieldData);
+        }
+
+        return _eventDescriptionFromPatient;
+    } 
+}
+
+internal HL7V26Field _eventDescriptionFromPractitioner;
+
+public HL7V26Field EventDescriptionFromPractitioner
+{
+    get
+    {
+        if (_eventDescriptionFromPractitioner != null)
+        {
+            return _eventDescriptionFromPractitioner;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.16",
+            Type = @"Field",
+            Position = @"PEO.16",
+            Name = @"Event Description From Practitioner",
+            Length = 600,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"FT",
+            DataTypeName = @"Formatted Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a summary narrative text description of the event provided by the practitioner most familiar with the event. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventDescriptionFromPractitioner = new HL7V26Field
+        {
+            field = message[@"PEO"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventDescriptionFromPractitioner.field.FieldRepetitions != null && _eventDescriptionFromPractitioner.field.FieldRepetitions.Count > 0)
+        {
+            _eventDescriptionFromPractitioner.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventDescriptionFromPractitioner, fieldData);
+        }
+
+        return _eventDescriptionFromPractitioner;
+    } 
+}
+
+internal HL7V26Field _eventDescriptionFromAutopsy;
+
+public HL7V26Field EventDescriptionFromAutopsy
+{
+    get
+    {
+        if (_eventDescriptionFromAutopsy != null)
+        {
+            return _eventDescriptionFromAutopsy;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.17",
+            Type = @"Field",
+            Position = @"PEO.17",
+            Name = @"Event Description From Autopsy",
+            Length = 600,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"FT",
+            DataTypeName = @"Formatted Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a summary narrative text description of the autopsy results. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventDescriptionFromAutopsy = new HL7V26Field
+        {
+            field = message[@"PEO"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventDescriptionFromAutopsy.field.FieldRepetitions != null && _eventDescriptionFromAutopsy.field.FieldRepetitions.Count > 0)
+        {
+            _eventDescriptionFromAutopsy.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_eventDescriptionFromAutopsy, fieldData);
+        }
+
+        return _eventDescriptionFromAutopsy;
+    } 
+}
+
+internal HL7V26Field _causeOfDeath;
+
+public HL7V26Field CauseOfDeath
+{
+    get
+    {
+        if (_causeOfDeath != null)
+        {
+            return _causeOfDeath;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.18",
+            Type = @"Field",
+            Position = @"PEO.18",
+            Name = @"Cause Of Death",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the coded cause of death. May be repeated as necessary to list multiple contributing causes. A text description can be included by including text but no code or coding system. For example, if the cause of death is to be determined at autopsy but results are not yet available, the cause of death element could be ^Pending autopsy^. The date/time of death can be sent in the PID and the autopsy results sent in the event description from autopsy element of the PEO segment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PEO.8",
-                            Type = @"Field",
-                            Position = @"PEO.8",
-                            Name = @"Event Qualification",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0237",
-                            TableName = @"Event Qualification",
-                            Description = @"This field is contains a classification of the type of product experience this event is considered to represent. Refer to HL7 Table 0237 - Event Qualification for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.9",
-                            Type = @"Field",
-                            Position = @"PEO.9",
-                            Name = @"Event Serious",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0238",
-                            TableName = @"Event Seriousness",
-                            Description = @"This field indicates whether the event was judged as serious. If the event did not meet the criteria for seriousness but the sender judges the event significant on other grounds, the event can be identified as significant [but not serious]. Refer to HL7 Table 0238 - Event Seriousness for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.10",
-                            Type = @"Field",
-                            Position = @"PEO.10",
-                            Name = @"Event Expected",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0239",
-                            TableName = @"Event Expected",
-                            Description = @"This field indicates whether the observed event was expected or unexpected as judged. Refer to HL7 Table 0239 - Event Expected for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.11",
-                            Type = @"Field",
-                            Position = @"PEO.11",
-                            Name = @"Event Outcome",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0240",
-                            TableName = @"Event Consequence",
-                            Description = @"This field identifies the consequence of the event on the patient. If the consequence of the event is not understood or not available, the patient outcome element may be used although neither is required. May be repeated if more than one is appropriate. Refer to HL7 Table 0240 - Event consequence for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.12",
-                            Type = @"Field",
-                            Position = @"PEO.12",
-                            Name = @"Patient Outcome",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0241",
-                            TableName = @"Patient Outcome",
-                            Description = @"When an event specific outcome is not available, the patient outcome element may be used to represent the patient’s overall outcome if that information is known.  Refer to HL7 Table 0241 - Patient outcome for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.13",
-                            Type = @"Field",
-                            Position = @"PEO.13",
-                            Name = @"Event Description From Others",
-                            Length = 600,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a summary narrative text description of the event that occurred written by the sender. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative. By representing clinical information in OBX segments rather than in the narrative, these data become much more useful and flexible.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.14",
-                            Type = @"Field",
-                            Position = @"PEO.14",
-                            Name = @"Event Description From Original Reporter",
-                            Length = 600,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a summary narrative text description of the event provided by the original reporter. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.15",
-                            Type = @"Field",
-                            Position = @"PEO.15",
-                            Name = @"Event Description From Patient",
-                            Length = 600,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a summary narrative text description of the event obtained directly from the patient. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative, which will allow the data to be more readily represented and manipulated.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.16",
-                            Type = @"Field",
-                            Position = @"PEO.16",
-                            Name = @"Event Description From Practitioner",
-                            Length = 600,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a summary narrative text description of the event provided by the practitioner most familiar with the event. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.17",
-                            Type = @"Field",
-                            Position = @"PEO.17",
-                            Name = @"Event Description From Autopsy",
-                            Length = 600,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a summary narrative text description of the autopsy results. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.18",
-                            Type = @"Field",
-                            Position = @"PEO.18",
-                            Name = @"Cause Of Death",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the coded cause of death. May be repeated as necessary to list multiple contributing causes. A text description can be included by including text but no code or coding system. For example, if the cause of death is to be determined at autopsy but results are not yet available, the cause of death element could be ^Pending autopsy^. The date/time of death can be sent in the PID and the autopsy results sent in the event description from autopsy element of the PEO segment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PEO.18.1",
                             Type = @"Component",
@@ -1724,25 +2204,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _causeOfDeath = new HL7V26Field
+        {
+            field = message[@"PEO"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_causeOfDeath.field.FieldRepetitions != null && _causeOfDeath.field.FieldRepetitions.Count > 0)
+        {
+            _causeOfDeath.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_causeOfDeath, fieldData);
+        }
+
+        return _causeOfDeath;
+    } 
+}
+
+internal HL7V26Field _primaryObserverName;
+
+public HL7V26Field PrimaryObserverName
+{
+    get
+    {
+        if (_primaryObserverName != null)
+        {
+            return _primaryObserverName;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.19",
+            Type = @"Field",
+            Position = @"PEO.19",
+            Name = @"Primary Observer Name",
+            Length = 1317,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the name of the person who initially described the event.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PEO.19",
-                            Type = @"Field",
-                            Position = @"PEO.19",
-                            Name = @"Primary Observer Name",
-                            Length = 1317,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the name of the person who initially described the event.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PEO.19.1",
                             Type = @"Component",
@@ -2274,25 +2784,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Used to specify an abbreviation, or a string of abbreviations denoting qualifications that support the persons profession, (e.g., licenses, certificates, degrees, affiliations with professional societies, etc.). The Professional Suffix normally follows the Family Name when the Person Name is used for display purposes. Please note that this component is an unformatted string and is used for display purposes only. Detailed information regarding the contents of Professional Suffix is obtained using appropriate segments in Chapter 15, Personnel Management.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primaryObserverName = new HL7V26Field
+        {
+            field = message[@"PEO"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryObserverName.field.FieldRepetitions != null && _primaryObserverName.field.FieldRepetitions.Count > 0)
+        {
+            _primaryObserverName.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_primaryObserverName, fieldData);
+        }
+
+        return _primaryObserverName;
+    } 
+}
+
+internal HL7V26Field _primaryObserverAddress;
+
+public HL7V26Field PrimaryObserverAddress
+{
+    get
+    {
+        if (_primaryObserverAddress != null)
+        {
+            return _primaryObserverAddress;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.20",
+            Type = @"Field",
+            Position = @"PEO.20",
+            Name = @"Primary Observer Address",
+            Length = 2915,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the address of the person who initially described the event.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PEO.20",
-                            Type = @"Field",
-                            Position = @"PEO.20",
-                            Name = @"Primary Observer Address",
-                            Length = 2915,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the address of the person who initially described the event.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PEO.20.1",
                             Type = @"Component",
@@ -3180,25 +3720,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primaryObserverAddress = new HL7V26Field
+        {
+            field = message[@"PEO"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryObserverAddress.field.FieldRepetitions != null && _primaryObserverAddress.field.FieldRepetitions.Count > 0)
+        {
+            _primaryObserverAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_primaryObserverAddress, fieldData);
+        }
+
+        return _primaryObserverAddress;
+    } 
+}
+
+internal HL7V26Field _primaryObserverTelephone;
+
+public HL7V26Field PrimaryObserverTelephone
+{
+    get
+    {
+        if (_primaryObserverTelephone != null)
+        {
+            return _primaryObserverTelephone;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"PEO.21",
+            Type = @"Field",
+            Position = @"PEO.21",
+            Name = @"Primary Observer Telephone",
+            Length = 2743,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the telephone number of the person who initially described the event.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PEO.21",
-                            Type = @"Field",
-                            Position = @"PEO.21",
-                            Name = @"Primary Observer Telephone",
-                            Length = 2743,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the telephone number of the person who initially described the event.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PEO.21.1",
                             Type = @"Component",
@@ -3910,964 +4480,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"For an entity having multiple telecommunication addresses, indicates which is the ""most preferred"" (lowest number) to ""least preferred"" (highest number).",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.22",
-                            Type = @"Field",
-                            Position = @"PEO.22",
-                            Name = @"Primary Observer's Qualification",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0242",
-                            TableName = @"Primary Observer's Qualification",
-                            Description = @"This field contains the qualification of the primary observer which may assist in assessing the validity of the observations. Refer to HL7 Table 0242 - Primary Observers Qualification for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.23",
-                            Type = @"Field",
-                            Position = @"PEO.23",
-                            Name = @"Confirmation Provided By",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0242",
-                            TableName = @"Primary Observer's Qualification",
-                            Description = @"This field contains the qualification of the health professional who confirmed the observation if the primary observer was not a health professional. Refer to HL7 Table 0242 - Primary observers qualification for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.24",
-                            Type = @"Field",
-                            Position = @"PEO.24",
-                            Name = @"Primary Observer Aware Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the date/time the primary observer became aware of event.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PEO.25",
-                            Type = @"Field",
-                            Position = @"PEO.25",
-                            Name = @"Primary Observer's Identity May Be Divulged",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0243",
-                            TableName = @"Identity May Be Divulged",
-                            Description = @"Indicates whether or not the primary observer, if known to the sender, grants permission to disclose his or her identity to the product manufacturer for the purpose of further investigating the event. If the element is absent, the assumption should be made that permission is not granted. Refer to HL7 Table 0243 - Identity May Be Divulged for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentPEO(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field eventIdentifiersUsed;
-
-public HL7V26Field EventIdentifiersUsed
-{
-    get
-    {
-        if (eventIdentifiersUsed != null)
-        {
-            return eventIdentifiersUsed;
-        }
-
-        eventIdentifiersUsed = new HL7V26Field
-        {
-            field = message[@"PEO"][1],
-            Id = @"PEO.1",
-            Type = @"Field",
-            Position = @"PEO.1",
-            Name = @"Event Identifiers Used",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field may be used to transmit the event identifier used by other entities for this event. The entry would typically contain a unique alphanumeric identifier assigned by an entity with the text component null or repeating the unique alphanumeric identifier followed by the organizations identifier. An event identifier might be GB1234^GB1234^PharmaGiant for example.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventIdentifiersUsed.field.FieldRepetitions != null && eventIdentifiersUsed.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventIdentifiersUsed.Id));
-            eventIdentifiersUsed.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventIdentifiersUsed, fieldData);
-        }
-
-        return eventIdentifiersUsed;
-    } 
-}
-
-internal HL7V26Field eventSymptomDiagnosisCode;
-
-public HL7V26Field EventSymptomDiagnosisCode
-{
-    get
-    {
-        if (eventSymptomDiagnosisCode != null)
-        {
-            return eventSymptomDiagnosisCode;
-        }
-
-        eventSymptomDiagnosisCode = new HL7V26Field
-        {
-            field = message[@"PEO"][2],
-            Id = @"PEO.2",
-            Type = @"Field",
-            Position = @"PEO.2",
-            Name = @"Event Symptom/Diagnosis Code",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the coded diagnosis or problem description which best describes the event. A text representation of the coded item should routinely be included. MEDDRA and WHO-ART are examples of appropriate coding schemes, as are the patient and device codes included in the FDA Center for Devices and Radiologic Healths coding manual for Form 3500A.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventSymptomDiagnosisCode.field.FieldRepetitions != null && eventSymptomDiagnosisCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventSymptomDiagnosisCode.Id));
-            eventSymptomDiagnosisCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventSymptomDiagnosisCode, fieldData);
-        }
-
-        return eventSymptomDiagnosisCode;
-    } 
-}
-
-internal HL7V26Field eventOnsetDateTime;
-
-public HL7V26Field EventOnsetDateTime
-{
-    get
-    {
-        if (eventOnsetDateTime != null)
-        {
-            return eventOnsetDateTime;
-        }
-
-        eventOnsetDateTime = new HL7V26Field
-        {
-            field = message[@"PEO"][3],
-            Id = @"PEO.3",
-            Type = @"Field",
-            Position = @"PEO.3",
-            Name = @"Event Onset Date/Time",
-            Length = 24,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a report or best estimate of the date/time of onset of the event. The date/time can be recorded to any level of precision it is known (hour, day, month, year).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventOnsetDateTime.field.FieldRepetitions != null && eventOnsetDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventOnsetDateTime.Id));
-            eventOnsetDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventOnsetDateTime, fieldData);
-        }
-
-        return eventOnsetDateTime;
-    } 
-}
-
-internal HL7V26Field eventExacerbationDateTime;
-
-public HL7V26Field EventExacerbationDateTime
-{
-    get
-    {
-        if (eventExacerbationDateTime != null)
-        {
-            return eventExacerbationDateTime;
-        }
-
-        eventExacerbationDateTime = new HL7V26Field
-        {
-            field = message[@"PEO"][4],
-            Id = @"PEO.4",
-            Type = @"Field",
-            Position = @"PEO.4",
-            Name = @"Event Exacerbation Date/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the best estimate of the date/time the event was exacerbated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventExacerbationDateTime.field.FieldRepetitions != null && eventExacerbationDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventExacerbationDateTime.Id));
-            eventExacerbationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventExacerbationDateTime, fieldData);
-        }
-
-        return eventExacerbationDateTime;
-    } 
-}
-
-internal HL7V26Field eventImprovedDateTime;
-
-public HL7V26Field EventImprovedDateTime
-{
-    get
-    {
-        if (eventImprovedDateTime != null)
-        {
-            return eventImprovedDateTime;
-        }
-
-        eventImprovedDateTime = new HL7V26Field
-        {
-            field = message[@"PEO"][5],
-            Id = @"PEO.5",
-            Type = @"Field",
-            Position = @"PEO.5",
-            Name = @"Event Improved Date/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the best estimate of the date/time the event improved.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventImprovedDateTime.field.FieldRepetitions != null && eventImprovedDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventImprovedDateTime.Id));
-            eventImprovedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventImprovedDateTime, fieldData);
-        }
-
-        return eventImprovedDateTime;
-    } 
-}
-
-internal HL7V26Field eventEndedDataTime;
-
-public HL7V26Field EventEndedDataTime
-{
-    get
-    {
-        if (eventEndedDataTime != null)
-        {
-            return eventEndedDataTime;
-        }
-
-        eventEndedDataTime = new HL7V26Field
-        {
-            field = message[@"PEO"][6],
-            Id = @"PEO.6",
-            Type = @"Field",
-            Position = @"PEO.6",
-            Name = @"Event Ended Data/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the best estimate of the date/time the event resolved.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventEndedDataTime.field.FieldRepetitions != null && eventEndedDataTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventEndedDataTime.Id));
-            eventEndedDataTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventEndedDataTime, fieldData);
-        }
-
-        return eventEndedDataTime;
-    } 
-}
-
-internal HL7V26Field eventLocationOccurredAddress;
-
-public HL7V26Field EventLocationOccurredAddress
-{
-    get
-    {
-        if (eventLocationOccurredAddress != null)
-        {
-            return eventLocationOccurredAddress;
-        }
-
-        eventLocationOccurredAddress = new HL7V26Field
-        {
-            field = message[@"PEO"][7],
-            Id = @"PEO.7",
-            Type = @"Field",
-            Position = @"PEO.7",
-            Name = @"Event Location Occurred Address",
-            Length = 2915,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the location at which the event started. Often this will specify only the country in which the event started.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventLocationOccurredAddress.field.FieldRepetitions != null && eventLocationOccurredAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventLocationOccurredAddress.Id));
-            eventLocationOccurredAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventLocationOccurredAddress, fieldData);
-        }
-
-        return eventLocationOccurredAddress;
-    } 
-}
-
-internal HL7V26Field eventQualification;
-
-public HL7V26Field EventQualification
-{
-    get
-    {
-        if (eventQualification != null)
-        {
-            return eventQualification;
-        }
-
-        eventQualification = new HL7V26Field
-        {
-            field = message[@"PEO"][8],
-            Id = @"PEO.8",
-            Type = @"Field",
-            Position = @"PEO.8",
-            Name = @"Event Qualification",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0237",
-            TableName = @"Event Qualification",
-            Description = @"This field is contains a classification of the type of product experience this event is considered to represent. Refer to HL7 Table 0237 - Event Qualification for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventQualification.field.FieldRepetitions != null && eventQualification.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventQualification.Id));
-            eventQualification.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventQualification, fieldData);
-        }
-
-        return eventQualification;
-    } 
-}
-
-internal HL7V26Field eventSerious;
-
-public HL7V26Field EventSerious
-{
-    get
-    {
-        if (eventSerious != null)
-        {
-            return eventSerious;
-        }
-
-        eventSerious = new HL7V26Field
-        {
-            field = message[@"PEO"][9],
-            Id = @"PEO.9",
-            Type = @"Field",
-            Position = @"PEO.9",
-            Name = @"Event Serious",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0238",
-            TableName = @"Event Seriousness",
-            Description = @"This field indicates whether the event was judged as serious. If the event did not meet the criteria for seriousness but the sender judges the event significant on other grounds, the event can be identified as significant [but not serious]. Refer to HL7 Table 0238 - Event Seriousness for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventSerious.field.FieldRepetitions != null && eventSerious.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventSerious.Id));
-            eventSerious.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventSerious, fieldData);
-        }
-
-        return eventSerious;
-    } 
-}
-
-internal HL7V26Field eventExpected;
-
-public HL7V26Field EventExpected
-{
-    get
-    {
-        if (eventExpected != null)
-        {
-            return eventExpected;
-        }
-
-        eventExpected = new HL7V26Field
-        {
-            field = message[@"PEO"][10],
-            Id = @"PEO.10",
-            Type = @"Field",
-            Position = @"PEO.10",
-            Name = @"Event Expected",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0239",
-            TableName = @"Event Expected",
-            Description = @"This field indicates whether the observed event was expected or unexpected as judged. Refer to HL7 Table 0239 - Event Expected for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventExpected.field.FieldRepetitions != null && eventExpected.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventExpected.Id));
-            eventExpected.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventExpected, fieldData);
-        }
-
-        return eventExpected;
-    } 
-}
-
-internal HL7V26Field eventOutcome;
-
-public HL7V26Field EventOutcome
-{
-    get
-    {
-        if (eventOutcome != null)
-        {
-            return eventOutcome;
-        }
-
-        eventOutcome = new HL7V26Field
-        {
-            field = message[@"PEO"][11],
-            Id = @"PEO.11",
-            Type = @"Field",
-            Position = @"PEO.11",
-            Name = @"Event Outcome",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0240",
-            TableName = @"Event Consequence",
-            Description = @"This field identifies the consequence of the event on the patient. If the consequence of the event is not understood or not available, the patient outcome element may be used although neither is required. May be repeated if more than one is appropriate. Refer to HL7 Table 0240 - Event consequence for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventOutcome.field.FieldRepetitions != null && eventOutcome.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventOutcome.Id));
-            eventOutcome.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventOutcome, fieldData);
-        }
-
-        return eventOutcome;
-    } 
-}
-
-internal HL7V26Field patientOutcome;
-
-public HL7V26Field PatientOutcome
-{
-    get
-    {
-        if (patientOutcome != null)
-        {
-            return patientOutcome;
-        }
-
-        patientOutcome = new HL7V26Field
-        {
-            field = message[@"PEO"][12],
-            Id = @"PEO.12",
-            Type = @"Field",
-            Position = @"PEO.12",
-            Name = @"Patient Outcome",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0241",
-            TableName = @"Patient Outcome",
-            Description = @"When an event specific outcome is not available, the patient outcome element may be used to represent the patient’s overall outcome if that information is known.  Refer to HL7 Table 0241 - Patient outcome for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientOutcome.field.FieldRepetitions != null && patientOutcome.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientOutcome.Id));
-            patientOutcome.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(patientOutcome, fieldData);
-        }
-
-        return patientOutcome;
-    } 
-}
-
-internal HL7V26Field eventDescriptionFromOthers;
-
-public HL7V26Field EventDescriptionFromOthers
-{
-    get
-    {
-        if (eventDescriptionFromOthers != null)
-        {
-            return eventDescriptionFromOthers;
-        }
-
-        eventDescriptionFromOthers = new HL7V26Field
-        {
-            field = message[@"PEO"][13],
-            Id = @"PEO.13",
-            Type = @"Field",
-            Position = @"PEO.13",
-            Name = @"Event Description From Others",
-            Length = 600,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"FT",
-            DataTypeName = @"Formatted Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a summary narrative text description of the event that occurred written by the sender. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative. By representing clinical information in OBX segments rather than in the narrative, these data become much more useful and flexible.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventDescriptionFromOthers.field.FieldRepetitions != null && eventDescriptionFromOthers.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventDescriptionFromOthers.Id));
-            eventDescriptionFromOthers.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventDescriptionFromOthers, fieldData);
-        }
-
-        return eventDescriptionFromOthers;
-    } 
-}
-
-internal HL7V26Field eventDescriptionFromOriginalReporter;
-
-public HL7V26Field EventDescriptionFromOriginalReporter
-{
-    get
-    {
-        if (eventDescriptionFromOriginalReporter != null)
-        {
-            return eventDescriptionFromOriginalReporter;
-        }
-
-        eventDescriptionFromOriginalReporter = new HL7V26Field
-        {
-            field = message[@"PEO"][14],
-            Id = @"PEO.14",
-            Type = @"Field",
-            Position = @"PEO.14",
-            Name = @"Event Description From Original Reporter",
-            Length = 600,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"FT",
-            DataTypeName = @"Formatted Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a summary narrative text description of the event provided by the original reporter. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventDescriptionFromOriginalReporter.field.FieldRepetitions != null && eventDescriptionFromOriginalReporter.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventDescriptionFromOriginalReporter.Id));
-            eventDescriptionFromOriginalReporter.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventDescriptionFromOriginalReporter, fieldData);
-        }
-
-        return eventDescriptionFromOriginalReporter;
-    } 
-}
-
-internal HL7V26Field eventDescriptionFromPatient;
-
-public HL7V26Field EventDescriptionFromPatient
-{
-    get
-    {
-        if (eventDescriptionFromPatient != null)
-        {
-            return eventDescriptionFromPatient;
-        }
-
-        eventDescriptionFromPatient = new HL7V26Field
-        {
-            field = message[@"PEO"][15],
-            Id = @"PEO.15",
-            Type = @"Field",
-            Position = @"PEO.15",
-            Name = @"Event Description From Patient",
-            Length = 600,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"FT",
-            DataTypeName = @"Formatted Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a summary narrative text description of the event obtained directly from the patient. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative, which will allow the data to be more readily represented and manipulated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventDescriptionFromPatient.field.FieldRepetitions != null && eventDescriptionFromPatient.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventDescriptionFromPatient.Id));
-            eventDescriptionFromPatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventDescriptionFromPatient, fieldData);
-        }
-
-        return eventDescriptionFromPatient;
-    } 
-}
-
-internal HL7V26Field eventDescriptionFromPractitioner;
-
-public HL7V26Field EventDescriptionFromPractitioner
-{
-    get
-    {
-        if (eventDescriptionFromPractitioner != null)
-        {
-            return eventDescriptionFromPractitioner;
-        }
-
-        eventDescriptionFromPractitioner = new HL7V26Field
-        {
-            field = message[@"PEO"][16],
-            Id = @"PEO.16",
-            Type = @"Field",
-            Position = @"PEO.16",
-            Name = @"Event Description From Practitioner",
-            Length = 600,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"FT",
-            DataTypeName = @"Formatted Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a summary narrative text description of the event provided by the practitioner most familiar with the event. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventDescriptionFromPractitioner.field.FieldRepetitions != null && eventDescriptionFromPractitioner.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventDescriptionFromPractitioner.Id));
-            eventDescriptionFromPractitioner.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventDescriptionFromPractitioner, fieldData);
-        }
-
-        return eventDescriptionFromPractitioner;
-    } 
-}
-
-internal HL7V26Field eventDescriptionFromAutopsy;
-
-public HL7V26Field EventDescriptionFromAutopsy
-{
-    get
-    {
-        if (eventDescriptionFromAutopsy != null)
-        {
-            return eventDescriptionFromAutopsy;
-        }
-
-        eventDescriptionFromAutopsy = new HL7V26Field
-        {
-            field = message[@"PEO"][17],
-            Id = @"PEO.17",
-            Type = @"Field",
-            Position = @"PEO.17",
-            Name = @"Event Description From Autopsy",
-            Length = 600,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"FT",
-            DataTypeName = @"Formatted Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a summary narrative text description of the autopsy results. Note that laboratory results can be encoded as OBX segments rather then including them in the narrative.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventDescriptionFromAutopsy.field.FieldRepetitions != null && eventDescriptionFromAutopsy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventDescriptionFromAutopsy.Id));
-            eventDescriptionFromAutopsy.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(eventDescriptionFromAutopsy, fieldData);
-        }
-
-        return eventDescriptionFromAutopsy;
-    } 
-}
-
-internal HL7V26Field causeOfDeath;
-
-public HL7V26Field CauseOfDeath
-{
-    get
-    {
-        if (causeOfDeath != null)
-        {
-            return causeOfDeath;
-        }
-
-        causeOfDeath = new HL7V26Field
-        {
-            field = message[@"PEO"][18],
-            Id = @"PEO.18",
-            Type = @"Field",
-            Position = @"PEO.18",
-            Name = @"Cause Of Death",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the coded cause of death. May be repeated as necessary to list multiple contributing causes. A text description can be included by including text but no code or coding system. For example, if the cause of death is to be determined at autopsy but results are not yet available, the cause of death element could be ^Pending autopsy^. The date/time of death can be sent in the PID and the autopsy results sent in the event description from autopsy element of the PEO segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (causeOfDeath.field.FieldRepetitions != null && causeOfDeath.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(causeOfDeath.Id));
-            causeOfDeath.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(causeOfDeath, fieldData);
-        }
-
-        return causeOfDeath;
-    } 
-}
-
-internal HL7V26Field primaryObserverName;
-
-public HL7V26Field PrimaryObserverName
-{
-    get
-    {
-        if (primaryObserverName != null)
-        {
-            return primaryObserverName;
-        }
-
-        primaryObserverName = new HL7V26Field
-        {
-            field = message[@"PEO"][19],
-            Id = @"PEO.19",
-            Type = @"Field",
-            Position = @"PEO.19",
-            Name = @"Primary Observer Name",
-            Length = 1317,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the name of the person who initially described the event.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryObserverName.field.FieldRepetitions != null && primaryObserverName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryObserverName.Id));
-            primaryObserverName.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(primaryObserverName, fieldData);
-        }
-
-        return primaryObserverName;
-    } 
-}
-
-internal HL7V26Field primaryObserverAddress;
-
-public HL7V26Field PrimaryObserverAddress
-{
-    get
-    {
-        if (primaryObserverAddress != null)
-        {
-            return primaryObserverAddress;
-        }
-
-        primaryObserverAddress = new HL7V26Field
-        {
-            field = message[@"PEO"][20],
-            Id = @"PEO.20",
-            Type = @"Field",
-            Position = @"PEO.20",
-            Name = @"Primary Observer Address",
-            Length = 2915,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the address of the person who initially described the event.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryObserverAddress.field.FieldRepetitions != null && primaryObserverAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryObserverAddress.Id));
-            primaryObserverAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(primaryObserverAddress, fieldData);
-        }
-
-        return primaryObserverAddress;
-    } 
-}
-
-internal HL7V26Field primaryObserverTelephone;
-
-public HL7V26Field PrimaryObserverTelephone
-{
-    get
-    {
-        if (primaryObserverTelephone != null)
-        {
-            return primaryObserverTelephone;
-        }
-
-        primaryObserverTelephone = new HL7V26Field
+        _primaryObserverTelephone = new HL7V26Field
         {
             field = message[@"PEO"][21],
-            Id = @"PEO.21",
-            Type = @"Field",
-            Position = @"PEO.21",
-            Name = @"Primary Observer Telephone",
-            Length = 2743,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the telephone number of the person who initially described the event.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (primaryObserverTelephone.field.FieldRepetitions != null && primaryObserverTelephone.field.FieldRepetitions.Count > 0)
+        if (_primaryObserverTelephone.field.FieldRepetitions != null && _primaryObserverTelephone.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryObserverTelephone.Id));
-            primaryObserverTelephone.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(primaryObserverTelephone, fieldData);
+            _primaryObserverTelephone.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_primaryObserverTelephone, fieldData);
         }
 
-        return primaryObserverTelephone;
+        return _primaryObserverTelephone;
     } 
 }
 
-internal HL7V26Field primaryObserversQualification;
+internal HL7V26Field _primaryObserversQualification;
 
 public HL7V26Field PrimaryObserversQualification
 {
     get
     {
-        if (primaryObserversQualification != null)
+        if (_primaryObserversQualification != null)
         {
-            return primaryObserversQualification;
+            return _primaryObserversQualification;
         }
 
-        primaryObserversQualification = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"PEO"][22],
             Id = @"PEO.22",
             Type = @"Field",
             Position = @"PEO.22",
@@ -4881,34 +4526,38 @@ public HL7V26Field PrimaryObserversQualification
             TableName = @"Primary Observer's Qualification",
             Description = @"This field contains the qualification of the primary observer which may assist in assessing the validity of the observations. Refer to HL7 Table 0242 - Primary Observers Qualification for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _primaryObserversQualification = new HL7V26Field
+        {
+            field = message[@"PEO"][22],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (primaryObserversQualification.field.FieldRepetitions != null && primaryObserversQualification.field.FieldRepetitions.Count > 0)
+        if (_primaryObserversQualification.field.FieldRepetitions != null && _primaryObserversQualification.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryObserversQualification.Id));
-            primaryObserversQualification.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(primaryObserversQualification, fieldData);
+            _primaryObserversQualification.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_primaryObserversQualification, fieldData);
         }
 
-        return primaryObserversQualification;
+        return _primaryObserversQualification;
     } 
 }
 
-internal HL7V26Field confirmationProvidedBy;
+internal HL7V26Field _confirmationProvidedBy;
 
 public HL7V26Field ConfirmationProvidedBy
 {
     get
     {
-        if (confirmationProvidedBy != null)
+        if (_confirmationProvidedBy != null)
         {
-            return confirmationProvidedBy;
+            return _confirmationProvidedBy;
         }
 
-        confirmationProvidedBy = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"PEO"][23],
             Id = @"PEO.23",
             Type = @"Field",
             Position = @"PEO.23",
@@ -4922,34 +4571,38 @@ public HL7V26Field ConfirmationProvidedBy
             TableName = @"Primary Observer's Qualification",
             Description = @"This field contains the qualification of the health professional who confirmed the observation if the primary observer was not a health professional. Refer to HL7 Table 0242 - Primary observers qualification for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _confirmationProvidedBy = new HL7V26Field
+        {
+            field = message[@"PEO"][23],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (confirmationProvidedBy.field.FieldRepetitions != null && confirmationProvidedBy.field.FieldRepetitions.Count > 0)
+        if (_confirmationProvidedBy.field.FieldRepetitions != null && _confirmationProvidedBy.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(confirmationProvidedBy.Id));
-            confirmationProvidedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(confirmationProvidedBy, fieldData);
+            _confirmationProvidedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_confirmationProvidedBy, fieldData);
         }
 
-        return confirmationProvidedBy;
+        return _confirmationProvidedBy;
     } 
 }
 
-internal HL7V26Field primaryObserverAwareDateTime;
+internal HL7V26Field _primaryObserverAwareDateTime;
 
 public HL7V26Field PrimaryObserverAwareDateTime
 {
     get
     {
-        if (primaryObserverAwareDateTime != null)
+        if (_primaryObserverAwareDateTime != null)
         {
-            return primaryObserverAwareDateTime;
+            return _primaryObserverAwareDateTime;
         }
 
-        primaryObserverAwareDateTime = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"PEO"][24],
             Id = @"PEO.24",
             Type = @"Field",
             Position = @"PEO.24",
@@ -4963,34 +4616,38 @@ public HL7V26Field PrimaryObserverAwareDateTime
             TableName = null,
             Description = @"This field identifies the date/time the primary observer became aware of event.",
             Sample = @"",
+            Fields = null
+        }
+
+        _primaryObserverAwareDateTime = new HL7V26Field
+        {
+            field = message[@"PEO"][24],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (primaryObserverAwareDateTime.field.FieldRepetitions != null && primaryObserverAwareDateTime.field.FieldRepetitions.Count > 0)
+        if (_primaryObserverAwareDateTime.field.FieldRepetitions != null && _primaryObserverAwareDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryObserverAwareDateTime.Id));
-            primaryObserverAwareDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(primaryObserverAwareDateTime, fieldData);
+            _primaryObserverAwareDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_primaryObserverAwareDateTime, fieldData);
         }
 
-        return primaryObserverAwareDateTime;
+        return _primaryObserverAwareDateTime;
     } 
 }
 
-internal HL7V26Field primaryObserversIdentityMayBeDivulged;
+internal HL7V26Field _primaryObserversIdentityMayBeDivulged;
 
 public HL7V26Field PrimaryObserversIdentityMayBeDivulged
 {
     get
     {
-        if (primaryObserversIdentityMayBeDivulged != null)
+        if (_primaryObserversIdentityMayBeDivulged != null)
         {
-            return primaryObserversIdentityMayBeDivulged;
+            return _primaryObserversIdentityMayBeDivulged;
         }
 
-        primaryObserversIdentityMayBeDivulged = new HL7V26Field
+        var fieldData = new HL7V26FieldData
         {
-            field = message[@"PEO"][25],
             Id = @"PEO.25",
             Type = @"Field",
             Position = @"PEO.25",
@@ -5004,17 +4661,22 @@ public HL7V26Field PrimaryObserversIdentityMayBeDivulged
             TableName = @"Identity May Be Divulged",
             Description = @"Indicates whether or not the primary observer, if known to the sender, grants permission to disclose his or her identity to the product manufacturer for the purpose of further investigating the event. If the element is absent, the assumption should be made that permission is not granted. Refer to HL7 Table 0243 - Identity May Be Divulged for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _primaryObserversIdentityMayBeDivulged = new HL7V26Field
+        {
+            field = message[@"PEO"][25],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (primaryObserversIdentityMayBeDivulged.field.FieldRepetitions != null && primaryObserversIdentityMayBeDivulged.field.FieldRepetitions.Count > 0)
+        if (_primaryObserversIdentityMayBeDivulged.field.FieldRepetitions != null && _primaryObserversIdentityMayBeDivulged.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryObserversIdentityMayBeDivulged.Id));
-            primaryObserversIdentityMayBeDivulged.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(primaryObserversIdentityMayBeDivulged, fieldData);
+            _primaryObserversIdentityMayBeDivulged.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_primaryObserversIdentityMayBeDivulged, fieldData);
         }
 
-        return primaryObserversIdentityMayBeDivulged;
+        return _primaryObserversIdentityMayBeDivulged;
     } 
 }
     }

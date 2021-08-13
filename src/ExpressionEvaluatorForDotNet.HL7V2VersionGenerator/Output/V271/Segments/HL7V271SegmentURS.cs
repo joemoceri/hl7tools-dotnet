@@ -29,52 +29,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"URS.1",
-                            Type = @"Field",
-                            Position = @"URS.1",
-                            Name = @"URS.1",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V271SegmentURS(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V271Field uRS1;
+        internal HL7V271Field _uRS1;
 
 public HL7V271Field URS1
 {
     get
     {
-        if (uRS1 != null)
+        if (_uRS1 != null)
         {
-            return uRS1;
+            return _uRS1;
         }
 
-        uRS1 = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"URS"][1],
             Id = @"URS.1",
             Type = @"Field",
             Position = @"URS.1",
@@ -88,17 +60,22 @@ public HL7V271Field URS1
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _uRS1 = new HL7V271Field
+        {
+            field = message[@"URS"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (uRS1.field.FieldRepetitions != null && uRS1.field.FieldRepetitions.Count > 0)
+        if (_uRS1.field.FieldRepetitions != null && _uRS1.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(uRS1.Id));
-            uRS1.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(uRS1, fieldData);
+            _uRS1.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_uRS1, fieldData);
         }
 
-        return uRS1;
+        return _uRS1;
     } 
 }
     }

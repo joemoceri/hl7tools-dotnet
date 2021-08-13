@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentQAK(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _queryTag;
+
+public HL7V27Field QueryTag
+{
+    get
+    {
+        if (_queryTag != null)
+        {
+            return _queryTag;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"QAK.1",
+            Type = @"Field",
+            Position = @"QAK.1",
+            Name = @"Query Tag",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field may be valued by the initiating system to identify the query, and may be used to match response messages to the originating query.  If it is valued, the responding system is required to echo it back as the first field in the query acknowledgment segment (QAK).  This field differs from MSA-2-message control ID in that its value remains constant for each message (i.e., all continuation messages) associated with the query, whereas MSA-2-Message control ID may vary with each continuation message, since it is associated with each individual message, not the query as a whole. QAK-1-Query tag is not conditional on the presence of the QRD-1-Query ID field in the original mode queries; in the original mode queries QAK-1-Query tag is not used.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _queryTag = new HL7V27Field
+        {
+            field = message[@"QAK"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_queryTag.field.FieldRepetitions != null && _queryTag.field.FieldRepetitions.Count > 0)
+        {
+            _queryTag.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_queryTag, fieldData);
+        }
+
+        return _queryTag;
+    } 
+}
+
+internal HL7V27Field _queryResponseStatus;
+
+public HL7V27Field QueryResponseStatus
+{
+    get
+    {
+        if (_queryResponseStatus != null)
+        {
+            return _queryResponseStatus;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"QAK.2",
+            Type = @"Field",
+            Position = @"QAK.2",
+            Name = @"Query Response Status",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0208",
+            TableName = @"Query Response Status",
+            Description = @"This field allows the responding system to return a precise response status.  It is especially useful in the case where no data is found that matches the query parameters, but where there is also no error.  It is defined with HL7 Table 0208 - Query Response Status. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _queryResponseStatus = new HL7V27Field
+        {
+            field = message[@"QAK"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_queryResponseStatus.field.FieldRepetitions != null && _queryResponseStatus.field.FieldRepetitions.Count > 0)
+        {
+            _queryResponseStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_queryResponseStatus, fieldData);
+        }
+
+        return _queryResponseStatus;
+    } 
+}
+
+internal HL7V27Field _messageQueryName;
+
+public HL7V27Field MessageQueryName
+{
+    get
+    {
+        if (_messageQueryName != null)
+        {
+            return _messageQueryName;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"QAK.3",
+            Type = @"Field",
+            Position = @"QAK.3",
+            Name = @"Message Query Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0471",
+            TableName = @"Query Name",
+            Description = @"This field contains the name of the query.  These names are assigned by the function-specific chapters of this specification.  Site-specific event replay query names begin with the letter ""Z."" Refer to User defined table 0471 - Query name for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"QAK.1",
-                            Type = @"Field",
-                            Position = @"QAK.1",
-                            Name = @"Query Tag",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field may be valued by the initiating system to identify the query, and may be used to match response messages to the originating query.  If it is valued, the responding system is required to echo it back as the first field in the query acknowledgment segment (QAK).  This field differs from MSA-2-message control ID in that its value remains constant for each message (i.e., all continuation messages) associated with the query, whereas MSA-2-Message control ID may vary with each continuation message, since it is associated with each individual message, not the query as a whole. QAK-1-Query tag is not conditional on the presence of the QRD-1-Query ID field in the original mode queries; in the original mode queries QAK-1-Query tag is not used.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QAK.2",
-                            Type = @"Field",
-                            Position = @"QAK.2",
-                            Name = @"Query Response Status",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0208",
-                            TableName = @"Query Response Status",
-                            Description = @"This field allows the responding system to return a precise response status.  It is especially useful in the case where no data is found that matches the query parameters, but where there is also no error.  It is defined with HL7 Table 0208 - Query Response Status. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QAK.3",
-                            Type = @"Field",
-                            Position = @"QAK.3",
-                            Name = @"Message Query Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0471",
-                            TableName = @"Query Name",
-                            Description = @"This field contains the name of the query.  These names are assigned by the function-specific chapters of this specification.  Site-specific event replay query names begin with the letter ""Z."" Refer to User defined table 0471 - Query name for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QAK.3.1",
                             Type = @"Component",
@@ -512,208 +578,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QAK.4",
-                            Type = @"Field",
-                            Position = @"QAK.4",
-                            Name = @"Hit Count Total",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field, when used, contains the total number of records found by the Server that matched the query.  For tabular responses, this is the number of rows found.  For other response types, the Query Profile defines the meaning of a ""hit.""",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QAK.5",
-                            Type = @"Field",
-                            Position = @"QAK.5",
-                            Name = @"This Payload",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field, when used, contains the total number of matching records that the Server sent in the current response.  Where the continuation protocol is used to transmit the response in partial installments, this number will differ from the value sent in QAK-4-Hit count total.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QAK.6",
-                            Type = @"Field",
-                            Position = @"QAK.6",
-                            Name = @"Hits Remaining",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field, when used, contains the number of matching records found by the Server that have yet to be sent.  It is only meaningful when the Server uses the continuation protocol to transmit partial responses.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentQAK(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field queryTag;
-
-public HL7V27Field QueryTag
-{
-    get
-    {
-        if (queryTag != null)
-        {
-            return queryTag;
-        }
-
-        queryTag = new HL7V27Field
-        {
-            field = message[@"QAK"][1],
-            Id = @"QAK.1",
-            Type = @"Field",
-            Position = @"QAK.1",
-            Name = @"Query Tag",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field may be valued by the initiating system to identify the query, and may be used to match response messages to the originating query.  If it is valued, the responding system is required to echo it back as the first field in the query acknowledgment segment (QAK).  This field differs from MSA-2-message control ID in that its value remains constant for each message (i.e., all continuation messages) associated with the query, whereas MSA-2-Message control ID may vary with each continuation message, since it is associated with each individual message, not the query as a whole. QAK-1-Query tag is not conditional on the presence of the QRD-1-Query ID field in the original mode queries; in the original mode queries QAK-1-Query tag is not used.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (queryTag.field.FieldRepetitions != null && queryTag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(queryTag.Id));
-            queryTag.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(queryTag, fieldData);
-        }
-
-        return queryTag;
-    } 
-}
-
-internal HL7V27Field queryResponseStatus;
-
-public HL7V27Field QueryResponseStatus
-{
-    get
-    {
-        if (queryResponseStatus != null)
-        {
-            return queryResponseStatus;
-        }
-
-        queryResponseStatus = new HL7V27Field
-        {
-            field = message[@"QAK"][2],
-            Id = @"QAK.2",
-            Type = @"Field",
-            Position = @"QAK.2",
-            Name = @"Query Response Status",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0208",
-            TableName = @"Query Response Status",
-            Description = @"This field allows the responding system to return a precise response status.  It is especially useful in the case where no data is found that matches the query parameters, but where there is also no error.  It is defined with HL7 Table 0208 - Query Response Status. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (queryResponseStatus.field.FieldRepetitions != null && queryResponseStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(queryResponseStatus.Id));
-            queryResponseStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(queryResponseStatus, fieldData);
-        }
-
-        return queryResponseStatus;
-    } 
-}
-
-internal HL7V27Field messageQueryName;
-
-public HL7V27Field MessageQueryName
-{
-    get
-    {
-        if (messageQueryName != null)
-        {
-            return messageQueryName;
-        }
-
-        messageQueryName = new HL7V27Field
+        _messageQueryName = new HL7V27Field
         {
             field = message[@"QAK"][3],
-            Id = @"QAK.3",
-            Type = @"Field",
-            Position = @"QAK.3",
-            Name = @"Message Query Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0471",
-            TableName = @"Query Name",
-            Description = @"This field contains the name of the query.  These names are assigned by the function-specific chapters of this specification.  Site-specific event replay query names begin with the letter ""Z."" Refer to User defined table 0471 - Query name for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (messageQueryName.field.FieldRepetitions != null && messageQueryName.field.FieldRepetitions.Count > 0)
+        if (_messageQueryName.field.FieldRepetitions != null && _messageQueryName.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(messageQueryName.Id));
-            messageQueryName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(messageQueryName, fieldData);
+            _messageQueryName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_messageQueryName, fieldData);
         }
 
-        return messageQueryName;
+        return _messageQueryName;
     } 
 }
 
-internal HL7V27Field hitCountTotal;
+internal HL7V27Field _hitCountTotal;
 
 public HL7V27Field HitCountTotal
 {
     get
     {
-        if (hitCountTotal != null)
+        if (_hitCountTotal != null)
         {
-            return hitCountTotal;
+            return _hitCountTotal;
         }
 
-        hitCountTotal = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"QAK"][4],
             Id = @"QAK.4",
             Type = @"Field",
             Position = @"QAK.4",
@@ -727,34 +624,38 @@ public HL7V27Field HitCountTotal
             TableName = null,
             Description = @"This field, when used, contains the total number of records found by the Server that matched the query.  For tabular responses, this is the number of rows found.  For other response types, the Query Profile defines the meaning of a ""hit.""",
             Sample = @"",
+            Fields = null
+        }
+
+        _hitCountTotal = new HL7V27Field
+        {
+            field = message[@"QAK"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (hitCountTotal.field.FieldRepetitions != null && hitCountTotal.field.FieldRepetitions.Count > 0)
+        if (_hitCountTotal.field.FieldRepetitions != null && _hitCountTotal.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(hitCountTotal.Id));
-            hitCountTotal.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(hitCountTotal, fieldData);
+            _hitCountTotal.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_hitCountTotal, fieldData);
         }
 
-        return hitCountTotal;
+        return _hitCountTotal;
     } 
 }
 
-internal HL7V27Field thisPayload;
+internal HL7V27Field _thisPayload;
 
 public HL7V27Field ThisPayload
 {
     get
     {
-        if (thisPayload != null)
+        if (_thisPayload != null)
         {
-            return thisPayload;
+            return _thisPayload;
         }
 
-        thisPayload = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"QAK"][5],
             Id = @"QAK.5",
             Type = @"Field",
             Position = @"QAK.5",
@@ -768,34 +669,38 @@ public HL7V27Field ThisPayload
             TableName = null,
             Description = @"This field, when used, contains the total number of matching records that the Server sent in the current response.  Where the continuation protocol is used to transmit the response in partial installments, this number will differ from the value sent in QAK-4-Hit count total.",
             Sample = @"",
+            Fields = null
+        }
+
+        _thisPayload = new HL7V27Field
+        {
+            field = message[@"QAK"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (thisPayload.field.FieldRepetitions != null && thisPayload.field.FieldRepetitions.Count > 0)
+        if (_thisPayload.field.FieldRepetitions != null && _thisPayload.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(thisPayload.Id));
-            thisPayload.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(thisPayload, fieldData);
+            _thisPayload.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_thisPayload, fieldData);
         }
 
-        return thisPayload;
+        return _thisPayload;
     } 
 }
 
-internal HL7V27Field hitsRemaining;
+internal HL7V27Field _hitsRemaining;
 
 public HL7V27Field HitsRemaining
 {
     get
     {
-        if (hitsRemaining != null)
+        if (_hitsRemaining != null)
         {
-            return hitsRemaining;
+            return _hitsRemaining;
         }
 
-        hitsRemaining = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"QAK"][6],
             Id = @"QAK.6",
             Type = @"Field",
             Position = @"QAK.6",
@@ -809,17 +714,22 @@ public HL7V27Field HitsRemaining
             TableName = null,
             Description = @"This field, when used, contains the number of matching records found by the Server that have yet to be sent.  It is only meaningful when the Server uses the continuation protocol to transmit partial responses.",
             Sample = @"",
+            Fields = null
+        }
+
+        _hitsRemaining = new HL7V27Field
+        {
+            field = message[@"QAK"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (hitsRemaining.field.FieldRepetitions != null && hitsRemaining.field.FieldRepetitions.Count > 0)
+        if (_hitsRemaining.field.FieldRepetitions != null && _hitsRemaining.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(hitsRemaining.Id));
-            hitsRemaining.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(hitsRemaining, fieldData);
+            _hitsRemaining.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_hitsRemaining, fieldData);
         }
 
-        return hitsRemaining;
+        return _hitsRemaining;
     } 
 }
     }

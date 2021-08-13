@@ -31,28 +31,40 @@ More than one PCR segment can be included in the message if more than one produc
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentPCR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _implicatedProduct;
+
+public HL7V271Field ImplicatedProduct
+{
+    get
+    {
+        if (_implicatedProduct != null)
+        {
+            return _implicatedProduct;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.1",
+            Type = @"Field",
+            Position = @"PCR.1",
+            Name = @"Implicated Product",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the coded identity of the product (drug, device, etc.) which is possibly causally related to the event. Includes the product identity number such as NDC, model or catalogue numbers. If a coded value is not available for the product a text description can be included as the second component of the CWE data. See Chapter 2 for a listing of some recognized coding systems for drugs and devices.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PCR.1",
-                            Type = @"Field",
-                            Position = @"PCR.1",
-                            Name = @"Implicated Product",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the coded identity of the product (drug, device, etc.) which is possibly causally related to the event. Includes the product identity number such as NDC, model or catalogue numbers. If a coded value is not available for the product a text description can be included as the second component of the CWE data. See Chapter 2 for a listing of some recognized coding systems for drugs and devices.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PCR.1.1",
                             Type = @"Component",
@@ -478,43 +490,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _implicatedProduct = new HL7V271Field
+        {
+            field = message[@"PCR"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_implicatedProduct.field.FieldRepetitions != null && _implicatedProduct.field.FieldRepetitions.Count > 0)
+        {
+            _implicatedProduct.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_implicatedProduct, fieldData);
+        }
+
+        return _implicatedProduct;
+    } 
+}
+
+internal HL7V271Field _genericProduct;
+
+public HL7V271Field GenericProduct
+{
+    get
+    {
+        if (_genericProduct != null)
+        {
+            return _genericProduct;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.2",
+            Type = @"Field",
+            Position = @"PCR.2",
+            Name = @"Generic Product",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded Value For User-defined Tables",
+            TableId = @"0249",
+            TableName = @"Generic Product",
+            Description = @"This field indicates whether the product used was a generic or a branded product. Refer to User-defined Table 0249 – Generic Product for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _genericProduct = new HL7V271Field
+        {
+            field = message[@"PCR"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_genericProduct.field.FieldRepetitions != null && _genericProduct.field.FieldRepetitions.Count > 0)
+        {
+            _genericProduct.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_genericProduct, fieldData);
+        }
+
+        return _genericProduct;
+    } 
+}
+
+internal HL7V271Field _productClass;
+
+public HL7V271Field ProductClass
+{
+    get
+    {
+        if (_productClass != null)
+        {
+            return _productClass;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.3",
+            Type = @"Field",
+            Position = @"PCR.3",
+            Name = @"Product Class",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the coded classification of the implicated product. For drugs, this would usually be the drug class - calcium channel blocking agents for nifedipine, for example. For other products it would be the generic type of device, e.g., urinary catheter, cardiac pacemaker. If a coded value is not available for the class, a text description can be included.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PCR.2",
-                            Type = @"Field",
-                            Position = @"PCR.2",
-                            Name = @"Generic Product",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded Value For User-defined Tables",
-                            TableId = @"0249",
-                            TableName = @"Generic Product",
-                            Description = @"This field indicates whether the product used was a generic or a branded product. Refer to User-defined Table 0249 – Generic Product for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCR.3",
-                            Type = @"Field",
-                            Position = @"PCR.3",
-                            Name = @"Product Class",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the coded classification of the implicated product. For drugs, this would usually be the drug class - calcium channel blocking agents for nifedipine, for example. For other products it would be the generic type of device, e.g., urinary catheter, cardiac pacemaker. If a coded value is not available for the class, a text description can be included.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PCR.3.1",
                             Type = @"Component",
@@ -940,25 +1009,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _productClass = new HL7V271Field
+        {
+            field = message[@"PCR"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productClass.field.FieldRepetitions != null && _productClass.field.FieldRepetitions.Count > 0)
+        {
+            _productClass.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productClass, fieldData);
+        }
+
+        return _productClass;
+    } 
+}
+
+internal HL7V271Field _totalDurationOfTherapy;
+
+public HL7V271Field TotalDurationOfTherapy
+{
+    get
+    {
+        if (_totalDurationOfTherapy != null)
+        {
+            return _totalDurationOfTherapy;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.4",
+            Type = @"Field",
+            Position = @"PCR.4",
+            Name = @"Total Duration Of Therapy",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field represents the total duration of therapy with product listed. The treatment at the current dose and schedule are indicted in the quantity timing attribute of the RXE segment but the patient may have been treated for some time previously at a different dose or on a different schedule. The quantity in the second component of the CQ should be a time quantity.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PCR.4",
-                            Type = @"Field",
-                            Position = @"PCR.4",
-                            Name = @"Total Duration Of Therapy",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field represents the total duration of therapy with product listed. The treatment at the current dose and schedule are indicted in the quantity timing attribute of the RXE segment but the patient may have been treated for some time previously at a different dose or on a different schedule. The quantity in the second component of the CQ should be a time quantity.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PCR.4.1",
                             Type = @"Component",
@@ -1418,97 +1517,235 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _totalDurationOfTherapy = new HL7V271Field
+        {
+            field = message[@"PCR"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_totalDurationOfTherapy.field.FieldRepetitions != null && _totalDurationOfTherapy.field.FieldRepetitions.Count > 0)
+        {
+            _totalDurationOfTherapy.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_totalDurationOfTherapy, fieldData);
+        }
+
+        return _totalDurationOfTherapy;
+    } 
+}
+
+internal HL7V271Field _productManufactureDate;
+
+public HL7V271Field ProductManufactureDate
+{
+    get
+    {
+        if (_productManufactureDate != null)
+        {
+            return _productManufactureDate;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.5",
+            Type = @"Field",
+            Position = @"PCR.5",
+            Name = @"Product Manufacture Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the date the product was manufactured.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _productManufactureDate = new HL7V271Field
+        {
+            field = message[@"PCR"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productManufactureDate.field.FieldRepetitions != null && _productManufactureDate.field.FieldRepetitions.Count > 0)
+        {
+            _productManufactureDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productManufactureDate, fieldData);
+        }
+
+        return _productManufactureDate;
+    } 
+}
+
+internal HL7V271Field _productExpirationDate;
+
+public HL7V271Field ProductExpirationDate
+{
+    get
+    {
+        if (_productExpirationDate != null)
+        {
+            return _productExpirationDate;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.6",
+            Type = @"Field",
+            Position = @"PCR.6",
+            Name = @"Product Expiration Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the expiration date indicated on the product packaging.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _productExpirationDate = new HL7V271Field
+        {
+            field = message[@"PCR"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productExpirationDate.field.FieldRepetitions != null && _productExpirationDate.field.FieldRepetitions.Count > 0)
+        {
+            _productExpirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productExpirationDate, fieldData);
+        }
+
+        return _productExpirationDate;
+    } 
+}
+
+internal HL7V271Field _productImplantationDate;
+
+public HL7V271Field ProductImplantationDate
+{
+    get
+    {
+        if (_productImplantationDate != null)
+        {
+            return _productImplantationDate;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.7",
+            Type = @"Field",
+            Position = @"PCR.7",
+            Name = @"Product Implantation Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"If an implantable medical device, this field identifies the date device was implanted.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _productImplantationDate = new HL7V271Field
+        {
+            field = message[@"PCR"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productImplantationDate.field.FieldRepetitions != null && _productImplantationDate.field.FieldRepetitions.Count > 0)
+        {
+            _productImplantationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productImplantationDate, fieldData);
+        }
+
+        return _productImplantationDate;
+    } 
+}
+
+internal HL7V271Field _productExplantationDate;
+
+public HL7V271Field ProductExplantationDate
+{
+    get
+    {
+        if (_productExplantationDate != null)
+        {
+            return _productExplantationDate;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.8",
+            Type = @"Field",
+            Position = @"PCR.8",
+            Name = @"Product Explantation Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"f an implantable medical device and it was removed, the field identifies the date it was removed.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _productExplantationDate = new HL7V271Field
+        {
+            field = message[@"PCR"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productExplantationDate.field.FieldRepetitions != null && _productExplantationDate.field.FieldRepetitions.Count > 0)
+        {
+            _productExplantationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productExplantationDate, fieldData);
+        }
+
+        return _productExplantationDate;
+    } 
+}
+
+internal HL7V271Field _singleUseDevice;
+
+public HL7V271Field SingleUseDevice
+{
+    get
+    {
+        if (_singleUseDevice != null)
+        {
+            return _singleUseDevice;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.9",
+            Type = @"Field",
+            Position = @"PCR.9",
+            Name = @"Single Use Device",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0244",
+            TableName = @"Single Use Device",
+            Description = @"This field indicates whether the product was designed for a single use. Refer to User-defined Table 0244 – Single Use Device for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PCR.5",
-                            Type = @"Field",
-                            Position = @"PCR.5",
-                            Name = @"Product Manufacture Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the date the product was manufactured.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCR.6",
-                            Type = @"Field",
-                            Position = @"PCR.6",
-                            Name = @"Product Expiration Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the expiration date indicated on the product packaging.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCR.7",
-                            Type = @"Field",
-                            Position = @"PCR.7",
-                            Name = @"Product Implantation Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"If an implantable medical device, this field identifies the date device was implanted.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCR.8",
-                            Type = @"Field",
-                            Position = @"PCR.8",
-                            Name = @"Product Explantation Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"f an implantable medical device and it was removed, the field identifies the date it was removed.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCR.9",
-                            Type = @"Field",
-                            Position = @"PCR.9",
-                            Name = @"Single Use Device",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0244",
-                            TableName = @"Single Use Device",
-                            Description = @"This field indicates whether the product was designed for a single use. Refer to User-defined Table 0244 – Single Use Device for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PCR.9.1",
                             Type = @"Component",
@@ -1934,25 +2171,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _singleUseDevice = new HL7V271Field
+        {
+            field = message[@"PCR"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_singleUseDevice.field.FieldRepetitions != null && _singleUseDevice.field.FieldRepetitions.Count > 0)
+        {
+            _singleUseDevice.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_singleUseDevice, fieldData);
+        }
+
+        return _singleUseDevice;
+    } 
+}
+
+internal HL7V271Field _indicationForProductUse;
+
+public HL7V271Field IndicationForProductUse
+{
+    get
+    {
+        if (_indicationForProductUse != null)
+        {
+            return _indicationForProductUse;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.10",
+            Type = @"Field",
+            Position = @"PCR.10",
+            Name = @"Indication For Product Use",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains coded representation of the problem or diagnosis for which the product was used. See Chapter 2 for some coding systems which might be chosen to transmit diagnoses or problems.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PCR.10",
-                            Type = @"Field",
-                            Position = @"PCR.10",
-                            Name = @"Indication For Product Use",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains coded representation of the problem or diagnosis for which the product was used. See Chapter 2 for some coding systems which might be chosen to transmit diagnoses or problems.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PCR.10.1",
                             Type = @"Component",
@@ -2378,25 +2645,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _indicationForProductUse = new HL7V271Field
+        {
+            field = message[@"PCR"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_indicationForProductUse.field.FieldRepetitions != null && _indicationForProductUse.field.FieldRepetitions.Count > 0)
+        {
+            _indicationForProductUse.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_indicationForProductUse, fieldData);
+        }
+
+        return _indicationForProductUse;
+    } 
+}
+
+internal HL7V271Field _productProblem;
+
+public HL7V271Field ProductProblem
+{
+    get
+    {
+        if (_productProblem != null)
+        {
+            return _productProblem;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.11",
+            Type = @"Field",
+            Position = @"PCR.11",
+            Name = @"Product Problem",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0245",
+            TableName = @"Product Problem",
+            Description = @"A product problem would exist if a product malfunction could lead to death or serious injury. Refer to User-defined Table 0245 - Product Problem for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PCR.11",
-                            Type = @"Field",
-                            Position = @"PCR.11",
-                            Name = @"Product Problem",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0245",
-                            TableName = @"Product Problem",
-                            Description = @"A product problem would exist if a product malfunction could lead to death or serious injury. Refer to User-defined Table 0245 - Product Problem for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PCR.11.1",
                             Type = @"Component",
@@ -2822,43 +3119,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _productProblem = new HL7V271Field
+        {
+            field = message[@"PCR"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productProblem.field.FieldRepetitions != null && _productProblem.field.FieldRepetitions.Count > 0)
+        {
+            _productProblem.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productProblem, fieldData);
+        }
+
+        return _productProblem;
+    } 
+}
+
+internal HL7V271Field _productSerialLotNumber;
+
+public HL7V271Field ProductSerialLotNumber
+{
+    get
+    {
+        if (_productSerialLotNumber != null)
+        {
+            return _productSerialLotNumber;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.12",
+            Type = @"Field",
+            Position = @"PCR.12",
+            Name = @"Product Serial/Lot Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"3",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is an alphanumeric descriptor which identifies the specific item or lot of drug. This descriptor would normally be obtained from the package labeling or item itself.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _productSerialLotNumber = new HL7V271Field
+        {
+            field = message[@"PCR"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productSerialLotNumber.field.FieldRepetitions != null && _productSerialLotNumber.field.FieldRepetitions.Count > 0)
+        {
+            _productSerialLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productSerialLotNumber, fieldData);
+        }
+
+        return _productSerialLotNumber;
+    } 
+}
+
+internal HL7V271Field _productAvailableForInspection;
+
+public HL7V271Field ProductAvailableForInspection
+{
+    get
+    {
+        if (_productAvailableForInspection != null)
+        {
+            return _productAvailableForInspection;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.13",
+            Type = @"Field",
+            Position = @"PCR.13",
+            Name = @"Product Available For Inspection",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0246",
+            TableName = @"Product Available for Inspection",
+            Description = @"This field indicates that the product is available for analysis. User-defined Table 0246 -Product Available for Inspection is used as the HL7 identifier for the user-defined table of values for this field. If the product was returned to the manufacturer, this would be indicated by including the date it was returned in the date product returned to manufacturer element.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PCR.12",
-                            Type = @"Field",
-                            Position = @"PCR.12",
-                            Name = @"Product Serial/Lot Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"3",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is an alphanumeric descriptor which identifies the specific item or lot of drug. This descriptor would normally be obtained from the package labeling or item itself.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCR.13",
-                            Type = @"Field",
-                            Position = @"PCR.13",
-                            Name = @"Product Available For Inspection",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0246",
-                            TableName = @"Product Available for Inspection",
-                            Description = @"This field indicates that the product is available for analysis. User-defined Table 0246 -Product Available for Inspection is used as the HL7 identifier for the user-defined table of values for this field. If the product was returned to the manufacturer, this would be indicated by including the date it was returned in the date product returned to manufacturer element.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PCR.13.1",
                             Type = @"Component",
@@ -3284,25 +3638,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _productAvailableForInspection = new HL7V271Field
+        {
+            field = message[@"PCR"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productAvailableForInspection.field.FieldRepetitions != null && _productAvailableForInspection.field.FieldRepetitions.Count > 0)
+        {
+            _productAvailableForInspection.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productAvailableForInspection, fieldData);
+        }
+
+        return _productAvailableForInspection;
+    } 
+}
+
+internal HL7V271Field _productEvaluationPerformed;
+
+public HL7V271Field ProductEvaluationPerformed
+{
+    get
+    {
+        if (_productEvaluationPerformed != null)
+        {
+            return _productEvaluationPerformed;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.14",
+            Type = @"Field",
+            Position = @"PCR.14",
+            Name = @"Product Evaluation Performed",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field indicates the type of product evaluation performed. The evaluation codes listed in SubPart B of the Coding Manual for FDA Form 3500A, ""Type of Evaluation Performed,"" may be used. If no codes are available, text may be sent in the second component of the field.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PCR.14",
-                            Type = @"Field",
-                            Position = @"PCR.14",
-                            Name = @"Product Evaluation Performed",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field indicates the type of product evaluation performed. The evaluation codes listed in SubPart B of the Coding Manual for FDA Form 3500A, ""Type of Evaluation Performed,"" may be used. If no codes are available, text may be sent in the second component of the field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PCR.14.1",
                             Type = @"Component",
@@ -3728,25 +4112,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _productEvaluationPerformed = new HL7V271Field
+        {
+            field = message[@"PCR"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productEvaluationPerformed.field.FieldRepetitions != null && _productEvaluationPerformed.field.FieldRepetitions.Count > 0)
+        {
+            _productEvaluationPerformed.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productEvaluationPerformed, fieldData);
+        }
+
+        return _productEvaluationPerformed;
+    } 
+}
+
+internal HL7V271Field _productEvaluationStatus;
+
+public HL7V271Field ProductEvaluationStatus
+{
+    get
+    {
+        if (_productEvaluationStatus != null)
+        {
+            return _productEvaluationStatus;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.15",
+            Type = @"Field",
+            Position = @"PCR.15",
+            Name = @"Product Evaluation Status",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0247",
+            TableName = @"Status of Evaluation",
+            Description = @"This field identifies the status of product evaluation. Subpart A Item H.3 of the Coding Manual for FDA Form 3500A may also be used. If no codes are available, text may be sent in the second component of the field. Refer to HL7 Table 0247 - Status of Evaluation for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PCR.15",
-                            Type = @"Field",
-                            Position = @"PCR.15",
-                            Name = @"Product Evaluation Status",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0247",
-                            TableName = @"Status of Evaluation",
-                            Description = @"This field identifies the status of product evaluation. Subpart A Item H.3 of the Coding Manual for FDA Form 3500A may also be used. If no codes are available, text may be sent in the second component of the field. Refer to HL7 Table 0247 - Status of Evaluation for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PCR.15.1",
                             Type = @"Component",
@@ -4172,25 +4586,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _productEvaluationStatus = new HL7V271Field
+        {
+            field = message[@"PCR"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productEvaluationStatus.field.FieldRepetitions != null && _productEvaluationStatus.field.FieldRepetitions.Count > 0)
+        {
+            _productEvaluationStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productEvaluationStatus, fieldData);
+        }
+
+        return _productEvaluationStatus;
+    } 
+}
+
+internal HL7V271Field _productEvaluationResults;
+
+public HL7V271Field ProductEvaluationResults
+{
+    get
+    {
+        if (_productEvaluationResults != null)
+        {
+            return _productEvaluationResults;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PCR.16",
+            Type = @"Field",
+            Position = @"PCR.16",
+            Name = @"Product Evaluation Results",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the results of the product evaluation.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PCR.16",
-                            Type = @"Field",
-                            Position = @"PCR.16",
-                            Name = @"Product Evaluation Results",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the results of the product evaluation.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PCR.16.1",
                             Type = @"Component",
@@ -4616,813 +5060,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCR.17",
-                            Type = @"Field",
-                            Position = @"PCR.17",
-                            Name = @"Evaluated Product Source",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0248",
-                            TableName = @"Product Source",
-                            Description = @"This field contains the source of the product evaluated. Refer to HL7 Table 0248 - Product Source for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCR.18",
-                            Type = @"Field",
-                            Position = @"PCR.18",
-                            Name = @"Date Product Returned To Manufacturer",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"If the product was returned to the manufacturer, this field contains the date it was returned.s.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCR.19",
-                            Type = @"Field",
-                            Position = @"PCR.19",
-                            Name = @"Device Operator Qualifications",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0242",
-                            TableName = @"Primary Observer's Qualification",
-                            Description = @"This field identifies the qualification of the person operating the device when the event occurred. Refer to HL7 Table 0242 - Primary Observer’s Qualification for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCR.20",
-                            Type = @"Field",
-                            Position = @"PCR.20",
-                            Name = @"Relatedness Assessment",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0250",
-                            TableName = @"Relatedness Assessment",
-                            Description = @"This field represents the assessment of relatedness of the product to the event. Refer to HL7 Table 0250 - Relatedness Assessment for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCR.21",
-                            Type = @"Field",
-                            Position = @"PCR.21",
-                            Name = @"Action Taken In Response To The Event",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"6",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0251",
-                            TableName = @"Action Taken in Response to the Event",
-                            Description = @"This field indicates the action taken as a result of the event. Segment may repeat if multiple categories of evidence are relevant. Refer to HL7 Table 0251 - Action Taken in Response to the Event for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCR.22",
-                            Type = @"Field",
-                            Position = @"PCR.22",
-                            Name = @"Event Causality Observations",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"6",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0252",
-                            TableName = @"Causality Observations",
-                            Description = @"This field contains observations made about the event which may bear on causality. Refer to HL7 Table 0252 - Causality Observations for valid values. Segment may repeat if multiple categories of evidence are relevant.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PCR.23",
-                            Type = @"Field",
-                            Position = @"PCR.23",
-                            Name = @"Indirect Exposure Mechanism",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"3",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0253",
-                            TableName = @"Indirect Exposure Mechanism",
-                            Description = @"The patient identified in the PID segment, who experienced the event, might have been exposed to the potential causal product via an intermediary, e.g., a child might be exposed to a product through the placenta or in breast milk, or a transfusion recipient might be exposed via a blood product. If this is the case, the mechanism of product transmission is identified in this field, using the valid values in HL7 Table 0253 - Indirect Exposure Mechanism. If this field is populated, the identity of the person through whom the product was transmitted is contained in NK1 and RXE segments which follow.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentPCR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field implicatedProduct;
-
-public HL7V271Field ImplicatedProduct
-{
-    get
-    {
-        if (implicatedProduct != null)
-        {
-            return implicatedProduct;
-        }
-
-        implicatedProduct = new HL7V271Field
-        {
-            field = message[@"PCR"][1],
-            Id = @"PCR.1",
-            Type = @"Field",
-            Position = @"PCR.1",
-            Name = @"Implicated Product",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the coded identity of the product (drug, device, etc.) which is possibly causally related to the event. Includes the product identity number such as NDC, model or catalogue numbers. If a coded value is not available for the product a text description can be included as the second component of the CWE data. See Chapter 2 for a listing of some recognized coding systems for drugs and devices.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (implicatedProduct.field.FieldRepetitions != null && implicatedProduct.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(implicatedProduct.Id));
-            implicatedProduct.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(implicatedProduct, fieldData);
-        }
-
-        return implicatedProduct;
-    } 
-}
-
-internal HL7V271Field genericProduct;
-
-public HL7V271Field GenericProduct
-{
-    get
-    {
-        if (genericProduct != null)
-        {
-            return genericProduct;
-        }
-
-        genericProduct = new HL7V271Field
-        {
-            field = message[@"PCR"][2],
-            Id = @"PCR.2",
-            Type = @"Field",
-            Position = @"PCR.2",
-            Name = @"Generic Product",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded Value For User-defined Tables",
-            TableId = @"0249",
-            TableName = @"Generic Product",
-            Description = @"This field indicates whether the product used was a generic or a branded product. Refer to User-defined Table 0249 – Generic Product for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (genericProduct.field.FieldRepetitions != null && genericProduct.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(genericProduct.Id));
-            genericProduct.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(genericProduct, fieldData);
-        }
-
-        return genericProduct;
-    } 
-}
-
-internal HL7V271Field productClass;
-
-public HL7V271Field ProductClass
-{
-    get
-    {
-        if (productClass != null)
-        {
-            return productClass;
-        }
-
-        productClass = new HL7V271Field
-        {
-            field = message[@"PCR"][3],
-            Id = @"PCR.3",
-            Type = @"Field",
-            Position = @"PCR.3",
-            Name = @"Product Class",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the coded classification of the implicated product. For drugs, this would usually be the drug class - calcium channel blocking agents for nifedipine, for example. For other products it would be the generic type of device, e.g., urinary catheter, cardiac pacemaker. If a coded value is not available for the class, a text description can be included.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productClass.field.FieldRepetitions != null && productClass.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productClass.Id));
-            productClass.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productClass, fieldData);
-        }
-
-        return productClass;
-    } 
-}
-
-internal HL7V271Field totalDurationOfTherapy;
-
-public HL7V271Field TotalDurationOfTherapy
-{
-    get
-    {
-        if (totalDurationOfTherapy != null)
-        {
-            return totalDurationOfTherapy;
-        }
-
-        totalDurationOfTherapy = new HL7V271Field
-        {
-            field = message[@"PCR"][4],
-            Id = @"PCR.4",
-            Type = @"Field",
-            Position = @"PCR.4",
-            Name = @"Total Duration Of Therapy",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field represents the total duration of therapy with product listed. The treatment at the current dose and schedule are indicted in the quantity timing attribute of the RXE segment but the patient may have been treated for some time previously at a different dose or on a different schedule. The quantity in the second component of the CQ should be a time quantity.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (totalDurationOfTherapy.field.FieldRepetitions != null && totalDurationOfTherapy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(totalDurationOfTherapy.Id));
-            totalDurationOfTherapy.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(totalDurationOfTherapy, fieldData);
-        }
-
-        return totalDurationOfTherapy;
-    } 
-}
-
-internal HL7V271Field productManufactureDate;
-
-public HL7V271Field ProductManufactureDate
-{
-    get
-    {
-        if (productManufactureDate != null)
-        {
-            return productManufactureDate;
-        }
-
-        productManufactureDate = new HL7V271Field
-        {
-            field = message[@"PCR"][5],
-            Id = @"PCR.5",
-            Type = @"Field",
-            Position = @"PCR.5",
-            Name = @"Product Manufacture Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the date the product was manufactured.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productManufactureDate.field.FieldRepetitions != null && productManufactureDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productManufactureDate.Id));
-            productManufactureDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productManufactureDate, fieldData);
-        }
-
-        return productManufactureDate;
-    } 
-}
-
-internal HL7V271Field productExpirationDate;
-
-public HL7V271Field ProductExpirationDate
-{
-    get
-    {
-        if (productExpirationDate != null)
-        {
-            return productExpirationDate;
-        }
-
-        productExpirationDate = new HL7V271Field
-        {
-            field = message[@"PCR"][6],
-            Id = @"PCR.6",
-            Type = @"Field",
-            Position = @"PCR.6",
-            Name = @"Product Expiration Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the expiration date indicated on the product packaging.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productExpirationDate.field.FieldRepetitions != null && productExpirationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productExpirationDate.Id));
-            productExpirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productExpirationDate, fieldData);
-        }
-
-        return productExpirationDate;
-    } 
-}
-
-internal HL7V271Field productImplantationDate;
-
-public HL7V271Field ProductImplantationDate
-{
-    get
-    {
-        if (productImplantationDate != null)
-        {
-            return productImplantationDate;
-        }
-
-        productImplantationDate = new HL7V271Field
-        {
-            field = message[@"PCR"][7],
-            Id = @"PCR.7",
-            Type = @"Field",
-            Position = @"PCR.7",
-            Name = @"Product Implantation Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"If an implantable medical device, this field identifies the date device was implanted.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productImplantationDate.field.FieldRepetitions != null && productImplantationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productImplantationDate.Id));
-            productImplantationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productImplantationDate, fieldData);
-        }
-
-        return productImplantationDate;
-    } 
-}
-
-internal HL7V271Field productExplantationDate;
-
-public HL7V271Field ProductExplantationDate
-{
-    get
-    {
-        if (productExplantationDate != null)
-        {
-            return productExplantationDate;
-        }
-
-        productExplantationDate = new HL7V271Field
-        {
-            field = message[@"PCR"][8],
-            Id = @"PCR.8",
-            Type = @"Field",
-            Position = @"PCR.8",
-            Name = @"Product Explantation Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"f an implantable medical device and it was removed, the field identifies the date it was removed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productExplantationDate.field.FieldRepetitions != null && productExplantationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productExplantationDate.Id));
-            productExplantationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productExplantationDate, fieldData);
-        }
-
-        return productExplantationDate;
-    } 
-}
-
-internal HL7V271Field singleUseDevice;
-
-public HL7V271Field SingleUseDevice
-{
-    get
-    {
-        if (singleUseDevice != null)
-        {
-            return singleUseDevice;
-        }
-
-        singleUseDevice = new HL7V271Field
-        {
-            field = message[@"PCR"][9],
-            Id = @"PCR.9",
-            Type = @"Field",
-            Position = @"PCR.9",
-            Name = @"Single Use Device",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0244",
-            TableName = @"Single Use Device",
-            Description = @"This field indicates whether the product was designed for a single use. Refer to User-defined Table 0244 – Single Use Device for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (singleUseDevice.field.FieldRepetitions != null && singleUseDevice.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(singleUseDevice.Id));
-            singleUseDevice.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(singleUseDevice, fieldData);
-        }
-
-        return singleUseDevice;
-    } 
-}
-
-internal HL7V271Field indicationForProductUse;
-
-public HL7V271Field IndicationForProductUse
-{
-    get
-    {
-        if (indicationForProductUse != null)
-        {
-            return indicationForProductUse;
-        }
-
-        indicationForProductUse = new HL7V271Field
-        {
-            field = message[@"PCR"][10],
-            Id = @"PCR.10",
-            Type = @"Field",
-            Position = @"PCR.10",
-            Name = @"Indication For Product Use",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains coded representation of the problem or diagnosis for which the product was used. See Chapter 2 for some coding systems which might be chosen to transmit diagnoses or problems.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (indicationForProductUse.field.FieldRepetitions != null && indicationForProductUse.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(indicationForProductUse.Id));
-            indicationForProductUse.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(indicationForProductUse, fieldData);
-        }
-
-        return indicationForProductUse;
-    } 
-}
-
-internal HL7V271Field productProblem;
-
-public HL7V271Field ProductProblem
-{
-    get
-    {
-        if (productProblem != null)
-        {
-            return productProblem;
-        }
-
-        productProblem = new HL7V271Field
-        {
-            field = message[@"PCR"][11],
-            Id = @"PCR.11",
-            Type = @"Field",
-            Position = @"PCR.11",
-            Name = @"Product Problem",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0245",
-            TableName = @"Product Problem",
-            Description = @"A product problem would exist if a product malfunction could lead to death or serious injury. Refer to User-defined Table 0245 - Product Problem for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productProblem.field.FieldRepetitions != null && productProblem.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productProblem.Id));
-            productProblem.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productProblem, fieldData);
-        }
-
-        return productProblem;
-    } 
-}
-
-internal HL7V271Field productSerialLotNumber;
-
-public HL7V271Field ProductSerialLotNumber
-{
-    get
-    {
-        if (productSerialLotNumber != null)
-        {
-            return productSerialLotNumber;
-        }
-
-        productSerialLotNumber = new HL7V271Field
-        {
-            field = message[@"PCR"][12],
-            Id = @"PCR.12",
-            Type = @"Field",
-            Position = @"PCR.12",
-            Name = @"Product Serial/Lot Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"3",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is an alphanumeric descriptor which identifies the specific item or lot of drug. This descriptor would normally be obtained from the package labeling or item itself.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productSerialLotNumber.field.FieldRepetitions != null && productSerialLotNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productSerialLotNumber.Id));
-            productSerialLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productSerialLotNumber, fieldData);
-        }
-
-        return productSerialLotNumber;
-    } 
-}
-
-internal HL7V271Field productAvailableForInspection;
-
-public HL7V271Field ProductAvailableForInspection
-{
-    get
-    {
-        if (productAvailableForInspection != null)
-        {
-            return productAvailableForInspection;
-        }
-
-        productAvailableForInspection = new HL7V271Field
-        {
-            field = message[@"PCR"][13],
-            Id = @"PCR.13",
-            Type = @"Field",
-            Position = @"PCR.13",
-            Name = @"Product Available For Inspection",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0246",
-            TableName = @"Product Available for Inspection",
-            Description = @"This field indicates that the product is available for analysis. User-defined Table 0246 -Product Available for Inspection is used as the HL7 identifier for the user-defined table of values for this field. If the product was returned to the manufacturer, this would be indicated by including the date it was returned in the date product returned to manufacturer element.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productAvailableForInspection.field.FieldRepetitions != null && productAvailableForInspection.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productAvailableForInspection.Id));
-            productAvailableForInspection.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productAvailableForInspection, fieldData);
-        }
-
-        return productAvailableForInspection;
-    } 
-}
-
-internal HL7V271Field productEvaluationPerformed;
-
-public HL7V271Field ProductEvaluationPerformed
-{
-    get
-    {
-        if (productEvaluationPerformed != null)
-        {
-            return productEvaluationPerformed;
-        }
-
-        productEvaluationPerformed = new HL7V271Field
-        {
-            field = message[@"PCR"][14],
-            Id = @"PCR.14",
-            Type = @"Field",
-            Position = @"PCR.14",
-            Name = @"Product Evaluation Performed",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field indicates the type of product evaluation performed. The evaluation codes listed in SubPart B of the Coding Manual for FDA Form 3500A, ""Type of Evaluation Performed,"" may be used. If no codes are available, text may be sent in the second component of the field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productEvaluationPerformed.field.FieldRepetitions != null && productEvaluationPerformed.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productEvaluationPerformed.Id));
-            productEvaluationPerformed.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productEvaluationPerformed, fieldData);
-        }
-
-        return productEvaluationPerformed;
-    } 
-}
-
-internal HL7V271Field productEvaluationStatus;
-
-public HL7V271Field ProductEvaluationStatus
-{
-    get
-    {
-        if (productEvaluationStatus != null)
-        {
-            return productEvaluationStatus;
-        }
-
-        productEvaluationStatus = new HL7V271Field
-        {
-            field = message[@"PCR"][15],
-            Id = @"PCR.15",
-            Type = @"Field",
-            Position = @"PCR.15",
-            Name = @"Product Evaluation Status",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0247",
-            TableName = @"Status of Evaluation",
-            Description = @"This field identifies the status of product evaluation. Subpart A Item H.3 of the Coding Manual for FDA Form 3500A may also be used. If no codes are available, text may be sent in the second component of the field. Refer to HL7 Table 0247 - Status of Evaluation for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productEvaluationStatus.field.FieldRepetitions != null && productEvaluationStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productEvaluationStatus.Id));
-            productEvaluationStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productEvaluationStatus, fieldData);
-        }
-
-        return productEvaluationStatus;
-    } 
-}
-
-internal HL7V271Field productEvaluationResults;
-
-public HL7V271Field ProductEvaluationResults
-{
-    get
-    {
-        if (productEvaluationResults != null)
-        {
-            return productEvaluationResults;
-        }
-
-        productEvaluationResults = new HL7V271Field
+        _productEvaluationResults = new HL7V271Field
         {
             field = message[@"PCR"][16],
-            Id = @"PCR.16",
-            Type = @"Field",
-            Position = @"PCR.16",
-            Name = @"Product Evaluation Results",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the results of the product evaluation.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (productEvaluationResults.field.FieldRepetitions != null && productEvaluationResults.field.FieldRepetitions.Count > 0)
+        if (_productEvaluationResults.field.FieldRepetitions != null && _productEvaluationResults.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productEvaluationResults.Id));
-            productEvaluationResults.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productEvaluationResults, fieldData);
+            _productEvaluationResults.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productEvaluationResults, fieldData);
         }
 
-        return productEvaluationResults;
+        return _productEvaluationResults;
     } 
 }
 
-internal HL7V271Field evaluatedProductSource;
+internal HL7V271Field _evaluatedProductSource;
 
 public HL7V271Field EvaluatedProductSource
 {
     get
     {
-        if (evaluatedProductSource != null)
+        if (_evaluatedProductSource != null)
         {
-            return evaluatedProductSource;
+            return _evaluatedProductSource;
         }
 
-        evaluatedProductSource = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"PCR"][17],
             Id = @"PCR.17",
             Type = @"Field",
             Position = @"PCR.17",
@@ -5436,34 +5106,38 @@ public HL7V271Field EvaluatedProductSource
             TableName = @"Product Source",
             Description = @"This field contains the source of the product evaluated. Refer to HL7 Table 0248 - Product Source for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _evaluatedProductSource = new HL7V271Field
+        {
+            field = message[@"PCR"][17],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (evaluatedProductSource.field.FieldRepetitions != null && evaluatedProductSource.field.FieldRepetitions.Count > 0)
+        if (_evaluatedProductSource.field.FieldRepetitions != null && _evaluatedProductSource.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(evaluatedProductSource.Id));
-            evaluatedProductSource.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(evaluatedProductSource, fieldData);
+            _evaluatedProductSource.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_evaluatedProductSource, fieldData);
         }
 
-        return evaluatedProductSource;
+        return _evaluatedProductSource;
     } 
 }
 
-internal HL7V271Field dateProductReturnedToManufacturer;
+internal HL7V271Field _dateProductReturnedToManufacturer;
 
 public HL7V271Field DateProductReturnedToManufacturer
 {
     get
     {
-        if (dateProductReturnedToManufacturer != null)
+        if (_dateProductReturnedToManufacturer != null)
         {
-            return dateProductReturnedToManufacturer;
+            return _dateProductReturnedToManufacturer;
         }
 
-        dateProductReturnedToManufacturer = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"PCR"][18],
             Id = @"PCR.18",
             Type = @"Field",
             Position = @"PCR.18",
@@ -5477,34 +5151,38 @@ public HL7V271Field DateProductReturnedToManufacturer
             TableName = null,
             Description = @"If the product was returned to the manufacturer, this field contains the date it was returned.s.",
             Sample = @"",
+            Fields = null
+        }
+
+        _dateProductReturnedToManufacturer = new HL7V271Field
+        {
+            field = message[@"PCR"][18],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (dateProductReturnedToManufacturer.field.FieldRepetitions != null && dateProductReturnedToManufacturer.field.FieldRepetitions.Count > 0)
+        if (_dateProductReturnedToManufacturer.field.FieldRepetitions != null && _dateProductReturnedToManufacturer.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateProductReturnedToManufacturer.Id));
-            dateProductReturnedToManufacturer.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(dateProductReturnedToManufacturer, fieldData);
+            _dateProductReturnedToManufacturer.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_dateProductReturnedToManufacturer, fieldData);
         }
 
-        return dateProductReturnedToManufacturer;
+        return _dateProductReturnedToManufacturer;
     } 
 }
 
-internal HL7V271Field deviceOperatorQualifications;
+internal HL7V271Field _deviceOperatorQualifications;
 
 public HL7V271Field DeviceOperatorQualifications
 {
     get
     {
-        if (deviceOperatorQualifications != null)
+        if (_deviceOperatorQualifications != null)
         {
-            return deviceOperatorQualifications;
+            return _deviceOperatorQualifications;
         }
 
-        deviceOperatorQualifications = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"PCR"][19],
             Id = @"PCR.19",
             Type = @"Field",
             Position = @"PCR.19",
@@ -5518,34 +5196,38 @@ public HL7V271Field DeviceOperatorQualifications
             TableName = @"Primary Observer's Qualification",
             Description = @"This field identifies the qualification of the person operating the device when the event occurred. Refer to HL7 Table 0242 - Primary Observer’s Qualification for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _deviceOperatorQualifications = new HL7V271Field
+        {
+            field = message[@"PCR"][19],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (deviceOperatorQualifications.field.FieldRepetitions != null && deviceOperatorQualifications.field.FieldRepetitions.Count > 0)
+        if (_deviceOperatorQualifications.field.FieldRepetitions != null && _deviceOperatorQualifications.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deviceOperatorQualifications.Id));
-            deviceOperatorQualifications.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(deviceOperatorQualifications, fieldData);
+            _deviceOperatorQualifications.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_deviceOperatorQualifications, fieldData);
         }
 
-        return deviceOperatorQualifications;
+        return _deviceOperatorQualifications;
     } 
 }
 
-internal HL7V271Field relatednessAssessment;
+internal HL7V271Field _relatednessAssessment;
 
 public HL7V271Field RelatednessAssessment
 {
     get
     {
-        if (relatednessAssessment != null)
+        if (_relatednessAssessment != null)
         {
-            return relatednessAssessment;
+            return _relatednessAssessment;
         }
 
-        relatednessAssessment = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"PCR"][20],
             Id = @"PCR.20",
             Type = @"Field",
             Position = @"PCR.20",
@@ -5559,34 +5241,38 @@ public HL7V271Field RelatednessAssessment
             TableName = @"Relatedness Assessment",
             Description = @"This field represents the assessment of relatedness of the product to the event. Refer to HL7 Table 0250 - Relatedness Assessment for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _relatednessAssessment = new HL7V271Field
+        {
+            field = message[@"PCR"][20],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (relatednessAssessment.field.FieldRepetitions != null && relatednessAssessment.field.FieldRepetitions.Count > 0)
+        if (_relatednessAssessment.field.FieldRepetitions != null && _relatednessAssessment.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(relatednessAssessment.Id));
-            relatednessAssessment.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(relatednessAssessment, fieldData);
+            _relatednessAssessment.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_relatednessAssessment, fieldData);
         }
 
-        return relatednessAssessment;
+        return _relatednessAssessment;
     } 
 }
 
-internal HL7V271Field actionTakenInResponseToTheEvent;
+internal HL7V271Field _actionTakenInResponseToTheEvent;
 
 public HL7V271Field ActionTakenInResponseToTheEvent
 {
     get
     {
-        if (actionTakenInResponseToTheEvent != null)
+        if (_actionTakenInResponseToTheEvent != null)
         {
-            return actionTakenInResponseToTheEvent;
+            return _actionTakenInResponseToTheEvent;
         }
 
-        actionTakenInResponseToTheEvent = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"PCR"][21],
             Id = @"PCR.21",
             Type = @"Field",
             Position = @"PCR.21",
@@ -5600,34 +5286,38 @@ public HL7V271Field ActionTakenInResponseToTheEvent
             TableName = @"Action Taken in Response to the Event",
             Description = @"This field indicates the action taken as a result of the event. Segment may repeat if multiple categories of evidence are relevant. Refer to HL7 Table 0251 - Action Taken in Response to the Event for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _actionTakenInResponseToTheEvent = new HL7V271Field
+        {
+            field = message[@"PCR"][21],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (actionTakenInResponseToTheEvent.field.FieldRepetitions != null && actionTakenInResponseToTheEvent.field.FieldRepetitions.Count > 0)
+        if (_actionTakenInResponseToTheEvent.field.FieldRepetitions != null && _actionTakenInResponseToTheEvent.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actionTakenInResponseToTheEvent.Id));
-            actionTakenInResponseToTheEvent.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(actionTakenInResponseToTheEvent, fieldData);
+            _actionTakenInResponseToTheEvent.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_actionTakenInResponseToTheEvent, fieldData);
         }
 
-        return actionTakenInResponseToTheEvent;
+        return _actionTakenInResponseToTheEvent;
     } 
 }
 
-internal HL7V271Field eventCausalityObservations;
+internal HL7V271Field _eventCausalityObservations;
 
 public HL7V271Field EventCausalityObservations
 {
     get
     {
-        if (eventCausalityObservations != null)
+        if (_eventCausalityObservations != null)
         {
-            return eventCausalityObservations;
+            return _eventCausalityObservations;
         }
 
-        eventCausalityObservations = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"PCR"][22],
             Id = @"PCR.22",
             Type = @"Field",
             Position = @"PCR.22",
@@ -5641,34 +5331,38 @@ public HL7V271Field EventCausalityObservations
             TableName = @"Causality Observations",
             Description = @"This field contains observations made about the event which may bear on causality. Refer to HL7 Table 0252 - Causality Observations for valid values. Segment may repeat if multiple categories of evidence are relevant.",
             Sample = @"",
+            Fields = null
+        }
+
+        _eventCausalityObservations = new HL7V271Field
+        {
+            field = message[@"PCR"][22],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (eventCausalityObservations.field.FieldRepetitions != null && eventCausalityObservations.field.FieldRepetitions.Count > 0)
+        if (_eventCausalityObservations.field.FieldRepetitions != null && _eventCausalityObservations.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventCausalityObservations.Id));
-            eventCausalityObservations.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(eventCausalityObservations, fieldData);
+            _eventCausalityObservations.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_eventCausalityObservations, fieldData);
         }
 
-        return eventCausalityObservations;
+        return _eventCausalityObservations;
     } 
 }
 
-internal HL7V271Field indirectExposureMechanism;
+internal HL7V271Field _indirectExposureMechanism;
 
 public HL7V271Field IndirectExposureMechanism
 {
     get
     {
-        if (indirectExposureMechanism != null)
+        if (_indirectExposureMechanism != null)
         {
-            return indirectExposureMechanism;
+            return _indirectExposureMechanism;
         }
 
-        indirectExposureMechanism = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"PCR"][23],
             Id = @"PCR.23",
             Type = @"Field",
             Position = @"PCR.23",
@@ -5682,17 +5376,22 @@ public HL7V271Field IndirectExposureMechanism
             TableName = @"Indirect Exposure Mechanism",
             Description = @"The patient identified in the PID segment, who experienced the event, might have been exposed to the potential causal product via an intermediary, e.g., a child might be exposed to a product through the placenta or in breast milk, or a transfusion recipient might be exposed via a blood product. If this is the case, the mechanism of product transmission is identified in this field, using the valid values in HL7 Table 0253 - Indirect Exposure Mechanism. If this field is populated, the identity of the person through whom the product was transmitted is contained in NK1 and RXE segments which follow.",
             Sample = @"",
+            Fields = null
+        }
+
+        _indirectExposureMechanism = new HL7V271Field
+        {
+            field = message[@"PCR"][23],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (indirectExposureMechanism.field.FieldRepetitions != null && indirectExposureMechanism.field.FieldRepetitions.Count > 0)
+        if (_indirectExposureMechanism.field.FieldRepetitions != null && _indirectExposureMechanism.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(indirectExposureMechanism.Id));
-            indirectExposureMechanism.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(indirectExposureMechanism, fieldData);
+            _indirectExposureMechanism.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_indirectExposureMechanism, fieldData);
         }
 
-        return indirectExposureMechanism;
+        return _indirectExposureMechanism;
     } 
 }
     }

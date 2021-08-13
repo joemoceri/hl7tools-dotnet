@@ -31,46 +31,85 @@ The OM7 segment contains additional basic attributes that apply to the definitio
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentOM7(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _sequenceNumberTestObservationMasterFile;
+
+public HL7V26Field SequenceNumberTestObservationMasterFile
+{
+    get
+    {
+        if (_sequenceNumberTestObservationMasterFile != null)
+        {
+            return _sequenceNumberTestObservationMasterFile;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.1",
+            Type = @"Field",
+            Position = @"OM7.1",
+            Name = @"Sequence Number - Test/Observation Master File",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the value as the sequence number.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sequenceNumberTestObservationMasterFile = new HL7V26Field
+        {
+            field = message[@"OM7"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sequenceNumberTestObservationMasterFile.field.FieldRepetitions != null && _sequenceNumberTestObservationMasterFile.field.FieldRepetitions.Count > 0)
+        {
+            _sequenceNumberTestObservationMasterFile.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_sequenceNumberTestObservationMasterFile, fieldData);
+        }
+
+        return _sequenceNumberTestObservationMasterFile;
+    } 
+}
+
+internal HL7V26Field _universalServiceIdentifier;
+
+public HL7V26Field UniversalServiceIdentifier
+{
+    get
+    {
+        if (_universalServiceIdentifier != null)
+        {
+            return _universalServiceIdentifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.2",
+            Type = @"Field",
+            Position = @"OM7.2",
+            Name = @"Universal Service Identifier",
+            Length = 705,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the producer's usual or preferred identification of the test or service. The test/service ID may be any of those included in ASTM tables 3 and 5, or a local code.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"OM7.1",
-                            Type = @"Field",
-                            Position = @"OM7.1",
-                            Name = @"Sequence Number - Test/Observation Master File",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the value as the sequence number.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.2",
-                            Type = @"Field",
-                            Position = @"OM7.2",
-                            Name = @"Universal Service Identifier",
-                            Length = 705,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the producer's usual or preferred identification of the test or service. The test/service ID may be any of those included in ASTM tables 3 and 5, or a local code.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM7.2.1",
                             Type = @"Component",
@@ -230,25 +269,55 @@ The OM7 segment contains additional basic attributes that apply to the definitio
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _universalServiceIdentifier = new HL7V26Field
+        {
+            field = message[@"OM7"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_universalServiceIdentifier.field.FieldRepetitions != null && _universalServiceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _universalServiceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_universalServiceIdentifier, fieldData);
+        }
+
+        return _universalServiceIdentifier;
+    } 
+}
+
+internal HL7V26Field _categoryIdentifier;
+
+public HL7V26Field CategoryIdentifier
+{
+    get
+    {
+        if (_categoryIdentifier != null)
+        {
+            return _categoryIdentifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.3",
+            Type = @"Field",
+            Position = @"OM7.3",
+            Name = @"Category Identifier",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0412",
+            TableName = @"Category Identifier",
+            Description = @"This field contains the category name (term given to a group of service items for the purpose of classification). Examples: Laboratory, Pharmacy, Diagnostic Imaging, etc. Refer to User-defined Table 0412 - Category identifier for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM7.3",
-                            Type = @"Field",
-                            Position = @"OM7.3",
-                            Name = @"Category Identifier",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0412",
-                            TableName = @"Category Identifier",
-                            Description = @"This field contains the category name (term given to a group of service items for the purpose of classification). Examples: Laboratory, Pharmacy, Diagnostic Imaging, etc. Refer to User-defined Table 0412 - Category identifier for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM7.3.1",
                             Type = @"Component",
@@ -408,115 +477,280 @@ The OM7 segment contains additional basic attributes that apply to the definitio
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _categoryIdentifier = new HL7V26Field
+        {
+            field = message[@"OM7"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_categoryIdentifier.field.FieldRepetitions != null && _categoryIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _categoryIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_categoryIdentifier, fieldData);
+        }
+
+        return _categoryIdentifier;
+    } 
+}
+
+internal HL7V26Field _categoryDescription;
+
+public HL7V26Field CategoryDescription
+{
+    get
+    {
+        if (_categoryDescription != null)
+        {
+            return _categoryDescription;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.4",
+            Type = @"Field",
+            Position = @"OM7.4",
+            Name = @"Category Description",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a text description for the category of the test/service item.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _categoryDescription = new HL7V26Field
+        {
+            field = message[@"OM7"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_categoryDescription.field.FieldRepetitions != null && _categoryDescription.field.FieldRepetitions.Count > 0)
+        {
+            _categoryDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_categoryDescription, fieldData);
+        }
+
+        return _categoryDescription;
+    } 
+}
+
+internal HL7V26Field _categorySynonym;
+
+public HL7V26Field CategorySynonym
+{
+    get
+    {
+        if (_categorySynonym != null)
+        {
+            return _categorySynonym;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.5",
+            Type = @"Field",
+            Position = @"OM7.5",
+            Name = @"Category Synonym",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an alternate name(s) for the category of the test/service. Example: The category ""Radiology"" is a synonym name for the category ""Diagnostic Imaging"".",
+            Sample = @"",
+            Fields = null
+        }
+
+        _categorySynonym = new HL7V26Field
+        {
+            field = message[@"OM7"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_categorySynonym.field.FieldRepetitions != null && _categorySynonym.field.FieldRepetitions.Count > 0)
+        {
+            _categorySynonym.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_categorySynonym, fieldData);
+        }
+
+        return _categorySynonym;
+    } 
+}
+
+internal HL7V26Field _effectiveTestServiceStartDateTime;
+
+public HL7V26Field EffectiveTestServiceStartDateTime
+{
+    get
+    {
+        if (_effectiveTestServiceStartDateTime != null)
+        {
+            return _effectiveTestServiceStartDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.6",
+            Type = @"Field",
+            Position = @"OM7.6",
+            Name = @"Effective Test/Service Start Date/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time that the service item is available to be ordered, performed, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _effectiveTestServiceStartDateTime = new HL7V26Field
+        {
+            field = message[@"OM7"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_effectiveTestServiceStartDateTime.field.FieldRepetitions != null && _effectiveTestServiceStartDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _effectiveTestServiceStartDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_effectiveTestServiceStartDateTime, fieldData);
+        }
+
+        return _effectiveTestServiceStartDateTime;
+    } 
+}
+
+internal HL7V26Field _effectiveTestServiceEndDateTime;
+
+public HL7V26Field EffectiveTestServiceEndDateTime
+{
+    get
+    {
+        if (_effectiveTestServiceEndDateTime != null)
+        {
+            return _effectiveTestServiceEndDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.7",
+            Type = @"Field",
+            Position = @"OM7.7",
+            Name = @"Effective Test/Service End Date/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time that the service item is no longer authorized to be ordered, performed, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _effectiveTestServiceEndDateTime = new HL7V26Field
+        {
+            field = message[@"OM7"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_effectiveTestServiceEndDateTime.field.FieldRepetitions != null && _effectiveTestServiceEndDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _effectiveTestServiceEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_effectiveTestServiceEndDateTime, fieldData);
+        }
+
+        return _effectiveTestServiceEndDateTime;
+    } 
+}
+
+internal HL7V26Field _testServiceDefaultDurationQuantity;
+
+public HL7V26Field TestServiceDefaultDurationQuantity
+{
+    get
+    {
+        if (_testServiceDefaultDurationQuantity != null)
+        {
+            return _testServiceDefaultDurationQuantity;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.8",
+            Type = @"Field",
+            Position = @"OM7.8",
+            Name = @"Test/Service Default Duration Quantity",
+            Length = 5,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the default duration quantity for the service.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _testServiceDefaultDurationQuantity = new HL7V26Field
+        {
+            field = message[@"OM7"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_testServiceDefaultDurationQuantity.field.FieldRepetitions != null && _testServiceDefaultDurationQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _testServiceDefaultDurationQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_testServiceDefaultDurationQuantity, fieldData);
+        }
+
+        return _testServiceDefaultDurationQuantity;
+    } 
+}
+
+internal HL7V26Field _testServiceDefaultDurationUnits;
+
+public HL7V26Field TestServiceDefaultDurationUnits
+{
+    get
+    {
+        if (_testServiceDefaultDurationUnits != null)
+        {
+            return _testServiceDefaultDurationUnits;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.9",
+            Type = @"Field",
+            Position = @"OM7.9",
+            Name = @"Test/Service Default Duration Units",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the default duration units for the service.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM7.4",
-                            Type = @"Field",
-                            Position = @"OM7.4",
-                            Name = @"Category Description",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a text description for the category of the test/service item.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.5",
-                            Type = @"Field",
-                            Position = @"OM7.5",
-                            Name = @"Category Synonym",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an alternate name(s) for the category of the test/service. Example: The category ""Radiology"" is a synonym name for the category ""Diagnostic Imaging"".",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.6",
-                            Type = @"Field",
-                            Position = @"OM7.6",
-                            Name = @"Effective Test/Service Start Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time that the service item is available to be ordered, performed, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.7",
-                            Type = @"Field",
-                            Position = @"OM7.7",
-                            Name = @"Effective Test/Service End Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time that the service item is no longer authorized to be ordered, performed, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.8",
-                            Type = @"Field",
-                            Position = @"OM7.8",
-                            Name = @"Test/Service Default Duration Quantity",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the default duration quantity for the service.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.9",
-                            Type = @"Field",
-                            Position = @"OM7.9",
-                            Name = @"Test/Service Default Duration Units",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the default duration units for the service.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM7.9.1",
                             Type = @"Component",
@@ -676,61 +910,145 @@ The OM7 segment contains additional basic attributes that apply to the definitio
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _testServiceDefaultDurationUnits = new HL7V26Field
+        {
+            field = message[@"OM7"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_testServiceDefaultDurationUnits.field.FieldRepetitions != null && _testServiceDefaultDurationUnits.field.FieldRepetitions.Count > 0)
+        {
+            _testServiceDefaultDurationUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_testServiceDefaultDurationUnits, fieldData);
+        }
+
+        return _testServiceDefaultDurationUnits;
+    } 
+}
+
+internal HL7V26Field _testServiceDefaultFrequency;
+
+public HL7V26Field TestServiceDefaultFrequency
+{
+    get
+    {
+        if (_testServiceDefaultFrequency != null)
+        {
+            return _testServiceDefaultFrequency;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.10",
+            Type = @"Field",
+            Position = @"OM7.10",
+            Name = @"Test/Service Default Frequency",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the default frequency (how often) the service would be ordered for or performed on.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _testServiceDefaultFrequency = new HL7V26Field
+        {
+            field = message[@"OM7"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_testServiceDefaultFrequency.field.FieldRepetitions != null && _testServiceDefaultFrequency.field.FieldRepetitions.Count > 0)
+        {
+            _testServiceDefaultFrequency.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_testServiceDefaultFrequency, fieldData);
+        }
+
+        return _testServiceDefaultFrequency;
+    } 
+}
+
+internal HL7V26Field _consentIndicator;
+
+public HL7V26Field ConsentIndicator
+{
+    get
+    {
+        if (_consentIndicator != null)
+        {
+            return _consentIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.11",
+            Type = @"Field",
+            Position = @"OM7.11",
+            Name = @"Consent Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field indicates if a consent is needed for the service item. Refer to HL7 Table 0136 - Yes/no indicator.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consentIndicator = new HL7V26Field
+        {
+            field = message[@"OM7"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentIndicator.field.FieldRepetitions != null && _consentIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _consentIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentIndicator, fieldData);
+        }
+
+        return _consentIndicator;
+    } 
+}
+
+internal HL7V26Field _consentIdentifier;
+
+public HL7V26Field ConsentIdentifier
+{
+    get
+    {
+        if (_consentIdentifier != null)
+        {
+            return _consentIdentifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.12",
+            Type = @"Field",
+            Position = @"OM7.12",
+            Name = @"Consent Identifier",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0413",
+            TableName = @"Consent Identifier",
+            Description = @"This field contains the identifier for the consent specified for the service item. Refer to User-defined Table 0413 - Consent identifier for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM7.10",
-                            Type = @"Field",
-                            Position = @"OM7.10",
-                            Name = @"Test/Service Default Frequency",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the default frequency (how often) the service would be ordered for or performed on.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.11",
-                            Type = @"Field",
-                            Position = @"OM7.11",
-                            Name = @"Consent Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates if a consent is needed for the service item. Refer to HL7 Table 0136 - Yes/no indicator.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.12",
-                            Type = @"Field",
-                            Position = @"OM7.12",
-                            Name = @"Consent Identifier",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0413",
-                            TableName = @"Consent Identifier",
-                            Description = @"This field contains the identifier for the consent specified for the service item. Refer to User-defined Table 0413 - Consent identifier for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM7.12.1",
                             Type = @"Component",
@@ -890,79 +1208,190 @@ The OM7 segment contains additional basic attributes that apply to the definitio
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _consentIdentifier = new HL7V26Field
+        {
+            field = message[@"OM7"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentIdentifier.field.FieldRepetitions != null && _consentIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _consentIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentIdentifier, fieldData);
+        }
+
+        return _consentIdentifier;
+    } 
+}
+
+internal HL7V26Field _consentEffectiveStartDateTime;
+
+public HL7V26Field ConsentEffectiveStartDateTime
+{
+    get
+    {
+        if (_consentEffectiveStartDateTime != null)
+        {
+            return _consentEffectiveStartDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.13",
+            Type = @"Field",
+            Position = @"OM7.13",
+            Name = @"Consent Effective Start Date/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time the consent is valid for the service item.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consentEffectiveStartDateTime = new HL7V26Field
+        {
+            field = message[@"OM7"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentEffectiveStartDateTime.field.FieldRepetitions != null && _consentEffectiveStartDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _consentEffectiveStartDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentEffectiveStartDateTime, fieldData);
+        }
+
+        return _consentEffectiveStartDateTime;
+    } 
+}
+
+internal HL7V26Field _consentEffectiveEndDateTime;
+
+public HL7V26Field ConsentEffectiveEndDateTime
+{
+    get
+    {
+        if (_consentEffectiveEndDateTime != null)
+        {
+            return _consentEffectiveEndDateTime;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.14",
+            Type = @"Field",
+            Position = @"OM7.14",
+            Name = @"Consent Effective End Date/Time",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time the consent is no longer valid for the test/service.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consentEffectiveEndDateTime = new HL7V26Field
+        {
+            field = message[@"OM7"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentEffectiveEndDateTime.field.FieldRepetitions != null && _consentEffectiveEndDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _consentEffectiveEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentEffectiveEndDateTime, fieldData);
+        }
+
+        return _consentEffectiveEndDateTime;
+    } 
+}
+
+internal HL7V26Field _consentIntervalQuantity;
+
+public HL7V26Field ConsentIntervalQuantity
+{
+    get
+    {
+        if (_consentIntervalQuantity != null)
+        {
+            return _consentIntervalQuantity;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.15",
+            Type = @"Field",
+            Position = @"OM7.15",
+            Name = @"Consent Interval Quantity",
+            Length = 5,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the period of time for which a consent is valid for a specific service item.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consentIntervalQuantity = new HL7V26Field
+        {
+            field = message[@"OM7"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentIntervalQuantity.field.FieldRepetitions != null && _consentIntervalQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _consentIntervalQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentIntervalQuantity, fieldData);
+        }
+
+        return _consentIntervalQuantity;
+    } 
+}
+
+internal HL7V26Field _consentIntervalUnits;
+
+public HL7V26Field ConsentIntervalUnits
+{
+    get
+    {
+        if (_consentIntervalUnits != null)
+        {
+            return _consentIntervalUnits;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.16",
+            Type = @"Field",
+            Position = @"OM7.16",
+            Name = @"Consent Interval Units",
+            Length = 250,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0414",
+            TableName = @"Units of Time",
+            Description = @"This field specifies the unit of time for OM7-15 - Consent Interval Quantity. Refer to User-defined Table 0414 - Units of time for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM7.13",
-                            Type = @"Field",
-                            Position = @"OM7.13",
-                            Name = @"Consent Effective Start Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time the consent is valid for the service item.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.14",
-                            Type = @"Field",
-                            Position = @"OM7.14",
-                            Name = @"Consent Effective End Date/Time",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time the consent is no longer valid for the test/service.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.15",
-                            Type = @"Field",
-                            Position = @"OM7.15",
-                            Name = @"Consent Interval Quantity",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the period of time for which a consent is valid for a specific service item.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.16",
-                            Type = @"Field",
-                            Position = @"OM7.16",
-                            Name = @"Consent Interval Units",
-                            Length = 250,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0414",
-                            TableName = @"Units of Time",
-                            Description = @"This field specifies the unit of time for OM7-15 - Consent Interval Quantity. Refer to User-defined Table 0414 - Units of time for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM7.16.1",
                             Type = @"Component",
@@ -1122,43 +1551,100 @@ The OM7 segment contains additional basic attributes that apply to the definitio
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _consentIntervalUnits = new HL7V26Field
+        {
+            field = message[@"OM7"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentIntervalUnits.field.FieldRepetitions != null && _consentIntervalUnits.field.FieldRepetitions.Count > 0)
+        {
+            _consentIntervalUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentIntervalUnits, fieldData);
+        }
+
+        return _consentIntervalUnits;
+    } 
+}
+
+internal HL7V26Field _consentWaitingPeriodQuantity;
+
+public HL7V26Field ConsentWaitingPeriodQuantity
+{
+    get
+    {
+        if (_consentWaitingPeriodQuantity != null)
+        {
+            return _consentWaitingPeriodQuantity;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.17",
+            Type = @"Field",
+            Position = @"OM7.17",
+            Name = @"Consent Waiting Period Quantity",
+            Length = 5,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the time period between the time the consent is signed and the procedure can be performed.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _consentWaitingPeriodQuantity = new HL7V26Field
+        {
+            field = message[@"OM7"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentWaitingPeriodQuantity.field.FieldRepetitions != null && _consentWaitingPeriodQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _consentWaitingPeriodQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentWaitingPeriodQuantity, fieldData);
+        }
+
+        return _consentWaitingPeriodQuantity;
+    } 
+}
+
+internal HL7V26Field _consentWaitingPeriodUnits;
+
+public HL7V26Field ConsentWaitingPeriodUnits
+{
+    get
+    {
+        if (_consentWaitingPeriodUnits != null)
+        {
+            return _consentWaitingPeriodUnits;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.18",
+            Type = @"Field",
+            Position = @"OM7.18",
+            Name = @"Consent Waiting Period Units",
+            Length = 250,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0414",
+            TableName = @"Units of Time",
+            Description = @"This field specifies the unit of time for OM7-17 - Consent Waiting Period Quantity. Refer to User-defined Table 0414 - Units of time for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM7.17",
-                            Type = @"Field",
-                            Position = @"OM7.17",
-                            Name = @"Consent Waiting Period Quantity",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the time period between the time the consent is signed and the procedure can be performed.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.18",
-                            Type = @"Field",
-                            Position = @"OM7.18",
-                            Name = @"Consent Waiting Period Units",
-                            Length = 250,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0414",
-                            TableName = @"Units of Time",
-                            Description = @"This field specifies the unit of time for OM7-17 - Consent Waiting Period Quantity. Refer to User-defined Table 0414 - Units of time for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM7.18.1",
                             Type = @"Component",
@@ -1318,43 +1804,100 @@ The OM7 segment contains additional basic attributes that apply to the definitio
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _consentWaitingPeriodUnits = new HL7V26Field
+        {
+            field = message[@"OM7"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_consentWaitingPeriodUnits.field.FieldRepetitions != null && _consentWaitingPeriodUnits.field.FieldRepetitions.Count > 0)
+        {
+            _consentWaitingPeriodUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_consentWaitingPeriodUnits, fieldData);
+        }
+
+        return _consentWaitingPeriodUnits;
+    } 
+}
+
+internal HL7V26Field _effectiveDateTimeofChange;
+
+public HL7V26Field EffectiveDateTimeofChange
+{
+    get
+    {
+        if (_effectiveDateTimeofChange != null)
+        {
+            return _effectiveDateTimeofChange;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.19",
+            Type = @"Field",
+            Position = @"OM7.19",
+            Name = @"Effective Date/Time of Change",
+            Length = 24,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time of the last change in the test procedure that would make previous results incompatible with new results.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _effectiveDateTimeofChange = new HL7V26Field
+        {
+            field = message[@"OM7"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_effectiveDateTimeofChange.field.FieldRepetitions != null && _effectiveDateTimeofChange.field.FieldRepetitions.Count > 0)
+        {
+            _effectiveDateTimeofChange.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_effectiveDateTimeofChange, fieldData);
+        }
+
+        return _effectiveDateTimeofChange;
+    } 
+}
+
+internal HL7V26Field _enteredBy;
+
+public HL7V26Field EnteredBy
+{
+    get
+    {
+        if (_enteredBy != null)
+        {
+            return _enteredBy;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.20",
+            Type = @"Field",
+            Position = @"OM7.20",
+            Name = @"Entered By",
+            Length = 3220,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identity of the person who actually keyed the service item into the application. It provides an audit trail in case the request is entered incorrectly and the ancillary department needs to clarify the request.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM7.19",
-                            Type = @"Field",
-                            Position = @"OM7.19",
-                            Name = @"Effective Date/Time of Change",
-                            Length = 24,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time of the last change in the test procedure that would make previous results incompatible with new results.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.20",
-                            Type = @"Field",
-                            Position = @"OM7.20",
-                            Name = @"Entered By",
-                            Length = 3220,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the identity of the person who actually keyed the service item into the application. It provides an audit trail in case the request is entered incorrectly and the ancillary department needs to clarify the request.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM7.20.1",
                             Type = @"Component",
@@ -2474,25 +3017,55 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _enteredBy = new HL7V26Field
+        {
+            field = message[@"OM7"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_enteredBy.field.FieldRepetitions != null && _enteredBy.field.FieldRepetitions.Count > 0)
+        {
+            _enteredBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_enteredBy, fieldData);
+        }
+
+        return _enteredBy;
+    } 
+}
+
+internal HL7V26Field _orderableatLocation;
+
+public HL7V26Field OrderableatLocation
+{
+    get
+    {
+        if (_orderableatLocation != null)
+        {
+            return _orderableatLocation;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.21",
+            Type = @"Field",
+            Position = @"OM7.21",
+            Name = @"Orderable-at Location",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the location(s) where the test/service can be ordered.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM7.21",
-                            Type = @"Field",
-                            Position = @"OM7.21",
-                            Name = @"Orderable-at Location",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the location(s) where the test/service can be ordered.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM7.21.1",
                             Type = @"Component",
@@ -2862,61 +3435,145 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _orderableatLocation = new HL7V26Field
+        {
+            field = message[@"OM7"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_orderableatLocation.field.FieldRepetitions != null && _orderableatLocation.field.FieldRepetitions.Count > 0)
+        {
+            _orderableatLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_orderableatLocation, fieldData);
+        }
+
+        return _orderableatLocation;
+    } 
+}
+
+internal HL7V26Field _formularyStatus;
+
+public HL7V26Field FormularyStatus
+{
+    get
+    {
+        if (_formularyStatus != null)
+        {
+            return _formularyStatus;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.22",
+            Type = @"Field",
+            Position = @"OM7.22",
+            Name = @"Formulary Status",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0473",
+            TableName = @"Formulary Status",
+            Description = @"This field indicates whether or not the service (pharmaceutical) is in the formulary. Refer to User-defined Table 0473 - Formulary status for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _formularyStatus = new HL7V26Field
+        {
+            field = message[@"OM7"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_formularyStatus.field.FieldRepetitions != null && _formularyStatus.field.FieldRepetitions.Count > 0)
+        {
+            _formularyStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_formularyStatus, fieldData);
+        }
+
+        return _formularyStatus;
+    } 
+}
+
+internal HL7V26Field _specialOrderIndicator;
+
+public HL7V26Field SpecialOrderIndicator
+{
+    get
+    {
+        if (_specialOrderIndicator != null)
+        {
+            return _specialOrderIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.23",
+            Type = @"Field",
+            Position = @"OM7.23",
+            Name = @"Special Order Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field indicates whether or not the service (pharmaceutical) is a special order. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _specialOrderIndicator = new HL7V26Field
+        {
+            field = message[@"OM7"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specialOrderIndicator.field.FieldRepetitions != null && _specialOrderIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _specialOrderIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_specialOrderIndicator, fieldData);
+        }
+
+        return _specialOrderIndicator;
+    } 
+}
+
+internal HL7V26Field _primaryKeyValueCDM;
+
+public HL7V26Field PrimaryKeyValueCDM
+{
+    get
+    {
+        if (_primaryKeyValueCDM != null)
+        {
+            return _primaryKeyValueCDM;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"OM7.24",
+            Type = @"Field",
+            Position = @"OM7.24",
+            Name = @"Primary Key Value - CDM",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0132",
+            TableName = @"Transaction Code",
+            Description = @"A llows the ability to associate a Service/Test/Observation item with a CIM (charge item master). It is possible to allow multiple charge items to a single SIM item. Refer to User-defined table 0132 - Transaction Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM7.22",
-                            Type = @"Field",
-                            Position = @"OM7.22",
-                            Name = @"Formulary Status",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0473",
-                            TableName = @"Formulary Status",
-                            Description = @"This field indicates whether or not the service (pharmaceutical) is in the formulary. Refer to User-defined Table 0473 - Formulary status for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.23",
-                            Type = @"Field",
-                            Position = @"OM7.23",
-                            Name = @"Special Order Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates whether or not the service (pharmaceutical) is a special order. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM7.24",
-                            Type = @"Field",
-                            Position = @"OM7.24",
-                            Name = @"Primary Key Value - CDM",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0132",
-                            TableName = @"Transaction Code",
-                            Description = @"A llows the ability to associate a Service/Test/Observation item with a CIM (charge item master). It is possible to allow multiple charge items to a single SIM item. Refer to User-defined table 0132 - Transaction Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM7.24.1",
                             Type = @"Component",
@@ -3076,998 +3733,23 @@ Used to specify an educational degree (e.g., MD). Refer to User-defined Table 03
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentOM7(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field sequenceNumberTestObservationMasterFile;
-
-public HL7V26Field SequenceNumberTestObservationMasterFile
-{
-    get
-    {
-        if (sequenceNumberTestObservationMasterFile != null)
-        {
-            return sequenceNumberTestObservationMasterFile;
-        }
-
-        sequenceNumberTestObservationMasterFile = new HL7V26Field
-        {
-            field = message[@"OM7"][1],
-            Id = @"OM7.1",
-            Type = @"Field",
-            Position = @"OM7.1",
-            Name = @"Sequence Number - Test/Observation Master File",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the value as the sequence number.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sequenceNumberTestObservationMasterFile.field.FieldRepetitions != null && sequenceNumberTestObservationMasterFile.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sequenceNumberTestObservationMasterFile.Id));
-            sequenceNumberTestObservationMasterFile.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(sequenceNumberTestObservationMasterFile, fieldData);
-        }
-
-        return sequenceNumberTestObservationMasterFile;
-    } 
-}
-
-internal HL7V26Field universalServiceIdentifier;
-
-public HL7V26Field UniversalServiceIdentifier
-{
-    get
-    {
-        if (universalServiceIdentifier != null)
-        {
-            return universalServiceIdentifier;
-        }
-
-        universalServiceIdentifier = new HL7V26Field
-        {
-            field = message[@"OM7"][2],
-            Id = @"OM7.2",
-            Type = @"Field",
-            Position = @"OM7.2",
-            Name = @"Universal Service Identifier",
-            Length = 705,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the producer's usual or preferred identification of the test or service. The test/service ID may be any of those included in ASTM tables 3 and 5, or a local code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (universalServiceIdentifier.field.FieldRepetitions != null && universalServiceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(universalServiceIdentifier.Id));
-            universalServiceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(universalServiceIdentifier, fieldData);
-        }
-
-        return universalServiceIdentifier;
-    } 
-}
-
-internal HL7V26Field categoryIdentifier;
-
-public HL7V26Field CategoryIdentifier
-{
-    get
-    {
-        if (categoryIdentifier != null)
-        {
-            return categoryIdentifier;
-        }
-
-        categoryIdentifier = new HL7V26Field
-        {
-            field = message[@"OM7"][3],
-            Id = @"OM7.3",
-            Type = @"Field",
-            Position = @"OM7.3",
-            Name = @"Category Identifier",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0412",
-            TableName = @"Category Identifier",
-            Description = @"This field contains the category name (term given to a group of service items for the purpose of classification). Examples: Laboratory, Pharmacy, Diagnostic Imaging, etc. Refer to User-defined Table 0412 - Category identifier for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (categoryIdentifier.field.FieldRepetitions != null && categoryIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(categoryIdentifier.Id));
-            categoryIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(categoryIdentifier, fieldData);
-        }
-
-        return categoryIdentifier;
-    } 
-}
-
-internal HL7V26Field categoryDescription;
-
-public HL7V26Field CategoryDescription
-{
-    get
-    {
-        if (categoryDescription != null)
-        {
-            return categoryDescription;
-        }
-
-        categoryDescription = new HL7V26Field
-        {
-            field = message[@"OM7"][4],
-            Id = @"OM7.4",
-            Type = @"Field",
-            Position = @"OM7.4",
-            Name = @"Category Description",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a text description for the category of the test/service item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (categoryDescription.field.FieldRepetitions != null && categoryDescription.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(categoryDescription.Id));
-            categoryDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(categoryDescription, fieldData);
-        }
-
-        return categoryDescription;
-    } 
-}
-
-internal HL7V26Field categorySynonym;
-
-public HL7V26Field CategorySynonym
-{
-    get
-    {
-        if (categorySynonym != null)
-        {
-            return categorySynonym;
-        }
-
-        categorySynonym = new HL7V26Field
-        {
-            field = message[@"OM7"][5],
-            Id = @"OM7.5",
-            Type = @"Field",
-            Position = @"OM7.5",
-            Name = @"Category Synonym",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an alternate name(s) for the category of the test/service. Example: The category ""Radiology"" is a synonym name for the category ""Diagnostic Imaging"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (categorySynonym.field.FieldRepetitions != null && categorySynonym.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(categorySynonym.Id));
-            categorySynonym.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(categorySynonym, fieldData);
-        }
-
-        return categorySynonym;
-    } 
-}
-
-internal HL7V26Field effectiveTestServiceStartDateTime;
-
-public HL7V26Field EffectiveTestServiceStartDateTime
-{
-    get
-    {
-        if (effectiveTestServiceStartDateTime != null)
-        {
-            return effectiveTestServiceStartDateTime;
-        }
-
-        effectiveTestServiceStartDateTime = new HL7V26Field
-        {
-            field = message[@"OM7"][6],
-            Id = @"OM7.6",
-            Type = @"Field",
-            Position = @"OM7.6",
-            Name = @"Effective Test/Service Start Date/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time that the service item is available to be ordered, performed, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (effectiveTestServiceStartDateTime.field.FieldRepetitions != null && effectiveTestServiceStartDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(effectiveTestServiceStartDateTime.Id));
-            effectiveTestServiceStartDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(effectiveTestServiceStartDateTime, fieldData);
-        }
-
-        return effectiveTestServiceStartDateTime;
-    } 
-}
-
-internal HL7V26Field effectiveTestServiceEndDateTime;
-
-public HL7V26Field EffectiveTestServiceEndDateTime
-{
-    get
-    {
-        if (effectiveTestServiceEndDateTime != null)
-        {
-            return effectiveTestServiceEndDateTime;
-        }
-
-        effectiveTestServiceEndDateTime = new HL7V26Field
-        {
-            field = message[@"OM7"][7],
-            Id = @"OM7.7",
-            Type = @"Field",
-            Position = @"OM7.7",
-            Name = @"Effective Test/Service End Date/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time that the service item is no longer authorized to be ordered, performed, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (effectiveTestServiceEndDateTime.field.FieldRepetitions != null && effectiveTestServiceEndDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(effectiveTestServiceEndDateTime.Id));
-            effectiveTestServiceEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(effectiveTestServiceEndDateTime, fieldData);
-        }
-
-        return effectiveTestServiceEndDateTime;
-    } 
-}
-
-internal HL7V26Field testServiceDefaultDurationQuantity;
-
-public HL7V26Field TestServiceDefaultDurationQuantity
-{
-    get
-    {
-        if (testServiceDefaultDurationQuantity != null)
-        {
-            return testServiceDefaultDurationQuantity;
-        }
-
-        testServiceDefaultDurationQuantity = new HL7V26Field
-        {
-            field = message[@"OM7"][8],
-            Id = @"OM7.8",
-            Type = @"Field",
-            Position = @"OM7.8",
-            Name = @"Test/Service Default Duration Quantity",
-            Length = 5,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the default duration quantity for the service.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (testServiceDefaultDurationQuantity.field.FieldRepetitions != null && testServiceDefaultDurationQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(testServiceDefaultDurationQuantity.Id));
-            testServiceDefaultDurationQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(testServiceDefaultDurationQuantity, fieldData);
-        }
-
-        return testServiceDefaultDurationQuantity;
-    } 
-}
-
-internal HL7V26Field testServiceDefaultDurationUnits;
-
-public HL7V26Field TestServiceDefaultDurationUnits
-{
-    get
-    {
-        if (testServiceDefaultDurationUnits != null)
-        {
-            return testServiceDefaultDurationUnits;
-        }
-
-        testServiceDefaultDurationUnits = new HL7V26Field
-        {
-            field = message[@"OM7"][9],
-            Id = @"OM7.9",
-            Type = @"Field",
-            Position = @"OM7.9",
-            Name = @"Test/Service Default Duration Units",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the default duration units for the service.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (testServiceDefaultDurationUnits.field.FieldRepetitions != null && testServiceDefaultDurationUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(testServiceDefaultDurationUnits.Id));
-            testServiceDefaultDurationUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(testServiceDefaultDurationUnits, fieldData);
-        }
-
-        return testServiceDefaultDurationUnits;
-    } 
-}
-
-internal HL7V26Field testServiceDefaultFrequency;
-
-public HL7V26Field TestServiceDefaultFrequency
-{
-    get
-    {
-        if (testServiceDefaultFrequency != null)
-        {
-            return testServiceDefaultFrequency;
-        }
-
-        testServiceDefaultFrequency = new HL7V26Field
-        {
-            field = message[@"OM7"][10],
-            Id = @"OM7.10",
-            Type = @"Field",
-            Position = @"OM7.10",
-            Name = @"Test/Service Default Frequency",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the default frequency (how often) the service would be ordered for or performed on.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (testServiceDefaultFrequency.field.FieldRepetitions != null && testServiceDefaultFrequency.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(testServiceDefaultFrequency.Id));
-            testServiceDefaultFrequency.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(testServiceDefaultFrequency, fieldData);
-        }
-
-        return testServiceDefaultFrequency;
-    } 
-}
-
-internal HL7V26Field consentIndicator;
-
-public HL7V26Field ConsentIndicator
-{
-    get
-    {
-        if (consentIndicator != null)
-        {
-            return consentIndicator;
-        }
-
-        consentIndicator = new HL7V26Field
-        {
-            field = message[@"OM7"][11],
-            Id = @"OM7.11",
-            Type = @"Field",
-            Position = @"OM7.11",
-            Name = @"Consent Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field indicates if a consent is needed for the service item. Refer to HL7 Table 0136 - Yes/no indicator.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentIndicator.field.FieldRepetitions != null && consentIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentIndicator.Id));
-            consentIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentIndicator, fieldData);
-        }
-
-        return consentIndicator;
-    } 
-}
-
-internal HL7V26Field consentIdentifier;
-
-public HL7V26Field ConsentIdentifier
-{
-    get
-    {
-        if (consentIdentifier != null)
-        {
-            return consentIdentifier;
-        }
-
-        consentIdentifier = new HL7V26Field
-        {
-            field = message[@"OM7"][12],
-            Id = @"OM7.12",
-            Type = @"Field",
-            Position = @"OM7.12",
-            Name = @"Consent Identifier",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0413",
-            TableName = @"Consent Identifier",
-            Description = @"This field contains the identifier for the consent specified for the service item. Refer to User-defined Table 0413 - Consent identifier for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentIdentifier.field.FieldRepetitions != null && consentIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentIdentifier.Id));
-            consentIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentIdentifier, fieldData);
-        }
-
-        return consentIdentifier;
-    } 
-}
-
-internal HL7V26Field consentEffectiveStartDateTime;
-
-public HL7V26Field ConsentEffectiveStartDateTime
-{
-    get
-    {
-        if (consentEffectiveStartDateTime != null)
-        {
-            return consentEffectiveStartDateTime;
-        }
-
-        consentEffectiveStartDateTime = new HL7V26Field
-        {
-            field = message[@"OM7"][13],
-            Id = @"OM7.13",
-            Type = @"Field",
-            Position = @"OM7.13",
-            Name = @"Consent Effective Start Date/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time the consent is valid for the service item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentEffectiveStartDateTime.field.FieldRepetitions != null && consentEffectiveStartDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentEffectiveStartDateTime.Id));
-            consentEffectiveStartDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentEffectiveStartDateTime, fieldData);
-        }
-
-        return consentEffectiveStartDateTime;
-    } 
-}
-
-internal HL7V26Field consentEffectiveEndDateTime;
-
-public HL7V26Field ConsentEffectiveEndDateTime
-{
-    get
-    {
-        if (consentEffectiveEndDateTime != null)
-        {
-            return consentEffectiveEndDateTime;
-        }
-
-        consentEffectiveEndDateTime = new HL7V26Field
-        {
-            field = message[@"OM7"][14],
-            Id = @"OM7.14",
-            Type = @"Field",
-            Position = @"OM7.14",
-            Name = @"Consent Effective End Date/Time",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time the consent is no longer valid for the test/service.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentEffectiveEndDateTime.field.FieldRepetitions != null && consentEffectiveEndDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentEffectiveEndDateTime.Id));
-            consentEffectiveEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentEffectiveEndDateTime, fieldData);
-        }
-
-        return consentEffectiveEndDateTime;
-    } 
-}
-
-internal HL7V26Field consentIntervalQuantity;
-
-public HL7V26Field ConsentIntervalQuantity
-{
-    get
-    {
-        if (consentIntervalQuantity != null)
-        {
-            return consentIntervalQuantity;
-        }
-
-        consentIntervalQuantity = new HL7V26Field
-        {
-            field = message[@"OM7"][15],
-            Id = @"OM7.15",
-            Type = @"Field",
-            Position = @"OM7.15",
-            Name = @"Consent Interval Quantity",
-            Length = 5,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the period of time for which a consent is valid for a specific service item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentIntervalQuantity.field.FieldRepetitions != null && consentIntervalQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentIntervalQuantity.Id));
-            consentIntervalQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentIntervalQuantity, fieldData);
-        }
-
-        return consentIntervalQuantity;
-    } 
-}
-
-internal HL7V26Field consentIntervalUnits;
-
-public HL7V26Field ConsentIntervalUnits
-{
-    get
-    {
-        if (consentIntervalUnits != null)
-        {
-            return consentIntervalUnits;
-        }
-
-        consentIntervalUnits = new HL7V26Field
-        {
-            field = message[@"OM7"][16],
-            Id = @"OM7.16",
-            Type = @"Field",
-            Position = @"OM7.16",
-            Name = @"Consent Interval Units",
-            Length = 250,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0414",
-            TableName = @"Units of Time",
-            Description = @"This field specifies the unit of time for OM7-15 - Consent Interval Quantity. Refer to User-defined Table 0414 - Units of time for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentIntervalUnits.field.FieldRepetitions != null && consentIntervalUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentIntervalUnits.Id));
-            consentIntervalUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentIntervalUnits, fieldData);
-        }
-
-        return consentIntervalUnits;
-    } 
-}
-
-internal HL7V26Field consentWaitingPeriodQuantity;
-
-public HL7V26Field ConsentWaitingPeriodQuantity
-{
-    get
-    {
-        if (consentWaitingPeriodQuantity != null)
-        {
-            return consentWaitingPeriodQuantity;
-        }
-
-        consentWaitingPeriodQuantity = new HL7V26Field
-        {
-            field = message[@"OM7"][17],
-            Id = @"OM7.17",
-            Type = @"Field",
-            Position = @"OM7.17",
-            Name = @"Consent Waiting Period Quantity",
-            Length = 5,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the time period between the time the consent is signed and the procedure can be performed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentWaitingPeriodQuantity.field.FieldRepetitions != null && consentWaitingPeriodQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentWaitingPeriodQuantity.Id));
-            consentWaitingPeriodQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentWaitingPeriodQuantity, fieldData);
-        }
-
-        return consentWaitingPeriodQuantity;
-    } 
-}
-
-internal HL7V26Field consentWaitingPeriodUnits;
-
-public HL7V26Field ConsentWaitingPeriodUnits
-{
-    get
-    {
-        if (consentWaitingPeriodUnits != null)
-        {
-            return consentWaitingPeriodUnits;
-        }
-
-        consentWaitingPeriodUnits = new HL7V26Field
-        {
-            field = message[@"OM7"][18],
-            Id = @"OM7.18",
-            Type = @"Field",
-            Position = @"OM7.18",
-            Name = @"Consent Waiting Period Units",
-            Length = 250,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0414",
-            TableName = @"Units of Time",
-            Description = @"This field specifies the unit of time for OM7-17 - Consent Waiting Period Quantity. Refer to User-defined Table 0414 - Units of time for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (consentWaitingPeriodUnits.field.FieldRepetitions != null && consentWaitingPeriodUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(consentWaitingPeriodUnits.Id));
-            consentWaitingPeriodUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(consentWaitingPeriodUnits, fieldData);
-        }
-
-        return consentWaitingPeriodUnits;
-    } 
-}
-
-internal HL7V26Field effectiveDateTimeofChange;
-
-public HL7V26Field EffectiveDateTimeofChange
-{
-    get
-    {
-        if (effectiveDateTimeofChange != null)
-        {
-            return effectiveDateTimeofChange;
-        }
-
-        effectiveDateTimeofChange = new HL7V26Field
-        {
-            field = message[@"OM7"][19],
-            Id = @"OM7.19",
-            Type = @"Field",
-            Position = @"OM7.19",
-            Name = @"Effective Date/Time of Change",
-            Length = 24,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time of the last change in the test procedure that would make previous results incompatible with new results.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (effectiveDateTimeofChange.field.FieldRepetitions != null && effectiveDateTimeofChange.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(effectiveDateTimeofChange.Id));
-            effectiveDateTimeofChange.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(effectiveDateTimeofChange, fieldData);
-        }
-
-        return effectiveDateTimeofChange;
-    } 
-}
-
-internal HL7V26Field enteredBy;
-
-public HL7V26Field EnteredBy
-{
-    get
-    {
-        if (enteredBy != null)
-        {
-            return enteredBy;
-        }
-
-        enteredBy = new HL7V26Field
-        {
-            field = message[@"OM7"][20],
-            Id = @"OM7.20",
-            Type = @"Field",
-            Position = @"OM7.20",
-            Name = @"Entered By",
-            Length = 3220,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the identity of the person who actually keyed the service item into the application. It provides an audit trail in case the request is entered incorrectly and the ancillary department needs to clarify the request.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (enteredBy.field.FieldRepetitions != null && enteredBy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteredBy.Id));
-            enteredBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(enteredBy, fieldData);
-        }
-
-        return enteredBy;
-    } 
-}
-
-internal HL7V26Field orderableatLocation;
-
-public HL7V26Field OrderableatLocation
-{
-    get
-    {
-        if (orderableatLocation != null)
-        {
-            return orderableatLocation;
-        }
-
-        orderableatLocation = new HL7V26Field
-        {
-            field = message[@"OM7"][21],
-            Id = @"OM7.21",
-            Type = @"Field",
-            Position = @"OM7.21",
-            Name = @"Orderable-at Location",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the location(s) where the test/service can be ordered.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (orderableatLocation.field.FieldRepetitions != null && orderableatLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderableatLocation.Id));
-            orderableatLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(orderableatLocation, fieldData);
-        }
-
-        return orderableatLocation;
-    } 
-}
-
-internal HL7V26Field formularyStatus;
-
-public HL7V26Field FormularyStatus
-{
-    get
-    {
-        if (formularyStatus != null)
-        {
-            return formularyStatus;
-        }
-
-        formularyStatus = new HL7V26Field
-        {
-            field = message[@"OM7"][22],
-            Id = @"OM7.22",
-            Type = @"Field",
-            Position = @"OM7.22",
-            Name = @"Formulary Status",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0473",
-            TableName = @"Formulary Status",
-            Description = @"This field indicates whether or not the service (pharmaceutical) is in the formulary. Refer to User-defined Table 0473 - Formulary status for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (formularyStatus.field.FieldRepetitions != null && formularyStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(formularyStatus.Id));
-            formularyStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(formularyStatus, fieldData);
-        }
-
-        return formularyStatus;
-    } 
-}
-
-internal HL7V26Field specialOrderIndicator;
-
-public HL7V26Field SpecialOrderIndicator
-{
-    get
-    {
-        if (specialOrderIndicator != null)
-        {
-            return specialOrderIndicator;
-        }
-
-        specialOrderIndicator = new HL7V26Field
-        {
-            field = message[@"OM7"][23],
-            Id = @"OM7.23",
-            Type = @"Field",
-            Position = @"OM7.23",
-            Name = @"Special Order Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field indicates whether or not the service (pharmaceutical) is a special order. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specialOrderIndicator.field.FieldRepetitions != null && specialOrderIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specialOrderIndicator.Id));
-            specialOrderIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(specialOrderIndicator, fieldData);
-        }
-
-        return specialOrderIndicator;
-    } 
-}
-
-internal HL7V26Field primaryKeyValueCDM;
-
-public HL7V26Field PrimaryKeyValueCDM
-{
-    get
-    {
-        if (primaryKeyValueCDM != null)
-        {
-            return primaryKeyValueCDM;
-        }
-
-        primaryKeyValueCDM = new HL7V26Field
+        _primaryKeyValueCDM = new HL7V26Field
         {
             field = message[@"OM7"][24],
-            Id = @"OM7.24",
-            Type = @"Field",
-            Position = @"OM7.24",
-            Name = @"Primary Key Value - CDM",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0132",
-            TableName = @"Transaction Code",
-            Description = @"A llows the ability to associate a Service/Test/Observation item with a CIM (charge item master). It is possible to allow multiple charge items to a single SIM item. Refer to User-defined table 0132 - Transaction Code for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (primaryKeyValueCDM.field.FieldRepetitions != null && primaryKeyValueCDM.field.FieldRepetitions.Count > 0)
+        if (_primaryKeyValueCDM.field.FieldRepetitions != null && _primaryKeyValueCDM.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryKeyValueCDM.Id));
-            primaryKeyValueCDM.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(primaryKeyValueCDM, fieldData);
+            _primaryKeyValueCDM.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_primaryKeyValueCDM, fieldData);
         }
 
-        return primaryKeyValueCDM;
+        return _primaryKeyValueCDM;
     } 
 }
     }

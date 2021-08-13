@@ -29,118 +29,265 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V22SegmentMSA(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V22Field _acknowledgementCode;
+
+public HL7V22Field AcknowledgementCode
+{
+    get
+    {
+        if (_acknowledgementCode != null)
+        {
+            return _acknowledgementCode;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSA.1",
+            Type = @"Field",
+            Position = @"MSA.1",
+            Name = @"Acknowledgement Code",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"0008",
+            TableName = @"ACKNOWLEDGMENT CODE",
+            Description = @"see message processing rules",
+            Sample = @"",
+            Fields = null
+        }
+
+        _acknowledgementCode = new HL7V22Field
+        {
+            field = message[@"MSA"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_acknowledgementCode.field.FieldRepetitions != null && _acknowledgementCode.field.FieldRepetitions.Count > 0)
+        {
+            _acknowledgementCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_acknowledgementCode, fieldData);
+        }
+
+        return _acknowledgementCode;
+    } 
+}
+
+internal HL7V22Field _messageControlId;
+
+public HL7V22Field MessageControlId
+{
+    get
+    {
+        if (_messageControlId != null)
+        {
+            return _messageControlId;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSA.2",
+            Type = @"Field",
+            Position = @"MSA.2",
+            Name = @"Message Control Id",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"message control ID of the message sent by the sending system.  It allows the sending system to associate this response with the message for which it is intended",
+            Sample = @"",
+            Fields = null
+        }
+
+        _messageControlId = new HL7V22Field
+        {
+            field = message[@"MSA"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_messageControlId.field.FieldRepetitions != null && _messageControlId.field.FieldRepetitions.Count > 0)
+        {
+            _messageControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_messageControlId, fieldData);
+        }
+
+        return _messageControlId;
+    } 
+}
+
+internal HL7V22Field _textMessage;
+
+public HL7V22Field TextMessage
+{
+    get
+    {
+        if (_textMessage != null)
+        {
+            return _textMessage;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSA.3",
+            Type = @"Field",
+            Position = @"MSA.3",
+            Name = @"Text Message",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"optional text field that further describes an error condition.  This text may be printed in error logs or presented to an end user",
+            Sample = @"",
+            Fields = null
+        }
+
+        _textMessage = new HL7V22Field
+        {
+            field = message[@"MSA"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_textMessage.field.FieldRepetitions != null && _textMessage.field.FieldRepetitions.Count > 0)
+        {
+            _textMessage.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_textMessage, fieldData);
+        }
+
+        return _textMessage;
+    } 
+}
+
+internal HL7V22Field _expectedSequenceNumber;
+
+public HL7V22Field ExpectedSequenceNumber
+{
+    get
+    {
+        if (_expectedSequenceNumber != null)
+        {
+            return _expectedSequenceNumber;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSA.4",
+            Type = @"Field",
+            Position = @"MSA.4",
+            Name = @"Expected Sequence Number",
+            Length = 15,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"optional numeric field used in the sequence number protocol",
+            Sample = @"",
+            Fields = null
+        }
+
+        _expectedSequenceNumber = new HL7V22Field
+        {
+            field = message[@"MSA"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_expectedSequenceNumber.field.FieldRepetitions != null && _expectedSequenceNumber.field.FieldRepetitions.Count > 0)
+        {
+            _expectedSequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_expectedSequenceNumber, fieldData);
+        }
+
+        return _expectedSequenceNumber;
+    } 
+}
+
+internal HL7V22Field _delayedAcknowledgementType;
+
+public HL7V22Field DelayedAcknowledgementType
+{
+    get
+    {
+        if (_delayedAcknowledgementType != null)
+        {
+            return _delayedAcknowledgementType;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSA.5",
+            Type = @"Field",
+            Position = @"MSA.5",
+            Name = @"Delayed Acknowledgement Type",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value",
+            TableId = @"0102",
+            TableName = @"DELAYED ACKNOWLEDGMENT TYPE",
+            Description = @"used only as described above, in Section 2.5.2.  Otherwise this field is not used",
+            Sample = @"",
+            Fields = null
+        }
+
+        _delayedAcknowledgementType = new HL7V22Field
+        {
+            field = message[@"MSA"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_delayedAcknowledgementType.field.FieldRepetitions != null && _delayedAcknowledgementType.field.FieldRepetitions.Count > 0)
+        {
+            _delayedAcknowledgementType.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_delayedAcknowledgementType, fieldData);
+        }
+
+        return _delayedAcknowledgementType;
+    } 
+}
+
+internal HL7V22Field _errorCondition;
+
+public HL7V22Field ErrorCondition
+{
+    get
+    {
+        if (_errorCondition != null)
+        {
+            return _errorCondition;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSA.6",
+            Type = @"Field",
+            Position = @"MSA.6",
+            Name = @"Error Condition",
+            Length = 100,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"CE field allowing the acknowledging system to use a user-defined error code to further specify AR or AE type acknowledgements.  This field is a generalized replacement for MSA-3-text message",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"MSA.1",
-                            Type = @"Field",
-                            Position = @"MSA.1",
-                            Name = @"Acknowledgement Code",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0008",
-                            TableName = @"ACKNOWLEDGMENT CODE",
-                            Description = @"see message processing rules",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSA.2",
-                            Type = @"Field",
-                            Position = @"MSA.2",
-                            Name = @"Message Control Id",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"message control ID of the message sent by the sending system.  It allows the sending system to associate this response with the message for which it is intended",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSA.3",
-                            Type = @"Field",
-                            Position = @"MSA.3",
-                            Name = @"Text Message",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"optional text field that further describes an error condition.  This text may be printed in error logs or presented to an end user",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSA.4",
-                            Type = @"Field",
-                            Position = @"MSA.4",
-                            Name = @"Expected Sequence Number",
-                            Length = 15,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"optional numeric field used in the sequence number protocol",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSA.5",
-                            Type = @"Field",
-                            Position = @"MSA.5",
-                            Name = @"Delayed Acknowledgement Type",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0102",
-                            TableName = @"DELAYED ACKNOWLEDGMENT TYPE",
-                            Description = @"used only as described above, in Section 2.5.2.  Otherwise this field is not used",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSA.6",
-                            Type = @"Field",
-                            Position = @"MSA.6",
-                            Name = @"Error Condition",
-                            Length = 100,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"CE field allowing the acknowledging system to use a user-defined error code to further specify AR or AE type acknowledgements.  This field is a generalized replacement for MSA-3-text message",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSA.6.1",
                             Type = @"Component",
@@ -246,260 +393,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V22SegmentMSA(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V22Field acknowledgementCode;
-
-public HL7V22Field AcknowledgementCode
-{
-    get
-    {
-        if (acknowledgementCode != null)
-        {
-            return acknowledgementCode;
-        }
-
-        acknowledgementCode = new HL7V22Field
-        {
-            field = message[@"MSA"][1],
-            Id = @"MSA.1",
-            Type = @"Field",
-            Position = @"MSA.1",
-            Name = @"Acknowledgement Code",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0008",
-            TableName = @"ACKNOWLEDGMENT CODE",
-            Description = @"see message processing rules",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (acknowledgementCode.field.FieldRepetitions != null && acknowledgementCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(acknowledgementCode.Id));
-            acknowledgementCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(acknowledgementCode, fieldData);
-        }
-
-        return acknowledgementCode;
-    } 
-}
-
-internal HL7V22Field messageControlId;
-
-public HL7V22Field MessageControlId
-{
-    get
-    {
-        if (messageControlId != null)
-        {
-            return messageControlId;
-        }
-
-        messageControlId = new HL7V22Field
-        {
-            field = message[@"MSA"][2],
-            Id = @"MSA.2",
-            Type = @"Field",
-            Position = @"MSA.2",
-            Name = @"Message Control Id",
-            Length = 20,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"message control ID of the message sent by the sending system.  It allows the sending system to associate this response with the message for which it is intended",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (messageControlId.field.FieldRepetitions != null && messageControlId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(messageControlId.Id));
-            messageControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(messageControlId, fieldData);
-        }
-
-        return messageControlId;
-    } 
-}
-
-internal HL7V22Field textMessage;
-
-public HL7V22Field TextMessage
-{
-    get
-    {
-        if (textMessage != null)
-        {
-            return textMessage;
-        }
-
-        textMessage = new HL7V22Field
-        {
-            field = message[@"MSA"][3],
-            Id = @"MSA.3",
-            Type = @"Field",
-            Position = @"MSA.3",
-            Name = @"Text Message",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"optional text field that further describes an error condition.  This text may be printed in error logs or presented to an end user",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (textMessage.field.FieldRepetitions != null && textMessage.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(textMessage.Id));
-            textMessage.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(textMessage, fieldData);
-        }
-
-        return textMessage;
-    } 
-}
-
-internal HL7V22Field expectedSequenceNumber;
-
-public HL7V22Field ExpectedSequenceNumber
-{
-    get
-    {
-        if (expectedSequenceNumber != null)
-        {
-            return expectedSequenceNumber;
-        }
-
-        expectedSequenceNumber = new HL7V22Field
-        {
-            field = message[@"MSA"][4],
-            Id = @"MSA.4",
-            Type = @"Field",
-            Position = @"MSA.4",
-            Name = @"Expected Sequence Number",
-            Length = 15,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"optional numeric field used in the sequence number protocol",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (expectedSequenceNumber.field.FieldRepetitions != null && expectedSequenceNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(expectedSequenceNumber.Id));
-            expectedSequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(expectedSequenceNumber, fieldData);
-        }
-
-        return expectedSequenceNumber;
-    } 
-}
-
-internal HL7V22Field delayedAcknowledgementType;
-
-public HL7V22Field DelayedAcknowledgementType
-{
-    get
-    {
-        if (delayedAcknowledgementType != null)
-        {
-            return delayedAcknowledgementType;
-        }
-
-        delayedAcknowledgementType = new HL7V22Field
-        {
-            field = message[@"MSA"][5],
-            Id = @"MSA.5",
-            Type = @"Field",
-            Position = @"MSA.5",
-            Name = @"Delayed Acknowledgement Type",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value",
-            TableId = @"0102",
-            TableName = @"DELAYED ACKNOWLEDGMENT TYPE",
-            Description = @"used only as described above, in Section 2.5.2.  Otherwise this field is not used",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (delayedAcknowledgementType.field.FieldRepetitions != null && delayedAcknowledgementType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(delayedAcknowledgementType.Id));
-            delayedAcknowledgementType.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(delayedAcknowledgementType, fieldData);
-        }
-
-        return delayedAcknowledgementType;
-    } 
-}
-
-internal HL7V22Field errorCondition;
-
-public HL7V22Field ErrorCondition
-{
-    get
-    {
-        if (errorCondition != null)
-        {
-            return errorCondition;
-        }
-
-        errorCondition = new HL7V22Field
+        _errorCondition = new HL7V22Field
         {
             field = message[@"MSA"][6],
-            Id = @"MSA.6",
-            Type = @"Field",
-            Position = @"MSA.6",
-            Name = @"Error Condition",
-            Length = 100,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"CE field allowing the acknowledging system to use a user-defined error code to further specify AR or AE type acknowledgements.  This field is a generalized replacement for MSA-3-text message",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (errorCondition.field.FieldRepetitions != null && errorCondition.field.FieldRepetitions.Count > 0)
+        if (_errorCondition.field.FieldRepetitions != null && _errorCondition.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(errorCondition.Id));
-            errorCondition.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(errorCondition, fieldData);
+            _errorCondition.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_errorCondition, fieldData);
         }
 
-        return errorCondition;
+        return _errorCondition;
     } 
 }
     }

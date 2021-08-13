@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -75,6 +76,7 @@ Note:  Do not use NA if result code status is not corrected (revised) or if a pr
 - Changed patient demographics or
 - Result code data provided by the client on the requisition or specimen manifest that will be entered during order entry (i.e. Previous Biopsy Date, Clinical Information, Source, etc...)"
                         },
+                        
                     };
             } 
         }

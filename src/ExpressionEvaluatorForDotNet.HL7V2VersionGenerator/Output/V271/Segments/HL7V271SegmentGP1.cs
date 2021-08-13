@@ -31,28 +31,40 @@ The GP1 segment is specific to the US and may not be implemented in non-US syste
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentGP1(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _typeOfBillCode;
+
+public HL7V271Field TypeOfBillCode
+{
+    get
+    {
+        if (_typeOfBillCode != null)
+        {
+            return _typeOfBillCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"GP1.1",
+            Type = @"Field",
+            Position = @"GP1.1",
+            Name = @"Type Of Bill Code",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0455",
+            TableName = @"Type of Bill Code",
+            Description = @"This field is the same as UB92 Form Locator 4 ""Type of Bill"". Refer to User-defined Table 0455 - Type of Bill Code for suggested values. Refer to a UB specification for additional information. This field is defined by CMS or other regulatory agencies. It is a code indicating the specific type of bill with digit 1 showing type of facility, digit 2 showing bill classification, and digit 3 showing frequency.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"GP1.1",
-                            Type = @"Field",
-                            Position = @"GP1.1",
-                            Name = @"Type Of Bill Code",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0455",
-                            TableName = @"Type of Bill Code",
-                            Description = @"This field is the same as UB92 Form Locator 4 ""Type of Bill"". Refer to User-defined Table 0455 - Type of Bill Code for suggested values. Refer to a UB specification for additional information. This field is defined by CMS or other regulatory agencies. It is a code indicating the specific type of bill with digit 1 showing type of facility, digit 2 showing bill classification, and digit 3 showing frequency.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP1.1.1",
                             Type = @"Component",
@@ -478,27 +490,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GP1.2",
-                            Type = @"Field",
-                            Position = @"GP1.2",
-                            Name = @"Revenue Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0456",
-                            TableName = @"Revenue code",
-                            Description = @"This field is the same as UB92 Form Locator 42 ""Revenue Code"". Refer to User-defined Table 0456 - Revenue Code for suggested values. This field identifies revenue codes that are not linked to a HCPCS/CPT code. It is used for claiming for non-medical services such as telephone, TV or cafeteria charges, etc. There can be many per visit or claim. This field is defined by CMS or other regulatory agencies.
+                        }
+        }
+
+        _typeOfBillCode = new HL7V271Field
+        {
+            field = message[@"GP1"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_typeOfBillCode.field.FieldRepetitions != null && _typeOfBillCode.field.FieldRepetitions.Count > 0)
+        {
+            _typeOfBillCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_typeOfBillCode, fieldData);
+        }
+
+        return _typeOfBillCode;
+    } 
+}
+
+internal HL7V271Field _revenueCode;
+
+public HL7V271Field RevenueCode
+{
+    get
+    {
+        if (_revenueCode != null)
+        {
+            return _revenueCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"GP1.2",
+            Type = @"Field",
+            Position = @"GP1.2",
+            Name = @"Revenue Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0456",
+            TableName = @"Revenue code",
+            Description = @"This field is the same as UB92 Form Locator 42 ""Revenue Code"". Refer to User-defined Table 0456 - Revenue Code for suggested values. This field identifies revenue codes that are not linked to a HCPCS/CPT code. It is used for claiming for non-medical services such as telephone, TV or cafeteria charges, etc. There can be many per visit or claim. This field is defined by CMS or other regulatory agencies.
 
 There can also be a revenue code linked to a HCPCS/CPT code. These are found in GP2-1 - Revenue Code. Refer to UB92 specifications.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"GP1.2.1",
                             Type = @"Component",
@@ -924,25 +966,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _revenueCode = new HL7V271Field
+        {
+            field = message[@"GP1"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_revenueCode.field.FieldRepetitions != null && _revenueCode.field.FieldRepetitions.Count > 0)
+        {
+            _revenueCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_revenueCode, fieldData);
+        }
+
+        return _revenueCode;
+    } 
+}
+
+internal HL7V271Field _overallClaimDispositionCode;
+
+public HL7V271Field OverallClaimDispositionCode
+{
+    get
+    {
+        if (_overallClaimDispositionCode != null)
+        {
+            return _overallClaimDispositionCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"GP1.3",
+            Type = @"Field",
+            Position = @"GP1.3",
+            Name = @"Overall Claim Disposition Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0457",
+            TableName = @"Overall Claim Disposition Code",
+            Description = @"This field identifies the final status of the claim. The codes listed as examples are not an exhaustive or current list, refer to OPPS Final Rule. Refer to User-defined Table 0457 - Overall Claim Disposition Code for suggested values. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GP1.3",
-                            Type = @"Field",
-                            Position = @"GP1.3",
-                            Name = @"Overall Claim Disposition Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0457",
-                            TableName = @"Overall Claim Disposition Code",
-                            Description = @"This field identifies the final status of the claim. The codes listed as examples are not an exhaustive or current list, refer to OPPS Final Rule. Refer to User-defined Table 0457 - Overall Claim Disposition Code for suggested values. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GP1.3.1",
                             Type = @"Component",
@@ -1368,25 +1440,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _overallClaimDispositionCode = new HL7V271Field
+        {
+            field = message[@"GP1"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_overallClaimDispositionCode.field.FieldRepetitions != null && _overallClaimDispositionCode.field.FieldRepetitions.Count > 0)
+        {
+            _overallClaimDispositionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_overallClaimDispositionCode, fieldData);
+        }
+
+        return _overallClaimDispositionCode;
+    } 
+}
+
+internal HL7V271Field _oceEditsPerVisitCode;
+
+public HL7V271Field OceEditsPerVisitCode
+{
+    get
+    {
+        if (_oceEditsPerVisitCode != null)
+        {
+            return _oceEditsPerVisitCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"GP1.4",
+            Type = @"Field",
+            Position = @"GP1.4",
+            Name = @"Oce Edits Per Visit Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0458",
+            TableName = @"OCE Edit Code",
+            Description = @"This field contains the edits that result from processing the HCPCS/CPT procedures for a record after evaluating all the codes, revenue codes, and modifiers. The codes listed as examples are not an exhaustive or current list, refer to OPPS Final Rule. OCE (Outpatient Code Editor) edits also exist at the pre-procedure level. Refer to User-defined Table 0458 - OCE Edit Code for suggested values. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GP1.4",
-                            Type = @"Field",
-                            Position = @"GP1.4",
-                            Name = @"Oce Edits Per Visit Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0458",
-                            TableName = @"OCE Edit Code",
-                            Description = @"This field contains the edits that result from processing the HCPCS/CPT procedures for a record after evaluating all the codes, revenue codes, and modifiers. The codes listed as examples are not an exhaustive or current list, refer to OPPS Final Rule. OCE (Outpatient Code Editor) edits also exist at the pre-procedure level. Refer to User-defined Table 0458 - OCE Edit Code for suggested values. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GP1.4.1",
                             Type = @"Component",
@@ -1812,25 +1914,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _oceEditsPerVisitCode = new HL7V271Field
+        {
+            field = message[@"GP1"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_oceEditsPerVisitCode.field.FieldRepetitions != null && _oceEditsPerVisitCode.field.FieldRepetitions.Count > 0)
+        {
+            _oceEditsPerVisitCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_oceEditsPerVisitCode, fieldData);
+        }
+
+        return _oceEditsPerVisitCode;
+    } 
+}
+
+internal HL7V271Field _outlierCost;
+
+public HL7V271Field OutlierCost
+{
+    get
+    {
+        if (_outlierCost != null)
+        {
+            return _outlierCost;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"GP1.5",
+            Type = @"Field",
+            Position = @"GP1.5",
+            Name = @"Outlier Cost",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the amount that exceeds the outlier limitation as defined by APC regulations. This field is analogous to DRG-7 - Outlier Cost; however, the definition in this field note supersedes the DRG-7 definition.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GP1.5",
-                            Type = @"Field",
-                            Position = @"GP1.5",
-                            Name = @"Outlier Cost",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the amount that exceeds the outlier limitation as defined by APC regulations. This field is analogous to DRG-7 - Outlier Cost; however, the definition in this field note supersedes the DRG-7 definition.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GP1.5.1",
                             Type = @"Component",
@@ -2405,221 +2537,23 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentGP1(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field typeOfBillCode;
-
-public HL7V271Field TypeOfBillCode
-{
-    get
-    {
-        if (typeOfBillCode != null)
-        {
-            return typeOfBillCode;
-        }
-
-        typeOfBillCode = new HL7V271Field
-        {
-            field = message[@"GP1"][1],
-            Id = @"GP1.1",
-            Type = @"Field",
-            Position = @"GP1.1",
-            Name = @"Type Of Bill Code",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0455",
-            TableName = @"Type of Bill Code",
-            Description = @"This field is the same as UB92 Form Locator 4 ""Type of Bill"". Refer to User-defined Table 0455 - Type of Bill Code for suggested values. Refer to a UB specification for additional information. This field is defined by CMS or other regulatory agencies. It is a code indicating the specific type of bill with digit 1 showing type of facility, digit 2 showing bill classification, and digit 3 showing frequency.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (typeOfBillCode.field.FieldRepetitions != null && typeOfBillCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(typeOfBillCode.Id));
-            typeOfBillCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(typeOfBillCode, fieldData);
-        }
-
-        return typeOfBillCode;
-    } 
-}
-
-internal HL7V271Field revenueCode;
-
-public HL7V271Field RevenueCode
-{
-    get
-    {
-        if (revenueCode != null)
-        {
-            return revenueCode;
-        }
-
-        revenueCode = new HL7V271Field
-        {
-            field = message[@"GP1"][2],
-            Id = @"GP1.2",
-            Type = @"Field",
-            Position = @"GP1.2",
-            Name = @"Revenue Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0456",
-            TableName = @"Revenue code",
-            Description = @"This field is the same as UB92 Form Locator 42 ""Revenue Code"". Refer to User-defined Table 0456 - Revenue Code for suggested values. This field identifies revenue codes that are not linked to a HCPCS/CPT code. It is used for claiming for non-medical services such as telephone, TV or cafeteria charges, etc. There can be many per visit or claim. This field is defined by CMS or other regulatory agencies.
-
-There can also be a revenue code linked to a HCPCS/CPT code. These are found in GP2-1 - Revenue Code. Refer to UB92 specifications.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (revenueCode.field.FieldRepetitions != null && revenueCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(revenueCode.Id));
-            revenueCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(revenueCode, fieldData);
-        }
-
-        return revenueCode;
-    } 
-}
-
-internal HL7V271Field overallClaimDispositionCode;
-
-public HL7V271Field OverallClaimDispositionCode
-{
-    get
-    {
-        if (overallClaimDispositionCode != null)
-        {
-            return overallClaimDispositionCode;
-        }
-
-        overallClaimDispositionCode = new HL7V271Field
-        {
-            field = message[@"GP1"][3],
-            Id = @"GP1.3",
-            Type = @"Field",
-            Position = @"GP1.3",
-            Name = @"Overall Claim Disposition Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0457",
-            TableName = @"Overall Claim Disposition Code",
-            Description = @"This field identifies the final status of the claim. The codes listed as examples are not an exhaustive or current list, refer to OPPS Final Rule. Refer to User-defined Table 0457 - Overall Claim Disposition Code for suggested values. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (overallClaimDispositionCode.field.FieldRepetitions != null && overallClaimDispositionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(overallClaimDispositionCode.Id));
-            overallClaimDispositionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(overallClaimDispositionCode, fieldData);
-        }
-
-        return overallClaimDispositionCode;
-    } 
-}
-
-internal HL7V271Field oceEditsPerVisitCode;
-
-public HL7V271Field OceEditsPerVisitCode
-{
-    get
-    {
-        if (oceEditsPerVisitCode != null)
-        {
-            return oceEditsPerVisitCode;
-        }
-
-        oceEditsPerVisitCode = new HL7V271Field
-        {
-            field = message[@"GP1"][4],
-            Id = @"GP1.4",
-            Type = @"Field",
-            Position = @"GP1.4",
-            Name = @"Oce Edits Per Visit Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0458",
-            TableName = @"OCE Edit Code",
-            Description = @"This field contains the edits that result from processing the HCPCS/CPT procedures for a record after evaluating all the codes, revenue codes, and modifiers. The codes listed as examples are not an exhaustive or current list, refer to OPPS Final Rule. OCE (Outpatient Code Editor) edits also exist at the pre-procedure level. Refer to User-defined Table 0458 - OCE Edit Code for suggested values. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (oceEditsPerVisitCode.field.FieldRepetitions != null && oceEditsPerVisitCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(oceEditsPerVisitCode.Id));
-            oceEditsPerVisitCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(oceEditsPerVisitCode, fieldData);
-        }
-
-        return oceEditsPerVisitCode;
-    } 
-}
-
-internal HL7V271Field outlierCost;
-
-public HL7V271Field OutlierCost
-{
-    get
-    {
-        if (outlierCost != null)
-        {
-            return outlierCost;
-        }
-
-        outlierCost = new HL7V271Field
+        _outlierCost = new HL7V271Field
         {
             field = message[@"GP1"][5],
-            Id = @"GP1.5",
-            Type = @"Field",
-            Position = @"GP1.5",
-            Name = @"Outlier Cost",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the amount that exceeds the outlier limitation as defined by APC regulations. This field is analogous to DRG-7 - Outlier Cost; however, the definition in this field note supersedes the DRG-7 definition.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (outlierCost.field.FieldRepetitions != null && outlierCost.field.FieldRepetitions.Count > 0)
+        if (_outlierCost.field.FieldRepetitions != null && _outlierCost.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(outlierCost.Id));
-            outlierCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(outlierCost, fieldData);
+            _outlierCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_outlierCost, fieldData);
         }
 
-        return outlierCost;
+        return _outlierCost;
     } 
 }
     }

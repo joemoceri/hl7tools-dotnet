@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentITM(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _itemIdentifier;
+
+public HL7V26Field ItemIdentifier
+{
+    get
+    {
+        if (_itemIdentifier != null)
+        {
+            return _itemIdentifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.1",
+            Type = @"Field",
+            Position = @"ITM.1",
+            Name = @"Item Identifier",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The Item Identifier is a unique code assigned to the material item by the Item Inventory Master catalog software application to identify the item.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ITM.1",
-                            Type = @"Field",
-                            Position = @"ITM.1",
-                            Name = @"Item Identifier",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Item Identifier is a unique code assigned to the material item by the Item Inventory Master catalog software application to identify the item.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ITM.1.1",
                             Type = @"Component",
@@ -120,43 +132,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _itemIdentifier = new HL7V26Field
+        {
+            field = message[@"ITM"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_itemIdentifier.field.FieldRepetitions != null && _itemIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _itemIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_itemIdentifier, fieldData);
+        }
+
+        return _itemIdentifier;
+    } 
+}
+
+internal HL7V26Field _itemDescription;
+
+public HL7V26Field ItemDescription
+{
+    get
+    {
+        if (_itemDescription != null)
+        {
+            return _itemDescription;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.2",
+            Type = @"Field",
+            Position = @"ITM.2",
+            Name = @"Item Description",
+            Length = 999,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The Item Description is a description of the material item identified in ITM-1.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _itemDescription = new HL7V26Field
+        {
+            field = message[@"ITM"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_itemDescription.field.FieldRepetitions != null && _itemDescription.field.FieldRepetitions.Count > 0)
+        {
+            _itemDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_itemDescription, fieldData);
+        }
+
+        return _itemDescription;
+    } 
+}
+
+internal HL7V26Field _itemStatus;
+
+public HL7V26Field ItemStatus
+{
+    get
+    {
+        if (_itemStatus != null)
+        {
+            return _itemStatus;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.3",
+            Type = @"Field",
+            Position = @"ITM.3",
+            Name = @"Item Status",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0776",
+            TableName = @"Item Status",
+            Description = @"The status (useful for reporting and item usage purposes) that applies to an item. Refer to User-defined Table 0776 - Item Status for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.2",
-                            Type = @"Field",
-                            Position = @"ITM.2",
-                            Name = @"Item Description",
-                            Length = 999,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Item Description is a description of the material item identified in ITM-1.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ITM.3",
-                            Type = @"Field",
-                            Position = @"ITM.3",
-                            Name = @"Item Status",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0776",
-                            TableName = @"Item Status",
-                            Description = @"The status (useful for reporting and item usage purposes) that applies to an item. Refer to User-defined Table 0776 - Item Status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.3.1",
                             Type = @"Component",
@@ -316,25 +385,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _itemStatus = new HL7V26Field
+        {
+            field = message[@"ITM"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_itemStatus.field.FieldRepetitions != null && _itemStatus.field.FieldRepetitions.Count > 0)
+        {
+            _itemStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_itemStatus, fieldData);
+        }
+
+        return _itemStatus;
+    } 
+}
+
+internal HL7V26Field _itemType;
+
+public HL7V26Field ItemType
+{
+    get
+    {
+        if (_itemType != null)
+        {
+            return _itemType;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.4",
+            Type = @"Field",
+            Position = @"ITM.4",
+            Name = @"Item Type",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0778",
+            TableName = @"Item Type",
+            Description = @"The Item Type is a classification of material items into like groups as defined and utilized within an Operating Room setting for charting procedures. An Item Type is a higher level of classification than an Item Category as described in ITM-4.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.4",
-                            Type = @"Field",
-                            Position = @"ITM.4",
-                            Name = @"Item Type",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0778",
-                            TableName = @"Item Type",
-                            Description = @"The Item Type is a classification of material items into like groups as defined and utilized within an Operating Room setting for charting procedures. An Item Type is a higher level of classification than an Item Category as described in ITM-4.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.4.1",
                             Type = @"Component",
@@ -494,25 +593,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _itemType = new HL7V26Field
+        {
+            field = message[@"ITM"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_itemType.field.FieldRepetitions != null && _itemType.field.FieldRepetitions.Count > 0)
+        {
+            _itemType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_itemType, fieldData);
+        }
+
+        return _itemType;
+    } 
+}
+
+internal HL7V26Field _itemCategory;
+
+public HL7V26Field ItemCategory
+{
+    get
+    {
+        if (_itemCategory != null)
+        {
+            return _itemCategory;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.5",
+            Type = @"Field",
+            Position = @"ITM.5",
+            Name = @"Item Category",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"The Item Category is a classification of material items into like groups for the purpose of categorizing purchases and reporting within a materials management setting. The Item Category classification is a lower level grouping of material items than what is described in ITM-3 as Item Type. UNSPSC is the recommended coding system.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.5",
-                            Type = @"Field",
-                            Position = @"ITM.5",
-                            Name = @"Item Category",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Item Category is a classification of material items into like groups for the purpose of categorizing purchases and reporting within a materials management setting. The Item Category classification is a lower level grouping of material items than what is described in ITM-3 as Item Type. UNSPSC is the recommended coding system.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.5.1",
                             Type = @"Component",
@@ -672,25 +801,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _itemCategory = new HL7V26Field
+        {
+            field = message[@"ITM"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_itemCategory.field.FieldRepetitions != null && _itemCategory.field.FieldRepetitions.Count > 0)
+        {
+            _itemCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_itemCategory, fieldData);
+        }
+
+        return _itemCategory;
+    } 
+}
+
+internal HL7V26Field _subjecttoExpirationIndicator;
+
+public HL7V26Field SubjecttoExpirationIndicator
+{
+    get
+    {
+        if (_subjecttoExpirationIndicator != null)
+        {
+            return _subjecttoExpirationIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.6",
+            Type = @"Field",
+            Position = @"ITM.6",
+            Name = @"Subject to Expiration Indicator",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded yes/no indicator",
+            Description = @"This field contains an indicator used as a reference to specify whether the item is subject to containing an expiration date. Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.6",
-                            Type = @"Field",
-                            Position = @"ITM.6",
-                            Name = @"Subject to Expiration Indicator",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded yes/no indicator",
-                            Description = @"This field contains an indicator used as a reference to specify whether the item is subject to containing an expiration date. Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.6.1",
                             Type = @"Component",
@@ -850,25 +1009,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _subjecttoExpirationIndicator = new HL7V26Field
+        {
+            field = message[@"ITM"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_subjecttoExpirationIndicator.field.FieldRepetitions != null && _subjecttoExpirationIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _subjecttoExpirationIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_subjecttoExpirationIndicator, fieldData);
+        }
+
+        return _subjecttoExpirationIndicator;
+    } 
+}
+
+internal HL7V26Field _manufacturerIdentifier;
+
+public HL7V26Field ManufacturerIdentifier
+{
+    get
+    {
+        if (_manufacturerIdentifier != null)
+        {
+            return _manufacturerIdentifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.7",
+            Type = @"Field",
+            Position = @"ITM.7",
+            Name = @"Manufacturer Identifier",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the identifying code of the manufacturer of the item.  ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.7",
-                            Type = @"Field",
-                            Position = @"ITM.7",
-                            Name = @"Manufacturer Identifier",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the identifying code of the manufacturer of the item.  ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.7.1",
                             Type = @"Component",
@@ -938,61 +1127,145 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _manufacturerIdentifier = new HL7V26Field
+        {
+            field = message[@"ITM"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_manufacturerIdentifier.field.FieldRepetitions != null && _manufacturerIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _manufacturerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_manufacturerIdentifier, fieldData);
+        }
+
+        return _manufacturerIdentifier;
+    } 
+}
+
+internal HL7V26Field _manufacturerName;
+
+public HL7V26Field ManufacturerName
+{
+    get
+    {
+        if (_manufacturerName != null)
+        {
+            return _manufacturerName;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.8",
+            Type = @"Field",
+            Position = @"ITM.8",
+            Name = @"Manufacturer Name",
+            Length = 999,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the name of the manufacturer of the manufacturer identified in ITM-7.  ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _manufacturerName = new HL7V26Field
+        {
+            field = message[@"ITM"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_manufacturerName.field.FieldRepetitions != null && _manufacturerName.field.FieldRepetitions.Count > 0)
+        {
+            _manufacturerName.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_manufacturerName, fieldData);
+        }
+
+        return _manufacturerName;
+    } 
+}
+
+internal HL7V26Field _manufacturerCatalogNumber;
+
+public HL7V26Field ManufacturerCatalogNumber
+{
+    get
+    {
+        if (_manufacturerCatalogNumber != null)
+        {
+            return _manufacturerCatalogNumber;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.9",
+            Type = @"Field",
+            Position = @"ITM.9",
+            Name = @"Manufacturer Catalog Number",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the catalog assigned to the item by the manufacturer.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _manufacturerCatalogNumber = new HL7V26Field
+        {
+            field = message[@"ITM"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_manufacturerCatalogNumber.field.FieldRepetitions != null && _manufacturerCatalogNumber.field.FieldRepetitions.Count > 0)
+        {
+            _manufacturerCatalogNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_manufacturerCatalogNumber, fieldData);
+        }
+
+        return _manufacturerCatalogNumber;
+    } 
+}
+
+internal HL7V26Field _manufacturerLabelerIdentificationCode;
+
+public HL7V26Field ManufacturerLabelerIdentificationCode
+{
+    get
+    {
+        if (_manufacturerLabelerIdentificationCode != null)
+        {
+            return _manufacturerLabelerIdentificationCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.10",
+            Type = @"Field",
+            Position = @"ITM.10",
+            Name = @"Manufacturer Labeler Identification Code",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the Labeler Identification Code (LIC) number assigned to the manufacturer that represents the manufacturer of the item.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.8",
-                            Type = @"Field",
-                            Position = @"ITM.8",
-                            Name = @"Manufacturer Name",
-                            Length = 999,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the name of the manufacturer of the manufacturer identified in ITM-7.  ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ITM.9",
-                            Type = @"Field",
-                            Position = @"ITM.9",
-                            Name = @"Manufacturer Catalog Number",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the catalog assigned to the item by the manufacturer.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ITM.10",
-                            Type = @"Field",
-                            Position = @"ITM.10",
-                            Name = @"Manufacturer Labeler Identification Code",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the Labeler Identification Code (LIC) number assigned to the manufacturer that represents the manufacturer of the item.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.10.1",
                             Type = @"Component",
@@ -1152,25 +1425,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _manufacturerLabelerIdentificationCode = new HL7V26Field
+        {
+            field = message[@"ITM"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_manufacturerLabelerIdentificationCode.field.FieldRepetitions != null && _manufacturerLabelerIdentificationCode.field.FieldRepetitions.Count > 0)
+        {
+            _manufacturerLabelerIdentificationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_manufacturerLabelerIdentificationCode, fieldData);
+        }
+
+        return _manufacturerLabelerIdentificationCode;
+    } 
+}
+
+internal HL7V26Field _patientChargeableIndicator;
+
+public HL7V26Field PatientChargeableIndicator
+{
+    get
+    {
+        if (_patientChargeableIndicator != null)
+        {
+            return _patientChargeableIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.11",
+            Type = @"Field",
+            Position = @"ITM.11",
+            Name = @"Patient Chargeable Indicator",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded yes/no indicator",
+            Description = @"This field indicates whether the item is patient chargeable.  Refer to HL7 Table 0532 – Expanded Yes/no Indicator table in Chapter 2 for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.11",
-                            Type = @"Field",
-                            Position = @"ITM.11",
-                            Name = @"Patient Chargeable Indicator",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded yes/no indicator",
-                            Description = @"This field indicates whether the item is patient chargeable.  Refer to HL7 Table 0532 – Expanded Yes/no Indicator table in Chapter 2 for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.11.1",
                             Type = @"Component",
@@ -1330,27 +1633,57 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ITM.12",
-                            Type = @"Field",
-                            Position = @"ITM.12",
-                            Name = @"Transaction Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0132",
-                            TableName = @"Transaction Code",
-                            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying a patient billing code specific for a supply item.  In the context of this message, this is a code that is a cross-reference to the Item Code/Id.  This field would be used to uniquely identify a procedure, supply item, or test for charges; or to identify the payment medium for payments. It can reference, for example, a CBC (a lab charge), or an Elastic Bandage 3'' (supply charge), or Chest 1 View (radiology charge).   For instance the code would be 300-0001, with a description of CBC.
+                        }
+        }
+
+        _patientChargeableIndicator = new HL7V26Field
+        {
+            field = message[@"ITM"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientChargeableIndicator.field.FieldRepetitions != null && _patientChargeableIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _patientChargeableIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_patientChargeableIndicator, fieldData);
+        }
+
+        return _patientChargeableIndicator;
+    } 
+}
+
+internal HL7V26Field _transactionCode;
+
+public HL7V26Field TransactionCode
+{
+    get
+    {
+        if (_transactionCode != null)
+        {
+            return _transactionCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.12",
+            Type = @"Field",
+            Position = @"ITM.12",
+            Name = @"Transaction Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0132",
+            TableName = @"Transaction Code",
+            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying a patient billing code specific for a supply item.  In the context of this message, this is a code that is a cross-reference to the Item Code/Id.  This field would be used to uniquely identify a procedure, supply item, or test for charges; or to identify the payment medium for payments. It can reference, for example, a CBC (a lab charge), or an Elastic Bandage 3'' (supply charge), or Chest 1 View (radiology charge).   For instance the code would be 300-0001, with a description of CBC.
 
 Refer to User-defined Table 0132 - Transaction Code for suggested values.  See Chapter 7 for a discussion of the universal service ID for charges.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.12.1",
                             Type = @"Component",
@@ -1510,25 +1843,55 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transactionCode = new HL7V26Field
+        {
+            field = message[@"ITM"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionCode.field.FieldRepetitions != null && _transactionCode.field.FieldRepetitions.Count > 0)
+        {
+            _transactionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_transactionCode, fieldData);
+        }
+
+        return _transactionCode;
+    } 
+}
+
+internal HL7V26Field _transactionamountunit;
+
+public HL7V26Field Transactionamountunit
+{
+    get
+    {
+        if (_transactionamountunit != null)
+        {
+            return _transactionamountunit;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.13",
+            Type = @"Field",
+            Position = @"ITM.13",
+            Name = @"Transaction amount - unit",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Unit price of transaction. Price of a single item. This field contains the dollar amount charged to patients for this item.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.13",
-                            Type = @"Field",
-                            Position = @"ITM.13",
-                            Name = @"Transaction amount - unit",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unit price of transaction. Price of a single item. This field contains the dollar amount charged to patients for this item.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.13.1",
                             Type = @"Component",
@@ -1828,25 +2191,55 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _transactionamountunit = new HL7V26Field
+        {
+            field = message[@"ITM"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_transactionamountunit.field.FieldRepetitions != null && _transactionamountunit.field.FieldRepetitions.Count > 0)
+        {
+            _transactionamountunit.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_transactionamountunit, fieldData);
+        }
+
+        return _transactionamountunit;
+    } 
+}
+
+internal HL7V26Field _stockedItemIndicator;
+
+public HL7V26Field StockedItemIndicator
+{
+    get
+    {
+        if (_stockedItemIndicator != null)
+        {
+            return _stockedItemIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.14",
+            Type = @"Field",
+            Position = @"ITM.14",
+            Name = @"Stocked Item Indicator",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded yes/no indicator",
+            Description = @"This field contains an indicator signifying whether the item is stocked in any inventory location in the healthcare organization. Refer to HL7 Table 0532 – Expanded Yes/no Indicator table in Chapter 2 for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.14",
-                            Type = @"Field",
-                            Position = @"ITM.14",
-                            Name = @"Stocked Item Indicator",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded yes/no indicator",
-                            Description = @"This field contains an indicator signifying whether the item is stocked in any inventory location in the healthcare organization. Refer to HL7 Table 0532 – Expanded Yes/no Indicator table in Chapter 2 for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.14.1",
                             Type = @"Component",
@@ -2006,25 +2399,55 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _stockedItemIndicator = new HL7V26Field
+        {
+            field = message[@"ITM"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_stockedItemIndicator.field.FieldRepetitions != null && _stockedItemIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _stockedItemIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_stockedItemIndicator, fieldData);
+        }
+
+        return _stockedItemIndicator;
+    } 
+}
+
+internal HL7V26Field _supplyRiskCodes;
+
+public HL7V26Field SupplyRiskCodes
+{
+    get
+    {
+        if (_supplyRiskCodes != null)
+        {
+            return _supplyRiskCodes;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.15",
+            Type = @"Field",
+            Position = @"ITM.15",
+            Name = @"Supply Risk Codes",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0871",
+            TableName = @"Supply Risk Codes",
+            Description = @"This field contains a code that identifies any known or suspected hazard associated with this material item.  ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.15",
-                            Type = @"Field",
-                            Position = @"ITM.15",
-                            Name = @"Supply Risk Codes",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0871",
-                            TableName = @"Supply Risk Codes",
-                            Description = @"This field contains a code that identifies any known or suspected hazard associated with this material item.  ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.15.1",
                             Type = @"Component",
@@ -2184,27 +2607,57 @@ Refer to User-defined Table 0132 - Transaction Code for suggested values.  See C
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ITM.16",
-                            Type = @"Field",
-                            Position = @"ITM.16",
-                            Name = @"Approving Regulatory Agency",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-                            TableId = @"0790",
-                            TableName = @"Approving Regulatory Agency",
-                            Description = @"This field contains a code indicating the regulatory agency the item has been approved by, such as the FDA or AMA.
+                        }
+        }
+
+        _supplyRiskCodes = new HL7V26Field
+        {
+            field = message[@"ITM"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_supplyRiskCodes.field.FieldRepetitions != null && _supplyRiskCodes.field.FieldRepetitions.Count > 0)
+        {
+            _supplyRiskCodes.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_supplyRiskCodes, fieldData);
+        }
+
+        return _supplyRiskCodes;
+    } 
+}
+
+internal HL7V26Field _approvingRegulatoryAgency;
+
+public HL7V26Field ApprovingRegulatoryAgency
+{
+    get
+    {
+        if (_approvingRegulatoryAgency != null)
+        {
+            return _approvingRegulatoryAgency;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.16",
+            Type = @"Field",
+            Position = @"ITM.16",
+            Name = @"Approving Regulatory Agency",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
+            TableId = @"0790",
+            TableName = @"Approving Regulatory Agency",
+            Description = @"This field contains a code indicating the regulatory agency the item has been approved by, such as the FDA or AMA.
 
 Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested values.  ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.16.1",
                             Type = @"Component",
@@ -2486,25 +2939,55 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _approvingRegulatoryAgency = new HL7V26Field
+        {
+            field = message[@"ITM"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_approvingRegulatoryAgency.field.FieldRepetitions != null && _approvingRegulatoryAgency.field.FieldRepetitions.Count > 0)
+        {
+            _approvingRegulatoryAgency.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_approvingRegulatoryAgency, fieldData);
+        }
+
+        return _approvingRegulatoryAgency;
+    } 
+}
+
+internal HL7V26Field _latexIndicator;
+
+public HL7V26Field LatexIndicator
+{
+    get
+    {
+        if (_latexIndicator != null)
+        {
+            return _latexIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.17",
+            Type = @"Field",
+            Position = @"ITM.17",
+            Name = @"Latex Indicator",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded yes/no indicator",
+            Description = @"This field contains an indicator signifying whether the item is made of or contains latex.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.17",
-                            Type = @"Field",
-                            Position = @"ITM.17",
-                            Name = @"Latex Indicator",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded yes/no indicator",
-                            Description = @"This field contains an indicator signifying whether the item is made of or contains latex.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.17.1",
                             Type = @"Component",
@@ -2664,25 +3147,55 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _latexIndicator = new HL7V26Field
+        {
+            field = message[@"ITM"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_latexIndicator.field.FieldRepetitions != null && _latexIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _latexIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_latexIndicator, fieldData);
+        }
+
+        return _latexIndicator;
+    } 
+}
+
+internal HL7V26Field _rulingAct;
+
+public HL7V26Field RulingAct
+{
+    get
+    {
+        if (_rulingAct != null)
+        {
+            return _rulingAct;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.18",
+            Type = @"Field",
+            Position = @"ITM.18",
+            Name = @"Ruling Act",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0793",
+            TableName = @"Ruling Act",
+            Description = @"This field contains a code indicating an act containing a rule that the item is legally required to be included in notification reporting.  This code is often used for reporting or tracking.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.18",
-                            Type = @"Field",
-                            Position = @"ITM.18",
-                            Name = @"Ruling Act",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0793",
-                            TableName = @"Ruling Act",
-                            Description = @"This field contains a code indicating an act containing a rule that the item is legally required to be included in notification reporting.  This code is often used for reporting or tracking.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.18.1",
                             Type = @"Component",
@@ -2842,61 +3355,145 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _rulingAct = new HL7V26Field
+        {
+            field = message[@"ITM"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rulingAct.field.FieldRepetitions != null && _rulingAct.field.FieldRepetitions.Count > 0)
+        {
+            _rulingAct.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_rulingAct, fieldData);
+        }
+
+        return _rulingAct;
+    } 
+}
+
+internal HL7V26Field _itemNaturalAccountCode;
+
+public HL7V26Field ItemNaturalAccountCode
+{
+    get
+    {
+        if (_itemNaturalAccountCode != null)
+        {
+            return _itemNaturalAccountCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.19",
+            Type = @"Field",
+            Position = @"ITM.19",
+            Name = @"Item Natural Account Code",
+            Length = 30,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0320",
+            TableName = @"Item Natural Account Code",
+            Description = @"This field contains the expense/natural account number from the general ledger chart of accounts associated with the item. Refer to HL7 Table 0320 – Item Natural Account Code in Chapter 4 for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _itemNaturalAccountCode = new HL7V26Field
+        {
+            field = message[@"ITM"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_itemNaturalAccountCode.field.FieldRepetitions != null && _itemNaturalAccountCode.field.FieldRepetitions.Count > 0)
+        {
+            _itemNaturalAccountCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_itemNaturalAccountCode, fieldData);
+        }
+
+        return _itemNaturalAccountCode;
+    } 
+}
+
+internal HL7V26Field _approvedToBuyQuantity;
+
+public HL7V26Field ApprovedToBuyQuantity
+{
+    get
+    {
+        if (_approvedToBuyQuantity != null)
+        {
+            return _approvedToBuyQuantity;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.20",
+            Type = @"Field",
+            Position = @"ITM.20",
+            Name = @"Approved To Buy Quantity",
+            Length = 6,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the quantity of this item that can be purchased within a user-defined time frame (e.g., one year) at the order unit of measure",
+            Sample = @"",
+            Fields = null
+        }
+
+        _approvedToBuyQuantity = new HL7V26Field
+        {
+            field = message[@"ITM"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_approvedToBuyQuantity.field.FieldRepetitions != null && _approvedToBuyQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _approvedToBuyQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_approvedToBuyQuantity, fieldData);
+        }
+
+        return _approvedToBuyQuantity;
+    } 
+}
+
+internal HL7V26Field _approvedToBuyPrice;
+
+public HL7V26Field ApprovedToBuyPrice
+{
+    get
+    {
+        if (_approvedToBuyPrice != null)
+        {
+            return _approvedToBuyPrice;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.21",
+            Type = @"Field",
+            Position = @"ITM.21",
+            Name = @"Approved To Buy Price",
+            Length = 10,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"MO",
+            DataTypeName = @"Money",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the dollar limit of this item that you can purchase within a user-defined time frame (e.g., one year).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.19",
-                            Type = @"Field",
-                            Position = @"ITM.19",
-                            Name = @"Item Natural Account Code",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0320",
-                            TableName = @"Item Natural Account Code",
-                            Description = @"This field contains the expense/natural account number from the general ledger chart of accounts associated with the item. Refer to HL7 Table 0320 – Item Natural Account Code in Chapter 4 for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ITM.20",
-                            Type = @"Field",
-                            Position = @"ITM.20",
-                            Name = @"Approved To Buy Quantity",
-                            Length = 6,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the quantity of this item that can be purchased within a user-defined time frame (e.g., one year) at the order unit of measure",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ITM.21",
-                            Type = @"Field",
-                            Position = @"ITM.21",
-                            Name = @"Approved To Buy Price",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"MO",
-                            DataTypeName = @"Money",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the dollar limit of this item that you can purchase within a user-defined time frame (e.g., one year).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.21.1",
                             Type = @"Component",
@@ -2930,25 +3527,55 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The second component is the denomination in which the quantity is expressed. The values for the denomination component are those specified in ISO-4217. If the denomination is not specified, ""MSH-17-country code"", in section 2.14.9.17, is used to determine the default.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _approvedToBuyPrice = new HL7V26Field
+        {
+            field = message[@"ITM"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_approvedToBuyPrice.field.FieldRepetitions != null && _approvedToBuyPrice.field.FieldRepetitions.Count > 0)
+        {
+            _approvedToBuyPrice.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_approvedToBuyPrice, fieldData);
+        }
+
+        return _approvedToBuyPrice;
+    } 
+}
+
+internal HL7V26Field _taxableItemIndicator;
+
+public HL7V26Field TaxableItemIndicator
+{
+    get
+    {
+        if (_taxableItemIndicator != null)
+        {
+            return _taxableItemIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.22",
+            Type = @"Field",
+            Position = @"ITM.22",
+            Name = @"Taxable Item Indicator",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded yes/no indicator",
+            Description = @"This field contains an indicator signifying whether the item is taxable when purchasing the item or issuing the item to patients.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.22",
-                            Type = @"Field",
-                            Position = @"ITM.22",
-                            Name = @"Taxable Item Indicator",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded yes/no indicator",
-                            Description = @"This field contains an indicator signifying whether the item is taxable when purchasing the item or issuing the item to patients.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.22.1",
                             Type = @"Component",
@@ -3108,25 +3735,55 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _taxableItemIndicator = new HL7V26Field
+        {
+            field = message[@"ITM"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_taxableItemIndicator.field.FieldRepetitions != null && _taxableItemIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _taxableItemIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_taxableItemIndicator, fieldData);
+        }
+
+        return _taxableItemIndicator;
+    } 
+}
+
+internal HL7V26Field _freightChargeIndicator;
+
+public HL7V26Field FreightChargeIndicator
+{
+    get
+    {
+        if (_freightChargeIndicator != null)
+        {
+            return _freightChargeIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.23",
+            Type = @"Field",
+            Position = @"ITM.23",
+            Name = @"Freight Charge Indicator",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded yes/no indicator",
+            Description = @"This field contains an indicator signifying whether freight is an allowable charge to be allocated to the line of an invoice containing the item.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.23",
-                            Type = @"Field",
-                            Position = @"ITM.23",
-                            Name = @"Freight Charge Indicator",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded yes/no indicator",
-                            Description = @"This field contains an indicator signifying whether freight is an allowable charge to be allocated to the line of an invoice containing the item.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.23.1",
                             Type = @"Component",
@@ -3286,25 +3943,55 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _freightChargeIndicator = new HL7V26Field
+        {
+            field = message[@"ITM"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_freightChargeIndicator.field.FieldRepetitions != null && _freightChargeIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _freightChargeIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_freightChargeIndicator, fieldData);
+        }
+
+        return _freightChargeIndicator;
+    } 
+}
+
+internal HL7V26Field _itemSetIndicator;
+
+public HL7V26Field ItemSetIndicator
+{
+    get
+    {
+        if (_itemSetIndicator != null)
+        {
+            return _itemSetIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.24",
+            Type = @"Field",
+            Position = @"ITM.24",
+            Name = @"Item Set Indicator",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded yes/no indicator",
+            Description = @"This field contains an indicator signifying whether the item is an 'item set' rather than an individual item.  An item set is a set of surgical supplies.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.24",
-                            Type = @"Field",
-                            Position = @"ITM.24",
-                            Name = @"Item Set Indicator",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded yes/no indicator",
-                            Description = @"This field contains an indicator signifying whether the item is an 'item set' rather than an individual item.  An item set is a set of surgical supplies.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.24.1",
                             Type = @"Component",
@@ -3464,25 +4151,55 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _itemSetIndicator = new HL7V26Field
+        {
+            field = message[@"ITM"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_itemSetIndicator.field.FieldRepetitions != null && _itemSetIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _itemSetIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_itemSetIndicator, fieldData);
+        }
+
+        return _itemSetIndicator;
+    } 
+}
+
+internal HL7V26Field _itemSetIdentifier;
+
+public HL7V26Field ItemSetIdentifier
+{
+    get
+    {
+        if (_itemSetIdentifier != null)
+        {
+            return _itemSetIdentifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.25",
+            Type = @"Field",
+            Position = @"ITM.25",
+            Name = @"Item Set Identifier",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The Item Identifier is a unique code assigned to the material item by the Item Inventory Master catalog software application to identify the item.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.25",
-                            Type = @"Field",
-                            Position = @"ITM.25",
-                            Name = @"Item Set Identifier",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Item Identifier is a unique code assigned to the material item by the Item Inventory Master catalog software application to identify the item.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.25.1",
                             Type = @"Component",
@@ -3552,25 +4269,55 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _itemSetIdentifier = new HL7V26Field
+        {
+            field = message[@"ITM"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_itemSetIdentifier.field.FieldRepetitions != null && _itemSetIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _itemSetIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_itemSetIdentifier, fieldData);
+        }
+
+        return _itemSetIdentifier;
+    } 
+}
+
+internal HL7V26Field _trackDepartmentUsageIndicator;
+
+public HL7V26Field TrackDepartmentUsageIndicator
+{
+    get
+    {
+        if (_trackDepartmentUsageIndicator != null)
+        {
+            return _trackDepartmentUsageIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.26",
+            Type = @"Field",
+            Position = @"ITM.26",
+            Name = @"Track Department Usage Indicator",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded yes/no indicator",
+            Description = @"This field contains an indicator signifying whether the usage figures are tracked for this item by department.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.26",
-                            Type = @"Field",
-                            Position = @"ITM.26",
-                            Name = @"Track Department Usage Indicator",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded yes/no indicator",
-                            Description = @"This field contains an indicator signifying whether the usage figures are tracked for this item by department.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.26.1",
                             Type = @"Component",
@@ -3730,25 +4477,55 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _trackDepartmentUsageIndicator = new HL7V26Field
+        {
+            field = message[@"ITM"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_trackDepartmentUsageIndicator.field.FieldRepetitions != null && _trackDepartmentUsageIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _trackDepartmentUsageIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_trackDepartmentUsageIndicator, fieldData);
+        }
+
+        return _trackDepartmentUsageIndicator;
+    } 
+}
+
+internal HL7V26Field _procedureCode;
+
+public HL7V26Field ProcedureCode
+{
+    get
+    {
+        if (_procedureCode != null)
+        {
+            return _procedureCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.27",
+            Type = @"Field",
+            Position = @"ITM.27",
+            Name = @"Procedure Code",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = @"0088",
+            TableName = @"Procedure Code",
+            Description = @"This field contains a unique identifier assigned to the service item, if any, associated with the charge.  In the United States this is often the HCPCS code.  Refer to Externally defined Table 0088 - Procedure code for suggested values.  This field is a CNE data type for compatibility with clinical and ancillary systems.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.27",
-                            Type = @"Field",
-                            Position = @"ITM.27",
-                            Name = @"Procedure Code",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = @"0088",
-                            TableName = @"Procedure Code",
-                            Description = @"This field contains a unique identifier assigned to the service item, if any, associated with the charge.  In the United States this is often the HCPCS code.  Refer to Externally defined Table 0088 - Procedure code for suggested values.  This field is a CNE data type for compatibility with clinical and ancillary systems.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.27.1",
                             Type = @"Component",
@@ -3908,27 +4685,57 @@ Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested v
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ITM.28",
-                            Type = @"Field",
-                            Position = @"ITM.28",
-                            Name = @"Procedure Code Modifier",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = @"0340",
-                            TableName = @"Procedure Code Modifier",
-                            Description = @"This field contains the procedure code modifier to the procedure code reported in ITM-27 – Procedure Cod, when applicable.  Procedure code modifiers are defined by USA regulatory agencies such as CMS and the AMA.  Multiple modifiers may be reported.  Refer to Externally defined Table 0340 - Procedure code modifier for suggested values.  
+                        }
+        }
+
+        _procedureCode = new HL7V26Field
+        {
+            field = message[@"ITM"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedureCode.field.FieldRepetitions != null && _procedureCode.field.FieldRepetitions.Count > 0)
+        {
+            _procedureCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_procedureCode, fieldData);
+        }
+
+        return _procedureCode;
+    } 
+}
+
+internal HL7V26Field _procedureCodeModifier;
+
+public HL7V26Field ProcedureCodeModifier
+{
+    get
+    {
+        if (_procedureCodeModifier != null)
+        {
+            return _procedureCodeModifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.28",
+            Type = @"Field",
+            Position = @"ITM.28",
+            Name = @"Procedure Code Modifier",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = @"0340",
+            TableName = @"Procedure Code Modifier",
+            Description = @"This field contains the procedure code modifier to the procedure code reported in ITM-27 – Procedure Cod, when applicable.  Procedure code modifiers are defined by USA regulatory agencies such as CMS and the AMA.  Multiple modifiers may be reported.  Refer to Externally defined Table 0340 - Procedure code modifier for suggested values.  
 
 As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.28.1",
                             Type = @"Component",
@@ -4088,25 +4895,55 @@ As of v2.6, the known applicable external coding systems include those in the ta
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _procedureCodeModifier = new HL7V26Field
+        {
+            field = message[@"ITM"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedureCodeModifier.field.FieldRepetitions != null && _procedureCodeModifier.field.FieldRepetitions.Count > 0)
+        {
+            _procedureCodeModifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_procedureCodeModifier, fieldData);
+        }
+
+        return _procedureCodeModifier;
+    } 
+}
+
+internal HL7V26Field _specialHandlingCode;
+
+public HL7V26Field SpecialHandlingCode
+{
+    get
+    {
+        if (_specialHandlingCode != null)
+        {
+            return _specialHandlingCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"ITM.29",
+            Type = @"Field",
+            Position = @"ITM.29",
+            Name = @"Special Handling Code",
+            Length = 705,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0376",
+            TableName = @"Special Handling Code",
+            Description = @"This field contains a special handling code to describe special handling considerations for this item.  Refer to User-defined Table 0376 – Special Handling Code in Chapter 7 for suggested values.  The value set can be extended with user specific values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ITM.29",
-                            Type = @"Field",
-                            Position = @"ITM.29",
-                            Name = @"Special Handling Code",
-                            Length = 705,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0376",
-                            TableName = @"Special Handling Code",
-                            Description = @"This field contains a special handling code to describe special handling considerations for this item.  Refer to User-defined Table 0376 – Special Handling Code in Chapter 7 for suggested values.  The value set can be extended with user specific values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ITM.29.1",
                             Type = @"Component",
@@ -4266,1209 +5103,23 @@ As of v2.6, the known applicable external coding systems include those in the ta
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentITM(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field itemIdentifier;
-
-public HL7V26Field ItemIdentifier
-{
-    get
-    {
-        if (itemIdentifier != null)
-        {
-            return itemIdentifier;
-        }
-
-        itemIdentifier = new HL7V26Field
-        {
-            field = message[@"ITM"][1],
-            Id = @"ITM.1",
-            Type = @"Field",
-            Position = @"ITM.1",
-            Name = @"Item Identifier",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The Item Identifier is a unique code assigned to the material item by the Item Inventory Master catalog software application to identify the item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (itemIdentifier.field.FieldRepetitions != null && itemIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(itemIdentifier.Id));
-            itemIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(itemIdentifier, fieldData);
-        }
-
-        return itemIdentifier;
-    } 
-}
-
-internal HL7V26Field itemDescription;
-
-public HL7V26Field ItemDescription
-{
-    get
-    {
-        if (itemDescription != null)
-        {
-            return itemDescription;
-        }
-
-        itemDescription = new HL7V26Field
-        {
-            field = message[@"ITM"][2],
-            Id = @"ITM.2",
-            Type = @"Field",
-            Position = @"ITM.2",
-            Name = @"Item Description",
-            Length = 999,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The Item Description is a description of the material item identified in ITM-1.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (itemDescription.field.FieldRepetitions != null && itemDescription.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(itemDescription.Id));
-            itemDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(itemDescription, fieldData);
-        }
-
-        return itemDescription;
-    } 
-}
-
-internal HL7V26Field itemStatus;
-
-public HL7V26Field ItemStatus
-{
-    get
-    {
-        if (itemStatus != null)
-        {
-            return itemStatus;
-        }
-
-        itemStatus = new HL7V26Field
-        {
-            field = message[@"ITM"][3],
-            Id = @"ITM.3",
-            Type = @"Field",
-            Position = @"ITM.3",
-            Name = @"Item Status",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0776",
-            TableName = @"Item Status",
-            Description = @"The status (useful for reporting and item usage purposes) that applies to an item. Refer to User-defined Table 0776 - Item Status for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (itemStatus.field.FieldRepetitions != null && itemStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(itemStatus.Id));
-            itemStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(itemStatus, fieldData);
-        }
-
-        return itemStatus;
-    } 
-}
-
-internal HL7V26Field itemType;
-
-public HL7V26Field ItemType
-{
-    get
-    {
-        if (itemType != null)
-        {
-            return itemType;
-        }
-
-        itemType = new HL7V26Field
-        {
-            field = message[@"ITM"][4],
-            Id = @"ITM.4",
-            Type = @"Field",
-            Position = @"ITM.4",
-            Name = @"Item Type",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0778",
-            TableName = @"Item Type",
-            Description = @"The Item Type is a classification of material items into like groups as defined and utilized within an Operating Room setting for charting procedures. An Item Type is a higher level of classification than an Item Category as described in ITM-4.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (itemType.field.FieldRepetitions != null && itemType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(itemType.Id));
-            itemType.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(itemType, fieldData);
-        }
-
-        return itemType;
-    } 
-}
-
-internal HL7V26Field itemCategory;
-
-public HL7V26Field ItemCategory
-{
-    get
-    {
-        if (itemCategory != null)
-        {
-            return itemCategory;
-        }
-
-        itemCategory = new HL7V26Field
-        {
-            field = message[@"ITM"][5],
-            Id = @"ITM.5",
-            Type = @"Field",
-            Position = @"ITM.5",
-            Name = @"Item Category",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"The Item Category is a classification of material items into like groups for the purpose of categorizing purchases and reporting within a materials management setting. The Item Category classification is a lower level grouping of material items than what is described in ITM-3 as Item Type. UNSPSC is the recommended coding system.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (itemCategory.field.FieldRepetitions != null && itemCategory.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(itemCategory.Id));
-            itemCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(itemCategory, fieldData);
-        }
-
-        return itemCategory;
-    } 
-}
-
-internal HL7V26Field subjecttoExpirationIndicator;
-
-public HL7V26Field SubjecttoExpirationIndicator
-{
-    get
-    {
-        if (subjecttoExpirationIndicator != null)
-        {
-            return subjecttoExpirationIndicator;
-        }
-
-        subjecttoExpirationIndicator = new HL7V26Field
-        {
-            field = message[@"ITM"][6],
-            Id = @"ITM.6",
-            Type = @"Field",
-            Position = @"ITM.6",
-            Name = @"Subject to Expiration Indicator",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded yes/no indicator",
-            Description = @"This field contains an indicator used as a reference to specify whether the item is subject to containing an expiration date. Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (subjecttoExpirationIndicator.field.FieldRepetitions != null && subjecttoExpirationIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(subjecttoExpirationIndicator.Id));
-            subjecttoExpirationIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(subjecttoExpirationIndicator, fieldData);
-        }
-
-        return subjecttoExpirationIndicator;
-    } 
-}
-
-internal HL7V26Field manufacturerIdentifier;
-
-public HL7V26Field ManufacturerIdentifier
-{
-    get
-    {
-        if (manufacturerIdentifier != null)
-        {
-            return manufacturerIdentifier;
-        }
-
-        manufacturerIdentifier = new HL7V26Field
-        {
-            field = message[@"ITM"][7],
-            Id = @"ITM.7",
-            Type = @"Field",
-            Position = @"ITM.7",
-            Name = @"Manufacturer Identifier",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the identifying code of the manufacturer of the item.  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (manufacturerIdentifier.field.FieldRepetitions != null && manufacturerIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(manufacturerIdentifier.Id));
-            manufacturerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(manufacturerIdentifier, fieldData);
-        }
-
-        return manufacturerIdentifier;
-    } 
-}
-
-internal HL7V26Field manufacturerName;
-
-public HL7V26Field ManufacturerName
-{
-    get
-    {
-        if (manufacturerName != null)
-        {
-            return manufacturerName;
-        }
-
-        manufacturerName = new HL7V26Field
-        {
-            field = message[@"ITM"][8],
-            Id = @"ITM.8",
-            Type = @"Field",
-            Position = @"ITM.8",
-            Name = @"Manufacturer Name",
-            Length = 999,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the name of the manufacturer of the manufacturer identified in ITM-7.  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (manufacturerName.field.FieldRepetitions != null && manufacturerName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(manufacturerName.Id));
-            manufacturerName.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(manufacturerName, fieldData);
-        }
-
-        return manufacturerName;
-    } 
-}
-
-internal HL7V26Field manufacturerCatalogNumber;
-
-public HL7V26Field ManufacturerCatalogNumber
-{
-    get
-    {
-        if (manufacturerCatalogNumber != null)
-        {
-            return manufacturerCatalogNumber;
-        }
-
-        manufacturerCatalogNumber = new HL7V26Field
-        {
-            field = message[@"ITM"][9],
-            Id = @"ITM.9",
-            Type = @"Field",
-            Position = @"ITM.9",
-            Name = @"Manufacturer Catalog Number",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the catalog assigned to the item by the manufacturer.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (manufacturerCatalogNumber.field.FieldRepetitions != null && manufacturerCatalogNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(manufacturerCatalogNumber.Id));
-            manufacturerCatalogNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(manufacturerCatalogNumber, fieldData);
-        }
-
-        return manufacturerCatalogNumber;
-    } 
-}
-
-internal HL7V26Field manufacturerLabelerIdentificationCode;
-
-public HL7V26Field ManufacturerLabelerIdentificationCode
-{
-    get
-    {
-        if (manufacturerLabelerIdentificationCode != null)
-        {
-            return manufacturerLabelerIdentificationCode;
-        }
-
-        manufacturerLabelerIdentificationCode = new HL7V26Field
-        {
-            field = message[@"ITM"][10],
-            Id = @"ITM.10",
-            Type = @"Field",
-            Position = @"ITM.10",
-            Name = @"Manufacturer Labeler Identification Code",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the Labeler Identification Code (LIC) number assigned to the manufacturer that represents the manufacturer of the item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (manufacturerLabelerIdentificationCode.field.FieldRepetitions != null && manufacturerLabelerIdentificationCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(manufacturerLabelerIdentificationCode.Id));
-            manufacturerLabelerIdentificationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(manufacturerLabelerIdentificationCode, fieldData);
-        }
-
-        return manufacturerLabelerIdentificationCode;
-    } 
-}
-
-internal HL7V26Field patientChargeableIndicator;
-
-public HL7V26Field PatientChargeableIndicator
-{
-    get
-    {
-        if (patientChargeableIndicator != null)
-        {
-            return patientChargeableIndicator;
-        }
-
-        patientChargeableIndicator = new HL7V26Field
-        {
-            field = message[@"ITM"][11],
-            Id = @"ITM.11",
-            Type = @"Field",
-            Position = @"ITM.11",
-            Name = @"Patient Chargeable Indicator",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded yes/no indicator",
-            Description = @"This field indicates whether the item is patient chargeable.  Refer to HL7 Table 0532 – Expanded Yes/no Indicator table in Chapter 2 for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientChargeableIndicator.field.FieldRepetitions != null && patientChargeableIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientChargeableIndicator.Id));
-            patientChargeableIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(patientChargeableIndicator, fieldData);
-        }
-
-        return patientChargeableIndicator;
-    } 
-}
-
-internal HL7V26Field transactionCode;
-
-public HL7V26Field TransactionCode
-{
-    get
-    {
-        if (transactionCode != null)
-        {
-            return transactionCode;
-        }
-
-        transactionCode = new HL7V26Field
-        {
-            field = message[@"ITM"][12],
-            Id = @"ITM.12",
-            Type = @"Field",
-            Position = @"ITM.12",
-            Name = @"Transaction Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0132",
-            TableName = @"Transaction Code",
-            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying a patient billing code specific for a supply item.  In the context of this message, this is a code that is a cross-reference to the Item Code/Id.  This field would be used to uniquely identify a procedure, supply item, or test for charges; or to identify the payment medium for payments. It can reference, for example, a CBC (a lab charge), or an Elastic Bandage 3'' (supply charge), or Chest 1 View (radiology charge).   For instance the code would be 300-0001, with a description of CBC.
-
-Refer to User-defined Table 0132 - Transaction Code for suggested values.  See Chapter 7 for a discussion of the universal service ID for charges.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionCode.field.FieldRepetitions != null && transactionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionCode.Id));
-            transactionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(transactionCode, fieldData);
-        }
-
-        return transactionCode;
-    } 
-}
-
-internal HL7V26Field transactionamountunit;
-
-public HL7V26Field Transactionamountunit
-{
-    get
-    {
-        if (transactionamountunit != null)
-        {
-            return transactionamountunit;
-        }
-
-        transactionamountunit = new HL7V26Field
-        {
-            field = message[@"ITM"][13],
-            Id = @"ITM.13",
-            Type = @"Field",
-            Position = @"ITM.13",
-            Name = @"Transaction amount - unit",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Unit price of transaction. Price of a single item. This field contains the dollar amount charged to patients for this item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (transactionamountunit.field.FieldRepetitions != null && transactionamountunit.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionamountunit.Id));
-            transactionamountunit.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(transactionamountunit, fieldData);
-        }
-
-        return transactionamountunit;
-    } 
-}
-
-internal HL7V26Field stockedItemIndicator;
-
-public HL7V26Field StockedItemIndicator
-{
-    get
-    {
-        if (stockedItemIndicator != null)
-        {
-            return stockedItemIndicator;
-        }
-
-        stockedItemIndicator = new HL7V26Field
-        {
-            field = message[@"ITM"][14],
-            Id = @"ITM.14",
-            Type = @"Field",
-            Position = @"ITM.14",
-            Name = @"Stocked Item Indicator",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded yes/no indicator",
-            Description = @"This field contains an indicator signifying whether the item is stocked in any inventory location in the healthcare organization. Refer to HL7 Table 0532 – Expanded Yes/no Indicator table in Chapter 2 for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (stockedItemIndicator.field.FieldRepetitions != null && stockedItemIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(stockedItemIndicator.Id));
-            stockedItemIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(stockedItemIndicator, fieldData);
-        }
-
-        return stockedItemIndicator;
-    } 
-}
-
-internal HL7V26Field supplyRiskCodes;
-
-public HL7V26Field SupplyRiskCodes
-{
-    get
-    {
-        if (supplyRiskCodes != null)
-        {
-            return supplyRiskCodes;
-        }
-
-        supplyRiskCodes = new HL7V26Field
-        {
-            field = message[@"ITM"][15],
-            Id = @"ITM.15",
-            Type = @"Field",
-            Position = @"ITM.15",
-            Name = @"Supply Risk Codes",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0871",
-            TableName = @"Supply Risk Codes",
-            Description = @"This field contains a code that identifies any known or suspected hazard associated with this material item.  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (supplyRiskCodes.field.FieldRepetitions != null && supplyRiskCodes.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(supplyRiskCodes.Id));
-            supplyRiskCodes.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(supplyRiskCodes, fieldData);
-        }
-
-        return supplyRiskCodes;
-    } 
-}
-
-internal HL7V26Field approvingRegulatoryAgency;
-
-public HL7V26Field ApprovingRegulatoryAgency
-{
-    get
-    {
-        if (approvingRegulatoryAgency != null)
-        {
-            return approvingRegulatoryAgency;
-        }
-
-        approvingRegulatoryAgency = new HL7V26Field
-        {
-            field = message[@"ITM"][16],
-            Id = @"ITM.16",
-            Type = @"Field",
-            Position = @"ITM.16",
-            Name = @"Approving Regulatory Agency",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-            TableId = @"0790",
-            TableName = @"Approving Regulatory Agency",
-            Description = @"This field contains a code indicating the regulatory agency the item has been approved by, such as the FDA or AMA.
-
-Refer to User-defined Table 0790 – Approving Regulatory Agency for suggested values.  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (approvingRegulatoryAgency.field.FieldRepetitions != null && approvingRegulatoryAgency.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(approvingRegulatoryAgency.Id));
-            approvingRegulatoryAgency.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(approvingRegulatoryAgency, fieldData);
-        }
-
-        return approvingRegulatoryAgency;
-    } 
-}
-
-internal HL7V26Field latexIndicator;
-
-public HL7V26Field LatexIndicator
-{
-    get
-    {
-        if (latexIndicator != null)
-        {
-            return latexIndicator;
-        }
-
-        latexIndicator = new HL7V26Field
-        {
-            field = message[@"ITM"][17],
-            Id = @"ITM.17",
-            Type = @"Field",
-            Position = @"ITM.17",
-            Name = @"Latex Indicator",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded yes/no indicator",
-            Description = @"This field contains an indicator signifying whether the item is made of or contains latex.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (latexIndicator.field.FieldRepetitions != null && latexIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(latexIndicator.Id));
-            latexIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(latexIndicator, fieldData);
-        }
-
-        return latexIndicator;
-    } 
-}
-
-internal HL7V26Field rulingAct;
-
-public HL7V26Field RulingAct
-{
-    get
-    {
-        if (rulingAct != null)
-        {
-            return rulingAct;
-        }
-
-        rulingAct = new HL7V26Field
-        {
-            field = message[@"ITM"][18],
-            Id = @"ITM.18",
-            Type = @"Field",
-            Position = @"ITM.18",
-            Name = @"Ruling Act",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0793",
-            TableName = @"Ruling Act",
-            Description = @"This field contains a code indicating an act containing a rule that the item is legally required to be included in notification reporting.  This code is often used for reporting or tracking.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rulingAct.field.FieldRepetitions != null && rulingAct.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rulingAct.Id));
-            rulingAct.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(rulingAct, fieldData);
-        }
-
-        return rulingAct;
-    } 
-}
-
-internal HL7V26Field itemNaturalAccountCode;
-
-public HL7V26Field ItemNaturalAccountCode
-{
-    get
-    {
-        if (itemNaturalAccountCode != null)
-        {
-            return itemNaturalAccountCode;
-        }
-
-        itemNaturalAccountCode = new HL7V26Field
-        {
-            field = message[@"ITM"][19],
-            Id = @"ITM.19",
-            Type = @"Field",
-            Position = @"ITM.19",
-            Name = @"Item Natural Account Code",
-            Length = 30,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0320",
-            TableName = @"Item Natural Account Code",
-            Description = @"This field contains the expense/natural account number from the general ledger chart of accounts associated with the item. Refer to HL7 Table 0320 – Item Natural Account Code in Chapter 4 for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (itemNaturalAccountCode.field.FieldRepetitions != null && itemNaturalAccountCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(itemNaturalAccountCode.Id));
-            itemNaturalAccountCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(itemNaturalAccountCode, fieldData);
-        }
-
-        return itemNaturalAccountCode;
-    } 
-}
-
-internal HL7V26Field approvedToBuyQuantity;
-
-public HL7V26Field ApprovedToBuyQuantity
-{
-    get
-    {
-        if (approvedToBuyQuantity != null)
-        {
-            return approvedToBuyQuantity;
-        }
-
-        approvedToBuyQuantity = new HL7V26Field
-        {
-            field = message[@"ITM"][20],
-            Id = @"ITM.20",
-            Type = @"Field",
-            Position = @"ITM.20",
-            Name = @"Approved To Buy Quantity",
-            Length = 6,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the quantity of this item that can be purchased within a user-defined time frame (e.g., one year) at the order unit of measure",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (approvedToBuyQuantity.field.FieldRepetitions != null && approvedToBuyQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(approvedToBuyQuantity.Id));
-            approvedToBuyQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(approvedToBuyQuantity, fieldData);
-        }
-
-        return approvedToBuyQuantity;
-    } 
-}
-
-internal HL7V26Field approvedToBuyPrice;
-
-public HL7V26Field ApprovedToBuyPrice
-{
-    get
-    {
-        if (approvedToBuyPrice != null)
-        {
-            return approvedToBuyPrice;
-        }
-
-        approvedToBuyPrice = new HL7V26Field
-        {
-            field = message[@"ITM"][21],
-            Id = @"ITM.21",
-            Type = @"Field",
-            Position = @"ITM.21",
-            Name = @"Approved To Buy Price",
-            Length = 10,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"MO",
-            DataTypeName = @"Money",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the dollar limit of this item that you can purchase within a user-defined time frame (e.g., one year).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (approvedToBuyPrice.field.FieldRepetitions != null && approvedToBuyPrice.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(approvedToBuyPrice.Id));
-            approvedToBuyPrice.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(approvedToBuyPrice, fieldData);
-        }
-
-        return approvedToBuyPrice;
-    } 
-}
-
-internal HL7V26Field taxableItemIndicator;
-
-public HL7V26Field TaxableItemIndicator
-{
-    get
-    {
-        if (taxableItemIndicator != null)
-        {
-            return taxableItemIndicator;
-        }
-
-        taxableItemIndicator = new HL7V26Field
-        {
-            field = message[@"ITM"][22],
-            Id = @"ITM.22",
-            Type = @"Field",
-            Position = @"ITM.22",
-            Name = @"Taxable Item Indicator",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded yes/no indicator",
-            Description = @"This field contains an indicator signifying whether the item is taxable when purchasing the item or issuing the item to patients.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (taxableItemIndicator.field.FieldRepetitions != null && taxableItemIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(taxableItemIndicator.Id));
-            taxableItemIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(taxableItemIndicator, fieldData);
-        }
-
-        return taxableItemIndicator;
-    } 
-}
-
-internal HL7V26Field freightChargeIndicator;
-
-public HL7V26Field FreightChargeIndicator
-{
-    get
-    {
-        if (freightChargeIndicator != null)
-        {
-            return freightChargeIndicator;
-        }
-
-        freightChargeIndicator = new HL7V26Field
-        {
-            field = message[@"ITM"][23],
-            Id = @"ITM.23",
-            Type = @"Field",
-            Position = @"ITM.23",
-            Name = @"Freight Charge Indicator",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded yes/no indicator",
-            Description = @"This field contains an indicator signifying whether freight is an allowable charge to be allocated to the line of an invoice containing the item.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (freightChargeIndicator.field.FieldRepetitions != null && freightChargeIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(freightChargeIndicator.Id));
-            freightChargeIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(freightChargeIndicator, fieldData);
-        }
-
-        return freightChargeIndicator;
-    } 
-}
-
-internal HL7V26Field itemSetIndicator;
-
-public HL7V26Field ItemSetIndicator
-{
-    get
-    {
-        if (itemSetIndicator != null)
-        {
-            return itemSetIndicator;
-        }
-
-        itemSetIndicator = new HL7V26Field
-        {
-            field = message[@"ITM"][24],
-            Id = @"ITM.24",
-            Type = @"Field",
-            Position = @"ITM.24",
-            Name = @"Item Set Indicator",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded yes/no indicator",
-            Description = @"This field contains an indicator signifying whether the item is an 'item set' rather than an individual item.  An item set is a set of surgical supplies.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (itemSetIndicator.field.FieldRepetitions != null && itemSetIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(itemSetIndicator.Id));
-            itemSetIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(itemSetIndicator, fieldData);
-        }
-
-        return itemSetIndicator;
-    } 
-}
-
-internal HL7V26Field itemSetIdentifier;
-
-public HL7V26Field ItemSetIdentifier
-{
-    get
-    {
-        if (itemSetIdentifier != null)
-        {
-            return itemSetIdentifier;
-        }
-
-        itemSetIdentifier = new HL7V26Field
-        {
-            field = message[@"ITM"][25],
-            Id = @"ITM.25",
-            Type = @"Field",
-            Position = @"ITM.25",
-            Name = @"Item Set Identifier",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The Item Identifier is a unique code assigned to the material item by the Item Inventory Master catalog software application to identify the item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (itemSetIdentifier.field.FieldRepetitions != null && itemSetIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(itemSetIdentifier.Id));
-            itemSetIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(itemSetIdentifier, fieldData);
-        }
-
-        return itemSetIdentifier;
-    } 
-}
-
-internal HL7V26Field trackDepartmentUsageIndicator;
-
-public HL7V26Field TrackDepartmentUsageIndicator
-{
-    get
-    {
-        if (trackDepartmentUsageIndicator != null)
-        {
-            return trackDepartmentUsageIndicator;
-        }
-
-        trackDepartmentUsageIndicator = new HL7V26Field
-        {
-            field = message[@"ITM"][26],
-            Id = @"ITM.26",
-            Type = @"Field",
-            Position = @"ITM.26",
-            Name = @"Track Department Usage Indicator",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded yes/no indicator",
-            Description = @"This field contains an indicator signifying whether the usage figures are tracked for this item by department.  Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (trackDepartmentUsageIndicator.field.FieldRepetitions != null && trackDepartmentUsageIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(trackDepartmentUsageIndicator.Id));
-            trackDepartmentUsageIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(trackDepartmentUsageIndicator, fieldData);
-        }
-
-        return trackDepartmentUsageIndicator;
-    } 
-}
-
-internal HL7V26Field procedureCode;
-
-public HL7V26Field ProcedureCode
-{
-    get
-    {
-        if (procedureCode != null)
-        {
-            return procedureCode;
-        }
-
-        procedureCode = new HL7V26Field
-        {
-            field = message[@"ITM"][27],
-            Id = @"ITM.27",
-            Type = @"Field",
-            Position = @"ITM.27",
-            Name = @"Procedure Code",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = @"0088",
-            TableName = @"Procedure Code",
-            Description = @"This field contains a unique identifier assigned to the service item, if any, associated with the charge.  In the United States this is often the HCPCS code.  Refer to Externally defined Table 0088 - Procedure code for suggested values.  This field is a CNE data type for compatibility with clinical and ancillary systems.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedureCode.field.FieldRepetitions != null && procedureCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureCode.Id));
-            procedureCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(procedureCode, fieldData);
-        }
-
-        return procedureCode;
-    } 
-}
-
-internal HL7V26Field procedureCodeModifier;
-
-public HL7V26Field ProcedureCodeModifier
-{
-    get
-    {
-        if (procedureCodeModifier != null)
-        {
-            return procedureCodeModifier;
-        }
-
-        procedureCodeModifier = new HL7V26Field
-        {
-            field = message[@"ITM"][28],
-            Id = @"ITM.28",
-            Type = @"Field",
-            Position = @"ITM.28",
-            Name = @"Procedure Code Modifier",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = @"0340",
-            TableName = @"Procedure Code Modifier",
-            Description = @"This field contains the procedure code modifier to the procedure code reported in ITM-27 – Procedure Cod, when applicable.  Procedure code modifiers are defined by USA regulatory agencies such as CMS and the AMA.  Multiple modifiers may be reported.  Refer to Externally defined Table 0340 - Procedure code modifier for suggested values.  
-
-As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedureCodeModifier.field.FieldRepetitions != null && procedureCodeModifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureCodeModifier.Id));
-            procedureCodeModifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(procedureCodeModifier, fieldData);
-        }
-
-        return procedureCodeModifier;
-    } 
-}
-
-internal HL7V26Field specialHandlingCode;
-
-public HL7V26Field SpecialHandlingCode
-{
-    get
-    {
-        if (specialHandlingCode != null)
-        {
-            return specialHandlingCode;
-        }
-
-        specialHandlingCode = new HL7V26Field
+        _specialHandlingCode = new HL7V26Field
         {
             field = message[@"ITM"][29],
-            Id = @"ITM.29",
-            Type = @"Field",
-            Position = @"ITM.29",
-            Name = @"Special Handling Code",
-            Length = 705,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0376",
-            TableName = @"Special Handling Code",
-            Description = @"This field contains a special handling code to describe special handling considerations for this item.  Refer to User-defined Table 0376 – Special Handling Code in Chapter 7 for suggested values.  The value set can be extended with user specific values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (specialHandlingCode.field.FieldRepetitions != null && specialHandlingCode.field.FieldRepetitions.Count > 0)
+        if (_specialHandlingCode.field.FieldRepetitions != null && _specialHandlingCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specialHandlingCode.Id));
-            specialHandlingCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(specialHandlingCode, fieldData);
+            _specialHandlingCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_specialHandlingCode, fieldData);
         }
 
-        return specialHandlingCode;
+        return _specialHandlingCode;
     } 
 }
     }

@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V25SegmentPSH(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V25Field _reportType;
+
+public HL7V25Field ReportType
+{
+    get
+    {
+        if (_reportType != null)
+        {
+            return _reportType;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"PSH.1",
+            Type = @"Field",
+            Position = @"PSH.1",
+            Name = @"Report Type",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name, title, or other description of the report. Typically, the field will include the agency name (e.g., FDA), agency component if applicable (e.g., CDRH) and the report type (e.g., Medical Device Reporting Baseline Report).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _reportType = new HL7V25Field
+        {
+            field = message[@"PSH"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reportType.field.FieldRepetitions != null && _reportType.field.FieldRepetitions.Count > 0)
+        {
+            _reportType.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_reportType, fieldData);
+        }
+
+        return _reportType;
+    } 
+}
+
+internal HL7V25Field _reportFormIdentifier;
+
+public HL7V25Field ReportFormIdentifier
+{
+    get
+    {
+        if (_reportFormIdentifier != null)
+        {
+            return _reportFormIdentifier;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"PSH.2",
+            Type = @"Field",
+            Position = @"PSH.2",
+            Name = @"Report Form Identifier",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the form descriptor which describes the report. Typically, the field will include the agency name (e.g., FDA), agency component if applicable (e.g., CDRH) and the form number (e.g., 3417).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _reportFormIdentifier = new HL7V25Field
+        {
+            field = message[@"PSH"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reportFormIdentifier.field.FieldRepetitions != null && _reportFormIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _reportFormIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_reportFormIdentifier, fieldData);
+        }
+
+        return _reportFormIdentifier;
+    } 
+}
+
+internal HL7V25Field _reportDate;
+
+public HL7V25Field ReportDate
+{
+    get
+    {
+        if (_reportDate != null)
+        {
+            return _reportDate;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"PSH.3",
+            Type = @"Field",
+            Position = @"PSH.3",
+            Name = @"Report Date",
+            Length = 26,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date as assigned by the sender.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PSH.1",
-                            Type = @"Field",
-                            Position = @"PSH.1",
-                            Name = @"Report Type",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name, title, or other description of the report. Typically, the field will include the agency name (e.g., FDA), agency component if applicable (e.g., CDRH) and the report type (e.g., Medical Device Reporting Baseline Report).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSH.2",
-                            Type = @"Field",
-                            Position = @"PSH.2",
-                            Name = @"Report Form Identifier",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the form descriptor which describes the report. Typically, the field will include the agency name (e.g., FDA), agency component if applicable (e.g., CDRH) and the form number (e.g., 3417).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSH.3",
-                            Type = @"Field",
-                            Position = @"PSH.3",
-                            Name = @"Report Date",
-                            Length = 26,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date as assigned by the sender.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PSH.3.1",
                             Type = @"Component",
@@ -122,25 +188,55 @@ namespace ExpressionEvaluatorForDotNet
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _reportDate = new HL7V25Field
+        {
+            field = message[@"PSH"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reportDate.field.FieldRepetitions != null && _reportDate.field.FieldRepetitions.Count > 0)
+        {
+            _reportDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_reportDate, fieldData);
+        }
+
+        return _reportDate;
+    } 
+}
+
+internal HL7V25Field _reportIntervalStartDate;
+
+public HL7V25Field ReportIntervalStartDate
+{
+    get
+    {
+        if (_reportIntervalStartDate != null)
+        {
+            return _reportIntervalStartDate;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"PSH.4",
+            Type = @"Field",
+            Position = @"PSH.4",
+            Name = @"Report Interval Start Date",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date that marks the beginning of the time interval covered by the current report.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSH.4",
-                            Type = @"Field",
-                            Position = @"PSH.4",
-                            Name = @"Report Interval Start Date",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date that marks the beginning of the time interval covered by the current report.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSH.4.1",
                             Type = @"Component",
@@ -176,25 +272,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _reportIntervalStartDate = new HL7V25Field
+        {
+            field = message[@"PSH"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reportIntervalStartDate.field.FieldRepetitions != null && _reportIntervalStartDate.field.FieldRepetitions.Count > 0)
+        {
+            _reportIntervalStartDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_reportIntervalStartDate, fieldData);
+        }
+
+        return _reportIntervalStartDate;
+    } 
+}
+
+internal HL7V25Field _reportIntervalEndDate;
+
+public HL7V25Field ReportIntervalEndDate
+{
+    get
+    {
+        if (_reportIntervalEndDate != null)
+        {
+            return _reportIntervalEndDate;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"PSH.5",
+            Type = @"Field",
+            Position = @"PSH.5",
+            Name = @"Report Interval End Date",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date which marks the inclusive end of the time interval covered by the current report.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSH.5",
-                            Type = @"Field",
-                            Position = @"PSH.5",
-                            Name = @"Report Interval End Date",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date which marks the inclusive end of the time interval covered by the current report.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSH.5.1",
                             Type = @"Component",
@@ -230,25 +356,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _reportIntervalEndDate = new HL7V25Field
+        {
+            field = message[@"PSH"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reportIntervalEndDate.field.FieldRepetitions != null && _reportIntervalEndDate.field.FieldRepetitions.Count > 0)
+        {
+            _reportIntervalEndDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_reportIntervalEndDate, fieldData);
+        }
+
+        return _reportIntervalEndDate;
+    } 
+}
+
+internal HL7V25Field _quantityManufactured;
+
+public HL7V25Field QuantityManufactured
+{
+    get
+    {
+        if (_quantityManufactured != null)
+        {
+            return _quantityManufactured;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"PSH.6",
+            Type = @"Field",
+            Position = @"PSH.6",
+            Name = @"Quantity Manufactured",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity with Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to send the number of units of the product manufactured during the reporting interval. The second component can be used to specify the units for the quantity.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSH.6",
-                            Type = @"Field",
-                            Position = @"PSH.6",
-                            Name = @"Quantity Manufactured",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity with Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to send the number of units of the product manufactured during the reporting interval. The second component can be used to specify the units for the quantity.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSH.6.1",
                             Type = @"Component",
@@ -388,25 +544,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _quantityManufactured = new HL7V25Field
+        {
+            field = message[@"PSH"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_quantityManufactured.field.FieldRepetitions != null && _quantityManufactured.field.FieldRepetitions.Count > 0)
+        {
+            _quantityManufactured.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_quantityManufactured, fieldData);
+        }
+
+        return _quantityManufactured;
+    } 
+}
+
+internal HL7V25Field _quantityDistributed;
+
+public HL7V25Field QuantityDistributed
+{
+    get
+    {
+        if (_quantityDistributed != null)
+        {
+            return _quantityDistributed;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"PSH.7",
+            Type = @"Field",
+            Position = @"PSH.7",
+            Name = @"Quantity Distributed",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity with Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to send the number of units of the product which was distributed during the reporting interval. The second component can be used to specify the units for the quantity.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSH.7",
-                            Type = @"Field",
-                            Position = @"PSH.7",
-                            Name = @"Quantity Distributed",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity with Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to send the number of units of the product which was distributed during the reporting interval. The second component can be used to specify the units for the quantity.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSH.7.1",
                             Type = @"Component",
@@ -546,61 +732,145 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _quantityDistributed = new HL7V25Field
+        {
+            field = message[@"PSH"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_quantityDistributed.field.FieldRepetitions != null && _quantityDistributed.field.FieldRepetitions.Count > 0)
+        {
+            _quantityDistributed.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_quantityDistributed, fieldData);
+        }
+
+        return _quantityDistributed;
+    } 
+}
+
+internal HL7V25Field _quantityDistributedMethod;
+
+public HL7V25Field QuantityDistributedMethod
+{
+    get
+    {
+        if (_quantityDistributedMethod != null)
+        {
+            return _quantityDistributedMethod;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"PSH.8",
+            Type = @"Field",
+            Position = @"PSH.8",
+            Name = @"Quantity Distributed Method",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0329",
+            TableName = @"Quantity method",
+            Description = @"This field is used for measuring the quantity distributed. An explanation of the method used for estimation can be included in PSH-9-quantity distributed comment. Refer to HL7 Table 0329 - Quantity method for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _quantityDistributedMethod = new HL7V25Field
+        {
+            field = message[@"PSH"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_quantityDistributedMethod.field.FieldRepetitions != null && _quantityDistributedMethod.field.FieldRepetitions.Count > 0)
+        {
+            _quantityDistributedMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_quantityDistributedMethod, fieldData);
+        }
+
+        return _quantityDistributedMethod;
+    } 
+}
+
+internal HL7V25Field _quantityDistributedComment;
+
+public HL7V25Field QuantityDistributedComment
+{
+    get
+    {
+        if (_quantityDistributedComment != null)
+        {
+            return _quantityDistributedComment;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"PSH.9",
+            Type = @"Field",
+            Position = @"PSH.9",
+            Name = @"Quantity Distributed Comment",
+            Length = 600,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"FT",
+            DataTypeName = @"Formatted Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used for any explanatory text needed but in particular should provide a description of the estimation method used. If referring to the description used in a previous report, the comment should include the product identifier and data of that report.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _quantityDistributedComment = new HL7V25Field
+        {
+            field = message[@"PSH"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_quantityDistributedComment.field.FieldRepetitions != null && _quantityDistributedComment.field.FieldRepetitions.Count > 0)
+        {
+            _quantityDistributedComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_quantityDistributedComment, fieldData);
+        }
+
+        return _quantityDistributedComment;
+    } 
+}
+
+internal HL7V25Field _quantityinUse;
+
+public HL7V25Field QuantityinUse
+{
+    get
+    {
+        if (_quantityinUse != null)
+        {
+            return _quantityinUse;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"PSH.10",
+            Type = @"Field",
+            Position = @"PSH.10",
+            Name = @"Quantity in Use",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity with Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to send the number of units of the product which were in use during the reporting interval. The second component can be used to specify the units for the quantity.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSH.8",
-                            Type = @"Field",
-                            Position = @"PSH.8",
-                            Name = @"Quantity Distributed Method",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0329",
-                            TableName = @"Quantity method",
-                            Description = @"This field is used for measuring the quantity distributed. An explanation of the method used for estimation can be included in PSH-9-quantity distributed comment. Refer to HL7 Table 0329 - Quantity method for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSH.9",
-                            Type = @"Field",
-                            Position = @"PSH.9",
-                            Name = @"Quantity Distributed Comment",
-                            Length = 600,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used for any explanatory text needed but in particular should provide a description of the estimation method used. If referring to the description used in a previous report, the comment should include the product identifier and data of that report.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSH.10",
-                            Type = @"Field",
-                            Position = @"PSH.10",
-                            Name = @"Quantity in Use",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity with Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to send the number of units of the product which were in use during the reporting interval. The second component can be used to specify the units for the quantity.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSH.10.1",
                             Type = @"Component",
@@ -740,513 +1010,39 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSH.11",
-                            Type = @"Field",
-                            Position = @"PSH.11",
-                            Name = @"Quantity in Use Method",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0329",
-                            TableName = @"Quantity method",
-                            Description = @"This field contains the method used for measuring the quantity in use. An explanation of the method used for estimation can be included in PSH-12-quantity in use comment . Refer to HL7 Table 0329 - Quantity method for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSH.12",
-                            Type = @"Field",
-                            Position = @"PSH.12",
-                            Name = @"Quantity in Use Comment",
-                            Length = 600,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field can be used for any explanatory text needed but in particular should provide a description of the estimation method used. If referring to the description used in a previous report, the comment should include the product identifier and data of the report.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSH.13",
-                            Type = @"Field",
-                            Position = @"PSH.13",
-                            Name = @"Number of Product Experience Reports Filed by Facility",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"8",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The field contains the number of product experience reports filed by facility.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSH.14",
-                            Type = @"Field",
-                            Position = @"PSH.14",
-                            Name = @"Number of Product Experience Reports Filed by Distributor",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"8",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number of product experience reports filed by distributor.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V25SegmentPSH(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V25Field reportType;
-
-public HL7V25Field ReportType
-{
-    get
-    {
-        if (reportType != null)
-        {
-            return reportType;
-        }
-
-        reportType = new HL7V25Field
-        {
-            field = message[@"PSH"][1],
-            Id = @"PSH.1",
-            Type = @"Field",
-            Position = @"PSH.1",
-            Name = @"Report Type",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name, title, or other description of the report. Typically, the field will include the agency name (e.g., FDA), agency component if applicable (e.g., CDRH) and the report type (e.g., Medical Device Reporting Baseline Report).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reportType.field.FieldRepetitions != null && reportType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reportType.Id));
-            reportType.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(reportType, fieldData);
-        }
-
-        return reportType;
-    } 
-}
-
-internal HL7V25Field reportFormIdentifier;
-
-public HL7V25Field ReportFormIdentifier
-{
-    get
-    {
-        if (reportFormIdentifier != null)
-        {
-            return reportFormIdentifier;
-        }
-
-        reportFormIdentifier = new HL7V25Field
-        {
-            field = message[@"PSH"][2],
-            Id = @"PSH.2",
-            Type = @"Field",
-            Position = @"PSH.2",
-            Name = @"Report Form Identifier",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the form descriptor which describes the report. Typically, the field will include the agency name (e.g., FDA), agency component if applicable (e.g., CDRH) and the form number (e.g., 3417).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reportFormIdentifier.field.FieldRepetitions != null && reportFormIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reportFormIdentifier.Id));
-            reportFormIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(reportFormIdentifier, fieldData);
-        }
-
-        return reportFormIdentifier;
-    } 
-}
-
-internal HL7V25Field reportDate;
-
-public HL7V25Field ReportDate
-{
-    get
-    {
-        if (reportDate != null)
-        {
-            return reportDate;
-        }
-
-        reportDate = new HL7V25Field
-        {
-            field = message[@"PSH"][3],
-            Id = @"PSH.3",
-            Type = @"Field",
-            Position = @"PSH.3",
-            Name = @"Report Date",
-            Length = 26,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date as assigned by the sender.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reportDate.field.FieldRepetitions != null && reportDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reportDate.Id));
-            reportDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(reportDate, fieldData);
-        }
-
-        return reportDate;
-    } 
-}
-
-internal HL7V25Field reportIntervalStartDate;
-
-public HL7V25Field ReportIntervalStartDate
-{
-    get
-    {
-        if (reportIntervalStartDate != null)
-        {
-            return reportIntervalStartDate;
-        }
-
-        reportIntervalStartDate = new HL7V25Field
-        {
-            field = message[@"PSH"][4],
-            Id = @"PSH.4",
-            Type = @"Field",
-            Position = @"PSH.4",
-            Name = @"Report Interval Start Date",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date that marks the beginning of the time interval covered by the current report.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reportIntervalStartDate.field.FieldRepetitions != null && reportIntervalStartDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reportIntervalStartDate.Id));
-            reportIntervalStartDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(reportIntervalStartDate, fieldData);
-        }
-
-        return reportIntervalStartDate;
-    } 
-}
-
-internal HL7V25Field reportIntervalEndDate;
-
-public HL7V25Field ReportIntervalEndDate
-{
-    get
-    {
-        if (reportIntervalEndDate != null)
-        {
-            return reportIntervalEndDate;
-        }
-
-        reportIntervalEndDate = new HL7V25Field
-        {
-            field = message[@"PSH"][5],
-            Id = @"PSH.5",
-            Type = @"Field",
-            Position = @"PSH.5",
-            Name = @"Report Interval End Date",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date which marks the inclusive end of the time interval covered by the current report.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reportIntervalEndDate.field.FieldRepetitions != null && reportIntervalEndDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reportIntervalEndDate.Id));
-            reportIntervalEndDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(reportIntervalEndDate, fieldData);
-        }
-
-        return reportIntervalEndDate;
-    } 
-}
-
-internal HL7V25Field quantityManufactured;
-
-public HL7V25Field QuantityManufactured
-{
-    get
-    {
-        if (quantityManufactured != null)
-        {
-            return quantityManufactured;
-        }
-
-        quantityManufactured = new HL7V25Field
-        {
-            field = message[@"PSH"][6],
-            Id = @"PSH.6",
-            Type = @"Field",
-            Position = @"PSH.6",
-            Name = @"Quantity Manufactured",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity with Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to send the number of units of the product manufactured during the reporting interval. The second component can be used to specify the units for the quantity.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (quantityManufactured.field.FieldRepetitions != null && quantityManufactured.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(quantityManufactured.Id));
-            quantityManufactured.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(quantityManufactured, fieldData);
-        }
-
-        return quantityManufactured;
-    } 
-}
-
-internal HL7V25Field quantityDistributed;
-
-public HL7V25Field QuantityDistributed
-{
-    get
-    {
-        if (quantityDistributed != null)
-        {
-            return quantityDistributed;
-        }
-
-        quantityDistributed = new HL7V25Field
-        {
-            field = message[@"PSH"][7],
-            Id = @"PSH.7",
-            Type = @"Field",
-            Position = @"PSH.7",
-            Name = @"Quantity Distributed",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity with Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to send the number of units of the product which was distributed during the reporting interval. The second component can be used to specify the units for the quantity.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (quantityDistributed.field.FieldRepetitions != null && quantityDistributed.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(quantityDistributed.Id));
-            quantityDistributed.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(quantityDistributed, fieldData);
-        }
-
-        return quantityDistributed;
-    } 
-}
-
-internal HL7V25Field quantityDistributedMethod;
-
-public HL7V25Field QuantityDistributedMethod
-{
-    get
-    {
-        if (quantityDistributedMethod != null)
-        {
-            return quantityDistributedMethod;
-        }
-
-        quantityDistributedMethod = new HL7V25Field
-        {
-            field = message[@"PSH"][8],
-            Id = @"PSH.8",
-            Type = @"Field",
-            Position = @"PSH.8",
-            Name = @"Quantity Distributed Method",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0329",
-            TableName = @"Quantity method",
-            Description = @"This field is used for measuring the quantity distributed. An explanation of the method used for estimation can be included in PSH-9-quantity distributed comment. Refer to HL7 Table 0329 - Quantity method for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (quantityDistributedMethod.field.FieldRepetitions != null && quantityDistributedMethod.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(quantityDistributedMethod.Id));
-            quantityDistributedMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(quantityDistributedMethod, fieldData);
-        }
-
-        return quantityDistributedMethod;
-    } 
-}
-
-internal HL7V25Field quantityDistributedComment;
-
-public HL7V25Field QuantityDistributedComment
-{
-    get
-    {
-        if (quantityDistributedComment != null)
-        {
-            return quantityDistributedComment;
-        }
-
-        quantityDistributedComment = new HL7V25Field
-        {
-            field = message[@"PSH"][9],
-            Id = @"PSH.9",
-            Type = @"Field",
-            Position = @"PSH.9",
-            Name = @"Quantity Distributed Comment",
-            Length = 600,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"FT",
-            DataTypeName = @"Formatted Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used for any explanatory text needed but in particular should provide a description of the estimation method used. If referring to the description used in a previous report, the comment should include the product identifier and data of that report.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (quantityDistributedComment.field.FieldRepetitions != null && quantityDistributedComment.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(quantityDistributedComment.Id));
-            quantityDistributedComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(quantityDistributedComment, fieldData);
-        }
-
-        return quantityDistributedComment;
-    } 
-}
-
-internal HL7V25Field quantityinUse;
-
-public HL7V25Field QuantityinUse
-{
-    get
-    {
-        if (quantityinUse != null)
-        {
-            return quantityinUse;
-        }
-
-        quantityinUse = new HL7V25Field
+        _quantityinUse = new HL7V25Field
         {
             field = message[@"PSH"][10],
-            Id = @"PSH.10",
-            Type = @"Field",
-            Position = @"PSH.10",
-            Name = @"Quantity in Use",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity with Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to send the number of units of the product which were in use during the reporting interval. The second component can be used to specify the units for the quantity.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (quantityinUse.field.FieldRepetitions != null && quantityinUse.field.FieldRepetitions.Count > 0)
+        if (_quantityinUse.field.FieldRepetitions != null && _quantityinUse.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(quantityinUse.Id));
-            quantityinUse.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(quantityinUse, fieldData);
+            _quantityinUse.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_quantityinUse, fieldData);
         }
 
-        return quantityinUse;
+        return _quantityinUse;
     } 
 }
 
-internal HL7V25Field quantityinUseMethod;
+internal HL7V25Field _quantityinUseMethod;
 
 public HL7V25Field QuantityinUseMethod
 {
     get
     {
-        if (quantityinUseMethod != null)
+        if (_quantityinUseMethod != null)
         {
-            return quantityinUseMethod;
+            return _quantityinUseMethod;
         }
 
-        quantityinUseMethod = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"PSH"][11],
             Id = @"PSH.11",
             Type = @"Field",
             Position = @"PSH.11",
@@ -1260,34 +1056,38 @@ public HL7V25Field QuantityinUseMethod
             TableName = @"Quantity method",
             Description = @"This field contains the method used for measuring the quantity in use. An explanation of the method used for estimation can be included in PSH-12-quantity in use comment . Refer to HL7 Table 0329 - Quantity method for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _quantityinUseMethod = new HL7V25Field
+        {
+            field = message[@"PSH"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (quantityinUseMethod.field.FieldRepetitions != null && quantityinUseMethod.field.FieldRepetitions.Count > 0)
+        if (_quantityinUseMethod.field.FieldRepetitions != null && _quantityinUseMethod.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(quantityinUseMethod.Id));
-            quantityinUseMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(quantityinUseMethod, fieldData);
+            _quantityinUseMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_quantityinUseMethod, fieldData);
         }
 
-        return quantityinUseMethod;
+        return _quantityinUseMethod;
     } 
 }
 
-internal HL7V25Field quantityinUseComment;
+internal HL7V25Field _quantityinUseComment;
 
 public HL7V25Field QuantityinUseComment
 {
     get
     {
-        if (quantityinUseComment != null)
+        if (_quantityinUseComment != null)
         {
-            return quantityinUseComment;
+            return _quantityinUseComment;
         }
 
-        quantityinUseComment = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"PSH"][12],
             Id = @"PSH.12",
             Type = @"Field",
             Position = @"PSH.12",
@@ -1301,34 +1101,38 @@ public HL7V25Field QuantityinUseComment
             TableName = null,
             Description = @"This field can be used for any explanatory text needed but in particular should provide a description of the estimation method used. If referring to the description used in a previous report, the comment should include the product identifier and data of the report.",
             Sample = @"",
+            Fields = null
+        }
+
+        _quantityinUseComment = new HL7V25Field
+        {
+            field = message[@"PSH"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (quantityinUseComment.field.FieldRepetitions != null && quantityinUseComment.field.FieldRepetitions.Count > 0)
+        if (_quantityinUseComment.field.FieldRepetitions != null && _quantityinUseComment.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(quantityinUseComment.Id));
-            quantityinUseComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(quantityinUseComment, fieldData);
+            _quantityinUseComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_quantityinUseComment, fieldData);
         }
 
-        return quantityinUseComment;
+        return _quantityinUseComment;
     } 
 }
 
-internal HL7V25Field numberofProductExperienceReportsFiledbyFacility;
+internal HL7V25Field _numberofProductExperienceReportsFiledbyFacility;
 
 public HL7V25Field NumberofProductExperienceReportsFiledbyFacility
 {
     get
     {
-        if (numberofProductExperienceReportsFiledbyFacility != null)
+        if (_numberofProductExperienceReportsFiledbyFacility != null)
         {
-            return numberofProductExperienceReportsFiledbyFacility;
+            return _numberofProductExperienceReportsFiledbyFacility;
         }
 
-        numberofProductExperienceReportsFiledbyFacility = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"PSH"][13],
             Id = @"PSH.13",
             Type = @"Field",
             Position = @"PSH.13",
@@ -1342,34 +1146,38 @@ public HL7V25Field NumberofProductExperienceReportsFiledbyFacility
             TableName = null,
             Description = @"The field contains the number of product experience reports filed by facility.",
             Sample = @"",
+            Fields = null
+        }
+
+        _numberofProductExperienceReportsFiledbyFacility = new HL7V25Field
+        {
+            field = message[@"PSH"][13],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (numberofProductExperienceReportsFiledbyFacility.field.FieldRepetitions != null && numberofProductExperienceReportsFiledbyFacility.field.FieldRepetitions.Count > 0)
+        if (_numberofProductExperienceReportsFiledbyFacility.field.FieldRepetitions != null && _numberofProductExperienceReportsFiledbyFacility.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberofProductExperienceReportsFiledbyFacility.Id));
-            numberofProductExperienceReportsFiledbyFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(numberofProductExperienceReportsFiledbyFacility, fieldData);
+            _numberofProductExperienceReportsFiledbyFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_numberofProductExperienceReportsFiledbyFacility, fieldData);
         }
 
-        return numberofProductExperienceReportsFiledbyFacility;
+        return _numberofProductExperienceReportsFiledbyFacility;
     } 
 }
 
-internal HL7V25Field numberofProductExperienceReportsFiledbyDistributor;
+internal HL7V25Field _numberofProductExperienceReportsFiledbyDistributor;
 
 public HL7V25Field NumberofProductExperienceReportsFiledbyDistributor
 {
     get
     {
-        if (numberofProductExperienceReportsFiledbyDistributor != null)
+        if (_numberofProductExperienceReportsFiledbyDistributor != null)
         {
-            return numberofProductExperienceReportsFiledbyDistributor;
+            return _numberofProductExperienceReportsFiledbyDistributor;
         }
 
-        numberofProductExperienceReportsFiledbyDistributor = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"PSH"][14],
             Id = @"PSH.14",
             Type = @"Field",
             Position = @"PSH.14",
@@ -1383,17 +1191,22 @@ public HL7V25Field NumberofProductExperienceReportsFiledbyDistributor
             TableName = null,
             Description = @"This field contains the number of product experience reports filed by distributor.",
             Sample = @"",
+            Fields = null
+        }
+
+        _numberofProductExperienceReportsFiledbyDistributor = new HL7V25Field
+        {
+            field = message[@"PSH"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (numberofProductExperienceReportsFiledbyDistributor.field.FieldRepetitions != null && numberofProductExperienceReportsFiledbyDistributor.field.FieldRepetitions.Count > 0)
+        if (_numberofProductExperienceReportsFiledbyDistributor.field.FieldRepetitions != null && _numberofProductExperienceReportsFiledbyDistributor.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberofProductExperienceReportsFiledbyDistributor.Id));
-            numberofProductExperienceReportsFiledbyDistributor.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(numberofProductExperienceReportsFiledbyDistributor, fieldData);
+            _numberofProductExperienceReportsFiledbyDistributor.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_numberofProductExperienceReportsFiledbyDistributor, fieldData);
         }
 
-        return numberofProductExperienceReportsFiledbyDistributor;
+        return _numberofProductExperienceReportsFiledbyDistributor;
     } 
 }
     }

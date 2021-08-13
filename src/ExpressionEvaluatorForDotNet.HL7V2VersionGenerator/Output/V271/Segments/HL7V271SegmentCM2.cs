@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentCM2(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _setIdCm2;
+
+public HL7V271Field SetIdCm2
+{
+    get
+    {
+        if (_setIdCm2 != null)
+        {
+            return _setIdCm2;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM2.1",
+            Type = @"Field",
+            Position = @"CM2.1",
+            Name = @"Set Id- Cm2",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a number that uniquely identifies this transaction for the purpose of adding, changing, or deleting the transaction.  For those messages that permit segments to repeat, the Set ID field is used to identify the repetitions.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdCm2 = new HL7V271Field
+        {
+            field = message[@"CM2"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdCm2.field.FieldRepetitions != null && _setIdCm2.field.FieldRepetitions.Count > 0)
+        {
+            _setIdCm2.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_setIdCm2, fieldData);
+        }
+
+        return _setIdCm2;
+    } 
+}
+
+internal HL7V271Field _scheduledTimePoint;
+
+public HL7V271Field ScheduledTimePoint
+{
+    get
+    {
+        if (_scheduledTimePoint != null)
+        {
+            return _scheduledTimePoint;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM2.2",
+            Type = @"Field",
+            Position = @"CM2.2",
+            Name = @"Scheduled Time Point",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field should correspond to the scheduled time point coding system in Chapter 7, section 7.7.3.1, ""Study scheduled time point.""",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"CM2.1",
-                            Type = @"Field",
-                            Position = @"CM2.1",
-                            Name = @"Set Id- Cm2",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a number that uniquely identifies this transaction for the purpose of adding, changing, or deleting the transaction.  For those messages that permit segments to repeat, the Set ID field is used to identify the repetitions.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CM2.2",
-                            Type = @"Field",
-                            Position = @"CM2.2",
-                            Name = @"Scheduled Time Point",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field should correspond to the scheduled time point coding system in Chapter 7, section 7.7.3.1, ""Study scheduled time point.""",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CM2.2.1",
                             Type = @"Component",
@@ -494,43 +533,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _scheduledTimePoint = new HL7V271Field
+        {
+            field = message[@"CM2"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_scheduledTimePoint.field.FieldRepetitions != null && _scheduledTimePoint.field.FieldRepetitions.Count > 0)
+        {
+            _scheduledTimePoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_scheduledTimePoint, fieldData);
+        }
+
+        return _scheduledTimePoint;
+    } 
+}
+
+internal HL7V271Field _descriptionOfTimePoint;
+
+public HL7V271Field DescriptionOfTimePoint
+{
+    get
+    {
+        if (_descriptionOfTimePoint != null)
+        {
+            return _descriptionOfTimePoint;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM2.3",
+            Type = @"Field",
+            Position = @"CM2.3",
+            Name = @"Description Of Time Point",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a brief explanation so recipients will understand what the time point represents.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _descriptionOfTimePoint = new HL7V271Field
+        {
+            field = message[@"CM2"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_descriptionOfTimePoint.field.FieldRepetitions != null && _descriptionOfTimePoint.field.FieldRepetitions.Count > 0)
+        {
+            _descriptionOfTimePoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_descriptionOfTimePoint, fieldData);
+        }
+
+        return _descriptionOfTimePoint;
+    } 
+}
+
+internal HL7V271Field _eventsScheduledThisTimePoint;
+
+public HL7V271Field EventsScheduledThisTimePoint
+{
+    get
+    {
+        if (_eventsScheduledThisTimePoint != null)
+        {
+            return _eventsScheduledThisTimePoint;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"CM2.4",
+            Type = @"Field",
+            Position = @"CM2.4",
+            Name = @"Events Scheduled This Time Point",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"200",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a study-specific event.  Coding systems may be developed for this field or applications may use facility-wide or standardized orders and procedures coding systems.  This enables integration of procedures or events ordered for clinical trials with medical order entry systems.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CM2.3",
-                            Type = @"Field",
-                            Position = @"CM2.3",
-                            Name = @"Description Of Time Point",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a brief explanation so recipients will understand what the time point represents.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CM2.4",
-                            Type = @"Field",
-                            Position = @"CM2.4",
-                            Name = @"Events Scheduled This Time Point",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"200",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a study-specific event.  Coding systems may be developed for this field or applications may use facility-wide or standardized orders and procedures coding systems.  This enables integration of procedures or events ordered for clinical trials with medical order entry systems.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CM2.4.1",
                             Type = @"Component",
@@ -956,178 +1052,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentCM2(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field setIdCm2;
-
-public HL7V271Field SetIdCm2
-{
-    get
-    {
-        if (setIdCm2 != null)
-        {
-            return setIdCm2;
-        }
-
-        setIdCm2 = new HL7V271Field
-        {
-            field = message[@"CM2"][1],
-            Id = @"CM2.1",
-            Type = @"Field",
-            Position = @"CM2.1",
-            Name = @"Set Id- Cm2",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a number that uniquely identifies this transaction for the purpose of adding, changing, or deleting the transaction.  For those messages that permit segments to repeat, the Set ID field is used to identify the repetitions.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdCm2.field.FieldRepetitions != null && setIdCm2.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdCm2.Id));
-            setIdCm2.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(setIdCm2, fieldData);
-        }
-
-        return setIdCm2;
-    } 
-}
-
-internal HL7V271Field scheduledTimePoint;
-
-public HL7V271Field ScheduledTimePoint
-{
-    get
-    {
-        if (scheduledTimePoint != null)
-        {
-            return scheduledTimePoint;
-        }
-
-        scheduledTimePoint = new HL7V271Field
-        {
-            field = message[@"CM2"][2],
-            Id = @"CM2.2",
-            Type = @"Field",
-            Position = @"CM2.2",
-            Name = @"Scheduled Time Point",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field should correspond to the scheduled time point coding system in Chapter 7, section 7.7.3.1, ""Study scheduled time point.""",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (scheduledTimePoint.field.FieldRepetitions != null && scheduledTimePoint.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(scheduledTimePoint.Id));
-            scheduledTimePoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(scheduledTimePoint, fieldData);
-        }
-
-        return scheduledTimePoint;
-    } 
-}
-
-internal HL7V271Field descriptionOfTimePoint;
-
-public HL7V271Field DescriptionOfTimePoint
-{
-    get
-    {
-        if (descriptionOfTimePoint != null)
-        {
-            return descriptionOfTimePoint;
-        }
-
-        descriptionOfTimePoint = new HL7V271Field
-        {
-            field = message[@"CM2"][3],
-            Id = @"CM2.3",
-            Type = @"Field",
-            Position = @"CM2.3",
-            Name = @"Description Of Time Point",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a brief explanation so recipients will understand what the time point represents.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (descriptionOfTimePoint.field.FieldRepetitions != null && descriptionOfTimePoint.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(descriptionOfTimePoint.Id));
-            descriptionOfTimePoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(descriptionOfTimePoint, fieldData);
-        }
-
-        return descriptionOfTimePoint;
-    } 
-}
-
-internal HL7V271Field eventsScheduledThisTimePoint;
-
-public HL7V271Field EventsScheduledThisTimePoint
-{
-    get
-    {
-        if (eventsScheduledThisTimePoint != null)
-        {
-            return eventsScheduledThisTimePoint;
-        }
-
-        eventsScheduledThisTimePoint = new HL7V271Field
+        _eventsScheduledThisTimePoint = new HL7V271Field
         {
             field = message[@"CM2"][4],
-            Id = @"CM2.4",
-            Type = @"Field",
-            Position = @"CM2.4",
-            Name = @"Events Scheduled This Time Point",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"200",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a study-specific event.  Coding systems may be developed for this field or applications may use facility-wide or standardized orders and procedures coding systems.  This enables integration of procedures or events ordered for clinical trials with medical order entry systems.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (eventsScheduledThisTimePoint.field.FieldRepetitions != null && eventsScheduledThisTimePoint.field.FieldRepetitions.Count > 0)
+        if (_eventsScheduledThisTimePoint.field.FieldRepetitions != null && _eventsScheduledThisTimePoint.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventsScheduledThisTimePoint.Id));
-            eventsScheduledThisTimePoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(eventsScheduledThisTimePoint, fieldData);
+            _eventsScheduledThisTimePoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_eventsScheduledThisTimePoint, fieldData);
         }
 
-        return eventsScheduledThisTimePoint;
+        return _eventsScheduledThisTimePoint;
     } 
 }
     }

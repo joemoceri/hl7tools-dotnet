@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentSTZ(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _sterilizationType;
+
+public HL7V28Field SterilizationType
+{
+    get
+    {
+        if (_sterilizationType != null)
+        {
+            return _sterilizationType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"STZ.1",
+            Type = @"Field",
+            Position = @"STZ.1",
+            Name = @"Sterilization Type",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0806",
+            TableName = @"Sterilization Type",
+            Description = @"This field contains the type of sterilization used for sterilizing the inventory supply item in the ITM segment.  Refer to User-defined Table 0806 – Sterilization Type in Chapter 2C, Code Tables, for suggested values. ",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"STZ.1",
-                            Type = @"Field",
-                            Position = @"STZ.1",
-                            Name = @"Sterilization Type",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0806",
-                            TableName = @"Sterilization Type",
-                            Description = @"This field contains the type of sterilization used for sterilizing the inventory supply item in the ITM segment.  Refer to User-defined Table 0806 – Sterilization Type in Chapter 2C, Code Tables, for suggested values. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STZ.1.1",
                             Type = @"Component",
@@ -478,25 +490,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _sterilizationType = new HL7V28Field
+        {
+            field = message[@"STZ"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sterilizationType.field.FieldRepetitions != null && _sterilizationType.field.FieldRepetitions.Count > 0)
+        {
+            _sterilizationType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_sterilizationType, fieldData);
+        }
+
+        return _sterilizationType;
+    } 
+}
+
+internal HL7V28Field _sterilizationCycle;
+
+public HL7V28Field SterilizationCycle
+{
+    get
+    {
+        if (_sterilizationCycle != null)
+        {
+            return _sterilizationCycle;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"STZ.2",
+            Type = @"Field",
+            Position = @"STZ.2",
+            Name = @"Sterilization Cycle",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0702",
+            TableName = @"Cycle Type-",
+            Description = @"This field contains the sterilization cycle used for sterilization of the inventory supply item.  The AAMI Standard defines steam sterilization cycles – cycle names: pressure, temperature, dry time.  Refer to SCD-28   Cycle Type   (CWE)   02131 which references User-defined Table 0702 – Cycle Type in Chapter 2C, Code Tables, providing suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STZ.2",
-                            Type = @"Field",
-                            Position = @"STZ.2",
-                            Name = @"Sterilization Cycle",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0702",
-                            TableName = @"Cycle Type-",
-                            Description = @"This field contains the sterilization cycle used for sterilization of the inventory supply item.  The AAMI Standard defines steam sterilization cycles – cycle names: pressure, temperature, dry time.  Refer to SCD-28   Cycle Type   (CWE)   02131 which references User-defined Table 0702 – Cycle Type in Chapter 2C, Code Tables, providing suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STZ.2.1",
                             Type = @"Component",
@@ -924,25 +966,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _sterilizationCycle = new HL7V28Field
+        {
+            field = message[@"STZ"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sterilizationCycle.field.FieldRepetitions != null && _sterilizationCycle.field.FieldRepetitions.Count > 0)
+        {
+            _sterilizationCycle.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_sterilizationCycle, fieldData);
+        }
+
+        return _sterilizationCycle;
+    } 
+}
+
+internal HL7V28Field _maintenanceCycle;
+
+public HL7V28Field MaintenanceCycle
+{
+    get
+    {
+        if (_maintenanceCycle != null)
+        {
+            return _maintenanceCycle;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"STZ.3",
+            Type = @"Field",
+            Position = @"STZ.3",
+            Name = @"Maintenance Cycle",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0809",
+            TableName = @"Maintenance Cycle",
+            Description = @"This field contains the maintenance cycle used for the inventory supply item, such as the number of times to sharpen after five uses. Refer to User-defined Table 0809 – Maintenance Cycle in Chapter 2C, Code Tables, for suggested values. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STZ.3",
-                            Type = @"Field",
-                            Position = @"STZ.3",
-                            Name = @"Maintenance Cycle",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0809",
-                            TableName = @"Maintenance Cycle",
-                            Description = @"This field contains the maintenance cycle used for the inventory supply item, such as the number of times to sharpen after five uses. Refer to User-defined Table 0809 – Maintenance Cycle in Chapter 2C, Code Tables, for suggested values. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STZ.3.1",
                             Type = @"Component",
@@ -1370,25 +1442,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _maintenanceCycle = new HL7V28Field
+        {
+            field = message[@"STZ"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_maintenanceCycle.field.FieldRepetitions != null && _maintenanceCycle.field.FieldRepetitions.Count > 0)
+        {
+            _maintenanceCycle.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_maintenanceCycle, fieldData);
+        }
+
+        return _maintenanceCycle;
+    } 
+}
+
+internal HL7V28Field _maintenanceType;
+
+public HL7V28Field MaintenanceType
+{
+    get
+    {
+        if (_maintenanceType != null)
+        {
+            return _maintenanceType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"STZ.4",
+            Type = @"Field",
+            Position = @"STZ.4",
+            Name = @"Maintenance Type",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0811",
+            TableName = @"Maintenance Type",
+            Description = @"This field contains the type of maintenance performed on the inventory supply item.  This is different than the maintenance cycle in the sense that it can describe the number of maintenance cycles that can be performed before disposing of the inventory supply item.  Refer to User-defined Table 0811 – Maintenance Type in Chapter 2C, Code Tables, for suggested values. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STZ.4",
-                            Type = @"Field",
-                            Position = @"STZ.4",
-                            Name = @"Maintenance Type",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0811",
-                            TableName = @"Maintenance Type",
-                            Description = @"This field contains the type of maintenance performed on the inventory supply item.  This is different than the maintenance cycle in the sense that it can describe the number of maintenance cycles that can be performed before disposing of the inventory supply item.  Refer to User-defined Table 0811 – Maintenance Type in Chapter 2C, Code Tables, for suggested values. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STZ.4.1",
                             Type = @"Component",
@@ -1816,178 +1918,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentSTZ(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field sterilizationType;
-
-public HL7V28Field SterilizationType
-{
-    get
-    {
-        if (sterilizationType != null)
-        {
-            return sterilizationType;
-        }
-
-        sterilizationType = new HL7V28Field
-        {
-            field = message[@"STZ"][1],
-            Id = @"STZ.1",
-            Type = @"Field",
-            Position = @"STZ.1",
-            Name = @"Sterilization Type",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0806",
-            TableName = @"Sterilization Type",
-            Description = @"This field contains the type of sterilization used for sterilizing the inventory supply item in the ITM segment.  Refer to User-defined Table 0806 – Sterilization Type in Chapter 2C, Code Tables, for suggested values. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sterilizationType.field.FieldRepetitions != null && sterilizationType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sterilizationType.Id));
-            sterilizationType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(sterilizationType, fieldData);
-        }
-
-        return sterilizationType;
-    } 
-}
-
-internal HL7V28Field sterilizationCycle;
-
-public HL7V28Field SterilizationCycle
-{
-    get
-    {
-        if (sterilizationCycle != null)
-        {
-            return sterilizationCycle;
-        }
-
-        sterilizationCycle = new HL7V28Field
-        {
-            field = message[@"STZ"][2],
-            Id = @"STZ.2",
-            Type = @"Field",
-            Position = @"STZ.2",
-            Name = @"Sterilization Cycle",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0702",
-            TableName = @"Cycle Type-",
-            Description = @"This field contains the sterilization cycle used for sterilization of the inventory supply item.  The AAMI Standard defines steam sterilization cycles – cycle names: pressure, temperature, dry time.  Refer to SCD-28   Cycle Type   (CWE)   02131 which references User-defined Table 0702 – Cycle Type in Chapter 2C, Code Tables, providing suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sterilizationCycle.field.FieldRepetitions != null && sterilizationCycle.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sterilizationCycle.Id));
-            sterilizationCycle.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(sterilizationCycle, fieldData);
-        }
-
-        return sterilizationCycle;
-    } 
-}
-
-internal HL7V28Field maintenanceCycle;
-
-public HL7V28Field MaintenanceCycle
-{
-    get
-    {
-        if (maintenanceCycle != null)
-        {
-            return maintenanceCycle;
-        }
-
-        maintenanceCycle = new HL7V28Field
-        {
-            field = message[@"STZ"][3],
-            Id = @"STZ.3",
-            Type = @"Field",
-            Position = @"STZ.3",
-            Name = @"Maintenance Cycle",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0809",
-            TableName = @"Maintenance Cycle",
-            Description = @"This field contains the maintenance cycle used for the inventory supply item, such as the number of times to sharpen after five uses. Refer to User-defined Table 0809 – Maintenance Cycle in Chapter 2C, Code Tables, for suggested values. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (maintenanceCycle.field.FieldRepetitions != null && maintenanceCycle.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maintenanceCycle.Id));
-            maintenanceCycle.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(maintenanceCycle, fieldData);
-        }
-
-        return maintenanceCycle;
-    } 
-}
-
-internal HL7V28Field maintenanceType;
-
-public HL7V28Field MaintenanceType
-{
-    get
-    {
-        if (maintenanceType != null)
-        {
-            return maintenanceType;
-        }
-
-        maintenanceType = new HL7V28Field
+        _maintenanceType = new HL7V28Field
         {
             field = message[@"STZ"][4],
-            Id = @"STZ.4",
-            Type = @"Field",
-            Position = @"STZ.4",
-            Name = @"Maintenance Type",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0811",
-            TableName = @"Maintenance Type",
-            Description = @"This field contains the type of maintenance performed on the inventory supply item.  This is different than the maintenance cycle in the sense that it can describe the number of maintenance cycles that can be performed before disposing of the inventory supply item.  Refer to User-defined Table 0811 – Maintenance Type in Chapter 2C, Code Tables, for suggested values. ",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (maintenanceType.field.FieldRepetitions != null && maintenanceType.field.FieldRepetitions.Count > 0)
+        if (_maintenanceType.field.FieldRepetitions != null && _maintenanceType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maintenanceType.Id));
-            maintenanceType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(maintenanceType, fieldData);
+            _maintenanceType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_maintenanceType, fieldData);
         }
 
-        return maintenanceType;
+        return _maintenanceType;
     } 
 }
     }

@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_13",
+
                     };
             } 
         }
@@ -35,6 +36,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Used for query of all inventory items",
                             Comment = null
                         },
+                        
                     };
             } 
         }

@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentPDA(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _deathCauseCode;
+
+public HL7V24Field DeathCauseCode
+{
+    get
+    {
+        if (_deathCauseCode != null)
+        {
+            return _deathCauseCode;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"PDA.1",
+            Type = @"Field",
+            Position = @"PDA.1",
+            Name = @"Death Cause Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is valued with the reason of the death.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PDA.1",
-                            Type = @"Field",
-                            Position = @"PDA.1",
-                            Name = @"Death Cause Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is valued with the reason of the death.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PDA.1.1",
                             Type = @"Component",
@@ -160,25 +172,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _deathCauseCode = new HL7V24Field
+        {
+            field = message[@"PDA"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_deathCauseCode.field.FieldRepetitions != null && _deathCauseCode.field.FieldRepetitions.Count > 0)
+        {
+            _deathCauseCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_deathCauseCode, fieldData);
+        }
+
+        return _deathCauseCode;
+    } 
+}
+
+internal HL7V24Field _deathLocation;
+
+public HL7V24Field DeathLocation
+{
+    get
+    {
+        if (_deathLocation != null)
+        {
+            return _deathLocation;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"PDA.2",
+            Type = @"Field",
+            Position = @"PDA.2",
+            Name = @"Death Location",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is valued with the place the death occurred.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PDA.2",
-                            Type = @"Field",
-                            Position = @"PDA.2",
-                            Name = @"Death Location",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is valued with the place the death occurred.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PDA.2.1",
                             Type = @"Component",
@@ -390,43 +432,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A free text description of the location.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _deathLocation = new HL7V24Field
+        {
+            field = message[@"PDA"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_deathLocation.field.FieldRepetitions != null && _deathLocation.field.FieldRepetitions.Count > 0)
+        {
+            _deathLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_deathLocation, fieldData);
+        }
+
+        return _deathLocation;
+    } 
+}
+
+internal HL7V24Field _deathCertifiedIndicator;
+
+public HL7V24Field DeathCertifiedIndicator
+{
+    get
+    {
+        if (_deathCertifiedIndicator != null)
+        {
+            return _deathCertifiedIndicator;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"PDA.3",
+            Type = @"Field",
+            Position = @"PDA.3",
+            Name = @"Death Certified Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field indicates whether a death was officially certified or not. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _deathCertifiedIndicator = new HL7V24Field
+        {
+            field = message[@"PDA"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_deathCertifiedIndicator.field.FieldRepetitions != null && _deathCertifiedIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _deathCertifiedIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_deathCertifiedIndicator, fieldData);
+        }
+
+        return _deathCertifiedIndicator;
+    } 
+}
+
+internal HL7V24Field _deathCertificateSignedDateTime;
+
+public HL7V24Field DeathCertificateSignedDateTime
+{
+    get
+    {
+        if (_deathCertificateSignedDateTime != null)
+        {
+            return _deathCertificateSignedDateTime;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"PDA.4",
+            Type = @"Field",
+            Position = @"PDA.4",
+            Name = @"Death Certificate Signed Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is valued with the date and time the death certificate was signed.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PDA.3",
-                            Type = @"Field",
-                            Position = @"PDA.3",
-                            Name = @"Death Certified Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates whether a death was officially certified or not. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PDA.4",
-                            Type = @"Field",
-                            Position = @"PDA.4",
-                            Name = @"Death Certificate Signed Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is valued with the date and time the death certificate was signed.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PDA.4.1",
                             Type = @"Component",
@@ -460,25 +559,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _deathCertificateSignedDateTime = new HL7V24Field
+        {
+            field = message[@"PDA"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_deathCertificateSignedDateTime.field.FieldRepetitions != null && _deathCertificateSignedDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _deathCertificateSignedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_deathCertificateSignedDateTime, fieldData);
+        }
+
+        return _deathCertificateSignedDateTime;
+    } 
+}
+
+internal HL7V24Field _deathCertifiedBy;
+
+public HL7V24Field DeathCertifiedBy
+{
+    get
+    {
+        if (_deathCertifiedBy != null)
+        {
+            return _deathCertifiedBy;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"PDA.5",
+            Type = @"Field",
+            Position = @"PDA.5",
+            Name = @"Death Certified By",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is valued with the person who signed the death certificate.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PDA.5",
-                            Type = @"Field",
-                            Position = @"PDA.5",
-                            Name = @"Death Certified By",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is valued with the person who signed the death certificate.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PDA.5.1",
                             Type = @"Component",
@@ -1204,43 +1333,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 Table 0444 - Name assembly orde r for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _deathCertifiedBy = new HL7V24Field
+        {
+            field = message[@"PDA"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_deathCertifiedBy.field.FieldRepetitions != null && _deathCertifiedBy.field.FieldRepetitions.Count > 0)
+        {
+            _deathCertifiedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_deathCertifiedBy, fieldData);
+        }
+
+        return _deathCertifiedBy;
+    } 
+}
+
+internal HL7V24Field _autopsyIndicator;
+
+public HL7V24Field AutopsyIndicator
+{
+    get
+    {
+        if (_autopsyIndicator != null)
+        {
+            return _autopsyIndicator;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"PDA.6",
+            Type = @"Field",
+            Position = @"PDA.6",
+            Name = @"Autopsy Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field indicates whether an autopsy was performed. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _autopsyIndicator = new HL7V24Field
+        {
+            field = message[@"PDA"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_autopsyIndicator.field.FieldRepetitions != null && _autopsyIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _autopsyIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_autopsyIndicator, fieldData);
+        }
+
+        return _autopsyIndicator;
+    } 
+}
+
+internal HL7V24Field _autopsyStartandEndDateTime;
+
+public HL7V24Field AutopsyStartandEndDateTime
+{
+    get
+    {
+        if (_autopsyStartandEndDateTime != null)
+        {
+            return _autopsyStartandEndDateTime;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"PDA.7",
+            Type = @"Field",
+            Position = @"PDA.7",
+            Name = @"Autopsy Start and End Date/Time",
+            Length = 53,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DR",
+            DataTypeName = @"Date/time Range",
+            TableId = null,
+            TableName = null,
+            Description = @"If an autopsy is performed, this field is valued with the date and time the autopsy was begun and completed",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PDA.6",
-                            Type = @"Field",
-                            Position = @"PDA.6",
-                            Name = @"Autopsy Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates whether an autopsy was performed. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PDA.7",
-                            Type = @"Field",
-                            Position = @"PDA.7",
-                            Name = @"Autopsy Start and End Date/Time",
-                            Length = 53,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DR",
-                            DataTypeName = @"Date/time Range",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"If an autopsy is performed, this field is valued with the date and time the autopsy was begun and completed",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PDA.7.1",
                             Type = @"Component",
@@ -1342,25 +1528,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _autopsyStartandEndDateTime = new HL7V24Field
+        {
+            field = message[@"PDA"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_autopsyStartandEndDateTime.field.FieldRepetitions != null && _autopsyStartandEndDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _autopsyStartandEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_autopsyStartandEndDateTime, fieldData);
+        }
+
+        return _autopsyStartandEndDateTime;
+    } 
+}
+
+internal HL7V24Field _autopsyPerformedBy;
+
+public HL7V24Field AutopsyPerformedBy
+{
+    get
+    {
+        if (_autopsyPerformedBy != null)
+        {
+            return _autopsyPerformedBy;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"PDA.8",
+            Type = @"Field",
+            Position = @"PDA.8",
+            Name = @"Autopsy Performed By",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is valued with the authority who performed the autopsy.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PDA.8",
-                            Type = @"Field",
-                            Position = @"PDA.8",
-                            Name = @"Autopsy Performed By",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is valued with the authority who performed the autopsy.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PDA.8.1",
                             Type = @"Component",
@@ -2086,377 +2302,39 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 Table 0444 - Name assembly orde r for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PDA.9",
-                            Type = @"Field",
-                            Position = @"PDA.9",
-                            Name = @"Coroner Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This flag indicates whether the case/death has been assigned to the coroner/medical examiner for investigative purposed. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentPDA(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field deathCauseCode;
-
-public HL7V24Field DeathCauseCode
-{
-    get
-    {
-        if (deathCauseCode != null)
-        {
-            return deathCauseCode;
-        }
-
-        deathCauseCode = new HL7V24Field
-        {
-            field = message[@"PDA"][1],
-            Id = @"PDA.1",
-            Type = @"Field",
-            Position = @"PDA.1",
-            Name = @"Death Cause Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is valued with the reason of the death.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (deathCauseCode.field.FieldRepetitions != null && deathCauseCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deathCauseCode.Id));
-            deathCauseCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(deathCauseCode, fieldData);
-        }
-
-        return deathCauseCode;
-    } 
-}
-
-internal HL7V24Field deathLocation;
-
-public HL7V24Field DeathLocation
-{
-    get
-    {
-        if (deathLocation != null)
-        {
-            return deathLocation;
-        }
-
-        deathLocation = new HL7V24Field
-        {
-            field = message[@"PDA"][2],
-            Id = @"PDA.2",
-            Type = @"Field",
-            Position = @"PDA.2",
-            Name = @"Death Location",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is valued with the place the death occurred.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (deathLocation.field.FieldRepetitions != null && deathLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deathLocation.Id));
-            deathLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(deathLocation, fieldData);
-        }
-
-        return deathLocation;
-    } 
-}
-
-internal HL7V24Field deathCertifiedIndicator;
-
-public HL7V24Field DeathCertifiedIndicator
-{
-    get
-    {
-        if (deathCertifiedIndicator != null)
-        {
-            return deathCertifiedIndicator;
-        }
-
-        deathCertifiedIndicator = new HL7V24Field
-        {
-            field = message[@"PDA"][3],
-            Id = @"PDA.3",
-            Type = @"Field",
-            Position = @"PDA.3",
-            Name = @"Death Certified Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field indicates whether a death was officially certified or not. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (deathCertifiedIndicator.field.FieldRepetitions != null && deathCertifiedIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deathCertifiedIndicator.Id));
-            deathCertifiedIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(deathCertifiedIndicator, fieldData);
-        }
-
-        return deathCertifiedIndicator;
-    } 
-}
-
-internal HL7V24Field deathCertificateSignedDateTime;
-
-public HL7V24Field DeathCertificateSignedDateTime
-{
-    get
-    {
-        if (deathCertificateSignedDateTime != null)
-        {
-            return deathCertificateSignedDateTime;
-        }
-
-        deathCertificateSignedDateTime = new HL7V24Field
-        {
-            field = message[@"PDA"][4],
-            Id = @"PDA.4",
-            Type = @"Field",
-            Position = @"PDA.4",
-            Name = @"Death Certificate Signed Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is valued with the date and time the death certificate was signed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (deathCertificateSignedDateTime.field.FieldRepetitions != null && deathCertificateSignedDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deathCertificateSignedDateTime.Id));
-            deathCertificateSignedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(deathCertificateSignedDateTime, fieldData);
-        }
-
-        return deathCertificateSignedDateTime;
-    } 
-}
-
-internal HL7V24Field deathCertifiedBy;
-
-public HL7V24Field DeathCertifiedBy
-{
-    get
-    {
-        if (deathCertifiedBy != null)
-        {
-            return deathCertifiedBy;
-        }
-
-        deathCertifiedBy = new HL7V24Field
-        {
-            field = message[@"PDA"][5],
-            Id = @"PDA.5",
-            Type = @"Field",
-            Position = @"PDA.5",
-            Name = @"Death Certified By",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is valued with the person who signed the death certificate.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (deathCertifiedBy.field.FieldRepetitions != null && deathCertifiedBy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deathCertifiedBy.Id));
-            deathCertifiedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(deathCertifiedBy, fieldData);
-        }
-
-        return deathCertifiedBy;
-    } 
-}
-
-internal HL7V24Field autopsyIndicator;
-
-public HL7V24Field AutopsyIndicator
-{
-    get
-    {
-        if (autopsyIndicator != null)
-        {
-            return autopsyIndicator;
-        }
-
-        autopsyIndicator = new HL7V24Field
-        {
-            field = message[@"PDA"][6],
-            Id = @"PDA.6",
-            Type = @"Field",
-            Position = @"PDA.6",
-            Name = @"Autopsy Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field indicates whether an autopsy was performed. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (autopsyIndicator.field.FieldRepetitions != null && autopsyIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(autopsyIndicator.Id));
-            autopsyIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(autopsyIndicator, fieldData);
-        }
-
-        return autopsyIndicator;
-    } 
-}
-
-internal HL7V24Field autopsyStartandEndDateTime;
-
-public HL7V24Field AutopsyStartandEndDateTime
-{
-    get
-    {
-        if (autopsyStartandEndDateTime != null)
-        {
-            return autopsyStartandEndDateTime;
-        }
-
-        autopsyStartandEndDateTime = new HL7V24Field
-        {
-            field = message[@"PDA"][7],
-            Id = @"PDA.7",
-            Type = @"Field",
-            Position = @"PDA.7",
-            Name = @"Autopsy Start and End Date/Time",
-            Length = 53,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DR",
-            DataTypeName = @"Date/time Range",
-            TableId = null,
-            TableName = null,
-            Description = @"If an autopsy is performed, this field is valued with the date and time the autopsy was begun and completed",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (autopsyStartandEndDateTime.field.FieldRepetitions != null && autopsyStartandEndDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(autopsyStartandEndDateTime.Id));
-            autopsyStartandEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(autopsyStartandEndDateTime, fieldData);
-        }
-
-        return autopsyStartandEndDateTime;
-    } 
-}
-
-internal HL7V24Field autopsyPerformedBy;
-
-public HL7V24Field AutopsyPerformedBy
-{
-    get
-    {
-        if (autopsyPerformedBy != null)
-        {
-            return autopsyPerformedBy;
-        }
-
-        autopsyPerformedBy = new HL7V24Field
+        _autopsyPerformedBy = new HL7V24Field
         {
             field = message[@"PDA"][8],
-            Id = @"PDA.8",
-            Type = @"Field",
-            Position = @"PDA.8",
-            Name = @"Autopsy Performed By",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is valued with the authority who performed the autopsy.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (autopsyPerformedBy.field.FieldRepetitions != null && autopsyPerformedBy.field.FieldRepetitions.Count > 0)
+        if (_autopsyPerformedBy.field.FieldRepetitions != null && _autopsyPerformedBy.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(autopsyPerformedBy.Id));
-            autopsyPerformedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(autopsyPerformedBy, fieldData);
+            _autopsyPerformedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_autopsyPerformedBy, fieldData);
         }
 
-        return autopsyPerformedBy;
+        return _autopsyPerformedBy;
     } 
 }
 
-internal HL7V24Field coronerIndicator;
+internal HL7V24Field _coronerIndicator;
 
 public HL7V24Field CoronerIndicator
 {
     get
     {
-        if (coronerIndicator != null)
+        if (_coronerIndicator != null)
         {
-            return coronerIndicator;
+            return _coronerIndicator;
         }
 
-        coronerIndicator = new HL7V24Field
+        var fieldData = new HL7V24FieldData
         {
-            field = message[@"PDA"][9],
             Id = @"PDA.9",
             Type = @"Field",
             Position = @"PDA.9",
@@ -2470,17 +2348,22 @@ public HL7V24Field CoronerIndicator
             TableName = @"Yes/no indicator",
             Description = @"This flag indicates whether the case/death has been assigned to the coroner/medical examiner for investigative purposed. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _coronerIndicator = new HL7V24Field
+        {
+            field = message[@"PDA"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (coronerIndicator.field.FieldRepetitions != null && coronerIndicator.field.FieldRepetitions.Count > 0)
+        if (_coronerIndicator.field.FieldRepetitions != null && _coronerIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(coronerIndicator.Id));
-            coronerIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(coronerIndicator, fieldData);
+            _coronerIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_coronerIndicator, fieldData);
         }
 
-        return coronerIndicator;
+        return _coronerIndicator;
     } 
 }
     }

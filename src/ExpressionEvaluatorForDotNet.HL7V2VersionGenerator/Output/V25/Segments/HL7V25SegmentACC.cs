@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V25SegmentACC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V25Field _accidentDateTime;
+
+public HL7V25Field AccidentDateTime
+{
+    get
+    {
+        if (_accidentDateTime != null)
+        {
+            return _accidentDateTime;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"ACC.1",
+            Type = @"Field",
+            Position = @"ACC.1",
+            Name = @"Accident Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time of the accident.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ACC.1",
-                            Type = @"Field",
-                            Position = @"ACC.1",
-                            Name = @"Accident Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time of the accident.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ACC.1.1",
                             Type = @"Component",
@@ -86,25 +98,55 @@ namespace ExpressionEvaluatorForDotNet
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _accidentDateTime = new HL7V25Field
+        {
+            field = message[@"ACC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accidentDateTime.field.FieldRepetitions != null && _accidentDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _accidentDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_accidentDateTime, fieldData);
+        }
+
+        return _accidentDateTime;
+    } 
+}
+
+internal HL7V25Field _accidentCode;
+
+public HL7V25Field AccidentCode
+{
+    get
+    {
+        if (_accidentCode != null)
+        {
+            return _accidentCode;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"ACC.2",
+            Type = @"Field",
+            Position = @"ACC.2",
+            Name = @"Accident Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0050",
+            TableName = @"Accident Code",
+            Description = @"This field contains the type of accident. Refer to User-defined Table 0050 - Accident Code for suggested values. ICD accident codes are recommended.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ACC.2",
-                            Type = @"Field",
-                            Position = @"ACC.2",
-                            Name = @"Accident Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0050",
-                            TableName = @"Accident Code",
-                            Description = @"This field contains the type of accident. Refer to User-defined Table 0050 - Accident Code for suggested values. ICD accident codes are recommended.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ACC.2.1",
                             Type = @"Component",
@@ -210,43 +252,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _accidentCode = new HL7V25Field
+        {
+            field = message[@"ACC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accidentCode.field.FieldRepetitions != null && _accidentCode.field.FieldRepetitions.Count > 0)
+        {
+            _accidentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_accidentCode, fieldData);
+        }
+
+        return _accidentCode;
+    } 
+}
+
+internal HL7V25Field _accidentLocation;
+
+public HL7V25Field AccidentLocation
+{
+    get
+    {
+        if (_accidentLocation != null)
+        {
+            return _accidentLocation;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"ACC.3",
+            Type = @"Field",
+            Position = @"ACC.3",
+            Name = @"Accident Location",
+            Length = 25,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the location of the accident.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _accidentLocation = new HL7V25Field
+        {
+            field = message[@"ACC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accidentLocation.field.FieldRepetitions != null && _accidentLocation.field.FieldRepetitions.Count > 0)
+        {
+            _accidentLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_accidentLocation, fieldData);
+        }
+
+        return _accidentLocation;
+    } 
+}
+
+internal HL7V25Field _autoAccidentState;
+
+public HL7V25Field AutoAccidentState
+{
+    get
+    {
+        if (_autoAccidentState != null)
+        {
+            return _autoAccidentState;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"ACC.4",
+            Type = @"Field",
+            Position = @"ACC.4",
+            Name = @"Auto Accident State",
+            Length = 250,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0347",
+            TableName = @"State/province",
+            Description = @"As of Version 2.5, this field has been retained for backward compatibility only.  Use ACC-11 - Accident Address instead of this field, as the state in which the accident occurred is part of the address. This field specifies the state in which the auto accident occurred. (CMS 1500 requirement in the US.) Refer toUser-defined Table 0347 - Auto Accident State for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ACC.3",
-                            Type = @"Field",
-                            Position = @"ACC.3",
-                            Name = @"Accident Location",
-                            Length = 25,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the location of the accident.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ACC.4",
-                            Type = @"Field",
-                            Position = @"ACC.4",
-                            Name = @"Auto Accident State",
-                            Length = 250,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0347",
-                            TableName = @"State/province",
-                            Description = @"As of Version 2.5, this field has been retained for backward compatibility only.  Use ACC-11 - Accident Address instead of this field, as the state in which the accident occurred is part of the address. This field specifies the state in which the auto accident occurred. (CMS 1500 requirement in the US.) Refer toUser-defined Table 0347 - Auto Accident State for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ACC.4.1",
                             Type = @"Component",
@@ -352,61 +451,145 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _autoAccidentState = new HL7V25Field
+        {
+            field = message[@"ACC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_autoAccidentState.field.FieldRepetitions != null && _autoAccidentState.field.FieldRepetitions.Count > 0)
+        {
+            _autoAccidentState.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_autoAccidentState, fieldData);
+        }
+
+        return _autoAccidentState;
+    } 
+}
+
+internal HL7V25Field _accidentJobRelatedIndicator;
+
+public HL7V25Field AccidentJobRelatedIndicator
+{
+    get
+    {
+        if (_accidentJobRelatedIndicator != null)
+        {
+            return _accidentJobRelatedIndicator;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"ACC.5",
+            Type = @"Field",
+            Position = @"ACC.5",
+            Name = @"Accident Job Related Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field indicates if the accident was related to a job. Refer to HL7 Table 0136 - Yes/no Indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _accidentJobRelatedIndicator = new HL7V25Field
+        {
+            field = message[@"ACC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accidentJobRelatedIndicator.field.FieldRepetitions != null && _accidentJobRelatedIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _accidentJobRelatedIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_accidentJobRelatedIndicator, fieldData);
+        }
+
+        return _accidentJobRelatedIndicator;
+    } 
+}
+
+internal HL7V25Field _accidentDeathIndicator;
+
+public HL7V25Field AccidentDeathIndicator
+{
+    get
+    {
+        if (_accidentDeathIndicator != null)
+        {
+            return _accidentDeathIndicator;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"ACC.6",
+            Type = @"Field",
+            Position = @"ACC.6",
+            Name = @"Accident Death Indicator",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field indicates whether or not a patient has died as a result of an accident. Refer to HL7 Table 0136 - Yes/no Indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _accidentDeathIndicator = new HL7V25Field
+        {
+            field = message[@"ACC"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accidentDeathIndicator.field.FieldRepetitions != null && _accidentDeathIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _accidentDeathIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_accidentDeathIndicator, fieldData);
+        }
+
+        return _accidentDeathIndicator;
+    } 
+}
+
+internal HL7V25Field _enteredBy;
+
+public HL7V25Field EnteredBy
+{
+    get
+    {
+        if (_enteredBy != null)
+        {
+            return _enteredBy;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"ACC.7",
+            Type = @"Field",
+            Position = @"ACC.7",
+            Name = @"Entered By",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number and Name for Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the person entering the accident information.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ACC.5",
-                            Type = @"Field",
-                            Position = @"ACC.5",
-                            Name = @"Accident Job Related Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates if the accident was related to a job. Refer to HL7 Table 0136 - Yes/no Indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ACC.6",
-                            Type = @"Field",
-                            Position = @"ACC.6",
-                            Name = @"Accident Death Indicator",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates whether or not a patient has died as a result of an accident. Refer to HL7 Table 0136 - Yes/no Indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ACC.7",
-                            Type = @"Field",
-                            Position = @"ACC.7",
-                            Name = @"Entered By",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the person entering the accident information.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ACC.7.1",
                             Type = @"Component",
@@ -1616,79 +1799,190 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _enteredBy = new HL7V25Field
+        {
+            field = message[@"ACC"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_enteredBy.field.FieldRepetitions != null && _enteredBy.field.FieldRepetitions.Count > 0)
+        {
+            _enteredBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_enteredBy, fieldData);
+        }
+
+        return _enteredBy;
+    } 
+}
+
+internal HL7V25Field _accidentDescription;
+
+public HL7V25Field AccidentDescription
+{
+    get
+    {
+        if (_accidentDescription != null)
+        {
+            return _accidentDescription;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"ACC.8",
+            Type = @"Field",
+            Position = @"ACC.8",
+            Name = @"Accident Description",
+            Length = 25,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Description of the accident.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _accidentDescription = new HL7V25Field
+        {
+            field = message[@"ACC"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accidentDescription.field.FieldRepetitions != null && _accidentDescription.field.FieldRepetitions.Count > 0)
+        {
+            _accidentDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_accidentDescription, fieldData);
+        }
+
+        return _accidentDescription;
+    } 
+}
+
+internal HL7V25Field _broughtInBy;
+
+public HL7V25Field BroughtInBy
+{
+    get
+    {
+        if (_broughtInBy != null)
+        {
+            return _broughtInBy;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"ACC.9",
+            Type = @"Field",
+            Position = @"ACC.9",
+            Name = @"Brought In By",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the person or organization that brought in the patient.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _broughtInBy = new HL7V25Field
+        {
+            field = message[@"ACC"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_broughtInBy.field.FieldRepetitions != null && _broughtInBy.field.FieldRepetitions.Count > 0)
+        {
+            _broughtInBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_broughtInBy, fieldData);
+        }
+
+        return _broughtInBy;
+    } 
+}
+
+internal HL7V25Field _policeNotifiedIndicator;
+
+public HL7V25Field PoliceNotifiedIndicator
+{
+    get
+    {
+        if (_policeNotifiedIndicator != null)
+        {
+            return _policeNotifiedIndicator;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"ACC.10",
+            Type = @"Field",
+            Position = @"ACC.10",
+            Name = @"Police Notified Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field indicates if the police were notified. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _policeNotifiedIndicator = new HL7V25Field
+        {
+            field = message[@"ACC"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_policeNotifiedIndicator.field.FieldRepetitions != null && _policeNotifiedIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _policeNotifiedIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_policeNotifiedIndicator, fieldData);
+        }
+
+        return _policeNotifiedIndicator;
+    } 
+}
+
+internal HL7V25Field _accidentAddress;
+
+public HL7V25Field AccidentAddress
+{
+    get
+    {
+        if (_accidentAddress != null)
+        {
+            return _accidentAddress;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"ACC.11",
+            Type = @"Field",
+            Position = @"ACC.11",
+            Name = @"Accident Address",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the address where the accident occurred.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"ACC.8",
-                            Type = @"Field",
-                            Position = @"ACC.8",
-                            Name = @"Accident Description",
-                            Length = 25,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Description of the accident.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ACC.9",
-                            Type = @"Field",
-                            Position = @"ACC.9",
-                            Name = @"Brought In By",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the person or organization that brought in the patient.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ACC.10",
-                            Type = @"Field",
-                            Position = @"ACC.10",
-                            Name = @"Police Notified Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates if the police were notified. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ACC.11",
-                            Type = @"Field",
-                            Position = @"ACC.11",
-                            Name = @"Accident Address",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the address where the accident occurred.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"ACC.11.1",
                             Type = @"Component",
@@ -2168,465 +2462,23 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V25SegmentACC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V25Field accidentDateTime;
-
-public HL7V25Field AccidentDateTime
-{
-    get
-    {
-        if (accidentDateTime != null)
-        {
-            return accidentDateTime;
-        }
-
-        accidentDateTime = new HL7V25Field
-        {
-            field = message[@"ACC"][1],
-            Id = @"ACC.1",
-            Type = @"Field",
-            Position = @"ACC.1",
-            Name = @"Accident Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time of the accident.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accidentDateTime.field.FieldRepetitions != null && accidentDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accidentDateTime.Id));
-            accidentDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(accidentDateTime, fieldData);
-        }
-
-        return accidentDateTime;
-    } 
-}
-
-internal HL7V25Field accidentCode;
-
-public HL7V25Field AccidentCode
-{
-    get
-    {
-        if (accidentCode != null)
-        {
-            return accidentCode;
-        }
-
-        accidentCode = new HL7V25Field
-        {
-            field = message[@"ACC"][2],
-            Id = @"ACC.2",
-            Type = @"Field",
-            Position = @"ACC.2",
-            Name = @"Accident Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0050",
-            TableName = @"Accident Code",
-            Description = @"This field contains the type of accident. Refer to User-defined Table 0050 - Accident Code for suggested values. ICD accident codes are recommended.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accidentCode.field.FieldRepetitions != null && accidentCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accidentCode.Id));
-            accidentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(accidentCode, fieldData);
-        }
-
-        return accidentCode;
-    } 
-}
-
-internal HL7V25Field accidentLocation;
-
-public HL7V25Field AccidentLocation
-{
-    get
-    {
-        if (accidentLocation != null)
-        {
-            return accidentLocation;
-        }
-
-        accidentLocation = new HL7V25Field
-        {
-            field = message[@"ACC"][3],
-            Id = @"ACC.3",
-            Type = @"Field",
-            Position = @"ACC.3",
-            Name = @"Accident Location",
-            Length = 25,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the location of the accident.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accidentLocation.field.FieldRepetitions != null && accidentLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accidentLocation.Id));
-            accidentLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(accidentLocation, fieldData);
-        }
-
-        return accidentLocation;
-    } 
-}
-
-internal HL7V25Field autoAccidentState;
-
-public HL7V25Field AutoAccidentState
-{
-    get
-    {
-        if (autoAccidentState != null)
-        {
-            return autoAccidentState;
-        }
-
-        autoAccidentState = new HL7V25Field
-        {
-            field = message[@"ACC"][4],
-            Id = @"ACC.4",
-            Type = @"Field",
-            Position = @"ACC.4",
-            Name = @"Auto Accident State",
-            Length = 250,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0347",
-            TableName = @"State/province",
-            Description = @"As of Version 2.5, this field has been retained for backward compatibility only.  Use ACC-11 - Accident Address instead of this field, as the state in which the accident occurred is part of the address. This field specifies the state in which the auto accident occurred. (CMS 1500 requirement in the US.) Refer toUser-defined Table 0347 - Auto Accident State for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (autoAccidentState.field.FieldRepetitions != null && autoAccidentState.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(autoAccidentState.Id));
-            autoAccidentState.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(autoAccidentState, fieldData);
-        }
-
-        return autoAccidentState;
-    } 
-}
-
-internal HL7V25Field accidentJobRelatedIndicator;
-
-public HL7V25Field AccidentJobRelatedIndicator
-{
-    get
-    {
-        if (accidentJobRelatedIndicator != null)
-        {
-            return accidentJobRelatedIndicator;
-        }
-
-        accidentJobRelatedIndicator = new HL7V25Field
-        {
-            field = message[@"ACC"][5],
-            Id = @"ACC.5",
-            Type = @"Field",
-            Position = @"ACC.5",
-            Name = @"Accident Job Related Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field indicates if the accident was related to a job. Refer to HL7 Table 0136 - Yes/no Indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accidentJobRelatedIndicator.field.FieldRepetitions != null && accidentJobRelatedIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accidentJobRelatedIndicator.Id));
-            accidentJobRelatedIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(accidentJobRelatedIndicator, fieldData);
-        }
-
-        return accidentJobRelatedIndicator;
-    } 
-}
-
-internal HL7V25Field accidentDeathIndicator;
-
-public HL7V25Field AccidentDeathIndicator
-{
-    get
-    {
-        if (accidentDeathIndicator != null)
-        {
-            return accidentDeathIndicator;
-        }
-
-        accidentDeathIndicator = new HL7V25Field
-        {
-            field = message[@"ACC"][6],
-            Id = @"ACC.6",
-            Type = @"Field",
-            Position = @"ACC.6",
-            Name = @"Accident Death Indicator",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field indicates whether or not a patient has died as a result of an accident. Refer to HL7 Table 0136 - Yes/no Indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accidentDeathIndicator.field.FieldRepetitions != null && accidentDeathIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accidentDeathIndicator.Id));
-            accidentDeathIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(accidentDeathIndicator, fieldData);
-        }
-
-        return accidentDeathIndicator;
-    } 
-}
-
-internal HL7V25Field enteredBy;
-
-public HL7V25Field EnteredBy
-{
-    get
-    {
-        if (enteredBy != null)
-        {
-            return enteredBy;
-        }
-
-        enteredBy = new HL7V25Field
-        {
-            field = message[@"ACC"][7],
-            Id = @"ACC.7",
-            Type = @"Field",
-            Position = @"ACC.7",
-            Name = @"Entered By",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number and Name for Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the person entering the accident information.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (enteredBy.field.FieldRepetitions != null && enteredBy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteredBy.Id));
-            enteredBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(enteredBy, fieldData);
-        }
-
-        return enteredBy;
-    } 
-}
-
-internal HL7V25Field accidentDescription;
-
-public HL7V25Field AccidentDescription
-{
-    get
-    {
-        if (accidentDescription != null)
-        {
-            return accidentDescription;
-        }
-
-        accidentDescription = new HL7V25Field
-        {
-            field = message[@"ACC"][8],
-            Id = @"ACC.8",
-            Type = @"Field",
-            Position = @"ACC.8",
-            Name = @"Accident Description",
-            Length = 25,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Description of the accident.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accidentDescription.field.FieldRepetitions != null && accidentDescription.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accidentDescription.Id));
-            accidentDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(accidentDescription, fieldData);
-        }
-
-        return accidentDescription;
-    } 
-}
-
-internal HL7V25Field broughtInBy;
-
-public HL7V25Field BroughtInBy
-{
-    get
-    {
-        if (broughtInBy != null)
-        {
-            return broughtInBy;
-        }
-
-        broughtInBy = new HL7V25Field
-        {
-            field = message[@"ACC"][9],
-            Id = @"ACC.9",
-            Type = @"Field",
-            Position = @"ACC.9",
-            Name = @"Brought In By",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the person or organization that brought in the patient.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (broughtInBy.field.FieldRepetitions != null && broughtInBy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(broughtInBy.Id));
-            broughtInBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(broughtInBy, fieldData);
-        }
-
-        return broughtInBy;
-    } 
-}
-
-internal HL7V25Field policeNotifiedIndicator;
-
-public HL7V25Field PoliceNotifiedIndicator
-{
-    get
-    {
-        if (policeNotifiedIndicator != null)
-        {
-            return policeNotifiedIndicator;
-        }
-
-        policeNotifiedIndicator = new HL7V25Field
-        {
-            field = message[@"ACC"][10],
-            Id = @"ACC.10",
-            Type = @"Field",
-            Position = @"ACC.10",
-            Name = @"Police Notified Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field indicates if the police were notified. Refer to HL7 Table 0136 - Yes/No Indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (policeNotifiedIndicator.field.FieldRepetitions != null && policeNotifiedIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(policeNotifiedIndicator.Id));
-            policeNotifiedIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(policeNotifiedIndicator, fieldData);
-        }
-
-        return policeNotifiedIndicator;
-    } 
-}
-
-internal HL7V25Field accidentAddress;
-
-public HL7V25Field AccidentAddress
-{
-    get
-    {
-        if (accidentAddress != null)
-        {
-            return accidentAddress;
-        }
-
-        accidentAddress = new HL7V25Field
+        _accidentAddress = new HL7V25Field
         {
             field = message[@"ACC"][11],
-            Id = @"ACC.11",
-            Type = @"Field",
-            Position = @"ACC.11",
-            Name = @"Accident Address",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the address where the accident occurred.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (accidentAddress.field.FieldRepetitions != null && accidentAddress.field.FieldRepetitions.Count > 0)
+        if (_accidentAddress.field.FieldRepetitions != null && _accidentAddress.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accidentAddress.Id));
-            accidentAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(accidentAddress, fieldData);
+            _accidentAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_accidentAddress, fieldData);
         }
 
-        return accidentAddress;
+        return _accidentAddress;
     } 
 }
     }

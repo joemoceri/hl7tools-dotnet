@@ -20,6 +20,7 @@ namespace ExpressionEvaluatorForDotNet
                     {
                         "CH_02",
 "CH_03",
+
                     };
             } 
         }
@@ -108,6 +109,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Unspecified",
                             Comment = null
                         },
+                        
                     };
             } 
         }

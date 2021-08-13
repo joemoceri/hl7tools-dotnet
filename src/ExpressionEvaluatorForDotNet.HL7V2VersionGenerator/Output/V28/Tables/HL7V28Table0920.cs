@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -41,6 +42,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Preferred",
                             Comment = @"This specimen is Preferred for all attributes (Container and Additive) identified in the OM4 segment."
                         },
+                        
                     };
             } 
         }

@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_07",
+
                     };
             } 
         }
@@ -95,6 +96,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Verifying Calibrator, used for periodic calibration checks",
                             Comment = null
                         },
+                        
                     };
             } 
         }

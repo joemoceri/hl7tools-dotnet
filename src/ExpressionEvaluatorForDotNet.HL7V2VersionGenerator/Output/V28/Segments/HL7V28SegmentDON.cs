@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentDON(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _donationIdentificationNumberDIN;
+
+public HL7V28Field DonationIdentificationNumberDIN
+{
+    get
+    {
+        if (_donationIdentificationNumberDIN != null)
+        {
+            return _donationIdentificationNumberDIN;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.1",
+            Type = @"Field",
+            Position = @"DON.1",
+            Name = @"Donation Identification Number - DIN",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"4.17.1.2	Definition:  This field contains a unique identifier, Donation Identification Number (DIN), for the specific donation and is therefore mandatory except when using an eligibility message type in which only DON-9, DON-10, and DON-11 are populated.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"DON.1",
-                            Type = @"Field",
-                            Position = @"DON.1",
-                            Name = @"Donation Identification Number - DIN",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"4.17.1.2	Definition:  This field contains a unique identifier, Donation Identification Number (DIN), for the specific donation and is therefore mandatory except when using an eligibility message type in which only DON-9, DON-10, and DON-11 are populated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DON.1.1",
                             Type = @"Component",
@@ -126,25 +138,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _donationIdentificationNumberDIN = new HL7V28Field
+        {
+            field = message[@"DON"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_donationIdentificationNumberDIN.field.FieldRepetitions != null && _donationIdentificationNumberDIN.field.FieldRepetitions.Count > 0)
+        {
+            _donationIdentificationNumberDIN.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_donationIdentificationNumberDIN, fieldData);
+        }
+
+        return _donationIdentificationNumberDIN;
+    } 
+}
+
+internal HL7V28Field _donationType;
+
+public HL7V28Field DonationType
+{
+    get
+    {
+        if (_donationType != null)
+        {
+            return _donationType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.2",
+            Type = @"Field",
+            Position = @"DON.2",
+            Name = @"Donation Type",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"The type of donation.  This element is mandatory except when using an eligibility message type in which only DON-9, DON-10, and DON-11 are populated.  The values for this field are defined in Table RT008 - Type of Donation or Collection in 6th Position of Product Code in the ISBT 128 Standard Technical Specification, which is maintained by ICCBBA.  Link: http://iccbba.org/technicalspecification.pdf.  Table 5 Data Structure 002.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.2",
-                            Type = @"Field",
-                            Position = @"DON.2",
-                            Name = @"Donation Type",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The type of donation.  This element is mandatory except when using an eligibility message type in which only DON-9, DON-10, and DON-11 are populated.  The values for this field are defined in Table RT008 - Type of Donation or Collection in 6th Position of Product Code in the ISBT 128 Standard Technical Specification, which is maintained by ICCBBA.  Link: http://iccbba.org/technicalspecification.pdf.  Table 5 Data Structure 002.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.2.1",
                             Type = @"Component",
@@ -581,79 +623,190 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _donationType = new HL7V28Field
+        {
+            field = message[@"DON"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_donationType.field.FieldRepetitions != null && _donationType.field.FieldRepetitions.Count > 0)
+        {
+            _donationType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_donationType, fieldData);
+        }
+
+        return _donationType;
+    } 
+}
+
+internal HL7V28Field _phlebotomyStartDateTime;
+
+public HL7V28Field PhlebotomyStartDateTime
+{
+    get
+    {
+        if (_phlebotomyStartDateTime != null)
+        {
+            return _phlebotomyStartDateTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.3",
+            Type = @"Field",
+            Position = @"DON.3",
+            Name = @"Phlebotomy Start Date/Time",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"The start date and time of the phlebotomy.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _phlebotomyStartDateTime = new HL7V28Field
+        {
+            field = message[@"DON"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_phlebotomyStartDateTime.field.FieldRepetitions != null && _phlebotomyStartDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _phlebotomyStartDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_phlebotomyStartDateTime, fieldData);
+        }
+
+        return _phlebotomyStartDateTime;
+    } 
+}
+
+internal HL7V28Field _phlebotomyEndDateTime;
+
+public HL7V28Field PhlebotomyEndDateTime
+{
+    get
+    {
+        if (_phlebotomyEndDateTime != null)
+        {
+            return _phlebotomyEndDateTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.4",
+            Type = @"Field",
+            Position = @"DON.4",
+            Name = @"Phlebotomy End Date/Time",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"The end date and time of the phlebotomy",
+            Sample = @"",
+            Fields = null
+        }
+
+        _phlebotomyEndDateTime = new HL7V28Field
+        {
+            field = message[@"DON"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_phlebotomyEndDateTime.field.FieldRepetitions != null && _phlebotomyEndDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _phlebotomyEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_phlebotomyEndDateTime, fieldData);
+        }
+
+        return _phlebotomyEndDateTime;
+    } 
+}
+
+internal HL7V28Field _donationDuration;
+
+public HL7V28Field DonationDuration
+{
+    get
+    {
+        if (_donationDuration != null)
+        {
+            return _donationDuration;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.5",
+            Type = @"Field",
+            Position = @"DON.5",
+            Name = @"Donation Duration",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"The duration of the phlebotomy or the length of time that elapsed between the phlebotomy start date and time and the phlebotomy end date and time.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _donationDuration = new HL7V28Field
+        {
+            field = message[@"DON"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_donationDuration.field.FieldRepetitions != null && _donationDuration.field.FieldRepetitions.Count > 0)
+        {
+            _donationDuration.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_donationDuration, fieldData);
+        }
+
+        return _donationDuration;
+    } 
+}
+
+internal HL7V28Field _donationDurationUnits;
+
+public HL7V28Field DonationDurationUnits
+{
+    get
+    {
+        if (_donationDurationUnits != null)
+        {
+            return _donationDurationUnits;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.6",
+            Type = @"Field",
+            Position = @"DON.6",
+            Name = @"Donation Duration Units",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0932",
+            TableName = @"Donation Duration Units",
+            Description = @"The duration units.  The duration units and duration are restricted to minutes and seconds.  Concepts are pulled from the UCUM code system (www.unitsofmeasure.org).  Refer to HL7-Defined Table 0932 – Donation Duration Units in Chapter 2C, Code Tables, for valid entries",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.3",
-                            Type = @"Field",
-                            Position = @"DON.3",
-                            Name = @"Phlebotomy Start Date/Time",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The start date and time of the phlebotomy.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DON.4",
-                            Type = @"Field",
-                            Position = @"DON.4",
-                            Name = @"Phlebotomy End Date/Time",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The end date and time of the phlebotomy",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DON.5",
-                            Type = @"Field",
-                            Position = @"DON.5",
-                            Name = @"Donation Duration",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The duration of the phlebotomy or the length of time that elapsed between the phlebotomy start date and time and the phlebotomy end date and time.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DON.6",
-                            Type = @"Field",
-                            Position = @"DON.6",
-                            Name = @"Donation Duration Units",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0932",
-                            TableName = @"Donation Duration Units",
-                            Description = @"The duration units.  The duration units and duration are restricted to minutes and seconds.  Concepts are pulled from the UCUM code system (www.unitsofmeasure.org).  Refer to HL7-Defined Table 0932 – Donation Duration Units in Chapter 2C, Code Tables, for valid entries",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.6.1",
                             Type = @"Component",
@@ -1090,25 +1243,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _donationDurationUnits = new HL7V28Field
+        {
+            field = message[@"DON"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_donationDurationUnits.field.FieldRepetitions != null && _donationDurationUnits.field.FieldRepetitions.Count > 0)
+        {
+            _donationDurationUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_donationDurationUnits, fieldData);
+        }
+
+        return _donationDurationUnits;
+    } 
+}
+
+internal HL7V28Field _intendedProcedureType;
+
+public HL7V28Field IntendedProcedureType
+{
+    get
+    {
+        if (_intendedProcedureType != null)
+        {
+            return _intendedProcedureType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.7",
+            Type = @"Field",
+            Position = @"DON.7",
+            Name = @"Intended Procedure Type",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0933",
+            TableName = @"Intended Procedure Type",
+            Description = @"The procedure(s) intended to be performed on the donor. Refer to HL7-Defined Table 0933 – Intended Procedure Type in Chapter 2C, Code Tables, for valid entries",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.7",
-                            Type = @"Field",
-                            Position = @"DON.7",
-                            Name = @"Intended Procedure Type",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0933",
-                            TableName = @"Intended Procedure Type",
-                            Description = @"The procedure(s) intended to be performed on the donor. Refer to HL7-Defined Table 0933 – Intended Procedure Type in Chapter 2C, Code Tables, for valid entries",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.7.1",
                             Type = @"Component",
@@ -1545,25 +1728,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _intendedProcedureType = new HL7V28Field
+        {
+            field = message[@"DON"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_intendedProcedureType.field.FieldRepetitions != null && _intendedProcedureType.field.FieldRepetitions.Count > 0)
+        {
+            _intendedProcedureType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_intendedProcedureType, fieldData);
+        }
+
+        return _intendedProcedureType;
+    } 
+}
+
+internal HL7V28Field _actualProcedureType;
+
+public HL7V28Field ActualProcedureType
+{
+    get
+    {
+        if (_actualProcedureType != null)
+        {
+            return _actualProcedureType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.8",
+            Type = @"Field",
+            Position = @"DON.8",
+            Name = @"Actual Procedure Type",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0933",
+            TableName = @"Intended Procedure Type",
+            Description = @"The actual procedure(s) performed on the donor.  Refer to HL7-Defined Table 0933 – Intended Procedure Type in Chapter 2C, Code Tables, for valid entries",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.8",
-                            Type = @"Field",
-                            Position = @"DON.8",
-                            Name = @"Actual Procedure Type",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0933",
-                            TableName = @"Intended Procedure Type",
-                            Description = @"The actual procedure(s) performed on the donor.  Refer to HL7-Defined Table 0933 – Intended Procedure Type in Chapter 2C, Code Tables, for valid entries",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.8.1",
                             Type = @"Component",
@@ -2000,43 +2213,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _actualProcedureType = new HL7V28Field
+        {
+            field = message[@"DON"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_actualProcedureType.field.FieldRepetitions != null && _actualProcedureType.field.FieldRepetitions.Count > 0)
+        {
+            _actualProcedureType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_actualProcedureType, fieldData);
+        }
+
+        return _actualProcedureType;
+    } 
+}
+
+internal HL7V28Field _donorEligibilityFlag;
+
+public HL7V28Field DonorEligibilityFlag
+{
+    get
+    {
+        if (_donorEligibilityFlag != null)
+        {
+            return _donorEligibilityFlag;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.9",
+            Type = @"Field",
+            Position = @"DON.9",
+            Name = @"Donor Eligibility Flag",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"Is the Donor eligible for donation?  Yes or No.  Refer to HL7 Table 0136 -Yes/No Indicator as defined in Chapter 2C, Code Tables.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _donorEligibilityFlag = new HL7V28Field
+        {
+            field = message[@"DON"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_donorEligibilityFlag.field.FieldRepetitions != null && _donorEligibilityFlag.field.FieldRepetitions.Count > 0)
+        {
+            _donorEligibilityFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_donorEligibilityFlag, fieldData);
+        }
+
+        return _donorEligibilityFlag;
+    } 
+}
+
+internal HL7V28Field _donorEligibilityProcedureType;
+
+public HL7V28Field DonorEligibilityProcedureType
+{
+    get
+    {
+        if (_donorEligibilityProcedureType != null)
+        {
+            return _donorEligibilityProcedureType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.10",
+            Type = @"Field",
+            Position = @"DON.10",
+            Name = @"Donor Eligibility Procedure Type",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0933",
+            TableName = @"Intended Procedure Type",
+            Description = @"The procedure(s) for which the donor is eligible. Refer to HL7-Defined Table 0933 – Intended Procedure Type in Chapter 2C, Code Tables, for valid entries.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.9",
-                            Type = @"Field",
-                            Position = @"DON.9",
-                            Name = @"Donor Eligibility Flag",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"Is the Donor eligible for donation?  Yes or No.  Refer to HL7 Table 0136 -Yes/No Indicator as defined in Chapter 2C, Code Tables.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DON.10",
-                            Type = @"Field",
-                            Position = @"DON.10",
-                            Name = @"Donor Eligibility Procedure Type",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0933",
-                            TableName = @"Intended Procedure Type",
-                            Description = @"The procedure(s) for which the donor is eligible. Refer to HL7-Defined Table 0933 – Intended Procedure Type in Chapter 2C, Code Tables, for valid entries.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.10.1",
                             Type = @"Component",
@@ -2473,43 +2743,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _donorEligibilityProcedureType = new HL7V28Field
+        {
+            field = message[@"DON"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_donorEligibilityProcedureType.field.FieldRepetitions != null && _donorEligibilityProcedureType.field.FieldRepetitions.Count > 0)
+        {
+            _donorEligibilityProcedureType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_donorEligibilityProcedureType, fieldData);
+        }
+
+        return _donorEligibilityProcedureType;
+    } 
+}
+
+internal HL7V28Field _donorEligibilityDate;
+
+public HL7V28Field DonorEligibilityDate
+{
+    get
+    {
+        if (_donorEligibilityDate != null)
+        {
+            return _donorEligibilityDate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.11",
+            Type = @"Field",
+            Position = @"DON.11",
+            Name = @"Donor Eligibility Date",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"The date and time on which the donor is eligible to donate",
+            Sample = @"",
+            Fields = null
+        }
+
+        _donorEligibilityDate = new HL7V28Field
+        {
+            field = message[@"DON"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_donorEligibilityDate.field.FieldRepetitions != null && _donorEligibilityDate.field.FieldRepetitions.Count > 0)
+        {
+            _donorEligibilityDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_donorEligibilityDate, fieldData);
+        }
+
+        return _donorEligibilityDate;
+    } 
+}
+
+internal HL7V28Field _processInterruption;
+
+public HL7V28Field ProcessInterruption
+{
+    get
+    {
+        if (_processInterruption != null)
+        {
+            return _processInterruption;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.12",
+            Type = @"Field",
+            Position = @"DON.12",
+            Name = @"Process Interruption",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0923",
+            TableName = @"Process Interruption",
+            Description = @"Was the donation process interrupted after it began?  Refer to HL7-Defined Table 0923 – Process Interruption in Chapter 2C, Code Tables, for valid entries",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.11",
-                            Type = @"Field",
-                            Position = @"DON.11",
-                            Name = @"Donor Eligibility Date",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The date and time on which the donor is eligible to donate",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DON.12",
-                            Type = @"Field",
-                            Position = @"DON.12",
-                            Name = @"Process Interruption",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0923",
-                            TableName = @"Process Interruption",
-                            Description = @"Was the donation process interrupted after it began?  Refer to HL7-Defined Table 0923 – Process Interruption in Chapter 2C, Code Tables, for valid entries",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.12.1",
                             Type = @"Component",
@@ -2946,25 +3273,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _processInterruption = new HL7V28Field
+        {
+            field = message[@"DON"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_processInterruption.field.FieldRepetitions != null && _processInterruption.field.FieldRepetitions.Count > 0)
+        {
+            _processInterruption.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_processInterruption, fieldData);
+        }
+
+        return _processInterruption;
+    } 
+}
+
+internal HL7V28Field _processInterruptionReason;
+
+public HL7V28Field ProcessInterruptionReason
+{
+    get
+    {
+        if (_processInterruptionReason != null)
+        {
+            return _processInterruptionReason;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.13",
+            Type = @"Field",
+            Position = @"DON.13",
+            Name = @"Process Interruption Reason",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0935",
+            TableName = @"Process Interruption Reason",
+            Description = @"Reason that the donation process was interrupted.  Refer to HL7-Defined Table 0935 – Process Interruption Reason in Chapter 2C, Code Tables, for valid entries",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.13",
-                            Type = @"Field",
-                            Position = @"DON.13",
-                            Name = @"Process Interruption Reason",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0935",
-                            TableName = @"Process Interruption Reason",
-                            Description = @"Reason that the donation process was interrupted.  Refer to HL7-Defined Table 0935 – Process Interruption Reason in Chapter 2C, Code Tables, for valid entries",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.13.1",
                             Type = @"Component",
@@ -3401,25 +3758,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _processInterruptionReason = new HL7V28Field
+        {
+            field = message[@"DON"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_processInterruptionReason.field.FieldRepetitions != null && _processInterruptionReason.field.FieldRepetitions.Count > 0)
+        {
+            _processInterruptionReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_processInterruptionReason, fieldData);
+        }
+
+        return _processInterruptionReason;
+    } 
+}
+
+internal HL7V28Field _phlebotomyIssue;
+
+public HL7V28Field PhlebotomyIssue
+{
+    get
+    {
+        if (_phlebotomyIssue != null)
+        {
+            return _phlebotomyIssue;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.14",
+            Type = @"Field",
+            Position = @"DON.14",
+            Name = @"Phlebotomy Issue",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0925",
+            TableName = @"Phlebotomy Issue",
+            Description = @"Indicates whether there is a problem or issue with the phlebotomy itself.  This may be due to an incorrect needle procedure, needle defect, tube blockage, problem with the apheresis machine, or improper action by the phlebotomist. Refer to HL7-Defined Table 0925 – Phlebotomy Issue in Chapter 2C, Code Tables, for valid entries.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.14",
-                            Type = @"Field",
-                            Position = @"DON.14",
-                            Name = @"Phlebotomy Issue",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0925",
-                            TableName = @"Phlebotomy Issue",
-                            Description = @"Indicates whether there is a problem or issue with the phlebotomy itself.  This may be due to an incorrect needle procedure, needle defect, tube blockage, problem with the apheresis machine, or improper action by the phlebotomist. Refer to HL7-Defined Table 0925 – Phlebotomy Issue in Chapter 2C, Code Tables, for valid entries.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.14.1",
                             Type = @"Component",
@@ -3856,43 +4243,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _phlebotomyIssue = new HL7V28Field
+        {
+            field = message[@"DON"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_phlebotomyIssue.field.FieldRepetitions != null && _phlebotomyIssue.field.FieldRepetitions.Count > 0)
+        {
+            _phlebotomyIssue.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_phlebotomyIssue, fieldData);
+        }
+
+        return _phlebotomyIssue;
+    } 
+}
+
+internal HL7V28Field _intendedRecipientBloodRelative;
+
+public HL7V28Field IntendedRecipientBloodRelative
+{
+    get
+    {
+        if (_intendedRecipientBloodRelative != null)
+        {
+            return _intendedRecipientBloodRelative;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.15",
+            Type = @"Field",
+            Position = @"DON.15",
+            Name = @"Intended Recipient Blood Relative",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"If this donation has an intended recipient (directed, dedicated, designated), is the intended recipient a blood relative of the donor? Yes or No.  Refer to HL7 Table 0136 -Yes/No Indicator as defined in Chapter 2C, Code Tables",
+            Sample = @"",
+            Fields = null
+        }
+
+        _intendedRecipientBloodRelative = new HL7V28Field
+        {
+            field = message[@"DON"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_intendedRecipientBloodRelative.field.FieldRepetitions != null && _intendedRecipientBloodRelative.field.FieldRepetitions.Count > 0)
+        {
+            _intendedRecipientBloodRelative.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_intendedRecipientBloodRelative, fieldData);
+        }
+
+        return _intendedRecipientBloodRelative;
+    } 
+}
+
+internal HL7V28Field _intendedRecipientName;
+
+public HL7V28Field IntendedRecipientName
+{
+    get
+    {
+        if (_intendedRecipientName != null)
+        {
+            return _intendedRecipientName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.16",
+            Type = @"Field",
+            Position = @"DON.16",
+            Name = @"Intended Recipient Name",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"If this is donation has an intended recipient (autologous, directed, dedicated, designated), the intended recipient’s name",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.15",
-                            Type = @"Field",
-                            Position = @"DON.15",
-                            Name = @"Intended Recipient Blood Relative",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"If this donation has an intended recipient (directed, dedicated, designated), is the intended recipient a blood relative of the donor? Yes or No.  Refer to HL7 Table 0136 -Yes/No Indicator as defined in Chapter 2C, Code Tables",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DON.16",
-                            Type = @"Field",
-                            Position = @"DON.16",
-                            Name = @"Intended Recipient Name",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"If this is donation has an intended recipient (autologous, directed, dedicated, designated), the intended recipient’s name",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.16.1",
                             Type = @"Component",
@@ -4706,43 +5150,100 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _intendedRecipientName = new HL7V28Field
+        {
+            field = message[@"DON"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_intendedRecipientName.field.FieldRepetitions != null && _intendedRecipientName.field.FieldRepetitions.Count > 0)
+        {
+            _intendedRecipientName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_intendedRecipientName, fieldData);
+        }
+
+        return _intendedRecipientName;
+    } 
+}
+
+internal HL7V28Field _intendedRecipientDOB;
+
+public HL7V28Field IntendedRecipientDOB
+{
+    get
+    {
+        if (_intendedRecipientDOB != null)
+        {
+            return _intendedRecipientDOB;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.17",
+            Type = @"Field",
+            Position = @"DON.17",
+            Name = @"Intended Recipient DOB",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"If this donation has an intended recipient (autologous, directed, dedicated, designated), the intended recipient’s date of birth",
+            Sample = @"",
+            Fields = null
+        }
+
+        _intendedRecipientDOB = new HL7V28Field
+        {
+            field = message[@"DON"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_intendedRecipientDOB.field.FieldRepetitions != null && _intendedRecipientDOB.field.FieldRepetitions.Count > 0)
+        {
+            _intendedRecipientDOB.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_intendedRecipientDOB, fieldData);
+        }
+
+        return _intendedRecipientDOB;
+    } 
+}
+
+internal HL7V28Field _intendedRecipientFacility;
+
+public HL7V28Field IntendedRecipientFacility
+{
+    get
+    {
+        if (_intendedRecipientFacility != null)
+        {
+            return _intendedRecipientFacility;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.18",
+            Type = @"Field",
+            Position = @"DON.18",
+            Name = @"Intended Recipient Facility",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"If this donation has an intended recipient (autologous, directed, dedicated, designated), the facility where the intended recipient is expected to receive the transfusion.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.17",
-                            Type = @"Field",
-                            Position = @"DON.17",
-                            Name = @"Intended Recipient DOB",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"If this donation has an intended recipient (autologous, directed, dedicated, designated), the intended recipient’s date of birth",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DON.18",
-                            Type = @"Field",
-                            Position = @"DON.18",
-                            Name = @"Intended Recipient Facility",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"If this donation has an intended recipient (autologous, directed, dedicated, designated), the facility where the intended recipient is expected to receive the transfusion.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.18.1",
                             Type = @"Component",
@@ -5474,43 +5975,100 @@ In general this component provides an indication of the representation provided 
 Note: The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _intendedRecipientFacility = new HL7V28Field
+        {
+            field = message[@"DON"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_intendedRecipientFacility.field.FieldRepetitions != null && _intendedRecipientFacility.field.FieldRepetitions.Count > 0)
+        {
+            _intendedRecipientFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_intendedRecipientFacility, fieldData);
+        }
+
+        return _intendedRecipientFacility;
+    } 
+}
+
+internal HL7V28Field _intendedRecipientProcedureDate;
+
+public HL7V28Field IntendedRecipientProcedureDate
+{
+    get
+    {
+        if (_intendedRecipientProcedureDate != null)
+        {
+            return _intendedRecipientProcedureDate;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.19",
+            Type = @"Field",
+            Position = @"DON.19",
+            Name = @"Intended Recipient Procedure Date",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"If this donation has an intended recipient (autologous, directed, dedicated, designated), the date the intended recipient is expected to receive the transfusion.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _intendedRecipientProcedureDate = new HL7V28Field
+        {
+            field = message[@"DON"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_intendedRecipientProcedureDate.field.FieldRepetitions != null && _intendedRecipientProcedureDate.field.FieldRepetitions.Count > 0)
+        {
+            _intendedRecipientProcedureDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_intendedRecipientProcedureDate, fieldData);
+        }
+
+        return _intendedRecipientProcedureDate;
+    } 
+}
+
+internal HL7V28Field _intendedRecipientOrderingProvider;
+
+public HL7V28Field IntendedRecipientOrderingProvider
+{
+    get
+    {
+        if (_intendedRecipientOrderingProvider != null)
+        {
+            return _intendedRecipientOrderingProvider;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.20",
+            Type = @"Field",
+            Position = @"DON.20",
+            Name = @"Intended Recipient Ordering Provider",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"If this is donation has an intended recipient (autologous, directed, dedicated, designated), the provider who ordered the directed donation for the intended recipient.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.19",
-                            Type = @"Field",
-                            Position = @"DON.19",
-                            Name = @"Intended Recipient Procedure Date",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"If this donation has an intended recipient (autologous, directed, dedicated, designated), the date the intended recipient is expected to receive the transfusion.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DON.20",
-                            Type = @"Field",
-                            Position = @"DON.20",
-                            Name = @"Intended Recipient Ordering Provider",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"If this is donation has an intended recipient (autologous, directed, dedicated, designated), the provider who ordered the directed donation for the intended recipient.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.20.1",
                             Type = @"Component",
@@ -6324,25 +6882,55 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _intendedRecipientOrderingProvider = new HL7V28Field
+        {
+            field = message[@"DON"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_intendedRecipientOrderingProvider.field.FieldRepetitions != null && _intendedRecipientOrderingProvider.field.FieldRepetitions.Count > 0)
+        {
+            _intendedRecipientOrderingProvider.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_intendedRecipientOrderingProvider, fieldData);
+        }
+
+        return _intendedRecipientOrderingProvider;
+    } 
+}
+
+internal HL7V28Field _phlebotomyStatus;
+
+public HL7V28Field PhlebotomyStatus
+{
+    get
+    {
+        if (_phlebotomyStatus != null)
+        {
+            return _phlebotomyStatus;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.21",
+            Type = @"Field",
+            Position = @"DON.21",
+            Name = @"Phlebotomy Status",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0926",
+            TableName = @"Phlebotomy Status",
+            Description = @"Whether the phlebotomy was successful, not drawn, or unsuccessful, and if unsuccessful, the extent to which it was unsuccessful. Refer to HL7-Defined Table 0926 – Phlebotomy Status in Chapter 2C, Code Tables, for valid entries",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.21",
-                            Type = @"Field",
-                            Position = @"DON.21",
-                            Name = @"Phlebotomy Status",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0926",
-                            TableName = @"Phlebotomy Status",
-                            Description = @"Whether the phlebotomy was successful, not drawn, or unsuccessful, and if unsuccessful, the extent to which it was unsuccessful. Refer to HL7-Defined Table 0926 – Phlebotomy Status in Chapter 2C, Code Tables, for valid entries",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.21.1",
                             Type = @"Component",
@@ -6779,25 +7367,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _phlebotomyStatus = new HL7V28Field
+        {
+            field = message[@"DON"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_phlebotomyStatus.field.FieldRepetitions != null && _phlebotomyStatus.field.FieldRepetitions.Count > 0)
+        {
+            _phlebotomyStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_phlebotomyStatus, fieldData);
+        }
+
+        return _phlebotomyStatus;
+    } 
+}
+
+internal HL7V28Field _armStick;
+
+public HL7V28Field ArmStick
+{
+    get
+    {
+        if (_armStick != null)
+        {
+            return _armStick;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.22",
+            Type = @"Field",
+            Position = @"DON.22",
+            Name = @"Arm Stick",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0927",
+            TableName = @"Arm Stick",
+            Description = @"The arm(s) stuck for the donation. Refer to HL7-Defined Table 0927 – Arm Stick in Chapter 2C, Code Tables, for valid entries",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.22",
-                            Type = @"Field",
-                            Position = @"DON.22",
-                            Name = @"Arm Stick",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0927",
-                            TableName = @"Arm Stick",
-                            Description = @"The arm(s) stuck for the donation. Refer to HL7-Defined Table 0927 – Arm Stick in Chapter 2C, Code Tables, for valid entries",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.22.1",
                             Type = @"Component",
@@ -7234,25 +7852,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _armStick = new HL7V28Field
+        {
+            field = message[@"DON"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_armStick.field.FieldRepetitions != null && _armStick.field.FieldRepetitions.Count > 0)
+        {
+            _armStick.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_armStick, fieldData);
+        }
+
+        return _armStick;
+    } 
+}
+
+internal HL7V28Field _bleedStartPhlebotomist;
+
+public HL7V28Field BleedStartPhlebotomist
+{
+    get
+    {
+        if (_bleedStartPhlebotomist != null)
+        {
+            return _bleedStartPhlebotomist;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.23",
+            Type = @"Field",
+            Position = @"DON.23",
+            Name = @"Bleed Start Phlebotomist",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"The Phlebotomist who starts the blood flow into the container",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.23",
-                            Type = @"Field",
-                            Position = @"DON.23",
-                            Name = @"Bleed Start Phlebotomist",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Phlebotomist who starts the blood flow into the container",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.23.1",
                             Type = @"Component",
@@ -8066,25 +8714,55 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bleedStartPhlebotomist = new HL7V28Field
+        {
+            field = message[@"DON"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bleedStartPhlebotomist.field.FieldRepetitions != null && _bleedStartPhlebotomist.field.FieldRepetitions.Count > 0)
+        {
+            _bleedStartPhlebotomist.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_bleedStartPhlebotomist, fieldData);
+        }
+
+        return _bleedStartPhlebotomist;
+    } 
+}
+
+internal HL7V28Field _bleedEndPhlebotomist;
+
+public HL7V28Field BleedEndPhlebotomist
+{
+    get
+    {
+        if (_bleedEndPhlebotomist != null)
+        {
+            return _bleedEndPhlebotomist;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.24",
+            Type = @"Field",
+            Position = @"DON.24",
+            Name = @"Bleed End Phlebotomist",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"The Phlebotomist who ends the blood flow into the container",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.24",
-                            Type = @"Field",
-                            Position = @"DON.24",
-                            Name = @"Bleed End Phlebotomist",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Phlebotomist who ends the blood flow into the container",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.24.1",
                             Type = @"Component",
@@ -8898,79 +9576,190 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bleedEndPhlebotomist = new HL7V28Field
+        {
+            field = message[@"DON"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bleedEndPhlebotomist.field.FieldRepetitions != null && _bleedEndPhlebotomist.field.FieldRepetitions.Count > 0)
+        {
+            _bleedEndPhlebotomist.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_bleedEndPhlebotomist, fieldData);
+        }
+
+        return _bleedEndPhlebotomist;
+    } 
+}
+
+internal HL7V28Field _aphaeresisTypeMachine;
+
+public HL7V28Field AphaeresisTypeMachine
+{
+    get
+    {
+        if (_aphaeresisTypeMachine != null)
+        {
+            return _aphaeresisTypeMachine;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.25",
+            Type = @"Field",
+            Position = @"DON.25",
+            Name = @"Aphaeresis Type Machine",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The type of aphaeresis machine, if used, for the donation. It will be the specific product name of the machine (e.g. Trima, Amicus, Alyx, Symal, etc.).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _aphaeresisTypeMachine = new HL7V28Field
+        {
+            field = message[@"DON"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_aphaeresisTypeMachine.field.FieldRepetitions != null && _aphaeresisTypeMachine.field.FieldRepetitions.Count > 0)
+        {
+            _aphaeresisTypeMachine.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_aphaeresisTypeMachine, fieldData);
+        }
+
+        return _aphaeresisTypeMachine;
+    } 
+}
+
+internal HL7V28Field _aphaeresisMachineSerialNumber;
+
+public HL7V28Field AphaeresisMachineSerialNumber
+{
+    get
+    {
+        if (_aphaeresisMachineSerialNumber != null)
+        {
+            return _aphaeresisMachineSerialNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.26",
+            Type = @"Field",
+            Position = @"DON.26",
+            Name = @"Aphaeresis Machine Serial Number",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The serial number of the aphaeresis machine, if used, for the donation.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _aphaeresisMachineSerialNumber = new HL7V28Field
+        {
+            field = message[@"DON"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_aphaeresisMachineSerialNumber.field.FieldRepetitions != null && _aphaeresisMachineSerialNumber.field.FieldRepetitions.Count > 0)
+        {
+            _aphaeresisMachineSerialNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_aphaeresisMachineSerialNumber, fieldData);
+        }
+
+        return _aphaeresisMachineSerialNumber;
+    } 
+}
+
+internal HL7V28Field _donorReaction;
+
+public HL7V28Field DonorReaction
+{
+    get
+    {
+        if (_donorReaction != null)
+        {
+            return _donorReaction;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.27",
+            Type = @"Field",
+            Position = @"DON.27",
+            Name = @"Donor Reaction",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"Did the donor have any adverse reaction during the donation procedure?  Yes or No.  Refer to HL7 Table 0136 -Yes/No Indicator as defined in Chapter 2C, Code Tables.  If this element is valued ""Y""es, there should be OBX segments following the Donation segment which details the adverse reactions.  ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _donorReaction = new HL7V28Field
+        {
+            field = message[@"DON"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_donorReaction.field.FieldRepetitions != null && _donorReaction.field.FieldRepetitions.Count > 0)
+        {
+            _donorReaction.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_donorReaction, fieldData);
+        }
+
+        return _donorReaction;
+    } 
+}
+
+internal HL7V28Field _finalReviewStaffID;
+
+public HL7V28Field FinalReviewStaffID
+{
+    get
+    {
+        if (_finalReviewStaffID != null)
+        {
+            return _finalReviewStaffID;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.28",
+            Type = @"Field",
+            Position = @"DON.28",
+            Name = @"Final Review Staff ID",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"The Staff member conducting the final review and reconciliation of all documentation created during the collection process",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.25",
-                            Type = @"Field",
-                            Position = @"DON.25",
-                            Name = @"Aphaeresis Type Machine",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The type of aphaeresis machine, if used, for the donation. It will be the specific product name of the machine (e.g. Trima, Amicus, Alyx, Symal, etc.).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DON.26",
-                            Type = @"Field",
-                            Position = @"DON.26",
-                            Name = @"Aphaeresis Machine Serial Number",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The serial number of the aphaeresis machine, if used, for the donation.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DON.27",
-                            Type = @"Field",
-                            Position = @"DON.27",
-                            Name = @"Donor Reaction",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"Did the donor have any adverse reaction during the donation procedure?  Yes or No.  Refer to HL7 Table 0136 -Yes/No Indicator as defined in Chapter 2C, Code Tables.  If this element is valued ""Y""es, there should be OBX segments following the Donation segment which details the adverse reactions.  ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DON.28",
-                            Type = @"Field",
-                            Position = @"DON.28",
-                            Name = @"Final Review Staff ID",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Staff member conducting the final review and reconciliation of all documentation created during the collection process",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.28.1",
                             Type = @"Component",
@@ -9784,61 +10573,145 @@ Examples:
  - Mary Margaret Elizabeth Jones is Called By Meg.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _finalReviewStaffID = new HL7V28Field
+        {
+            field = message[@"DON"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_finalReviewStaffID.field.FieldRepetitions != null && _finalReviewStaffID.field.FieldRepetitions.Count > 0)
+        {
+            _finalReviewStaffID.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_finalReviewStaffID, fieldData);
+        }
+
+        return _finalReviewStaffID;
+    } 
+}
+
+internal HL7V28Field _finalReviewDateTime;
+
+public HL7V28Field FinalReviewDateTime
+{
+    get
+    {
+        if (_finalReviewDateTime != null)
+        {
+            return _finalReviewDateTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.29",
+            Type = @"Field",
+            Position = @"DON.29",
+            Name = @"Final Review Date/Time",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"The date and time a final review of all documentation and labeling of the blood material is completed.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _finalReviewDateTime = new HL7V28Field
+        {
+            field = message[@"DON"][29],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_finalReviewDateTime.field.FieldRepetitions != null && _finalReviewDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _finalReviewDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_finalReviewDateTime, fieldData);
+        }
+
+        return _finalReviewDateTime;
+    } 
+}
+
+internal HL7V28Field _numberofTubesCollected;
+
+public HL7V28Field NumberofTubesCollected
+{
+    get
+    {
+        if (_numberofTubesCollected != null)
+        {
+            return _numberofTubesCollected;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.30",
+            Type = @"Field",
+            Position = @"DON.30",
+            Name = @"Number of Tubes Collected",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"The number of samples collected during the donation which will be used for subsequent testing",
+            Sample = @"",
+            Fields = null
+        }
+
+        _numberofTubesCollected = new HL7V28Field
+        {
+            field = message[@"DON"][30],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_numberofTubesCollected.field.FieldRepetitions != null && _numberofTubesCollected.field.FieldRepetitions.Count > 0)
+        {
+            _numberofTubesCollected.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_numberofTubesCollected, fieldData);
+        }
+
+        return _numberofTubesCollected;
+    } 
+}
+
+internal HL7V28Field _donationSampleIdentifier;
+
+public HL7V28Field DonationSampleIdentifier
+{
+    get
+    {
+        if (_donationSampleIdentifier != null)
+        {
+            return _donationSampleIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.31",
+            Type = @"Field",
+            Position = @"DON.31",
+            Name = @"Donation Sample Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The sample identifier for the sample collected during a donation for the purpose of testing. This is a field for sample or specimen identifiers",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.29",
-                            Type = @"Field",
-                            Position = @"DON.29",
-                            Name = @"Final Review Date/Time",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The date and time a final review of all documentation and labeling of the blood material is completed.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DON.30",
-                            Type = @"Field",
-                            Position = @"DON.30",
-                            Name = @"Number of Tubes Collected",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The number of samples collected during the donation which will be used for subsequent testing",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DON.31",
-                            Type = @"Field",
-                            Position = @"DON.31",
-                            Name = @"Donation Sample Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The sample identifier for the sample collected during a donation for the purpose of testing. This is a field for sample or specimen identifiers",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.31.1",
                             Type = @"Component",
@@ -9914,25 +10787,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _donationSampleIdentifier = new HL7V28Field
+        {
+            field = message[@"DON"][31],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_donationSampleIdentifier.field.FieldRepetitions != null && _donationSampleIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _donationSampleIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_donationSampleIdentifier, fieldData);
+        }
+
+        return _donationSampleIdentifier;
+    } 
+}
+
+internal HL7V28Field _donationAcceptStaff;
+
+public HL7V28Field DonationAcceptStaff
+{
+    get
+    {
+        if (_donationAcceptStaff != null)
+        {
+            return _donationAcceptStaff;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.32",
+            Type = @"Field",
+            Position = @"DON.32",
+            Name = @"Donation Accept Staff",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"The staff member who reviewed all the intake materials, assessments and determined the donor can undergo a donation procedure at this time",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.32",
-                            Type = @"Field",
-                            Position = @"DON.32",
-                            Name = @"Donation Accept Staff",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The staff member who reviewed all the intake materials, assessments and determined the donor can undergo a donation procedure at this time",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.32.1",
                             Type = @"Component",
@@ -12338,25 +13241,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _donationAcceptStaff = new HL7V28Field
+        {
+            field = message[@"DON"][32],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_donationAcceptStaff.field.FieldRepetitions != null && _donationAcceptStaff.field.FieldRepetitions.Count > 0)
+        {
+            _donationAcceptStaff.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_donationAcceptStaff, fieldData);
+        }
+
+        return _donationAcceptStaff;
+    } 
+}
+
+internal HL7V28Field _donationMaterialReviewStaff;
+
+public HL7V28Field DonationMaterialReviewStaff
+{
+    get
+    {
+        if (_donationMaterialReviewStaff != null)
+        {
+            return _donationMaterialReviewStaff;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"DON.33",
+            Type = @"Field",
+            Position = @"DON.33",
+            Name = @"Donation Material Review Staff",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"The staff member who performs review on all documentation subsequent to donation procedure",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DON.33",
-                            Type = @"Field",
-                            Position = @"DON.33",
-                            Name = @"Donation Material Review Staff",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The staff member who performs review on all documentation subsequent to donation procedure",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DON.33.1",
                             Type = @"Component",
@@ -14762,1367 +15695,23 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentDON(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field donationIdentificationNumberDIN;
-
-public HL7V28Field DonationIdentificationNumberDIN
-{
-    get
-    {
-        if (donationIdentificationNumberDIN != null)
-        {
-            return donationIdentificationNumberDIN;
-        }
-
-        donationIdentificationNumberDIN = new HL7V28Field
-        {
-            field = message[@"DON"][1],
-            Id = @"DON.1",
-            Type = @"Field",
-            Position = @"DON.1",
-            Name = @"Donation Identification Number - DIN",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"4.17.1.2	Definition:  This field contains a unique identifier, Donation Identification Number (DIN), for the specific donation and is therefore mandatory except when using an eligibility message type in which only DON-9, DON-10, and DON-11 are populated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (donationIdentificationNumberDIN.field.FieldRepetitions != null && donationIdentificationNumberDIN.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(donationIdentificationNumberDIN.Id));
-            donationIdentificationNumberDIN.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(donationIdentificationNumberDIN, fieldData);
-        }
-
-        return donationIdentificationNumberDIN;
-    } 
-}
-
-internal HL7V28Field donationType;
-
-public HL7V28Field DonationType
-{
-    get
-    {
-        if (donationType != null)
-        {
-            return donationType;
-        }
-
-        donationType = new HL7V28Field
-        {
-            field = message[@"DON"][2],
-            Id = @"DON.2",
-            Type = @"Field",
-            Position = @"DON.2",
-            Name = @"Donation Type",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"The type of donation.  This element is mandatory except when using an eligibility message type in which only DON-9, DON-10, and DON-11 are populated.  The values for this field are defined in Table RT008 - Type of Donation or Collection in 6th Position of Product Code in the ISBT 128 Standard Technical Specification, which is maintained by ICCBBA.  Link: http://iccbba.org/technicalspecification.pdf.  Table 5 Data Structure 002.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (donationType.field.FieldRepetitions != null && donationType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(donationType.Id));
-            donationType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(donationType, fieldData);
-        }
-
-        return donationType;
-    } 
-}
-
-internal HL7V28Field phlebotomyStartDateTime;
-
-public HL7V28Field PhlebotomyStartDateTime
-{
-    get
-    {
-        if (phlebotomyStartDateTime != null)
-        {
-            return phlebotomyStartDateTime;
-        }
-
-        phlebotomyStartDateTime = new HL7V28Field
-        {
-            field = message[@"DON"][3],
-            Id = @"DON.3",
-            Type = @"Field",
-            Position = @"DON.3",
-            Name = @"Phlebotomy Start Date/Time",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"The start date and time of the phlebotomy.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phlebotomyStartDateTime.field.FieldRepetitions != null && phlebotomyStartDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phlebotomyStartDateTime.Id));
-            phlebotomyStartDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(phlebotomyStartDateTime, fieldData);
-        }
-
-        return phlebotomyStartDateTime;
-    } 
-}
-
-internal HL7V28Field phlebotomyEndDateTime;
-
-public HL7V28Field PhlebotomyEndDateTime
-{
-    get
-    {
-        if (phlebotomyEndDateTime != null)
-        {
-            return phlebotomyEndDateTime;
-        }
-
-        phlebotomyEndDateTime = new HL7V28Field
-        {
-            field = message[@"DON"][4],
-            Id = @"DON.4",
-            Type = @"Field",
-            Position = @"DON.4",
-            Name = @"Phlebotomy End Date/Time",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"The end date and time of the phlebotomy",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phlebotomyEndDateTime.field.FieldRepetitions != null && phlebotomyEndDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phlebotomyEndDateTime.Id));
-            phlebotomyEndDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(phlebotomyEndDateTime, fieldData);
-        }
-
-        return phlebotomyEndDateTime;
-    } 
-}
-
-internal HL7V28Field donationDuration;
-
-public HL7V28Field DonationDuration
-{
-    get
-    {
-        if (donationDuration != null)
-        {
-            return donationDuration;
-        }
-
-        donationDuration = new HL7V28Field
-        {
-            field = message[@"DON"][5],
-            Id = @"DON.5",
-            Type = @"Field",
-            Position = @"DON.5",
-            Name = @"Donation Duration",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"The duration of the phlebotomy or the length of time that elapsed between the phlebotomy start date and time and the phlebotomy end date and time.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (donationDuration.field.FieldRepetitions != null && donationDuration.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(donationDuration.Id));
-            donationDuration.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(donationDuration, fieldData);
-        }
-
-        return donationDuration;
-    } 
-}
-
-internal HL7V28Field donationDurationUnits;
-
-public HL7V28Field DonationDurationUnits
-{
-    get
-    {
-        if (donationDurationUnits != null)
-        {
-            return donationDurationUnits;
-        }
-
-        donationDurationUnits = new HL7V28Field
-        {
-            field = message[@"DON"][6],
-            Id = @"DON.6",
-            Type = @"Field",
-            Position = @"DON.6",
-            Name = @"Donation Duration Units",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0932",
-            TableName = @"Donation Duration Units",
-            Description = @"The duration units.  The duration units and duration are restricted to minutes and seconds.  Concepts are pulled from the UCUM code system (www.unitsofmeasure.org).  Refer to HL7-Defined Table 0932 – Donation Duration Units in Chapter 2C, Code Tables, for valid entries",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (donationDurationUnits.field.FieldRepetitions != null && donationDurationUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(donationDurationUnits.Id));
-            donationDurationUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(donationDurationUnits, fieldData);
-        }
-
-        return donationDurationUnits;
-    } 
-}
-
-internal HL7V28Field intendedProcedureType;
-
-public HL7V28Field IntendedProcedureType
-{
-    get
-    {
-        if (intendedProcedureType != null)
-        {
-            return intendedProcedureType;
-        }
-
-        intendedProcedureType = new HL7V28Field
-        {
-            field = message[@"DON"][7],
-            Id = @"DON.7",
-            Type = @"Field",
-            Position = @"DON.7",
-            Name = @"Intended Procedure Type",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0933",
-            TableName = @"Intended Procedure Type",
-            Description = @"The procedure(s) intended to be performed on the donor. Refer to HL7-Defined Table 0933 – Intended Procedure Type in Chapter 2C, Code Tables, for valid entries",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (intendedProcedureType.field.FieldRepetitions != null && intendedProcedureType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(intendedProcedureType.Id));
-            intendedProcedureType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(intendedProcedureType, fieldData);
-        }
-
-        return intendedProcedureType;
-    } 
-}
-
-internal HL7V28Field actualProcedureType;
-
-public HL7V28Field ActualProcedureType
-{
-    get
-    {
-        if (actualProcedureType != null)
-        {
-            return actualProcedureType;
-        }
-
-        actualProcedureType = new HL7V28Field
-        {
-            field = message[@"DON"][8],
-            Id = @"DON.8",
-            Type = @"Field",
-            Position = @"DON.8",
-            Name = @"Actual Procedure Type",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0933",
-            TableName = @"Intended Procedure Type",
-            Description = @"The actual procedure(s) performed on the donor.  Refer to HL7-Defined Table 0933 – Intended Procedure Type in Chapter 2C, Code Tables, for valid entries",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (actualProcedureType.field.FieldRepetitions != null && actualProcedureType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actualProcedureType.Id));
-            actualProcedureType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(actualProcedureType, fieldData);
-        }
-
-        return actualProcedureType;
-    } 
-}
-
-internal HL7V28Field donorEligibilityFlag;
-
-public HL7V28Field DonorEligibilityFlag
-{
-    get
-    {
-        if (donorEligibilityFlag != null)
-        {
-            return donorEligibilityFlag;
-        }
-
-        donorEligibilityFlag = new HL7V28Field
-        {
-            field = message[@"DON"][9],
-            Id = @"DON.9",
-            Type = @"Field",
-            Position = @"DON.9",
-            Name = @"Donor Eligibility Flag",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"Is the Donor eligible for donation?  Yes or No.  Refer to HL7 Table 0136 -Yes/No Indicator as defined in Chapter 2C, Code Tables.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (donorEligibilityFlag.field.FieldRepetitions != null && donorEligibilityFlag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(donorEligibilityFlag.Id));
-            donorEligibilityFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(donorEligibilityFlag, fieldData);
-        }
-
-        return donorEligibilityFlag;
-    } 
-}
-
-internal HL7V28Field donorEligibilityProcedureType;
-
-public HL7V28Field DonorEligibilityProcedureType
-{
-    get
-    {
-        if (donorEligibilityProcedureType != null)
-        {
-            return donorEligibilityProcedureType;
-        }
-
-        donorEligibilityProcedureType = new HL7V28Field
-        {
-            field = message[@"DON"][10],
-            Id = @"DON.10",
-            Type = @"Field",
-            Position = @"DON.10",
-            Name = @"Donor Eligibility Procedure Type",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0933",
-            TableName = @"Intended Procedure Type",
-            Description = @"The procedure(s) for which the donor is eligible. Refer to HL7-Defined Table 0933 – Intended Procedure Type in Chapter 2C, Code Tables, for valid entries.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (donorEligibilityProcedureType.field.FieldRepetitions != null && donorEligibilityProcedureType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(donorEligibilityProcedureType.Id));
-            donorEligibilityProcedureType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(donorEligibilityProcedureType, fieldData);
-        }
-
-        return donorEligibilityProcedureType;
-    } 
-}
-
-internal HL7V28Field donorEligibilityDate;
-
-public HL7V28Field DonorEligibilityDate
-{
-    get
-    {
-        if (donorEligibilityDate != null)
-        {
-            return donorEligibilityDate;
-        }
-
-        donorEligibilityDate = new HL7V28Field
-        {
-            field = message[@"DON"][11],
-            Id = @"DON.11",
-            Type = @"Field",
-            Position = @"DON.11",
-            Name = @"Donor Eligibility Date",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"The date and time on which the donor is eligible to donate",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (donorEligibilityDate.field.FieldRepetitions != null && donorEligibilityDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(donorEligibilityDate.Id));
-            donorEligibilityDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(donorEligibilityDate, fieldData);
-        }
-
-        return donorEligibilityDate;
-    } 
-}
-
-internal HL7V28Field processInterruption;
-
-public HL7V28Field ProcessInterruption
-{
-    get
-    {
-        if (processInterruption != null)
-        {
-            return processInterruption;
-        }
-
-        processInterruption = new HL7V28Field
-        {
-            field = message[@"DON"][12],
-            Id = @"DON.12",
-            Type = @"Field",
-            Position = @"DON.12",
-            Name = @"Process Interruption",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0923",
-            TableName = @"Process Interruption",
-            Description = @"Was the donation process interrupted after it began?  Refer to HL7-Defined Table 0923 – Process Interruption in Chapter 2C, Code Tables, for valid entries",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (processInterruption.field.FieldRepetitions != null && processInterruption.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(processInterruption.Id));
-            processInterruption.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(processInterruption, fieldData);
-        }
-
-        return processInterruption;
-    } 
-}
-
-internal HL7V28Field processInterruptionReason;
-
-public HL7V28Field ProcessInterruptionReason
-{
-    get
-    {
-        if (processInterruptionReason != null)
-        {
-            return processInterruptionReason;
-        }
-
-        processInterruptionReason = new HL7V28Field
-        {
-            field = message[@"DON"][13],
-            Id = @"DON.13",
-            Type = @"Field",
-            Position = @"DON.13",
-            Name = @"Process Interruption Reason",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0935",
-            TableName = @"Process Interruption Reason",
-            Description = @"Reason that the donation process was interrupted.  Refer to HL7-Defined Table 0935 – Process Interruption Reason in Chapter 2C, Code Tables, for valid entries",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (processInterruptionReason.field.FieldRepetitions != null && processInterruptionReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(processInterruptionReason.Id));
-            processInterruptionReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(processInterruptionReason, fieldData);
-        }
-
-        return processInterruptionReason;
-    } 
-}
-
-internal HL7V28Field phlebotomyIssue;
-
-public HL7V28Field PhlebotomyIssue
-{
-    get
-    {
-        if (phlebotomyIssue != null)
-        {
-            return phlebotomyIssue;
-        }
-
-        phlebotomyIssue = new HL7V28Field
-        {
-            field = message[@"DON"][14],
-            Id = @"DON.14",
-            Type = @"Field",
-            Position = @"DON.14",
-            Name = @"Phlebotomy Issue",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0925",
-            TableName = @"Phlebotomy Issue",
-            Description = @"Indicates whether there is a problem or issue with the phlebotomy itself.  This may be due to an incorrect needle procedure, needle defect, tube blockage, problem with the apheresis machine, or improper action by the phlebotomist. Refer to HL7-Defined Table 0925 – Phlebotomy Issue in Chapter 2C, Code Tables, for valid entries.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phlebotomyIssue.field.FieldRepetitions != null && phlebotomyIssue.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phlebotomyIssue.Id));
-            phlebotomyIssue.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(phlebotomyIssue, fieldData);
-        }
-
-        return phlebotomyIssue;
-    } 
-}
-
-internal HL7V28Field intendedRecipientBloodRelative;
-
-public HL7V28Field IntendedRecipientBloodRelative
-{
-    get
-    {
-        if (intendedRecipientBloodRelative != null)
-        {
-            return intendedRecipientBloodRelative;
-        }
-
-        intendedRecipientBloodRelative = new HL7V28Field
-        {
-            field = message[@"DON"][15],
-            Id = @"DON.15",
-            Type = @"Field",
-            Position = @"DON.15",
-            Name = @"Intended Recipient Blood Relative",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"If this donation has an intended recipient (directed, dedicated, designated), is the intended recipient a blood relative of the donor? Yes or No.  Refer to HL7 Table 0136 -Yes/No Indicator as defined in Chapter 2C, Code Tables",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (intendedRecipientBloodRelative.field.FieldRepetitions != null && intendedRecipientBloodRelative.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(intendedRecipientBloodRelative.Id));
-            intendedRecipientBloodRelative.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(intendedRecipientBloodRelative, fieldData);
-        }
-
-        return intendedRecipientBloodRelative;
-    } 
-}
-
-internal HL7V28Field intendedRecipientName;
-
-public HL7V28Field IntendedRecipientName
-{
-    get
-    {
-        if (intendedRecipientName != null)
-        {
-            return intendedRecipientName;
-        }
-
-        intendedRecipientName = new HL7V28Field
-        {
-            field = message[@"DON"][16],
-            Id = @"DON.16",
-            Type = @"Field",
-            Position = @"DON.16",
-            Name = @"Intended Recipient Name",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"If this is donation has an intended recipient (autologous, directed, dedicated, designated), the intended recipient’s name",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (intendedRecipientName.field.FieldRepetitions != null && intendedRecipientName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(intendedRecipientName.Id));
-            intendedRecipientName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(intendedRecipientName, fieldData);
-        }
-
-        return intendedRecipientName;
-    } 
-}
-
-internal HL7V28Field intendedRecipientDOB;
-
-public HL7V28Field IntendedRecipientDOB
-{
-    get
-    {
-        if (intendedRecipientDOB != null)
-        {
-            return intendedRecipientDOB;
-        }
-
-        intendedRecipientDOB = new HL7V28Field
-        {
-            field = message[@"DON"][17],
-            Id = @"DON.17",
-            Type = @"Field",
-            Position = @"DON.17",
-            Name = @"Intended Recipient DOB",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"If this donation has an intended recipient (autologous, directed, dedicated, designated), the intended recipient’s date of birth",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (intendedRecipientDOB.field.FieldRepetitions != null && intendedRecipientDOB.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(intendedRecipientDOB.Id));
-            intendedRecipientDOB.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(intendedRecipientDOB, fieldData);
-        }
-
-        return intendedRecipientDOB;
-    } 
-}
-
-internal HL7V28Field intendedRecipientFacility;
-
-public HL7V28Field IntendedRecipientFacility
-{
-    get
-    {
-        if (intendedRecipientFacility != null)
-        {
-            return intendedRecipientFacility;
-        }
-
-        intendedRecipientFacility = new HL7V28Field
-        {
-            field = message[@"DON"][18],
-            Id = @"DON.18",
-            Type = @"Field",
-            Position = @"DON.18",
-            Name = @"Intended Recipient Facility",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"If this donation has an intended recipient (autologous, directed, dedicated, designated), the facility where the intended recipient is expected to receive the transfusion.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (intendedRecipientFacility.field.FieldRepetitions != null && intendedRecipientFacility.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(intendedRecipientFacility.Id));
-            intendedRecipientFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(intendedRecipientFacility, fieldData);
-        }
-
-        return intendedRecipientFacility;
-    } 
-}
-
-internal HL7V28Field intendedRecipientProcedureDate;
-
-public HL7V28Field IntendedRecipientProcedureDate
-{
-    get
-    {
-        if (intendedRecipientProcedureDate != null)
-        {
-            return intendedRecipientProcedureDate;
-        }
-
-        intendedRecipientProcedureDate = new HL7V28Field
-        {
-            field = message[@"DON"][19],
-            Id = @"DON.19",
-            Type = @"Field",
-            Position = @"DON.19",
-            Name = @"Intended Recipient Procedure Date",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"If this donation has an intended recipient (autologous, directed, dedicated, designated), the date the intended recipient is expected to receive the transfusion.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (intendedRecipientProcedureDate.field.FieldRepetitions != null && intendedRecipientProcedureDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(intendedRecipientProcedureDate.Id));
-            intendedRecipientProcedureDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(intendedRecipientProcedureDate, fieldData);
-        }
-
-        return intendedRecipientProcedureDate;
-    } 
-}
-
-internal HL7V28Field intendedRecipientOrderingProvider;
-
-public HL7V28Field IntendedRecipientOrderingProvider
-{
-    get
-    {
-        if (intendedRecipientOrderingProvider != null)
-        {
-            return intendedRecipientOrderingProvider;
-        }
-
-        intendedRecipientOrderingProvider = new HL7V28Field
-        {
-            field = message[@"DON"][20],
-            Id = @"DON.20",
-            Type = @"Field",
-            Position = @"DON.20",
-            Name = @"Intended Recipient Ordering Provider",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"If this is donation has an intended recipient (autologous, directed, dedicated, designated), the provider who ordered the directed donation for the intended recipient.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (intendedRecipientOrderingProvider.field.FieldRepetitions != null && intendedRecipientOrderingProvider.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(intendedRecipientOrderingProvider.Id));
-            intendedRecipientOrderingProvider.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(intendedRecipientOrderingProvider, fieldData);
-        }
-
-        return intendedRecipientOrderingProvider;
-    } 
-}
-
-internal HL7V28Field phlebotomyStatus;
-
-public HL7V28Field PhlebotomyStatus
-{
-    get
-    {
-        if (phlebotomyStatus != null)
-        {
-            return phlebotomyStatus;
-        }
-
-        phlebotomyStatus = new HL7V28Field
-        {
-            field = message[@"DON"][21],
-            Id = @"DON.21",
-            Type = @"Field",
-            Position = @"DON.21",
-            Name = @"Phlebotomy Status",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0926",
-            TableName = @"Phlebotomy Status",
-            Description = @"Whether the phlebotomy was successful, not drawn, or unsuccessful, and if unsuccessful, the extent to which it was unsuccessful. Refer to HL7-Defined Table 0926 – Phlebotomy Status in Chapter 2C, Code Tables, for valid entries",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phlebotomyStatus.field.FieldRepetitions != null && phlebotomyStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phlebotomyStatus.Id));
-            phlebotomyStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(phlebotomyStatus, fieldData);
-        }
-
-        return phlebotomyStatus;
-    } 
-}
-
-internal HL7V28Field armStick;
-
-public HL7V28Field ArmStick
-{
-    get
-    {
-        if (armStick != null)
-        {
-            return armStick;
-        }
-
-        armStick = new HL7V28Field
-        {
-            field = message[@"DON"][22],
-            Id = @"DON.22",
-            Type = @"Field",
-            Position = @"DON.22",
-            Name = @"Arm Stick",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0927",
-            TableName = @"Arm Stick",
-            Description = @"The arm(s) stuck for the donation. Refer to HL7-Defined Table 0927 – Arm Stick in Chapter 2C, Code Tables, for valid entries",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (armStick.field.FieldRepetitions != null && armStick.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(armStick.Id));
-            armStick.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(armStick, fieldData);
-        }
-
-        return armStick;
-    } 
-}
-
-internal HL7V28Field bleedStartPhlebotomist;
-
-public HL7V28Field BleedStartPhlebotomist
-{
-    get
-    {
-        if (bleedStartPhlebotomist != null)
-        {
-            return bleedStartPhlebotomist;
-        }
-
-        bleedStartPhlebotomist = new HL7V28Field
-        {
-            field = message[@"DON"][23],
-            Id = @"DON.23",
-            Type = @"Field",
-            Position = @"DON.23",
-            Name = @"Bleed Start Phlebotomist",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"The Phlebotomist who starts the blood flow into the container",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bleedStartPhlebotomist.field.FieldRepetitions != null && bleedStartPhlebotomist.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bleedStartPhlebotomist.Id));
-            bleedStartPhlebotomist.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(bleedStartPhlebotomist, fieldData);
-        }
-
-        return bleedStartPhlebotomist;
-    } 
-}
-
-internal HL7V28Field bleedEndPhlebotomist;
-
-public HL7V28Field BleedEndPhlebotomist
-{
-    get
-    {
-        if (bleedEndPhlebotomist != null)
-        {
-            return bleedEndPhlebotomist;
-        }
-
-        bleedEndPhlebotomist = new HL7V28Field
-        {
-            field = message[@"DON"][24],
-            Id = @"DON.24",
-            Type = @"Field",
-            Position = @"DON.24",
-            Name = @"Bleed End Phlebotomist",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"The Phlebotomist who ends the blood flow into the container",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bleedEndPhlebotomist.field.FieldRepetitions != null && bleedEndPhlebotomist.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bleedEndPhlebotomist.Id));
-            bleedEndPhlebotomist.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(bleedEndPhlebotomist, fieldData);
-        }
-
-        return bleedEndPhlebotomist;
-    } 
-}
-
-internal HL7V28Field aphaeresisTypeMachine;
-
-public HL7V28Field AphaeresisTypeMachine
-{
-    get
-    {
-        if (aphaeresisTypeMachine != null)
-        {
-            return aphaeresisTypeMachine;
-        }
-
-        aphaeresisTypeMachine = new HL7V28Field
-        {
-            field = message[@"DON"][25],
-            Id = @"DON.25",
-            Type = @"Field",
-            Position = @"DON.25",
-            Name = @"Aphaeresis Type Machine",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The type of aphaeresis machine, if used, for the donation. It will be the specific product name of the machine (e.g. Trima, Amicus, Alyx, Symal, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (aphaeresisTypeMachine.field.FieldRepetitions != null && aphaeresisTypeMachine.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(aphaeresisTypeMachine.Id));
-            aphaeresisTypeMachine.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(aphaeresisTypeMachine, fieldData);
-        }
-
-        return aphaeresisTypeMachine;
-    } 
-}
-
-internal HL7V28Field aphaeresisMachineSerialNumber;
-
-public HL7V28Field AphaeresisMachineSerialNumber
-{
-    get
-    {
-        if (aphaeresisMachineSerialNumber != null)
-        {
-            return aphaeresisMachineSerialNumber;
-        }
-
-        aphaeresisMachineSerialNumber = new HL7V28Field
-        {
-            field = message[@"DON"][26],
-            Id = @"DON.26",
-            Type = @"Field",
-            Position = @"DON.26",
-            Name = @"Aphaeresis Machine Serial Number",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The serial number of the aphaeresis machine, if used, for the donation.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (aphaeresisMachineSerialNumber.field.FieldRepetitions != null && aphaeresisMachineSerialNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(aphaeresisMachineSerialNumber.Id));
-            aphaeresisMachineSerialNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(aphaeresisMachineSerialNumber, fieldData);
-        }
-
-        return aphaeresisMachineSerialNumber;
-    } 
-}
-
-internal HL7V28Field donorReaction;
-
-public HL7V28Field DonorReaction
-{
-    get
-    {
-        if (donorReaction != null)
-        {
-            return donorReaction;
-        }
-
-        donorReaction = new HL7V28Field
-        {
-            field = message[@"DON"][27],
-            Id = @"DON.27",
-            Type = @"Field",
-            Position = @"DON.27",
-            Name = @"Donor Reaction",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"Did the donor have any adverse reaction during the donation procedure?  Yes or No.  Refer to HL7 Table 0136 -Yes/No Indicator as defined in Chapter 2C, Code Tables.  If this element is valued ""Y""es, there should be OBX segments following the Donation segment which details the adverse reactions.  ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (donorReaction.field.FieldRepetitions != null && donorReaction.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(donorReaction.Id));
-            donorReaction.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(donorReaction, fieldData);
-        }
-
-        return donorReaction;
-    } 
-}
-
-internal HL7V28Field finalReviewStaffID;
-
-public HL7V28Field FinalReviewStaffID
-{
-    get
-    {
-        if (finalReviewStaffID != null)
-        {
-            return finalReviewStaffID;
-        }
-
-        finalReviewStaffID = new HL7V28Field
-        {
-            field = message[@"DON"][28],
-            Id = @"DON.28",
-            Type = @"Field",
-            Position = @"DON.28",
-            Name = @"Final Review Staff ID",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"The Staff member conducting the final review and reconciliation of all documentation created during the collection process",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (finalReviewStaffID.field.FieldRepetitions != null && finalReviewStaffID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(finalReviewStaffID.Id));
-            finalReviewStaffID.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(finalReviewStaffID, fieldData);
-        }
-
-        return finalReviewStaffID;
-    } 
-}
-
-internal HL7V28Field finalReviewDateTime;
-
-public HL7V28Field FinalReviewDateTime
-{
-    get
-    {
-        if (finalReviewDateTime != null)
-        {
-            return finalReviewDateTime;
-        }
-
-        finalReviewDateTime = new HL7V28Field
-        {
-            field = message[@"DON"][29],
-            Id = @"DON.29",
-            Type = @"Field",
-            Position = @"DON.29",
-            Name = @"Final Review Date/Time",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"The date and time a final review of all documentation and labeling of the blood material is completed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (finalReviewDateTime.field.FieldRepetitions != null && finalReviewDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(finalReviewDateTime.Id));
-            finalReviewDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(finalReviewDateTime, fieldData);
-        }
-
-        return finalReviewDateTime;
-    } 
-}
-
-internal HL7V28Field numberofTubesCollected;
-
-public HL7V28Field NumberofTubesCollected
-{
-    get
-    {
-        if (numberofTubesCollected != null)
-        {
-            return numberofTubesCollected;
-        }
-
-        numberofTubesCollected = new HL7V28Field
-        {
-            field = message[@"DON"][30],
-            Id = @"DON.30",
-            Type = @"Field",
-            Position = @"DON.30",
-            Name = @"Number of Tubes Collected",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"The number of samples collected during the donation which will be used for subsequent testing",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (numberofTubesCollected.field.FieldRepetitions != null && numberofTubesCollected.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberofTubesCollected.Id));
-            numberofTubesCollected.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(numberofTubesCollected, fieldData);
-        }
-
-        return numberofTubesCollected;
-    } 
-}
-
-internal HL7V28Field donationSampleIdentifier;
-
-public HL7V28Field DonationSampleIdentifier
-{
-    get
-    {
-        if (donationSampleIdentifier != null)
-        {
-            return donationSampleIdentifier;
-        }
-
-        donationSampleIdentifier = new HL7V28Field
-        {
-            field = message[@"DON"][31],
-            Id = @"DON.31",
-            Type = @"Field",
-            Position = @"DON.31",
-            Name = @"Donation Sample Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The sample identifier for the sample collected during a donation for the purpose of testing. This is a field for sample or specimen identifiers",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (donationSampleIdentifier.field.FieldRepetitions != null && donationSampleIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(donationSampleIdentifier.Id));
-            donationSampleIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(donationSampleIdentifier, fieldData);
-        }
-
-        return donationSampleIdentifier;
-    } 
-}
-
-internal HL7V28Field donationAcceptStaff;
-
-public HL7V28Field DonationAcceptStaff
-{
-    get
-    {
-        if (donationAcceptStaff != null)
-        {
-            return donationAcceptStaff;
-        }
-
-        donationAcceptStaff = new HL7V28Field
-        {
-            field = message[@"DON"][32],
-            Id = @"DON.32",
-            Type = @"Field",
-            Position = @"DON.32",
-            Name = @"Donation Accept Staff",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"The staff member who reviewed all the intake materials, assessments and determined the donor can undergo a donation procedure at this time",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (donationAcceptStaff.field.FieldRepetitions != null && donationAcceptStaff.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(donationAcceptStaff.Id));
-            donationAcceptStaff.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(donationAcceptStaff, fieldData);
-        }
-
-        return donationAcceptStaff;
-    } 
-}
-
-internal HL7V28Field donationMaterialReviewStaff;
-
-public HL7V28Field DonationMaterialReviewStaff
-{
-    get
-    {
-        if (donationMaterialReviewStaff != null)
-        {
-            return donationMaterialReviewStaff;
-        }
-
-        donationMaterialReviewStaff = new HL7V28Field
+        _donationMaterialReviewStaff = new HL7V28Field
         {
             field = message[@"DON"][33],
-            Id = @"DON.33",
-            Type = @"Field",
-            Position = @"DON.33",
-            Name = @"Donation Material Review Staff",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"The staff member who performs review on all documentation subsequent to donation procedure",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (donationMaterialReviewStaff.field.FieldRepetitions != null && donationMaterialReviewStaff.field.FieldRepetitions.Count > 0)
+        if (_donationMaterialReviewStaff.field.FieldRepetitions != null && _donationMaterialReviewStaff.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(donationMaterialReviewStaff.Id));
-            donationMaterialReviewStaff.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(donationMaterialReviewStaff, fieldData);
+            _donationMaterialReviewStaff.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_donationMaterialReviewStaff, fieldData);
         }
 
-        return donationMaterialReviewStaff;
+        return _donationMaterialReviewStaff;
     } 
 }
     }

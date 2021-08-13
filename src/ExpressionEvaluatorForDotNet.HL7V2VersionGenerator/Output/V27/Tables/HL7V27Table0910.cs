@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -35,6 +36,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Comment = @"Acquisition Modality codes, Context Group 29, Digital Imaging and Communications in Medicine (DICOM) - Part 16: Content Mapping Resource (PS3.16), available free at http://dicom.nema.org"
                         },
+                        
                     };
             } 
         }

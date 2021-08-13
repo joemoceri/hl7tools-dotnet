@@ -31,49 +31,88 @@ Examples of the use of this segment appear in Chapter 3, ""Patient Administratio
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"QRI.1",
-                            Type = @"Field",
-                            Position = @"QRI.1",
-                            Name = @"Candidate Confidence",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a numeric value indicating the match weight or confidence level associated with the record.
+        public HL7V271SegmentQRI(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _candidateConfidence;
+
+public HL7V271Field CandidateConfidence
+{
+    get
+    {
+        if (_candidateConfidence != null)
+        {
+            return _candidateConfidence;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"QRI.1",
+            Type = @"Field",
+            Position = @"QRI.1",
+            Name = @"Candidate Confidence",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a numeric value indicating the match weight or confidence level associated with the record.
 Example: |0.88| or |12.32|
 
 One use of this optional field is in Patient Look-up transactions where the searching system employs a numeric algorithm for determining potential matches to patient/person look-ups.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _candidateConfidence = new HL7V271Field
+        {
+            field = message[@"QRI"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_candidateConfidence.field.FieldRepetitions != null && _candidateConfidence.field.FieldRepetitions.Count > 0)
+        {
+            _candidateConfidence.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_candidateConfidence, fieldData);
+        }
+
+        return _candidateConfidence;
+    } 
+}
+
+internal HL7V271Field _matchReasonCode;
+
+public HL7V271Field MatchReasonCode
+{
+    get
+    {
+        if (_matchReasonCode != null)
+        {
+            return _matchReasonCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"QRI.2",
+            Type = @"Field",
+            Position = @"QRI.2",
+            Name = @"Match Reason Code",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0392",
+            TableName = @"Match Reason",
+            Description = @"This field contains a coded value indicating what search components (e.g., name, birth date, social security number) of the record returned matched the original query where the responding system does not assign numeric match weights or confidence levels. In short, it provides a method for passing a descriptive indication of why a particular record was found.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"QRI.2",
-                            Type = @"Field",
-                            Position = @"QRI.2",
-                            Name = @"Match Reason Code",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0392",
-                            TableName = @"Match Reason",
-                            Description = @"This field contains a coded value indicating what search components (e.g., name, birth date, social security number) of the record returned matched the original query where the responding system does not assign numeric match weights or confidence levels. In short, it provides a method for passing a descriptive indication of why a particular record was found.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"QRI.2.1",
                             Type = @"Component",
@@ -499,29 +538,59 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QRI.3",
-                            Type = @"Field",
-                            Position = @"QRI.3",
-                            Name = @"Algorithm Descriptor",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0393",
-                            TableName = @"Match Algorithms",
-                            Description = @"This field contains a text value indicating the name or identity of the specific search algorithm to which the RCP-5 Search confidence threshold and the QRI-1 Candidate confidence refer. Note that there are sometimes significant differences among the algorithms in their numeric scales (e.g., one is 0-100, another might be 10 – 20) as well as their meanings of the same value (two algorithms with an 80% match might not return the same records). Refer to User-defined Table 0393 - Match algorithms for suggested values.
+                        }
+        }
+
+        _matchReasonCode = new HL7V271Field
+        {
+            field = message[@"QRI"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_matchReasonCode.field.FieldRepetitions != null && _matchReasonCode.field.FieldRepetitions.Count > 0)
+        {
+            _matchReasonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_matchReasonCode, fieldData);
+        }
+
+        return _matchReasonCode;
+    } 
+}
+
+internal HL7V271Field _algorithmDescriptor;
+
+public HL7V271Field AlgorithmDescriptor
+{
+    get
+    {
+        if (_algorithmDescriptor != null)
+        {
+            return _algorithmDescriptor;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"QRI.3",
+            Type = @"Field",
+            Position = @"QRI.3",
+            Name = @"Algorithm Descriptor",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0393",
+            TableName = @"Match Algorithms",
+            Description = @"This field contains a text value indicating the name or identity of the specific search algorithm to which the RCP-5 Search confidence threshold and the QRI-1 Candidate confidence refer. Note that there are sometimes significant differences among the algorithms in their numeric scales (e.g., one is 0-100, another might be 10 – 20) as well as their meanings of the same value (two algorithms with an 80% match might not return the same records). Refer to User-defined Table 0393 - Match algorithms for suggested values.
 
 Example: |MATCHWARE_1.2^^HL70393| or |LINKSOFT_2.01^^HL70393|
 
 One use of this optional field is in Patient Look-up transactions where the searching system employs a numeric algorithm for determining potential matches to patient/person look-ups.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"QRI.3.1",
                             Type = @"Component",
@@ -947,144 +1016,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentQRI(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field candidateConfidence;
-
-public HL7V271Field CandidateConfidence
-{
-    get
-    {
-        if (candidateConfidence != null)
-        {
-            return candidateConfidence;
-        }
-
-        candidateConfidence = new HL7V271Field
-        {
-            field = message[@"QRI"][1],
-            Id = @"QRI.1",
-            Type = @"Field",
-            Position = @"QRI.1",
-            Name = @"Candidate Confidence",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a numeric value indicating the match weight or confidence level associated with the record.
-Example: |0.88| or |12.32|
-
-One use of this optional field is in Patient Look-up transactions where the searching system employs a numeric algorithm for determining potential matches to patient/person look-ups.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (candidateConfidence.field.FieldRepetitions != null && candidateConfidence.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(candidateConfidence.Id));
-            candidateConfidence.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(candidateConfidence, fieldData);
-        }
-
-        return candidateConfidence;
-    } 
-}
-
-internal HL7V271Field matchReasonCode;
-
-public HL7V271Field MatchReasonCode
-{
-    get
-    {
-        if (matchReasonCode != null)
-        {
-            return matchReasonCode;
-        }
-
-        matchReasonCode = new HL7V271Field
-        {
-            field = message[@"QRI"][2],
-            Id = @"QRI.2",
-            Type = @"Field",
-            Position = @"QRI.2",
-            Name = @"Match Reason Code",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0392",
-            TableName = @"Match Reason",
-            Description = @"This field contains a coded value indicating what search components (e.g., name, birth date, social security number) of the record returned matched the original query where the responding system does not assign numeric match weights or confidence levels. In short, it provides a method for passing a descriptive indication of why a particular record was found.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (matchReasonCode.field.FieldRepetitions != null && matchReasonCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(matchReasonCode.Id));
-            matchReasonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(matchReasonCode, fieldData);
-        }
-
-        return matchReasonCode;
-    } 
-}
-
-internal HL7V271Field algorithmDescriptor;
-
-public HL7V271Field AlgorithmDescriptor
-{
-    get
-    {
-        if (algorithmDescriptor != null)
-        {
-            return algorithmDescriptor;
-        }
-
-        algorithmDescriptor = new HL7V271Field
+        _algorithmDescriptor = new HL7V271Field
         {
             field = message[@"QRI"][3],
-            Id = @"QRI.3",
-            Type = @"Field",
-            Position = @"QRI.3",
-            Name = @"Algorithm Descriptor",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0393",
-            TableName = @"Match Algorithms",
-            Description = @"This field contains a text value indicating the name or identity of the specific search algorithm to which the RCP-5 Search confidence threshold and the QRI-1 Candidate confidence refer. Note that there are sometimes significant differences among the algorithms in their numeric scales (e.g., one is 0-100, another might be 10 – 20) as well as their meanings of the same value (two algorithms with an 80% match might not return the same records). Refer to User-defined Table 0393 - Match algorithms for suggested values.
-
-Example: |MATCHWARE_1.2^^HL70393| or |LINKSOFT_2.01^^HL70393|
-
-One use of this optional field is in Patient Look-up transactions where the searching system employs a numeric algorithm for determining potential matches to patient/person look-ups.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (algorithmDescriptor.field.FieldRepetitions != null && algorithmDescriptor.field.FieldRepetitions.Count > 0)
+        if (_algorithmDescriptor.field.FieldRepetitions != null && _algorithmDescriptor.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(algorithmDescriptor.Id));
-            algorithmDescriptor.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(algorithmDescriptor, fieldData);
+            _algorithmDescriptor.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_algorithmDescriptor, fieldData);
         }
 
-        return algorithmDescriptor;
+        return _algorithmDescriptor;
     } 
 }
     }

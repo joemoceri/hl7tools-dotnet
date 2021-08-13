@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentTCD(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _universalServiceIdentifier;
+
+public HL7V271Field UniversalServiceIdentifier
+{
+    get
+    {
+        if (_universalServiceIdentifier != null)
+        {
+            return _universalServiceIdentifier;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"TCD.1",
+            Type = @"Field",
+            Position = @"TCD.1",
+            Name = @"Universal Service Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the test code that information is being transmitted about",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"TCD.1",
-                            Type = @"Field",
-                            Position = @"TCD.1",
-                            Name = @"Universal Service Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the test code that information is being transmitted about",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TCD.1.1",
                             Type = @"Component",
@@ -476,25 +488,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _universalServiceIdentifier = new HL7V271Field
+        {
+            field = message[@"TCD"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_universalServiceIdentifier.field.FieldRepetitions != null && _universalServiceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _universalServiceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_universalServiceIdentifier, fieldData);
+        }
+
+        return _universalServiceIdentifier;
+    } 
+}
+
+internal HL7V271Field _autodilutionFactor;
+
+public HL7V271Field AutodilutionFactor
+{
+    get
+    {
+        if (_autodilutionFactor != null)
+        {
+            return _autodilutionFactor;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"TCD.2",
+            Type = @"Field",
+            Position = @"TCD.2",
+            Name = @"Auto-dilution Factor",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SN",
+            DataTypeName = @"Structured Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the value that is to be used as the factor for automatically diluting a particular specimen by an instrument for this particular test code. (See examples in definition of 13.4.3.29, ""SAC-29   Dilution Factor   (SN)   01356,"" in the ""Specimen Container Detail Segment."")",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TCD.2",
-                            Type = @"Field",
-                            Position = @"TCD.2",
-                            Name = @"Auto-dilution Factor",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SN",
-                            DataTypeName = @"Structured Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the value that is to be used as the factor for automatically diluting a particular specimen by an instrument for this particular test code. (See examples in definition of 13.4.3.29, ""SAC-29   Dilution Factor   (SN)   01356,"" in the ""Specimen Container Detail Segment."")",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TCD.2.1",
                             Type = @"Component",
@@ -576,25 +618,55 @@ Categorical response, e.g., occult blood positivity
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _autodilutionFactor = new HL7V271Field
+        {
+            field = message[@"TCD"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_autodilutionFactor.field.FieldRepetitions != null && _autodilutionFactor.field.FieldRepetitions.Count > 0)
+        {
+            _autodilutionFactor.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_autodilutionFactor, fieldData);
+        }
+
+        return _autodilutionFactor;
+    } 
+}
+
+internal HL7V271Field _rerunDilutionFactor;
+
+public HL7V271Field RerunDilutionFactor
+{
+    get
+    {
+        if (_rerunDilutionFactor != null)
+        {
+            return _rerunDilutionFactor;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"TCD.3",
+            Type = @"Field",
+            Position = @"TCD.3",
+            Name = @"Rerun Dilution Factor",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SN",
+            DataTypeName = @"Structured Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the value that is to be used as the factor for automatically diluting a particular specimen in case of rerun for this particular test code.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TCD.3",
-                            Type = @"Field",
-                            Position = @"TCD.3",
-                            Name = @"Rerun Dilution Factor",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SN",
-                            DataTypeName = @"Structured Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the value that is to be used as the factor for automatically diluting a particular specimen in case of rerun for this particular test code.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TCD.3.1",
                             Type = @"Component",
@@ -676,25 +748,55 @@ Categorical response, e.g., occult blood positivity
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _rerunDilutionFactor = new HL7V271Field
+        {
+            field = message[@"TCD"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rerunDilutionFactor.field.FieldRepetitions != null && _rerunDilutionFactor.field.FieldRepetitions.Count > 0)
+        {
+            _rerunDilutionFactor.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_rerunDilutionFactor, fieldData);
+        }
+
+        return _rerunDilutionFactor;
+    } 
+}
+
+internal HL7V271Field _predilutionFactor;
+
+public HL7V271Field PredilutionFactor
+{
+    get
+    {
+        if (_predilutionFactor != null)
+        {
+            return _predilutionFactor;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"TCD.4",
+            Type = @"Field",
+            Position = @"TCD.4",
+            Name = @"Pre-dilution Factor",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SN",
+            DataTypeName = @"Structured Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the value that is to be used as the factor for a particular specimen that is delivered to the automated system as pre-diluted for this particular test code.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TCD.4",
-                            Type = @"Field",
-                            Position = @"TCD.4",
-                            Name = @"Pre-dilution Factor",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SN",
-                            DataTypeName = @"Structured Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the value that is to be used as the factor for a particular specimen that is delivered to the automated system as pre-diluted for this particular test code.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TCD.4.1",
                             Type = @"Component",
@@ -776,25 +878,55 @@ Categorical response, e.g., occult blood positivity
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _predilutionFactor = new HL7V271Field
+        {
+            field = message[@"TCD"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_predilutionFactor.field.FieldRepetitions != null && _predilutionFactor.field.FieldRepetitions.Count > 0)
+        {
+            _predilutionFactor.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_predilutionFactor, fieldData);
+        }
+
+        return _predilutionFactor;
+    } 
+}
+
+internal HL7V271Field _endogenousContentOfPredilutionDiluent;
+
+public HL7V271Field EndogenousContentOfPredilutionDiluent
+{
+    get
+    {
+        if (_endogenousContentOfPredilutionDiluent != null)
+        {
+            return _endogenousContentOfPredilutionDiluent;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"TCD.5",
+            Type = @"Field",
+            Position = @"TCD.5",
+            Name = @"Endogenous Content Of Pre-dilution Diluent",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SN",
+            DataTypeName = @"Structured Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field represents the rest concentration of the measured test in the diluent. It is the value that is to be used for calculation of the concentration of pre-diluted specimens for this particular test code.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TCD.5",
-                            Type = @"Field",
-                            Position = @"TCD.5",
-                            Name = @"Endogenous Content Of Pre-dilution Diluent",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SN",
-                            DataTypeName = @"Structured Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field represents the rest concentration of the measured test in the diluent. It is the value that is to be used for calculation of the concentration of pre-diluted specimens for this particular test code.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TCD.5.1",
                             Type = @"Component",
@@ -876,66 +1008,150 @@ Categorical response, e.g., occult blood positivity
                             Description = @"A number or null depending on the measurement.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TCD.6",
-                            Type = @"Field",
-                            Position = @"TCD.6",
-                            Name = @"Automatic Repeat Allowed",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This field identifies whether or not automatic repeats are to be initiated for this particular specimen for this particular test code.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TCD.7",
-                            Type = @"Field",
-                            Position = @"TCD.7",
-                            Name = @"Reflex Allowed",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This field identifies whether or not automatic or manual reflex testing is to be initiated for this particular specimen.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TCD.8",
-                            Type = @"Field",
-                            Position = @"TCD.8",
-                            Name = @"Analyte Repeat Status",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0389",
-                            TableName = @"Analyte Repeat Status",
-                            Description = @"This field identifies the repeat status for the analyte/result (e.g., original, rerun, repeat, reflex).  Refer to HL7 Table 0389 – Analyte Repeat Status for valid values.
+                        }
+        }
+
+        _endogenousContentOfPredilutionDiluent = new HL7V271Field
+        {
+            field = message[@"TCD"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_endogenousContentOfPredilutionDiluent.field.FieldRepetitions != null && _endogenousContentOfPredilutionDiluent.field.FieldRepetitions.Count > 0)
+        {
+            _endogenousContentOfPredilutionDiluent.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_endogenousContentOfPredilutionDiluent, fieldData);
+        }
+
+        return _endogenousContentOfPredilutionDiluent;
+    } 
+}
+
+internal HL7V271Field _automaticRepeatAllowed;
+
+public HL7V271Field AutomaticRepeatAllowed
+{
+    get
+    {
+        if (_automaticRepeatAllowed != null)
+        {
+            return _automaticRepeatAllowed;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"TCD.6",
+            Type = @"Field",
+            Position = @"TCD.6",
+            Name = @"Automatic Repeat Allowed",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"This field identifies whether or not automatic repeats are to be initiated for this particular specimen for this particular test code.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _automaticRepeatAllowed = new HL7V271Field
+        {
+            field = message[@"TCD"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_automaticRepeatAllowed.field.FieldRepetitions != null && _automaticRepeatAllowed.field.FieldRepetitions.Count > 0)
+        {
+            _automaticRepeatAllowed.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_automaticRepeatAllowed, fieldData);
+        }
+
+        return _automaticRepeatAllowed;
+    } 
+}
+
+internal HL7V271Field _reflexAllowed;
+
+public HL7V271Field ReflexAllowed
+{
+    get
+    {
+        if (_reflexAllowed != null)
+        {
+            return _reflexAllowed;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"TCD.7",
+            Type = @"Field",
+            Position = @"TCD.7",
+            Name = @"Reflex Allowed",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"This field identifies whether or not automatic or manual reflex testing is to be initiated for this particular specimen.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _reflexAllowed = new HL7V271Field
+        {
+            field = message[@"TCD"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reflexAllowed.field.FieldRepetitions != null && _reflexAllowed.field.FieldRepetitions.Count > 0)
+        {
+            _reflexAllowed.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_reflexAllowed, fieldData);
+        }
+
+        return _reflexAllowed;
+    } 
+}
+
+internal HL7V271Field _analyteRepeatStatus;
+
+public HL7V271Field AnalyteRepeatStatus
+{
+    get
+    {
+        if (_analyteRepeatStatus != null)
+        {
+            return _analyteRepeatStatus;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"TCD.8",
+            Type = @"Field",
+            Position = @"TCD.8",
+            Name = @"Analyte Repeat Status",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0389",
+            TableName = @"Analyte Repeat Status",
+            Description = @"This field identifies the repeat status for the analyte/result (e.g., original, rerun, repeat, reflex).  Refer to HL7 Table 0389 – Analyte Repeat Status for valid values.
 
 For purpose of this chapter we assume the following:
 - Repeated test without dilution — performed usually to confirm correctness of results (e.g., in case of results flagged as ""Panic"" or mechanical failures).
 - Repeated test with dilution — performed usually in the case the original result exceeded the measurement range (technical limits).
 - Reflex test — this test is performed as the consequence of rules triggered based on other test result(s).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"TCD.8.1",
                             Type = @"Component",
@@ -1361,347 +1577,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentTCD(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field universalServiceIdentifier;
-
-public HL7V271Field UniversalServiceIdentifier
-{
-    get
-    {
-        if (universalServiceIdentifier != null)
-        {
-            return universalServiceIdentifier;
-        }
-
-        universalServiceIdentifier = new HL7V271Field
-        {
-            field = message[@"TCD"][1],
-            Id = @"TCD.1",
-            Type = @"Field",
-            Position = @"TCD.1",
-            Name = @"Universal Service Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the test code that information is being transmitted about",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (universalServiceIdentifier.field.FieldRepetitions != null && universalServiceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(universalServiceIdentifier.Id));
-            universalServiceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(universalServiceIdentifier, fieldData);
-        }
-
-        return universalServiceIdentifier;
-    } 
-}
-
-internal HL7V271Field autodilutionFactor;
-
-public HL7V271Field AutodilutionFactor
-{
-    get
-    {
-        if (autodilutionFactor != null)
-        {
-            return autodilutionFactor;
-        }
-
-        autodilutionFactor = new HL7V271Field
-        {
-            field = message[@"TCD"][2],
-            Id = @"TCD.2",
-            Type = @"Field",
-            Position = @"TCD.2",
-            Name = @"Auto-dilution Factor",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SN",
-            DataTypeName = @"Structured Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the value that is to be used as the factor for automatically diluting a particular specimen by an instrument for this particular test code. (See examples in definition of 13.4.3.29, ""SAC-29   Dilution Factor   (SN)   01356,"" in the ""Specimen Container Detail Segment."")",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (autodilutionFactor.field.FieldRepetitions != null && autodilutionFactor.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(autodilutionFactor.Id));
-            autodilutionFactor.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(autodilutionFactor, fieldData);
-        }
-
-        return autodilutionFactor;
-    } 
-}
-
-internal HL7V271Field rerunDilutionFactor;
-
-public HL7V271Field RerunDilutionFactor
-{
-    get
-    {
-        if (rerunDilutionFactor != null)
-        {
-            return rerunDilutionFactor;
-        }
-
-        rerunDilutionFactor = new HL7V271Field
-        {
-            field = message[@"TCD"][3],
-            Id = @"TCD.3",
-            Type = @"Field",
-            Position = @"TCD.3",
-            Name = @"Rerun Dilution Factor",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SN",
-            DataTypeName = @"Structured Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the value that is to be used as the factor for automatically diluting a particular specimen in case of rerun for this particular test code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rerunDilutionFactor.field.FieldRepetitions != null && rerunDilutionFactor.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rerunDilutionFactor.Id));
-            rerunDilutionFactor.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(rerunDilutionFactor, fieldData);
-        }
-
-        return rerunDilutionFactor;
-    } 
-}
-
-internal HL7V271Field predilutionFactor;
-
-public HL7V271Field PredilutionFactor
-{
-    get
-    {
-        if (predilutionFactor != null)
-        {
-            return predilutionFactor;
-        }
-
-        predilutionFactor = new HL7V271Field
-        {
-            field = message[@"TCD"][4],
-            Id = @"TCD.4",
-            Type = @"Field",
-            Position = @"TCD.4",
-            Name = @"Pre-dilution Factor",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SN",
-            DataTypeName = @"Structured Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the value that is to be used as the factor for a particular specimen that is delivered to the automated system as pre-diluted for this particular test code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (predilutionFactor.field.FieldRepetitions != null && predilutionFactor.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(predilutionFactor.Id));
-            predilutionFactor.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(predilutionFactor, fieldData);
-        }
-
-        return predilutionFactor;
-    } 
-}
-
-internal HL7V271Field endogenousContentOfPredilutionDiluent;
-
-public HL7V271Field EndogenousContentOfPredilutionDiluent
-{
-    get
-    {
-        if (endogenousContentOfPredilutionDiluent != null)
-        {
-            return endogenousContentOfPredilutionDiluent;
-        }
-
-        endogenousContentOfPredilutionDiluent = new HL7V271Field
-        {
-            field = message[@"TCD"][5],
-            Id = @"TCD.5",
-            Type = @"Field",
-            Position = @"TCD.5",
-            Name = @"Endogenous Content Of Pre-dilution Diluent",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SN",
-            DataTypeName = @"Structured Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field represents the rest concentration of the measured test in the diluent. It is the value that is to be used for calculation of the concentration of pre-diluted specimens for this particular test code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (endogenousContentOfPredilutionDiluent.field.FieldRepetitions != null && endogenousContentOfPredilutionDiluent.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(endogenousContentOfPredilutionDiluent.Id));
-            endogenousContentOfPredilutionDiluent.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(endogenousContentOfPredilutionDiluent, fieldData);
-        }
-
-        return endogenousContentOfPredilutionDiluent;
-    } 
-}
-
-internal HL7V271Field automaticRepeatAllowed;
-
-public HL7V271Field AutomaticRepeatAllowed
-{
-    get
-    {
-        if (automaticRepeatAllowed != null)
-        {
-            return automaticRepeatAllowed;
-        }
-
-        automaticRepeatAllowed = new HL7V271Field
-        {
-            field = message[@"TCD"][6],
-            Id = @"TCD.6",
-            Type = @"Field",
-            Position = @"TCD.6",
-            Name = @"Automatic Repeat Allowed",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"This field identifies whether or not automatic repeats are to be initiated for this particular specimen for this particular test code.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (automaticRepeatAllowed.field.FieldRepetitions != null && automaticRepeatAllowed.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(automaticRepeatAllowed.Id));
-            automaticRepeatAllowed.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(automaticRepeatAllowed, fieldData);
-        }
-
-        return automaticRepeatAllowed;
-    } 
-}
-
-internal HL7V271Field reflexAllowed;
-
-public HL7V271Field ReflexAllowed
-{
-    get
-    {
-        if (reflexAllowed != null)
-        {
-            return reflexAllowed;
-        }
-
-        reflexAllowed = new HL7V271Field
-        {
-            field = message[@"TCD"][7],
-            Id = @"TCD.7",
-            Type = @"Field",
-            Position = @"TCD.7",
-            Name = @"Reflex Allowed",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"This field identifies whether or not automatic or manual reflex testing is to be initiated for this particular specimen.  Refer to HL7 Table 0136 -Yes/no Indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reflexAllowed.field.FieldRepetitions != null && reflexAllowed.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reflexAllowed.Id));
-            reflexAllowed.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(reflexAllowed, fieldData);
-        }
-
-        return reflexAllowed;
-    } 
-}
-
-internal HL7V271Field analyteRepeatStatus;
-
-public HL7V271Field AnalyteRepeatStatus
-{
-    get
-    {
-        if (analyteRepeatStatus != null)
-        {
-            return analyteRepeatStatus;
-        }
-
-        analyteRepeatStatus = new HL7V271Field
+        _analyteRepeatStatus = new HL7V271Field
         {
             field = message[@"TCD"][8],
-            Id = @"TCD.8",
-            Type = @"Field",
-            Position = @"TCD.8",
-            Name = @"Analyte Repeat Status",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0389",
-            TableName = @"Analyte Repeat Status",
-            Description = @"This field identifies the repeat status for the analyte/result (e.g., original, rerun, repeat, reflex).  Refer to HL7 Table 0389 – Analyte Repeat Status for valid values.
-
-For purpose of this chapter we assume the following:
-- Repeated test without dilution — performed usually to confirm correctness of results (e.g., in case of results flagged as ""Panic"" or mechanical failures).
-- Repeated test with dilution — performed usually in the case the original result exceeded the measurement range (technical limits).
-- Reflex test — this test is performed as the consequence of rules triggered based on other test result(s).",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (analyteRepeatStatus.field.FieldRepetitions != null && analyteRepeatStatus.field.FieldRepetitions.Count > 0)
+        if (_analyteRepeatStatus.field.FieldRepetitions != null && _analyteRepeatStatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(analyteRepeatStatus.Id));
-            analyteRepeatStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(analyteRepeatStatus, fieldData);
+            _analyteRepeatStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_analyteRepeatStatus, fieldData);
         }
 
-        return analyteRepeatStatus;
+        return _analyteRepeatStatus;
     } 
 }
     }

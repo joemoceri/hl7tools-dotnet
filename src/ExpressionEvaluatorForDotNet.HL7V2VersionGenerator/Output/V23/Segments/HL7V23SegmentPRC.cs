@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V23SegmentPRC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field _primaryKeyValue;
+
+public HL7V23Field PrimaryKeyValue
+{
+    get
+    {
+        if (_primaryKeyValue != null)
+        {
+            return _primaryKeyValue;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.1",
+            Type = @"Field",
+            Position = @"PRC.1",
+            Name = @"Primary Key Value",
+            Length = 200,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0132",
+            TableName = @"Transaction code",
+            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying the thing that can be charged.  The key field of the entry.  For example, this field would be used to uniquely identify a procedure, item, or test for charging purposes.  Probably the same set of values as used in FT1-7 transaction code in financial messages.  Must match MFE-4-MFE primary key and CDM-1-CDM primary key.  Refer to user-defined table 0132 - Transaction code.  See Chapter 7 for discussion of the universal service ID.   ",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PRC.1",
-                            Type = @"Field",
-                            Position = @"PRC.1",
-                            Name = @"Primary Key Value",
-                            Length = 200,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0132",
-                            TableName = @"Transaction code",
-                            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying the thing that can be charged.  The key field of the entry.  For example, this field would be used to uniquely identify a procedure, item, or test for charging purposes.  Probably the same set of values as used in FT1-7 transaction code in financial messages.  Must match MFE-4-MFE primary key and CDM-1-CDM primary key.  Refer to user-defined table 0132 - Transaction code.  See Chapter 7 for discussion of the universal service ID.   ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PRC.1.1",
                             Type = @"Component",
@@ -156,27 +168,57 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRC.2",
-                            Type = @"Field",
-                            Position = @"PRC.2",
-                            Name = @"Facility ID",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the facility of the institution for which this price (for the preceding CDM entry) is valid.  For use when needing multi-facility pricing.  If null, assume all facilities.  In a multi-facility environment, the facility associated with this chargeable item may not be the same as the sending or receiving facility identified in the MSH segment.  Use only when the price is not the same for all facilities, that is, a null value indicates that this pricing is valid for all facilities.
+                        }
+        }
+
+        _primaryKeyValue = new HL7V23Field
+        {
+            field = message[@"PRC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryKeyValue.field.FieldRepetitions != null && _primaryKeyValue.field.FieldRepetitions.Count > 0)
+        {
+            _primaryKeyValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_primaryKeyValue, fieldData);
+        }
+
+        return _primaryKeyValue;
+    } 
+}
+
+internal HL7V23Field _facilityID;
+
+public HL7V23Field FacilityID
+{
+    get
+    {
+        if (_facilityID != null)
+        {
+            return _facilityID;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.2",
+            Type = @"Field",
+            Position = @"PRC.2",
+            Name = @"Facility ID",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the facility of the institution for which this price (for the preceding CDM entry) is valid.  For use when needing multi-facility pricing.  If null, assume all facilities.  In a multi-facility environment, the facility associated with this chargeable item may not be the same as the sending or receiving facility identified in the MSH segment.  Use only when the price is not the same for all facilities, that is, a null value indicates that this pricing is valid for all facilities.
 
 When two PRC segments are sent with the same key values but different facility identifiers, the second is sent in addition to the first, not to replace the first.  The effective unique identifier is the charge code (PRC1-PRC primary key) plus the facility ID (PRC-2-facility ID).  Multiple facility identifiers can be sent in the same segment to indicate that those facilities use the same pricing.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PRC.2.1",
                             Type = @"Component",
@@ -282,27 +324,57 @@ When two PRC segments are sent with the same key values but different facility i
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRC.3",
-                            Type = @"Field",
-                            Position = @"PRC.3",
-                            Name = @"Department",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the department of the facility which accrues revenue/cost for this type of charge.  When pricing is different for different departments within the same facility, this will indicate for which department the following pricing information is valid.  Use only when the price is not the same for all departments, that is, a null value indicates that this pricing is valid for all departments.
+                        }
+        }
+
+        _facilityID = new HL7V23Field
+        {
+            field = message[@"PRC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_facilityID.field.FieldRepetitions != null && _facilityID.field.FieldRepetitions.Count > 0)
+        {
+            _facilityID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_facilityID, fieldData);
+        }
+
+        return _facilityID;
+    } 
+}
+
+internal HL7V23Field _department;
+
+public HL7V23Field Department
+{
+    get
+    {
+        if (_department != null)
+        {
+            return _department;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.3",
+            Type = @"Field",
+            Position = @"PRC.3",
+            Name = @"Department",
+            Length = 30,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the department of the facility which accrues revenue/cost for this type of charge.  When pricing is different for different departments within the same facility, this will indicate for which department the following pricing information is valid.  Use only when the price is not the same for all departments, that is, a null value indicates that this pricing is valid for all departments.
 
 When two PRC segments are sent the same key values but with different departments, the second is sent in addition to the first, not to replace the first.  The effective unique identifier is the charge code (PRC-1-PRC primary key) plus the facility ID (PRC-2-facility ID) plus the department (PRC-3-department).  Multiple departments can be sent in the same segment to indicate that those departments use the same pricing",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PRC.3.1",
                             Type = @"Component",
@@ -408,45 +480,102 @@ When two PRC segments are sent the same key values but with different department
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRC.4",
-                            Type = @"Field",
-                            Position = @"PRC.4",
-                            Name = @"Valid Patient Classes",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0004",
-                            TableName = @"Patient class",
-                            Description = @" This field contains the patient types for which this charge description is valid.  For example, Inpatient, Outpatient, Series, Clinic, ER, Ambulatory, Observation, etc.  These values should be the same set of values as those used for PV1-3-patient class, which is site defined.  Use only when the price is not valid for all patient types, that is, a null value indicates that this pricing is valid for all patient classes.  Refer to user-defined table 0004 - Patient class for suggested values. 
+                        }
+        }
+
+        _department = new HL7V23Field
+        {
+            field = message[@"PRC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_department.field.FieldRepetitions != null && _department.field.FieldRepetitions.Count > 0)
+        {
+            _department.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_department, fieldData);
+        }
+
+        return _department;
+    } 
+}
+
+internal HL7V23Field _validPatientClasses;
+
+public HL7V23Field ValidPatientClasses
+{
+    get
+    {
+        if (_validPatientClasses != null)
+        {
+            return _validPatientClasses;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.4",
+            Type = @"Field",
+            Position = @"PRC.4",
+            Name = @"Valid Patient Classes",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0004",
+            TableName = @"Patient class",
+            Description = @" This field contains the patient types for which this charge description is valid.  For example, Inpatient, Outpatient, Series, Clinic, ER, Ambulatory, Observation, etc.  These values should be the same set of values as those used for PV1-3-patient class, which is site defined.  Use only when the price is not valid for all patient types, that is, a null value indicates that this pricing is valid for all patient classes.  Refer to user-defined table 0004 - Patient class for suggested values. 
 
 When two PRC segments are sent the same key values but with different valid patient classes, the second is sent in addition to the first, not to replace the first.  The effective unique identifier is the charge code (PRC1-PRC primary key) plus the facility ID (PRC-2-facility ID) plus the department (PRC-3-department) plus the patient class (PRC-4-valid patient classes).  Multiple patient classes can be sent in the same segment to indicate that those patient classes use the same pricing. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _validPatientClasses = new HL7V23Field
+        {
+            field = message[@"PRC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_validPatientClasses.field.FieldRepetitions != null && _validPatientClasses.field.FieldRepetitions.Count > 0)
+        {
+            _validPatientClasses.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_validPatientClasses, fieldData);
+        }
+
+        return _validPatientClasses;
+    } 
+}
+
+internal HL7V23Field _price;
+
+public HL7V23Field Price
+{
+    get
+    {
+        if (_price != null)
+        {
+            return _price;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.5",
+            Type = @"Field",
+            Position = @"PRC.5",
+            Name = @"Price",
+            Length = 12,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the price to be charged for service, item, or procedure.  If CDM price will always be overridden when charges are posted, then this field is optional.  Otherwise, price would be a required field.  The formula or calculation that is to be used to get total price from these price components is left to implementation negotiations agreed upon by the participating institutions.  See Chapter 2, Section 2.8.8, “CP - composite price,” for a description of the use of the composite price (CP) data type",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRC.5",
-                            Type = @"Field",
-                            Position = @"PRC.5",
-                            Name = @"Price",
-                            Length = 12,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the price to be charged for service, item, or procedure.  If CDM price will always be overridden when charges are posted, then this field is optional.  Otherwise, price would be a required field.  The formula or calculation that is to be used to get total price from these price components is left to implementation negotiations agreed upon by the participating institutions.  See Chapter 2, Section 2.8.8, “CP - composite price,” for a description of the use of the composite price (CP) data type",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRC.5.1",
                             Type = @"Component",
@@ -696,79 +825,190 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"Refers to HL7 table 0298 - CP range type for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _price = new HL7V23Field
+        {
+            field = message[@"PRC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_price.field.FieldRepetitions != null && _price.field.FieldRepetitions.Count > 0)
+        {
+            _price.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_price, fieldData);
+        }
+
+        return _price;
+    } 
+}
+
+internal HL7V23Field _formula;
+
+public HL7V23Field Formula
+{
+    get
+    {
+        if (_formula != null)
+        {
+            return _formula;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.6",
+            Type = @"Field",
+            Position = @"PRC.6",
+            Name = @"Formula",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the mathematical formula to apply to PRC-5-price in order to compute total price.  The syntax of this formula must conform to Arden Syntax rules",
+            Sample = @"",
+            Fields = null
+        }
+
+        _formula = new HL7V23Field
+        {
+            field = message[@"PRC"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_formula.field.FieldRepetitions != null && _formula.field.FieldRepetitions.Count > 0)
+        {
+            _formula.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_formula, fieldData);
+        }
+
+        return _formula;
+    } 
+}
+
+internal HL7V23Field _minimumQuantity;
+
+public HL7V23Field MinimumQuantity
+{
+    get
+    {
+        if (_minimumQuantity != null)
+        {
+            return _minimumQuantity;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.7",
+            Type = @"Field",
+            Position = @"PRC.7",
+            Name = @"Minimum Quantity",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the minimum number of identical charges allowed on one patient account for this CDM entry",
+            Sample = @"",
+            Fields = null
+        }
+
+        _minimumQuantity = new HL7V23Field
+        {
+            field = message[@"PRC"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_minimumQuantity.field.FieldRepetitions != null && _minimumQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _minimumQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_minimumQuantity, fieldData);
+        }
+
+        return _minimumQuantity;
+    } 
+}
+
+internal HL7V23Field _maximumQuantity;
+
+public HL7V23Field MaximumQuantity
+{
+    get
+    {
+        if (_maximumQuantity != null)
+        {
+            return _maximumQuantity;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.8",
+            Type = @"Field",
+            Position = @"PRC.8",
+            Name = @"Maximum Quantity",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the maximum number of identical charges allowed on one patient account for this CDM entry",
+            Sample = @"",
+            Fields = null
+        }
+
+        _maximumQuantity = new HL7V23Field
+        {
+            field = message[@"PRC"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_maximumQuantity.field.FieldRepetitions != null && _maximumQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _maximumQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_maximumQuantity, fieldData);
+        }
+
+        return _maximumQuantity;
+    } 
+}
+
+internal HL7V23Field _minimumPrice;
+
+public HL7V23Field MinimumPrice
+{
+    get
+    {
+        if (_minimumPrice != null)
+        {
+            return _minimumPrice;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.9",
+            Type = @"Field",
+            Position = @"PRC.9",
+            Name = @"Minimum Price",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"MO",
+            DataTypeName = @"Money",
+            TableId = null,
+            TableName = null,
+            Description = @" This field contains the minimum total price (after computation of components of price) that can be charged for this item",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRC.6",
-                            Type = @"Field",
-                            Position = @"PRC.6",
-                            Name = @"Formula",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the mathematical formula to apply to PRC-5-price in order to compute total price.  The syntax of this formula must conform to Arden Syntax rules",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRC.7",
-                            Type = @"Field",
-                            Position = @"PRC.7",
-                            Name = @"Minimum Quantity",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the minimum number of identical charges allowed on one patient account for this CDM entry",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRC.8",
-                            Type = @"Field",
-                            Position = @"PRC.8",
-                            Name = @"Maximum Quantity",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the maximum number of identical charges allowed on one patient account for this CDM entry",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRC.9",
-                            Type = @"Field",
-                            Position = @"PRC.9",
-                            Name = @"Minimum Price",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"MO",
-                            DataTypeName = @"Money",
-                            TableId = null,
-                            TableName = null,
-                            Description = @" This field contains the minimum total price (after computation of components of price) that can be charged for this item",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRC.9.1",
                             Type = @"Component",
@@ -806,25 +1046,55 @@ Example:
 where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _minimumPrice = new HL7V23Field
+        {
+            field = message[@"PRC"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_minimumPrice.field.FieldRepetitions != null && _minimumPrice.field.FieldRepetitions.Count > 0)
+        {
+            _minimumPrice.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_minimumPrice, fieldData);
+        }
+
+        return _minimumPrice;
+    } 
+}
+
+internal HL7V23Field _maximumPrice;
+
+public HL7V23Field MaximumPrice
+{
+    get
+    {
+        if (_maximumPrice != null)
+        {
+            return _maximumPrice;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.10",
+            Type = @"Field",
+            Position = @"PRC.10",
+            Name = @"Maximum Price",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"MO",
+            DataTypeName = @"Money",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the maximum total price (after computation of components of price) that can be charged for this item",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRC.10",
-                            Type = @"Field",
-                            Position = @"PRC.10",
-                            Name = @"Maximum Price",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"MO",
-                            DataTypeName = @"Money",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the maximum total price (after computation of components of price) that can be charged for this item",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRC.10.1",
                             Type = @"Component",
@@ -862,25 +1132,55 @@ Example:
 where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _maximumPrice = new HL7V23Field
+        {
+            field = message[@"PRC"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_maximumPrice.field.FieldRepetitions != null && _maximumPrice.field.FieldRepetitions.Count > 0)
+        {
+            _maximumPrice.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_maximumPrice, fieldData);
+        }
+
+        return _maximumPrice;
+    } 
+}
+
+internal HL7V23Field _effectiveStartDate;
+
+public HL7V23Field EffectiveStartDate
+{
+    get
+    {
+        if (_effectiveStartDate != null)
+        {
+            return _effectiveStartDate;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.11",
+            Type = @"Field",
+            Position = @"PRC.11",
+            Name = @"Effective Start Date",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when this CDM entry becomes effective",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRC.11",
-                            Type = @"Field",
-                            Position = @"PRC.11",
-                            Name = @"Effective Start Date",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when this CDM entry becomes effective",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRC.11.1",
                             Type = @"Component",
@@ -896,25 +1196,55 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _effectiveStartDate = new HL7V23Field
+        {
+            field = message[@"PRC"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_effectiveStartDate.field.FieldRepetitions != null && _effectiveStartDate.field.FieldRepetitions.Count > 0)
+        {
+            _effectiveStartDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_effectiveStartDate, fieldData);
+        }
+
+        return _effectiveStartDate;
+    } 
+}
+
+internal HL7V23Field _effectiveEndDate;
+
+public HL7V23Field EffectiveEndDate
+{
+    get
+    {
+        if (_effectiveEndDate != null)
+        {
+            return _effectiveEndDate;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.12",
+            Type = @"Field",
+            Position = @"PRC.12",
+            Name = @"Effective End Date",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time when this CDM entry is no longer effe",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRC.12",
-                            Type = @"Field",
-                            Position = @"PRC.12",
-                            Name = @"Effective End Date",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time when this CDM entry is no longer effe",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRC.12.1",
                             Type = @"Component",
@@ -930,43 +1260,100 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _effectiveEndDate = new HL7V23Field
+        {
+            field = message[@"PRC"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_effectiveEndDate.field.FieldRepetitions != null && _effectiveEndDate.field.FieldRepetitions.Count > 0)
+        {
+            _effectiveEndDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_effectiveEndDate, fieldData);
+        }
+
+        return _effectiveEndDate;
+    } 
+}
+
+internal HL7V23Field _priceOverrideFlag;
+
+public HL7V23Field PriceOverrideFlag
+{
+    get
+    {
+        if (_priceOverrideFlag != null)
+        {
+            return _priceOverrideFlag;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.13",
+            Type = @"Field",
+            Position = @"PRC.13",
+            Name = @"Price Override Flag",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0268",
+            TableName = @"Override",
+            Description = @"This field indicates whether this CDM entry’s price can be overridden.  Refer to user-defined table 0268 - Override for suggested values",
+            Sample = @"",
+            Fields = null
+        }
+
+        _priceOverrideFlag = new HL7V23Field
+        {
+            field = message[@"PRC"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priceOverrideFlag.field.FieldRepetitions != null && _priceOverrideFlag.field.FieldRepetitions.Count > 0)
+        {
+            _priceOverrideFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_priceOverrideFlag, fieldData);
+        }
+
+        return _priceOverrideFlag;
+    } 
+}
+
+internal HL7V23Field _billingCategory;
+
+public HL7V23Field BillingCategory
+{
+    get
+    {
+        if (_billingCategory != null)
+        {
+            return _billingCategory;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.14",
+            Type = @"Field",
+            Position = @"PRC.14",
+            Name = @"Billing Category",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0293",
+            TableName = @"Billing category",
+            Description = @"This field contains the billing category codes for any classification systems needed, for example, general ledger codes and UB92 categories.  Repeating field with coded entry made up of category code plus category system.  Refer to user-defined table 0293 - Billing category for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRC.13",
-                            Type = @"Field",
-                            Position = @"PRC.13",
-                            Name = @"Price Override Flag",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0268",
-                            TableName = @"Override",
-                            Description = @"This field indicates whether this CDM entry’s price can be overridden.  Refer to user-defined table 0268 - Override for suggested values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRC.14",
-                            Type = @"Field",
-                            Position = @"PRC.14",
-                            Name = @"Billing Category",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0293",
-                            TableName = @"Billing category",
-                            Description = @"This field contains the billing category codes for any classification systems needed, for example, general ledger codes and UB92 categories.  Repeating field with coded entry made up of category code plus category system.  Refer to user-defined table 0293 - Billing category for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRC.14.1",
                             Type = @"Component",
@@ -1072,63 +1459,147 @@ where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRC.15",
-                            Type = @"Field",
-                            Position = @"PRC.15",
-                            Name = @"Chargeable Flag",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field contains a chargeable indicator. Refer to HL7 table 0136 - Yes/no Indicator for valid values.
+                        }
+        }
+
+        _billingCategory = new HL7V23Field
+        {
+            field = message[@"PRC"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_billingCategory.field.FieldRepetitions != null && _billingCategory.field.FieldRepetitions.Count > 0)
+        {
+            _billingCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_billingCategory, fieldData);
+        }
+
+        return _billingCategory;
+    } 
+}
+
+internal HL7V23Field _chargeableFlag;
+
+public HL7V23Field ChargeableFlag
+{
+    get
+    {
+        if (_chargeableFlag != null)
+        {
+            return _chargeableFlag;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.15",
+            Type = @"Field",
+            Position = @"PRC.15",
+            Name = @"Chargeable Flag",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field contains a chargeable indicator. Refer to HL7 table 0136 - Yes/no Indicator for valid values.
 - N charge is not billable, that is, do not create charges for this CDM entry; this is zero price item 
 - Y item is billable (this is also the default when NULL)",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _chargeableFlag = new HL7V23Field
+        {
+            field = message[@"PRC"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_chargeableFlag.field.FieldRepetitions != null && _chargeableFlag.field.FieldRepetitions.Count > 0)
+        {
+            _chargeableFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_chargeableFlag, fieldData);
+        }
+
+        return _chargeableFlag;
+    } 
+}
+
+internal HL7V23Field _activeInactiveFlag;
+
+public HL7V23Field ActiveInactiveFlag
+{
+    get
+    {
+        if (_activeInactiveFlag != null)
+        {
+            return _activeInactiveFlag;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.16",
+            Type = @"Field",
+            Position = @"PRC.16",
+            Name = @"Active/Inactive Flag",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0183",
+            TableName = @"Active/Inactive",
+            Description = @"This indicates whether this is a usable CDM entry.  Refer to HL7 table 0183 - Active/inactive for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _activeInactiveFlag = new HL7V23Field
+        {
+            field = message[@"PRC"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_activeInactiveFlag.field.FieldRepetitions != null && _activeInactiveFlag.field.FieldRepetitions.Count > 0)
+        {
+            _activeInactiveFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_activeInactiveFlag, fieldData);
+        }
+
+        return _activeInactiveFlag;
+    } 
+}
+
+internal HL7V23Field _cost;
+
+public HL7V23Field Cost
+{
+    get
+    {
+        if (_cost != null)
+        {
+            return _cost;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"PRC.17",
+            Type = @"Field",
+            Position = @"PRC.17",
+            Name = @"Cost",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"MO",
+            DataTypeName = @"Money",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the institution’s calculation of how much it costs to provide this item, that is, what the institution had to pay for the material plus any specified payment expenditure, effort or loss due to performing or providing the chargeable item",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PRC.16",
-                            Type = @"Field",
-                            Position = @"PRC.16",
-                            Name = @"Active/Inactive Flag",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0183",
-                            TableName = @"Active/Inactive",
-                            Description = @"This indicates whether this is a usable CDM entry.  Refer to HL7 table 0183 - Active/inactive for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRC.17",
-                            Type = @"Field",
-                            Position = @"PRC.17",
-                            Name = @"Cost",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"MO",
-                            DataTypeName = @"Money",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the institution’s calculation of how much it costs to provide this item, that is, what the institution had to pay for the material plus any specified payment expenditure, effort or loss due to performing or providing the chargeable item",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PRC.17.1",
                             Type = @"Component",
@@ -1166,754 +1637,39 @@ Example:
 where USD is the ISO 4217 code for the U.S. American dollar. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PRC.18",
-                            Type = @"Field",
-                            Position = @"PRC.18",
-                            Name = @"Charge On Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0269",
-                            TableName = @"Charge on indicator",
-                            Description = @"This field contains the user-defined table of values which indicates when a charge for services or procedures should be accrued.  Refer to user-defined table 0269 - Charge on indicator for suggested values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V23SegmentPRC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V23Field primaryKeyValue;
-
-public HL7V23Field PrimaryKeyValue
-{
-    get
-    {
-        if (primaryKeyValue != null)
-        {
-            return primaryKeyValue;
-        }
-
-        primaryKeyValue = new HL7V23Field
-        {
-            field = message[@"PRC"][1],
-            Id = @"PRC.1",
-            Type = @"Field",
-            Position = @"PRC.1",
-            Name = @"Primary Key Value",
-            Length = 200,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0132",
-            TableName = @"Transaction code",
-            Description = @"This field contains the code assigned by the institution for the purpose of uniquely identifying the thing that can be charged.  The key field of the entry.  For example, this field would be used to uniquely identify a procedure, item, or test for charging purposes.  Probably the same set of values as used in FT1-7 transaction code in financial messages.  Must match MFE-4-MFE primary key and CDM-1-CDM primary key.  Refer to user-defined table 0132 - Transaction code.  See Chapter 7 for discussion of the universal service ID.   ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryKeyValue.field.FieldRepetitions != null && primaryKeyValue.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryKeyValue.Id));
-            primaryKeyValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(primaryKeyValue, fieldData);
-        }
-
-        return primaryKeyValue;
-    } 
-}
-
-internal HL7V23Field facilityID;
-
-public HL7V23Field FacilityID
-{
-    get
-    {
-        if (facilityID != null)
-        {
-            return facilityID;
-        }
-
-        facilityID = new HL7V23Field
-        {
-            field = message[@"PRC"][2],
-            Id = @"PRC.2",
-            Type = @"Field",
-            Position = @"PRC.2",
-            Name = @"Facility ID",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the facility of the institution for which this price (for the preceding CDM entry) is valid.  For use when needing multi-facility pricing.  If null, assume all facilities.  In a multi-facility environment, the facility associated with this chargeable item may not be the same as the sending or receiving facility identified in the MSH segment.  Use only when the price is not the same for all facilities, that is, a null value indicates that this pricing is valid for all facilities.
-
-When two PRC segments are sent with the same key values but different facility identifiers, the second is sent in addition to the first, not to replace the first.  The effective unique identifier is the charge code (PRC1-PRC primary key) plus the facility ID (PRC-2-facility ID).  Multiple facility identifiers can be sent in the same segment to indicate that those facilities use the same pricing.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (facilityID.field.FieldRepetitions != null && facilityID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(facilityID.Id));
-            facilityID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(facilityID, fieldData);
-        }
-
-        return facilityID;
-    } 
-}
-
-internal HL7V23Field department;
-
-public HL7V23Field Department
-{
-    get
-    {
-        if (department != null)
-        {
-            return department;
-        }
-
-        department = new HL7V23Field
-        {
-            field = message[@"PRC"][3],
-            Id = @"PRC.3",
-            Type = @"Field",
-            Position = @"PRC.3",
-            Name = @"Department",
-            Length = 30,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the department of the facility which accrues revenue/cost for this type of charge.  When pricing is different for different departments within the same facility, this will indicate for which department the following pricing information is valid.  Use only when the price is not the same for all departments, that is, a null value indicates that this pricing is valid for all departments.
-
-When two PRC segments are sent the same key values but with different departments, the second is sent in addition to the first, not to replace the first.  The effective unique identifier is the charge code (PRC-1-PRC primary key) plus the facility ID (PRC-2-facility ID) plus the department (PRC-3-department).  Multiple departments can be sent in the same segment to indicate that those departments use the same pricing",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (department.field.FieldRepetitions != null && department.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(department.Id));
-            department.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(department, fieldData);
-        }
-
-        return department;
-    } 
-}
-
-internal HL7V23Field validPatientClasses;
-
-public HL7V23Field ValidPatientClasses
-{
-    get
-    {
-        if (validPatientClasses != null)
-        {
-            return validPatientClasses;
-        }
-
-        validPatientClasses = new HL7V23Field
-        {
-            field = message[@"PRC"][4],
-            Id = @"PRC.4",
-            Type = @"Field",
-            Position = @"PRC.4",
-            Name = @"Valid Patient Classes",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0004",
-            TableName = @"Patient class",
-            Description = @" This field contains the patient types for which this charge description is valid.  For example, Inpatient, Outpatient, Series, Clinic, ER, Ambulatory, Observation, etc.  These values should be the same set of values as those used for PV1-3-patient class, which is site defined.  Use only when the price is not valid for all patient types, that is, a null value indicates that this pricing is valid for all patient classes.  Refer to user-defined table 0004 - Patient class for suggested values. 
-
-When two PRC segments are sent the same key values but with different valid patient classes, the second is sent in addition to the first, not to replace the first.  The effective unique identifier is the charge code (PRC1-PRC primary key) plus the facility ID (PRC-2-facility ID) plus the department (PRC-3-department) plus the patient class (PRC-4-valid patient classes).  Multiple patient classes can be sent in the same segment to indicate that those patient classes use the same pricing. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (validPatientClasses.field.FieldRepetitions != null && validPatientClasses.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(validPatientClasses.Id));
-            validPatientClasses.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(validPatientClasses, fieldData);
-        }
-
-        return validPatientClasses;
-    } 
-}
-
-internal HL7V23Field price;
-
-public HL7V23Field Price
-{
-    get
-    {
-        if (price != null)
-        {
-            return price;
-        }
-
-        price = new HL7V23Field
-        {
-            field = message[@"PRC"][5],
-            Id = @"PRC.5",
-            Type = @"Field",
-            Position = @"PRC.5",
-            Name = @"Price",
-            Length = 12,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the price to be charged for service, item, or procedure.  If CDM price will always be overridden when charges are posted, then this field is optional.  Otherwise, price would be a required field.  The formula or calculation that is to be used to get total price from these price components is left to implementation negotiations agreed upon by the participating institutions.  See Chapter 2, Section 2.8.8, “CP - composite price,” for a description of the use of the composite price (CP) data type",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (price.field.FieldRepetitions != null && price.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(price.Id));
-            price.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(price, fieldData);
-        }
-
-        return price;
-    } 
-}
-
-internal HL7V23Field formula;
-
-public HL7V23Field Formula
-{
-    get
-    {
-        if (formula != null)
-        {
-            return formula;
-        }
-
-        formula = new HL7V23Field
-        {
-            field = message[@"PRC"][6],
-            Id = @"PRC.6",
-            Type = @"Field",
-            Position = @"PRC.6",
-            Name = @"Formula",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the mathematical formula to apply to PRC-5-price in order to compute total price.  The syntax of this formula must conform to Arden Syntax rules",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (formula.field.FieldRepetitions != null && formula.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(formula.Id));
-            formula.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(formula, fieldData);
-        }
-
-        return formula;
-    } 
-}
-
-internal HL7V23Field minimumQuantity;
-
-public HL7V23Field MinimumQuantity
-{
-    get
-    {
-        if (minimumQuantity != null)
-        {
-            return minimumQuantity;
-        }
-
-        minimumQuantity = new HL7V23Field
-        {
-            field = message[@"PRC"][7],
-            Id = @"PRC.7",
-            Type = @"Field",
-            Position = @"PRC.7",
-            Name = @"Minimum Quantity",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the minimum number of identical charges allowed on one patient account for this CDM entry",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (minimumQuantity.field.FieldRepetitions != null && minimumQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(minimumQuantity.Id));
-            minimumQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(minimumQuantity, fieldData);
-        }
-
-        return minimumQuantity;
-    } 
-}
-
-internal HL7V23Field maximumQuantity;
-
-public HL7V23Field MaximumQuantity
-{
-    get
-    {
-        if (maximumQuantity != null)
-        {
-            return maximumQuantity;
-        }
-
-        maximumQuantity = new HL7V23Field
-        {
-            field = message[@"PRC"][8],
-            Id = @"PRC.8",
-            Type = @"Field",
-            Position = @"PRC.8",
-            Name = @"Maximum Quantity",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the maximum number of identical charges allowed on one patient account for this CDM entry",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (maximumQuantity.field.FieldRepetitions != null && maximumQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maximumQuantity.Id));
-            maximumQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(maximumQuantity, fieldData);
-        }
-
-        return maximumQuantity;
-    } 
-}
-
-internal HL7V23Field minimumPrice;
-
-public HL7V23Field MinimumPrice
-{
-    get
-    {
-        if (minimumPrice != null)
-        {
-            return minimumPrice;
-        }
-
-        minimumPrice = new HL7V23Field
-        {
-            field = message[@"PRC"][9],
-            Id = @"PRC.9",
-            Type = @"Field",
-            Position = @"PRC.9",
-            Name = @"Minimum Price",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"MO",
-            DataTypeName = @"Money",
-            TableId = null,
-            TableName = null,
-            Description = @" This field contains the minimum total price (after computation of components of price) that can be charged for this item",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (minimumPrice.field.FieldRepetitions != null && minimumPrice.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(minimumPrice.Id));
-            minimumPrice.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(minimumPrice, fieldData);
-        }
-
-        return minimumPrice;
-    } 
-}
-
-internal HL7V23Field maximumPrice;
-
-public HL7V23Field MaximumPrice
-{
-    get
-    {
-        if (maximumPrice != null)
-        {
-            return maximumPrice;
-        }
-
-        maximumPrice = new HL7V23Field
-        {
-            field = message[@"PRC"][10],
-            Id = @"PRC.10",
-            Type = @"Field",
-            Position = @"PRC.10",
-            Name = @"Maximum Price",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"MO",
-            DataTypeName = @"Money",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the maximum total price (after computation of components of price) that can be charged for this item",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (maximumPrice.field.FieldRepetitions != null && maximumPrice.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maximumPrice.Id));
-            maximumPrice.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(maximumPrice, fieldData);
-        }
-
-        return maximumPrice;
-    } 
-}
-
-internal HL7V23Field effectiveStartDate;
-
-public HL7V23Field EffectiveStartDate
-{
-    get
-    {
-        if (effectiveStartDate != null)
-        {
-            return effectiveStartDate;
-        }
-
-        effectiveStartDate = new HL7V23Field
-        {
-            field = message[@"PRC"][11],
-            Id = @"PRC.11",
-            Type = @"Field",
-            Position = @"PRC.11",
-            Name = @"Effective Start Date",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when this CDM entry becomes effective",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (effectiveStartDate.field.FieldRepetitions != null && effectiveStartDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(effectiveStartDate.Id));
-            effectiveStartDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(effectiveStartDate, fieldData);
-        }
-
-        return effectiveStartDate;
-    } 
-}
-
-internal HL7V23Field effectiveEndDate;
-
-public HL7V23Field EffectiveEndDate
-{
-    get
-    {
-        if (effectiveEndDate != null)
-        {
-            return effectiveEndDate;
-        }
-
-        effectiveEndDate = new HL7V23Field
-        {
-            field = message[@"PRC"][12],
-            Id = @"PRC.12",
-            Type = @"Field",
-            Position = @"PRC.12",
-            Name = @"Effective End Date",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time when this CDM entry is no longer effe",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (effectiveEndDate.field.FieldRepetitions != null && effectiveEndDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(effectiveEndDate.Id));
-            effectiveEndDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(effectiveEndDate, fieldData);
-        }
-
-        return effectiveEndDate;
-    } 
-}
-
-internal HL7V23Field priceOverrideFlag;
-
-public HL7V23Field PriceOverrideFlag
-{
-    get
-    {
-        if (priceOverrideFlag != null)
-        {
-            return priceOverrideFlag;
-        }
-
-        priceOverrideFlag = new HL7V23Field
-        {
-            field = message[@"PRC"][13],
-            Id = @"PRC.13",
-            Type = @"Field",
-            Position = @"PRC.13",
-            Name = @"Price Override Flag",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0268",
-            TableName = @"Override",
-            Description = @"This field indicates whether this CDM entry’s price can be overridden.  Refer to user-defined table 0268 - Override for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priceOverrideFlag.field.FieldRepetitions != null && priceOverrideFlag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priceOverrideFlag.Id));
-            priceOverrideFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(priceOverrideFlag, fieldData);
-        }
-
-        return priceOverrideFlag;
-    } 
-}
-
-internal HL7V23Field billingCategory;
-
-public HL7V23Field BillingCategory
-{
-    get
-    {
-        if (billingCategory != null)
-        {
-            return billingCategory;
-        }
-
-        billingCategory = new HL7V23Field
-        {
-            field = message[@"PRC"][14],
-            Id = @"PRC.14",
-            Type = @"Field",
-            Position = @"PRC.14",
-            Name = @"Billing Category",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0293",
-            TableName = @"Billing category",
-            Description = @"This field contains the billing category codes for any classification systems needed, for example, general ledger codes and UB92 categories.  Repeating field with coded entry made up of category code plus category system.  Refer to user-defined table 0293 - Billing category for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (billingCategory.field.FieldRepetitions != null && billingCategory.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(billingCategory.Id));
-            billingCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(billingCategory, fieldData);
-        }
-
-        return billingCategory;
-    } 
-}
-
-internal HL7V23Field chargeableFlag;
-
-public HL7V23Field ChargeableFlag
-{
-    get
-    {
-        if (chargeableFlag != null)
-        {
-            return chargeableFlag;
-        }
-
-        chargeableFlag = new HL7V23Field
-        {
-            field = message[@"PRC"][15],
-            Id = @"PRC.15",
-            Type = @"Field",
-            Position = @"PRC.15",
-            Name = @"Chargeable Flag",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field contains a chargeable indicator. Refer to HL7 table 0136 - Yes/no Indicator for valid values.
-- N charge is not billable, that is, do not create charges for this CDM entry; this is zero price item 
-- Y item is billable (this is also the default when NULL)",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (chargeableFlag.field.FieldRepetitions != null && chargeableFlag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(chargeableFlag.Id));
-            chargeableFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(chargeableFlag, fieldData);
-        }
-
-        return chargeableFlag;
-    } 
-}
-
-internal HL7V23Field activeInactiveFlag;
-
-public HL7V23Field ActiveInactiveFlag
-{
-    get
-    {
-        if (activeInactiveFlag != null)
-        {
-            return activeInactiveFlag;
-        }
-
-        activeInactiveFlag = new HL7V23Field
-        {
-            field = message[@"PRC"][16],
-            Id = @"PRC.16",
-            Type = @"Field",
-            Position = @"PRC.16",
-            Name = @"Active/Inactive Flag",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0183",
-            TableName = @"Active/Inactive",
-            Description = @"This indicates whether this is a usable CDM entry.  Refer to HL7 table 0183 - Active/inactive for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (activeInactiveFlag.field.FieldRepetitions != null && activeInactiveFlag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(activeInactiveFlag.Id));
-            activeInactiveFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(activeInactiveFlag, fieldData);
-        }
-
-        return activeInactiveFlag;
-    } 
-}
-
-internal HL7V23Field cost;
-
-public HL7V23Field Cost
-{
-    get
-    {
-        if (cost != null)
-        {
-            return cost;
-        }
-
-        cost = new HL7V23Field
+        _cost = new HL7V23Field
         {
             field = message[@"PRC"][17],
-            Id = @"PRC.17",
-            Type = @"Field",
-            Position = @"PRC.17",
-            Name = @"Cost",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"MO",
-            DataTypeName = @"Money",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the institution’s calculation of how much it costs to provide this item, that is, what the institution had to pay for the material plus any specified payment expenditure, effort or loss due to performing or providing the chargeable item",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (cost.field.FieldRepetitions != null && cost.field.FieldRepetitions.Count > 0)
+        if (_cost.field.FieldRepetitions != null && _cost.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(cost.Id));
-            cost.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(cost, fieldData);
+            _cost.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_cost, fieldData);
         }
 
-        return cost;
+        return _cost;
     } 
 }
 
-internal HL7V23Field chargeOnIndicator;
+internal HL7V23Field _chargeOnIndicator;
 
 public HL7V23Field ChargeOnIndicator
 {
     get
     {
-        if (chargeOnIndicator != null)
+        if (_chargeOnIndicator != null)
         {
-            return chargeOnIndicator;
+            return _chargeOnIndicator;
         }
 
-        chargeOnIndicator = new HL7V23Field
+        var fieldData = new HL7V23FieldData
         {
-            field = message[@"PRC"][18],
             Id = @"PRC.18",
             Type = @"Field",
             Position = @"PRC.18",
@@ -1927,17 +1683,22 @@ public HL7V23Field ChargeOnIndicator
             TableName = @"Charge on indicator",
             Description = @"This field contains the user-defined table of values which indicates when a charge for services or procedures should be accrued.  Refer to user-defined table 0269 - Charge on indicator for suggested values",
             Sample = @"",
+            Fields = null
+        }
+
+        _chargeOnIndicator = new HL7V23Field
+        {
+            field = message[@"PRC"][18],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (chargeOnIndicator.field.FieldRepetitions != null && chargeOnIndicator.field.FieldRepetitions.Count > 0)
+        if (_chargeOnIndicator.field.FieldRepetitions != null && _chargeOnIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(chargeOnIndicator.Id));
-            chargeOnIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(chargeOnIndicator, fieldData);
+            _chargeOnIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_chargeOnIndicator, fieldData);
         }
 
-        return chargeOnIndicator;
+        return _chargeOnIndicator;
     } 
 }
     }

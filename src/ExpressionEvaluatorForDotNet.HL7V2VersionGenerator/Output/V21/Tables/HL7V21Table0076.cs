@@ -92,6 +92,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Unsolicited display          QRY       V",
                             Comment = null
                         },
+                        
                     };
             } 
         }

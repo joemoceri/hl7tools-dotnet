@@ -31,28 +31,40 @@ Example: MSH [{ SFT }] ….. "; } }
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentSFT(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _softwareVendorOrganization;
+
+public HL7V251Field SoftwareVendorOrganization
+{
+    get
+    {
+        if (_softwareVendorOrganization != null)
+        {
+            return _softwareVendorOrganization;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SFT.1",
+            Type = @"Field",
+            Position = @"SFT.1",
+            Name = @"Software Vendor Organization",
+            Length = 567,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"Organization identification information for the software vendor that created this transaction. The purpose of this field, along with the remaining fields in this segment, is to provide a more complete picture of applications that are sending HL7 messages. The Software Vendor Organization field would allow the identification of the vendor who is responsible for maintaining the application.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"SFT.1",
-                            Type = @"Field",
-                            Position = @"SFT.1",
-                            Name = @"Software Vendor Organization",
-                            Length = 567,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Organization identification information for the software vendor that created this transaction. The purpose of this field, along with the remaining fields in this segment, is to provide a more complete picture of applications that are sending HL7 messages. The Software Vendor Organization field would allow the identification of the vendor who is responsible for maintaining the application.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SFT.1.1",
                             Type = @"Component",
@@ -338,97 +350,235 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by XON.1 Organization Name. This component replaces XON.3 ID Number as of v 2.5.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _softwareVendorOrganization = new HL7V251Field
+        {
+            field = message[@"SFT"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_softwareVendorOrganization.field.FieldRepetitions != null && _softwareVendorOrganization.field.FieldRepetitions.Count > 0)
+        {
+            _softwareVendorOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_softwareVendorOrganization, fieldData);
+        }
+
+        return _softwareVendorOrganization;
+    } 
+}
+
+internal HL7V251Field _softwareCertifiedVersionorReleaseNumber;
+
+public HL7V251Field SoftwareCertifiedVersionorReleaseNumber
+{
+    get
+    {
+        if (_softwareCertifiedVersionorReleaseNumber != null)
+        {
+            return _softwareCertifiedVersionorReleaseNumber;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SFT.2",
+            Type = @"Field",
+            Position = @"SFT.2",
+            Name = @"Software Certified Version or Release Number",
+            Length = 15,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Latest software version number of the sending system that has been compliance tested and accepted. Software Certified Version or Release Number helps to provide a complete picture of the application that is sending/receiving HL7 messages. Versions are important in identifying a specific release of an application. In some situations, the receiving application validates the Software Certified Version or Release Number against a list of ""certified"" versions/releases of the particular software to determine if the sending application adheres to specific business rules required by the receiving application.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _softwareCertifiedVersionorReleaseNumber = new HL7V251Field
+        {
+            field = message[@"SFT"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_softwareCertifiedVersionorReleaseNumber.field.FieldRepetitions != null && _softwareCertifiedVersionorReleaseNumber.field.FieldRepetitions.Count > 0)
+        {
+            _softwareCertifiedVersionorReleaseNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_softwareCertifiedVersionorReleaseNumber, fieldData);
+        }
+
+        return _softwareCertifiedVersionorReleaseNumber;
+    } 
+}
+
+internal HL7V251Field _softwareProductName;
+
+public HL7V251Field SoftwareProductName
+{
+    get
+    {
+        if (_softwareProductName != null)
+        {
+            return _softwareProductName;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SFT.3",
+            Type = @"Field",
+            Position = @"SFT.3",
+            Name = @"Software Product Name",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The name of the software product that submitted the transaction. A key component in the identification of an application is its Software Product Name. This is a key piece of information in identifying an application.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _softwareProductName = new HL7V251Field
+        {
+            field = message[@"SFT"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_softwareProductName.field.FieldRepetitions != null && _softwareProductName.field.FieldRepetitions.Count > 0)
+        {
+            _softwareProductName.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_softwareProductName, fieldData);
+        }
+
+        return _softwareProductName;
+    } 
+}
+
+internal HL7V251Field _softwareBinaryID;
+
+public HL7V251Field SoftwareBinaryID
+{
+    get
+    {
+        if (_softwareBinaryID != null)
+        {
+            return _softwareBinaryID;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SFT.4",
+            Type = @"Field",
+            Position = @"SFT.4",
+            Name = @"Software Binary ID",
+            Length = 20,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Issued by a vendor for each unique software version instance to distinguish between like versions of the same software e.g., a checksum.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _softwareBinaryID = new HL7V251Field
+        {
+            field = message[@"SFT"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_softwareBinaryID.field.FieldRepetitions != null && _softwareBinaryID.field.FieldRepetitions.Count > 0)
+        {
+            _softwareBinaryID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_softwareBinaryID, fieldData);
+        }
+
+        return _softwareBinaryID;
+    } 
+}
+
+internal HL7V251Field _softwareProductInformation;
+
+public HL7V251Field SoftwareProductInformation
+{
+    get
+    {
+        if (_softwareProductInformation != null)
+        {
+            return _softwareProductInformation;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SFT.5",
+            Type = @"Field",
+            Position = @"SFT.5",
+            Name = @"Software Product Information",
+            Length = 1024,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Software identification information that can be supplied by a software vendor with their transaction. Might include configuration settings, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _softwareProductInformation = new HL7V251Field
+        {
+            field = message[@"SFT"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_softwareProductInformation.field.FieldRepetitions != null && _softwareProductInformation.field.FieldRepetitions.Count > 0)
+        {
+            _softwareProductInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_softwareProductInformation, fieldData);
+        }
+
+        return _softwareProductInformation;
+    } 
+}
+
+internal HL7V251Field _softwareInstallDate;
+
+public HL7V251Field SoftwareInstallDate
+{
+    get
+    {
+        if (_softwareInstallDate != null)
+        {
+            return _softwareInstallDate;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"SFT.6",
+            Type = @"Field",
+            Position = @"SFT.6",
+            Name = @"Software Install Date",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"Date the submitting software was installed at the sending site.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SFT.2",
-                            Type = @"Field",
-                            Position = @"SFT.2",
-                            Name = @"Software Certified Version or Release Number",
-                            Length = 15,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Latest software version number of the sending system that has been compliance tested and accepted. Software Certified Version or Release Number helps to provide a complete picture of the application that is sending/receiving HL7 messages. Versions are important in identifying a specific release of an application. In some situations, the receiving application validates the Software Certified Version or Release Number against a list of ""certified"" versions/releases of the particular software to determine if the sending application adheres to specific business rules required by the receiving application.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SFT.3",
-                            Type = @"Field",
-                            Position = @"SFT.3",
-                            Name = @"Software Product Name",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The name of the software product that submitted the transaction. A key component in the identification of an application is its Software Product Name. This is a key piece of information in identifying an application.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SFT.4",
-                            Type = @"Field",
-                            Position = @"SFT.4",
-                            Name = @"Software Binary ID",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Issued by a vendor for each unique software version instance to distinguish between like versions of the same software e.g., a checksum.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SFT.5",
-                            Type = @"Field",
-                            Position = @"SFT.5",
-                            Name = @"Software Product Information",
-                            Length = 1024,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Software identification information that can be supplied by a software vendor with their transaction. Might include configuration settings, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SFT.6",
-                            Type = @"Field",
-                            Position = @"SFT.6",
-                            Name = @"Software Install Date",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Date the submitting software was installed at the sending site.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SFT.6.1",
                             Type = @"Component",
@@ -464,260 +614,23 @@ Note: When the HD is used in a given segment (either as a field or as a componen
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentSFT(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field softwareVendorOrganization;
-
-public HL7V251Field SoftwareVendorOrganization
-{
-    get
-    {
-        if (softwareVendorOrganization != null)
-        {
-            return softwareVendorOrganization;
-        }
-
-        softwareVendorOrganization = new HL7V251Field
-        {
-            field = message[@"SFT"][1],
-            Id = @"SFT.1",
-            Type = @"Field",
-            Position = @"SFT.1",
-            Name = @"Software Vendor Organization",
-            Length = 567,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name and Identification Number for Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"Organization identification information for the software vendor that created this transaction. The purpose of this field, along with the remaining fields in this segment, is to provide a more complete picture of applications that are sending HL7 messages. The Software Vendor Organization field would allow the identification of the vendor who is responsible for maintaining the application.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (softwareVendorOrganization.field.FieldRepetitions != null && softwareVendorOrganization.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(softwareVendorOrganization.Id));
-            softwareVendorOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(softwareVendorOrganization, fieldData);
-        }
-
-        return softwareVendorOrganization;
-    } 
-}
-
-internal HL7V251Field softwareCertifiedVersionorReleaseNumber;
-
-public HL7V251Field SoftwareCertifiedVersionorReleaseNumber
-{
-    get
-    {
-        if (softwareCertifiedVersionorReleaseNumber != null)
-        {
-            return softwareCertifiedVersionorReleaseNumber;
-        }
-
-        softwareCertifiedVersionorReleaseNumber = new HL7V251Field
-        {
-            field = message[@"SFT"][2],
-            Id = @"SFT.2",
-            Type = @"Field",
-            Position = @"SFT.2",
-            Name = @"Software Certified Version or Release Number",
-            Length = 15,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Latest software version number of the sending system that has been compliance tested and accepted. Software Certified Version or Release Number helps to provide a complete picture of the application that is sending/receiving HL7 messages. Versions are important in identifying a specific release of an application. In some situations, the receiving application validates the Software Certified Version or Release Number against a list of ""certified"" versions/releases of the particular software to determine if the sending application adheres to specific business rules required by the receiving application.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (softwareCertifiedVersionorReleaseNumber.field.FieldRepetitions != null && softwareCertifiedVersionorReleaseNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(softwareCertifiedVersionorReleaseNumber.Id));
-            softwareCertifiedVersionorReleaseNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(softwareCertifiedVersionorReleaseNumber, fieldData);
-        }
-
-        return softwareCertifiedVersionorReleaseNumber;
-    } 
-}
-
-internal HL7V251Field softwareProductName;
-
-public HL7V251Field SoftwareProductName
-{
-    get
-    {
-        if (softwareProductName != null)
-        {
-            return softwareProductName;
-        }
-
-        softwareProductName = new HL7V251Field
-        {
-            field = message[@"SFT"][3],
-            Id = @"SFT.3",
-            Type = @"Field",
-            Position = @"SFT.3",
-            Name = @"Software Product Name",
-            Length = 20,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The name of the software product that submitted the transaction. A key component in the identification of an application is its Software Product Name. This is a key piece of information in identifying an application.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (softwareProductName.field.FieldRepetitions != null && softwareProductName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(softwareProductName.Id));
-            softwareProductName.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(softwareProductName, fieldData);
-        }
-
-        return softwareProductName;
-    } 
-}
-
-internal HL7V251Field softwareBinaryID;
-
-public HL7V251Field SoftwareBinaryID
-{
-    get
-    {
-        if (softwareBinaryID != null)
-        {
-            return softwareBinaryID;
-        }
-
-        softwareBinaryID = new HL7V251Field
-        {
-            field = message[@"SFT"][4],
-            Id = @"SFT.4",
-            Type = @"Field",
-            Position = @"SFT.4",
-            Name = @"Software Binary ID",
-            Length = 20,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Issued by a vendor for each unique software version instance to distinguish between like versions of the same software e.g., a checksum.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (softwareBinaryID.field.FieldRepetitions != null && softwareBinaryID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(softwareBinaryID.Id));
-            softwareBinaryID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(softwareBinaryID, fieldData);
-        }
-
-        return softwareBinaryID;
-    } 
-}
-
-internal HL7V251Field softwareProductInformation;
-
-public HL7V251Field SoftwareProductInformation
-{
-    get
-    {
-        if (softwareProductInformation != null)
-        {
-            return softwareProductInformation;
-        }
-
-        softwareProductInformation = new HL7V251Field
-        {
-            field = message[@"SFT"][5],
-            Id = @"SFT.5",
-            Type = @"Field",
-            Position = @"SFT.5",
-            Name = @"Software Product Information",
-            Length = 1024,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Software identification information that can be supplied by a software vendor with their transaction. Might include configuration settings, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (softwareProductInformation.field.FieldRepetitions != null && softwareProductInformation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(softwareProductInformation.Id));
-            softwareProductInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(softwareProductInformation, fieldData);
-        }
-
-        return softwareProductInformation;
-    } 
-}
-
-internal HL7V251Field softwareInstallDate;
-
-public HL7V251Field SoftwareInstallDate
-{
-    get
-    {
-        if (softwareInstallDate != null)
-        {
-            return softwareInstallDate;
-        }
-
-        softwareInstallDate = new HL7V251Field
+        _softwareInstallDate = new HL7V251Field
         {
             field = message[@"SFT"][6],
-            Id = @"SFT.6",
-            Type = @"Field",
-            Position = @"SFT.6",
-            Name = @"Software Install Date",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"Date the submitting software was installed at the sending site.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (softwareInstallDate.field.FieldRepetitions != null && softwareInstallDate.field.FieldRepetitions.Count > 0)
+        if (_softwareInstallDate.field.FieldRepetitions != null && _softwareInstallDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(softwareInstallDate.Id));
-            softwareInstallDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(softwareInstallDate, fieldData);
+            _softwareInstallDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_softwareInstallDate, fieldData);
         }
 
-        return softwareInstallDate;
+        return _softwareInstallDate;
     } 
 }
     }

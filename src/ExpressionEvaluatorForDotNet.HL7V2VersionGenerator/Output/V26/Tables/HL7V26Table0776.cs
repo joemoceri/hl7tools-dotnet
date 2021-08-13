@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_17",
+
                     };
             } 
         }
@@ -47,6 +48,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Pending Inactive",
                             Comment = @"Item is not available to be purchased, but is available to be issued."
                         },
+                        
                     };
             } 
         }

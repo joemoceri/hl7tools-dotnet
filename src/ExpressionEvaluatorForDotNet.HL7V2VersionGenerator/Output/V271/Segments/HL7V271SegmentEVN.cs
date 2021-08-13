@@ -29,82 +29,175 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentEVN(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _eventTypeCode;
+
+public HL7V271Field EventTypeCode
+{
+    get
+    {
+        if (_eventTypeCode != null)
+        {
+            return _eventTypeCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"EVN.1",
+            Type = @"Field",
+            Position = @"EVN.1",
+            Name = @"Event Type Code",
+            Length = 0,
+            Usage = @"W",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Attention: The EVN-1 field was retained for backward compatibilty only as of v2.5 and the detail was withdrawn and removed from the standard as of v2.7.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventTypeCode = new HL7V271Field
+        {
+            field = message[@"EVN"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventTypeCode.field.FieldRepetitions != null && _eventTypeCode.field.FieldRepetitions.Count > 0)
+        {
+            _eventTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_eventTypeCode, fieldData);
+        }
+
+        return _eventTypeCode;
+    } 
+}
+
+internal HL7V271Field _recordedDateTime;
+
+public HL7V271Field RecordedDateTime
+{
+    get
+    {
+        if (_recordedDateTime != null)
+        {
+            return _recordedDateTime;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"EVN.2",
+            Type = @"Field",
+            Position = @"EVN.2",
+            Name = @"Recorded Date/Time",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"Most systems will default to the system date/time when the transaction was entered, but they should also permit an override.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _recordedDateTime = new HL7V271Field
+        {
+            field = message[@"EVN"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_recordedDateTime.field.FieldRepetitions != null && _recordedDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _recordedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_recordedDateTime, fieldData);
+        }
+
+        return _recordedDateTime;
+    } 
+}
+
+internal HL7V271Field _dateTimePlannedEvent;
+
+public HL7V271Field DateTimePlannedEvent
+{
+    get
+    {
+        if (_dateTimePlannedEvent != null)
+        {
+            return _dateTimePlannedEvent;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"EVN.3",
+            Type = @"Field",
+            Position = @"EVN.3",
+            Name = @"Date/Time Planned Event",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time that the event is planned. We recommend that PV2-8 - Expected Admit Date/Time, PV2-9 - Expected Discharge Date/Time or PV2-47 - Expected LOA Return date/time be used whenever possible.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dateTimePlannedEvent = new HL7V271Field
+        {
+            field = message[@"EVN"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimePlannedEvent.field.FieldRepetitions != null && _dateTimePlannedEvent.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimePlannedEvent.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_dateTimePlannedEvent, fieldData);
+        }
+
+        return _dateTimePlannedEvent;
+    } 
+}
+
+internal HL7V271Field _eventReasonCode;
+
+public HL7V271Field EventReasonCode
+{
+    get
+    {
+        if (_eventReasonCode != null)
+        {
+            return _eventReasonCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"EVN.4",
+            Type = @"Field",
+            Position = @"EVN.4",
+            Name = @"Event Reason Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0062",
+            TableName = @"Event Reason",
+            Description = @"This field contains the reason for this event. Refer to User-defined Table 0062 - Event Reason for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"EVN.1",
-                            Type = @"Field",
-                            Position = @"EVN.1",
-                            Name = @"Event Type Code",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: The EVN-1 field was retained for backward compatibilty only as of v2.5 and the detail was withdrawn and removed from the standard as of v2.7.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EVN.2",
-                            Type = @"Field",
-                            Position = @"EVN.2",
-                            Name = @"Recorded Date/Time",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Most systems will default to the system date/time when the transaction was entered, but they should also permit an override.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EVN.3",
-                            Type = @"Field",
-                            Position = @"EVN.3",
-                            Name = @"Date/Time Planned Event",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time that the event is planned. We recommend that PV2-8 - Expected Admit Date/Time, PV2-9 - Expected Discharge Date/Time or PV2-47 - Expected LOA Return date/time be used whenever possible.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EVN.4",
-                            Type = @"Field",
-                            Position = @"EVN.4",
-                            Name = @"Event Reason Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0062",
-                            TableName = @"Event Reason",
-                            Description = @"This field contains the reason for this event. Refer to User-defined Table 0062 - Event Reason for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"EVN.4.1",
                             Type = @"Component",
@@ -530,25 +623,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _eventReasonCode = new HL7V271Field
+        {
+            field = message[@"EVN"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventReasonCode.field.FieldRepetitions != null && _eventReasonCode.field.FieldRepetitions.Count > 0)
+        {
+            _eventReasonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_eventReasonCode, fieldData);
+        }
+
+        return _eventReasonCode;
+    } 
+}
+
+internal HL7V271Field _operatorId;
+
+public HL7V271Field OperatorId
+{
+    get
+    {
+        if (_operatorId != null)
+        {
+            return _operatorId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"EVN.5",
+            Type = @"Field",
+            Position = @"EVN.5",
+            Name = @"Operator Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = @"0188",
+            TableName = @"Operator ID",
+            Description = @"This field identifies the individual responsible for triggering the event. Refer to User-defined Table 0188 - Operator ID for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EVN.5",
-                            Type = @"Field",
-                            Position = @"EVN.5",
-                            Name = @"Operator Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = @"0188",
-                            TableName = @"Operator ID",
-                            Description = @"This field identifies the individual responsible for triggering the event. Refer to User-defined Table 0188 - Operator ID for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EVN.5.1",
                             Type = @"Component",
@@ -2947,44 +3070,101 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EVN.6",
-                            Type = @"Field",
-                            Position = @"EVN.6",
-                            Name = @"Event Occurred",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time that the event actually occurred. For example, on a transfer (A02 transfer a patient), this field would contain the date/time the patient was actually transferred. On a cancellation event, this field should contain the date/time that the event being cancelled occurred.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EVN.7",
-                            Type = @"Field",
-                            Position = @"EVN.7",
-                            Name = @"Event Facility",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"HD",
-                            DataTypeName = @"Hierarchic Designator",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the actual facility where the event occurred as differentiated from the sending facility (MSH-4). It would be the facility at which the Operator (EVN-5) has entered the event.
+                        }
+        }
+
+        _operatorId = new HL7V271Field
+        {
+            field = message[@"EVN"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_operatorId.field.FieldRepetitions != null && _operatorId.field.FieldRepetitions.Count > 0)
+        {
+            _operatorId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_operatorId, fieldData);
+        }
+
+        return _operatorId;
+    } 
+}
+
+internal HL7V271Field _eventOccurred;
+
+public HL7V271Field EventOccurred
+{
+    get
+    {
+        if (_eventOccurred != null)
+        {
+            return _eventOccurred;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"EVN.6",
+            Type = @"Field",
+            Position = @"EVN.6",
+            Name = @"Event Occurred",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time that the event actually occurred. For example, on a transfer (A02 transfer a patient), this field would contain the date/time the patient was actually transferred. On a cancellation event, this field should contain the date/time that the event being cancelled occurred.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventOccurred = new HL7V271Field
+        {
+            field = message[@"EVN"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventOccurred.field.FieldRepetitions != null && _eventOccurred.field.FieldRepetitions.Count > 0)
+        {
+            _eventOccurred.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_eventOccurred, fieldData);
+        }
+
+        return _eventOccurred;
+    } 
+}
+
+internal HL7V271Field _eventFacility;
+
+public HL7V271Field EventFacility
+{
+    get
+    {
+        if (_eventFacility != null)
+        {
+            return _eventFacility;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"EVN.7",
+            Type = @"Field",
+            Position = @"EVN.7",
+            Name = @"Event Facility",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"HD",
+            DataTypeName = @"Hierarchic Designator",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the actual facility where the event occurred as differentiated from the sending facility (MSH-4). It would be the facility at which the Operator (EVN-5) has entered the event.
 Use Case: System A is where the patient is originally registered. This registration message is sent to an MPI, System B. The MPI needs to broadcast the event of this update and would become the sending facility. This new field would allow for retention of knowledge of the originating facility where the event occurred. The MPI could be the assigning authority for the ID number as well which means that it is performing the function of assigning authority for the facility originating the event.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"EVN.7.1",
                             Type = @"Component",
@@ -3040,302 +3220,23 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentEVN(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field eventTypeCode;
-
-public HL7V271Field EventTypeCode
-{
-    get
-    {
-        if (eventTypeCode != null)
-        {
-            return eventTypeCode;
-        }
-
-        eventTypeCode = new HL7V271Field
-        {
-            field = message[@"EVN"][1],
-            Id = @"EVN.1",
-            Type = @"Field",
-            Position = @"EVN.1",
-            Name = @"Event Type Code",
-            Length = 0,
-            Usage = @"W",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Attention: The EVN-1 field was retained for backward compatibilty only as of v2.5 and the detail was withdrawn and removed from the standard as of v2.7.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventTypeCode.field.FieldRepetitions != null && eventTypeCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventTypeCode.Id));
-            eventTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(eventTypeCode, fieldData);
-        }
-
-        return eventTypeCode;
-    } 
-}
-
-internal HL7V271Field recordedDateTime;
-
-public HL7V271Field RecordedDateTime
-{
-    get
-    {
-        if (recordedDateTime != null)
-        {
-            return recordedDateTime;
-        }
-
-        recordedDateTime = new HL7V271Field
-        {
-            field = message[@"EVN"][2],
-            Id = @"EVN.2",
-            Type = @"Field",
-            Position = @"EVN.2",
-            Name = @"Recorded Date/Time",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"Most systems will default to the system date/time when the transaction was entered, but they should also permit an override.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (recordedDateTime.field.FieldRepetitions != null && recordedDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(recordedDateTime.Id));
-            recordedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(recordedDateTime, fieldData);
-        }
-
-        return recordedDateTime;
-    } 
-}
-
-internal HL7V271Field dateTimePlannedEvent;
-
-public HL7V271Field DateTimePlannedEvent
-{
-    get
-    {
-        if (dateTimePlannedEvent != null)
-        {
-            return dateTimePlannedEvent;
-        }
-
-        dateTimePlannedEvent = new HL7V271Field
-        {
-            field = message[@"EVN"][3],
-            Id = @"EVN.3",
-            Type = @"Field",
-            Position = @"EVN.3",
-            Name = @"Date/Time Planned Event",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time that the event is planned. We recommend that PV2-8 - Expected Admit Date/Time, PV2-9 - Expected Discharge Date/Time or PV2-47 - Expected LOA Return date/time be used whenever possible.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimePlannedEvent.field.FieldRepetitions != null && dateTimePlannedEvent.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimePlannedEvent.Id));
-            dateTimePlannedEvent.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(dateTimePlannedEvent, fieldData);
-        }
-
-        return dateTimePlannedEvent;
-    } 
-}
-
-internal HL7V271Field eventReasonCode;
-
-public HL7V271Field EventReasonCode
-{
-    get
-    {
-        if (eventReasonCode != null)
-        {
-            return eventReasonCode;
-        }
-
-        eventReasonCode = new HL7V271Field
-        {
-            field = message[@"EVN"][4],
-            Id = @"EVN.4",
-            Type = @"Field",
-            Position = @"EVN.4",
-            Name = @"Event Reason Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0062",
-            TableName = @"Event Reason",
-            Description = @"This field contains the reason for this event. Refer to User-defined Table 0062 - Event Reason for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventReasonCode.field.FieldRepetitions != null && eventReasonCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventReasonCode.Id));
-            eventReasonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(eventReasonCode, fieldData);
-        }
-
-        return eventReasonCode;
-    } 
-}
-
-internal HL7V271Field operatorId;
-
-public HL7V271Field OperatorId
-{
-    get
-    {
-        if (operatorId != null)
-        {
-            return operatorId;
-        }
-
-        operatorId = new HL7V271Field
-        {
-            field = message[@"EVN"][5],
-            Id = @"EVN.5",
-            Type = @"Field",
-            Position = @"EVN.5",
-            Name = @"Operator Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = @"0188",
-            TableName = @"Operator ID",
-            Description = @"This field identifies the individual responsible for triggering the event. Refer to User-defined Table 0188 - Operator ID for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (operatorId.field.FieldRepetitions != null && operatorId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(operatorId.Id));
-            operatorId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(operatorId, fieldData);
-        }
-
-        return operatorId;
-    } 
-}
-
-internal HL7V271Field eventOccurred;
-
-public HL7V271Field EventOccurred
-{
-    get
-    {
-        if (eventOccurred != null)
-        {
-            return eventOccurred;
-        }
-
-        eventOccurred = new HL7V271Field
-        {
-            field = message[@"EVN"][6],
-            Id = @"EVN.6",
-            Type = @"Field",
-            Position = @"EVN.6",
-            Name = @"Event Occurred",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time that the event actually occurred. For example, on a transfer (A02 transfer a patient), this field would contain the date/time the patient was actually transferred. On a cancellation event, this field should contain the date/time that the event being cancelled occurred.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventOccurred.field.FieldRepetitions != null && eventOccurred.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventOccurred.Id));
-            eventOccurred.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(eventOccurred, fieldData);
-        }
-
-        return eventOccurred;
-    } 
-}
-
-internal HL7V271Field eventFacility;
-
-public HL7V271Field EventFacility
-{
-    get
-    {
-        if (eventFacility != null)
-        {
-            return eventFacility;
-        }
-
-        eventFacility = new HL7V271Field
+        _eventFacility = new HL7V271Field
         {
             field = message[@"EVN"][7],
-            Id = @"EVN.7",
-            Type = @"Field",
-            Position = @"EVN.7",
-            Name = @"Event Facility",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"HD",
-            DataTypeName = @"Hierarchic Designator",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the actual facility where the event occurred as differentiated from the sending facility (MSH-4). It would be the facility at which the Operator (EVN-5) has entered the event.
-Use Case: System A is where the patient is originally registered. This registration message is sent to an MPI, System B. The MPI needs to broadcast the event of this update and would become the sending facility. This new field would allow for retention of knowledge of the originating facility where the event occurred. The MPI could be the assigning authority for the ID number as well which means that it is performing the function of assigning authority for the facility originating the event.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (eventFacility.field.FieldRepetitions != null && eventFacility.field.FieldRepetitions.Count > 0)
+        if (_eventFacility.field.FieldRepetitions != null && _eventFacility.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventFacility.Id));
-            eventFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(eventFacility, fieldData);
+            _eventFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_eventFacility, fieldData);
         }
 
-        return eventFacility;
+        return _eventFacility;
     } 
 }
     }

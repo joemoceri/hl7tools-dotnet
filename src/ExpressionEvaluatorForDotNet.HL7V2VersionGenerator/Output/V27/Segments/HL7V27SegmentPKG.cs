@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentPKG(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _setIdPkg;
+
+public HL7V27Field SetIdPkg
+{
+    get
+    {
+        if (_setIdPkg != null)
+        {
+            return _setIdPkg;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PKG.1",
+            Type = @"Field",
+            Position = @"PKG.1",
+            Name = @"Set Id - Pkg",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a sequential number that identifies this segment within a given Purchasing Vendor segment group. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdPkg = new HL7V27Field
+        {
+            field = message[@"PKG"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdPkg.field.FieldRepetitions != null && _setIdPkg.field.FieldRepetitions.Count > 0)
+        {
+            _setIdPkg.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_setIdPkg, fieldData);
+        }
+
+        return _setIdPkg;
+    } 
+}
+
+internal HL7V27Field _packagingUnits;
+
+public HL7V27Field PackagingUnits
+{
+    get
+    {
+        if (_packagingUnits != null)
+        {
+            return _packagingUnits;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PKG.2",
+            Type = @"Field",
+            Position = @"PKG.2",
+            Name = @"Packaging Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0818",
+            TableName = @"Package",
+            Description = @"This field contains the packaging unit that this inventory supply item can be ordered or issued in when purchased from the vendor in the related vendor segment. ",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PKG.1",
-                            Type = @"Field",
-                            Position = @"PKG.1",
-                            Name = @"Set Id - Pkg",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a sequential number that identifies this segment within a given Purchasing Vendor segment group. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PKG.2",
-                            Type = @"Field",
-                            Position = @"PKG.2",
-                            Name = @"Packaging Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0818",
-                            TableName = @"Package",
-                            Description = @"This field contains the packaging unit that this inventory supply item can be ordered or issued in when purchased from the vendor in the related vendor segment. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PKG.2.1",
                             Type = @"Component",
@@ -494,25 +533,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _packagingUnits = new HL7V27Field
+        {
+            field = message[@"PKG"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_packagingUnits.field.FieldRepetitions != null && _packagingUnits.field.FieldRepetitions.Count > 0)
+        {
+            _packagingUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_packagingUnits, fieldData);
+        }
+
+        return _packagingUnits;
+    } 
+}
+
+internal HL7V27Field _defaultOrderUnitOfMeasureIndicator;
+
+public HL7V27Field DefaultOrderUnitOfMeasureIndicator
+{
+    get
+    {
+        if (_defaultOrderUnitOfMeasureIndicator != null)
+        {
+            return _defaultOrderUnitOfMeasureIndicator;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PKG.3",
+            Type = @"Field",
+            Position = @"PKG.3",
+            Name = @"Default Order Unit Of Measure Indicator",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"This field contains an indicator that determines whether or not the unit of measure present in the PKG-2 is considered the default Order unit of measure. Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PKG.3",
-                            Type = @"Field",
-                            Position = @"PKG.3",
-                            Name = @"Default Order Unit Of Measure Indicator",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"This field contains an indicator that determines whether or not the unit of measure present in the PKG-2 is considered the default Order unit of measure. Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PKG.3.1",
                             Type = @"Component",
@@ -949,43 +1018,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _defaultOrderUnitOfMeasureIndicator = new HL7V27Field
+        {
+            field = message[@"PKG"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_defaultOrderUnitOfMeasureIndicator.field.FieldRepetitions != null && _defaultOrderUnitOfMeasureIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _defaultOrderUnitOfMeasureIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_defaultOrderUnitOfMeasureIndicator, fieldData);
+        }
+
+        return _defaultOrderUnitOfMeasureIndicator;
+    } 
+}
+
+internal HL7V27Field _packageQuantity;
+
+public HL7V27Field PackageQuantity
+{
+    get
+    {
+        if (_packageQuantity != null)
+        {
+            return _packageQuantity;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PKG.4",
+            Type = @"Field",
+            Position = @"PKG.4",
+            Name = @"Package Quantity",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number of units present within a unit of measure.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _packageQuantity = new HL7V27Field
+        {
+            field = message[@"PKG"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_packageQuantity.field.FieldRepetitions != null && _packageQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _packageQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_packageQuantity, fieldData);
+        }
+
+        return _packageQuantity;
+    } 
+}
+
+internal HL7V27Field _price;
+
+public HL7V27Field Price
+{
+    get
+    {
+        if (_price != null)
+        {
+            return _price;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PKG.5",
+            Type = @"Field",
+            Position = @"PKG.5",
+            Name = @"Price",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the price of the item when purchased from the vendor in the associated VND segment, for the unit of measure present in this PKG segment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PKG.4",
-                            Type = @"Field",
-                            Position = @"PKG.4",
-                            Name = @"Package Quantity",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number of units present within a unit of measure.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PKG.5",
-                            Type = @"Field",
-                            Position = @"PKG.5",
-                            Name = @"Price",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the price of the item when purchased from the vendor in the associated VND segment, for the unit of measure present in this PKG segment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PKG.5.1",
                             Type = @"Component",
@@ -1560,25 +1686,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _price = new HL7V27Field
+        {
+            field = message[@"PKG"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_price.field.FieldRepetitions != null && _price.field.FieldRepetitions.Count > 0)
+        {
+            _price.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_price, fieldData);
+        }
+
+        return _price;
+    } 
+}
+
+internal HL7V27Field _futureItemPrice;
+
+public HL7V27Field FutureItemPrice
+{
+    get
+    {
+        if (_futureItemPrice != null)
+        {
+            return _futureItemPrice;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PKG.6",
+            Type = @"Field",
+            Position = @"PKG.6",
+            Name = @"Future Item Price",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"field contains a future price for the item based on the packaging unit in PKG-2.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PKG.6",
-                            Type = @"Field",
-                            Position = @"PKG.6",
-                            Name = @"Future Item Price",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"field contains a future price for the item based on the packaging unit in PKG-2.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PKG.6.1",
                             Type = @"Component",
@@ -2153,295 +2309,39 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PKG.7",
-                            Type = @"Field",
-                            Position = @"PKG.7",
-                            Name = @"Future Item Price Effective Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time that a price change for the item becomes effective.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentPKG(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field setIdPkg;
-
-public HL7V27Field SetIdPkg
-{
-    get
-    {
-        if (setIdPkg != null)
-        {
-            return setIdPkg;
-        }
-
-        setIdPkg = new HL7V27Field
-        {
-            field = message[@"PKG"][1],
-            Id = @"PKG.1",
-            Type = @"Field",
-            Position = @"PKG.1",
-            Name = @"Set Id - Pkg",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a sequential number that identifies this segment within a given Purchasing Vendor segment group. For the first occurrence of the segment, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdPkg.field.FieldRepetitions != null && setIdPkg.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdPkg.Id));
-            setIdPkg.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(setIdPkg, fieldData);
-        }
-
-        return setIdPkg;
-    } 
-}
-
-internal HL7V27Field packagingUnits;
-
-public HL7V27Field PackagingUnits
-{
-    get
-    {
-        if (packagingUnits != null)
-        {
-            return packagingUnits;
-        }
-
-        packagingUnits = new HL7V27Field
-        {
-            field = message[@"PKG"][2],
-            Id = @"PKG.2",
-            Type = @"Field",
-            Position = @"PKG.2",
-            Name = @"Packaging Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0818",
-            TableName = @"Package",
-            Description = @"This field contains the packaging unit that this inventory supply item can be ordered or issued in when purchased from the vendor in the related vendor segment. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (packagingUnits.field.FieldRepetitions != null && packagingUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(packagingUnits.Id));
-            packagingUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(packagingUnits, fieldData);
-        }
-
-        return packagingUnits;
-    } 
-}
-
-internal HL7V27Field defaultOrderUnitOfMeasureIndicator;
-
-public HL7V27Field DefaultOrderUnitOfMeasureIndicator
-{
-    get
-    {
-        if (defaultOrderUnitOfMeasureIndicator != null)
-        {
-            return defaultOrderUnitOfMeasureIndicator;
-        }
-
-        defaultOrderUnitOfMeasureIndicator = new HL7V27Field
-        {
-            field = message[@"PKG"][3],
-            Id = @"PKG.3",
-            Type = @"Field",
-            Position = @"PKG.3",
-            Name = @"Default Order Unit Of Measure Indicator",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"This field contains an indicator that determines whether or not the unit of measure present in the PKG-2 is considered the default Order unit of measure. Refer to HL7 Table 0532 - Expanded Yes/no Indicator in Chapter 2C, Code Tables, for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (defaultOrderUnitOfMeasureIndicator.field.FieldRepetitions != null && defaultOrderUnitOfMeasureIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(defaultOrderUnitOfMeasureIndicator.Id));
-            defaultOrderUnitOfMeasureIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(defaultOrderUnitOfMeasureIndicator, fieldData);
-        }
-
-        return defaultOrderUnitOfMeasureIndicator;
-    } 
-}
-
-internal HL7V27Field packageQuantity;
-
-public HL7V27Field PackageQuantity
-{
-    get
-    {
-        if (packageQuantity != null)
-        {
-            return packageQuantity;
-        }
-
-        packageQuantity = new HL7V27Field
-        {
-            field = message[@"PKG"][4],
-            Id = @"PKG.4",
-            Type = @"Field",
-            Position = @"PKG.4",
-            Name = @"Package Quantity",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number of units present within a unit of measure.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (packageQuantity.field.FieldRepetitions != null && packageQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(packageQuantity.Id));
-            packageQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(packageQuantity, fieldData);
-        }
-
-        return packageQuantity;
-    } 
-}
-
-internal HL7V27Field price;
-
-public HL7V27Field Price
-{
-    get
-    {
-        if (price != null)
-        {
-            return price;
-        }
-
-        price = new HL7V27Field
-        {
-            field = message[@"PKG"][5],
-            Id = @"PKG.5",
-            Type = @"Field",
-            Position = @"PKG.5",
-            Name = @"Price",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the price of the item when purchased from the vendor in the associated VND segment, for the unit of measure present in this PKG segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (price.field.FieldRepetitions != null && price.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(price.Id));
-            price.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(price, fieldData);
-        }
-
-        return price;
-    } 
-}
-
-internal HL7V27Field futureItemPrice;
-
-public HL7V27Field FutureItemPrice
-{
-    get
-    {
-        if (futureItemPrice != null)
-        {
-            return futureItemPrice;
-        }
-
-        futureItemPrice = new HL7V27Field
+        _futureItemPrice = new HL7V27Field
         {
             field = message[@"PKG"][6],
-            Id = @"PKG.6",
-            Type = @"Field",
-            Position = @"PKG.6",
-            Name = @"Future Item Price",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"field contains a future price for the item based on the packaging unit in PKG-2.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (futureItemPrice.field.FieldRepetitions != null && futureItemPrice.field.FieldRepetitions.Count > 0)
+        if (_futureItemPrice.field.FieldRepetitions != null && _futureItemPrice.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(futureItemPrice.Id));
-            futureItemPrice.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(futureItemPrice, fieldData);
+            _futureItemPrice.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_futureItemPrice, fieldData);
         }
 
-        return futureItemPrice;
+        return _futureItemPrice;
     } 
 }
 
-internal HL7V27Field futureItemPriceEffectiveDate;
+internal HL7V27Field _futureItemPriceEffectiveDate;
 
 public HL7V27Field FutureItemPriceEffectiveDate
 {
     get
     {
-        if (futureItemPriceEffectiveDate != null)
+        if (_futureItemPriceEffectiveDate != null)
         {
-            return futureItemPriceEffectiveDate;
+            return _futureItemPriceEffectiveDate;
         }
 
-        futureItemPriceEffectiveDate = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"PKG"][7],
             Id = @"PKG.7",
             Type = @"Field",
             Position = @"PKG.7",
@@ -2455,17 +2355,22 @@ public HL7V27Field FutureItemPriceEffectiveDate
             TableName = null,
             Description = @"This field contains the date and time that a price change for the item becomes effective.",
             Sample = @"",
+            Fields = null
+        }
+
+        _futureItemPriceEffectiveDate = new HL7V27Field
+        {
+            field = message[@"PKG"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (futureItemPriceEffectiveDate.field.FieldRepetitions != null && futureItemPriceEffectiveDate.field.FieldRepetitions.Count > 0)
+        if (_futureItemPriceEffectiveDate.field.FieldRepetitions != null && _futureItemPriceEffectiveDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(futureItemPriceEffectiveDate.Id));
-            futureItemPriceEffectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(futureItemPriceEffectiveDate, fieldData);
+            _futureItemPriceEffectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_futureItemPriceEffectiveDate, fieldData);
         }
 
-        return futureItemPriceEffectiveDate;
+        return _futureItemPriceEffectiveDate;
     } 
 }
     }

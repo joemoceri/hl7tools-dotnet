@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentCSS(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _studyScheduledTimePoint;
+
+public HL7V28Field StudyScheduledTimePoint
+{
+    get
+    {
+        if (_studyScheduledTimePoint != null)
+        {
+            return _studyScheduledTimePoint;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"CSS.1",
+            Type = @"Field",
+            Position = @"CSS.1",
+            Name = @"Study Scheduled Time Point",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the time point for which some instance of data for the clinical trial was scheduled. The time point may be expressed in any coded format. Some examples of time point values are: Prestudy, Pretreatment, 4 times/day, Weekly, Every 3 days, Every course, At Relapse, At Off Study. Alternatively, frequency values from Section 2.A.81.2, ""Interval component (RI),"" (the Interval component of the TQ Timing/Quantity data type could be used; however, note that as of version 2.5, the TQ data type is retained only for backward compatibility). Time point naming conventions and usage must be specified by implementers.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"CSS.1",
-                            Type = @"Field",
-                            Position = @"CSS.1",
-                            Name = @"Study Scheduled Time Point",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the time point for which some instance of data for the clinical trial was scheduled. The time point may be expressed in any coded format. Some examples of time point values are: Prestudy, Pretreatment, 4 times/day, Weekly, Every 3 days, Every course, At Relapse, At Off Study. Alternatively, frequency values from Section 2.A.81.2, ""Interval component (RI),"" (the Interval component of the TQ Timing/Quantity data type could be used; however, note that as of version 2.5, the TQ data type is retained only for backward compatibility). Time point naming conventions and usage must be specified by implementers.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CSS.1.1",
                             Type = @"Component",
@@ -478,43 +490,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _studyScheduledTimePoint = new HL7V28Field
+        {
+            field = message[@"CSS"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_studyScheduledTimePoint.field.FieldRepetitions != null && _studyScheduledTimePoint.field.FieldRepetitions.Count > 0)
+        {
+            _studyScheduledTimePoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_studyScheduledTimePoint, fieldData);
+        }
+
+        return _studyScheduledTimePoint;
+    } 
+}
+
+internal HL7V28Field _studyScheduledPatientTimePoint;
+
+public HL7V28Field StudyScheduledPatientTimePoint
+{
+    get
+    {
+        if (_studyScheduledPatientTimePoint != null)
+        {
+            return _studyScheduledPatientTimePoint;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"CSS.2",
+            Type = @"Field",
+            Position = @"CSS.2",
+            Name = @"Study Scheduled Patient Time Point",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time that the scheduled time point should occur for this patient. The date/time may be used for a reference in reviewing the actual dates on which scheduled items that follow in OBR segments occur for the patient. The time component is optional.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _studyScheduledPatientTimePoint = new HL7V28Field
+        {
+            field = message[@"CSS"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_studyScheduledPatientTimePoint.field.FieldRepetitions != null && _studyScheduledPatientTimePoint.field.FieldRepetitions.Count > 0)
+        {
+            _studyScheduledPatientTimePoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_studyScheduledPatientTimePoint, fieldData);
+        }
+
+        return _studyScheduledPatientTimePoint;
+    } 
+}
+
+internal HL7V28Field _studyQualityControlCodes;
+
+public HL7V28Field StudyQualityControlCodes
+{
+    get
+    {
+        if (_studyQualityControlCodes != null)
+        {
+            return _studyQualityControlCodes;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"CSS.3",
+            Type = @"Field",
+            Position = @"CSS.3",
+            Name = @"Study Quality Control Codes",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"3",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"In clinical settings, the actual date of a treatment or procedure may vary considerably from the due date. Various coding systems may be used to evaluate the adherence to the schedule or acceptability of the data. Coding systems will vary among trials.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSS.2",
-                            Type = @"Field",
-                            Position = @"CSS.2",
-                            Name = @"Study Scheduled Patient Time Point",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time that the scheduled time point should occur for this patient. The date/time may be used for a reference in reviewing the actual dates on which scheduled items that follow in OBR segments occur for the patient. The time component is optional.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CSS.3",
-                            Type = @"Field",
-                            Position = @"CSS.3",
-                            Name = @"Study Quality Control Codes",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"3",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"In clinical settings, the actual date of a treatment or procedure may vary considerably from the due date. Various coding systems may be used to evaluate the adherence to the schedule or acceptability of the data. Coding systems will vary among trials.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSS.3.1",
                             Type = @"Component",
@@ -942,137 +1011,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentCSS(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field studyScheduledTimePoint;
-
-public HL7V28Field StudyScheduledTimePoint
-{
-    get
-    {
-        if (studyScheduledTimePoint != null)
-        {
-            return studyScheduledTimePoint;
-        }
-
-        studyScheduledTimePoint = new HL7V28Field
-        {
-            field = message[@"CSS"][1],
-            Id = @"CSS.1",
-            Type = @"Field",
-            Position = @"CSS.1",
-            Name = @"Study Scheduled Time Point",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the time point for which some instance of data for the clinical trial was scheduled. The time point may be expressed in any coded format. Some examples of time point values are: Prestudy, Pretreatment, 4 times/day, Weekly, Every 3 days, Every course, At Relapse, At Off Study. Alternatively, frequency values from Section 2.A.81.2, ""Interval component (RI),"" (the Interval component of the TQ Timing/Quantity data type could be used; however, note that as of version 2.5, the TQ data type is retained only for backward compatibility). Time point naming conventions and usage must be specified by implementers.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (studyScheduledTimePoint.field.FieldRepetitions != null && studyScheduledTimePoint.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studyScheduledTimePoint.Id));
-            studyScheduledTimePoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(studyScheduledTimePoint, fieldData);
-        }
-
-        return studyScheduledTimePoint;
-    } 
-}
-
-internal HL7V28Field studyScheduledPatientTimePoint;
-
-public HL7V28Field StudyScheduledPatientTimePoint
-{
-    get
-    {
-        if (studyScheduledPatientTimePoint != null)
-        {
-            return studyScheduledPatientTimePoint;
-        }
-
-        studyScheduledPatientTimePoint = new HL7V28Field
-        {
-            field = message[@"CSS"][2],
-            Id = @"CSS.2",
-            Type = @"Field",
-            Position = @"CSS.2",
-            Name = @"Study Scheduled Patient Time Point",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time that the scheduled time point should occur for this patient. The date/time may be used for a reference in reviewing the actual dates on which scheduled items that follow in OBR segments occur for the patient. The time component is optional.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (studyScheduledPatientTimePoint.field.FieldRepetitions != null && studyScheduledPatientTimePoint.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studyScheduledPatientTimePoint.Id));
-            studyScheduledPatientTimePoint.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(studyScheduledPatientTimePoint, fieldData);
-        }
-
-        return studyScheduledPatientTimePoint;
-    } 
-}
-
-internal HL7V28Field studyQualityControlCodes;
-
-public HL7V28Field StudyQualityControlCodes
-{
-    get
-    {
-        if (studyQualityControlCodes != null)
-        {
-            return studyQualityControlCodes;
-        }
-
-        studyQualityControlCodes = new HL7V28Field
+        _studyQualityControlCodes = new HL7V28Field
         {
             field = message[@"CSS"][3],
-            Id = @"CSS.3",
-            Type = @"Field",
-            Position = @"CSS.3",
-            Name = @"Study Quality Control Codes",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"3",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"In clinical settings, the actual date of a treatment or procedure may vary considerably from the due date. Various coding systems may be used to evaluate the adherence to the schedule or acceptability of the data. Coding systems will vary among trials.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (studyQualityControlCodes.field.FieldRepetitions != null && studyQualityControlCodes.field.FieldRepetitions.Count > 0)
+        if (_studyQualityControlCodes.field.FieldRepetitions != null && _studyQualityControlCodes.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studyQualityControlCodes.Id));
-            studyQualityControlCodes.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(studyQualityControlCodes, fieldData);
+            _studyQualityControlCodes.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_studyQualityControlCodes, fieldData);
         }
 
-        return studyQualityControlCodes;
+        return _studyQualityControlCodes;
     } 
 }
     }

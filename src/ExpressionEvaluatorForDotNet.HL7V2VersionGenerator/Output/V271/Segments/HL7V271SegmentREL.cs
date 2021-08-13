@@ -37,46 +37,85 @@ Examples:
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentREL(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _setIdrel;
+
+public HL7V271Field SetIdrel
+{
+    get
+    {
+        if (_setIdrel != null)
+        {
+            return _setIdrel;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"REL.1",
+            Type = @"Field",
+            Position = @"REL.1",
+            Name = @"Set Id -rel",
+            Length = 4,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the Set ID of the specific relationship Record.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdrel = new HL7V271Field
+        {
+            field = message[@"REL"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdrel.field.FieldRepetitions != null && _setIdrel.field.FieldRepetitions.Count > 0)
+        {
+            _setIdrel.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_setIdrel, fieldData);
+        }
+
+        return _setIdrel;
+    } 
+}
+
+internal HL7V271Field _relationshipType;
+
+public HL7V271Field RelationshipType
+{
+    get
+    {
+        if (_relationshipType != null)
+        {
+            return _relationshipType;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"REL.2",
+            Type = @"Field",
+            Position = @"REL.2",
+            Name = @"Relationship Type",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the type of the relationship.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"REL.1",
-                            Type = @"Field",
-                            Position = @"REL.1",
-                            Name = @"Set Id -rel",
-                            Length = 4,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the Set ID of the specific relationship Record.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"REL.2",
-                            Type = @"Field",
-                            Position = @"REL.2",
-                            Name = @"Relationship Type",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the type of the relationship.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"REL.2.1",
                             Type = @"Component",
@@ -502,25 +541,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _relationshipType = new HL7V271Field
+        {
+            field = message[@"REL"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_relationshipType.field.FieldRepetitions != null && _relationshipType.field.FieldRepetitions.Count > 0)
+        {
+            _relationshipType.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_relationshipType, fieldData);
+        }
+
+        return _relationshipType;
+    } 
+}
+
+internal HL7V271Field _thisRelationshipInstanceIdentifier;
+
+public HL7V271Field ThisRelationshipInstanceIdentifier
+{
+    get
+    {
+        if (_thisRelationshipInstanceIdentifier != null)
+        {
+            return _thisRelationshipInstanceIdentifier;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"REL.3",
+            Type = @"Field",
+            Position = @"REL.3",
+            Name = @"This Relationship Instance Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the instance identifier of this relationship.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"REL.3",
-                            Type = @"Field",
-                            Position = @"REL.3",
-                            Name = @"This Relationship Instance Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the instance identifier of this relationship.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"REL.3.1",
                             Type = @"Component",
@@ -598,25 +667,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _thisRelationshipInstanceIdentifier = new HL7V271Field
+        {
+            field = message[@"REL"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_thisRelationshipInstanceIdentifier.field.FieldRepetitions != null && _thisRelationshipInstanceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _thisRelationshipInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_thisRelationshipInstanceIdentifier, fieldData);
+        }
+
+        return _thisRelationshipInstanceIdentifier;
+    } 
+}
+
+internal HL7V271Field _sourceInformationInstanceIdentifier;
+
+public HL7V271Field SourceInformationInstanceIdentifier
+{
+    get
+    {
+        if (_sourceInformationInstanceIdentifier != null)
+        {
+            return _sourceInformationInstanceIdentifier;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"REL.4",
+            Type = @"Field",
+            Position = @"REL.4",
+            Name = @"Source Information Instance Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the Instance ID of the Source Segment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"REL.4",
-                            Type = @"Field",
-                            Position = @"REL.4",
-                            Name = @"Source Information Instance Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the Instance ID of the Source Segment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"REL.4.1",
                             Type = @"Component",
@@ -694,25 +793,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _sourceInformationInstanceIdentifier = new HL7V271Field
+        {
+            field = message[@"REL"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sourceInformationInstanceIdentifier.field.FieldRepetitions != null && _sourceInformationInstanceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _sourceInformationInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_sourceInformationInstanceIdentifier, fieldData);
+        }
+
+        return _sourceInformationInstanceIdentifier;
+    } 
+}
+
+internal HL7V271Field _targetInformationInstanceIdentifier;
+
+public HL7V271Field TargetInformationInstanceIdentifier
+{
+    get
+    {
+        if (_targetInformationInstanceIdentifier != null)
+        {
+            return _targetInformationInstanceIdentifier;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"REL.5",
+            Type = @"Field",
+            Position = @"REL.5",
+            Name = @"Target Information Instance Identifier",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the Instance ID of the Target Segment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"REL.5",
-                            Type = @"Field",
-                            Position = @"REL.5",
-                            Name = @"Target Information Instance Identifier",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the Instance ID of the Target Segment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"REL.5.1",
                             Type = @"Component",
@@ -790,25 +919,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _targetInformationInstanceIdentifier = new HL7V271Field
+        {
+            field = message[@"REL"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_targetInformationInstanceIdentifier.field.FieldRepetitions != null && _targetInformationInstanceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _targetInformationInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_targetInformationInstanceIdentifier, fieldData);
+        }
+
+        return _targetInformationInstanceIdentifier;
+    } 
+}
+
+internal HL7V271Field _assertingEntityInstanceId;
+
+public HL7V271Field AssertingEntityInstanceId
+{
+    get
+    {
+        if (_assertingEntityInstanceId != null)
+        {
+            return _assertingEntityInstanceId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"REL.6",
+            Type = @"Field",
+            Position = @"REL.6",
+            Name = @"Asserting Entity Instance Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the Instance ID of the Person or Organization that asserted the relationship.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"REL.6",
-                            Type = @"Field",
-                            Position = @"REL.6",
-                            Name = @"Asserting Entity Instance Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the Instance ID of the Person or Organization that asserted the relationship.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"REL.6.1",
                             Type = @"Component",
@@ -886,25 +1045,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _assertingEntityInstanceId = new HL7V271Field
+        {
+            field = message[@"REL"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_assertingEntityInstanceId.field.FieldRepetitions != null && _assertingEntityInstanceId.field.FieldRepetitions.Count > 0)
+        {
+            _assertingEntityInstanceId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_assertingEntityInstanceId, fieldData);
+        }
+
+        return _assertingEntityInstanceId;
+    } 
+}
+
+internal HL7V271Field _assertingPerson;
+
+public HL7V271Field AssertingPerson
+{
+    get
+    {
+        if (_assertingPerson != null)
+        {
+            return _assertingPerson;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"REL.7",
+            Type = @"Field",
+            Position = @"REL.7",
+            Name = @"Asserting Person",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the Identifier details of the Person who asserted the relationship.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"REL.7",
-                            Type = @"Field",
-                            Position = @"REL.7",
-                            Name = @"Asserting Person",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the Identifier details of the Person who asserted the relationship.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"REL.7.1",
                             Type = @"Component",
@@ -3303,25 +3492,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _assertingPerson = new HL7V271Field
+        {
+            field = message[@"REL"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_assertingPerson.field.FieldRepetitions != null && _assertingPerson.field.FieldRepetitions.Count > 0)
+        {
+            _assertingPerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_assertingPerson, fieldData);
+        }
+
+        return _assertingPerson;
+    } 
+}
+
+internal HL7V271Field _assertingOrganization;
+
+public HL7V271Field AssertingOrganization
+{
+    get
+    {
+        if (_assertingOrganization != null)
+        {
+            return _assertingOrganization;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"REL.8",
+            Type = @"Field",
+            Position = @"REL.8",
+            Name = @"Asserting Organization",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"field contains the Identifier details of the Organization that asserted the relationship.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"REL.8",
-                            Type = @"Field",
-                            Position = @"REL.8",
-                            Name = @"Asserting Organization",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"field contains the Identifier details of the Organization that asserted the relationship.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"REL.8.1",
                             Type = @"Component",
@@ -4054,25 +4273,55 @@ In general this component provides an indication of the representation provided 
 Note: The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _assertingOrganization = new HL7V271Field
+        {
+            field = message[@"REL"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_assertingOrganization.field.FieldRepetitions != null && _assertingOrganization.field.FieldRepetitions.Count > 0)
+        {
+            _assertingOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_assertingOrganization, fieldData);
+        }
+
+        return _assertingOrganization;
+    } 
+}
+
+internal HL7V271Field _assertorAddress;
+
+public HL7V271Field AssertorAddress
+{
+    get
+    {
+        if (_assertorAddress != null)
+        {
+            return _assertorAddress;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"REL.9",
+            Type = @"Field",
+            Position = @"REL.9",
+            Name = @"Assertor Address",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the address of the Person or Organization that asserted the relationship.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"REL.9",
-                            Type = @"Field",
-                            Position = @"REL.9",
-                            Name = @"Assertor Address",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the address of the Person or Organization that asserted the relationship.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"REL.9.1",
                             Type = @"Component",
@@ -6338,25 +6587,55 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _assertorAddress = new HL7V271Field
+        {
+            field = message[@"REL"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_assertorAddress.field.FieldRepetitions != null && _assertorAddress.field.FieldRepetitions.Count > 0)
+        {
+            _assertorAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_assertorAddress, fieldData);
+        }
+
+        return _assertorAddress;
+    } 
+}
+
+internal HL7V271Field _assertorContact;
+
+public HL7V271Field AssertorContact
+{
+    get
+    {
+        if (_assertorContact != null)
+        {
+            return _assertorContact;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"REL.10",
+            Type = @"Field",
+            Position = @"REL.10",
+            Name = @"Assertor Contact",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the address of the Person or Organization that asserted the relationship.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"REL.10",
-                            Type = @"Field",
-                            Position = @"REL.10",
-                            Name = @"Assertor Contact",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the address of the Person or Organization that asserted the relationship.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"REL.10.1",
                             Type = @"Component",
@@ -7631,25 +7910,55 @@ If the preference order is unique across all usages for a given type, then it in
 Preference order numbers need not be sequential (i.e., three numbers with the priority orders of 0, 5 and 15 are legitimate).  The preference order numbers must be non-negative.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _assertorContact = new HL7V271Field
+        {
+            field = message[@"REL"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_assertorContact.field.FieldRepetitions != null && _assertorContact.field.FieldRepetitions.Count > 0)
+        {
+            _assertorContact.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_assertorContact, fieldData);
+        }
+
+        return _assertorContact;
+    } 
+}
+
+internal HL7V271Field _assertionDateRange;
+
+public HL7V271Field AssertionDateRange
+{
+    get
+    {
+        if (_assertionDateRange != null)
+        {
+            return _assertionDateRange;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"REL.11",
+            Type = @"Field",
+            Position = @"REL.11",
+            Name = @"Assertion Date Range",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DR",
+            DataTypeName = @"Date/time Range",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date range during which assertion of the relationship took place.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"REL.11",
-                            Type = @"Field",
-                            Position = @"REL.11",
-                            Name = @"Assertion Date Range",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DR",
-                            DataTypeName = @"Date/time Range",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date range during which assertion of the relationship took place.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"REL.11.1",
                             Type = @"Component",
@@ -7683,43 +7992,100 @@ Preference order numbers need not be sequential (i.e., three numbers with the pr
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _assertionDateRange = new HL7V271Field
+        {
+            field = message[@"REL"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_assertionDateRange.field.FieldRepetitions != null && _assertionDateRange.field.FieldRepetitions.Count > 0)
+        {
+            _assertionDateRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_assertionDateRange, fieldData);
+        }
+
+        return _assertionDateRange;
+    } 
+}
+
+internal HL7V271Field _negationIndicator;
+
+public HL7V271Field NegationIndicator
+{
+    get
+    {
+        if (_negationIndicator != null)
+        {
+            return _negationIndicator;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"REL.12",
+            Type = @"Field",
+            Position = @"REL.12",
+            Name = @"Negation Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"field contains the date range relevant to the assertion of the relationship.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _negationIndicator = new HL7V271Field
+        {
+            field = message[@"REL"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_negationIndicator.field.FieldRepetitions != null && _negationIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _negationIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_negationIndicator, fieldData);
+        }
+
+        return _negationIndicator;
+    } 
+}
+
+internal HL7V271Field _certaintyOfRelationship;
+
+public HL7V271Field CertaintyOfRelationship
+{
+    get
+    {
+        if (_certaintyOfRelationship != null)
+        {
+            return _certaintyOfRelationship;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"REL.13",
+            Type = @"Field",
+            Position = @"REL.13",
+            Name = @"Certainty Of Relationship",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the certainty of existence of the relationship.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"REL.12",
-                            Type = @"Field",
-                            Position = @"REL.12",
-                            Name = @"Negation Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"field contains the date range relevant to the assertion of the relationship.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"REL.13",
-                            Type = @"Field",
-                            Position = @"REL.13",
-                            Name = @"Certainty Of Relationship",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the certainty of existence of the relationship.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"REL.13.1",
                             Type = @"Component",
@@ -8145,618 +8511,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"REL.14",
-                            Type = @"Field",
-                            Position = @"REL.14",
-                            Name = @"Priority No",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the priority number as used, for example, in relative ordering, plans, and workflows.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"REL.15",
-                            Type = @"Field",
-                            Position = @"REL.15",
-                            Name = @"Priority  Sequence No (rel Preference For Consideration)",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the priority sequence number as used, for example, in relative preference for consideration.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"REL.16",
-                            Type = @"Field",
-                            Position = @"REL.16",
-                            Name = @"Separability Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This field indicates whether source and target can be interpreted independently.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentREL(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field setIdrel;
-
-public HL7V271Field SetIdrel
-{
-    get
-    {
-        if (setIdrel != null)
-        {
-            return setIdrel;
-        }
-
-        setIdrel = new HL7V271Field
-        {
-            field = message[@"REL"][1],
-            Id = @"REL.1",
-            Type = @"Field",
-            Position = @"REL.1",
-            Name = @"Set Id -rel",
-            Length = 4,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the Set ID of the specific relationship Record.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdrel.field.FieldRepetitions != null && setIdrel.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdrel.Id));
-            setIdrel.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(setIdrel, fieldData);
-        }
-
-        return setIdrel;
-    } 
-}
-
-internal HL7V271Field relationshipType;
-
-public HL7V271Field RelationshipType
-{
-    get
-    {
-        if (relationshipType != null)
-        {
-            return relationshipType;
-        }
-
-        relationshipType = new HL7V271Field
-        {
-            field = message[@"REL"][2],
-            Id = @"REL.2",
-            Type = @"Field",
-            Position = @"REL.2",
-            Name = @"Relationship Type",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the type of the relationship.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (relationshipType.field.FieldRepetitions != null && relationshipType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(relationshipType.Id));
-            relationshipType.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(relationshipType, fieldData);
-        }
-
-        return relationshipType;
-    } 
-}
-
-internal HL7V271Field thisRelationshipInstanceIdentifier;
-
-public HL7V271Field ThisRelationshipInstanceIdentifier
-{
-    get
-    {
-        if (thisRelationshipInstanceIdentifier != null)
-        {
-            return thisRelationshipInstanceIdentifier;
-        }
-
-        thisRelationshipInstanceIdentifier = new HL7V271Field
-        {
-            field = message[@"REL"][3],
-            Id = @"REL.3",
-            Type = @"Field",
-            Position = @"REL.3",
-            Name = @"This Relationship Instance Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the instance identifier of this relationship.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (thisRelationshipInstanceIdentifier.field.FieldRepetitions != null && thisRelationshipInstanceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(thisRelationshipInstanceIdentifier.Id));
-            thisRelationshipInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(thisRelationshipInstanceIdentifier, fieldData);
-        }
-
-        return thisRelationshipInstanceIdentifier;
-    } 
-}
-
-internal HL7V271Field sourceInformationInstanceIdentifier;
-
-public HL7V271Field SourceInformationInstanceIdentifier
-{
-    get
-    {
-        if (sourceInformationInstanceIdentifier != null)
-        {
-            return sourceInformationInstanceIdentifier;
-        }
-
-        sourceInformationInstanceIdentifier = new HL7V271Field
-        {
-            field = message[@"REL"][4],
-            Id = @"REL.4",
-            Type = @"Field",
-            Position = @"REL.4",
-            Name = @"Source Information Instance Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the Instance ID of the Source Segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sourceInformationInstanceIdentifier.field.FieldRepetitions != null && sourceInformationInstanceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sourceInformationInstanceIdentifier.Id));
-            sourceInformationInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(sourceInformationInstanceIdentifier, fieldData);
-        }
-
-        return sourceInformationInstanceIdentifier;
-    } 
-}
-
-internal HL7V271Field targetInformationInstanceIdentifier;
-
-public HL7V271Field TargetInformationInstanceIdentifier
-{
-    get
-    {
-        if (targetInformationInstanceIdentifier != null)
-        {
-            return targetInformationInstanceIdentifier;
-        }
-
-        targetInformationInstanceIdentifier = new HL7V271Field
-        {
-            field = message[@"REL"][5],
-            Id = @"REL.5",
-            Type = @"Field",
-            Position = @"REL.5",
-            Name = @"Target Information Instance Identifier",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the Instance ID of the Target Segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (targetInformationInstanceIdentifier.field.FieldRepetitions != null && targetInformationInstanceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(targetInformationInstanceIdentifier.Id));
-            targetInformationInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(targetInformationInstanceIdentifier, fieldData);
-        }
-
-        return targetInformationInstanceIdentifier;
-    } 
-}
-
-internal HL7V271Field assertingEntityInstanceId;
-
-public HL7V271Field AssertingEntityInstanceId
-{
-    get
-    {
-        if (assertingEntityInstanceId != null)
-        {
-            return assertingEntityInstanceId;
-        }
-
-        assertingEntityInstanceId = new HL7V271Field
-        {
-            field = message[@"REL"][6],
-            Id = @"REL.6",
-            Type = @"Field",
-            Position = @"REL.6",
-            Name = @"Asserting Entity Instance Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the Instance ID of the Person or Organization that asserted the relationship.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (assertingEntityInstanceId.field.FieldRepetitions != null && assertingEntityInstanceId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(assertingEntityInstanceId.Id));
-            assertingEntityInstanceId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(assertingEntityInstanceId, fieldData);
-        }
-
-        return assertingEntityInstanceId;
-    } 
-}
-
-internal HL7V271Field assertingPerson;
-
-public HL7V271Field AssertingPerson
-{
-    get
-    {
-        if (assertingPerson != null)
-        {
-            return assertingPerson;
-        }
-
-        assertingPerson = new HL7V271Field
-        {
-            field = message[@"REL"][7],
-            Id = @"REL.7",
-            Type = @"Field",
-            Position = @"REL.7",
-            Name = @"Asserting Person",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the Identifier details of the Person who asserted the relationship.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (assertingPerson.field.FieldRepetitions != null && assertingPerson.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(assertingPerson.Id));
-            assertingPerson.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(assertingPerson, fieldData);
-        }
-
-        return assertingPerson;
-    } 
-}
-
-internal HL7V271Field assertingOrganization;
-
-public HL7V271Field AssertingOrganization
-{
-    get
-    {
-        if (assertingOrganization != null)
-        {
-            return assertingOrganization;
-        }
-
-        assertingOrganization = new HL7V271Field
-        {
-            field = message[@"REL"][8],
-            Id = @"REL.8",
-            Type = @"Field",
-            Position = @"REL.8",
-            Name = @"Asserting Organization",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"field contains the Identifier details of the Organization that asserted the relationship.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (assertingOrganization.field.FieldRepetitions != null && assertingOrganization.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(assertingOrganization.Id));
-            assertingOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(assertingOrganization, fieldData);
-        }
-
-        return assertingOrganization;
-    } 
-}
-
-internal HL7V271Field assertorAddress;
-
-public HL7V271Field AssertorAddress
-{
-    get
-    {
-        if (assertorAddress != null)
-        {
-            return assertorAddress;
-        }
-
-        assertorAddress = new HL7V271Field
-        {
-            field = message[@"REL"][9],
-            Id = @"REL.9",
-            Type = @"Field",
-            Position = @"REL.9",
-            Name = @"Assertor Address",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the address of the Person or Organization that asserted the relationship.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (assertorAddress.field.FieldRepetitions != null && assertorAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(assertorAddress.Id));
-            assertorAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(assertorAddress, fieldData);
-        }
-
-        return assertorAddress;
-    } 
-}
-
-internal HL7V271Field assertorContact;
-
-public HL7V271Field AssertorContact
-{
-    get
-    {
-        if (assertorContact != null)
-        {
-            return assertorContact;
-        }
-
-        assertorContact = new HL7V271Field
-        {
-            field = message[@"REL"][10],
-            Id = @"REL.10",
-            Type = @"Field",
-            Position = @"REL.10",
-            Name = @"Assertor Contact",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the address of the Person or Organization that asserted the relationship.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (assertorContact.field.FieldRepetitions != null && assertorContact.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(assertorContact.Id));
-            assertorContact.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(assertorContact, fieldData);
-        }
-
-        return assertorContact;
-    } 
-}
-
-internal HL7V271Field assertionDateRange;
-
-public HL7V271Field AssertionDateRange
-{
-    get
-    {
-        if (assertionDateRange != null)
-        {
-            return assertionDateRange;
-        }
-
-        assertionDateRange = new HL7V271Field
-        {
-            field = message[@"REL"][11],
-            Id = @"REL.11",
-            Type = @"Field",
-            Position = @"REL.11",
-            Name = @"Assertion Date Range",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DR",
-            DataTypeName = @"Date/time Range",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date range during which assertion of the relationship took place.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (assertionDateRange.field.FieldRepetitions != null && assertionDateRange.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(assertionDateRange.Id));
-            assertionDateRange.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(assertionDateRange, fieldData);
-        }
-
-        return assertionDateRange;
-    } 
-}
-
-internal HL7V271Field negationIndicator;
-
-public HL7V271Field NegationIndicator
-{
-    get
-    {
-        if (negationIndicator != null)
-        {
-            return negationIndicator;
-        }
-
-        negationIndicator = new HL7V271Field
-        {
-            field = message[@"REL"][12],
-            Id = @"REL.12",
-            Type = @"Field",
-            Position = @"REL.12",
-            Name = @"Negation Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"field contains the date range relevant to the assertion of the relationship.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (negationIndicator.field.FieldRepetitions != null && negationIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(negationIndicator.Id));
-            negationIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(negationIndicator, fieldData);
-        }
-
-        return negationIndicator;
-    } 
-}
-
-internal HL7V271Field certaintyOfRelationship;
-
-public HL7V271Field CertaintyOfRelationship
-{
-    get
-    {
-        if (certaintyOfRelationship != null)
-        {
-            return certaintyOfRelationship;
-        }
-
-        certaintyOfRelationship = new HL7V271Field
+        _certaintyOfRelationship = new HL7V271Field
         {
             field = message[@"REL"][13],
-            Id = @"REL.13",
-            Type = @"Field",
-            Position = @"REL.13",
-            Name = @"Certainty Of Relationship",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the certainty of existence of the relationship.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (certaintyOfRelationship.field.FieldRepetitions != null && certaintyOfRelationship.field.FieldRepetitions.Count > 0)
+        if (_certaintyOfRelationship.field.FieldRepetitions != null && _certaintyOfRelationship.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certaintyOfRelationship.Id));
-            certaintyOfRelationship.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(certaintyOfRelationship, fieldData);
+            _certaintyOfRelationship.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_certaintyOfRelationship, fieldData);
         }
 
-        return certaintyOfRelationship;
+        return _certaintyOfRelationship;
     } 
 }
 
-internal HL7V271Field priorityNo;
+internal HL7V271Field _priorityNo;
 
 public HL7V271Field PriorityNo
 {
     get
     {
-        if (priorityNo != null)
+        if (_priorityNo != null)
         {
-            return priorityNo;
+            return _priorityNo;
         }
 
-        priorityNo = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"REL"][14],
             Id = @"REL.14",
             Type = @"Field",
             Position = @"REL.14",
@@ -8770,34 +8557,38 @@ public HL7V271Field PriorityNo
             TableName = null,
             Description = @"This field contains the priority number as used, for example, in relative ordering, plans, and workflows.",
             Sample = @"",
+            Fields = null
+        }
+
+        _priorityNo = new HL7V271Field
+        {
+            field = message[@"REL"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (priorityNo.field.FieldRepetitions != null && priorityNo.field.FieldRepetitions.Count > 0)
+        if (_priorityNo.field.FieldRepetitions != null && _priorityNo.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorityNo.Id));
-            priorityNo.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(priorityNo, fieldData);
+            _priorityNo.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_priorityNo, fieldData);
         }
 
-        return priorityNo;
+        return _priorityNo;
     } 
 }
 
-internal HL7V271Field prioritySequenceNorelPreferenceForConsideration;
+internal HL7V271Field _prioritySequenceNorelPreferenceForConsideration;
 
 public HL7V271Field PrioritySequenceNorelPreferenceForConsideration
 {
     get
     {
-        if (prioritySequenceNorelPreferenceForConsideration != null)
+        if (_prioritySequenceNorelPreferenceForConsideration != null)
         {
-            return prioritySequenceNorelPreferenceForConsideration;
+            return _prioritySequenceNorelPreferenceForConsideration;
         }
 
-        prioritySequenceNorelPreferenceForConsideration = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"REL"][15],
             Id = @"REL.15",
             Type = @"Field",
             Position = @"REL.15",
@@ -8811,34 +8602,38 @@ public HL7V271Field PrioritySequenceNorelPreferenceForConsideration
             TableName = null,
             Description = @"This field contains the priority sequence number as used, for example, in relative preference for consideration.",
             Sample = @"",
+            Fields = null
+        }
+
+        _prioritySequenceNorelPreferenceForConsideration = new HL7V271Field
+        {
+            field = message[@"REL"][15],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (prioritySequenceNorelPreferenceForConsideration.field.FieldRepetitions != null && prioritySequenceNorelPreferenceForConsideration.field.FieldRepetitions.Count > 0)
+        if (_prioritySequenceNorelPreferenceForConsideration.field.FieldRepetitions != null && _prioritySequenceNorelPreferenceForConsideration.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(prioritySequenceNorelPreferenceForConsideration.Id));
-            prioritySequenceNorelPreferenceForConsideration.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(prioritySequenceNorelPreferenceForConsideration, fieldData);
+            _prioritySequenceNorelPreferenceForConsideration.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_prioritySequenceNorelPreferenceForConsideration, fieldData);
         }
 
-        return prioritySequenceNorelPreferenceForConsideration;
+        return _prioritySequenceNorelPreferenceForConsideration;
     } 
 }
 
-internal HL7V271Field separabilityIndicator;
+internal HL7V271Field _separabilityIndicator;
 
 public HL7V271Field SeparabilityIndicator
 {
     get
     {
-        if (separabilityIndicator != null)
+        if (_separabilityIndicator != null)
         {
-            return separabilityIndicator;
+            return _separabilityIndicator;
         }
 
-        separabilityIndicator = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"REL"][16],
             Id = @"REL.16",
             Type = @"Field",
             Position = @"REL.16",
@@ -8852,17 +8647,22 @@ public HL7V271Field SeparabilityIndicator
             TableName = @"Yes/no Indicator",
             Description = @"This field indicates whether source and target can be interpreted independently.",
             Sample = @"",
+            Fields = null
+        }
+
+        _separabilityIndicator = new HL7V271Field
+        {
+            field = message[@"REL"][16],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (separabilityIndicator.field.FieldRepetitions != null && separabilityIndicator.field.FieldRepetitions.Count > 0)
+        if (_separabilityIndicator.field.FieldRepetitions != null && _separabilityIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(separabilityIndicator.Id));
-            separabilityIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(separabilityIndicator, fieldData);
+            _separabilityIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_separabilityIndicator, fieldData);
         }
 
-        return separabilityIndicator;
+        return _separabilityIndicator;
     } 
 }
     }

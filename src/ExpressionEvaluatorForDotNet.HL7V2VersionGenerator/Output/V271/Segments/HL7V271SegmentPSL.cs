@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentPSL(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _providerProductServiceLineItemNumber;
+
+public HL7V271Field ProviderProductServiceLineItemNumber
+{
+    get
+    {
+        if (_providerProductServiceLineItemNumber != null)
+        {
+            return _providerProductServiceLineItemNumber;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.1",
+            Type = @"Field",
+            Position = @"PSL.1",
+            Name = @"Provider Product/Service Line Item Number",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique Product/Service Line Item Number assigned by the Provider Application.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PSL.1",
-                            Type = @"Field",
-                            Position = @"PSL.1",
-                            Name = @"Provider Product/Service Line Item Number",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique Product/Service Line Item Number assigned by the Provider Application.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PSL.1.1",
                             Type = @"Component",
@@ -128,25 +140,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerProductServiceLineItemNumber = new HL7V271Field
+        {
+            field = message[@"PSL"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerProductServiceLineItemNumber.field.FieldRepetitions != null && _providerProductServiceLineItemNumber.field.FieldRepetitions.Count > 0)
+        {
+            _providerProductServiceLineItemNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_providerProductServiceLineItemNumber, fieldData);
+        }
+
+        return _providerProductServiceLineItemNumber;
+    } 
+}
+
+internal HL7V271Field _payerProductServiceLineItemNumber;
+
+public HL7V271Field PayerProductServiceLineItemNumber
+{
+    get
+    {
+        if (_payerProductServiceLineItemNumber != null)
+        {
+            return _payerProductServiceLineItemNumber;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.2",
+            Type = @"Field",
+            Position = @"PSL.2",
+            Name = @"Payer Product/Service Line Item Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique Product/Service Line Item Number assigned by the Payer Application.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.2",
-                            Type = @"Field",
-                            Position = @"PSL.2",
-                            Name = @"Payer Product/Service Line Item Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique Product/Service Line Item Number assigned by the Payer Application.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.2.1",
                             Type = @"Component",
@@ -224,43 +266,100 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _payerProductServiceLineItemNumber = new HL7V271Field
+        {
+            field = message[@"PSL"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payerProductServiceLineItemNumber.field.FieldRepetitions != null && _payerProductServiceLineItemNumber.field.FieldRepetitions.Count > 0)
+        {
+            _payerProductServiceLineItemNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_payerProductServiceLineItemNumber, fieldData);
+        }
+
+        return _payerProductServiceLineItemNumber;
+    } 
+}
+
+internal HL7V271Field _productServiceLineItemSequenceNumber;
+
+public HL7V271Field ProductServiceLineItemSequenceNumber
+{
+    get
+    {
+        if (_productServiceLineItemSequenceNumber != null)
+        {
+            return _productServiceLineItemSequenceNumber;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.3",
+            Type = @"Field",
+            Position = @"PSL.3",
+            Name = @"Product/Service Line Item Sequence Number",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique sequence number for the Product/Service Line Item – starts with 1, then 2, etc. for each unique Product/Service Line Item in this Invoice.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _productServiceLineItemSequenceNumber = new HL7V271Field
+        {
+            field = message[@"PSL"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceLineItemSequenceNumber.field.FieldRepetitions != null && _productServiceLineItemSequenceNumber.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceLineItemSequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceLineItemSequenceNumber, fieldData);
+        }
+
+        return _productServiceLineItemSequenceNumber;
+    } 
+}
+
+internal HL7V271Field _providerTrackingId;
+
+public HL7V271Field ProviderTrackingId
+{
+    get
+    {
+        if (_providerTrackingId != null)
+        {
+            return _providerTrackingId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.4",
+            Type = @"Field",
+            Position = @"PSL.4",
+            Name = @"Provider Tracking Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Identifier for this Product/Service Line Item assigned by the Provider Application. This will be echoed on all interactions between participants for this Product/Service Line Item.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.3",
-                            Type = @"Field",
-                            Position = @"PSL.3",
-                            Name = @"Product/Service Line Item Sequence Number",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique sequence number for the Product/Service Line Item – starts with 1, then 2, etc. for each unique Product/Service Line Item in this Invoice.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.4",
-                            Type = @"Field",
-                            Position = @"PSL.4",
-                            Name = @"Provider Tracking Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identifier for this Product/Service Line Item assigned by the Provider Application. This will be echoed on all interactions between participants for this Product/Service Line Item.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.4.1",
                             Type = @"Component",
@@ -338,25 +437,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerTrackingId = new HL7V271Field
+        {
+            field = message[@"PSL"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerTrackingId.field.FieldRepetitions != null && _providerTrackingId.field.FieldRepetitions.Count > 0)
+        {
+            _providerTrackingId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_providerTrackingId, fieldData);
+        }
+
+        return _providerTrackingId;
+    } 
+}
+
+internal HL7V271Field _payerTrackingId;
+
+public HL7V271Field PayerTrackingId
+{
+    get
+    {
+        if (_payerTrackingId != null)
+        {
+            return _payerTrackingId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.5",
+            Type = @"Field",
+            Position = @"PSL.5",
+            Name = @"Payer Tracking Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Identifier for this Product/Service Line Item assigned by the Payer Application. This will be echoed on all interactions between participants for this Product/Service Line Item.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.5",
-                            Type = @"Field",
-                            Position = @"PSL.5",
-                            Name = @"Payer Tracking Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identifier for this Product/Service Line Item assigned by the Payer Application. This will be echoed on all interactions between participants for this Product/Service Line Item.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.5.1",
                             Type = @"Component",
@@ -434,25 +563,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _payerTrackingId = new HL7V271Field
+        {
+            field = message[@"PSL"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payerTrackingId.field.FieldRepetitions != null && _payerTrackingId.field.FieldRepetitions.Count > 0)
+        {
+            _payerTrackingId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_payerTrackingId, fieldData);
+        }
+
+        return _payerTrackingId;
+    } 
+}
+
+internal HL7V271Field _productServiceLineItemStatus;
+
+public HL7V271Field ProductServiceLineItemStatus
+{
+    get
+    {
+        if (_productServiceLineItemStatus != null)
+        {
+            return _productServiceLineItemStatus;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.6",
+            Type = @"Field",
+            Position = @"PSL.6",
+            Name = @"Product/Service Line Item Status",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0559",
+            TableName = @"Product/Service Status",
+            Description = @"Processing status for the Product/Service Code.  Refer to User-defined Table 0559 – Product/Service Status for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.6",
-                            Type = @"Field",
-                            Position = @"PSL.6",
-                            Name = @"Product/Service Line Item Status",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0559",
-                            TableName = @"Product/Service Status",
-                            Description = @"Processing status for the Product/Service Code.  Refer to User-defined Table 0559 – Product/Service Status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.6.1",
                             Type = @"Component",
@@ -878,25 +1037,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _productServiceLineItemStatus = new HL7V271Field
+        {
+            field = message[@"PSL"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceLineItemStatus.field.FieldRepetitions != null && _productServiceLineItemStatus.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceLineItemStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceLineItemStatus, fieldData);
+        }
+
+        return _productServiceLineItemStatus;
+    } 
+}
+
+internal HL7V271Field _productServiceCode;
+
+public HL7V271Field ProductServiceCode
+{
+    get
+    {
+        if (_productServiceCode != null)
+        {
+            return _productServiceCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.7",
+            Type = @"Field",
+            Position = @"PSL.7",
+            Name = @"Product/Service Code",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0879",
+            TableName = @"Product/Service Code",
+            Description = @"Code describing what service was delivered/received.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.7",
-                            Type = @"Field",
-                            Position = @"PSL.7",
-                            Name = @"Product/Service Code",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0879",
-                            TableName = @"Product/Service Code",
-                            Description = @"Code describing what service was delivered/received.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.7.1",
                             Type = @"Component",
@@ -1322,25 +1511,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _productServiceCode = new HL7V271Field
+        {
+            field = message[@"PSL"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceCode.field.FieldRepetitions != null && _productServiceCode.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceCode, fieldData);
+        }
+
+        return _productServiceCode;
+    } 
+}
+
+internal HL7V271Field _productServiceCodeModifier;
+
+public HL7V271Field ProductServiceCodeModifier
+{
+    get
+    {
+        if (_productServiceCodeModifier != null)
+        {
+            return _productServiceCodeModifier;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.8",
+            Type = @"Field",
+            Position = @"PSL.8",
+            Name = @"Product/Service Code Modifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0880",
+            TableName = @"Product/Service Code Modifier",
+            Description = @"Additional optional modifier(s) for the Product/Service Code (e.g., after hours – evening, after hours – weekend); repeats up to 5 times.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.8",
-                            Type = @"Field",
-                            Position = @"PSL.8",
-                            Name = @"Product/Service Code Modifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0880",
-                            TableName = @"Product/Service Code Modifier",
-                            Description = @"Additional optional modifier(s) for the Product/Service Code (e.g., after hours – evening, after hours – weekend); repeats up to 5 times.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.8.1",
                             Type = @"Component",
@@ -1766,79 +1985,190 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _productServiceCodeModifier = new HL7V271Field
+        {
+            field = message[@"PSL"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceCodeModifier.field.FieldRepetitions != null && _productServiceCodeModifier.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceCodeModifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceCodeModifier, fieldData);
+        }
+
+        return _productServiceCodeModifier;
+    } 
+}
+
+internal HL7V271Field _productServiceCodeDescription;
+
+public HL7V271Field ProductServiceCodeDescription
+{
+    get
+    {
+        if (_productServiceCodeDescription != null)
+        {
+            return _productServiceCodeDescription;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.9",
+            Type = @"Field",
+            Position = @"PSL.9",
+            Name = @"Product/Service Code Description",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Text describing Product/Service Code in PSL.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _productServiceCodeDescription = new HL7V271Field
+        {
+            field = message[@"PSL"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceCodeDescription.field.FieldRepetitions != null && _productServiceCodeDescription.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceCodeDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceCodeDescription, fieldData);
+        }
+
+        return _productServiceCodeDescription;
+    } 
+}
+
+internal HL7V271Field _productServiceEffectiveDate;
+
+public HL7V271Field ProductServiceEffectiveDate
+{
+    get
+    {
+        if (_productServiceEffectiveDate != null)
+        {
+            return _productServiceEffectiveDate;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.10",
+            Type = @"Field",
+            Position = @"PSL.10",
+            Name = @"Product/Service Effective Date",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"[ Start ] Date/Time product/service was delivered/received.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _productServiceEffectiveDate = new HL7V271Field
+        {
+            field = message[@"PSL"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceEffectiveDate.field.FieldRepetitions != null && _productServiceEffectiveDate.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceEffectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceEffectiveDate, fieldData);
+        }
+
+        return _productServiceEffectiveDate;
+    } 
+}
+
+internal HL7V271Field _productServiceExpirationDate;
+
+public HL7V271Field ProductServiceExpirationDate
+{
+    get
+    {
+        if (_productServiceExpirationDate != null)
+        {
+            return _productServiceExpirationDate;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.11",
+            Type = @"Field",
+            Position = @"PSL.11",
+            Name = @"Product/Service Expiration Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"[ End ] Date/Time product/service was delivered/received.  If specified, must be greater than or equal to Product/Service Effective Date.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _productServiceExpirationDate = new HL7V271Field
+        {
+            field = message[@"PSL"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceExpirationDate.field.FieldRepetitions != null && _productServiceExpirationDate.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceExpirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceExpirationDate, fieldData);
+        }
+
+        return _productServiceExpirationDate;
+    } 
+}
+
+internal HL7V271Field _productServiceQuantity;
+
+public HL7V271Field ProductServiceQuantity
+{
+    get
+    {
+        if (_productServiceQuantity != null)
+        {
+            return _productServiceQuantity;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.12",
+            Type = @"Field",
+            Position = @"PSL.12",
+            Name = @"Product/Service Quantity",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"Amount that has been negotiated for this Product/Service Code on PSL between a Provider and Payer for each unit. Refer to User-defined Table 0560 – Quantity Units for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.9",
-                            Type = @"Field",
-                            Position = @"PSL.9",
-                            Name = @"Product/Service Code Description",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Text describing Product/Service Code in PSL.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.10",
-                            Type = @"Field",
-                            Position = @"PSL.10",
-                            Name = @"Product/Service Effective Date",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"[ Start ] Date/Time product/service was delivered/received.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.11",
-                            Type = @"Field",
-                            Position = @"PSL.11",
-                            Name = @"Product/Service Expiration Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"[ End ] Date/Time product/service was delivered/received.  If specified, must be greater than or equal to Product/Service Effective Date.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.12",
-                            Type = @"Field",
-                            Position = @"PSL.12",
-                            Name = @"Product/Service Quantity",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Amount that has been negotiated for this Product/Service Code on PSL between a Provider and Payer for each unit. Refer to User-defined Table 0560 – Quantity Units for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.12.1",
                             Type = @"Component",
@@ -2298,30 +2628,60 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.13",
-                            Type = @"Field",
-                            Position = @"PSL.13",
-                            Name = @"Product/Service Unit Cost",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the cost per unit either in monetary amount or in points.
+                        }
+        }
+
+        _productServiceQuantity = new HL7V271Field
+        {
+            field = message[@"PSL"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceQuantity.field.FieldRepetitions != null && _productServiceQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceQuantity, fieldData);
+        }
+
+        return _productServiceQuantity;
+    } 
+}
+
+internal HL7V271Field _productServiceUnitCost;
+
+public HL7V271Field ProductServiceUnitCost
+{
+    get
+    {
+        if (_productServiceUnitCost != null)
+        {
+            return _productServiceUnitCost;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.13",
+            Type = @"Field",
+            Position = @"PSL.13",
+            Name = @"Product/Service Unit Cost",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the cost per unit either in monetary amount or in points.
 
 Examples:
 1. Qty * cost/unit = gross amount
 2. Qty * cost/unit * factor = gross amount
 3. Qty * cost/point * factor * points = gross amount",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.13.1",
                             Type = @"Component",
@@ -2896,43 +3256,100 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _productServiceUnitCost = new HL7V271Field
+        {
+            field = message[@"PSL"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceUnitCost.field.FieldRepetitions != null && _productServiceUnitCost.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceUnitCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceUnitCost, fieldData);
+        }
+
+        return _productServiceUnitCost;
+    } 
+}
+
+internal HL7V271Field _numberOfItemsPerUnit;
+
+public HL7V271Field NumberOfItemsPerUnit
+{
+    get
+    {
+        if (_numberOfItemsPerUnit != null)
+        {
+            return _numberOfItemsPerUnit;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.14",
+            Type = @"Field",
+            Position = @"PSL.14",
+            Name = @"Number Of Items Per Unit",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Number of items in each unit – for Services, this should be set to 1.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _numberOfItemsPerUnit = new HL7V271Field
+        {
+            field = message[@"PSL"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_numberOfItemsPerUnit.field.FieldRepetitions != null && _numberOfItemsPerUnit.field.FieldRepetitions.Count > 0)
+        {
+            _numberOfItemsPerUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_numberOfItemsPerUnit, fieldData);
+        }
+
+        return _numberOfItemsPerUnit;
+    } 
+}
+
+internal HL7V271Field _productServiceGrossAmount;
+
+public HL7V271Field ProductServiceGrossAmount
+{
+    get
+    {
+        if (_productServiceGrossAmount != null)
+        {
+            return _productServiceGrossAmount;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.15",
+            Type = @"Field",
+            Position = @"PSL.15",
+            Name = @"Product/Service Gross Amount",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"= Product/Service Quantity * Product/Service Unit Cost",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.14",
-                            Type = @"Field",
-                            Position = @"PSL.14",
-                            Name = @"Number Of Items Per Unit",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Number of items in each unit – for Services, this should be set to 1.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.15",
-                            Type = @"Field",
-                            Position = @"PSL.15",
-                            Name = @"Product/Service Gross Amount",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"= Product/Service Quantity * Product/Service Unit Cost",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.15.1",
                             Type = @"Component",
@@ -3507,26 +3924,56 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.16",
-                            Type = @"Field",
-                            Position = @"PSL.16",
-                            Name = @"Product/Service Billed Amount",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Amount that is being billed for this Product/Service Code on PSL, = Product/Service Gross Amount + sum of all Product/Service Adjustments on ADJ for this Product/Service Line Item.
+                        }
+        }
+
+        _productServiceGrossAmount = new HL7V271Field
+        {
+            field = message[@"PSL"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceGrossAmount.field.FieldRepetitions != null && _productServiceGrossAmount.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceGrossAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceGrossAmount, fieldData);
+        }
+
+        return _productServiceGrossAmount;
+    } 
+}
+
+internal HL7V271Field _productServiceBilledAmount;
+
+public HL7V271Field ProductServiceBilledAmount
+{
+    get
+    {
+        if (_productServiceBilledAmount != null)
+        {
+            return _productServiceBilledAmount;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.16",
+            Type = @"Field",
+            Position = @"PSL.16",
+            Name = @"Product/Service Billed Amount",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Amount that is being billed for this Product/Service Code on PSL, = Product/Service Gross Amount + sum of all Product/Service Adjustments on ADJ for this Product/Service Line Item.
 = Product/Service Gross Amount + sum of all Product/Service Adjustments on ADJ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.16.1",
                             Type = @"Component",
@@ -4101,25 +4548,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _productServiceBilledAmount = new HL7V271Field
+        {
+            field = message[@"PSL"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceBilledAmount.field.FieldRepetitions != null && _productServiceBilledAmount.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceBilledAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceBilledAmount, fieldData);
+        }
+
+        return _productServiceBilledAmount;
+    } 
+}
+
+internal HL7V271Field _productServiceClarificationCodeType;
+
+public HL7V271Field ProductServiceClarificationCodeType
+{
+    get
+    {
+        if (_productServiceClarificationCodeType != null)
+        {
+            return _productServiceClarificationCodeType;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.17",
+            Type = @"Field",
+            Position = @"PSL.17",
+            Name = @"Product/Service Clarification Code Type",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0561",
+            TableName = @"Product/Services Clarification Codes",
+            Description = @"Additional codes describing the Product/Service Code on PSL  – examples are Northern Allowance, Data Center Numbers, Sequence Numbers; repeats with Product/Service Clarification Code Value.  Refer to User-defined Table 0561 – Product/Services Clarification Codes for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.17",
-                            Type = @"Field",
-                            Position = @"PSL.17",
-                            Name = @"Product/Service Clarification Code Type",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0561",
-                            TableName = @"Product/Services Clarification Codes",
-                            Description = @"Additional codes describing the Product/Service Code on PSL  – examples are Northern Allowance, Data Center Numbers, Sequence Numbers; repeats with Product/Service Clarification Code Value.  Refer to User-defined Table 0561 – Product/Services Clarification Codes for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.17.1",
                             Type = @"Component",
@@ -4545,44 +5022,101 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.18",
-                            Type = @"Field",
-                            Position = @"PSL.18",
-                            Name = @"Product/Service Clarification Code Value",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @" Actual value for Product/Service Clarification Code Type (40) – examples are ""Y"", ""N"" for Northern Allowance, an actual number for a Data Center Number; repeats with Product/Service Clarification Code Type.
+                        }
+        }
+
+        _productServiceClarificationCodeType = new HL7V271Field
+        {
+            field = message[@"PSL"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceClarificationCodeType.field.FieldRepetitions != null && _productServiceClarificationCodeType.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceClarificationCodeType.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceClarificationCodeType, fieldData);
+        }
+
+        return _productServiceClarificationCodeType;
+    } 
+}
+
+internal HL7V271Field _productServiceClarificationCodeValue;
+
+public HL7V271Field ProductServiceClarificationCodeValue
+{
+    get
+    {
+        if (_productServiceClarificationCodeValue != null)
+        {
+            return _productServiceClarificationCodeValue;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.18",
+            Type = @"Field",
+            Position = @"PSL.18",
+            Name = @"Product/Service Clarification Code Value",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @" Actual value for Product/Service Clarification Code Type (40) – examples are ""Y"", ""N"" for Northern Allowance, an actual number for a Data Center Number; repeats with Product/Service Clarification Code Type.
 Repeats with Product/Service Clarification Code Type.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _productServiceClarificationCodeValue = new HL7V271Field
+        {
+            field = message[@"PSL"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceClarificationCodeValue.field.FieldRepetitions != null && _productServiceClarificationCodeValue.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceClarificationCodeValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceClarificationCodeValue, fieldData);
+        }
+
+        return _productServiceClarificationCodeValue;
+    } 
+}
+
+internal HL7V271Field _healthDocumentReferenceIdentifier;
+
+public HL7V271Field HealthDocumentReferenceIdentifier
+{
+    get
+    {
+        if (_healthDocumentReferenceIdentifier != null)
+        {
+            return _healthDocumentReferenceIdentifier;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.19",
+            Type = @"Field",
+            Position = @"PSL.19",
+            Name = @"Health Document Reference Identifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Health Documents (electronic or paper) that support this Product/Service Line Item. This includes such health documents as forms used to register a claim with a Payer, reports, medical images, etc.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.19",
-                            Type = @"Field",
-                            Position = @"PSL.19",
-                            Name = @"Health Document Reference Identifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Health Documents (electronic or paper) that support this Product/Service Line Item. This includes such health documents as forms used to register a claim with a Payer, reports, medical images, etc.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.19.1",
                             Type = @"Component",
@@ -4660,25 +5194,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _healthDocumentReferenceIdentifier = new HL7V271Field
+        {
+            field = message[@"PSL"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_healthDocumentReferenceIdentifier.field.FieldRepetitions != null && _healthDocumentReferenceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _healthDocumentReferenceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_healthDocumentReferenceIdentifier, fieldData);
+        }
+
+        return _healthDocumentReferenceIdentifier;
+    } 
+}
+
+internal HL7V271Field _processingConsiderationCode;
+
+public HL7V271Field ProcessingConsiderationCode
+{
+    get
+    {
+        if (_processingConsiderationCode != null)
+        {
+            return _processingConsiderationCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.20",
+            Type = @"Field",
+            Position = @"PSL.20",
+            Name = @"Processing Consideration Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0562",
+            TableName = @"Processing Consideration Codes",
+            Description = @"Codes indicating special processing requested of Payer for this Product/Service Line Item (e.g., hold until paper supporting documentation is received by Payer).  Refer to User-defined Table 0562 – Processing Consideration Codes for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.20",
-                            Type = @"Field",
-                            Position = @"PSL.20",
-                            Name = @"Processing Consideration Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0562",
-                            TableName = @"Processing Consideration Codes",
-                            Description = @"Codes indicating special processing requested of Payer for this Product/Service Line Item (e.g., hold until paper supporting documentation is received by Payer).  Refer to User-defined Table 0562 – Processing Consideration Codes for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.20.1",
                             Type = @"Component",
@@ -5104,43 +5668,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _processingConsiderationCode = new HL7V271Field
+        {
+            field = message[@"PSL"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_processingConsiderationCode.field.FieldRepetitions != null && _processingConsiderationCode.field.FieldRepetitions.Count > 0)
+        {
+            _processingConsiderationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_processingConsiderationCode, fieldData);
+        }
+
+        return _processingConsiderationCode;
+    } 
+}
+
+internal HL7V271Field _restrictedDisclosureIndicator;
+
+public HL7V271Field RestrictedDisclosureIndicator
+{
+    get
+    {
+        if (_restrictedDisclosureIndicator != null)
+        {
+            return _restrictedDisclosureIndicator;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.21",
+            Type = @"Field",
+            Position = @"PSL.21",
+            Name = @"Restricted Disclosure Indicator",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0532",
+            TableName = @"Expanded Yes/no Indicator",
+            Description = @"Set to ""Yes"" if information on this invoice should be treated with increased confidentiality/security. Refer to User-defined Table 0532 – Expanded Yes/No Indicator for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _restrictedDisclosureIndicator = new HL7V271Field
+        {
+            field = message[@"PSL"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_restrictedDisclosureIndicator.field.FieldRepetitions != null && _restrictedDisclosureIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _restrictedDisclosureIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_restrictedDisclosureIndicator, fieldData);
+        }
+
+        return _restrictedDisclosureIndicator;
+    } 
+}
+
+internal HL7V271Field _relatedProductServiceCodeIndicator;
+
+public HL7V271Field RelatedProductServiceCodeIndicator
+{
+    get
+    {
+        if (_relatedProductServiceCodeIndicator != null)
+        {
+            return _relatedProductServiceCodeIndicator;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.22",
+            Type = @"Field",
+            Position = @"PSL.22",
+            Name = @"Related Product/Service Code Indicator",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0879",
+            TableName = @"Product/Service Code",
+            Description = @"Two Product /Service Line Items (PSL-7) may be in a relation to each other. One could be an addition to another. In this case this field contains the Code of PSL-7 of the ""master"" Product/Service Line Item.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.21",
-                            Type = @"Field",
-                            Position = @"PSL.21",
-                            Name = @"Restricted Disclosure Indicator",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0532",
-                            TableName = @"Expanded Yes/no Indicator",
-                            Description = @"Set to ""Yes"" if information on this invoice should be treated with increased confidentiality/security. Refer to User-defined Table 0532 – Expanded Yes/No Indicator for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.22",
-                            Type = @"Field",
-                            Position = @"PSL.22",
-                            Name = @"Related Product/Service Code Indicator",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0879",
-                            TableName = @"Product/Service Code",
-                            Description = @"Two Product /Service Line Items (PSL-7) may be in a relation to each other. One could be an addition to another. In this case this field contains the Code of PSL-7 of the ""master"" Product/Service Line Item.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.22.1",
                             Type = @"Component",
@@ -5566,25 +6187,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _relatedProductServiceCodeIndicator = new HL7V271Field
+        {
+            field = message[@"PSL"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_relatedProductServiceCodeIndicator.field.FieldRepetitions != null && _relatedProductServiceCodeIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _relatedProductServiceCodeIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_relatedProductServiceCodeIndicator, fieldData);
+        }
+
+        return _relatedProductServiceCodeIndicator;
+    } 
+}
+
+internal HL7V271Field _productServiceAmountForPhysician;
+
+public HL7V271Field ProductServiceAmountForPhysician
+{
+    get
+    {
+        if (_productServiceAmountForPhysician != null)
+        {
+            return _productServiceAmountForPhysician;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.23",
+            Type = @"Field",
+            Position = @"PSL.23",
+            Name = @"Product/Service Amount For Physician",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Monetary Amount of product/service item which is for the physician.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.23",
-                            Type = @"Field",
-                            Position = @"PSL.23",
-                            Name = @"Product/Service Amount For Physician",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Monetary Amount of product/service item which is for the physician.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.23.1",
                             Type = @"Component",
@@ -6159,43 +6810,100 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _productServiceAmountForPhysician = new HL7V271Field
+        {
+            field = message[@"PSL"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceAmountForPhysician.field.FieldRepetitions != null && _productServiceAmountForPhysician.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceAmountForPhysician.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceAmountForPhysician, fieldData);
+        }
+
+        return _productServiceAmountForPhysician;
+    } 
+}
+
+internal HL7V271Field _productServiceCostFactor;
+
+public HL7V271Field ProductServiceCostFactor
+{
+    get
+    {
+        if (_productServiceCostFactor != null)
+        {
+            return _productServiceCostFactor;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.24",
+            Type = @"Field",
+            Position = @"PSL.24",
+            Name = @"Product/Service Cost Factor",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Factor to increase the billed amount.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _productServiceCostFactor = new HL7V271Field
+        {
+            field = message[@"PSL"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceCostFactor.field.FieldRepetitions != null && _productServiceCostFactor.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceCostFactor.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_productServiceCostFactor, fieldData);
+        }
+
+        return _productServiceCostFactor;
+    } 
+}
+
+internal HL7V271Field _costCenter;
+
+public HL7V271Field CostCenter
+{
+    get
+    {
+        if (_costCenter != null)
+        {
+            return _costCenter;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.25",
+            Type = @"Field",
+            Position = @"PSL.25",
+            Name = @"Cost Center",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"Cost centers are organizational units or activities that provide goods and services. In this context, it would be the department which delivered the Service/Product Line Item, e.g., Radiology, Emergency Room.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.24",
-                            Type = @"Field",
-                            Position = @"PSL.24",
-                            Name = @"Product/Service Cost Factor",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Factor to increase the billed amount.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.25",
-                            Type = @"Field",
-                            Position = @"PSL.25",
-                            Name = @"Cost Center",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Cost centers are organizational units or activities that provide goods and services. In this context, it would be the department which delivered the Service/Product Line Item, e.g., Radiology, Emergency Room.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.25.1",
                             Type = @"Component",
@@ -7397,25 +8105,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _costCenter = new HL7V271Field
+        {
+            field = message[@"PSL"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_costCenter.field.FieldRepetitions != null && _costCenter.field.FieldRepetitions.Count > 0)
+        {
+            _costCenter.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_costCenter, fieldData);
+        }
+
+        return _costCenter;
+    } 
+}
+
+internal HL7V271Field _billingPeriod;
+
+public HL7V271Field BillingPeriod
+{
+    get
+    {
+        if (_billingPeriod != null)
+        {
+            return _billingPeriod;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.26",
+            Type = @"Field",
+            Position = @"PSL.26",
+            Name = @"Billing Period",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DR",
+            DataTypeName = @"Date/time Range",
+            TableId = null,
+            TableName = null,
+            Description = @"Begin and end of billing period.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.26",
-                            Type = @"Field",
-                            Position = @"PSL.26",
-                            Name = @"Billing Period",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DR",
-                            DataTypeName = @"Date/time Range",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Begin and end of billing period.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.26.1",
                             Type = @"Component",
@@ -7449,61 +8187,145 @@ Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Description = @"The second component contains the latest date/time in the specified range. Note that the DTM (time stamp) data type allows the specification of precision.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _billingPeriod = new HL7V271Field
+        {
+            field = message[@"PSL"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_billingPeriod.field.FieldRepetitions != null && _billingPeriod.field.FieldRepetitions.Count > 0)
+        {
+            _billingPeriod.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_billingPeriod, fieldData);
+        }
+
+        return _billingPeriod;
+    } 
+}
+
+internal HL7V271Field _daysWithoutBilling;
+
+public HL7V271Field DaysWithoutBilling
+{
+    get
+    {
+        if (_daysWithoutBilling != null)
+        {
+            return _daysWithoutBilling;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.27",
+            Type = @"Field",
+            Position = @"PSL.27",
+            Name = @"Days Without Billing",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Number of Days for which no invoice is created.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _daysWithoutBilling = new HL7V271Field
+        {
+            field = message[@"PSL"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_daysWithoutBilling.field.FieldRepetitions != null && _daysWithoutBilling.field.FieldRepetitions.Count > 0)
+        {
+            _daysWithoutBilling.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_daysWithoutBilling, fieldData);
+        }
+
+        return _daysWithoutBilling;
+    } 
+}
+
+internal HL7V271Field _sessionno;
+
+public HL7V271Field Sessionno
+{
+    get
+    {
+        if (_sessionno != null)
+        {
+            return _sessionno;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.28",
+            Type = @"Field",
+            Position = @"PSL.28",
+            Name = @"Session-no",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Several line items may be grouped to a session.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sessionno = new HL7V271Field
+        {
+            field = message[@"PSL"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sessionno.field.FieldRepetitions != null && _sessionno.field.FieldRepetitions.Count > 0)
+        {
+            _sessionno.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_sessionno, fieldData);
+        }
+
+        return _sessionno;
+    } 
+}
+
+internal HL7V271Field _executingPhysicianId;
+
+public HL7V271Field ExecutingPhysicianId
+{
+    get
+    {
+        if (_executingPhysicianId != null)
+        {
+            return _executingPhysicianId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.29",
+            Type = @"Field",
+            Position = @"PSL.29",
+            Name = @"Executing Physician Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"ID of the physician who is providing the Service, e.g., executing the radiology-exam (EAN ID = European Article Numbering).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.27",
-                            Type = @"Field",
-                            Position = @"PSL.27",
-                            Name = @"Days Without Billing",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Number of Days for which no invoice is created.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.28",
-                            Type = @"Field",
-                            Position = @"PSL.28",
-                            Name = @"Session-no",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Several line items may be grouped to a session.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.29",
-                            Type = @"Field",
-                            Position = @"PSL.29",
-                            Name = @"Executing Physician Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"ID of the physician who is providing the Service, e.g., executing the radiology-exam (EAN ID = European Article Numbering).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.29.1",
                             Type = @"Component",
@@ -9902,25 +10724,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _executingPhysicianId = new HL7V271Field
+        {
+            field = message[@"PSL"][29],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_executingPhysicianId.field.FieldRepetitions != null && _executingPhysicianId.field.FieldRepetitions.Count > 0)
+        {
+            _executingPhysicianId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_executingPhysicianId, fieldData);
+        }
+
+        return _executingPhysicianId;
+    } 
+}
+
+internal HL7V271Field _responsiblePhysicianId;
+
+public HL7V271Field ResponsiblePhysicianId
+{
+    get
+    {
+        if (_responsiblePhysicianId != null)
+        {
+            return _responsiblePhysicianId;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.30",
+            Type = @"Field",
+            Position = @"PSL.30",
+            Name = @"Responsible Physician Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"ID of the physician who is responsible for the Service.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.30",
-                            Type = @"Field",
-                            Position = @"PSL.30",
-                            Name = @"Responsible Physician Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"ID of the physician who is responsible for the Service.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.30.1",
                             Type = @"Component",
@@ -12319,25 +13171,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _responsiblePhysicianId = new HL7V271Field
+        {
+            field = message[@"PSL"][30],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_responsiblePhysicianId.field.FieldRepetitions != null && _responsiblePhysicianId.field.FieldRepetitions.Count > 0)
+        {
+            _responsiblePhysicianId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_responsiblePhysicianId, fieldData);
+        }
+
+        return _responsiblePhysicianId;
+    } 
+}
+
+internal HL7V271Field _roleExecutingPhysician;
+
+public HL7V271Field RoleExecutingPhysician
+{
+    get
+    {
+        if (_roleExecutingPhysician != null)
+        {
+            return _roleExecutingPhysician;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.31",
+            Type = @"Field",
+            Position = @"PSL.31",
+            Name = @"Role Executing Physician",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0881",
+            TableName = @"Role Executing Physician",
+            Description = @"Account role of the physician, for example only billing for the professional part, the technical part or both.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.31",
-                            Type = @"Field",
-                            Position = @"PSL.31",
-                            Name = @"Role Executing Physician",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0881",
-                            TableName = @"Role Executing Physician",
-                            Description = @"Account role of the physician, for example only billing for the professional part, the technical part or both.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.31.1",
                             Type = @"Component",
@@ -12763,25 +13645,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _roleExecutingPhysician = new HL7V271Field
+        {
+            field = message[@"PSL"][31],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_roleExecutingPhysician.field.FieldRepetitions != null && _roleExecutingPhysician.field.FieldRepetitions.Count > 0)
+        {
+            _roleExecutingPhysician.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_roleExecutingPhysician, fieldData);
+        }
+
+        return _roleExecutingPhysician;
+    } 
+}
+
+internal HL7V271Field _medicalRoleExecutingPhysician;
+
+public HL7V271Field MedicalRoleExecutingPhysician
+{
+    get
+    {
+        if (_medicalRoleExecutingPhysician != null)
+        {
+            return _medicalRoleExecutingPhysician;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.32",
+            Type = @"Field",
+            Position = @"PSL.32",
+            Name = @"Medical Role Executing Physician",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0882",
+            TableName = @"Medical Role Executing Physician",
+            Description = @"The role of the Physician (""self-employed"" or ""employed"").",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.32",
-                            Type = @"Field",
-                            Position = @"PSL.32",
-                            Name = @"Medical Role Executing Physician",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0882",
-                            TableName = @"Medical Role Executing Physician",
-                            Description = @"The role of the Physician (""self-employed"" or ""employed"").",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.32.1",
                             Type = @"Component",
@@ -13207,25 +14119,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _medicalRoleExecutingPhysician = new HL7V271Field
+        {
+            field = message[@"PSL"][32],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_medicalRoleExecutingPhysician.field.FieldRepetitions != null && _medicalRoleExecutingPhysician.field.FieldRepetitions.Count > 0)
+        {
+            _medicalRoleExecutingPhysician.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_medicalRoleExecutingPhysician, fieldData);
+        }
+
+        return _medicalRoleExecutingPhysician;
+    } 
+}
+
+internal HL7V271Field _sideOfBody;
+
+public HL7V271Field SideOfBody
+{
+    get
+    {
+        if (_sideOfBody != null)
+        {
+            return _sideOfBody;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.33",
+            Type = @"Field",
+            Position = @"PSL.33",
+            Name = @"Side Of Body",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0894",
+            TableName = @"Side of body",
+            Description = @"Left / right",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.33",
-                            Type = @"Field",
-                            Position = @"PSL.33",
-                            Name = @"Side Of Body",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0894",
-                            TableName = @"Side of body",
-                            Description = @"Left / right",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.33.1",
                             Type = @"Component",
@@ -13651,43 +14593,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _sideOfBody = new HL7V271Field
+        {
+            field = message[@"PSL"][33],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sideOfBody.field.FieldRepetitions != null && _sideOfBody.field.FieldRepetitions.Count > 0)
+        {
+            _sideOfBody.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_sideOfBody, fieldData);
+        }
+
+        return _sideOfBody;
+    } 
+}
+
+internal HL7V271Field _numberOfTpsPp;
+
+public HL7V271Field NumberOfTpsPp
+{
+    get
+    {
+        if (_numberOfTpsPp != null)
+        {
+            return _numberOfTpsPp;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.34",
+            Type = @"Field",
+            Position = @"PSL.34",
+            Name = @"Number Of Tp's Pp",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Cost of the service ""professional part"" expressed in ""points"".",
+            Sample = @"",
+            Fields = null
+        }
+
+        _numberOfTpsPp = new HL7V271Field
+        {
+            field = message[@"PSL"][34],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_numberOfTpsPp.field.FieldRepetitions != null && _numberOfTpsPp.field.FieldRepetitions.Count > 0)
+        {
+            _numberOfTpsPp.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_numberOfTpsPp, fieldData);
+        }
+
+        return _numberOfTpsPp;
+    } 
+}
+
+internal HL7V271Field _tpvaluePp;
+
+public HL7V271Field TpvaluePp
+{
+    get
+    {
+        if (_tpvaluePp != null)
+        {
+            return _tpvaluePp;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.35",
+            Type = @"Field",
+            Position = @"PSL.35",
+            Name = @"Tp-value Pp",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Monetary Value of one ""point"" for the professional part of the service.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.34",
-                            Type = @"Field",
-                            Position = @"PSL.34",
-                            Name = @"Number Of Tp's Pp",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Cost of the service ""professional part"" expressed in ""points"".",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.35",
-                            Type = @"Field",
-                            Position = @"PSL.35",
-                            Name = @"Tp-value Pp",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Monetary Value of one ""point"" for the professional part of the service.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.35.1",
                             Type = @"Component",
@@ -14262,61 +15261,145 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _tpvaluePp = new HL7V271Field
+        {
+            field = message[@"PSL"][35],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_tpvaluePp.field.FieldRepetitions != null && _tpvaluePp.field.FieldRepetitions.Count > 0)
+        {
+            _tpvaluePp.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_tpvaluePp, fieldData);
+        }
+
+        return _tpvaluePp;
+    } 
+}
+
+internal HL7V271Field _internalScalingFactorPp;
+
+public HL7V271Field InternalScalingFactorPp
+{
+    get
+    {
+        if (_internalScalingFactorPp != null)
+        {
+            return _internalScalingFactorPp;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.36",
+            Type = @"Field",
+            Position = @"PSL.36",
+            Name = @"Internal Scaling Factor Pp",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Internal Scaling Factor for the amount of the professional part of the service.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _internalScalingFactorPp = new HL7V271Field
+        {
+            field = message[@"PSL"][36],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_internalScalingFactorPp.field.FieldRepetitions != null && _internalScalingFactorPp.field.FieldRepetitions.Count > 0)
+        {
+            _internalScalingFactorPp.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_internalScalingFactorPp, fieldData);
+        }
+
+        return _internalScalingFactorPp;
+    } 
+}
+
+internal HL7V271Field _externalScalingFactorPp;
+
+public HL7V271Field ExternalScalingFactorPp
+{
+    get
+    {
+        if (_externalScalingFactorPp != null)
+        {
+            return _externalScalingFactorPp;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.37",
+            Type = @"Field",
+            Position = @"PSL.37",
+            Name = @"External Scaling Factor Pp",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"External Scaling Factor for the amount of the professional part of the service.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _externalScalingFactorPp = new HL7V271Field
+        {
+            field = message[@"PSL"][37],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_externalScalingFactorPp.field.FieldRepetitions != null && _externalScalingFactorPp.field.FieldRepetitions.Count > 0)
+        {
+            _externalScalingFactorPp.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_externalScalingFactorPp, fieldData);
+        }
+
+        return _externalScalingFactorPp;
+    } 
+}
+
+internal HL7V271Field _amountPp;
+
+public HL7V271Field AmountPp
+{
+    get
+    {
+        if (_amountPp != null)
+        {
+            return _amountPp;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.38",
+            Type = @"Field",
+            Position = @"PSL.38",
+            Name = @"Amount Pp",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Total Amount for the professional part of this service.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.36",
-                            Type = @"Field",
-                            Position = @"PSL.36",
-                            Name = @"Internal Scaling Factor Pp",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Internal Scaling Factor for the amount of the professional part of the service.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.37",
-                            Type = @"Field",
-                            Position = @"PSL.37",
-                            Name = @"External Scaling Factor Pp",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"External Scaling Factor for the amount of the professional part of the service.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.38",
-                            Type = @"Field",
-                            Position = @"PSL.38",
-                            Name = @"Amount Pp",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Total Amount for the professional part of this service.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.38.1",
                             Type = @"Component",
@@ -14891,43 +15974,100 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _amountPp = new HL7V271Field
+        {
+            field = message[@"PSL"][38],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_amountPp.field.FieldRepetitions != null && _amountPp.field.FieldRepetitions.Count > 0)
+        {
+            _amountPp.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_amountPp, fieldData);
+        }
+
+        return _amountPp;
+    } 
+}
+
+internal HL7V271Field _numberOfTpsTechnicalPart;
+
+public HL7V271Field NumberOfTpsTechnicalPart
+{
+    get
+    {
+        if (_numberOfTpsTechnicalPart != null)
+        {
+            return _numberOfTpsTechnicalPart;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.39",
+            Type = @"Field",
+            Position = @"PSL.39",
+            Name = @"Number Of Tp's Technical Part",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Cost of the service (Technical Part) expressed in ""points"".",
+            Sample = @"",
+            Fields = null
+        }
+
+        _numberOfTpsTechnicalPart = new HL7V271Field
+        {
+            field = message[@"PSL"][39],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_numberOfTpsTechnicalPart.field.FieldRepetitions != null && _numberOfTpsTechnicalPart.field.FieldRepetitions.Count > 0)
+        {
+            _numberOfTpsTechnicalPart.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_numberOfTpsTechnicalPart, fieldData);
+        }
+
+        return _numberOfTpsTechnicalPart;
+    } 
+}
+
+internal HL7V271Field _tpvalueTechnicalPart;
+
+public HL7V271Field TpvalueTechnicalPart
+{
+    get
+    {
+        if (_tpvalueTechnicalPart != null)
+        {
+            return _tpvalueTechnicalPart;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.40",
+            Type = @"Field",
+            Position = @"PSL.40",
+            Name = @"Tp-value Technical Part",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Monetary Value of one ""point"" for the technical part of the service.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.39",
-                            Type = @"Field",
-                            Position = @"PSL.39",
-                            Name = @"Number Of Tp's Technical Part",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Cost of the service (Technical Part) expressed in ""points"".",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.40",
-                            Type = @"Field",
-                            Position = @"PSL.40",
-                            Name = @"Tp-value Technical Part",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Monetary Value of one ""point"" for the technical part of the service.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.40.1",
                             Type = @"Component",
@@ -15502,61 +16642,145 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _tpvalueTechnicalPart = new HL7V271Field
+        {
+            field = message[@"PSL"][40],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_tpvalueTechnicalPart.field.FieldRepetitions != null && _tpvalueTechnicalPart.field.FieldRepetitions.Count > 0)
+        {
+            _tpvalueTechnicalPart.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_tpvalueTechnicalPart, fieldData);
+        }
+
+        return _tpvalueTechnicalPart;
+    } 
+}
+
+internal HL7V271Field _internalScalingFactorTechnicalPart;
+
+public HL7V271Field InternalScalingFactorTechnicalPart
+{
+    get
+    {
+        if (_internalScalingFactorTechnicalPart != null)
+        {
+            return _internalScalingFactorTechnicalPart;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.41",
+            Type = @"Field",
+            Position = @"PSL.41",
+            Name = @"Internal Scaling Factor Technical Part",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Internal Scaling Factor for the amount of the technical part of the service.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _internalScalingFactorTechnicalPart = new HL7V271Field
+        {
+            field = message[@"PSL"][41],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_internalScalingFactorTechnicalPart.field.FieldRepetitions != null && _internalScalingFactorTechnicalPart.field.FieldRepetitions.Count > 0)
+        {
+            _internalScalingFactorTechnicalPart.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_internalScalingFactorTechnicalPart, fieldData);
+        }
+
+        return _internalScalingFactorTechnicalPart;
+    } 
+}
+
+internal HL7V271Field _externalScalingFactorTechnicalPart;
+
+public HL7V271Field ExternalScalingFactorTechnicalPart
+{
+    get
+    {
+        if (_externalScalingFactorTechnicalPart != null)
+        {
+            return _externalScalingFactorTechnicalPart;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.42",
+            Type = @"Field",
+            Position = @"PSL.42",
+            Name = @"External Scaling Factor Technical Part",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"External Scaling Factor for the amount of the technical part of the service.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _externalScalingFactorTechnicalPart = new HL7V271Field
+        {
+            field = message[@"PSL"][42],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_externalScalingFactorTechnicalPart.field.FieldRepetitions != null && _externalScalingFactorTechnicalPart.field.FieldRepetitions.Count > 0)
+        {
+            _externalScalingFactorTechnicalPart.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_externalScalingFactorTechnicalPart, fieldData);
+        }
+
+        return _externalScalingFactorTechnicalPart;
+    } 
+}
+
+internal HL7V271Field _amountTechnicalPart;
+
+public HL7V271Field AmountTechnicalPart
+{
+    get
+    {
+        if (_amountTechnicalPart != null)
+        {
+            return _amountTechnicalPart;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.43",
+            Type = @"Field",
+            Position = @"PSL.43",
+            Name = @"Amount Technical Part",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Total Amount for the technical part of this service.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.41",
-                            Type = @"Field",
-                            Position = @"PSL.41",
-                            Name = @"Internal Scaling Factor Technical Part",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Internal Scaling Factor for the amount of the technical part of the service.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.42",
-                            Type = @"Field",
-                            Position = @"PSL.42",
-                            Name = @"External Scaling Factor Technical Part",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"External Scaling Factor for the amount of the technical part of the service.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.43",
-                            Type = @"Field",
-                            Position = @"PSL.43",
-                            Name = @"Amount Technical Part",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Total Amount for the technical part of this service.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.43.1",
                             Type = @"Component",
@@ -16131,25 +17355,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _amountTechnicalPart = new HL7V271Field
+        {
+            field = message[@"PSL"][43],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_amountTechnicalPart.field.FieldRepetitions != null && _amountTechnicalPart.field.FieldRepetitions.Count > 0)
+        {
+            _amountTechnicalPart.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_amountTechnicalPart, fieldData);
+        }
+
+        return _amountTechnicalPart;
+    } 
+}
+
+internal HL7V271Field _totalAmountProfessionalPart+TechnicalPart;
+
+public HL7V271Field TotalAmountProfessionalPart+TechnicalPart
+{
+    get
+    {
+        if (_totalAmountProfessionalPart+TechnicalPart != null)
+        {
+            return _totalAmountProfessionalPart+TechnicalPart;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"PSL.44",
+            Type = @"Field",
+            Position = @"PSL.44",
+            Name = @"Total Amount Professional Part + Technical Part",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Total Amount of the cost of this service (Professional plus technical part)",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSL.44",
-                            Type = @"Field",
-                            Position = @"PSL.44",
-                            Name = @"Total Amount Professional Part + Technical Part",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Total Amount of the cost of this service (Professional plus technical part)",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSL.44.1",
                             Type = @"Component",
@@ -16724,1914 +17978,39 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.45",
-                            Type = @"Field",
-                            Position = @"PSL.45",
-                            Name = @"Vat-rate",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"VAT–Rate Applied on the total amount of this service.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.46",
-                            Type = @"Field",
-                            Position = @"PSL.46",
-                            Name = @"Main-service",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Main service.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.47",
-                            Type = @"Field",
-                            Position = @"PSL.47",
-                            Name = @"Validation",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"Service line item has passed an approved validator software (yes/no).  For reason see PSL-48.  Refer to HL7 Table 0136 – Yes/No Indicator for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSL.48",
-                            Type = @"Field",
-                            Position = @"PSL.48",
-                            Name = @"Comment",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Reason why the service line item has not passed the validator software.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentPSL(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field providerProductServiceLineItemNumber;
-
-public HL7V271Field ProviderProductServiceLineItemNumber
-{
-    get
-    {
-        if (providerProductServiceLineItemNumber != null)
-        {
-            return providerProductServiceLineItemNumber;
-        }
-
-        providerProductServiceLineItemNumber = new HL7V271Field
-        {
-            field = message[@"PSL"][1],
-            Id = @"PSL.1",
-            Type = @"Field",
-            Position = @"PSL.1",
-            Name = @"Provider Product/Service Line Item Number",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique Product/Service Line Item Number assigned by the Provider Application.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerProductServiceLineItemNumber.field.FieldRepetitions != null && providerProductServiceLineItemNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerProductServiceLineItemNumber.Id));
-            providerProductServiceLineItemNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(providerProductServiceLineItemNumber, fieldData);
-        }
-
-        return providerProductServiceLineItemNumber;
-    } 
-}
-
-internal HL7V271Field payerProductServiceLineItemNumber;
-
-public HL7V271Field PayerProductServiceLineItemNumber
-{
-    get
-    {
-        if (payerProductServiceLineItemNumber != null)
-        {
-            return payerProductServiceLineItemNumber;
-        }
-
-        payerProductServiceLineItemNumber = new HL7V271Field
-        {
-            field = message[@"PSL"][2],
-            Id = @"PSL.2",
-            Type = @"Field",
-            Position = @"PSL.2",
-            Name = @"Payer Product/Service Line Item Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique Product/Service Line Item Number assigned by the Payer Application.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payerProductServiceLineItemNumber.field.FieldRepetitions != null && payerProductServiceLineItemNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payerProductServiceLineItemNumber.Id));
-            payerProductServiceLineItemNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(payerProductServiceLineItemNumber, fieldData);
-        }
-
-        return payerProductServiceLineItemNumber;
-    } 
-}
-
-internal HL7V271Field productServiceLineItemSequenceNumber;
-
-public HL7V271Field ProductServiceLineItemSequenceNumber
-{
-    get
-    {
-        if (productServiceLineItemSequenceNumber != null)
-        {
-            return productServiceLineItemSequenceNumber;
-        }
-
-        productServiceLineItemSequenceNumber = new HL7V271Field
-        {
-            field = message[@"PSL"][3],
-            Id = @"PSL.3",
-            Type = @"Field",
-            Position = @"PSL.3",
-            Name = @"Product/Service Line Item Sequence Number",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique sequence number for the Product/Service Line Item – starts with 1, then 2, etc. for each unique Product/Service Line Item in this Invoice.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceLineItemSequenceNumber.field.FieldRepetitions != null && productServiceLineItemSequenceNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceLineItemSequenceNumber.Id));
-            productServiceLineItemSequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceLineItemSequenceNumber, fieldData);
-        }
-
-        return productServiceLineItemSequenceNumber;
-    } 
-}
-
-internal HL7V271Field providerTrackingId;
-
-public HL7V271Field ProviderTrackingId
-{
-    get
-    {
-        if (providerTrackingId != null)
-        {
-            return providerTrackingId;
-        }
-
-        providerTrackingId = new HL7V271Field
-        {
-            field = message[@"PSL"][4],
-            Id = @"PSL.4",
-            Type = @"Field",
-            Position = @"PSL.4",
-            Name = @"Provider Tracking Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Identifier for this Product/Service Line Item assigned by the Provider Application. This will be echoed on all interactions between participants for this Product/Service Line Item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerTrackingId.field.FieldRepetitions != null && providerTrackingId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerTrackingId.Id));
-            providerTrackingId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(providerTrackingId, fieldData);
-        }
-
-        return providerTrackingId;
-    } 
-}
-
-internal HL7V271Field payerTrackingId;
-
-public HL7V271Field PayerTrackingId
-{
-    get
-    {
-        if (payerTrackingId != null)
-        {
-            return payerTrackingId;
-        }
-
-        payerTrackingId = new HL7V271Field
-        {
-            field = message[@"PSL"][5],
-            Id = @"PSL.5",
-            Type = @"Field",
-            Position = @"PSL.5",
-            Name = @"Payer Tracking Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Identifier for this Product/Service Line Item assigned by the Payer Application. This will be echoed on all interactions between participants for this Product/Service Line Item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payerTrackingId.field.FieldRepetitions != null && payerTrackingId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payerTrackingId.Id));
-            payerTrackingId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(payerTrackingId, fieldData);
-        }
-
-        return payerTrackingId;
-    } 
-}
-
-internal HL7V271Field productServiceLineItemStatus;
-
-public HL7V271Field ProductServiceLineItemStatus
-{
-    get
-    {
-        if (productServiceLineItemStatus != null)
-        {
-            return productServiceLineItemStatus;
-        }
-
-        productServiceLineItemStatus = new HL7V271Field
-        {
-            field = message[@"PSL"][6],
-            Id = @"PSL.6",
-            Type = @"Field",
-            Position = @"PSL.6",
-            Name = @"Product/Service Line Item Status",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0559",
-            TableName = @"Product/Service Status",
-            Description = @"Processing status for the Product/Service Code.  Refer to User-defined Table 0559 – Product/Service Status for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceLineItemStatus.field.FieldRepetitions != null && productServiceLineItemStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceLineItemStatus.Id));
-            productServiceLineItemStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceLineItemStatus, fieldData);
-        }
-
-        return productServiceLineItemStatus;
-    } 
-}
-
-internal HL7V271Field productServiceCode;
-
-public HL7V271Field ProductServiceCode
-{
-    get
-    {
-        if (productServiceCode != null)
-        {
-            return productServiceCode;
-        }
-
-        productServiceCode = new HL7V271Field
-        {
-            field = message[@"PSL"][7],
-            Id = @"PSL.7",
-            Type = @"Field",
-            Position = @"PSL.7",
-            Name = @"Product/Service Code",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0879",
-            TableName = @"Product/Service Code",
-            Description = @"Code describing what service was delivered/received.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceCode.field.FieldRepetitions != null && productServiceCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceCode.Id));
-            productServiceCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceCode, fieldData);
-        }
-
-        return productServiceCode;
-    } 
-}
-
-internal HL7V271Field productServiceCodeModifier;
-
-public HL7V271Field ProductServiceCodeModifier
-{
-    get
-    {
-        if (productServiceCodeModifier != null)
-        {
-            return productServiceCodeModifier;
-        }
-
-        productServiceCodeModifier = new HL7V271Field
-        {
-            field = message[@"PSL"][8],
-            Id = @"PSL.8",
-            Type = @"Field",
-            Position = @"PSL.8",
-            Name = @"Product/Service Code Modifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0880",
-            TableName = @"Product/Service Code Modifier",
-            Description = @"Additional optional modifier(s) for the Product/Service Code (e.g., after hours – evening, after hours – weekend); repeats up to 5 times.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceCodeModifier.field.FieldRepetitions != null && productServiceCodeModifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceCodeModifier.Id));
-            productServiceCodeModifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceCodeModifier, fieldData);
-        }
-
-        return productServiceCodeModifier;
-    } 
-}
-
-internal HL7V271Field productServiceCodeDescription;
-
-public HL7V271Field ProductServiceCodeDescription
-{
-    get
-    {
-        if (productServiceCodeDescription != null)
-        {
-            return productServiceCodeDescription;
-        }
-
-        productServiceCodeDescription = new HL7V271Field
-        {
-            field = message[@"PSL"][9],
-            Id = @"PSL.9",
-            Type = @"Field",
-            Position = @"PSL.9",
-            Name = @"Product/Service Code Description",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Text describing Product/Service Code in PSL.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceCodeDescription.field.FieldRepetitions != null && productServiceCodeDescription.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceCodeDescription.Id));
-            productServiceCodeDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceCodeDescription, fieldData);
-        }
-
-        return productServiceCodeDescription;
-    } 
-}
-
-internal HL7V271Field productServiceEffectiveDate;
-
-public HL7V271Field ProductServiceEffectiveDate
-{
-    get
-    {
-        if (productServiceEffectiveDate != null)
-        {
-            return productServiceEffectiveDate;
-        }
-
-        productServiceEffectiveDate = new HL7V271Field
-        {
-            field = message[@"PSL"][10],
-            Id = @"PSL.10",
-            Type = @"Field",
-            Position = @"PSL.10",
-            Name = @"Product/Service Effective Date",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"[ Start ] Date/Time product/service was delivered/received.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceEffectiveDate.field.FieldRepetitions != null && productServiceEffectiveDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceEffectiveDate.Id));
-            productServiceEffectiveDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceEffectiveDate, fieldData);
-        }
-
-        return productServiceEffectiveDate;
-    } 
-}
-
-internal HL7V271Field productServiceExpirationDate;
-
-public HL7V271Field ProductServiceExpirationDate
-{
-    get
-    {
-        if (productServiceExpirationDate != null)
-        {
-            return productServiceExpirationDate;
-        }
-
-        productServiceExpirationDate = new HL7V271Field
-        {
-            field = message[@"PSL"][11],
-            Id = @"PSL.11",
-            Type = @"Field",
-            Position = @"PSL.11",
-            Name = @"Product/Service Expiration Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"[ End ] Date/Time product/service was delivered/received.  If specified, must be greater than or equal to Product/Service Effective Date.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceExpirationDate.field.FieldRepetitions != null && productServiceExpirationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceExpirationDate.Id));
-            productServiceExpirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceExpirationDate, fieldData);
-        }
-
-        return productServiceExpirationDate;
-    } 
-}
-
-internal HL7V271Field productServiceQuantity;
-
-public HL7V271Field ProductServiceQuantity
-{
-    get
-    {
-        if (productServiceQuantity != null)
-        {
-            return productServiceQuantity;
-        }
-
-        productServiceQuantity = new HL7V271Field
-        {
-            field = message[@"PSL"][12],
-            Id = @"PSL.12",
-            Type = @"Field",
-            Position = @"PSL.12",
-            Name = @"Product/Service Quantity",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"Amount that has been negotiated for this Product/Service Code on PSL between a Provider and Payer for each unit. Refer to User-defined Table 0560 – Quantity Units for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceQuantity.field.FieldRepetitions != null && productServiceQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceQuantity.Id));
-            productServiceQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceQuantity, fieldData);
-        }
-
-        return productServiceQuantity;
-    } 
-}
-
-internal HL7V271Field productServiceUnitCost;
-
-public HL7V271Field ProductServiceUnitCost
-{
-    get
-    {
-        if (productServiceUnitCost != null)
-        {
-            return productServiceUnitCost;
-        }
-
-        productServiceUnitCost = new HL7V271Field
-        {
-            field = message[@"PSL"][13],
-            Id = @"PSL.13",
-            Type = @"Field",
-            Position = @"PSL.13",
-            Name = @"Product/Service Unit Cost",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the cost per unit either in monetary amount or in points.
-
-Examples:
-1. Qty * cost/unit = gross amount
-2. Qty * cost/unit * factor = gross amount
-3. Qty * cost/point * factor * points = gross amount",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceUnitCost.field.FieldRepetitions != null && productServiceUnitCost.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceUnitCost.Id));
-            productServiceUnitCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceUnitCost, fieldData);
-        }
-
-        return productServiceUnitCost;
-    } 
-}
-
-internal HL7V271Field numberOfItemsPerUnit;
-
-public HL7V271Field NumberOfItemsPerUnit
-{
-    get
-    {
-        if (numberOfItemsPerUnit != null)
-        {
-            return numberOfItemsPerUnit;
-        }
-
-        numberOfItemsPerUnit = new HL7V271Field
-        {
-            field = message[@"PSL"][14],
-            Id = @"PSL.14",
-            Type = @"Field",
-            Position = @"PSL.14",
-            Name = @"Number Of Items Per Unit",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Number of items in each unit – for Services, this should be set to 1.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (numberOfItemsPerUnit.field.FieldRepetitions != null && numberOfItemsPerUnit.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfItemsPerUnit.Id));
-            numberOfItemsPerUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(numberOfItemsPerUnit, fieldData);
-        }
-
-        return numberOfItemsPerUnit;
-    } 
-}
-
-internal HL7V271Field productServiceGrossAmount;
-
-public HL7V271Field ProductServiceGrossAmount
-{
-    get
-    {
-        if (productServiceGrossAmount != null)
-        {
-            return productServiceGrossAmount;
-        }
-
-        productServiceGrossAmount = new HL7V271Field
-        {
-            field = message[@"PSL"][15],
-            Id = @"PSL.15",
-            Type = @"Field",
-            Position = @"PSL.15",
-            Name = @"Product/Service Gross Amount",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"= Product/Service Quantity * Product/Service Unit Cost",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceGrossAmount.field.FieldRepetitions != null && productServiceGrossAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceGrossAmount.Id));
-            productServiceGrossAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceGrossAmount, fieldData);
-        }
-
-        return productServiceGrossAmount;
-    } 
-}
-
-internal HL7V271Field productServiceBilledAmount;
-
-public HL7V271Field ProductServiceBilledAmount
-{
-    get
-    {
-        if (productServiceBilledAmount != null)
-        {
-            return productServiceBilledAmount;
-        }
-
-        productServiceBilledAmount = new HL7V271Field
-        {
-            field = message[@"PSL"][16],
-            Id = @"PSL.16",
-            Type = @"Field",
-            Position = @"PSL.16",
-            Name = @"Product/Service Billed Amount",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Amount that is being billed for this Product/Service Code on PSL, = Product/Service Gross Amount + sum of all Product/Service Adjustments on ADJ for this Product/Service Line Item.
-= Product/Service Gross Amount + sum of all Product/Service Adjustments on ADJ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceBilledAmount.field.FieldRepetitions != null && productServiceBilledAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceBilledAmount.Id));
-            productServiceBilledAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceBilledAmount, fieldData);
-        }
-
-        return productServiceBilledAmount;
-    } 
-}
-
-internal HL7V271Field productServiceClarificationCodeType;
-
-public HL7V271Field ProductServiceClarificationCodeType
-{
-    get
-    {
-        if (productServiceClarificationCodeType != null)
-        {
-            return productServiceClarificationCodeType;
-        }
-
-        productServiceClarificationCodeType = new HL7V271Field
-        {
-            field = message[@"PSL"][17],
-            Id = @"PSL.17",
-            Type = @"Field",
-            Position = @"PSL.17",
-            Name = @"Product/Service Clarification Code Type",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0561",
-            TableName = @"Product/Services Clarification Codes",
-            Description = @"Additional codes describing the Product/Service Code on PSL  – examples are Northern Allowance, Data Center Numbers, Sequence Numbers; repeats with Product/Service Clarification Code Value.  Refer to User-defined Table 0561 – Product/Services Clarification Codes for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceClarificationCodeType.field.FieldRepetitions != null && productServiceClarificationCodeType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceClarificationCodeType.Id));
-            productServiceClarificationCodeType.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceClarificationCodeType, fieldData);
-        }
-
-        return productServiceClarificationCodeType;
-    } 
-}
-
-internal HL7V271Field productServiceClarificationCodeValue;
-
-public HL7V271Field ProductServiceClarificationCodeValue
-{
-    get
-    {
-        if (productServiceClarificationCodeValue != null)
-        {
-            return productServiceClarificationCodeValue;
-        }
-
-        productServiceClarificationCodeValue = new HL7V271Field
-        {
-            field = message[@"PSL"][18],
-            Id = @"PSL.18",
-            Type = @"Field",
-            Position = @"PSL.18",
-            Name = @"Product/Service Clarification Code Value",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @" Actual value for Product/Service Clarification Code Type (40) – examples are ""Y"", ""N"" for Northern Allowance, an actual number for a Data Center Number; repeats with Product/Service Clarification Code Type.
-Repeats with Product/Service Clarification Code Type.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceClarificationCodeValue.field.FieldRepetitions != null && productServiceClarificationCodeValue.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceClarificationCodeValue.Id));
-            productServiceClarificationCodeValue.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceClarificationCodeValue, fieldData);
-        }
-
-        return productServiceClarificationCodeValue;
-    } 
-}
-
-internal HL7V271Field healthDocumentReferenceIdentifier;
-
-public HL7V271Field HealthDocumentReferenceIdentifier
-{
-    get
-    {
-        if (healthDocumentReferenceIdentifier != null)
-        {
-            return healthDocumentReferenceIdentifier;
-        }
-
-        healthDocumentReferenceIdentifier = new HL7V271Field
-        {
-            field = message[@"PSL"][19],
-            Id = @"PSL.19",
-            Type = @"Field",
-            Position = @"PSL.19",
-            Name = @"Health Document Reference Identifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Health Documents (electronic or paper) that support this Product/Service Line Item. This includes such health documents as forms used to register a claim with a Payer, reports, medical images, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (healthDocumentReferenceIdentifier.field.FieldRepetitions != null && healthDocumentReferenceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(healthDocumentReferenceIdentifier.Id));
-            healthDocumentReferenceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(healthDocumentReferenceIdentifier, fieldData);
-        }
-
-        return healthDocumentReferenceIdentifier;
-    } 
-}
-
-internal HL7V271Field processingConsiderationCode;
-
-public HL7V271Field ProcessingConsiderationCode
-{
-    get
-    {
-        if (processingConsiderationCode != null)
-        {
-            return processingConsiderationCode;
-        }
-
-        processingConsiderationCode = new HL7V271Field
-        {
-            field = message[@"PSL"][20],
-            Id = @"PSL.20",
-            Type = @"Field",
-            Position = @"PSL.20",
-            Name = @"Processing Consideration Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0562",
-            TableName = @"Processing Consideration Codes",
-            Description = @"Codes indicating special processing requested of Payer for this Product/Service Line Item (e.g., hold until paper supporting documentation is received by Payer).  Refer to User-defined Table 0562 – Processing Consideration Codes for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (processingConsiderationCode.field.FieldRepetitions != null && processingConsiderationCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(processingConsiderationCode.Id));
-            processingConsiderationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(processingConsiderationCode, fieldData);
-        }
-
-        return processingConsiderationCode;
-    } 
-}
-
-internal HL7V271Field restrictedDisclosureIndicator;
-
-public HL7V271Field RestrictedDisclosureIndicator
-{
-    get
-    {
-        if (restrictedDisclosureIndicator != null)
-        {
-            return restrictedDisclosureIndicator;
-        }
-
-        restrictedDisclosureIndicator = new HL7V271Field
-        {
-            field = message[@"PSL"][21],
-            Id = @"PSL.21",
-            Type = @"Field",
-            Position = @"PSL.21",
-            Name = @"Restricted Disclosure Indicator",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0532",
-            TableName = @"Expanded Yes/no Indicator",
-            Description = @"Set to ""Yes"" if information on this invoice should be treated with increased confidentiality/security. Refer to User-defined Table 0532 – Expanded Yes/No Indicator for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (restrictedDisclosureIndicator.field.FieldRepetitions != null && restrictedDisclosureIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(restrictedDisclosureIndicator.Id));
-            restrictedDisclosureIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(restrictedDisclosureIndicator, fieldData);
-        }
-
-        return restrictedDisclosureIndicator;
-    } 
-}
-
-internal HL7V271Field relatedProductServiceCodeIndicator;
-
-public HL7V271Field RelatedProductServiceCodeIndicator
-{
-    get
-    {
-        if (relatedProductServiceCodeIndicator != null)
-        {
-            return relatedProductServiceCodeIndicator;
-        }
-
-        relatedProductServiceCodeIndicator = new HL7V271Field
-        {
-            field = message[@"PSL"][22],
-            Id = @"PSL.22",
-            Type = @"Field",
-            Position = @"PSL.22",
-            Name = @"Related Product/Service Code Indicator",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0879",
-            TableName = @"Product/Service Code",
-            Description = @"Two Product /Service Line Items (PSL-7) may be in a relation to each other. One could be an addition to another. In this case this field contains the Code of PSL-7 of the ""master"" Product/Service Line Item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (relatedProductServiceCodeIndicator.field.FieldRepetitions != null && relatedProductServiceCodeIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(relatedProductServiceCodeIndicator.Id));
-            relatedProductServiceCodeIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(relatedProductServiceCodeIndicator, fieldData);
-        }
-
-        return relatedProductServiceCodeIndicator;
-    } 
-}
-
-internal HL7V271Field productServiceAmountForPhysician;
-
-public HL7V271Field ProductServiceAmountForPhysician
-{
-    get
-    {
-        if (productServiceAmountForPhysician != null)
-        {
-            return productServiceAmountForPhysician;
-        }
-
-        productServiceAmountForPhysician = new HL7V271Field
-        {
-            field = message[@"PSL"][23],
-            Id = @"PSL.23",
-            Type = @"Field",
-            Position = @"PSL.23",
-            Name = @"Product/Service Amount For Physician",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Monetary Amount of product/service item which is for the physician.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceAmountForPhysician.field.FieldRepetitions != null && productServiceAmountForPhysician.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceAmountForPhysician.Id));
-            productServiceAmountForPhysician.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceAmountForPhysician, fieldData);
-        }
-
-        return productServiceAmountForPhysician;
-    } 
-}
-
-internal HL7V271Field productServiceCostFactor;
-
-public HL7V271Field ProductServiceCostFactor
-{
-    get
-    {
-        if (productServiceCostFactor != null)
-        {
-            return productServiceCostFactor;
-        }
-
-        productServiceCostFactor = new HL7V271Field
-        {
-            field = message[@"PSL"][24],
-            Id = @"PSL.24",
-            Type = @"Field",
-            Position = @"PSL.24",
-            Name = @"Product/Service Cost Factor",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Factor to increase the billed amount.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceCostFactor.field.FieldRepetitions != null && productServiceCostFactor.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceCostFactor.Id));
-            productServiceCostFactor.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(productServiceCostFactor, fieldData);
-        }
-
-        return productServiceCostFactor;
-    } 
-}
-
-internal HL7V271Field costCenter;
-
-public HL7V271Field CostCenter
-{
-    get
-    {
-        if (costCenter != null)
-        {
-            return costCenter;
-        }
-
-        costCenter = new HL7V271Field
-        {
-            field = message[@"PSL"][25],
-            Id = @"PSL.25",
-            Type = @"Field",
-            Position = @"PSL.25",
-            Name = @"Cost Center",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"Cost centers are organizational units or activities that provide goods and services. In this context, it would be the department which delivered the Service/Product Line Item, e.g., Radiology, Emergency Room.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (costCenter.field.FieldRepetitions != null && costCenter.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(costCenter.Id));
-            costCenter.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(costCenter, fieldData);
-        }
-
-        return costCenter;
-    } 
-}
-
-internal HL7V271Field billingPeriod;
-
-public HL7V271Field BillingPeriod
-{
-    get
-    {
-        if (billingPeriod != null)
-        {
-            return billingPeriod;
-        }
-
-        billingPeriod = new HL7V271Field
-        {
-            field = message[@"PSL"][26],
-            Id = @"PSL.26",
-            Type = @"Field",
-            Position = @"PSL.26",
-            Name = @"Billing Period",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DR",
-            DataTypeName = @"Date/time Range",
-            TableId = null,
-            TableName = null,
-            Description = @"Begin and end of billing period.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (billingPeriod.field.FieldRepetitions != null && billingPeriod.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(billingPeriod.Id));
-            billingPeriod.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(billingPeriod, fieldData);
-        }
-
-        return billingPeriod;
-    } 
-}
-
-internal HL7V271Field daysWithoutBilling;
-
-public HL7V271Field DaysWithoutBilling
-{
-    get
-    {
-        if (daysWithoutBilling != null)
-        {
-            return daysWithoutBilling;
-        }
-
-        daysWithoutBilling = new HL7V271Field
-        {
-            field = message[@"PSL"][27],
-            Id = @"PSL.27",
-            Type = @"Field",
-            Position = @"PSL.27",
-            Name = @"Days Without Billing",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Number of Days for which no invoice is created.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (daysWithoutBilling.field.FieldRepetitions != null && daysWithoutBilling.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(daysWithoutBilling.Id));
-            daysWithoutBilling.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(daysWithoutBilling, fieldData);
-        }
-
-        return daysWithoutBilling;
-    } 
-}
-
-internal HL7V271Field sessionno;
-
-public HL7V271Field Sessionno
-{
-    get
-    {
-        if (sessionno != null)
-        {
-            return sessionno;
-        }
-
-        sessionno = new HL7V271Field
-        {
-            field = message[@"PSL"][28],
-            Id = @"PSL.28",
-            Type = @"Field",
-            Position = @"PSL.28",
-            Name = @"Session-no",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Several line items may be grouped to a session.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sessionno.field.FieldRepetitions != null && sessionno.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sessionno.Id));
-            sessionno.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(sessionno, fieldData);
-        }
-
-        return sessionno;
-    } 
-}
-
-internal HL7V271Field executingPhysicianId;
-
-public HL7V271Field ExecutingPhysicianId
-{
-    get
-    {
-        if (executingPhysicianId != null)
-        {
-            return executingPhysicianId;
-        }
-
-        executingPhysicianId = new HL7V271Field
-        {
-            field = message[@"PSL"][29],
-            Id = @"PSL.29",
-            Type = @"Field",
-            Position = @"PSL.29",
-            Name = @"Executing Physician Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"ID of the physician who is providing the Service, e.g., executing the radiology-exam (EAN ID = European Article Numbering).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (executingPhysicianId.field.FieldRepetitions != null && executingPhysicianId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(executingPhysicianId.Id));
-            executingPhysicianId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(executingPhysicianId, fieldData);
-        }
-
-        return executingPhysicianId;
-    } 
-}
-
-internal HL7V271Field responsiblePhysicianId;
-
-public HL7V271Field ResponsiblePhysicianId
-{
-    get
-    {
-        if (responsiblePhysicianId != null)
-        {
-            return responsiblePhysicianId;
-        }
-
-        responsiblePhysicianId = new HL7V271Field
-        {
-            field = message[@"PSL"][30],
-            Id = @"PSL.30",
-            Type = @"Field",
-            Position = @"PSL.30",
-            Name = @"Responsible Physician Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"ID of the physician who is responsible for the Service.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (responsiblePhysicianId.field.FieldRepetitions != null && responsiblePhysicianId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(responsiblePhysicianId.Id));
-            responsiblePhysicianId.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(responsiblePhysicianId, fieldData);
-        }
-
-        return responsiblePhysicianId;
-    } 
-}
-
-internal HL7V271Field roleExecutingPhysician;
-
-public HL7V271Field RoleExecutingPhysician
-{
-    get
-    {
-        if (roleExecutingPhysician != null)
-        {
-            return roleExecutingPhysician;
-        }
-
-        roleExecutingPhysician = new HL7V271Field
-        {
-            field = message[@"PSL"][31],
-            Id = @"PSL.31",
-            Type = @"Field",
-            Position = @"PSL.31",
-            Name = @"Role Executing Physician",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0881",
-            TableName = @"Role Executing Physician",
-            Description = @"Account role of the physician, for example only billing for the professional part, the technical part or both.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (roleExecutingPhysician.field.FieldRepetitions != null && roleExecutingPhysician.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(roleExecutingPhysician.Id));
-            roleExecutingPhysician.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(roleExecutingPhysician, fieldData);
-        }
-
-        return roleExecutingPhysician;
-    } 
-}
-
-internal HL7V271Field medicalRoleExecutingPhysician;
-
-public HL7V271Field MedicalRoleExecutingPhysician
-{
-    get
-    {
-        if (medicalRoleExecutingPhysician != null)
-        {
-            return medicalRoleExecutingPhysician;
-        }
-
-        medicalRoleExecutingPhysician = new HL7V271Field
-        {
-            field = message[@"PSL"][32],
-            Id = @"PSL.32",
-            Type = @"Field",
-            Position = @"PSL.32",
-            Name = @"Medical Role Executing Physician",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0882",
-            TableName = @"Medical Role Executing Physician",
-            Description = @"The role of the Physician (""self-employed"" or ""employed"").",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (medicalRoleExecutingPhysician.field.FieldRepetitions != null && medicalRoleExecutingPhysician.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(medicalRoleExecutingPhysician.Id));
-            medicalRoleExecutingPhysician.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(medicalRoleExecutingPhysician, fieldData);
-        }
-
-        return medicalRoleExecutingPhysician;
-    } 
-}
-
-internal HL7V271Field sideOfBody;
-
-public HL7V271Field SideOfBody
-{
-    get
-    {
-        if (sideOfBody != null)
-        {
-            return sideOfBody;
-        }
-
-        sideOfBody = new HL7V271Field
-        {
-            field = message[@"PSL"][33],
-            Id = @"PSL.33",
-            Type = @"Field",
-            Position = @"PSL.33",
-            Name = @"Side Of Body",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0894",
-            TableName = @"Side of body",
-            Description = @"Left / right",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sideOfBody.field.FieldRepetitions != null && sideOfBody.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sideOfBody.Id));
-            sideOfBody.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(sideOfBody, fieldData);
-        }
-
-        return sideOfBody;
-    } 
-}
-
-internal HL7V271Field numberOfTpsPp;
-
-public HL7V271Field NumberOfTpsPp
-{
-    get
-    {
-        if (numberOfTpsPp != null)
-        {
-            return numberOfTpsPp;
-        }
-
-        numberOfTpsPp = new HL7V271Field
-        {
-            field = message[@"PSL"][34],
-            Id = @"PSL.34",
-            Type = @"Field",
-            Position = @"PSL.34",
-            Name = @"Number Of Tp's Pp",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Cost of the service ""professional part"" expressed in ""points"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (numberOfTpsPp.field.FieldRepetitions != null && numberOfTpsPp.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfTpsPp.Id));
-            numberOfTpsPp.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(numberOfTpsPp, fieldData);
-        }
-
-        return numberOfTpsPp;
-    } 
-}
-
-internal HL7V271Field tpvaluePp;
-
-public HL7V271Field TpvaluePp
-{
-    get
-    {
-        if (tpvaluePp != null)
-        {
-            return tpvaluePp;
-        }
-
-        tpvaluePp = new HL7V271Field
-        {
-            field = message[@"PSL"][35],
-            Id = @"PSL.35",
-            Type = @"Field",
-            Position = @"PSL.35",
-            Name = @"Tp-value Pp",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Monetary Value of one ""point"" for the professional part of the service.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (tpvaluePp.field.FieldRepetitions != null && tpvaluePp.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(tpvaluePp.Id));
-            tpvaluePp.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(tpvaluePp, fieldData);
-        }
-
-        return tpvaluePp;
-    } 
-}
-
-internal HL7V271Field internalScalingFactorPp;
-
-public HL7V271Field InternalScalingFactorPp
-{
-    get
-    {
-        if (internalScalingFactorPp != null)
-        {
-            return internalScalingFactorPp;
-        }
-
-        internalScalingFactorPp = new HL7V271Field
-        {
-            field = message[@"PSL"][36],
-            Id = @"PSL.36",
-            Type = @"Field",
-            Position = @"PSL.36",
-            Name = @"Internal Scaling Factor Pp",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Internal Scaling Factor for the amount of the professional part of the service.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (internalScalingFactorPp.field.FieldRepetitions != null && internalScalingFactorPp.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(internalScalingFactorPp.Id));
-            internalScalingFactorPp.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(internalScalingFactorPp, fieldData);
-        }
-
-        return internalScalingFactorPp;
-    } 
-}
-
-internal HL7V271Field externalScalingFactorPp;
-
-public HL7V271Field ExternalScalingFactorPp
-{
-    get
-    {
-        if (externalScalingFactorPp != null)
-        {
-            return externalScalingFactorPp;
-        }
-
-        externalScalingFactorPp = new HL7V271Field
-        {
-            field = message[@"PSL"][37],
-            Id = @"PSL.37",
-            Type = @"Field",
-            Position = @"PSL.37",
-            Name = @"External Scaling Factor Pp",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"External Scaling Factor for the amount of the professional part of the service.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (externalScalingFactorPp.field.FieldRepetitions != null && externalScalingFactorPp.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(externalScalingFactorPp.Id));
-            externalScalingFactorPp.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(externalScalingFactorPp, fieldData);
-        }
-
-        return externalScalingFactorPp;
-    } 
-}
-
-internal HL7V271Field amountPp;
-
-public HL7V271Field AmountPp
-{
-    get
-    {
-        if (amountPp != null)
-        {
-            return amountPp;
-        }
-
-        amountPp = new HL7V271Field
-        {
-            field = message[@"PSL"][38],
-            Id = @"PSL.38",
-            Type = @"Field",
-            Position = @"PSL.38",
-            Name = @"Amount Pp",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Total Amount for the professional part of this service.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (amountPp.field.FieldRepetitions != null && amountPp.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(amountPp.Id));
-            amountPp.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(amountPp, fieldData);
-        }
-
-        return amountPp;
-    } 
-}
-
-internal HL7V271Field numberOfTpsTechnicalPart;
-
-public HL7V271Field NumberOfTpsTechnicalPart
-{
-    get
-    {
-        if (numberOfTpsTechnicalPart != null)
-        {
-            return numberOfTpsTechnicalPart;
-        }
-
-        numberOfTpsTechnicalPart = new HL7V271Field
-        {
-            field = message[@"PSL"][39],
-            Id = @"PSL.39",
-            Type = @"Field",
-            Position = @"PSL.39",
-            Name = @"Number Of Tp's Technical Part",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Cost of the service (Technical Part) expressed in ""points"".",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (numberOfTpsTechnicalPart.field.FieldRepetitions != null && numberOfTpsTechnicalPart.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfTpsTechnicalPart.Id));
-            numberOfTpsTechnicalPart.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(numberOfTpsTechnicalPart, fieldData);
-        }
-
-        return numberOfTpsTechnicalPart;
-    } 
-}
-
-internal HL7V271Field tpvalueTechnicalPart;
-
-public HL7V271Field TpvalueTechnicalPart
-{
-    get
-    {
-        if (tpvalueTechnicalPart != null)
-        {
-            return tpvalueTechnicalPart;
-        }
-
-        tpvalueTechnicalPart = new HL7V271Field
-        {
-            field = message[@"PSL"][40],
-            Id = @"PSL.40",
-            Type = @"Field",
-            Position = @"PSL.40",
-            Name = @"Tp-value Technical Part",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Monetary Value of one ""point"" for the technical part of the service.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (tpvalueTechnicalPart.field.FieldRepetitions != null && tpvalueTechnicalPart.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(tpvalueTechnicalPart.Id));
-            tpvalueTechnicalPart.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(tpvalueTechnicalPart, fieldData);
-        }
-
-        return tpvalueTechnicalPart;
-    } 
-}
-
-internal HL7V271Field internalScalingFactorTechnicalPart;
-
-public HL7V271Field InternalScalingFactorTechnicalPart
-{
-    get
-    {
-        if (internalScalingFactorTechnicalPart != null)
-        {
-            return internalScalingFactorTechnicalPart;
-        }
-
-        internalScalingFactorTechnicalPart = new HL7V271Field
-        {
-            field = message[@"PSL"][41],
-            Id = @"PSL.41",
-            Type = @"Field",
-            Position = @"PSL.41",
-            Name = @"Internal Scaling Factor Technical Part",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Internal Scaling Factor for the amount of the technical part of the service.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (internalScalingFactorTechnicalPart.field.FieldRepetitions != null && internalScalingFactorTechnicalPart.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(internalScalingFactorTechnicalPart.Id));
-            internalScalingFactorTechnicalPart.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(internalScalingFactorTechnicalPart, fieldData);
-        }
-
-        return internalScalingFactorTechnicalPart;
-    } 
-}
-
-internal HL7V271Field externalScalingFactorTechnicalPart;
-
-public HL7V271Field ExternalScalingFactorTechnicalPart
-{
-    get
-    {
-        if (externalScalingFactorTechnicalPart != null)
-        {
-            return externalScalingFactorTechnicalPart;
-        }
-
-        externalScalingFactorTechnicalPart = new HL7V271Field
-        {
-            field = message[@"PSL"][42],
-            Id = @"PSL.42",
-            Type = @"Field",
-            Position = @"PSL.42",
-            Name = @"External Scaling Factor Technical Part",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"External Scaling Factor for the amount of the technical part of the service.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (externalScalingFactorTechnicalPart.field.FieldRepetitions != null && externalScalingFactorTechnicalPart.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(externalScalingFactorTechnicalPart.Id));
-            externalScalingFactorTechnicalPart.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(externalScalingFactorTechnicalPart, fieldData);
-        }
-
-        return externalScalingFactorTechnicalPart;
-    } 
-}
-
-internal HL7V271Field amountTechnicalPart;
-
-public HL7V271Field AmountTechnicalPart
-{
-    get
-    {
-        if (amountTechnicalPart != null)
-        {
-            return amountTechnicalPart;
-        }
-
-        amountTechnicalPart = new HL7V271Field
-        {
-            field = message[@"PSL"][43],
-            Id = @"PSL.43",
-            Type = @"Field",
-            Position = @"PSL.43",
-            Name = @"Amount Technical Part",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Total Amount for the technical part of this service.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (amountTechnicalPart.field.FieldRepetitions != null && amountTechnicalPart.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(amountTechnicalPart.Id));
-            amountTechnicalPart.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(amountTechnicalPart, fieldData);
-        }
-
-        return amountTechnicalPart;
-    } 
-}
-
-internal HL7V271Field totalAmountProfessionalPart+TechnicalPart;
-
-public HL7V271Field TotalAmountProfessionalPart+TechnicalPart
-{
-    get
-    {
-        if (totalAmountProfessionalPart+TechnicalPart != null)
-        {
-            return totalAmountProfessionalPart+TechnicalPart;
-        }
-
-        totalAmountProfessionalPart+TechnicalPart = new HL7V271Field
+        _totalAmountProfessionalPart+TechnicalPart = new HL7V271Field
         {
             field = message[@"PSL"][44],
-            Id = @"PSL.44",
-            Type = @"Field",
-            Position = @"PSL.44",
-            Name = @"Total Amount Professional Part + Technical Part",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Total Amount of the cost of this service (Professional plus technical part)",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (totalAmountProfessionalPart+TechnicalPart.field.FieldRepetitions != null && totalAmountProfessionalPart+TechnicalPart.field.FieldRepetitions.Count > 0)
+        if (_totalAmountProfessionalPart+TechnicalPart.field.FieldRepetitions != null && _totalAmountProfessionalPart+TechnicalPart.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(totalAmountProfessionalPart+TechnicalPart.Id));
-            totalAmountProfessionalPart+TechnicalPart.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(totalAmountProfessionalPart+TechnicalPart, fieldData);
+            _totalAmountProfessionalPart+TechnicalPart.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_totalAmountProfessionalPart+TechnicalPart, fieldData);
         }
 
-        return totalAmountProfessionalPart+TechnicalPart;
+        return _totalAmountProfessionalPart+TechnicalPart;
     } 
 }
 
-internal HL7V271Field vatrate;
+internal HL7V271Field _vatrate;
 
 public HL7V271Field Vatrate
 {
     get
     {
-        if (vatrate != null)
+        if (_vatrate != null)
         {
-            return vatrate;
+            return _vatrate;
         }
 
-        vatrate = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"PSL"][45],
             Id = @"PSL.45",
             Type = @"Field",
             Position = @"PSL.45",
@@ -18645,34 +18024,38 @@ public HL7V271Field Vatrate
             TableName = null,
             Description = @"VAT–Rate Applied on the total amount of this service.",
             Sample = @"",
+            Fields = null
+        }
+
+        _vatrate = new HL7V271Field
+        {
+            field = message[@"PSL"][45],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (vatrate.field.FieldRepetitions != null && vatrate.field.FieldRepetitions.Count > 0)
+        if (_vatrate.field.FieldRepetitions != null && _vatrate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(vatrate.Id));
-            vatrate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(vatrate, fieldData);
+            _vatrate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_vatrate, fieldData);
         }
 
-        return vatrate;
+        return _vatrate;
     } 
 }
 
-internal HL7V271Field mainservice;
+internal HL7V271Field _mainservice;
 
 public HL7V271Field Mainservice
 {
     get
     {
-        if (mainservice != null)
+        if (_mainservice != null)
         {
-            return mainservice;
+            return _mainservice;
         }
 
-        mainservice = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"PSL"][46],
             Id = @"PSL.46",
             Type = @"Field",
             Position = @"PSL.46",
@@ -18686,34 +18069,38 @@ public HL7V271Field Mainservice
             TableName = null,
             Description = @"Main service.",
             Sample = @"",
+            Fields = null
+        }
+
+        _mainservice = new HL7V271Field
+        {
+            field = message[@"PSL"][46],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (mainservice.field.FieldRepetitions != null && mainservice.field.FieldRepetitions.Count > 0)
+        if (_mainservice.field.FieldRepetitions != null && _mainservice.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mainservice.Id));
-            mainservice.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(mainservice, fieldData);
+            _mainservice.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_mainservice, fieldData);
         }
 
-        return mainservice;
+        return _mainservice;
     } 
 }
 
-internal HL7V271Field validation;
+internal HL7V271Field _validation;
 
 public HL7V271Field Validation
 {
     get
     {
-        if (validation != null)
+        if (_validation != null)
         {
-            return validation;
+            return _validation;
         }
 
-        validation = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"PSL"][47],
             Id = @"PSL.47",
             Type = @"Field",
             Position = @"PSL.47",
@@ -18727,34 +18114,38 @@ public HL7V271Field Validation
             TableName = @"Yes/no Indicator",
             Description = @"Service line item has passed an approved validator software (yes/no).  For reason see PSL-48.  Refer to HL7 Table 0136 – Yes/No Indicator for suggested values.",
             Sample = @"",
+            Fields = null
+        }
+
+        _validation = new HL7V271Field
+        {
+            field = message[@"PSL"][47],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (validation.field.FieldRepetitions != null && validation.field.FieldRepetitions.Count > 0)
+        if (_validation.field.FieldRepetitions != null && _validation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(validation.Id));
-            validation.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(validation, fieldData);
+            _validation.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_validation, fieldData);
         }
 
-        return validation;
+        return _validation;
     } 
 }
 
-internal HL7V271Field comment;
+internal HL7V271Field _comment;
 
 public HL7V271Field Comment
 {
     get
     {
-        if (comment != null)
+        if (_comment != null)
         {
-            return comment;
+            return _comment;
         }
 
-        comment = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"PSL"][48],
             Id = @"PSL.48",
             Type = @"Field",
             Position = @"PSL.48",
@@ -18768,17 +18159,22 @@ public HL7V271Field Comment
             TableName = null,
             Description = @"Reason why the service line item has not passed the validator software.",
             Sample = @"",
+            Fields = null
+        }
+
+        _comment = new HL7V271Field
+        {
+            field = message[@"PSL"][48],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (comment.field.FieldRepetitions != null && comment.field.FieldRepetitions.Count > 0)
+        if (_comment.field.FieldRepetitions != null && _comment.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(comment.Id));
-            comment.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(comment, fieldData);
+            _comment.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_comment, fieldData);
         }
 
-        return comment;
+        return _comment;
     } 
 }
     }

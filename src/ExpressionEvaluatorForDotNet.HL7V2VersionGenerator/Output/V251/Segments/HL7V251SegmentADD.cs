@@ -29,52 +29,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"ADD.1",
-                            Type = @"Field",
-                            Position = @"ADD.1",
-                            Name = @"Addendum Continuation Pointer",
-                            Length = 65536,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to define the continuation of the prior segment in a continuation message.  When the ADD is sent after the segment being continued, it contains no fields. It is only a marker that the previous segment is being continued in a subsequent message. Thus fields 1-N are not present. The sequence designation, 1-N, means the remainder of the fields in the segment being continued. These remainder of the segment being continued fields are present only when the ADD is sent with a continuation message.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V251SegmentADD(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V251Field addendumContinuationPointer;
+        internal HL7V251Field _addendumContinuationPointer;
 
 public HL7V251Field AddendumContinuationPointer
 {
     get
     {
-        if (addendumContinuationPointer != null)
+        if (_addendumContinuationPointer != null)
         {
-            return addendumContinuationPointer;
+            return _addendumContinuationPointer;
         }
 
-        addendumContinuationPointer = new HL7V251Field
+        var fieldData = new HL7V251FieldData
         {
-            field = message[@"ADD"][1],
             Id = @"ADD.1",
             Type = @"Field",
             Position = @"ADD.1",
@@ -88,17 +60,22 @@ public HL7V251Field AddendumContinuationPointer
             TableName = null,
             Description = @"This field is used to define the continuation of the prior segment in a continuation message.  When the ADD is sent after the segment being continued, it contains no fields. It is only a marker that the previous segment is being continued in a subsequent message. Thus fields 1-N are not present. The sequence designation, 1-N, means the remainder of the fields in the segment being continued. These remainder of the segment being continued fields are present only when the ADD is sent with a continuation message.",
             Sample = @"",
+            Fields = null
+        }
+
+        _addendumContinuationPointer = new HL7V251Field
+        {
+            field = message[@"ADD"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (addendumContinuationPointer.field.FieldRepetitions != null && addendumContinuationPointer.field.FieldRepetitions.Count > 0)
+        if (_addendumContinuationPointer.field.FieldRepetitions != null && _addendumContinuationPointer.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(addendumContinuationPointer.Id));
-            addendumContinuationPointer.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(addendumContinuationPointer, fieldData);
+            _addendumContinuationPointer.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_addendumContinuationPointer, fieldData);
         }
 
-        return addendumContinuationPointer;
+        return _addendumContinuationPointer;
     } 
 }
     }

@@ -31,66 +31,132 @@ If a message does not require any grouping of resources, then specify a single R
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"RGS.1",
-                            Type = @"Field",
-                            Position = @"RGS.1",
-                            Name = @"Set Id - Rgs",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a number that uniquely identifies the information represented by this segment in this transaction for the purposes of addition, change or deletion.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RGS.2",
-                            Type = @"Field",
-                            Position = @"RGS.2",
-                            Name = @"Segment Action Code",
-                            Length = 1,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0206",
-                            TableName = @"Segment action code",
-                            Description = @"This field contains the action to be taken when updating or modifying information in this segment from previously sent interface transactions.  Refer to HL7 Table 0206 - Segment Action Code in Chapter 2C, Code Tables, for valid values.
+        public HL7V28SegmentRGS(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _setIdRgs;
+
+public HL7V28Field SetIdRgs
+{
+    get
+    {
+        if (_setIdRgs != null)
+        {
+            return _setIdRgs;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RGS.1",
+            Type = @"Field",
+            Position = @"RGS.1",
+            Name = @"Set Id - Rgs",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a number that uniquely identifies the information represented by this segment in this transaction for the purposes of addition, change or deletion.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdRgs = new HL7V28Field
+        {
+            field = message[@"RGS"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdRgs.field.FieldRepetitions != null && _setIdRgs.field.FieldRepetitions.Count > 0)
+        {
+            _setIdRgs.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_setIdRgs, fieldData);
+        }
+
+        return _setIdRgs;
+    } 
+}
+
+internal HL7V28Field _segmentActionCode;
+
+public HL7V28Field SegmentActionCode
+{
+    get
+    {
+        if (_segmentActionCode != null)
+        {
+            return _segmentActionCode;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RGS.2",
+            Type = @"Field",
+            Position = @"RGS.2",
+            Name = @"Segment Action Code",
+            Length = 1,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0206",
+            TableName = @"Segment action code",
+            Description = @"This field contains the action to be taken when updating or modifying information in this segment from previously sent interface transactions.  Refer to HL7 Table 0206 - Segment Action Code in Chapter 2C, Code Tables, for valid values.
 
 This field is conditionally required.  It is required for all updating or modifying trigger events.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _segmentActionCode = new HL7V28Field
+        {
+            field = message[@"RGS"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_segmentActionCode.field.FieldRepetitions != null && _segmentActionCode.field.FieldRepetitions.Count > 0)
+        {
+            _segmentActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_segmentActionCode, fieldData);
+        }
+
+        return _segmentActionCode;
+    } 
+}
+
+internal HL7V28Field _resourceGroupId;
+
+public HL7V28Field ResourceGroupId
+{
+    get
+    {
+        if (_resourceGroupId != null)
+        {
+            return _resourceGroupId;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RGS.3",
+            Type = @"Field",
+            Position = @"RGS.3",
+            Name = @"Resource Group Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an identifier code describing the group of resources following this RGS segment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RGS.3",
-                            Type = @"Field",
-                            Position = @"RGS.3",
-                            Name = @"Resource Group Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an identifier code describing the group of resources following this RGS segment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RGS.3.1",
                             Type = @"Component",
@@ -518,139 +584,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentRGS(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field setIdRgs;
-
-public HL7V28Field SetIdRgs
-{
-    get
-    {
-        if (setIdRgs != null)
-        {
-            return setIdRgs;
-        }
-
-        setIdRgs = new HL7V28Field
-        {
-            field = message[@"RGS"][1],
-            Id = @"RGS.1",
-            Type = @"Field",
-            Position = @"RGS.1",
-            Name = @"Set Id - Rgs",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a number that uniquely identifies the information represented by this segment in this transaction for the purposes of addition, change or deletion.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdRgs.field.FieldRepetitions != null && setIdRgs.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdRgs.Id));
-            setIdRgs.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(setIdRgs, fieldData);
-        }
-
-        return setIdRgs;
-    } 
-}
-
-internal HL7V28Field segmentActionCode;
-
-public HL7V28Field SegmentActionCode
-{
-    get
-    {
-        if (segmentActionCode != null)
-        {
-            return segmentActionCode;
-        }
-
-        segmentActionCode = new HL7V28Field
-        {
-            field = message[@"RGS"][2],
-            Id = @"RGS.2",
-            Type = @"Field",
-            Position = @"RGS.2",
-            Name = @"Segment Action Code",
-            Length = 1,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0206",
-            TableName = @"Segment action code",
-            Description = @"This field contains the action to be taken when updating or modifying information in this segment from previously sent interface transactions.  Refer to HL7 Table 0206 - Segment Action Code in Chapter 2C, Code Tables, for valid values.
-
-This field is conditionally required.  It is required for all updating or modifying trigger events.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (segmentActionCode.field.FieldRepetitions != null && segmentActionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(segmentActionCode.Id));
-            segmentActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(segmentActionCode, fieldData);
-        }
-
-        return segmentActionCode;
-    } 
-}
-
-internal HL7V28Field resourceGroupId;
-
-public HL7V28Field ResourceGroupId
-{
-    get
-    {
-        if (resourceGroupId != null)
-        {
-            return resourceGroupId;
-        }
-
-        resourceGroupId = new HL7V28Field
+        _resourceGroupId = new HL7V28Field
         {
             field = message[@"RGS"][3],
-            Id = @"RGS.3",
-            Type = @"Field",
-            Position = @"RGS.3",
-            Name = @"Resource Group Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an identifier code describing the group of resources following this RGS segment.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (resourceGroupId.field.FieldRepetitions != null && resourceGroupId.field.FieldRepetitions.Count > 0)
+        if (_resourceGroupId.field.FieldRepetitions != null && _resourceGroupId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resourceGroupId.Id));
-            resourceGroupId.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(resourceGroupId, fieldData);
+            _resourceGroupId.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_resourceGroupId, fieldData);
         }
 
-        return resourceGroupId;
+        return _resourceGroupId;
     } 
 }
     }

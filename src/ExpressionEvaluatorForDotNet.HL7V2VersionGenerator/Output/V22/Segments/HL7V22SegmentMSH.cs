@@ -31,136 +31,310 @@ Note: If MSH-15 and MSH-16 are omitted (or are both null), the original Acknowle
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V22SegmentMSH(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V22Field _fieldSeparator;
+
+public HL7V22Field FieldSeparator
+{
+    get
+    {
+        if (_fieldSeparator != null)
+        {
+            return _fieldSeparator;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSH.1",
+            Type = @"Field",
+            Position = @"MSH.1",
+            Name = @"Field Separator",
+            Length = 1,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"actually the separator between the segment ID and the first real field, MSH-2-encoding characters.  As such it serves as the separator and defines the character to be used as a separator for the rest of the message.  Recommended value is |.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _fieldSeparator = new HL7V22Field
+        {
+            field = message[@"MSH"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fieldSeparator.field.FieldRepetitions != null && _fieldSeparator.field.FieldRepetitions.Count > 0)
+        {
+            _fieldSeparator.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_fieldSeparator, fieldData);
+        }
+
+        return _fieldSeparator;
+    } 
+}
+
+internal HL7V22Field _encodingCharacters;
+
+public HL7V22Field EncodingCharacters
+{
+    get
+    {
+        if (_encodingCharacters != null)
+        {
+            return _encodingCharacters;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSH.2",
+            Type = @"Field",
+            Position = @"MSH.2",
+            Name = @"Encoding Characters",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"four characters in the following order: the component separator, repetition separator, escape character, and subcomponent separator.  Recommended values are ^~\&. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _encodingCharacters = new HL7V22Field
+        {
+            field = message[@"MSH"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_encodingCharacters.field.FieldRepetitions != null && _encodingCharacters.field.FieldRepetitions.Count > 0)
+        {
+            _encodingCharacters.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_encodingCharacters, fieldData);
+        }
+
+        return _encodingCharacters;
+    } 
+}
+
+internal HL7V22Field _sendingApplication;
+
+public HL7V22Field SendingApplication
+{
+    get
+    {
+        if (_sendingApplication != null)
+        {
+            return _sendingApplication;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSH.3",
+            Type = @"Field",
+            Position = @"MSH.3",
+            Name = @"Sending Application",
+            Length = 15,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"available for interface with lower level protocols",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sendingApplication = new HL7V22Field
+        {
+            field = message[@"MSH"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sendingApplication.field.FieldRepetitions != null && _sendingApplication.field.FieldRepetitions.Count > 0)
+        {
+            _sendingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_sendingApplication, fieldData);
+        }
+
+        return _sendingApplication;
+    } 
+}
+
+internal HL7V22Field _sendingFacility;
+
+public HL7V22Field SendingFacility
+{
+    get
+    {
+        if (_sendingFacility != null)
+        {
+            return _sendingFacility;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSH.4",
+            Type = @"Field",
+            Position = @"MSH.4",
+            Name = @"Sending Facility",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"addresses one of several occurrences of the same application within the sending system.  Absent other considerations, the Medicare Provider ID might be used with an appropriate sub-identifier in the second component.  Entirely site-defined",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sendingFacility = new HL7V22Field
+        {
+            field = message[@"MSH"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sendingFacility.field.FieldRepetitions != null && _sendingFacility.field.FieldRepetitions.Count > 0)
+        {
+            _sendingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_sendingFacility, fieldData);
+        }
+
+        return _sendingFacility;
+    } 
+}
+
+internal HL7V22Field _receivingApplication;
+
+public HL7V22Field ReceivingApplication
+{
+    get
+    {
+        if (_receivingApplication != null)
+        {
+            return _receivingApplication;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSH.5",
+            Type = @"Field",
+            Position = @"MSH.5",
+            Name = @"Receiving Application",
+            Length = 30,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"available for interface with lower level protocols",
+            Sample = @"",
+            Fields = null
+        }
+
+        _receivingApplication = new HL7V22Field
+        {
+            field = message[@"MSH"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_receivingApplication.field.FieldRepetitions != null && _receivingApplication.field.FieldRepetitions.Count > 0)
+        {
+            _receivingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_receivingApplication, fieldData);
+        }
+
+        return _receivingApplication;
+    } 
+}
+
+internal HL7V22Field _receivingFacility;
+
+public HL7V22Field ReceivingFacility
+{
+    get
+    {
+        if (_receivingFacility != null)
+        {
+            return _receivingFacility;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSH.6",
+            Type = @"Field",
+            Position = @"MSH.6",
+            Name = @"Receiving Facility",
+            Length = 30,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"identifies the receiving application among multiple identical instances of the application running on behalf of different organizations.  See comments: sending facility",
+            Sample = @"",
+            Fields = null
+        }
+
+        _receivingFacility = new HL7V22Field
+        {
+            field = message[@"MSH"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_receivingFacility.field.FieldRepetitions != null && _receivingFacility.field.FieldRepetitions.Count > 0)
+        {
+            _receivingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_receivingFacility, fieldData);
+        }
+
+        return _receivingFacility;
+    } 
+}
+
+internal HL7V22Field _dateTimeOfMessage;
+
+public HL7V22Field DateTimeOfMessage
+{
+    get
+    {
+        if (_dateTimeOfMessage != null)
+        {
+            return _dateTimeOfMessage;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSH.7",
+            Type = @"Field",
+            Position = @"MSH.7",
+            Name = @"Date / Time Of Message",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"date/time that the sending system created the message.  If the time zone is specified, it will be used throughout the message as the default time zone",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"MSH.1",
-                            Type = @"Field",
-                            Position = @"MSH.1",
-                            Name = @"Field Separator",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"actually the separator between the segment ID and the first real field, MSH-2-encoding characters.  As such it serves as the separator and defines the character to be used as a separator for the rest of the message.  Recommended value is |.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.2",
-                            Type = @"Field",
-                            Position = @"MSH.2",
-                            Name = @"Encoding Characters",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"four characters in the following order: the component separator, repetition separator, escape character, and subcomponent separator.  Recommended values are ^~\&. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.3",
-                            Type = @"Field",
-                            Position = @"MSH.3",
-                            Name = @"Sending Application",
-                            Length = 15,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"available for interface with lower level protocols",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.4",
-                            Type = @"Field",
-                            Position = @"MSH.4",
-                            Name = @"Sending Facility",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"addresses one of several occurrences of the same application within the sending system.  Absent other considerations, the Medicare Provider ID might be used with an appropriate sub-identifier in the second component.  Entirely site-defined",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.5",
-                            Type = @"Field",
-                            Position = @"MSH.5",
-                            Name = @"Receiving Application",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"available for interface with lower level protocols",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.6",
-                            Type = @"Field",
-                            Position = @"MSH.6",
-                            Name = @"Receiving Facility",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"identifies the receiving application among multiple identical instances of the application running on behalf of different organizations.  See comments: sending facility",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.7",
-                            Type = @"Field",
-                            Position = @"MSH.7",
-                            Name = @"Date / Time Of Message",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"date/time that the sending system created the message.  If the time zone is specified, it will be used throughout the message as the default time zone",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MSH.7.1",
                             Type = @"Component",
@@ -194,43 +368,100 @@ Note: If MSH-15 and MSH-16 are omitted (or are both null), the original Acknowle
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dateTimeOfMessage = new HL7V22Field
+        {
+            field = message[@"MSH"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeOfMessage.field.FieldRepetitions != null && _dateTimeOfMessage.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeOfMessage.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_dateTimeOfMessage, fieldData);
+        }
+
+        return _dateTimeOfMessage;
+    } 
+}
+
+internal HL7V22Field _security;
+
+public HL7V22Field Security
+{
+    get
+    {
+        if (_security != null)
+        {
+            return _security;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSH.8",
+            Type = @"Field",
+            Position = @"MSH.8",
+            Name = @"Security",
+            Length = 40,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"in some applications of HL7 this field will be used to implement security features.  Its use is not yet further specified",
+            Sample = @"",
+            Fields = null
+        }
+
+        _security = new HL7V22Field
+        {
+            field = message[@"MSH"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_security.field.FieldRepetitions != null && _security.field.FieldRepetitions.Count > 0)
+        {
+            _security.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_security, fieldData);
+        }
+
+        return _security;
+    } 
+}
+
+internal HL7V22Field _messageType;
+
+public HL7V22Field MessageType
+{
+    get
+    {
+        if (_messageType != null)
+        {
+            return _messageType;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"MSH.9",
+            Type = @"Field",
+            Position = @"MSH.9",
+            Name = @"Message Type",
+            Length = 7,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CM_MSG",
+            DataTypeName = @"Message Type",
+            TableId = null,
+            TableName = null,
+            Description = @"first component is the message type edited by table 0076 - message type; second is the trigger event code edited by table 0003 - event type code.  Receiving system uses this field to know the data segments to recognize, and possibly, the application to which to route this message.  For certain queries, which may have more than a single response event type, the second component may, in the response message, vary to indicate the response event type.  See the discussion of the display query variants in Section 2.8.6.1.1.  The second component is not required on response or acknowledgement messages",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"MSH.8",
-                            Type = @"Field",
-                            Position = @"MSH.8",
-                            Name = @"Security",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"in some applications of HL7 this field will be used to implement security features.  Its use is not yet further specified",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.9",
-                            Type = @"Field",
-                            Position = @"MSH.9",
-                            Name = @"Message Type",
-                            Length = 7,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CM_MSG",
-                            DataTypeName = @"Message Type",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"first component is the message type edited by table 0076 - message type; second is the trigger event code edited by table 0003 - event type code.  Receiving system uses this field to know the data segments to recognize, and possibly, the application to which to route this message.  For certain queries, which may have more than a single response event type, the second component may, in the response message, vary to indicate the response event type.  See the discussion of the display query variants in Section 2.8.6.1.1.  The second component is not required on response or acknowledgement messages",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"MSH.9.1",
                             Type = @"Component",
@@ -264,544 +495,39 @@ Note: If MSH-15 and MSH-16 are omitted (or are both null), the original Acknowle
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.10",
-                            Type = @"Field",
-                            Position = @"MSH.10",
-                            Name = @"Message Control Id",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"number or other identifier that uniquely identifies the message.  The receiving system echoes this ID back to the sending system in the Message Acknowledgement segment (MSA).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.11",
-                            Type = @"Field",
-                            Position = @"MSH.11",
-                            Name = @"Processing Id",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0103",
-                            TableName = @"PROCESSING ID",
-                            Description = @"used to decide whether to process the message as defined in HL7 Application (level 7)  Processing rules.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.12",
-                            Type = @"Field",
-                            Position = @"MSH.12",
-                            Name = @"Version Id",
-                            Length = 8,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0104",
-                            TableName = @"VERSION ID",
-                            Description = @"matched by the receiving system to its own version to be sure the message will be interpreted correctly",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.13",
-                            Type = @"Field",
-                            Position = @"MSH.13",
-                            Name = @"Sequence Number",
-                            Length = 15,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"non-null value in this field implies that the sequence number protocol is in use.  This numeric field incremented by one for each subsequent value",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.14",
-                            Type = @"Field",
-                            Position = @"MSH.14",
-                            Name = @"Continuation Pointer",
-                            Length = 180,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"used to define continuations in application-specific ways",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.15",
-                            Type = @"Field",
-                            Position = @"MSH.15",
-                            Name = @"Accept Acknowledgement Type",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0155",
-                            TableName = @"ACCEPT/APPLICATION ACKNOWLEDGEMENT CONDITIONS",
-                            Description = @"defines the conditions under which accept acknowledgements are required to be returned in response to this message.  Required for enhanced acknowledgement mode.  Refer to table 0155 - acknowledgement conditions for valid values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.16",
-                            Type = @"Field",
-                            Position = @"MSH.16",
-                            Name = @"Application Acknowledgement Type",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0155",
-                            TableName = @"ACCEPT/APPLICATION ACKNOWLEDGEMENT CONDITIONS",
-                            Description = @"defines the conditions under which  application  acknowledgements are required to be returned in response to this message.  Required for enhanced acknowledgement mode",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MSH.17",
-                            Type = @"Field",
-                            Position = @"MSH.17",
-                            Name = @"Country Code",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"ISO3166",
-                            TableName = @"Country Codes",
-                            Description = @"defines the country of origin for the message.  It will be used primarily to specify default elements, such as currency denominations.   ISO 3166 provides a list of country codes that may be used.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V22SegmentMSH(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V22Field fieldSeparator;
-
-public HL7V22Field FieldSeparator
-{
-    get
-    {
-        if (fieldSeparator != null)
-        {
-            return fieldSeparator;
-        }
-
-        fieldSeparator = new HL7V22Field
-        {
-            field = message[@"MSH"][1],
-            Id = @"MSH.1",
-            Type = @"Field",
-            Position = @"MSH.1",
-            Name = @"Field Separator",
-            Length = 1,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"actually the separator between the segment ID and the first real field, MSH-2-encoding characters.  As such it serves as the separator and defines the character to be used as a separator for the rest of the message.  Recommended value is |.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fieldSeparator.field.FieldRepetitions != null && fieldSeparator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fieldSeparator.Id));
-            fieldSeparator.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(fieldSeparator, fieldData);
-        }
-
-        return fieldSeparator;
-    } 
-}
-
-internal HL7V22Field encodingCharacters;
-
-public HL7V22Field EncodingCharacters
-{
-    get
-    {
-        if (encodingCharacters != null)
-        {
-            return encodingCharacters;
-        }
-
-        encodingCharacters = new HL7V22Field
-        {
-            field = message[@"MSH"][2],
-            Id = @"MSH.2",
-            Type = @"Field",
-            Position = @"MSH.2",
-            Name = @"Encoding Characters",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"four characters in the following order: the component separator, repetition separator, escape character, and subcomponent separator.  Recommended values are ^~\&. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (encodingCharacters.field.FieldRepetitions != null && encodingCharacters.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(encodingCharacters.Id));
-            encodingCharacters.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(encodingCharacters, fieldData);
-        }
-
-        return encodingCharacters;
-    } 
-}
-
-internal HL7V22Field sendingApplication;
-
-public HL7V22Field SendingApplication
-{
-    get
-    {
-        if (sendingApplication != null)
-        {
-            return sendingApplication;
-        }
-
-        sendingApplication = new HL7V22Field
-        {
-            field = message[@"MSH"][3],
-            Id = @"MSH.3",
-            Type = @"Field",
-            Position = @"MSH.3",
-            Name = @"Sending Application",
-            Length = 15,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"available for interface with lower level protocols",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sendingApplication.field.FieldRepetitions != null && sendingApplication.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sendingApplication.Id));
-            sendingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(sendingApplication, fieldData);
-        }
-
-        return sendingApplication;
-    } 
-}
-
-internal HL7V22Field sendingFacility;
-
-public HL7V22Field SendingFacility
-{
-    get
-    {
-        if (sendingFacility != null)
-        {
-            return sendingFacility;
-        }
-
-        sendingFacility = new HL7V22Field
-        {
-            field = message[@"MSH"][4],
-            Id = @"MSH.4",
-            Type = @"Field",
-            Position = @"MSH.4",
-            Name = @"Sending Facility",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"addresses one of several occurrences of the same application within the sending system.  Absent other considerations, the Medicare Provider ID might be used with an appropriate sub-identifier in the second component.  Entirely site-defined",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sendingFacility.field.FieldRepetitions != null && sendingFacility.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sendingFacility.Id));
-            sendingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(sendingFacility, fieldData);
-        }
-
-        return sendingFacility;
-    } 
-}
-
-internal HL7V22Field receivingApplication;
-
-public HL7V22Field ReceivingApplication
-{
-    get
-    {
-        if (receivingApplication != null)
-        {
-            return receivingApplication;
-        }
-
-        receivingApplication = new HL7V22Field
-        {
-            field = message[@"MSH"][5],
-            Id = @"MSH.5",
-            Type = @"Field",
-            Position = @"MSH.5",
-            Name = @"Receiving Application",
-            Length = 30,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"available for interface with lower level protocols",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (receivingApplication.field.FieldRepetitions != null && receivingApplication.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(receivingApplication.Id));
-            receivingApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(receivingApplication, fieldData);
-        }
-
-        return receivingApplication;
-    } 
-}
-
-internal HL7V22Field receivingFacility;
-
-public HL7V22Field ReceivingFacility
-{
-    get
-    {
-        if (receivingFacility != null)
-        {
-            return receivingFacility;
-        }
-
-        receivingFacility = new HL7V22Field
-        {
-            field = message[@"MSH"][6],
-            Id = @"MSH.6",
-            Type = @"Field",
-            Position = @"MSH.6",
-            Name = @"Receiving Facility",
-            Length = 30,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"identifies the receiving application among multiple identical instances of the application running on behalf of different organizations.  See comments: sending facility",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (receivingFacility.field.FieldRepetitions != null && receivingFacility.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(receivingFacility.Id));
-            receivingFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(receivingFacility, fieldData);
-        }
-
-        return receivingFacility;
-    } 
-}
-
-internal HL7V22Field dateTimeOfMessage;
-
-public HL7V22Field DateTimeOfMessage
-{
-    get
-    {
-        if (dateTimeOfMessage != null)
-        {
-            return dateTimeOfMessage;
-        }
-
-        dateTimeOfMessage = new HL7V22Field
-        {
-            field = message[@"MSH"][7],
-            Id = @"MSH.7",
-            Type = @"Field",
-            Position = @"MSH.7",
-            Name = @"Date / Time Of Message",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"date/time that the sending system created the message.  If the time zone is specified, it will be used throughout the message as the default time zone",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeOfMessage.field.FieldRepetitions != null && dateTimeOfMessage.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeOfMessage.Id));
-            dateTimeOfMessage.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(dateTimeOfMessage, fieldData);
-        }
-
-        return dateTimeOfMessage;
-    } 
-}
-
-internal HL7V22Field security;
-
-public HL7V22Field Security
-{
-    get
-    {
-        if (security != null)
-        {
-            return security;
-        }
-
-        security = new HL7V22Field
-        {
-            field = message[@"MSH"][8],
-            Id = @"MSH.8",
-            Type = @"Field",
-            Position = @"MSH.8",
-            Name = @"Security",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"in some applications of HL7 this field will be used to implement security features.  Its use is not yet further specified",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (security.field.FieldRepetitions != null && security.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(security.Id));
-            security.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(security, fieldData);
-        }
-
-        return security;
-    } 
-}
-
-internal HL7V22Field messageType;
-
-public HL7V22Field MessageType
-{
-    get
-    {
-        if (messageType != null)
-        {
-            return messageType;
-        }
-
-        messageType = new HL7V22Field
+        _messageType = new HL7V22Field
         {
             field = message[@"MSH"][9],
-            Id = @"MSH.9",
-            Type = @"Field",
-            Position = @"MSH.9",
-            Name = @"Message Type",
-            Length = 7,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CM_MSG",
-            DataTypeName = @"Message Type",
-            TableId = null,
-            TableName = null,
-            Description = @"first component is the message type edited by table 0076 - message type; second is the trigger event code edited by table 0003 - event type code.  Receiving system uses this field to know the data segments to recognize, and possibly, the application to which to route this message.  For certain queries, which may have more than a single response event type, the second component may, in the response message, vary to indicate the response event type.  See the discussion of the display query variants in Section 2.8.6.1.1.  The second component is not required on response or acknowledgement messages",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (messageType.field.FieldRepetitions != null && messageType.field.FieldRepetitions.Count > 0)
+        if (_messageType.field.FieldRepetitions != null && _messageType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(messageType.Id));
-            messageType.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(messageType, fieldData);
+            _messageType.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_messageType, fieldData);
         }
 
-        return messageType;
+        return _messageType;
     } 
 }
 
-internal HL7V22Field messageControlId;
+internal HL7V22Field _messageControlId;
 
 public HL7V22Field MessageControlId
 {
     get
     {
-        if (messageControlId != null)
+        if (_messageControlId != null)
         {
-            return messageControlId;
+            return _messageControlId;
         }
 
-        messageControlId = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"MSH"][10],
             Id = @"MSH.10",
             Type = @"Field",
             Position = @"MSH.10",
@@ -815,34 +541,38 @@ public HL7V22Field MessageControlId
             TableName = null,
             Description = @"number or other identifier that uniquely identifies the message.  The receiving system echoes this ID back to the sending system in the Message Acknowledgement segment (MSA).",
             Sample = @"",
+            Fields = null
+        }
+
+        _messageControlId = new HL7V22Field
+        {
+            field = message[@"MSH"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (messageControlId.field.FieldRepetitions != null && messageControlId.field.FieldRepetitions.Count > 0)
+        if (_messageControlId.field.FieldRepetitions != null && _messageControlId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(messageControlId.Id));
-            messageControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(messageControlId, fieldData);
+            _messageControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_messageControlId, fieldData);
         }
 
-        return messageControlId;
+        return _messageControlId;
     } 
 }
 
-internal HL7V22Field processingId;
+internal HL7V22Field _processingId;
 
 public HL7V22Field ProcessingId
 {
     get
     {
-        if (processingId != null)
+        if (_processingId != null)
         {
-            return processingId;
+            return _processingId;
         }
 
-        processingId = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"MSH"][11],
             Id = @"MSH.11",
             Type = @"Field",
             Position = @"MSH.11",
@@ -856,34 +586,38 @@ public HL7V22Field ProcessingId
             TableName = @"PROCESSING ID",
             Description = @"used to decide whether to process the message as defined in HL7 Application (level 7)  Processing rules.",
             Sample = @"",
+            Fields = null
+        }
+
+        _processingId = new HL7V22Field
+        {
+            field = message[@"MSH"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (processingId.field.FieldRepetitions != null && processingId.field.FieldRepetitions.Count > 0)
+        if (_processingId.field.FieldRepetitions != null && _processingId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(processingId.Id));
-            processingId.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(processingId, fieldData);
+            _processingId.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_processingId, fieldData);
         }
 
-        return processingId;
+        return _processingId;
     } 
 }
 
-internal HL7V22Field versionId;
+internal HL7V22Field _versionId;
 
 public HL7V22Field VersionId
 {
     get
     {
-        if (versionId != null)
+        if (_versionId != null)
         {
-            return versionId;
+            return _versionId;
         }
 
-        versionId = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"MSH"][12],
             Id = @"MSH.12",
             Type = @"Field",
             Position = @"MSH.12",
@@ -897,34 +631,38 @@ public HL7V22Field VersionId
             TableName = @"VERSION ID",
             Description = @"matched by the receiving system to its own version to be sure the message will be interpreted correctly",
             Sample = @"",
+            Fields = null
+        }
+
+        _versionId = new HL7V22Field
+        {
+            field = message[@"MSH"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (versionId.field.FieldRepetitions != null && versionId.field.FieldRepetitions.Count > 0)
+        if (_versionId.field.FieldRepetitions != null && _versionId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(versionId.Id));
-            versionId.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(versionId, fieldData);
+            _versionId.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_versionId, fieldData);
         }
 
-        return versionId;
+        return _versionId;
     } 
 }
 
-internal HL7V22Field sequenceNumber;
+internal HL7V22Field _sequenceNumber;
 
 public HL7V22Field SequenceNumber
 {
     get
     {
-        if (sequenceNumber != null)
+        if (_sequenceNumber != null)
         {
-            return sequenceNumber;
+            return _sequenceNumber;
         }
 
-        sequenceNumber = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"MSH"][13],
             Id = @"MSH.13",
             Type = @"Field",
             Position = @"MSH.13",
@@ -938,34 +676,38 @@ public HL7V22Field SequenceNumber
             TableName = null,
             Description = @"non-null value in this field implies that the sequence number protocol is in use.  This numeric field incremented by one for each subsequent value",
             Sample = @"",
+            Fields = null
+        }
+
+        _sequenceNumber = new HL7V22Field
+        {
+            field = message[@"MSH"][13],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (sequenceNumber.field.FieldRepetitions != null && sequenceNumber.field.FieldRepetitions.Count > 0)
+        if (_sequenceNumber.field.FieldRepetitions != null && _sequenceNumber.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sequenceNumber.Id));
-            sequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(sequenceNumber, fieldData);
+            _sequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_sequenceNumber, fieldData);
         }
 
-        return sequenceNumber;
+        return _sequenceNumber;
     } 
 }
 
-internal HL7V22Field continuationPointer;
+internal HL7V22Field _continuationPointer;
 
 public HL7V22Field ContinuationPointer
 {
     get
     {
-        if (continuationPointer != null)
+        if (_continuationPointer != null)
         {
-            return continuationPointer;
+            return _continuationPointer;
         }
 
-        continuationPointer = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"MSH"][14],
             Id = @"MSH.14",
             Type = @"Field",
             Position = @"MSH.14",
@@ -979,34 +721,38 @@ public HL7V22Field ContinuationPointer
             TableName = null,
             Description = @"used to define continuations in application-specific ways",
             Sample = @"",
+            Fields = null
+        }
+
+        _continuationPointer = new HL7V22Field
+        {
+            field = message[@"MSH"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (continuationPointer.field.FieldRepetitions != null && continuationPointer.field.FieldRepetitions.Count > 0)
+        if (_continuationPointer.field.FieldRepetitions != null && _continuationPointer.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(continuationPointer.Id));
-            continuationPointer.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(continuationPointer, fieldData);
+            _continuationPointer.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_continuationPointer, fieldData);
         }
 
-        return continuationPointer;
+        return _continuationPointer;
     } 
 }
 
-internal HL7V22Field acceptAcknowledgementType;
+internal HL7V22Field _acceptAcknowledgementType;
 
 public HL7V22Field AcceptAcknowledgementType
 {
     get
     {
-        if (acceptAcknowledgementType != null)
+        if (_acceptAcknowledgementType != null)
         {
-            return acceptAcknowledgementType;
+            return _acceptAcknowledgementType;
         }
 
-        acceptAcknowledgementType = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"MSH"][15],
             Id = @"MSH.15",
             Type = @"Field",
             Position = @"MSH.15",
@@ -1020,34 +766,38 @@ public HL7V22Field AcceptAcknowledgementType
             TableName = @"ACCEPT/APPLICATION ACKNOWLEDGEMENT CONDITIONS",
             Description = @"defines the conditions under which accept acknowledgements are required to be returned in response to this message.  Required for enhanced acknowledgement mode.  Refer to table 0155 - acknowledgement conditions for valid values",
             Sample = @"",
+            Fields = null
+        }
+
+        _acceptAcknowledgementType = new HL7V22Field
+        {
+            field = message[@"MSH"][15],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (acceptAcknowledgementType.field.FieldRepetitions != null && acceptAcknowledgementType.field.FieldRepetitions.Count > 0)
+        if (_acceptAcknowledgementType.field.FieldRepetitions != null && _acceptAcknowledgementType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(acceptAcknowledgementType.Id));
-            acceptAcknowledgementType.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(acceptAcknowledgementType, fieldData);
+            _acceptAcknowledgementType.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_acceptAcknowledgementType, fieldData);
         }
 
-        return acceptAcknowledgementType;
+        return _acceptAcknowledgementType;
     } 
 }
 
-internal HL7V22Field applicationAcknowledgementType;
+internal HL7V22Field _applicationAcknowledgementType;
 
 public HL7V22Field ApplicationAcknowledgementType
 {
     get
     {
-        if (applicationAcknowledgementType != null)
+        if (_applicationAcknowledgementType != null)
         {
-            return applicationAcknowledgementType;
+            return _applicationAcknowledgementType;
         }
 
-        applicationAcknowledgementType = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"MSH"][16],
             Id = @"MSH.16",
             Type = @"Field",
             Position = @"MSH.16",
@@ -1061,34 +811,38 @@ public HL7V22Field ApplicationAcknowledgementType
             TableName = @"ACCEPT/APPLICATION ACKNOWLEDGEMENT CONDITIONS",
             Description = @"defines the conditions under which  application  acknowledgements are required to be returned in response to this message.  Required for enhanced acknowledgement mode",
             Sample = @"",
+            Fields = null
+        }
+
+        _applicationAcknowledgementType = new HL7V22Field
+        {
+            field = message[@"MSH"][16],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (applicationAcknowledgementType.field.FieldRepetitions != null && applicationAcknowledgementType.field.FieldRepetitions.Count > 0)
+        if (_applicationAcknowledgementType.field.FieldRepetitions != null && _applicationAcknowledgementType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(applicationAcknowledgementType.Id));
-            applicationAcknowledgementType.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(applicationAcknowledgementType, fieldData);
+            _applicationAcknowledgementType.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_applicationAcknowledgementType, fieldData);
         }
 
-        return applicationAcknowledgementType;
+        return _applicationAcknowledgementType;
     } 
 }
 
-internal HL7V22Field countryCode;
+internal HL7V22Field _countryCode;
 
 public HL7V22Field CountryCode
 {
     get
     {
-        if (countryCode != null)
+        if (_countryCode != null)
         {
-            return countryCode;
+            return _countryCode;
         }
 
-        countryCode = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"MSH"][17],
             Id = @"MSH.17",
             Type = @"Field",
             Position = @"MSH.17",
@@ -1102,17 +856,22 @@ public HL7V22Field CountryCode
             TableName = @"Country Codes",
             Description = @"defines the country of origin for the message.  It will be used primarily to specify default elements, such as currency denominations.   ISO 3166 provides a list of country codes that may be used.",
             Sample = @"",
+            Fields = null
+        }
+
+        _countryCode = new HL7V22Field
+        {
+            field = message[@"MSH"][17],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (countryCode.field.FieldRepetitions != null && countryCode.field.FieldRepetitions.Count > 0)
+        if (_countryCode.field.FieldRepetitions != null && _countryCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(countryCode.Id));
-            countryCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(countryCode, fieldData);
+            _countryCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_countryCode, fieldData);
         }
 
-        return countryCode;
+        return _countryCode;
     } 
 }
     }

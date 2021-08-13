@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             } 
         }
@@ -53,6 +54,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Signed authorization for release of any medical or other information necessary to process this claim on file.",
                             Comment = null
                         },
+                        
                     };
             } 
         }

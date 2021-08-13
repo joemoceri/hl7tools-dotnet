@@ -29,52 +29,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"QRF.1",
-                            Type = @"Field",
-                            Position = @"QRF.1",
-                            Name = @"QRF.1",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V28SegmentQRF(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V28Field qRF1;
+        internal HL7V28Field _qRF1;
 
 public HL7V28Field QRF1
 {
     get
     {
-        if (qRF1 != null)
+        if (_qRF1 != null)
         {
-            return qRF1;
+            return _qRF1;
         }
 
-        qRF1 = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"QRF"][1],
             Id = @"QRF.1",
             Type = @"Field",
             Position = @"QRF.1",
@@ -88,17 +60,22 @@ public HL7V28Field QRF1
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _qRF1 = new HL7V28Field
+        {
+            field = message[@"QRF"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (qRF1.field.FieldRepetitions != null && qRF1.field.FieldRepetitions.Count > 0)
+        if (_qRF1.field.FieldRepetitions != null && _qRF1.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(qRF1.Id));
-            qRF1.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(qRF1, fieldData);
+            _qRF1.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_qRF1, fieldData);
         }
 
-        return qRF1;
+        return _qRF1;
     } 
 }
     }

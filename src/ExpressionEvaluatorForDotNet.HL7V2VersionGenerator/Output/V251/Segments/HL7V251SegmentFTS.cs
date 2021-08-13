@@ -29,70 +29,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"FTS.1",
-                            Type = @"Field",
-                            Position = @"FTS.1",
-                            Name = @"File Batch Count",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number of batches contained in this file.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FTS.2",
-                            Type = @"Field",
-                            Position = @"FTS.2",
-                            Name = @"File Trailer Comment",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The use of this free text field is not further specified.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V251SegmentFTS(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V251Field fileBatchCount;
+        internal HL7V251Field _fileBatchCount;
 
 public HL7V251Field FileBatchCount
 {
     get
     {
-        if (fileBatchCount != null)
+        if (_fileBatchCount != null)
         {
-            return fileBatchCount;
+            return _fileBatchCount;
         }
 
-        fileBatchCount = new HL7V251Field
+        var fieldData = new HL7V251FieldData
         {
-            field = message[@"FTS"][1],
             Id = @"FTS.1",
             Type = @"Field",
             Position = @"FTS.1",
@@ -106,34 +60,38 @@ public HL7V251Field FileBatchCount
             TableName = null,
             Description = @"This field contains the number of batches contained in this file.",
             Sample = @"",
+            Fields = null
+        }
+
+        _fileBatchCount = new HL7V251Field
+        {
+            field = message[@"FTS"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fileBatchCount.field.FieldRepetitions != null && fileBatchCount.field.FieldRepetitions.Count > 0)
+        if (_fileBatchCount.field.FieldRepetitions != null && _fileBatchCount.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fileBatchCount.Id));
-            fileBatchCount.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(fileBatchCount, fieldData);
+            _fileBatchCount.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_fileBatchCount, fieldData);
         }
 
-        return fileBatchCount;
+        return _fileBatchCount;
     } 
 }
 
-internal HL7V251Field fileTrailerComment;
+internal HL7V251Field _fileTrailerComment;
 
 public HL7V251Field FileTrailerComment
 {
     get
     {
-        if (fileTrailerComment != null)
+        if (_fileTrailerComment != null)
         {
-            return fileTrailerComment;
+            return _fileTrailerComment;
         }
 
-        fileTrailerComment = new HL7V251Field
+        var fieldData = new HL7V251FieldData
         {
-            field = message[@"FTS"][2],
             Id = @"FTS.2",
             Type = @"Field",
             Position = @"FTS.2",
@@ -147,17 +105,22 @@ public HL7V251Field FileTrailerComment
             TableName = null,
             Description = @"The use of this free text field is not further specified.",
             Sample = @"",
+            Fields = null
+        }
+
+        _fileTrailerComment = new HL7V251Field
+        {
+            field = message[@"FTS"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fileTrailerComment.field.FieldRepetitions != null && fileTrailerComment.field.FieldRepetitions.Count > 0)
+        if (_fileTrailerComment.field.FieldRepetitions != null && _fileTrailerComment.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fileTrailerComment.Id));
-            fileTrailerComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(fileTrailerComment, fieldData);
+            _fileTrailerComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_fileTrailerComment, fieldData);
         }
 
-        return fileTrailerComment;
+        return _fileTrailerComment;
     } 
 }
     }

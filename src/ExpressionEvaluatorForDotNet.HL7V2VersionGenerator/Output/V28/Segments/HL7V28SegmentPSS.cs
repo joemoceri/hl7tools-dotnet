@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentPSS(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _providerProductServiceSectionNumber;
+
+public HL7V28Field ProviderProductServiceSectionNumber
+{
+    get
+    {
+        if (_providerProductServiceSectionNumber != null)
+        {
+            return _providerProductServiceSectionNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"PSS.1",
+            Type = @"Field",
+            Position = @"PSS.1",
+            Name = @"Provider Product/Service Section Number",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique Product/Service Section Number assigned by the Provider Application.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PSS.1",
-                            Type = @"Field",
-                            Position = @"PSS.1",
-                            Name = @"Provider Product/Service Section Number",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique Product/Service Section Number assigned by the Provider Application.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PSS.1.1",
                             Type = @"Component",
@@ -126,25 +138,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providerProductServiceSectionNumber = new HL7V28Field
+        {
+            field = message[@"PSS"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providerProductServiceSectionNumber.field.FieldRepetitions != null && _providerProductServiceSectionNumber.field.FieldRepetitions.Count > 0)
+        {
+            _providerProductServiceSectionNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_providerProductServiceSectionNumber, fieldData);
+        }
+
+        return _providerProductServiceSectionNumber;
+    } 
+}
+
+internal HL7V28Field _payerProductServiceSectionNumber;
+
+public HL7V28Field PayerProductServiceSectionNumber
+{
+    get
+    {
+        if (_payerProductServiceSectionNumber != null)
+        {
+            return _payerProductServiceSectionNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"PSS.2",
+            Type = @"Field",
+            Position = @"PSS.2",
+            Name = @"Payer Product/Service Section Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique Product/Service Section Number assigned by the Payer Application.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSS.2",
-                            Type = @"Field",
-                            Position = @"PSS.2",
-                            Name = @"Payer Product/Service Section Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique Product/Service Section Number assigned by the Payer Application.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSS.2.1",
                             Type = @"Component",
@@ -220,43 +262,100 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
                             Description = @"Refer to HL7 Table 0301 - Universal ID Type for valid values. See Section 2.A.33.3, ""Universal ID Type (ID),"" for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _payerProductServiceSectionNumber = new HL7V28Field
+        {
+            field = message[@"PSS"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payerProductServiceSectionNumber.field.FieldRepetitions != null && _payerProductServiceSectionNumber.field.FieldRepetitions.Count > 0)
+        {
+            _payerProductServiceSectionNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_payerProductServiceSectionNumber, fieldData);
+        }
+
+        return _payerProductServiceSectionNumber;
+    } 
+}
+
+internal HL7V28Field _productServiceSectionSequenceNumber;
+
+public HL7V28Field ProductServiceSectionSequenceNumber
+{
+    get
+    {
+        if (_productServiceSectionSequenceNumber != null)
+        {
+            return _productServiceSectionSequenceNumber;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"PSS.3",
+            Type = @"Field",
+            Position = @"PSS.3",
+            Name = @"Product/Service Section Sequence Number",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique sequence number for the Product/Service Section (3) – starts with 1, then 2, etc. for each unique Product/Service Section in this Invoice.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _productServiceSectionSequenceNumber = new HL7V28Field
+        {
+            field = message[@"PSS"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_productServiceSectionSequenceNumber.field.FieldRepetitions != null && _productServiceSectionSequenceNumber.field.FieldRepetitions.Count > 0)
+        {
+            _productServiceSectionSequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_productServiceSectionSequenceNumber, fieldData);
+        }
+
+        return _productServiceSectionSequenceNumber;
+    } 
+}
+
+internal HL7V28Field _billedAmount;
+
+public HL7V28Field BilledAmount
+{
+    get
+    {
+        if (_billedAmount != null)
+        {
+            return _billedAmount;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"PSS.4",
+            Type = @"Field",
+            Position = @"PSS.4",
+            Name = @"Billed Amount",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Sum of all Product/Service Billed Amounts for all Product/Service Line Items for this Product/Service Section.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PSS.3",
-                            Type = @"Field",
-                            Position = @"PSS.3",
-                            Name = @"Product/Service Section Sequence Number",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique sequence number for the Product/Service Section (3) – starts with 1, then 2, etc. for each unique Product/Service Section in this Invoice.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSS.4",
-                            Type = @"Field",
-                            Position = @"PSS.4",
-                            Name = @"Billed Amount",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Sum of all Product/Service Billed Amounts for all Product/Service Line Items for this Product/Service Section.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PSS.4.1",
                             Type = @"Component",
@@ -833,213 +932,39 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PSS.5",
-                            Type = @"Field",
-                            Position = @"PSS.5",
-                            Name = @"Section Description Or Heading",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Section description or heading.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentPSS(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field providerProductServiceSectionNumber;
-
-public HL7V28Field ProviderProductServiceSectionNumber
-{
-    get
-    {
-        if (providerProductServiceSectionNumber != null)
-        {
-            return providerProductServiceSectionNumber;
-        }
-
-        providerProductServiceSectionNumber = new HL7V28Field
-        {
-            field = message[@"PSS"][1],
-            Id = @"PSS.1",
-            Type = @"Field",
-            Position = @"PSS.1",
-            Name = @"Provider Product/Service Section Number",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique Product/Service Section Number assigned by the Provider Application.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providerProductServiceSectionNumber.field.FieldRepetitions != null && providerProductServiceSectionNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providerProductServiceSectionNumber.Id));
-            providerProductServiceSectionNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(providerProductServiceSectionNumber, fieldData);
-        }
-
-        return providerProductServiceSectionNumber;
-    } 
-}
-
-internal HL7V28Field payerProductServiceSectionNumber;
-
-public HL7V28Field PayerProductServiceSectionNumber
-{
-    get
-    {
-        if (payerProductServiceSectionNumber != null)
-        {
-            return payerProductServiceSectionNumber;
-        }
-
-        payerProductServiceSectionNumber = new HL7V28Field
-        {
-            field = message[@"PSS"][2],
-            Id = @"PSS.2",
-            Type = @"Field",
-            Position = @"PSS.2",
-            Name = @"Payer Product/Service Section Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique Product/Service Section Number assigned by the Payer Application.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payerProductServiceSectionNumber.field.FieldRepetitions != null && payerProductServiceSectionNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payerProductServiceSectionNumber.Id));
-            payerProductServiceSectionNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(payerProductServiceSectionNumber, fieldData);
-        }
-
-        return payerProductServiceSectionNumber;
-    } 
-}
-
-internal HL7V28Field productServiceSectionSequenceNumber;
-
-public HL7V28Field ProductServiceSectionSequenceNumber
-{
-    get
-    {
-        if (productServiceSectionSequenceNumber != null)
-        {
-            return productServiceSectionSequenceNumber;
-        }
-
-        productServiceSectionSequenceNumber = new HL7V28Field
-        {
-            field = message[@"PSS"][3],
-            Id = @"PSS.3",
-            Type = @"Field",
-            Position = @"PSS.3",
-            Name = @"Product/Service Section Sequence Number",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique sequence number for the Product/Service Section (3) – starts with 1, then 2, etc. for each unique Product/Service Section in this Invoice.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (productServiceSectionSequenceNumber.field.FieldRepetitions != null && productServiceSectionSequenceNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(productServiceSectionSequenceNumber.Id));
-            productServiceSectionSequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(productServiceSectionSequenceNumber, fieldData);
-        }
-
-        return productServiceSectionSequenceNumber;
-    } 
-}
-
-internal HL7V28Field billedAmount;
-
-public HL7V28Field BilledAmount
-{
-    get
-    {
-        if (billedAmount != null)
-        {
-            return billedAmount;
-        }
-
-        billedAmount = new HL7V28Field
+        _billedAmount = new HL7V28Field
         {
             field = message[@"PSS"][4],
-            Id = @"PSS.4",
-            Type = @"Field",
-            Position = @"PSS.4",
-            Name = @"Billed Amount",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Sum of all Product/Service Billed Amounts for all Product/Service Line Items for this Product/Service Section.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (billedAmount.field.FieldRepetitions != null && billedAmount.field.FieldRepetitions.Count > 0)
+        if (_billedAmount.field.FieldRepetitions != null && _billedAmount.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(billedAmount.Id));
-            billedAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(billedAmount, fieldData);
+            _billedAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_billedAmount, fieldData);
         }
 
-        return billedAmount;
+        return _billedAmount;
     } 
 }
 
-internal HL7V28Field sectionDescriptionOrHeading;
+internal HL7V28Field _sectionDescriptionOrHeading;
 
 public HL7V28Field SectionDescriptionOrHeading
 {
     get
     {
-        if (sectionDescriptionOrHeading != null)
+        if (_sectionDescriptionOrHeading != null)
         {
-            return sectionDescriptionOrHeading;
+            return _sectionDescriptionOrHeading;
         }
 
-        sectionDescriptionOrHeading = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"PSS"][5],
             Id = @"PSS.5",
             Type = @"Field",
             Position = @"PSS.5",
@@ -1053,17 +978,22 @@ public HL7V28Field SectionDescriptionOrHeading
             TableName = null,
             Description = @"Section description or heading.",
             Sample = @"",
+            Fields = null
+        }
+
+        _sectionDescriptionOrHeading = new HL7V28Field
+        {
+            field = message[@"PSS"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (sectionDescriptionOrHeading.field.FieldRepetitions != null && sectionDescriptionOrHeading.field.FieldRepetitions.Count > 0)
+        if (_sectionDescriptionOrHeading.field.FieldRepetitions != null && _sectionDescriptionOrHeading.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sectionDescriptionOrHeading.Id));
-            sectionDescriptionOrHeading.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(sectionDescriptionOrHeading, fieldData);
+            _sectionDescriptionOrHeading.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_sectionDescriptionOrHeading, fieldData);
         }
 
-        return sectionDescriptionOrHeading;
+        return _sectionDescriptionOrHeading;
     } 
 }
     }

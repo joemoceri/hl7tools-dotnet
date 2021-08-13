@@ -20,6 +20,7 @@ namespace ExpressionEvaluatorForDotNet
                     {
                         "CH_02",
 "CH_12",
+
                     };
             } 
         }
@@ -1566,6 +1567,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"QRF - Waveform result, response to query",
                             Comment = null
                         },
+                        
                     };
             } 
         }

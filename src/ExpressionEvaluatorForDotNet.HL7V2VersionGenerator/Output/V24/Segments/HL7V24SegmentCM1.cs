@@ -31,46 +31,85 @@ The Technical Steward for the CM1 segment is ORDERS."; } }
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentCM1(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _setIDCM1;
+
+public HL7V24Field SetIDCM1
+{
+    get
+    {
+        if (_setIDCM1 != null)
+        {
+            return _setIDCM1;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CM1.1",
+            Type = @"Field",
+            Position = @"CM1.1",
+            Name = @"Set ID - CM1",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a number that uniquely identifies this transaction for the purpose of adding, changing, or deleting the transaction. For those messages that permit segments to repeat, the Set IF field is used to identify the repetitions.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDCM1 = new HL7V24Field
+        {
+            field = message[@"CM1"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDCM1.field.FieldRepetitions != null && _setIDCM1.field.FieldRepetitions.Count > 0)
+        {
+            _setIDCM1.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_setIDCM1, fieldData);
+        }
+
+        return _setIDCM1;
+    } 
+}
+
+internal HL7V24Field _studyPhaseIdentifier;
+
+public HL7V24Field StudyPhaseIdentifier
+{
+    get
+    {
+        if (_studyPhaseIdentifier != null)
+        {
+            return _studyPhaseIdentifier;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CM1.2",
+            Type = @"Field",
+            Position = @"CM1.2",
+            Name = @"Study Phase Identifier",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field should correspond to the study phase ID coding system in Section 7.7.2.1, ""Study phase ID.""",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"CM1.1",
-                            Type = @"Field",
-                            Position = @"CM1.1",
-                            Name = @"Set ID - CM1",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a number that uniquely identifies this transaction for the purpose of adding, changing, or deleting the transaction. For those messages that permit segments to repeat, the Set IF field is used to identify the repetitions.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CM1.2",
-                            Type = @"Field",
-                            Position = @"CM1.2",
-                            Name = @"Study Phase Identifier",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field should correspond to the study phase ID coding system in Section 7.7.2.1, ""Study phase ID.""",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CM1.2.1",
                             Type = @"Component",
@@ -180,131 +219,39 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CM1.3",
-                            Type = @"Field",
-                            Position = @"CM1.3",
-                            Name = @"Description of Study Phase",
-                            Length = 300,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a brief explanation for recipients to understand what the phase represents.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentCM1(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field setIDCM1;
-
-public HL7V24Field SetIDCM1
-{
-    get
-    {
-        if (setIDCM1 != null)
-        {
-            return setIDCM1;
-        }
-
-        setIDCM1 = new HL7V24Field
-        {
-            field = message[@"CM1"][1],
-            Id = @"CM1.1",
-            Type = @"Field",
-            Position = @"CM1.1",
-            Name = @"Set ID - CM1",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a number that uniquely identifies this transaction for the purpose of adding, changing, or deleting the transaction. For those messages that permit segments to repeat, the Set IF field is used to identify the repetitions.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDCM1.field.FieldRepetitions != null && setIDCM1.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDCM1.Id));
-            setIDCM1.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(setIDCM1, fieldData);
-        }
-
-        return setIDCM1;
-    } 
-}
-
-internal HL7V24Field studyPhaseIdentifier;
-
-public HL7V24Field StudyPhaseIdentifier
-{
-    get
-    {
-        if (studyPhaseIdentifier != null)
-        {
-            return studyPhaseIdentifier;
-        }
-
-        studyPhaseIdentifier = new HL7V24Field
+        _studyPhaseIdentifier = new HL7V24Field
         {
             field = message[@"CM1"][2],
-            Id = @"CM1.2",
-            Type = @"Field",
-            Position = @"CM1.2",
-            Name = @"Study Phase Identifier",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field should correspond to the study phase ID coding system in Section 7.7.2.1, ""Study phase ID.""",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (studyPhaseIdentifier.field.FieldRepetitions != null && studyPhaseIdentifier.field.FieldRepetitions.Count > 0)
+        if (_studyPhaseIdentifier.field.FieldRepetitions != null && _studyPhaseIdentifier.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studyPhaseIdentifier.Id));
-            studyPhaseIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(studyPhaseIdentifier, fieldData);
+            _studyPhaseIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_studyPhaseIdentifier, fieldData);
         }
 
-        return studyPhaseIdentifier;
+        return _studyPhaseIdentifier;
     } 
 }
 
-internal HL7V24Field descriptionofStudyPhase;
+internal HL7V24Field _descriptionofStudyPhase;
 
 public HL7V24Field DescriptionofStudyPhase
 {
     get
     {
-        if (descriptionofStudyPhase != null)
+        if (_descriptionofStudyPhase != null)
         {
-            return descriptionofStudyPhase;
+            return _descriptionofStudyPhase;
         }
 
-        descriptionofStudyPhase = new HL7V24Field
+        var fieldData = new HL7V24FieldData
         {
-            field = message[@"CM1"][3],
             Id = @"CM1.3",
             Type = @"Field",
             Position = @"CM1.3",
@@ -318,17 +265,22 @@ public HL7V24Field DescriptionofStudyPhase
             TableName = null,
             Description = @"This field contains a brief explanation for recipients to understand what the phase represents.",
             Sample = @"",
+            Fields = null
+        }
+
+        _descriptionofStudyPhase = new HL7V24Field
+        {
+            field = message[@"CM1"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (descriptionofStudyPhase.field.FieldRepetitions != null && descriptionofStudyPhase.field.FieldRepetitions.Count > 0)
+        if (_descriptionofStudyPhase.field.FieldRepetitions != null && _descriptionofStudyPhase.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(descriptionofStudyPhase.Id));
-            descriptionofStudyPhase.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(descriptionofStudyPhase, fieldData);
+            _descriptionofStudyPhase.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_descriptionofStudyPhase, fieldData);
         }
 
-        return descriptionofStudyPhase;
+        return _descriptionofStudyPhase;
     } 
 }
     }

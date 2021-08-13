@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             } 
         }
@@ -59,6 +60,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Claim denied, rejected, suspended or returned to provider with only pre payment edits",
                             Comment = null
                         },
+                        
                     };
             } 
         }

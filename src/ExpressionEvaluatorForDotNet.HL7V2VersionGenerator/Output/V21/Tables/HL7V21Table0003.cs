@@ -230,6 +230,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Display oriented results, query/unsol. update",
                             Comment = null
                         },
+                        
                     };
             } 
         }

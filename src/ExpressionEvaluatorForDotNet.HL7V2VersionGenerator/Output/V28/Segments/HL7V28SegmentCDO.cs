@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentCDO(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _setIDCDO;
+
+public HL7V28Field SetIDCDO
+{
+    get
+    {
+        if (_setIDCDO != null)
+        {
+            return _setIDCDO;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"CDO.1",
+            Type = @"Field",
+            Position = @"CDO.1",
+            Name = @"Set ID – CDO",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"For the first cumulative dose specification transmitted, the sequence number shall be 1; for the second cumulative dose, it shall be 2; and so on",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDCDO = new HL7V28Field
+        {
+            field = message[@"CDO"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDCDO.field.FieldRepetitions != null && _setIDCDO.field.FieldRepetitions.Count > 0)
+        {
+            _setIDCDO.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_setIDCDO, fieldData);
+        }
+
+        return _setIDCDO;
+    } 
+}
+
+internal HL7V28Field _actionCode;
+
+public HL7V28Field ActionCode
+{
+    get
+    {
+        if (_actionCode != null)
+        {
+            return _actionCode;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"CDO.2",
+            Type = @"Field",
+            Position = @"CDO.2",
+            Name = @"Action Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0206",
+            TableName = @"Segment action code",
+            Description = @"The Action Code indicates whether the cumulative dosage segment is intended to be added, deleted, updated, or did not change.  If the field is not valued in any CDO segments for the order, the segments are considered to have been sent in snapshot mode.  If some but not all CDO segments for the order do not have the action code valued, the default value is Add.  Refer to HL7 Table 0206 - Segment Action Code in Chapter 2C, Code Tables, for valid values",
+            Sample = @"",
+            Fields = null
+        }
+
+        _actionCode = new HL7V28Field
+        {
+            field = message[@"CDO"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_actionCode.field.FieldRepetitions != null && _actionCode.field.FieldRepetitions.Count > 0)
+        {
+            _actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_actionCode, fieldData);
+        }
+
+        return _actionCode;
+    } 
+}
+
+internal HL7V28Field _cumulativeDosageLimit;
+
+public HL7V28Field CumulativeDosageLimit
+{
+    get
+    {
+        if (_cumulativeDosageLimit != null)
+        {
+            return _cumulativeDosageLimit;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"CDO.3",
+            Type = @"Field",
+            Position = @"CDO.3",
+            Name = @"Cumulative Dosage Limit",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"The Cumulative Dosage indicates the total dosage that may be administered within the scope of this order or within the interval indicated in CDO-4 Cumulative Dosage Time Interval, if supplied.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"CDO.1",
-                            Type = @"Field",
-                            Position = @"CDO.1",
-                            Name = @"Set ID – CDO",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"For the first cumulative dose specification transmitted, the sequence number shall be 1; for the second cumulative dose, it shall be 2; and so on",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CDO.2",
-                            Type = @"Field",
-                            Position = @"CDO.2",
-                            Name = @"Action Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0206",
-                            TableName = @"Segment action code",
-                            Description = @"The Action Code indicates whether the cumulative dosage segment is intended to be added, deleted, updated, or did not change.  If the field is not valued in any CDO segments for the order, the segments are considered to have been sent in snapshot mode.  If some but not all CDO segments for the order do not have the action code valued, the default value is Add.  Refer to HL7 Table 0206 - Segment Action Code in Chapter 2C, Code Tables, for valid values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CDO.3",
-                            Type = @"Field",
-                            Position = @"CDO.3",
-                            Name = @"Cumulative Dosage Limit",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The Cumulative Dosage indicates the total dosage that may be administered within the scope of this order or within the interval indicated in CDO-4 Cumulative Dosage Time Interval, if supplied.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CDO.3.1",
                             Type = @"Component",
@@ -548,27 +614,57 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CDO.4",
-                            Type = @"Field",
-                            Position = @"CDO.4",
-                            Name = @"Cumulative Dosage Limit Time Interval",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = @"0924",
-                            TableName = @"Cumulative Dosage Limit UoM",
-                            Description = @"The Cumulative Dosage Time Interval indicates the interval over which the cumulative dosage in CDO-3 Cumulative Dosage Limit is measured.  If this field is not valued, the Cumulative Dosage Limit applies to the scope of the order.
+                        }
+        }
+
+        _cumulativeDosageLimit = new HL7V28Field
+        {
+            field = message[@"CDO"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_cumulativeDosageLimit.field.FieldRepetitions != null && _cumulativeDosageLimit.field.FieldRepetitions.Count > 0)
+        {
+            _cumulativeDosageLimit.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_cumulativeDosageLimit, fieldData);
+        }
+
+        return _cumulativeDosageLimit;
+    } 
+}
+
+internal HL7V28Field _cumulativeDosageLimitTimeInterval;
+
+public HL7V28Field CumulativeDosageLimitTimeInterval
+{
+    get
+    {
+        if (_cumulativeDosageLimitTimeInterval != null)
+        {
+            return _cumulativeDosageLimitTimeInterval;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"CDO.4",
+            Type = @"Field",
+            Position = @"CDO.4",
+            Name = @"Cumulative Dosage Limit Time Interval",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = @"0924",
+            TableName = @"Cumulative Dosage Limit UoM",
+            Description = @"The Cumulative Dosage Time Interval indicates the interval over which the cumulative dosage in CDO-3 Cumulative Dosage Limit is measured.  If this field is not valued, the Cumulative Dosage Limit applies to the scope of the order.
 
 Refer to HL7 Table 924 – Cumulative Dosage Limit UoM in Chapter 2C, Code Tables, for a list of suggested values, including applicable values from UCUM",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"CDO.4.1",
                             Type = @"Component",
@@ -1030,180 +1126,23 @@ Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentCDO(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field setIDCDO;
-
-public HL7V28Field SetIDCDO
-{
-    get
-    {
-        if (setIDCDO != null)
-        {
-            return setIDCDO;
-        }
-
-        setIDCDO = new HL7V28Field
-        {
-            field = message[@"CDO"][1],
-            Id = @"CDO.1",
-            Type = @"Field",
-            Position = @"CDO.1",
-            Name = @"Set ID – CDO",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"For the first cumulative dose specification transmitted, the sequence number shall be 1; for the second cumulative dose, it shall be 2; and so on",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDCDO.field.FieldRepetitions != null && setIDCDO.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDCDO.Id));
-            setIDCDO.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(setIDCDO, fieldData);
-        }
-
-        return setIDCDO;
-    } 
-}
-
-internal HL7V28Field actionCode;
-
-public HL7V28Field ActionCode
-{
-    get
-    {
-        if (actionCode != null)
-        {
-            return actionCode;
-        }
-
-        actionCode = new HL7V28Field
-        {
-            field = message[@"CDO"][2],
-            Id = @"CDO.2",
-            Type = @"Field",
-            Position = @"CDO.2",
-            Name = @"Action Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0206",
-            TableName = @"Segment action code",
-            Description = @"The Action Code indicates whether the cumulative dosage segment is intended to be added, deleted, updated, or did not change.  If the field is not valued in any CDO segments for the order, the segments are considered to have been sent in snapshot mode.  If some but not all CDO segments for the order do not have the action code valued, the default value is Add.  Refer to HL7 Table 0206 - Segment Action Code in Chapter 2C, Code Tables, for valid values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (actionCode.field.FieldRepetitions != null && actionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actionCode.Id));
-            actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(actionCode, fieldData);
-        }
-
-        return actionCode;
-    } 
-}
-
-internal HL7V28Field cumulativeDosageLimit;
-
-public HL7V28Field CumulativeDosageLimit
-{
-    get
-    {
-        if (cumulativeDosageLimit != null)
-        {
-            return cumulativeDosageLimit;
-        }
-
-        cumulativeDosageLimit = new HL7V28Field
-        {
-            field = message[@"CDO"][3],
-            Id = @"CDO.3",
-            Type = @"Field",
-            Position = @"CDO.3",
-            Name = @"Cumulative Dosage Limit",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"The Cumulative Dosage indicates the total dosage that may be administered within the scope of this order or within the interval indicated in CDO-4 Cumulative Dosage Time Interval, if supplied.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (cumulativeDosageLimit.field.FieldRepetitions != null && cumulativeDosageLimit.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(cumulativeDosageLimit.Id));
-            cumulativeDosageLimit.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(cumulativeDosageLimit, fieldData);
-        }
-
-        return cumulativeDosageLimit;
-    } 
-}
-
-internal HL7V28Field cumulativeDosageLimitTimeInterval;
-
-public HL7V28Field CumulativeDosageLimitTimeInterval
-{
-    get
-    {
-        if (cumulativeDosageLimitTimeInterval != null)
-        {
-            return cumulativeDosageLimitTimeInterval;
-        }
-
-        cumulativeDosageLimitTimeInterval = new HL7V28Field
+        _cumulativeDosageLimitTimeInterval = new HL7V28Field
         {
             field = message[@"CDO"][4],
-            Id = @"CDO.4",
-            Type = @"Field",
-            Position = @"CDO.4",
-            Name = @"Cumulative Dosage Limit Time Interval",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = @"0924",
-            TableName = @"Cumulative Dosage Limit UoM",
-            Description = @"The Cumulative Dosage Time Interval indicates the interval over which the cumulative dosage in CDO-3 Cumulative Dosage Limit is measured.  If this field is not valued, the Cumulative Dosage Limit applies to the scope of the order.
-
-Refer to HL7 Table 924 – Cumulative Dosage Limit UoM in Chapter 2C, Code Tables, for a list of suggested values, including applicable values from UCUM",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (cumulativeDosageLimitTimeInterval.field.FieldRepetitions != null && cumulativeDosageLimitTimeInterval.field.FieldRepetitions.Count > 0)
+        if (_cumulativeDosageLimitTimeInterval.field.FieldRepetitions != null && _cumulativeDosageLimitTimeInterval.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(cumulativeDosageLimitTimeInterval.Id));
-            cumulativeDosageLimitTimeInterval.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(cumulativeDosageLimitTimeInterval, fieldData);
+            _cumulativeDosageLimitTimeInterval.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_cumulativeDosageLimitTimeInterval, fieldData);
         }
 
-        return cumulativeDosageLimitTimeInterval;
+        return _cumulativeDosageLimitTimeInterval;
     } 
 }
     }

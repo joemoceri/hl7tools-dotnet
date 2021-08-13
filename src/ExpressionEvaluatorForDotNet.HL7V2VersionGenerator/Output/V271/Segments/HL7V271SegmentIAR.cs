@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentIAR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _allergyReactionCode;
+
+public HL7V271Field AllergyReactionCode
+{
+    get
+    {
+        if (_allergyReactionCode != null)
+        {
+            return _allergyReactionCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"IAR.1",
+            Type = @"Field",
+            Position = @"IAR.1",
+            Name = @"Allergy Reaction Code",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the specific allergic reaction that was documented. This element may conform to some external, standard coding system, or it may conform to local, largely textual or mnemonic descriptions (e.g., convulsions, sneeze, rash, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"IAR.1",
-                            Type = @"Field",
-                            Position = @"IAR.1",
-                            Name = @"Allergy Reaction Code",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the specific allergic reaction that was documented. This element may conform to some external, standard coding system, or it may conform to local, largely textual or mnemonic descriptions (e.g., convulsions, sneeze, rash, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IAR.1.1",
                             Type = @"Component",
@@ -476,25 +488,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _allergyReactionCode = new HL7V271Field
+        {
+            field = message[@"IAR"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_allergyReactionCode.field.FieldRepetitions != null && _allergyReactionCode.field.FieldRepetitions.Count > 0)
+        {
+            _allergyReactionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_allergyReactionCode, fieldData);
+        }
+
+        return _allergyReactionCode;
+    } 
+}
+
+internal HL7V271Field _allergySeverityCode;
+
+public HL7V271Field AllergySeverityCode
+{
+    get
+    {
+        if (_allergySeverityCode != null)
+        {
+            return _allergySeverityCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"IAR.2",
+            Type = @"Field",
+            Position = @"IAR.2",
+            Name = @"Allergy Severity Code",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0128",
+            TableName = @"Allergy Severity",
+            Description = @"This field indicates the general severity of the allergy. Refer to User-defined Table 0128 - Allergy severity code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IAR.2",
-                            Type = @"Field",
-                            Position = @"IAR.2",
-                            Name = @"Allergy Severity Code",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0128",
-                            TableName = @"Allergy Severity",
-                            Description = @"This field indicates the general severity of the allergy. Refer to User-defined Table 0128 - Allergy severity code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IAR.2.1",
                             Type = @"Component",
@@ -920,25 +962,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _allergySeverityCode = new HL7V271Field
+        {
+            field = message[@"IAR"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_allergySeverityCode.field.FieldRepetitions != null && _allergySeverityCode.field.FieldRepetitions.Count > 0)
+        {
+            _allergySeverityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_allergySeverityCode, fieldData);
+        }
+
+        return _allergySeverityCode;
+    } 
+}
+
+internal HL7V271Field _sensitivityToCausativeAgentCode;
+
+public HL7V271Field SensitivityToCausativeAgentCode
+{
+    get
+    {
+        if (_sensitivityToCausativeAgentCode != null)
+        {
+            return _sensitivityToCausativeAgentCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"IAR.3",
+            Type = @"Field",
+            Position = @"IAR.3",
+            Name = @"Sensitivity To Causative Agent Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0436",
+            TableName = @"Sensitivity to Causative Agent Code",
+            Description = @"This field contains the reason why the patient should not be exposed to a substance. Refer to User-defined Table 0436 - Sensitivity to causative Agent code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IAR.3",
-                            Type = @"Field",
-                            Position = @"IAR.3",
-                            Name = @"Sensitivity To Causative Agent Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0436",
-                            TableName = @"Sensitivity to Causative Agent Code",
-                            Description = @"This field contains the reason why the patient should not be exposed to a substance. Refer to User-defined Table 0436 - Sensitivity to causative Agent code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IAR.3.1",
                             Type = @"Component",
@@ -1364,172 +1436,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IAR.4",
-                            Type = @"Field",
-                            Position = @"IAR.4",
-                            Name = @"Management",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a textual description of the actions that were performed in response to the reaction.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentIAR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field allergyReactionCode;
-
-public HL7V271Field AllergyReactionCode
-{
-    get
-    {
-        if (allergyReactionCode != null)
-        {
-            return allergyReactionCode;
-        }
-
-        allergyReactionCode = new HL7V271Field
-        {
-            field = message[@"IAR"][1],
-            Id = @"IAR.1",
-            Type = @"Field",
-            Position = @"IAR.1",
-            Name = @"Allergy Reaction Code",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the specific allergic reaction that was documented. This element may conform to some external, standard coding system, or it may conform to local, largely textual or mnemonic descriptions (e.g., convulsions, sneeze, rash, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (allergyReactionCode.field.FieldRepetitions != null && allergyReactionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(allergyReactionCode.Id));
-            allergyReactionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(allergyReactionCode, fieldData);
-        }
-
-        return allergyReactionCode;
-    } 
-}
-
-internal HL7V271Field allergySeverityCode;
-
-public HL7V271Field AllergySeverityCode
-{
-    get
-    {
-        if (allergySeverityCode != null)
-        {
-            return allergySeverityCode;
-        }
-
-        allergySeverityCode = new HL7V271Field
-        {
-            field = message[@"IAR"][2],
-            Id = @"IAR.2",
-            Type = @"Field",
-            Position = @"IAR.2",
-            Name = @"Allergy Severity Code",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0128",
-            TableName = @"Allergy Severity",
-            Description = @"This field indicates the general severity of the allergy. Refer to User-defined Table 0128 - Allergy severity code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (allergySeverityCode.field.FieldRepetitions != null && allergySeverityCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(allergySeverityCode.Id));
-            allergySeverityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(allergySeverityCode, fieldData);
-        }
-
-        return allergySeverityCode;
-    } 
-}
-
-internal HL7V271Field sensitivityToCausativeAgentCode;
-
-public HL7V271Field SensitivityToCausativeAgentCode
-{
-    get
-    {
-        if (sensitivityToCausativeAgentCode != null)
-        {
-            return sensitivityToCausativeAgentCode;
-        }
-
-        sensitivityToCausativeAgentCode = new HL7V271Field
+        _sensitivityToCausativeAgentCode = new HL7V271Field
         {
             field = message[@"IAR"][3],
-            Id = @"IAR.3",
-            Type = @"Field",
-            Position = @"IAR.3",
-            Name = @"Sensitivity To Causative Agent Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0436",
-            TableName = @"Sensitivity to Causative Agent Code",
-            Description = @"This field contains the reason why the patient should not be exposed to a substance. Refer to User-defined Table 0436 - Sensitivity to causative Agent code for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (sensitivityToCausativeAgentCode.field.FieldRepetitions != null && sensitivityToCausativeAgentCode.field.FieldRepetitions.Count > 0)
+        if (_sensitivityToCausativeAgentCode.field.FieldRepetitions != null && _sensitivityToCausativeAgentCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sensitivityToCausativeAgentCode.Id));
-            sensitivityToCausativeAgentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(sensitivityToCausativeAgentCode, fieldData);
+            _sensitivityToCausativeAgentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_sensitivityToCausativeAgentCode, fieldData);
         }
 
-        return sensitivityToCausativeAgentCode;
+        return _sensitivityToCausativeAgentCode;
     } 
 }
 
-internal HL7V271Field management;
+internal HL7V271Field _management;
 
 public HL7V271Field Management
 {
     get
     {
-        if (management != null)
+        if (_management != null)
         {
-            return management;
+            return _management;
         }
 
-        management = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"IAR"][4],
             Id = @"IAR.4",
             Type = @"Field",
             Position = @"IAR.4",
@@ -1543,17 +1482,22 @@ public HL7V271Field Management
             TableName = null,
             Description = @"This field contains a textual description of the actions that were performed in response to the reaction.",
             Sample = @"",
+            Fields = null
+        }
+
+        _management = new HL7V271Field
+        {
+            field = message[@"IAR"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (management.field.FieldRepetitions != null && management.field.FieldRepetitions.Count > 0)
+        if (_management.field.FieldRepetitions != null && _management.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(management.Id));
-            management.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(management, fieldData);
+            _management.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_management, fieldData);
         }
 
-        return management;
+        return _management;
     } 
 }
     }

@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V231SegmentGOL(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V231Field _actionCode;
+
+public HL7V231Field ActionCode
+{
+    get
+    {
+        if (_actionCode != null)
+        {
+            return _actionCode;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.1",
+            Type = @"Field",
+            Position = @"GOL.1",
+            Name = @"Action Code",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0287",
+            TableName = @"Problem/goal action code",
+            Description = @"The action code field gives the intent of the problem or goal. Refer to HL7 table 0287 - Problem/goal action code for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _actionCode = new HL7V231Field
+        {
+            field = message[@"GOL"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_actionCode.field.FieldRepetitions != null && _actionCode.field.FieldRepetitions.Count > 0)
+        {
+            _actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_actionCode, fieldData);
+        }
+
+        return _actionCode;
+    } 
+}
+
+internal HL7V231Field _actionDateTime;
+
+public HL7V231Field ActionDateTime
+{
+    get
+    {
+        if (_actionDateTime != null)
+        {
+            return _actionDateTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.2",
+            Type = @"Field",
+            Position = @"GOL.2",
+            Name = @"Action Date/Time",
+            Length = 26,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time that the operation represented by the action code was performed.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"GOL.1",
-                            Type = @"Field",
-                            Position = @"GOL.1",
-                            Name = @"Action Code",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0287",
-                            TableName = @"Problem/goal action code",
-                            Description = @"The action code field gives the intent of the problem or goal. Refer to HL7 table 0287 - Problem/goal action code for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GOL.2",
-                            Type = @"Field",
-                            Position = @"GOL.2",
-                            Name = @"Action Date/Time",
-                            Length = 26,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time that the operation represented by the action code was performed.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GOL.2.1",
                             Type = @"Component",
@@ -84,25 +123,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _actionDateTime = new HL7V231Field
+        {
+            field = message[@"GOL"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_actionDateTime.field.FieldRepetitions != null && _actionDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _actionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_actionDateTime, fieldData);
+        }
+
+        return _actionDateTime;
+    } 
+}
+
+internal HL7V231Field _goalID;
+
+public HL7V231Field GoalID
+{
+    get
+    {
+        if (_goalID != null)
+        {
+            return _goalID;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.3",
+            Type = @"Field",
+            Position = @"GOL.3",
+            Name = @"Goal ID",
+            Length = 80,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the goal. This is the identifier from an institution's master list of goals.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.3",
-                            Type = @"Field",
-                            Position = @"GOL.3",
-                            Name = @"Goal ID",
-                            Length = 80,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the goal. This is the identifier from an institution's master list of goals.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.3.1",
                             Type = @"Component",
@@ -208,25 +277,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _goalID = new HL7V231Field
+        {
+            field = message[@"GOL"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_goalID.field.FieldRepetitions != null && _goalID.field.FieldRepetitions.Count > 0)
+        {
+            _goalID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_goalID, fieldData);
+        }
+
+        return _goalID;
+    } 
+}
+
+internal HL7V231Field _goalInstanceID;
+
+public HL7V231Field GoalInstanceID
+{
+    get
+    {
+        if (_goalInstanceID != null)
+        {
+            return _goalInstanceID;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.4",
+            Type = @"Field",
+            Position = @"GOL.4",
+            Name = @"Goal Instance ID",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the unique identifier assigned by an initiating system to this instance of the goal.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.4",
-                            Type = @"Field",
-                            Position = @"GOL.4",
-                            Name = @"Goal Instance ID",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the unique identifier assigned by an initiating system to this instance of the goal.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.4.1",
                             Type = @"Component",
@@ -296,25 +395,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values. See Section 2.8.20.2 Universal ID (ST), for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _goalInstanceID = new HL7V231Field
+        {
+            field = message[@"GOL"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_goalInstanceID.field.FieldRepetitions != null && _goalInstanceID.field.FieldRepetitions.Count > 0)
+        {
+            _goalInstanceID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_goalInstanceID, fieldData);
+        }
+
+        return _goalInstanceID;
+    } 
+}
+
+internal HL7V231Field _episodeofCareID;
+
+public HL7V231Field EpisodeofCareID
+{
+    get
+    {
+        if (_episodeofCareID != null)
+        {
+            return _episodeofCareID;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.5",
+            Type = @"Field",
+            Position = @"GOL.5",
+            Name = @"Episode of Care ID",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field uniquely identifies the episode of care to which this goal applies. See note under 'Ongoing issues.'",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.5",
-                            Type = @"Field",
-                            Position = @"GOL.5",
-                            Name = @"Episode of Care ID",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field uniquely identifies the episode of care to which this goal applies. See note under 'Ongoing issues.'",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.5.1",
                             Type = @"Component",
@@ -384,43 +513,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Refer to HL7 table 0301 - Universal ID type for valid values. See Section 2.8.20.2 Universal ID (ST), for definition.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _episodeofCareID = new HL7V231Field
+        {
+            field = message[@"GOL"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_episodeofCareID.field.FieldRepetitions != null && _episodeofCareID.field.FieldRepetitions.Count > 0)
+        {
+            _episodeofCareID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_episodeofCareID, fieldData);
+        }
+
+        return _episodeofCareID;
+    } 
+}
+
+internal HL7V231Field _goalListPriority;
+
+public HL7V231Field GoalListPriority
+{
+    get
+    {
+        if (_goalListPriority != null)
+        {
+            return _goalListPriority;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.6",
+            Type = @"Field",
+            Position = @"GOL.6",
+            Name = @"Goal List Priority",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field prioritizes this goal on a list that is maintained for an individual.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _goalListPriority = new HL7V231Field
+        {
+            field = message[@"GOL"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_goalListPriority.field.FieldRepetitions != null && _goalListPriority.field.FieldRepetitions.Count > 0)
+        {
+            _goalListPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_goalListPriority, fieldData);
+        }
+
+        return _goalListPriority;
+    } 
+}
+
+internal HL7V231Field _goalEstablishedDateTime;
+
+public HL7V231Field GoalEstablishedDateTime
+{
+    get
+    {
+        if (_goalEstablishedDateTime != null)
+        {
+            return _goalEstablishedDateTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.7",
+            Type = @"Field",
+            Position = @"GOL.7",
+            Name = @"Goal Established Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the date/time when the stated goal was initially created.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.6",
-                            Type = @"Field",
-                            Position = @"GOL.6",
-                            Name = @"Goal List Priority",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field prioritizes this goal on a list that is maintained for an individual.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GOL.7",
-                            Type = @"Field",
-                            Position = @"GOL.7",
-                            Name = @"Goal Established Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the date/time when the stated goal was initially created.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.7.1",
                             Type = @"Component",
@@ -436,25 +622,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _goalEstablishedDateTime = new HL7V231Field
+        {
+            field = message[@"GOL"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_goalEstablishedDateTime.field.FieldRepetitions != null && _goalEstablishedDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _goalEstablishedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_goalEstablishedDateTime, fieldData);
+        }
+
+        return _goalEstablishedDateTime;
+    } 
+}
+
+internal HL7V231Field _expectedGoalAchieveDateTime;
+
+public HL7V231Field ExpectedGoalAchieveDateTime
+{
+    get
+    {
+        if (_expectedGoalAchieveDateTime != null)
+        {
+            return _expectedGoalAchieveDateTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.8",
+            Type = @"Field",
+            Position = @"GOL.8",
+            Name = @"Expected Goal Achieve Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the projected date/time for achieving the stated goal.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.8",
-                            Type = @"Field",
-                            Position = @"GOL.8",
-                            Name = @"Expected Goal Achieve Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the projected date/time for achieving the stated goal.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.8.1",
                             Type = @"Component",
@@ -470,25 +686,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _expectedGoalAchieveDateTime = new HL7V231Field
+        {
+            field = message[@"GOL"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_expectedGoalAchieveDateTime.field.FieldRepetitions != null && _expectedGoalAchieveDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _expectedGoalAchieveDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_expectedGoalAchieveDateTime, fieldData);
+        }
+
+        return _expectedGoalAchieveDateTime;
+    } 
+}
+
+internal HL7V231Field _goalClassification;
+
+public HL7V231Field GoalClassification
+{
+    get
+    {
+        if (_goalClassification != null)
+        {
+            return _goalClassification;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.9",
+            Type = @"Field",
+            Position = @"GOL.9",
+            Name = @"Goal Classification",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the kind of goal. This field can be used to categorize goals so that they may be managed and viewed independently within different applications (e.g., admission, final, post-operative, pre-operative, outpatient, discharge, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.9",
-                            Type = @"Field",
-                            Position = @"GOL.9",
-                            Name = @"Goal Classification",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the kind of goal. This field can be used to categorize goals so that they may be managed and viewed independently within different applications (e.g., admission, final, post-operative, pre-operative, outpatient, discharge, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.9.1",
                             Type = @"Component",
@@ -594,25 +840,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _goalClassification = new HL7V231Field
+        {
+            field = message[@"GOL"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_goalClassification.field.FieldRepetitions != null && _goalClassification.field.FieldRepetitions.Count > 0)
+        {
+            _goalClassification.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_goalClassification, fieldData);
+        }
+
+        return _goalClassification;
+    } 
+}
+
+internal HL7V231Field _goalManagementDiscipline;
+
+public HL7V231Field GoalManagementDiscipline
+{
+    get
+    {
+        if (_goalManagementDiscipline != null)
+        {
+            return _goalManagementDiscipline;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.10",
+            Type = @"Field",
+            Position = @"GOL.10",
+            Name = @"Goal Management Discipline",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the category of caregiver with responsibility for managing this specific goal (e.g., care team, nursing, medicine, respiratory therapy, occupational therapy, dietary etc.). This is a repeating field to allow identification of all disciplines who may have the responsibility for this goal.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.10",
-                            Type = @"Field",
-                            Position = @"GOL.10",
-                            Name = @"Goal Management Discipline",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the category of caregiver with responsibility for managing this specific goal (e.g., care team, nursing, medicine, respiratory therapy, occupational therapy, dietary etc.). This is a repeating field to allow identification of all disciplines who may have the responsibility for this goal.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.10.1",
                             Type = @"Component",
@@ -718,25 +994,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _goalManagementDiscipline = new HL7V231Field
+        {
+            field = message[@"GOL"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_goalManagementDiscipline.field.FieldRepetitions != null && _goalManagementDiscipline.field.FieldRepetitions.Count > 0)
+        {
+            _goalManagementDiscipline.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_goalManagementDiscipline, fieldData);
+        }
+
+        return _goalManagementDiscipline;
+    } 
+}
+
+internal HL7V231Field _currentGoalReviewStatus;
+
+public HL7V231Field CurrentGoalReviewStatus
+{
+    get
+    {
+        if (_currentGoalReviewStatus != null)
+        {
+            return _currentGoalReviewStatus;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.11",
+            Type = @"Field",
+            Position = @"GOL.11",
+            Name = @"Current Goal Review Status",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the current point in the continuum of a goal review cycle (e.g., due, initiated, reviewed, overdue, verified, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.11",
-                            Type = @"Field",
-                            Position = @"GOL.11",
-                            Name = @"Current Goal Review Status",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the current point in the continuum of a goal review cycle (e.g., due, initiated, reviewed, overdue, verified, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.11.1",
                             Type = @"Component",
@@ -842,25 +1148,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _currentGoalReviewStatus = new HL7V231Field
+        {
+            field = message[@"GOL"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_currentGoalReviewStatus.field.FieldRepetitions != null && _currentGoalReviewStatus.field.FieldRepetitions.Count > 0)
+        {
+            _currentGoalReviewStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_currentGoalReviewStatus, fieldData);
+        }
+
+        return _currentGoalReviewStatus;
+    } 
+}
+
+internal HL7V231Field _currentGoalReviewDateTime;
+
+public HL7V231Field CurrentGoalReviewDateTime
+{
+    get
+    {
+        if (_currentGoalReviewDateTime != null)
+        {
+            return _currentGoalReviewDateTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.12",
+            Type = @"Field",
+            Position = @"GOL.12",
+            Name = @"Current Goal Review Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time of the current review of the goal.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.12",
-                            Type = @"Field",
-                            Position = @"GOL.12",
-                            Name = @"Current Goal Review Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time of the current review of the goal.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.12.1",
                             Type = @"Component",
@@ -876,25 +1212,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _currentGoalReviewDateTime = new HL7V231Field
+        {
+            field = message[@"GOL"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_currentGoalReviewDateTime.field.FieldRepetitions != null && _currentGoalReviewDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _currentGoalReviewDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_currentGoalReviewDateTime, fieldData);
+        }
+
+        return _currentGoalReviewDateTime;
+    } 
+}
+
+internal HL7V231Field _nextGoalReviewDateTime;
+
+public HL7V231Field NextGoalReviewDateTime
+{
+    get
+    {
+        if (_nextGoalReviewDateTime != null)
+        {
+            return _nextGoalReviewDateTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.13",
+            Type = @"Field",
+            Position = @"GOL.13",
+            Name = @"Next Goal Review Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time of the next scheduled goal review.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.13",
-                            Type = @"Field",
-                            Position = @"GOL.13",
-                            Name = @"Next Goal Review Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time of the next scheduled goal review.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.13.1",
                             Type = @"Component",
@@ -910,25 +1276,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _nextGoalReviewDateTime = new HL7V231Field
+        {
+            field = message[@"GOL"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_nextGoalReviewDateTime.field.FieldRepetitions != null && _nextGoalReviewDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _nextGoalReviewDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_nextGoalReviewDateTime, fieldData);
+        }
+
+        return _nextGoalReviewDateTime;
+    } 
+}
+
+internal HL7V231Field _previousGoalReviewDateTime;
+
+public HL7V231Field PreviousGoalReviewDateTime
+{
+    get
+    {
+        if (_previousGoalReviewDateTime != null)
+        {
+            return _previousGoalReviewDateTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.14",
+            Type = @"Field",
+            Position = @"GOL.14",
+            Name = @"Previous Goal Review Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time that the goal was reviewed prior to the current review.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.14",
-                            Type = @"Field",
-                            Position = @"GOL.14",
-                            Name = @"Previous Goal Review Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time that the goal was reviewed prior to the current review.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.14.1",
                             Type = @"Component",
@@ -944,25 +1340,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _previousGoalReviewDateTime = new HL7V231Field
+        {
+            field = message[@"GOL"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_previousGoalReviewDateTime.field.FieldRepetitions != null && _previousGoalReviewDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _previousGoalReviewDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_previousGoalReviewDateTime, fieldData);
+        }
+
+        return _previousGoalReviewDateTime;
+    } 
+}
+
+internal HL7V231Field _goalReviewInterval;
+
+public HL7V231Field GoalReviewInterval
+{
+    get
+    {
+        if (_goalReviewInterval != null)
+        {
+            return _goalReviewInterval;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.15",
+            Type = @"Field",
+            Position = @"GOL.15",
+            Name = @"Goal Review Interval",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TQ",
+            DataTypeName = @"Timing Quantity",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the interval used to calculate the next goal review date. (See Chapter 4, Section 4.4.2, 'Interval component (CM)').",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.15",
-                            Type = @"Field",
-                            Position = @"GOL.15",
-                            Name = @"Goal Review Interval",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TQ",
-                            DataTypeName = @"Timing Quantity",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the interval used to calculate the next goal review date. (See Chapter 4, Section 4.4.2, 'Interval component (CM)').",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.15.1",
                             Type = @"Component",
@@ -1596,25 +2022,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = @"This field contains the total number of occurrences of a service that should result from this order.  It is optional within TQ and does not repeat.  If both the end date/time and the total occurrences are valued and the occurrences would extend beyond the end date/time, then the end date/time takes precedence.  Otherwise the number of occurrences takes precedence.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _goalReviewInterval = new HL7V231Field
+        {
+            field = message[@"GOL"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_goalReviewInterval.field.FieldRepetitions != null && _goalReviewInterval.field.FieldRepetitions.Count > 0)
+        {
+            _goalReviewInterval.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_goalReviewInterval, fieldData);
+        }
+
+        return _goalReviewInterval;
+    } 
+}
+
+internal HL7V231Field _goalEvaluation;
+
+public HL7V231Field GoalEvaluation
+{
+    get
+    {
+        if (_goalEvaluation != null)
+        {
+            return _goalEvaluation;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.16",
+            Type = @"Field",
+            Position = @"GOL.16",
+            Name = @"Goal Evaluation",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field provides an indicator of progress towards achievement of the goal (e.g., achieved, ahead of schedule, delayed, failed to achieve, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.16",
-                            Type = @"Field",
-                            Position = @"GOL.16",
-                            Name = @"Goal Evaluation",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field provides an indicator of progress towards achievement of the goal (e.g., achieved, ahead of schedule, delayed, failed to achieve, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.16.1",
                             Type = @"Component",
@@ -1720,43 +2176,100 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _goalEvaluation = new HL7V231Field
+        {
+            field = message[@"GOL"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_goalEvaluation.field.FieldRepetitions != null && _goalEvaluation.field.FieldRepetitions.Count > 0)
+        {
+            _goalEvaluation.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_goalEvaluation, fieldData);
+        }
+
+        return _goalEvaluation;
+    } 
+}
+
+internal HL7V231Field _goalEvaluationComment;
+
+public HL7V231Field GoalEvaluationComment
+{
+    get
+    {
+        if (_goalEvaluationComment != null)
+        {
+            return _goalEvaluationComment;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.17",
+            Type = @"Field",
+            Position = @"GOL.17",
+            Name = @"Goal Evaluation Comment",
+            Length = 300,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the comments associated with the goal evaluation. Examples of comments that might be entered in this field include: a reason for delay in achieving goal, or a clinical footnote about progress made towards the goal, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _goalEvaluationComment = new HL7V231Field
+        {
+            field = message[@"GOL"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_goalEvaluationComment.field.FieldRepetitions != null && _goalEvaluationComment.field.FieldRepetitions.Count > 0)
+        {
+            _goalEvaluationComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_goalEvaluationComment, fieldData);
+        }
+
+        return _goalEvaluationComment;
+    } 
+}
+
+internal HL7V231Field _goalLifeCycleStatus;
+
+public HL7V231Field GoalLifeCycleStatus
+{
+    get
+    {
+        if (_goalLifeCycleStatus != null)
+        {
+            return _goalLifeCycleStatus;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.18",
+            Type = @"Field",
+            Position = @"GOL.18",
+            Name = @"Goal Life Cycle Status",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an indication of the state of the goal (e.g., Active, Canceled, Inactive, Suspended, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.17",
-                            Type = @"Field",
-                            Position = @"GOL.17",
-                            Name = @"Goal Evaluation Comment",
-                            Length = 300,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the comments associated with the goal evaluation. Examples of comments that might be entered in this field include: a reason for delay in achieving goal, or a clinical footnote about progress made towards the goal, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GOL.18",
-                            Type = @"Field",
-                            Position = @"GOL.18",
-                            Name = @"Goal Life Cycle Status",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an indication of the state of the goal (e.g., Active, Canceled, Inactive, Suspended, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.18.1",
                             Type = @"Component",
@@ -1862,25 +2375,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _goalLifeCycleStatus = new HL7V231Field
+        {
+            field = message[@"GOL"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_goalLifeCycleStatus.field.FieldRepetitions != null && _goalLifeCycleStatus.field.FieldRepetitions.Count > 0)
+        {
+            _goalLifeCycleStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_goalLifeCycleStatus, fieldData);
+        }
+
+        return _goalLifeCycleStatus;
+    } 
+}
+
+internal HL7V231Field _goalLifeCycleStatusDateTime;
+
+public HL7V231Field GoalLifeCycleStatusDateTime
+{
+    get
+    {
+        if (_goalLifeCycleStatusDateTime != null)
+        {
+            return _goalLifeCycleStatusDateTime;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.19",
+            Type = @"Field",
+            Position = @"GOL.19",
+            Name = @"Goal Life Cycle Status Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the effective date/time of the current goal life cycle status.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.19",
-                            Type = @"Field",
-                            Position = @"GOL.19",
-                            Name = @"Goal Life Cycle Status Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the effective date/time of the current goal life cycle status.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.19.1",
                             Type = @"Component",
@@ -1896,25 +2439,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _goalLifeCycleStatusDateTime = new HL7V231Field
+        {
+            field = message[@"GOL"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_goalLifeCycleStatusDateTime.field.FieldRepetitions != null && _goalLifeCycleStatusDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _goalLifeCycleStatusDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_goalLifeCycleStatusDateTime, fieldData);
+        }
+
+        return _goalLifeCycleStatusDateTime;
+    } 
+}
+
+internal HL7V231Field _goalTargetType;
+
+public HL7V231Field GoalTargetType
+{
+    get
+    {
+        if (_goalTargetType != null)
+        {
+            return _goalTargetType;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.20",
+            Type = @"Field",
+            Position = @"GOL.20",
+            Name = @"Goal Target Type",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the individual/group for whom the goal has been established (e.g., family group, family member, patient, etc.).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.20",
-                            Type = @"Field",
-                            Position = @"GOL.20",
-                            Name = @"Goal Target Type",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the individual/group for whom the goal has been established (e.g., family group, family member, patient, etc.).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.20.1",
                             Type = @"Component",
@@ -2020,25 +2593,55 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _goalTargetType = new HL7V231Field
+        {
+            field = message[@"GOL"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_goalTargetType.field.FieldRepetitions != null && _goalTargetType.field.FieldRepetitions.Count > 0)
+        {
+            _goalTargetType.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_goalTargetType, fieldData);
+        }
+
+        return _goalTargetType;
+    } 
+}
+
+internal HL7V231Field _goalTargetName;
+
+public HL7V231Field GoalTargetName
+{
+    get
+    {
+        if (_goalTargetName != null)
+        {
+            return _goalTargetName;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"GOL.21",
+            Type = @"Field",
+            Position = @"GOL.21",
+            Name = @"Goal Target Name",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identification of the person(s) on whom the goal is focused. This is a repeating field which allows for the identification of a group of individuals.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GOL.21",
-                            Type = @"Field",
-                            Position = @"GOL.21",
-                            Name = @"Goal Target Name",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the identification of the person(s) on whom the goal is focused. This is a repeating field which allows for the identification of a group of individuals.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GOL.21.1",
                             Type = @"Component",
@@ -2214,875 +2817,23 @@ The time specifies the interval between the predecessor and successor starts or 
                             Description = @"Different <name/address types> and representations of the same <name/address> should be described by repeating of this field, with different values of the <name/address type> and/or <name/address representation> component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V231SegmentGOL(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V231Field actionCode;
-
-public HL7V231Field ActionCode
-{
-    get
-    {
-        if (actionCode != null)
-        {
-            return actionCode;
-        }
-
-        actionCode = new HL7V231Field
-        {
-            field = message[@"GOL"][1],
-            Id = @"GOL.1",
-            Type = @"Field",
-            Position = @"GOL.1",
-            Name = @"Action Code",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0287",
-            TableName = @"Problem/goal action code",
-            Description = @"The action code field gives the intent of the problem or goal. Refer to HL7 table 0287 - Problem/goal action code for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (actionCode.field.FieldRepetitions != null && actionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actionCode.Id));
-            actionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(actionCode, fieldData);
-        }
-
-        return actionCode;
-    } 
-}
-
-internal HL7V231Field actionDateTime;
-
-public HL7V231Field ActionDateTime
-{
-    get
-    {
-        if (actionDateTime != null)
-        {
-            return actionDateTime;
-        }
-
-        actionDateTime = new HL7V231Field
-        {
-            field = message[@"GOL"][2],
-            Id = @"GOL.2",
-            Type = @"Field",
-            Position = @"GOL.2",
-            Name = @"Action Date/Time",
-            Length = 26,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time that the operation represented by the action code was performed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (actionDateTime.field.FieldRepetitions != null && actionDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(actionDateTime.Id));
-            actionDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(actionDateTime, fieldData);
-        }
-
-        return actionDateTime;
-    } 
-}
-
-internal HL7V231Field goalID;
-
-public HL7V231Field GoalID
-{
-    get
-    {
-        if (goalID != null)
-        {
-            return goalID;
-        }
-
-        goalID = new HL7V231Field
-        {
-            field = message[@"GOL"][3],
-            Id = @"GOL.3",
-            Type = @"Field",
-            Position = @"GOL.3",
-            Name = @"Goal ID",
-            Length = 80,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the goal. This is the identifier from an institution's master list of goals.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (goalID.field.FieldRepetitions != null && goalID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(goalID.Id));
-            goalID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(goalID, fieldData);
-        }
-
-        return goalID;
-    } 
-}
-
-internal HL7V231Field goalInstanceID;
-
-public HL7V231Field GoalInstanceID
-{
-    get
-    {
-        if (goalInstanceID != null)
-        {
-            return goalInstanceID;
-        }
-
-        goalInstanceID = new HL7V231Field
-        {
-            field = message[@"GOL"][4],
-            Id = @"GOL.4",
-            Type = @"Field",
-            Position = @"GOL.4",
-            Name = @"Goal Instance ID",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the unique identifier assigned by an initiating system to this instance of the goal.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (goalInstanceID.field.FieldRepetitions != null && goalInstanceID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(goalInstanceID.Id));
-            goalInstanceID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(goalInstanceID, fieldData);
-        }
-
-        return goalInstanceID;
-    } 
-}
-
-internal HL7V231Field episodeofCareID;
-
-public HL7V231Field EpisodeofCareID
-{
-    get
-    {
-        if (episodeofCareID != null)
-        {
-            return episodeofCareID;
-        }
-
-        episodeofCareID = new HL7V231Field
-        {
-            field = message[@"GOL"][5],
-            Id = @"GOL.5",
-            Type = @"Field",
-            Position = @"GOL.5",
-            Name = @"Episode of Care ID",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field uniquely identifies the episode of care to which this goal applies. See note under 'Ongoing issues.'",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (episodeofCareID.field.FieldRepetitions != null && episodeofCareID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(episodeofCareID.Id));
-            episodeofCareID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(episodeofCareID, fieldData);
-        }
-
-        return episodeofCareID;
-    } 
-}
-
-internal HL7V231Field goalListPriority;
-
-public HL7V231Field GoalListPriority
-{
-    get
-    {
-        if (goalListPriority != null)
-        {
-            return goalListPriority;
-        }
-
-        goalListPriority = new HL7V231Field
-        {
-            field = message[@"GOL"][6],
-            Id = @"GOL.6",
-            Type = @"Field",
-            Position = @"GOL.6",
-            Name = @"Goal List Priority",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field prioritizes this goal on a list that is maintained for an individual.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (goalListPriority.field.FieldRepetitions != null && goalListPriority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(goalListPriority.Id));
-            goalListPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(goalListPriority, fieldData);
-        }
-
-        return goalListPriority;
-    } 
-}
-
-internal HL7V231Field goalEstablishedDateTime;
-
-public HL7V231Field GoalEstablishedDateTime
-{
-    get
-    {
-        if (goalEstablishedDateTime != null)
-        {
-            return goalEstablishedDateTime;
-        }
-
-        goalEstablishedDateTime = new HL7V231Field
-        {
-            field = message[@"GOL"][7],
-            Id = @"GOL.7",
-            Type = @"Field",
-            Position = @"GOL.7",
-            Name = @"Goal Established Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the date/time when the stated goal was initially created.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (goalEstablishedDateTime.field.FieldRepetitions != null && goalEstablishedDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(goalEstablishedDateTime.Id));
-            goalEstablishedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(goalEstablishedDateTime, fieldData);
-        }
-
-        return goalEstablishedDateTime;
-    } 
-}
-
-internal HL7V231Field expectedGoalAchieveDateTime;
-
-public HL7V231Field ExpectedGoalAchieveDateTime
-{
-    get
-    {
-        if (expectedGoalAchieveDateTime != null)
-        {
-            return expectedGoalAchieveDateTime;
-        }
-
-        expectedGoalAchieveDateTime = new HL7V231Field
-        {
-            field = message[@"GOL"][8],
-            Id = @"GOL.8",
-            Type = @"Field",
-            Position = @"GOL.8",
-            Name = @"Expected Goal Achieve Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the projected date/time for achieving the stated goal.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (expectedGoalAchieveDateTime.field.FieldRepetitions != null && expectedGoalAchieveDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(expectedGoalAchieveDateTime.Id));
-            expectedGoalAchieveDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(expectedGoalAchieveDateTime, fieldData);
-        }
-
-        return expectedGoalAchieveDateTime;
-    } 
-}
-
-internal HL7V231Field goalClassification;
-
-public HL7V231Field GoalClassification
-{
-    get
-    {
-        if (goalClassification != null)
-        {
-            return goalClassification;
-        }
-
-        goalClassification = new HL7V231Field
-        {
-            field = message[@"GOL"][9],
-            Id = @"GOL.9",
-            Type = @"Field",
-            Position = @"GOL.9",
-            Name = @"Goal Classification",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the kind of goal. This field can be used to categorize goals so that they may be managed and viewed independently within different applications (e.g., admission, final, post-operative, pre-operative, outpatient, discharge, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (goalClassification.field.FieldRepetitions != null && goalClassification.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(goalClassification.Id));
-            goalClassification.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(goalClassification, fieldData);
-        }
-
-        return goalClassification;
-    } 
-}
-
-internal HL7V231Field goalManagementDiscipline;
-
-public HL7V231Field GoalManagementDiscipline
-{
-    get
-    {
-        if (goalManagementDiscipline != null)
-        {
-            return goalManagementDiscipline;
-        }
-
-        goalManagementDiscipline = new HL7V231Field
-        {
-            field = message[@"GOL"][10],
-            Id = @"GOL.10",
-            Type = @"Field",
-            Position = @"GOL.10",
-            Name = @"Goal Management Discipline",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the category of caregiver with responsibility for managing this specific goal (e.g., care team, nursing, medicine, respiratory therapy, occupational therapy, dietary etc.). This is a repeating field to allow identification of all disciplines who may have the responsibility for this goal.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (goalManagementDiscipline.field.FieldRepetitions != null && goalManagementDiscipline.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(goalManagementDiscipline.Id));
-            goalManagementDiscipline.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(goalManagementDiscipline, fieldData);
-        }
-
-        return goalManagementDiscipline;
-    } 
-}
-
-internal HL7V231Field currentGoalReviewStatus;
-
-public HL7V231Field CurrentGoalReviewStatus
-{
-    get
-    {
-        if (currentGoalReviewStatus != null)
-        {
-            return currentGoalReviewStatus;
-        }
-
-        currentGoalReviewStatus = new HL7V231Field
-        {
-            field = message[@"GOL"][11],
-            Id = @"GOL.11",
-            Type = @"Field",
-            Position = @"GOL.11",
-            Name = @"Current Goal Review Status",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the current point in the continuum of a goal review cycle (e.g., due, initiated, reviewed, overdue, verified, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (currentGoalReviewStatus.field.FieldRepetitions != null && currentGoalReviewStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(currentGoalReviewStatus.Id));
-            currentGoalReviewStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(currentGoalReviewStatus, fieldData);
-        }
-
-        return currentGoalReviewStatus;
-    } 
-}
-
-internal HL7V231Field currentGoalReviewDateTime;
-
-public HL7V231Field CurrentGoalReviewDateTime
-{
-    get
-    {
-        if (currentGoalReviewDateTime != null)
-        {
-            return currentGoalReviewDateTime;
-        }
-
-        currentGoalReviewDateTime = new HL7V231Field
-        {
-            field = message[@"GOL"][12],
-            Id = @"GOL.12",
-            Type = @"Field",
-            Position = @"GOL.12",
-            Name = @"Current Goal Review Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time of the current review of the goal.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (currentGoalReviewDateTime.field.FieldRepetitions != null && currentGoalReviewDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(currentGoalReviewDateTime.Id));
-            currentGoalReviewDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(currentGoalReviewDateTime, fieldData);
-        }
-
-        return currentGoalReviewDateTime;
-    } 
-}
-
-internal HL7V231Field nextGoalReviewDateTime;
-
-public HL7V231Field NextGoalReviewDateTime
-{
-    get
-    {
-        if (nextGoalReviewDateTime != null)
-        {
-            return nextGoalReviewDateTime;
-        }
-
-        nextGoalReviewDateTime = new HL7V231Field
-        {
-            field = message[@"GOL"][13],
-            Id = @"GOL.13",
-            Type = @"Field",
-            Position = @"GOL.13",
-            Name = @"Next Goal Review Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time of the next scheduled goal review.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (nextGoalReviewDateTime.field.FieldRepetitions != null && nextGoalReviewDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nextGoalReviewDateTime.Id));
-            nextGoalReviewDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(nextGoalReviewDateTime, fieldData);
-        }
-
-        return nextGoalReviewDateTime;
-    } 
-}
-
-internal HL7V231Field previousGoalReviewDateTime;
-
-public HL7V231Field PreviousGoalReviewDateTime
-{
-    get
-    {
-        if (previousGoalReviewDateTime != null)
-        {
-            return previousGoalReviewDateTime;
-        }
-
-        previousGoalReviewDateTime = new HL7V231Field
-        {
-            field = message[@"GOL"][14],
-            Id = @"GOL.14",
-            Type = @"Field",
-            Position = @"GOL.14",
-            Name = @"Previous Goal Review Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time that the goal was reviewed prior to the current review.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (previousGoalReviewDateTime.field.FieldRepetitions != null && previousGoalReviewDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(previousGoalReviewDateTime.Id));
-            previousGoalReviewDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(previousGoalReviewDateTime, fieldData);
-        }
-
-        return previousGoalReviewDateTime;
-    } 
-}
-
-internal HL7V231Field goalReviewInterval;
-
-public HL7V231Field GoalReviewInterval
-{
-    get
-    {
-        if (goalReviewInterval != null)
-        {
-            return goalReviewInterval;
-        }
-
-        goalReviewInterval = new HL7V231Field
-        {
-            field = message[@"GOL"][15],
-            Id = @"GOL.15",
-            Type = @"Field",
-            Position = @"GOL.15",
-            Name = @"Goal Review Interval",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TQ",
-            DataTypeName = @"Timing Quantity",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the interval used to calculate the next goal review date. (See Chapter 4, Section 4.4.2, 'Interval component (CM)').",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (goalReviewInterval.field.FieldRepetitions != null && goalReviewInterval.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(goalReviewInterval.Id));
-            goalReviewInterval.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(goalReviewInterval, fieldData);
-        }
-
-        return goalReviewInterval;
-    } 
-}
-
-internal HL7V231Field goalEvaluation;
-
-public HL7V231Field GoalEvaluation
-{
-    get
-    {
-        if (goalEvaluation != null)
-        {
-            return goalEvaluation;
-        }
-
-        goalEvaluation = new HL7V231Field
-        {
-            field = message[@"GOL"][16],
-            Id = @"GOL.16",
-            Type = @"Field",
-            Position = @"GOL.16",
-            Name = @"Goal Evaluation",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field provides an indicator of progress towards achievement of the goal (e.g., achieved, ahead of schedule, delayed, failed to achieve, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (goalEvaluation.field.FieldRepetitions != null && goalEvaluation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(goalEvaluation.Id));
-            goalEvaluation.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(goalEvaluation, fieldData);
-        }
-
-        return goalEvaluation;
-    } 
-}
-
-internal HL7V231Field goalEvaluationComment;
-
-public HL7V231Field GoalEvaluationComment
-{
-    get
-    {
-        if (goalEvaluationComment != null)
-        {
-            return goalEvaluationComment;
-        }
-
-        goalEvaluationComment = new HL7V231Field
-        {
-            field = message[@"GOL"][17],
-            Id = @"GOL.17",
-            Type = @"Field",
-            Position = @"GOL.17",
-            Name = @"Goal Evaluation Comment",
-            Length = 300,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the comments associated with the goal evaluation. Examples of comments that might be entered in this field include: a reason for delay in achieving goal, or a clinical footnote about progress made towards the goal, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (goalEvaluationComment.field.FieldRepetitions != null && goalEvaluationComment.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(goalEvaluationComment.Id));
-            goalEvaluationComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(goalEvaluationComment, fieldData);
-        }
-
-        return goalEvaluationComment;
-    } 
-}
-
-internal HL7V231Field goalLifeCycleStatus;
-
-public HL7V231Field GoalLifeCycleStatus
-{
-    get
-    {
-        if (goalLifeCycleStatus != null)
-        {
-            return goalLifeCycleStatus;
-        }
-
-        goalLifeCycleStatus = new HL7V231Field
-        {
-            field = message[@"GOL"][18],
-            Id = @"GOL.18",
-            Type = @"Field",
-            Position = @"GOL.18",
-            Name = @"Goal Life Cycle Status",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an indication of the state of the goal (e.g., Active, Canceled, Inactive, Suspended, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (goalLifeCycleStatus.field.FieldRepetitions != null && goalLifeCycleStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(goalLifeCycleStatus.Id));
-            goalLifeCycleStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(goalLifeCycleStatus, fieldData);
-        }
-
-        return goalLifeCycleStatus;
-    } 
-}
-
-internal HL7V231Field goalLifeCycleStatusDateTime;
-
-public HL7V231Field GoalLifeCycleStatusDateTime
-{
-    get
-    {
-        if (goalLifeCycleStatusDateTime != null)
-        {
-            return goalLifeCycleStatusDateTime;
-        }
-
-        goalLifeCycleStatusDateTime = new HL7V231Field
-        {
-            field = message[@"GOL"][19],
-            Id = @"GOL.19",
-            Type = @"Field",
-            Position = @"GOL.19",
-            Name = @"Goal Life Cycle Status Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the effective date/time of the current goal life cycle status.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (goalLifeCycleStatusDateTime.field.FieldRepetitions != null && goalLifeCycleStatusDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(goalLifeCycleStatusDateTime.Id));
-            goalLifeCycleStatusDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(goalLifeCycleStatusDateTime, fieldData);
-        }
-
-        return goalLifeCycleStatusDateTime;
-    } 
-}
-
-internal HL7V231Field goalTargetType;
-
-public HL7V231Field GoalTargetType
-{
-    get
-    {
-        if (goalTargetType != null)
-        {
-            return goalTargetType;
-        }
-
-        goalTargetType = new HL7V231Field
-        {
-            field = message[@"GOL"][20],
-            Id = @"GOL.20",
-            Type = @"Field",
-            Position = @"GOL.20",
-            Name = @"Goal Target Type",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the individual/group for whom the goal has been established (e.g., family group, family member, patient, etc.).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (goalTargetType.field.FieldRepetitions != null && goalTargetType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(goalTargetType.Id));
-            goalTargetType.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(goalTargetType, fieldData);
-        }
-
-        return goalTargetType;
-    } 
-}
-
-internal HL7V231Field goalTargetName;
-
-public HL7V231Field GoalTargetName
-{
-    get
-    {
-        if (goalTargetName != null)
-        {
-            return goalTargetName;
-        }
-
-        goalTargetName = new HL7V231Field
+        _goalTargetName = new HL7V231Field
         {
             field = message[@"GOL"][21],
-            Id = @"GOL.21",
-            Type = @"Field",
-            Position = @"GOL.21",
-            Name = @"Goal Target Name",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the identification of the person(s) on whom the goal is focused. This is a repeating field which allows for the identification of a group of individuals.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (goalTargetName.field.FieldRepetitions != null && goalTargetName.field.FieldRepetitions.Count > 0)
+        if (_goalTargetName.field.FieldRepetitions != null && _goalTargetName.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(goalTargetName.Id));
-            goalTargetName.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(goalTargetName, fieldData);
+            _goalTargetName.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_goalTargetName, fieldData);
         }
 
-        return goalTargetName;
+        return _goalTargetName;
     } 
 }
     }

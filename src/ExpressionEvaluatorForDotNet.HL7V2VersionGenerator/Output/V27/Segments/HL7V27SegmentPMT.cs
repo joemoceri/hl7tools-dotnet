@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentPMT(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _paymentRemittanceAdviceNumber;
+
+public HL7V27Field PaymentRemittanceAdviceNumber
+{
+    get
+    {
+        if (_paymentRemittanceAdviceNumber != null)
+        {
+            return _paymentRemittanceAdviceNumber;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PMT.1",
+            Type = @"Field",
+            Position = @"PMT.1",
+            Name = @"Payment/Remittance Advice Number",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique Payment/Remittance Advice number for the sending Network Application ID.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PMT.1",
-                            Type = @"Field",
-                            Position = @"PMT.1",
-                            Name = @"Payment/Remittance Advice Number",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique Payment/Remittance Advice number for the sending Network Application ID.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PMT.1.1",
                             Type = @"Component",
@@ -128,61 +140,145 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _paymentRemittanceAdviceNumber = new HL7V27Field
+        {
+            field = message[@"PMT"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_paymentRemittanceAdviceNumber.field.FieldRepetitions != null && _paymentRemittanceAdviceNumber.field.FieldRepetitions.Count > 0)
+        {
+            _paymentRemittanceAdviceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_paymentRemittanceAdviceNumber, fieldData);
+        }
+
+        return _paymentRemittanceAdviceNumber;
+    } 
+}
+
+internal HL7V27Field _paymentRemittanceEffectiveDateTime;
+
+public HL7V27Field PaymentRemittanceEffectiveDateTime
+{
+    get
+    {
+        if (_paymentRemittanceEffectiveDateTime != null)
+        {
+            return _paymentRemittanceEffectiveDateTime;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PMT.2",
+            Type = @"Field",
+            Position = @"PMT.2",
+            Name = @"Payment/Remittance Effective Date/Time",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"[ Start ] Date/Time for this Payment/Remittance Advice.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _paymentRemittanceEffectiveDateTime = new HL7V27Field
+        {
+            field = message[@"PMT"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_paymentRemittanceEffectiveDateTime.field.FieldRepetitions != null && _paymentRemittanceEffectiveDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _paymentRemittanceEffectiveDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_paymentRemittanceEffectiveDateTime, fieldData);
+        }
+
+        return _paymentRemittanceEffectiveDateTime;
+    } 
+}
+
+internal HL7V27Field _paymentRemittanceExpirationDateTime;
+
+public HL7V27Field PaymentRemittanceExpirationDateTime
+{
+    get
+    {
+        if (_paymentRemittanceExpirationDateTime != null)
+        {
+            return _paymentRemittanceExpirationDateTime;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PMT.3",
+            Type = @"Field",
+            Position = @"PMT.3",
+            Name = @"Payment/Remittance Expiration Date/Time",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"[ End ] Date/Time for this Payment/Remittance Advice.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _paymentRemittanceExpirationDateTime = new HL7V27Field
+        {
+            field = message[@"PMT"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_paymentRemittanceExpirationDateTime.field.FieldRepetitions != null && _paymentRemittanceExpirationDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _paymentRemittanceExpirationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_paymentRemittanceExpirationDateTime, fieldData);
+        }
+
+        return _paymentRemittanceExpirationDateTime;
+    } 
+}
+
+internal HL7V27Field _paymentMethod;
+
+public HL7V27Field PaymentMethod
+{
+    get
+    {
+        if (_paymentMethod != null)
+        {
+            return _paymentMethod;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PMT.4",
+            Type = @"Field",
+            Position = @"PMT.4",
+            Name = @"Payment Method",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0570",
+            TableName = @"Payment Method Code",
+            Description = @"Code identifying the method for the movement of payment. Refer to User-defined Table 0570 – Payment Method Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PMT.2",
-                            Type = @"Field",
-                            Position = @"PMT.2",
-                            Name = @"Payment/Remittance Effective Date/Time",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"[ Start ] Date/Time for this Payment/Remittance Advice.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PMT.3",
-                            Type = @"Field",
-                            Position = @"PMT.3",
-                            Name = @"Payment/Remittance Expiration Date/Time",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"[ End ] Date/Time for this Payment/Remittance Advice.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PMT.4",
-                            Type = @"Field",
-                            Position = @"PMT.4",
-                            Name = @"Payment Method",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0570",
-                            TableName = @"Payment Method Code",
-                            Description = @"Code identifying the method for the movement of payment. Refer to User-defined Table 0570 – Payment Method Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PMT.4.1",
                             Type = @"Component",
@@ -608,43 +704,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _paymentMethod = new HL7V27Field
+        {
+            field = message[@"PMT"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_paymentMethod.field.FieldRepetitions != null && _paymentMethod.field.FieldRepetitions.Count > 0)
+        {
+            _paymentMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_paymentMethod, fieldData);
+        }
+
+        return _paymentMethod;
+    } 
+}
+
+internal HL7V27Field _paymentRemittanceDateTime;
+
+public HL7V27Field PaymentRemittanceDateTime
+{
+    get
+    {
+        if (_paymentRemittanceDateTime != null)
+        {
+            return _paymentRemittanceDateTime;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PMT.5",
+            Type = @"Field",
+            Position = @"PMT.5",
+            Name = @"Payment/Remittance Date/Time",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"Date Payment/Remittance Advice was paid, which might not be the same as Date/Time of Message on MSH.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _paymentRemittanceDateTime = new HL7V27Field
+        {
+            field = message[@"PMT"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_paymentRemittanceDateTime.field.FieldRepetitions != null && _paymentRemittanceDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _paymentRemittanceDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_paymentRemittanceDateTime, fieldData);
+        }
+
+        return _paymentRemittanceDateTime;
+    } 
+}
+
+internal HL7V27Field _paymentRemittanceAmount;
+
+public HL7V27Field PaymentRemittanceAmount
+{
+    get
+    {
+        if (_paymentRemittanceAmount != null)
+        {
+            return _paymentRemittanceAmount;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PMT.6",
+            Type = @"Field",
+            Position = @"PMT.6",
+            Name = @"Payment/Remittance Amount",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"Sum total of all Product/Service Paid Amount on PSL for this Payment/Remittance Advice, net of any Adjustments to Payee.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PMT.5",
-                            Type = @"Field",
-                            Position = @"PMT.5",
-                            Name = @"Payment/Remittance Date/Time",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Date Payment/Remittance Advice was paid, which might not be the same as Date/Time of Message on MSH.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PMT.6",
-                            Type = @"Field",
-                            Position = @"PMT.6",
-                            Name = @"Payment/Remittance Amount",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Sum total of all Product/Service Paid Amount on PSL for this Payment/Remittance Advice, net of any Adjustments to Payee.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PMT.6.1",
                             Type = @"Component",
@@ -1219,25 +1372,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _paymentRemittanceAmount = new HL7V27Field
+        {
+            field = message[@"PMT"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_paymentRemittanceAmount.field.FieldRepetitions != null && _paymentRemittanceAmount.field.FieldRepetitions.Count > 0)
+        {
+            _paymentRemittanceAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_paymentRemittanceAmount, fieldData);
+        }
+
+        return _paymentRemittanceAmount;
+    } 
+}
+
+internal HL7V27Field _checkNumber;
+
+public HL7V27Field CheckNumber
+{
+    get
+    {
+        if (_checkNumber != null)
+        {
+            return _checkNumber;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PMT.7",
+            Type = @"Field",
+            Position = @"PMT.7",
+            Name = @"Check Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"Unique check number from the Payer's application system.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PMT.7",
-                            Type = @"Field",
-                            Position = @"PMT.7",
-                            Name = @"Check Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Unique check number from the Payer's application system.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PMT.7.1",
                             Type = @"Component",
@@ -1315,25 +1498,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _checkNumber = new HL7V27Field
+        {
+            field = message[@"PMT"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_checkNumber.field.FieldRepetitions != null && _checkNumber.field.FieldRepetitions.Count > 0)
+        {
+            _checkNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_checkNumber, fieldData);
+        }
+
+        return _checkNumber;
+    } 
+}
+
+internal HL7V27Field _payeeBankIdentification;
+
+public HL7V27Field PayeeBankIdentification
+{
+    get
+    {
+        if (_payeeBankIdentification != null)
+        {
+            return _payeeBankIdentification;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PMT.8",
+            Type = @"Field",
+            Position = @"PMT.8",
+            Name = @"Payee Bank Identification",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"Identification of Payee's financial contact, e.g., name of the bank .",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PMT.8",
-                            Type = @"Field",
-                            Position = @"PMT.8",
-                            Name = @"Payee Bank Identification",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Identification of Payee's financial contact, e.g., name of the bank .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PMT.8.1",
                             Type = @"Component",
@@ -2066,43 +2279,100 @@ In general this component provides an indication of the representation provided 
 Note: The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _payeeBankIdentification = new HL7V27Field
+        {
+            field = message[@"PMT"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payeeBankIdentification.field.FieldRepetitions != null && _payeeBankIdentification.field.FieldRepetitions.Count > 0)
+        {
+            _payeeBankIdentification.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_payeeBankIdentification, fieldData);
+        }
+
+        return _payeeBankIdentification;
+    } 
+}
+
+internal HL7V27Field _payeeTransitNumber;
+
+public HL7V27Field PayeeTransitNumber
+{
+    get
+    {
+        if (_payeeTransitNumber != null)
+        {
+            return _payeeTransitNumber;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PMT.9",
+            Type = @"Field",
+            Position = @"PMT.9",
+            Name = @"Payee Transit Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Personal ID of the payee used in financial transaction.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _payeeTransitNumber = new HL7V27Field
+        {
+            field = message[@"PMT"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payeeTransitNumber.field.FieldRepetitions != null && _payeeTransitNumber.field.FieldRepetitions.Count > 0)
+        {
+            _payeeTransitNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_payeeTransitNumber, fieldData);
+        }
+
+        return _payeeTransitNumber;
+    } 
+}
+
+internal HL7V27Field _payeeBankAccountId;
+
+public HL7V27Field PayeeBankAccountId
+{
+    get
+    {
+        if (_payeeBankAccountId != null)
+        {
+            return _payeeBankAccountId;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PMT.10",
+            Type = @"Field",
+            Position = @"PMT.10",
+            Name = @"Payee Bank Account Id",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite Id With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"Id of Payee's Bank account.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PMT.9",
-                            Type = @"Field",
-                            Position = @"PMT.9",
-                            Name = @"Payee Transit Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Personal ID of the payee used in financial transaction.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PMT.10",
-                            Type = @"Field",
-                            Position = @"PMT.10",
-                            Name = @"Payee Bank Account Id",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite Id With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Id of Payee's Bank account.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PMT.10.1",
                             Type = @"Component",
@@ -3304,25 +3574,55 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _payeeBankAccountId = new HL7V27Field
+        {
+            field = message[@"PMT"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_payeeBankAccountId.field.FieldRepetitions != null && _payeeBankAccountId.field.FieldRepetitions.Count > 0)
+        {
+            _payeeBankAccountId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_payeeBankAccountId, fieldData);
+        }
+
+        return _payeeBankAccountId;
+    } 
+}
+
+internal HL7V27Field _paymentOrganization;
+
+public HL7V27Field PaymentOrganization
+{
+    get
+    {
+        if (_paymentOrganization != null)
+        {
+            return _paymentOrganization;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"PMT.11",
+            Type = @"Field",
+            Position = @"PMT.11",
+            Name = @"Payment Organization",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"XON",
+            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
+            TableId = null,
+            TableName = null,
+            Description = @"Organization identifier that made the Payment/Remittance Advice; could be a Payer, Insurance Company, TPA, Drug Company.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PMT.11",
-                            Type = @"Field",
-                            Position = @"PMT.11",
-                            Name = @"Payment Organization",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"XON",
-                            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Organization identifier that made the Payment/Remittance Advice; could be a Payer, Insurance Company, TPA, Drug Company.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PMT.11.1",
                             Type = @"Component",
@@ -4055,500 +4355,39 @@ In general this component provides an indication of the representation provided 
 Note: The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PMT.12",
-                            Type = @"Field",
-                            Position = @"PMT.12",
-                            Name = @"Esr-code-line",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Invoice Reference used with electronic banking methods.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentPMT(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field paymentRemittanceAdviceNumber;
-
-public HL7V27Field PaymentRemittanceAdviceNumber
-{
-    get
-    {
-        if (paymentRemittanceAdviceNumber != null)
-        {
-            return paymentRemittanceAdviceNumber;
-        }
-
-        paymentRemittanceAdviceNumber = new HL7V27Field
-        {
-            field = message[@"PMT"][1],
-            Id = @"PMT.1",
-            Type = @"Field",
-            Position = @"PMT.1",
-            Name = @"Payment/Remittance Advice Number",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique Payment/Remittance Advice number for the sending Network Application ID.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (paymentRemittanceAdviceNumber.field.FieldRepetitions != null && paymentRemittanceAdviceNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(paymentRemittanceAdviceNumber.Id));
-            paymentRemittanceAdviceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(paymentRemittanceAdviceNumber, fieldData);
-        }
-
-        return paymentRemittanceAdviceNumber;
-    } 
-}
-
-internal HL7V27Field paymentRemittanceEffectiveDateTime;
-
-public HL7V27Field PaymentRemittanceEffectiveDateTime
-{
-    get
-    {
-        if (paymentRemittanceEffectiveDateTime != null)
-        {
-            return paymentRemittanceEffectiveDateTime;
-        }
-
-        paymentRemittanceEffectiveDateTime = new HL7V27Field
-        {
-            field = message[@"PMT"][2],
-            Id = @"PMT.2",
-            Type = @"Field",
-            Position = @"PMT.2",
-            Name = @"Payment/Remittance Effective Date/Time",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"[ Start ] Date/Time for this Payment/Remittance Advice.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (paymentRemittanceEffectiveDateTime.field.FieldRepetitions != null && paymentRemittanceEffectiveDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(paymentRemittanceEffectiveDateTime.Id));
-            paymentRemittanceEffectiveDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(paymentRemittanceEffectiveDateTime, fieldData);
-        }
-
-        return paymentRemittanceEffectiveDateTime;
-    } 
-}
-
-internal HL7V27Field paymentRemittanceExpirationDateTime;
-
-public HL7V27Field PaymentRemittanceExpirationDateTime
-{
-    get
-    {
-        if (paymentRemittanceExpirationDateTime != null)
-        {
-            return paymentRemittanceExpirationDateTime;
-        }
-
-        paymentRemittanceExpirationDateTime = new HL7V27Field
-        {
-            field = message[@"PMT"][3],
-            Id = @"PMT.3",
-            Type = @"Field",
-            Position = @"PMT.3",
-            Name = @"Payment/Remittance Expiration Date/Time",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"[ End ] Date/Time for this Payment/Remittance Advice.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (paymentRemittanceExpirationDateTime.field.FieldRepetitions != null && paymentRemittanceExpirationDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(paymentRemittanceExpirationDateTime.Id));
-            paymentRemittanceExpirationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(paymentRemittanceExpirationDateTime, fieldData);
-        }
-
-        return paymentRemittanceExpirationDateTime;
-    } 
-}
-
-internal HL7V27Field paymentMethod;
-
-public HL7V27Field PaymentMethod
-{
-    get
-    {
-        if (paymentMethod != null)
-        {
-            return paymentMethod;
-        }
-
-        paymentMethod = new HL7V27Field
-        {
-            field = message[@"PMT"][4],
-            Id = @"PMT.4",
-            Type = @"Field",
-            Position = @"PMT.4",
-            Name = @"Payment Method",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0570",
-            TableName = @"Payment Method Code",
-            Description = @"Code identifying the method for the movement of payment. Refer to User-defined Table 0570 – Payment Method Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (paymentMethod.field.FieldRepetitions != null && paymentMethod.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(paymentMethod.Id));
-            paymentMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(paymentMethod, fieldData);
-        }
-
-        return paymentMethod;
-    } 
-}
-
-internal HL7V27Field paymentRemittanceDateTime;
-
-public HL7V27Field PaymentRemittanceDateTime
-{
-    get
-    {
-        if (paymentRemittanceDateTime != null)
-        {
-            return paymentRemittanceDateTime;
-        }
-
-        paymentRemittanceDateTime = new HL7V27Field
-        {
-            field = message[@"PMT"][5],
-            Id = @"PMT.5",
-            Type = @"Field",
-            Position = @"PMT.5",
-            Name = @"Payment/Remittance Date/Time",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"Date Payment/Remittance Advice was paid, which might not be the same as Date/Time of Message on MSH.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (paymentRemittanceDateTime.field.FieldRepetitions != null && paymentRemittanceDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(paymentRemittanceDateTime.Id));
-            paymentRemittanceDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(paymentRemittanceDateTime, fieldData);
-        }
-
-        return paymentRemittanceDateTime;
-    } 
-}
-
-internal HL7V27Field paymentRemittanceAmount;
-
-public HL7V27Field PaymentRemittanceAmount
-{
-    get
-    {
-        if (paymentRemittanceAmount != null)
-        {
-            return paymentRemittanceAmount;
-        }
-
-        paymentRemittanceAmount = new HL7V27Field
-        {
-            field = message[@"PMT"][6],
-            Id = @"PMT.6",
-            Type = @"Field",
-            Position = @"PMT.6",
-            Name = @"Payment/Remittance Amount",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"Sum total of all Product/Service Paid Amount on PSL for this Payment/Remittance Advice, net of any Adjustments to Payee.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (paymentRemittanceAmount.field.FieldRepetitions != null && paymentRemittanceAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(paymentRemittanceAmount.Id));
-            paymentRemittanceAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(paymentRemittanceAmount, fieldData);
-        }
-
-        return paymentRemittanceAmount;
-    } 
-}
-
-internal HL7V27Field checkNumber;
-
-public HL7V27Field CheckNumber
-{
-    get
-    {
-        if (checkNumber != null)
-        {
-            return checkNumber;
-        }
-
-        checkNumber = new HL7V27Field
-        {
-            field = message[@"PMT"][7],
-            Id = @"PMT.7",
-            Type = @"Field",
-            Position = @"PMT.7",
-            Name = @"Check Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"Unique check number from the Payer's application system.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (checkNumber.field.FieldRepetitions != null && checkNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(checkNumber.Id));
-            checkNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(checkNumber, fieldData);
-        }
-
-        return checkNumber;
-    } 
-}
-
-internal HL7V27Field payeeBankIdentification;
-
-public HL7V27Field PayeeBankIdentification
-{
-    get
-    {
-        if (payeeBankIdentification != null)
-        {
-            return payeeBankIdentification;
-        }
-
-        payeeBankIdentification = new HL7V27Field
-        {
-            field = message[@"PMT"][8],
-            Id = @"PMT.8",
-            Type = @"Field",
-            Position = @"PMT.8",
-            Name = @"Payee Bank Identification",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"Identification of Payee's financial contact, e.g., name of the bank .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payeeBankIdentification.field.FieldRepetitions != null && payeeBankIdentification.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payeeBankIdentification.Id));
-            payeeBankIdentification.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(payeeBankIdentification, fieldData);
-        }
-
-        return payeeBankIdentification;
-    } 
-}
-
-internal HL7V27Field payeeTransitNumber;
-
-public HL7V27Field PayeeTransitNumber
-{
-    get
-    {
-        if (payeeTransitNumber != null)
-        {
-            return payeeTransitNumber;
-        }
-
-        payeeTransitNumber = new HL7V27Field
-        {
-            field = message[@"PMT"][9],
-            Id = @"PMT.9",
-            Type = @"Field",
-            Position = @"PMT.9",
-            Name = @"Payee Transit Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Personal ID of the payee used in financial transaction.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payeeTransitNumber.field.FieldRepetitions != null && payeeTransitNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payeeTransitNumber.Id));
-            payeeTransitNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(payeeTransitNumber, fieldData);
-        }
-
-        return payeeTransitNumber;
-    } 
-}
-
-internal HL7V27Field payeeBankAccountId;
-
-public HL7V27Field PayeeBankAccountId
-{
-    get
-    {
-        if (payeeBankAccountId != null)
-        {
-            return payeeBankAccountId;
-        }
-
-        payeeBankAccountId = new HL7V27Field
-        {
-            field = message[@"PMT"][10],
-            Id = @"PMT.10",
-            Type = @"Field",
-            Position = @"PMT.10",
-            Name = @"Payee Bank Account Id",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite Id With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"Id of Payee's Bank account.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (payeeBankAccountId.field.FieldRepetitions != null && payeeBankAccountId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payeeBankAccountId.Id));
-            payeeBankAccountId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(payeeBankAccountId, fieldData);
-        }
-
-        return payeeBankAccountId;
-    } 
-}
-
-internal HL7V27Field paymentOrganization;
-
-public HL7V27Field PaymentOrganization
-{
-    get
-    {
-        if (paymentOrganization != null)
-        {
-            return paymentOrganization;
-        }
-
-        paymentOrganization = new HL7V27Field
+        _paymentOrganization = new HL7V27Field
         {
             field = message[@"PMT"][11],
-            Id = @"PMT.11",
-            Type = @"Field",
-            Position = @"PMT.11",
-            Name = @"Payment Organization",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"XON",
-            DataTypeName = @"Extended Composite Name And Identification Number For Organizations",
-            TableId = null,
-            TableName = null,
-            Description = @"Organization identifier that made the Payment/Remittance Advice; could be a Payer, Insurance Company, TPA, Drug Company.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (paymentOrganization.field.FieldRepetitions != null && paymentOrganization.field.FieldRepetitions.Count > 0)
+        if (_paymentOrganization.field.FieldRepetitions != null && _paymentOrganization.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(paymentOrganization.Id));
-            paymentOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(paymentOrganization, fieldData);
+            _paymentOrganization.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_paymentOrganization, fieldData);
         }
 
-        return paymentOrganization;
+        return _paymentOrganization;
     } 
 }
 
-internal HL7V27Field esrcodeline;
+internal HL7V27Field _esrcodeline;
 
 public HL7V27Field Esrcodeline
 {
     get
     {
-        if (esrcodeline != null)
+        if (_esrcodeline != null)
         {
-            return esrcodeline;
+            return _esrcodeline;
         }
 
-        esrcodeline = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"PMT"][12],
             Id = @"PMT.12",
             Type = @"Field",
             Position = @"PMT.12",
@@ -4562,17 +4401,22 @@ public HL7V27Field Esrcodeline
             TableName = null,
             Description = @"Invoice Reference used with electronic banking methods.",
             Sample = @"",
+            Fields = null
+        }
+
+        _esrcodeline = new HL7V27Field
+        {
+            field = message[@"PMT"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (esrcodeline.field.FieldRepetitions != null && esrcodeline.field.FieldRepetitions.Count > 0)
+        if (_esrcodeline.field.FieldRepetitions != null && _esrcodeline.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(esrcodeline.Id));
-            esrcodeline.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(esrcodeline, fieldData);
+            _esrcodeline.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_esrcodeline, fieldData);
         }
 
-        return esrcodeline;
+        return _esrcodeline;
     } 
 }
     }

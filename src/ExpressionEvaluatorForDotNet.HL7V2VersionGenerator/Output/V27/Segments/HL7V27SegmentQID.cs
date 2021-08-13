@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentQID(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _queryTag;
+
+public HL7V27Field QueryTag
+{
+    get
+    {
+        if (_queryTag != null)
+        {
+            return _queryTag;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"QID.1",
+            Type = @"Field",
+            Position = @"QID.1",
+            Name = @"Query Tag",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the instance of a query.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _queryTag = new HL7V27Field
+        {
+            field = message[@"QID"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_queryTag.field.FieldRepetitions != null && _queryTag.field.FieldRepetitions.Count > 0)
+        {
+            _queryTag.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_queryTag, fieldData);
+        }
+
+        return _queryTag;
+    } 
+}
+
+internal HL7V27Field _messageQueryName;
+
+public HL7V27Field MessageQueryName
+{
+    get
+    {
+        if (_messageQueryName != null)
+        {
+            return _messageQueryName;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"QID.2",
+            Type = @"Field",
+            Position = @"QID.2",
+            Name = @"Message Query Name",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0471",
+            TableName = @"Query Name",
+            Description = @"This field contains the name of the query.  These names are assigned by the function-specific chapters of this specification.  Site-specific query names begin with the letter ""Z.""  Refer to User defined table 0471 - Query name for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"QID.1",
-                            Type = @"Field",
-                            Position = @"QID.1",
-                            Name = @"Query Tag",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the instance of a query.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QID.2",
-                            Type = @"Field",
-                            Position = @"QID.2",
-                            Name = @"Message Query Name",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0471",
-                            TableName = @"Query Name",
-                            Description = @"This field contains the name of the query.  These names are assigned by the function-specific chapters of this specification.  Site-specific query names begin with the letter ""Z.""  Refer to User defined table 0471 - Query name for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QID.2.1",
                             Type = @"Component",
@@ -494,96 +533,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentQID(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field queryTag;
-
-public HL7V27Field QueryTag
-{
-    get
-    {
-        if (queryTag != null)
-        {
-            return queryTag;
-        }
-
-        queryTag = new HL7V27Field
-        {
-            field = message[@"QID"][1],
-            Id = @"QID.1",
-            Type = @"Field",
-            Position = @"QID.1",
-            Name = @"Query Tag",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the instance of a query.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (queryTag.field.FieldRepetitions != null && queryTag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(queryTag.Id));
-            queryTag.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(queryTag, fieldData);
-        }
-
-        return queryTag;
-    } 
-}
-
-internal HL7V27Field messageQueryName;
-
-public HL7V27Field MessageQueryName
-{
-    get
-    {
-        if (messageQueryName != null)
-        {
-            return messageQueryName;
-        }
-
-        messageQueryName = new HL7V27Field
+        _messageQueryName = new HL7V27Field
         {
             field = message[@"QID"][2],
-            Id = @"QID.2",
-            Type = @"Field",
-            Position = @"QID.2",
-            Name = @"Message Query Name",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0471",
-            TableName = @"Query Name",
-            Description = @"This field contains the name of the query.  These names are assigned by the function-specific chapters of this specification.  Site-specific query names begin with the letter ""Z.""  Refer to User defined table 0471 - Query name for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (messageQueryName.field.FieldRepetitions != null && messageQueryName.field.FieldRepetitions.Count > 0)
+        if (_messageQueryName.field.FieldRepetitions != null && _messageQueryName.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(messageQueryName.Id));
-            messageQueryName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(messageQueryName, fieldData);
+            _messageQueryName.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_messageQueryName, fieldData);
         }
 
-        return messageQueryName;
+        return _messageQueryName;
     } 
 }
     }

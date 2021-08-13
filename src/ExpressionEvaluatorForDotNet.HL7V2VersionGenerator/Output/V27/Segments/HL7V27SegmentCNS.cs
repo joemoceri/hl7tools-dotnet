@@ -29,100 +29,220 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentCNS(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _startingNotificationReferenceNumber;
+
+public HL7V27Field StartingNotificationReferenceNumber
+{
+    get
+    {
+        if (_startingNotificationReferenceNumber != null)
+        {
+            return _startingNotificationReferenceNumber;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"CNS.1",
+            Type = @"Field",
+            Position = @"CNS.1",
+            Name = @"Starting Notification Reference Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the starting notification reference number that is to be cleared.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _startingNotificationReferenceNumber = new HL7V27Field
+        {
+            field = message[@"CNS"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_startingNotificationReferenceNumber.field.FieldRepetitions != null && _startingNotificationReferenceNumber.field.FieldRepetitions.Count > 0)
+        {
+            _startingNotificationReferenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_startingNotificationReferenceNumber, fieldData);
+        }
+
+        return _startingNotificationReferenceNumber;
+    } 
+}
+
+internal HL7V27Field _endingNotificationReferenceNumber;
+
+public HL7V27Field EndingNotificationReferenceNumber
+{
+    get
+    {
+        if (_endingNotificationReferenceNumber != null)
+        {
+            return _endingNotificationReferenceNumber;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"CNS.2",
+            Type = @"Field",
+            Position = @"CNS.2",
+            Name = @"Ending Notification Reference Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the ending notification reference number that is to be cleared.  If empty, then only notification with Starting Notification Reference Number will be cleared.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _endingNotificationReferenceNumber = new HL7V27Field
+        {
+            field = message[@"CNS"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_endingNotificationReferenceNumber.field.FieldRepetitions != null && _endingNotificationReferenceNumber.field.FieldRepetitions.Count > 0)
+        {
+            _endingNotificationReferenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_endingNotificationReferenceNumber, fieldData);
+        }
+
+        return _endingNotificationReferenceNumber;
+    } 
+}
+
+internal HL7V27Field _startingNotificationDateTime;
+
+public HL7V27Field StartingNotificationDateTime
+{
+    get
+    {
+        if (_startingNotificationDateTime != null)
+        {
+            return _startingNotificationDateTime;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"CNS.3",
+            Type = @"Field",
+            Position = @"CNS.3",
+            Name = @"Starting Notification Date/Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the starting date/time of the notifications to be cleared.  If this field is empty but Ending Notification Date/Time is filled, then all notifications before Ending Notification Date/Time will be cleared.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _startingNotificationDateTime = new HL7V27Field
+        {
+            field = message[@"CNS"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_startingNotificationDateTime.field.FieldRepetitions != null && _startingNotificationDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _startingNotificationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_startingNotificationDateTime, fieldData);
+        }
+
+        return _startingNotificationDateTime;
+    } 
+}
+
+internal HL7V27Field _endingNotificationDateTime;
+
+public HL7V27Field EndingNotificationDateTime
+{
+    get
+    {
+        if (_endingNotificationDateTime != null)
+        {
+            return _endingNotificationDateTime;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"CNS.4",
+            Type = @"Field",
+            Position = @"CNS.4",
+            Name = @"Ending Notification Date/Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the ending date/time of the notifications to be cleared.  If this field is empty but Starting Notification Date/Time is filled, then all notifications after Starting Notification Date/Time will be cleared.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _endingNotificationDateTime = new HL7V27Field
+        {
+            field = message[@"CNS"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_endingNotificationDateTime.field.FieldRepetitions != null && _endingNotificationDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _endingNotificationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_endingNotificationDateTime, fieldData);
+        }
+
+        return _endingNotificationDateTime;
+    } 
+}
+
+internal HL7V27Field _startingNotificationCode;
+
+public HL7V27Field StartingNotificationCode
+{
+    get
+    {
+        if (_startingNotificationCode != null)
+        {
+            return _startingNotificationCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"CNS.5",
+            Type = @"Field",
+            Position = @"CNS.5",
+            Name = @"Starting Notification Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the starting notification code that is to be cleared (see 13.4.7.4, ""NDS-4   Notification Code   (CWE)   01401"").",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"CNS.1",
-                            Type = @"Field",
-                            Position = @"CNS.1",
-                            Name = @"Starting Notification Reference Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the starting notification reference number that is to be cleared.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CNS.2",
-                            Type = @"Field",
-                            Position = @"CNS.2",
-                            Name = @"Ending Notification Reference Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the ending notification reference number that is to be cleared.  If empty, then only notification with Starting Notification Reference Number will be cleared.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CNS.3",
-                            Type = @"Field",
-                            Position = @"CNS.3",
-                            Name = @"Starting Notification Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the starting date/time of the notifications to be cleared.  If this field is empty but Ending Notification Date/Time is filled, then all notifications before Ending Notification Date/Time will be cleared.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CNS.4",
-                            Type = @"Field",
-                            Position = @"CNS.4",
-                            Name = @"Ending Notification Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the ending date/time of the notifications to be cleared.  If this field is empty but Starting Notification Date/Time is filled, then all notifications after Starting Notification Date/Time will be cleared.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"CNS.5",
-                            Type = @"Field",
-                            Position = @"CNS.5",
-                            Name = @"Starting Notification Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the starting notification code that is to be cleared (see 13.4.7.4, ""NDS-4   Notification Code   (CWE)   01401"").",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CNS.5.1",
                             Type = @"Component",
@@ -548,25 +668,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _startingNotificationCode = new HL7V27Field
+        {
+            field = message[@"CNS"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_startingNotificationCode.field.FieldRepetitions != null && _startingNotificationCode.field.FieldRepetitions.Count > 0)
+        {
+            _startingNotificationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_startingNotificationCode, fieldData);
+        }
+
+        return _startingNotificationCode;
+    } 
+}
+
+internal HL7V27Field _endingNotificationCode;
+
+public HL7V27Field EndingNotificationCode
+{
+    get
+    {
+        if (_endingNotificationCode != null)
+        {
+            return _endingNotificationCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"CNS.6",
+            Type = @"Field",
+            Position = @"CNS.6",
+            Name = @"Ending Notification Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the ending notification code that is to be cleared (see 13.4.7.4, ""NDS-4   Notification Code   (CWE)   01401"").  If empty, then only notification with Starting Notification Code will be cleared.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CNS.6",
-                            Type = @"Field",
-                            Position = @"CNS.6",
-                            Name = @"Ending Notification Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the ending notification code that is to be cleared (see 13.4.7.4, ""NDS-4   Notification Code   (CWE)   01401"").  If empty, then only notification with Starting Notification Code will be cleared.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CNS.6.1",
                             Type = @"Component",
@@ -992,260 +1142,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentCNS(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field startingNotificationReferenceNumber;
-
-public HL7V27Field StartingNotificationReferenceNumber
-{
-    get
-    {
-        if (startingNotificationReferenceNumber != null)
-        {
-            return startingNotificationReferenceNumber;
-        }
-
-        startingNotificationReferenceNumber = new HL7V27Field
-        {
-            field = message[@"CNS"][1],
-            Id = @"CNS.1",
-            Type = @"Field",
-            Position = @"CNS.1",
-            Name = @"Starting Notification Reference Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the starting notification reference number that is to be cleared.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (startingNotificationReferenceNumber.field.FieldRepetitions != null && startingNotificationReferenceNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(startingNotificationReferenceNumber.Id));
-            startingNotificationReferenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(startingNotificationReferenceNumber, fieldData);
-        }
-
-        return startingNotificationReferenceNumber;
-    } 
-}
-
-internal HL7V27Field endingNotificationReferenceNumber;
-
-public HL7V27Field EndingNotificationReferenceNumber
-{
-    get
-    {
-        if (endingNotificationReferenceNumber != null)
-        {
-            return endingNotificationReferenceNumber;
-        }
-
-        endingNotificationReferenceNumber = new HL7V27Field
-        {
-            field = message[@"CNS"][2],
-            Id = @"CNS.2",
-            Type = @"Field",
-            Position = @"CNS.2",
-            Name = @"Ending Notification Reference Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the ending notification reference number that is to be cleared.  If empty, then only notification with Starting Notification Reference Number will be cleared.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (endingNotificationReferenceNumber.field.FieldRepetitions != null && endingNotificationReferenceNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(endingNotificationReferenceNumber.Id));
-            endingNotificationReferenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(endingNotificationReferenceNumber, fieldData);
-        }
-
-        return endingNotificationReferenceNumber;
-    } 
-}
-
-internal HL7V27Field startingNotificationDateTime;
-
-public HL7V27Field StartingNotificationDateTime
-{
-    get
-    {
-        if (startingNotificationDateTime != null)
-        {
-            return startingNotificationDateTime;
-        }
-
-        startingNotificationDateTime = new HL7V27Field
-        {
-            field = message[@"CNS"][3],
-            Id = @"CNS.3",
-            Type = @"Field",
-            Position = @"CNS.3",
-            Name = @"Starting Notification Date/Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the starting date/time of the notifications to be cleared.  If this field is empty but Ending Notification Date/Time is filled, then all notifications before Ending Notification Date/Time will be cleared.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (startingNotificationDateTime.field.FieldRepetitions != null && startingNotificationDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(startingNotificationDateTime.Id));
-            startingNotificationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(startingNotificationDateTime, fieldData);
-        }
-
-        return startingNotificationDateTime;
-    } 
-}
-
-internal HL7V27Field endingNotificationDateTime;
-
-public HL7V27Field EndingNotificationDateTime
-{
-    get
-    {
-        if (endingNotificationDateTime != null)
-        {
-            return endingNotificationDateTime;
-        }
-
-        endingNotificationDateTime = new HL7V27Field
-        {
-            field = message[@"CNS"][4],
-            Id = @"CNS.4",
-            Type = @"Field",
-            Position = @"CNS.4",
-            Name = @"Ending Notification Date/Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the ending date/time of the notifications to be cleared.  If this field is empty but Starting Notification Date/Time is filled, then all notifications after Starting Notification Date/Time will be cleared.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (endingNotificationDateTime.field.FieldRepetitions != null && endingNotificationDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(endingNotificationDateTime.Id));
-            endingNotificationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(endingNotificationDateTime, fieldData);
-        }
-
-        return endingNotificationDateTime;
-    } 
-}
-
-internal HL7V27Field startingNotificationCode;
-
-public HL7V27Field StartingNotificationCode
-{
-    get
-    {
-        if (startingNotificationCode != null)
-        {
-            return startingNotificationCode;
-        }
-
-        startingNotificationCode = new HL7V27Field
-        {
-            field = message[@"CNS"][5],
-            Id = @"CNS.5",
-            Type = @"Field",
-            Position = @"CNS.5",
-            Name = @"Starting Notification Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the starting notification code that is to be cleared (see 13.4.7.4, ""NDS-4   Notification Code   (CWE)   01401"").",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (startingNotificationCode.field.FieldRepetitions != null && startingNotificationCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(startingNotificationCode.Id));
-            startingNotificationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(startingNotificationCode, fieldData);
-        }
-
-        return startingNotificationCode;
-    } 
-}
-
-internal HL7V27Field endingNotificationCode;
-
-public HL7V27Field EndingNotificationCode
-{
-    get
-    {
-        if (endingNotificationCode != null)
-        {
-            return endingNotificationCode;
-        }
-
-        endingNotificationCode = new HL7V27Field
+        _endingNotificationCode = new HL7V27Field
         {
             field = message[@"CNS"][6],
-            Id = @"CNS.6",
-            Type = @"Field",
-            Position = @"CNS.6",
-            Name = @"Ending Notification Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the ending notification code that is to be cleared (see 13.4.7.4, ""NDS-4   Notification Code   (CWE)   01401"").  If empty, then only notification with Starting Notification Code will be cleared.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (endingNotificationCode.field.FieldRepetitions != null && endingNotificationCode.field.FieldRepetitions.Count > 0)
+        if (_endingNotificationCode.field.FieldRepetitions != null && _endingNotificationCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(endingNotificationCode.Id));
-            endingNotificationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(endingNotificationCode, fieldData);
+            _endingNotificationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_endingNotificationCode, fieldData);
         }
 
-        return endingNotificationCode;
+        return _endingNotificationCode;
     } 
 }
     }

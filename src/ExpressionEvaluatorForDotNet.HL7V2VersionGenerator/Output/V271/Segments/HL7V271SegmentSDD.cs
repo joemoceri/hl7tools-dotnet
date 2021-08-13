@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V271SegmentSDD(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _lotNumber;
+
+public HL7V271Field LotNumber
+{
+    get
+    {
+        if (_lotNumber != null)
+        {
+            return _lotNumber;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SDD.1",
+            Type = @"Field",
+            Position = @"SDD.1",
+            Name = @"Lot Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"A unique number associated with an instance of a sterilization/decontamination cycle assigned by the instrument-tracking system.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"SDD.1",
-                            Type = @"Field",
-                            Position = @"SDD.1",
-                            Name = @"Lot Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A unique number associated with an instance of a sterilization/decontamination cycle assigned by the instrument-tracking system.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"SDD.1.1",
                             Type = @"Component",
@@ -128,25 +140,55 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _lotNumber = new HL7V271Field
+        {
+            field = message[@"SDD"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_lotNumber.field.FieldRepetitions != null && _lotNumber.field.FieldRepetitions.Count > 0)
+        {
+            _lotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_lotNumber, fieldData);
+        }
+
+        return _lotNumber;
+    } 
+}
+
+internal HL7V271Field _deviceNumber;
+
+public HL7V271Field DeviceNumber
+{
+    get
+    {
+        if (_deviceNumber != null)
+        {
+            return _deviceNumber;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SDD.2",
+            Type = @"Field",
+            Position = @"SDD.2",
+            Name = @"Device Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The number of the device (e.g., 01 VAC).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SDD.2",
-                            Type = @"Field",
-                            Position = @"SDD.2",
-                            Name = @"Device Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The number of the device (e.g., 01 VAC).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SDD.2.1",
                             Type = @"Component",
@@ -224,43 +266,100 @@ By site agreement, implementers may continue to use User-defined Table 0300 – 
 Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _deviceNumber = new HL7V271Field
+        {
+            field = message[@"SDD"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_deviceNumber.field.FieldRepetitions != null && _deviceNumber.field.FieldRepetitions.Count > 0)
+        {
+            _deviceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_deviceNumber, fieldData);
+        }
+
+        return _deviceNumber;
+    } 
+}
+
+internal HL7V271Field _deviceName;
+
+public HL7V271Field DeviceName
+{
+    get
+    {
+        if (_deviceName != null)
+        {
+            return _deviceName;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SDD.3",
+            Type = @"Field",
+            Position = @"SDD.3",
+            Name = @"Device Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"The name of the device associated with the device number in SDD-2 (e.g., 01 VAC).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _deviceName = new HL7V271Field
+        {
+            field = message[@"SDD"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_deviceName.field.FieldRepetitions != null && _deviceName.field.FieldRepetitions.Count > 0)
+        {
+            _deviceName.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_deviceName, fieldData);
+        }
+
+        return _deviceName;
+    } 
+}
+
+internal HL7V271Field _deviceDataState;
+
+public HL7V271Field DeviceDataState
+{
+    get
+    {
+        if (_deviceDataState != null)
+        {
+            return _deviceDataState;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SDD.4",
+            Type = @"Field",
+            Position = @"SDD.4",
+            Name = @"Device Data State",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0667",
+            TableName = @"Device Data State -",
+            Description = @"The state of data being sent, i.e., historic data of the cycle or a real-time snapshot of the current value of the cycle data.  During a sterilization process, data is consistently being output to record the value of the data at each point in time within the instance of a cycle.  For example, the temperature is recorded at every point in time during the cycle. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SDD.3",
-                            Type = @"Field",
-                            Position = @"SDD.3",
-                            Name = @"Device Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The name of the device associated with the device number in SDD-2 (e.g., 01 VAC).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SDD.4",
-                            Type = @"Field",
-                            Position = @"SDD.4",
-                            Name = @"Device Data State",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0667",
-                            TableName = @"Device Data State -",
-                            Description = @"The state of data being sent, i.e., historic data of the cycle or a real-time snapshot of the current value of the cycle data.  During a sterilization process, data is consistently being output to record the value of the data at each point in time within the instance of a cycle.  For example, the temperature is recorded at every point in time during the cycle. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SDD.4.1",
                             Type = @"Component",
@@ -686,25 +785,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _deviceDataState = new HL7V271Field
+        {
+            field = message[@"SDD"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_deviceDataState.field.FieldRepetitions != null && _deviceDataState.field.FieldRepetitions.Count > 0)
+        {
+            _deviceDataState.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_deviceDataState, fieldData);
+        }
+
+        return _deviceDataState;
+    } 
+}
+
+internal HL7V271Field _loadStatus;
+
+public HL7V271Field LoadStatus
+{
+    get
+    {
+        if (_loadStatus != null)
+        {
+            return _loadStatus;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"SDD.5",
+            Type = @"Field",
+            Position = @"SDD.5",
+            Name = @"Load Status",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0669",
+            TableName = @"Load Status",
+            Description = @"The status of the load.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SDD.5",
-                            Type = @"Field",
-                            Position = @"SDD.5",
-                            Name = @"Load Status",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0669",
-                            TableName = @"Load Status",
-                            Description = @"The status of the load.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SDD.5.1",
                             Type = @"Component",
@@ -1130,272 +1259,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SDD.6",
-                            Type = @"Field",
-                            Position = @"SDD.6",
-                            Name = @"Control Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"A code to command the device to send cycle data from the previous load to the instrument-tracking system.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SDD.7",
-                            Type = @"Field",
-                            Position = @"SDD.7",
-                            Name = @"Operator Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The person who started the device load for the decontamination/sterilization process.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentSDD(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field lotNumber;
-
-public HL7V271Field LotNumber
-{
-    get
-    {
-        if (lotNumber != null)
-        {
-            return lotNumber;
-        }
-
-        lotNumber = new HL7V271Field
-        {
-            field = message[@"SDD"][1],
-            Id = @"SDD.1",
-            Type = @"Field",
-            Position = @"SDD.1",
-            Name = @"Lot Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"A unique number associated with an instance of a sterilization/decontamination cycle assigned by the instrument-tracking system.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (lotNumber.field.FieldRepetitions != null && lotNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(lotNumber.Id));
-            lotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(lotNumber, fieldData);
-        }
-
-        return lotNumber;
-    } 
-}
-
-internal HL7V271Field deviceNumber;
-
-public HL7V271Field DeviceNumber
-{
-    get
-    {
-        if (deviceNumber != null)
-        {
-            return deviceNumber;
-        }
-
-        deviceNumber = new HL7V271Field
-        {
-            field = message[@"SDD"][2],
-            Id = @"SDD.2",
-            Type = @"Field",
-            Position = @"SDD.2",
-            Name = @"Device Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The number of the device (e.g., 01 VAC).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (deviceNumber.field.FieldRepetitions != null && deviceNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deviceNumber.Id));
-            deviceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(deviceNumber, fieldData);
-        }
-
-        return deviceNumber;
-    } 
-}
-
-internal HL7V271Field deviceName;
-
-public HL7V271Field DeviceName
-{
-    get
-    {
-        if (deviceName != null)
-        {
-            return deviceName;
-        }
-
-        deviceName = new HL7V271Field
-        {
-            field = message[@"SDD"][3],
-            Id = @"SDD.3",
-            Type = @"Field",
-            Position = @"SDD.3",
-            Name = @"Device Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"The name of the device associated with the device number in SDD-2 (e.g., 01 VAC).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (deviceName.field.FieldRepetitions != null && deviceName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deviceName.Id));
-            deviceName.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(deviceName, fieldData);
-        }
-
-        return deviceName;
-    } 
-}
-
-internal HL7V271Field deviceDataState;
-
-public HL7V271Field DeviceDataState
-{
-    get
-    {
-        if (deviceDataState != null)
-        {
-            return deviceDataState;
-        }
-
-        deviceDataState = new HL7V271Field
-        {
-            field = message[@"SDD"][4],
-            Id = @"SDD.4",
-            Type = @"Field",
-            Position = @"SDD.4",
-            Name = @"Device Data State",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0667",
-            TableName = @"Device Data State -",
-            Description = @"The state of data being sent, i.e., historic data of the cycle or a real-time snapshot of the current value of the cycle data.  During a sterilization process, data is consistently being output to record the value of the data at each point in time within the instance of a cycle.  For example, the temperature is recorded at every point in time during the cycle. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (deviceDataState.field.FieldRepetitions != null && deviceDataState.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deviceDataState.Id));
-            deviceDataState.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(deviceDataState, fieldData);
-        }
-
-        return deviceDataState;
-    } 
-}
-
-internal HL7V271Field loadStatus;
-
-public HL7V271Field LoadStatus
-{
-    get
-    {
-        if (loadStatus != null)
-        {
-            return loadStatus;
-        }
-
-        loadStatus = new HL7V271Field
+        _loadStatus = new HL7V271Field
         {
             field = message[@"SDD"][5],
-            Id = @"SDD.5",
-            Type = @"Field",
-            Position = @"SDD.5",
-            Name = @"Load Status",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0669",
-            TableName = @"Load Status",
-            Description = @"The status of the load.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (loadStatus.field.FieldRepetitions != null && loadStatus.field.FieldRepetitions.Count > 0)
+        if (_loadStatus.field.FieldRepetitions != null && _loadStatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(loadStatus.Id));
-            loadStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(loadStatus, fieldData);
+            _loadStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_loadStatus, fieldData);
         }
 
-        return loadStatus;
+        return _loadStatus;
     } 
 }
 
-internal HL7V271Field controlCode;
+internal HL7V271Field _controlCode;
 
 public HL7V271Field ControlCode
 {
     get
     {
-        if (controlCode != null)
+        if (_controlCode != null)
         {
-            return controlCode;
+            return _controlCode;
         }
 
-        controlCode = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"SDD"][6],
             Id = @"SDD.6",
             Type = @"Field",
             Position = @"SDD.6",
@@ -1409,34 +1305,38 @@ public HL7V271Field ControlCode
             TableName = null,
             Description = @"A code to command the device to send cycle data from the previous load to the instrument-tracking system.",
             Sample = @"",
+            Fields = null
+        }
+
+        _controlCode = new HL7V271Field
+        {
+            field = message[@"SDD"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (controlCode.field.FieldRepetitions != null && controlCode.field.FieldRepetitions.Count > 0)
+        if (_controlCode.field.FieldRepetitions != null && _controlCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(controlCode.Id));
-            controlCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(controlCode, fieldData);
+            _controlCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_controlCode, fieldData);
         }
 
-        return controlCode;
+        return _controlCode;
     } 
 }
 
-internal HL7V271Field operatorName;
+internal HL7V271Field _operatorName;
 
 public HL7V271Field OperatorName
 {
     get
     {
-        if (operatorName != null)
+        if (_operatorName != null)
         {
-            return operatorName;
+            return _operatorName;
         }
 
-        operatorName = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"SDD"][7],
             Id = @"SDD.7",
             Type = @"Field",
             Position = @"SDD.7",
@@ -1450,17 +1350,22 @@ public HL7V271Field OperatorName
             TableName = null,
             Description = @"The person who started the device load for the decontamination/sterilization process.",
             Sample = @"",
+            Fields = null
+        }
+
+        _operatorName = new HL7V271Field
+        {
+            field = message[@"SDD"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (operatorName.field.FieldRepetitions != null && operatorName.field.FieldRepetitions.Count > 0)
+        if (_operatorName.field.FieldRepetitions != null && _operatorName.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(operatorName.Id));
-            operatorName.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(operatorName, fieldData);
+            _operatorName.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_operatorName, fieldData);
         }
 
-        return operatorName;
+        return _operatorName;
     } 
 }
     }

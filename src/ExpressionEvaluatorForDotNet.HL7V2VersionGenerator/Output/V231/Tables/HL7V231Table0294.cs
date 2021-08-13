@@ -20,6 +20,7 @@ namespace ExpressionEvaluatorForDotNet
                     {
                         "CH_02",
 "CH_10",
+
                     };
             } 
         }
@@ -84,6 +85,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"An indicator that Wednesday is or is not preferred for the day on which the appointment will occur. OK = Preferred appointment day NO = Day is not preferred",
                             Comment = null
                         },
+                        
                     };
             } 
         }

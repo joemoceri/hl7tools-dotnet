@@ -33,52 +33,24 @@ If this message is used only to gather information on the various systems' clock
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"NCK.1",
-                            Type = @"Field",
-                            Position = @"NCK.1",
-                            Name = @"System Date/Time",
-                            Length = 24,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an HL7 time stamp.  It is strongly recommended that seconds be included.  If the message contains an NST or NSC segment, the NCK segment is optional.  If the NCK segment is present, this field is required.  If present in the NMQ message, or the unsolicited NMD message, it contains the system date/time of the sending system.  If present in the NMR response message, it contains the responding system's date/time. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V27SegmentNCK(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V27Field systemDateTime;
+        internal HL7V27Field _systemDateTime;
 
 public HL7V27Field SystemDateTime
 {
     get
     {
-        if (systemDateTime != null)
+        if (_systemDateTime != null)
         {
-            return systemDateTime;
+            return _systemDateTime;
         }
 
-        systemDateTime = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"NCK"][1],
             Id = @"NCK.1",
             Type = @"Field",
             Position = @"NCK.1",
@@ -92,17 +64,22 @@ public HL7V27Field SystemDateTime
             TableName = null,
             Description = @"This field contains an HL7 time stamp.  It is strongly recommended that seconds be included.  If the message contains an NST or NSC segment, the NCK segment is optional.  If the NCK segment is present, this field is required.  If present in the NMQ message, or the unsolicited NMD message, it contains the system date/time of the sending system.  If present in the NMR response message, it contains the responding system's date/time. ",
             Sample = @"",
+            Fields = null
+        }
+
+        _systemDateTime = new HL7V27Field
+        {
+            field = message[@"NCK"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (systemDateTime.field.FieldRepetitions != null && systemDateTime.field.FieldRepetitions.Count > 0)
+        if (_systemDateTime.field.FieldRepetitions != null && _systemDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(systemDateTime.Id));
-            systemDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(systemDateTime, fieldData);
+            _systemDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_systemDateTime, fieldData);
         }
 
-        return systemDateTime;
+        return _systemDateTime;
     } 
 }
     }

@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentGP2(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _revenueCode;
+
+public HL7V27Field RevenueCode
+{
+    get
+    {
+        if (_revenueCode != null)
+        {
+            return _revenueCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"GP2.1",
+            Type = @"Field",
+            Position = @"GP2.1",
+            Name = @"Revenue Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0456",
+            TableName = @"Revenue code",
+            Description = @"This field identifies a specific ancillary service for each HCPC/CPT This field is the same as UB92 Form Locator 42 ""Revenue Code"". Refer to User-defined Table 0456 - Revenue Code for suggested values. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"GP2.1",
-                            Type = @"Field",
-                            Position = @"GP2.1",
-                            Name = @"Revenue Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0456",
-                            TableName = @"Revenue code",
-                            Description = @"This field identifies a specific ancillary service for each HCPC/CPT This field is the same as UB92 Form Locator 42 ""Revenue Code"". Refer to User-defined Table 0456 - Revenue Code for suggested values. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"GP2.1.1",
                             Type = @"Component",
@@ -476,43 +488,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _revenueCode = new HL7V27Field
+        {
+            field = message[@"GP2"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_revenueCode.field.FieldRepetitions != null && _revenueCode.field.FieldRepetitions.Count > 0)
+        {
+            _revenueCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_revenueCode, fieldData);
+        }
+
+        return _revenueCode;
+    } 
+}
+
+internal HL7V27Field _numberOfServiceUnits;
+
+public HL7V27Field NumberOfServiceUnits
+{
+    get
+    {
+        if (_numberOfServiceUnits != null)
+        {
+            return _numberOfServiceUnits;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"GP2.2",
+            Type = @"Field",
+            Position = @"GP2.2",
+            Name = @"Number Of Service Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the quantitative count of units for each HCPC/CPT. This field is the same as UB92 Form Locator 46 ""Units of Service"". This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _numberOfServiceUnits = new HL7V27Field
+        {
+            field = message[@"GP2"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_numberOfServiceUnits.field.FieldRepetitions != null && _numberOfServiceUnits.field.FieldRepetitions.Count > 0)
+        {
+            _numberOfServiceUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_numberOfServiceUnits, fieldData);
+        }
+
+        return _numberOfServiceUnits;
+    } 
+}
+
+internal HL7V27Field _charge;
+
+public HL7V27Field Charge
+{
+    get
+    {
+        if (_charge != null)
+        {
+            return _charge;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"GP2.3",
+            Type = @"Field",
+            Position = @"GP2.3",
+            Name = @"Charge",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the amount charged for the specific individual line item (HCPC/CPT). This field is the same as UB92 Form Locator 56. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GP2.2",
-                            Type = @"Field",
-                            Position = @"GP2.2",
-                            Name = @"Number Of Service Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the quantitative count of units for each HCPC/CPT. This field is the same as UB92 Form Locator 46 ""Units of Service"". This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GP2.3",
-                            Type = @"Field",
-                            Position = @"GP2.3",
-                            Name = @"Charge",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the amount charged for the specific individual line item (HCPC/CPT). This field is the same as UB92 Form Locator 56. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GP2.3.1",
                             Type = @"Component",
@@ -1087,25 +1156,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _charge = new HL7V27Field
+        {
+            field = message[@"GP2"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_charge.field.FieldRepetitions != null && _charge.field.FieldRepetitions.Count > 0)
+        {
+            _charge.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_charge, fieldData);
+        }
+
+        return _charge;
+    } 
+}
+
+internal HL7V27Field _reimbursementActionCode;
+
+public HL7V27Field ReimbursementActionCode
+{
+    get
+    {
+        if (_reimbursementActionCode != null)
+        {
+            return _reimbursementActionCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"GP2.4",
+            Type = @"Field",
+            Position = @"GP2.4",
+            Name = @"Reimbursement Action Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0459",
+            TableName = @"Reimbursement Action Code",
+            Description = @"This field identifies the action to be taken during reimbursement calculations. If valued, this code overrides the value in GP2-6 - OCE Edit Code. Refer to User-defined Table 0459 - Reimbursement Action Code for suggested values. This field is defined by CMS or other regulatory agencies",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GP2.4",
-                            Type = @"Field",
-                            Position = @"GP2.4",
-                            Name = @"Reimbursement Action Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0459",
-                            TableName = @"Reimbursement Action Code",
-                            Description = @"This field identifies the action to be taken during reimbursement calculations. If valued, this code overrides the value in GP2-6 - OCE Edit Code. Refer to User-defined Table 0459 - Reimbursement Action Code for suggested values. This field is defined by CMS or other regulatory agencies",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GP2.4.1",
                             Type = @"Component",
@@ -1531,25 +1630,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _reimbursementActionCode = new HL7V27Field
+        {
+            field = message[@"GP2"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reimbursementActionCode.field.FieldRepetitions != null && _reimbursementActionCode.field.FieldRepetitions.Count > 0)
+        {
+            _reimbursementActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_reimbursementActionCode, fieldData);
+        }
+
+        return _reimbursementActionCode;
+    } 
+}
+
+internal HL7V27Field _denialOrRejectionCode;
+
+public HL7V27Field DenialOrRejectionCode
+{
+    get
+    {
+        if (_denialOrRejectionCode != null)
+        {
+            return _denialOrRejectionCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"GP2.5",
+            Type = @"Field",
+            Position = @"GP2.5",
+            Name = @"Denial Or Rejection Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0460",
+            TableName = @"Denial or Rejection Code",
+            Description = @"This field determines the OCE status of the line item. Refer to User-defined table 0460 - Denial or Rejection Code for suggested values. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GP2.5",
-                            Type = @"Field",
-                            Position = @"GP2.5",
-                            Name = @"Denial Or Rejection Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0460",
-                            TableName = @"Denial or Rejection Code",
-                            Description = @"This field determines the OCE status of the line item. Refer to User-defined table 0460 - Denial or Rejection Code for suggested values. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GP2.5.1",
                             Type = @"Component",
@@ -1975,25 +2104,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _denialOrRejectionCode = new HL7V27Field
+        {
+            field = message[@"GP2"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_denialOrRejectionCode.field.FieldRepetitions != null && _denialOrRejectionCode.field.FieldRepetitions.Count > 0)
+        {
+            _denialOrRejectionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_denialOrRejectionCode, fieldData);
+        }
+
+        return _denialOrRejectionCode;
+    } 
+}
+
+internal HL7V27Field _oceEditCode;
+
+public HL7V27Field OceEditCode
+{
+    get
+    {
+        if (_oceEditCode != null)
+        {
+            return _oceEditCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"GP2.6",
+            Type = @"Field",
+            Position = @"GP2.6",
+            Name = @"Oce Edit Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0458",
+            TableName = @"OCE Edit Code",
+            Description = @"This field contains the edit that results from the processing of HCPCS/CPT procedures for a line item HCPCS/CPT, after evaluating all the codes, revenue codes, and modifiers. Refer to User-defined Table 0458 - OCE Edit Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GP2.6",
-                            Type = @"Field",
-                            Position = @"GP2.6",
-                            Name = @"Oce Edit Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0458",
-                            TableName = @"OCE Edit Code",
-                            Description = @"This field contains the edit that results from the processing of HCPCS/CPT procedures for a line item HCPCS/CPT, after evaluating all the codes, revenue codes, and modifiers. Refer to User-defined Table 0458 - OCE Edit Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GP2.6.1",
                             Type = @"Component",
@@ -2419,25 +2578,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _oceEditCode = new HL7V27Field
+        {
+            field = message[@"GP2"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_oceEditCode.field.FieldRepetitions != null && _oceEditCode.field.FieldRepetitions.Count > 0)
+        {
+            _oceEditCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_oceEditCode, fieldData);
+        }
+
+        return _oceEditCode;
+    } 
+}
+
+internal HL7V27Field _ambulatoryPaymentClassificationCode;
+
+public HL7V27Field AmbulatoryPaymentClassificationCode
+{
+    get
+    {
+        if (_ambulatoryPaymentClassificationCode != null)
+        {
+            return _ambulatoryPaymentClassificationCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"GP2.7",
+            Type = @"Field",
+            Position = @"GP2.7",
+            Name = @"Ambulatory Payment Classification Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0466",
+            TableName = @"Ambulatory Payment Classification Code",
+            Description = @"This field contains the derived APC code. This is the APC code used for payment, which is the same as the assigned APC, for all situations except partial hospitalization. If partial hospitalization is billed in this visit, the assigned APC will differ from the APC used for payment. Partial hospitalization is the only time an assigned APC differs from the APC used for payment. The payment APC is used for billing and should be displayed in this field. The first component contains the APC identifier. The second component reports the text description for the APC group. Refer to User-defined table 0466 - Ambulatory Payment Classification Code for suggested values. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GP2.7",
-                            Type = @"Field",
-                            Position = @"GP2.7",
-                            Name = @"Ambulatory Payment Classification Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0466",
-                            TableName = @"Ambulatory Payment Classification Code",
-                            Description = @"This field contains the derived APC code. This is the APC code used for payment, which is the same as the assigned APC, for all situations except partial hospitalization. If partial hospitalization is billed in this visit, the assigned APC will differ from the APC used for payment. Partial hospitalization is the only time an assigned APC differs from the APC used for payment. The payment APC is used for billing and should be displayed in this field. The first component contains the APC identifier. The second component reports the text description for the APC group. Refer to User-defined table 0466 - Ambulatory Payment Classification Code for suggested values. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GP2.7.1",
                             Type = @"Component",
@@ -2863,25 +3052,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _ambulatoryPaymentClassificationCode = new HL7V27Field
+        {
+            field = message[@"GP2"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_ambulatoryPaymentClassificationCode.field.FieldRepetitions != null && _ambulatoryPaymentClassificationCode.field.FieldRepetitions.Count > 0)
+        {
+            _ambulatoryPaymentClassificationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_ambulatoryPaymentClassificationCode, fieldData);
+        }
+
+        return _ambulatoryPaymentClassificationCode;
+    } 
+}
+
+internal HL7V27Field _modifierEditCode;
+
+public HL7V27Field ModifierEditCode
+{
+    get
+    {
+        if (_modifierEditCode != null)
+        {
+            return _modifierEditCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"GP2.8",
+            Type = @"Field",
+            Position = @"GP2.8",
+            Name = @"Modifier Edit Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0467",
+            TableName = @"Modifier Edit Code",
+            Description = @"This field contains calculated edits of the modifiers for each line or HCPCS/CPT. This field can be repeated up to five times, one edit for each of the modifiers present. This field relates to the values in PR1-16 - Procedure Code Modifier. Each repetition corresponds positionally to the order of the PR1-16 modifier codes. If no modifier code exists, use the code “U” (modifier edit code unknown) as a placeholder. The repetitions of Modifier Edit Codes must match the repetitions of Procedure Code Modifiers. For example, if PR1-16 - Procedure Code Modifier reports ...|01~02~03~04|... as modifier codes, and modifier code 03 modifier status code is unknown, GP2-8 - Modifier Edit Code would report ...|1~1~U~1|... Refer to User-defined table 0467 - Modifier Edit Code for suggested values. This field is defined by CMS or other regulatory agencies",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GP2.8",
-                            Type = @"Field",
-                            Position = @"GP2.8",
-                            Name = @"Modifier Edit Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0467",
-                            TableName = @"Modifier Edit Code",
-                            Description = @"This field contains calculated edits of the modifiers for each line or HCPCS/CPT. This field can be repeated up to five times, one edit for each of the modifiers present. This field relates to the values in PR1-16 - Procedure Code Modifier. Each repetition corresponds positionally to the order of the PR1-16 modifier codes. If no modifier code exists, use the code “U” (modifier edit code unknown) as a placeholder. The repetitions of Modifier Edit Codes must match the repetitions of Procedure Code Modifiers. For example, if PR1-16 - Procedure Code Modifier reports ...|01~02~03~04|... as modifier codes, and modifier code 03 modifier status code is unknown, GP2-8 - Modifier Edit Code would report ...|1~1~U~1|... Refer to User-defined table 0467 - Modifier Edit Code for suggested values. This field is defined by CMS or other regulatory agencies",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GP2.8.1",
                             Type = @"Component",
@@ -3307,25 +3526,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _modifierEditCode = new HL7V27Field
+        {
+            field = message[@"GP2"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_modifierEditCode.field.FieldRepetitions != null && _modifierEditCode.field.FieldRepetitions.Count > 0)
+        {
+            _modifierEditCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_modifierEditCode, fieldData);
+        }
+
+        return _modifierEditCode;
+    } 
+}
+
+internal HL7V27Field _paymentAdjustmentCode;
+
+public HL7V27Field PaymentAdjustmentCode
+{
+    get
+    {
+        if (_paymentAdjustmentCode != null)
+        {
+            return _paymentAdjustmentCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"GP2.9",
+            Type = @"Field",
+            Position = @"GP2.9",
+            Name = @"Payment Adjustment Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0468",
+            TableName = @"Payment Adjustment Code",
+            Description = @"This field contains any payment adjustment due to drugs or medical devices. Refer to User-defined Table 0468 - Payment Adjustment Code for suggested values. This field is defined by CMS or other regulatory agencies",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GP2.9",
-                            Type = @"Field",
-                            Position = @"GP2.9",
-                            Name = @"Payment Adjustment Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0468",
-                            TableName = @"Payment Adjustment Code",
-                            Description = @"This field contains any payment adjustment due to drugs or medical devices. Refer to User-defined Table 0468 - Payment Adjustment Code for suggested values. This field is defined by CMS or other regulatory agencies",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GP2.9.1",
                             Type = @"Component",
@@ -3751,25 +4000,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _paymentAdjustmentCode = new HL7V27Field
+        {
+            field = message[@"GP2"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_paymentAdjustmentCode.field.FieldRepetitions != null && _paymentAdjustmentCode.field.FieldRepetitions.Count > 0)
+        {
+            _paymentAdjustmentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_paymentAdjustmentCode, fieldData);
+        }
+
+        return _paymentAdjustmentCode;
+    } 
+}
+
+internal HL7V27Field _packagingStatusCode;
+
+public HL7V27Field PackagingStatusCode
+{
+    get
+    {
+        if (_packagingStatusCode != null)
+        {
+            return _packagingStatusCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"GP2.10",
+            Type = @"Field",
+            Position = @"GP2.10",
+            Name = @"Packaging Status Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0469",
+            TableName = @"Packaging Status Code",
+            Description = @"This field contains the packaging status of the service. A status indicator of N may accompany this, unless it is part of a partial hospitalization. Refer to User-defined (CMS) Table 0469 - Packaging Status Code for suggested values. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GP2.10",
-                            Type = @"Field",
-                            Position = @"GP2.10",
-                            Name = @"Packaging Status Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0469",
-                            TableName = @"Packaging Status Code",
-                            Description = @"This field contains the packaging status of the service. A status indicator of N may accompany this, unless it is part of a partial hospitalization. Refer to User-defined (CMS) Table 0469 - Packaging Status Code for suggested values. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GP2.10.1",
                             Type = @"Component",
@@ -4195,25 +4474,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _packagingStatusCode = new HL7V27Field
+        {
+            field = message[@"GP2"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_packagingStatusCode.field.FieldRepetitions != null && _packagingStatusCode.field.FieldRepetitions.Count > 0)
+        {
+            _packagingStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_packagingStatusCode, fieldData);
+        }
+
+        return _packagingStatusCode;
+    } 
+}
+
+internal HL7V27Field _expectedCmsPaymentAmount;
+
+public HL7V27Field ExpectedCmsPaymentAmount
+{
+    get
+    {
+        if (_expectedCmsPaymentAmount != null)
+        {
+            return _expectedCmsPaymentAmount;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"GP2.11",
+            Type = @"Field",
+            Position = @"GP2.11",
+            Name = @"Expected Cms Payment Amount",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the calculated dollar amount that CMS is expected to pay for the line item.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GP2.11",
-                            Type = @"Field",
-                            Position = @"GP2.11",
-                            Name = @"Expected Cms Payment Amount",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the calculated dollar amount that CMS is expected to pay for the line item.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GP2.11.1",
                             Type = @"Component",
@@ -4788,25 +5097,55 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _expectedCmsPaymentAmount = new HL7V27Field
+        {
+            field = message[@"GP2"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_expectedCmsPaymentAmount.field.FieldRepetitions != null && _expectedCmsPaymentAmount.field.FieldRepetitions.Count > 0)
+        {
+            _expectedCmsPaymentAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_expectedCmsPaymentAmount, fieldData);
+        }
+
+        return _expectedCmsPaymentAmount;
+    } 
+}
+
+internal HL7V27Field _reimbursementTypeCode;
+
+public HL7V27Field ReimbursementTypeCode
+{
+    get
+    {
+        if (_reimbursementTypeCode != null)
+        {
+            return _reimbursementTypeCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"GP2.12",
+            Type = @"Field",
+            Position = @"GP2.12",
+            Name = @"Reimbursement Type Code",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0470",
+            TableName = @"Reimbursement Type Code",
+            Description = @"This field contains the fee schedule reimbursement type applied to the line item. Refer to User-defined Table 0470 - Reimbursement Type Code for suggested values. This field is defined by CMS or other regulatory agencies.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GP2.12",
-                            Type = @"Field",
-                            Position = @"GP2.12",
-                            Name = @"Reimbursement Type Code",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0470",
-                            TableName = @"Reimbursement Type Code",
-                            Description = @"This field contains the fee schedule reimbursement type applied to the line item. Refer to User-defined Table 0470 - Reimbursement Type Code for suggested values. This field is defined by CMS or other regulatory agencies.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GP2.12.1",
                             Type = @"Component",
@@ -5232,25 +5571,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _reimbursementTypeCode = new HL7V27Field
+        {
+            field = message[@"GP2"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reimbursementTypeCode.field.FieldRepetitions != null && _reimbursementTypeCode.field.FieldRepetitions.Count > 0)
+        {
+            _reimbursementTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_reimbursementTypeCode, fieldData);
+        }
+
+        return _reimbursementTypeCode;
+    } 
+}
+
+internal HL7V27Field _copayAmount;
+
+public HL7V27Field CopayAmount
+{
+    get
+    {
+        if (_copayAmount != null)
+        {
+            return _copayAmount;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"GP2.13",
+            Type = @"Field",
+            Position = @"GP2.13",
+            Name = @"Co-pay Amount",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the patient's Co-pay amount for the line item.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"GP2.13",
-                            Type = @"Field",
-                            Position = @"GP2.13",
-                            Name = @"Co-pay Amount",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the patient's Co-pay amount for the line item.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"GP2.13.1",
                             Type = @"Component",
@@ -5825,582 +6194,39 @@ Value set version ID is required if CWE.21 is populated.",
                             Description = @"Refer to HL7 Table 0298 - CP Range Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"GP2.14",
-                            Type = @"Field",
-                            Position = @"GP2.14",
-                            Name = @"Pay Rate Per Service Unit",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"his field contains the calculated rate, or multiplying factor, for each service unit for the line item.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentGP2(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field revenueCode;
-
-public HL7V27Field RevenueCode
-{
-    get
-    {
-        if (revenueCode != null)
-        {
-            return revenueCode;
-        }
-
-        revenueCode = new HL7V27Field
-        {
-            field = message[@"GP2"][1],
-            Id = @"GP2.1",
-            Type = @"Field",
-            Position = @"GP2.1",
-            Name = @"Revenue Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0456",
-            TableName = @"Revenue code",
-            Description = @"This field identifies a specific ancillary service for each HCPC/CPT This field is the same as UB92 Form Locator 42 ""Revenue Code"". Refer to User-defined Table 0456 - Revenue Code for suggested values. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (revenueCode.field.FieldRepetitions != null && revenueCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(revenueCode.Id));
-            revenueCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(revenueCode, fieldData);
-        }
-
-        return revenueCode;
-    } 
-}
-
-internal HL7V27Field numberOfServiceUnits;
-
-public HL7V27Field NumberOfServiceUnits
-{
-    get
-    {
-        if (numberOfServiceUnits != null)
-        {
-            return numberOfServiceUnits;
-        }
-
-        numberOfServiceUnits = new HL7V27Field
-        {
-            field = message[@"GP2"][2],
-            Id = @"GP2.2",
-            Type = @"Field",
-            Position = @"GP2.2",
-            Name = @"Number Of Service Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the quantitative count of units for each HCPC/CPT. This field is the same as UB92 Form Locator 46 ""Units of Service"". This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (numberOfServiceUnits.field.FieldRepetitions != null && numberOfServiceUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfServiceUnits.Id));
-            numberOfServiceUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(numberOfServiceUnits, fieldData);
-        }
-
-        return numberOfServiceUnits;
-    } 
-}
-
-internal HL7V27Field charge;
-
-public HL7V27Field Charge
-{
-    get
-    {
-        if (charge != null)
-        {
-            return charge;
-        }
-
-        charge = new HL7V27Field
-        {
-            field = message[@"GP2"][3],
-            Id = @"GP2.3",
-            Type = @"Field",
-            Position = @"GP2.3",
-            Name = @"Charge",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the amount charged for the specific individual line item (HCPC/CPT). This field is the same as UB92 Form Locator 56. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (charge.field.FieldRepetitions != null && charge.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(charge.Id));
-            charge.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(charge, fieldData);
-        }
-
-        return charge;
-    } 
-}
-
-internal HL7V27Field reimbursementActionCode;
-
-public HL7V27Field ReimbursementActionCode
-{
-    get
-    {
-        if (reimbursementActionCode != null)
-        {
-            return reimbursementActionCode;
-        }
-
-        reimbursementActionCode = new HL7V27Field
-        {
-            field = message[@"GP2"][4],
-            Id = @"GP2.4",
-            Type = @"Field",
-            Position = @"GP2.4",
-            Name = @"Reimbursement Action Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0459",
-            TableName = @"Reimbursement Action Code",
-            Description = @"This field identifies the action to be taken during reimbursement calculations. If valued, this code overrides the value in GP2-6 - OCE Edit Code. Refer to User-defined Table 0459 - Reimbursement Action Code for suggested values. This field is defined by CMS or other regulatory agencies",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reimbursementActionCode.field.FieldRepetitions != null && reimbursementActionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reimbursementActionCode.Id));
-            reimbursementActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(reimbursementActionCode, fieldData);
-        }
-
-        return reimbursementActionCode;
-    } 
-}
-
-internal HL7V27Field denialOrRejectionCode;
-
-public HL7V27Field DenialOrRejectionCode
-{
-    get
-    {
-        if (denialOrRejectionCode != null)
-        {
-            return denialOrRejectionCode;
-        }
-
-        denialOrRejectionCode = new HL7V27Field
-        {
-            field = message[@"GP2"][5],
-            Id = @"GP2.5",
-            Type = @"Field",
-            Position = @"GP2.5",
-            Name = @"Denial Or Rejection Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0460",
-            TableName = @"Denial or Rejection Code",
-            Description = @"This field determines the OCE status of the line item. Refer to User-defined table 0460 - Denial or Rejection Code for suggested values. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (denialOrRejectionCode.field.FieldRepetitions != null && denialOrRejectionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(denialOrRejectionCode.Id));
-            denialOrRejectionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(denialOrRejectionCode, fieldData);
-        }
-
-        return denialOrRejectionCode;
-    } 
-}
-
-internal HL7V27Field oceEditCode;
-
-public HL7V27Field OceEditCode
-{
-    get
-    {
-        if (oceEditCode != null)
-        {
-            return oceEditCode;
-        }
-
-        oceEditCode = new HL7V27Field
-        {
-            field = message[@"GP2"][6],
-            Id = @"GP2.6",
-            Type = @"Field",
-            Position = @"GP2.6",
-            Name = @"Oce Edit Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0458",
-            TableName = @"OCE Edit Code",
-            Description = @"This field contains the edit that results from the processing of HCPCS/CPT procedures for a line item HCPCS/CPT, after evaluating all the codes, revenue codes, and modifiers. Refer to User-defined Table 0458 - OCE Edit Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (oceEditCode.field.FieldRepetitions != null && oceEditCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(oceEditCode.Id));
-            oceEditCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(oceEditCode, fieldData);
-        }
-
-        return oceEditCode;
-    } 
-}
-
-internal HL7V27Field ambulatoryPaymentClassificationCode;
-
-public HL7V27Field AmbulatoryPaymentClassificationCode
-{
-    get
-    {
-        if (ambulatoryPaymentClassificationCode != null)
-        {
-            return ambulatoryPaymentClassificationCode;
-        }
-
-        ambulatoryPaymentClassificationCode = new HL7V27Field
-        {
-            field = message[@"GP2"][7],
-            Id = @"GP2.7",
-            Type = @"Field",
-            Position = @"GP2.7",
-            Name = @"Ambulatory Payment Classification Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0466",
-            TableName = @"Ambulatory Payment Classification Code",
-            Description = @"This field contains the derived APC code. This is the APC code used for payment, which is the same as the assigned APC, for all situations except partial hospitalization. If partial hospitalization is billed in this visit, the assigned APC will differ from the APC used for payment. Partial hospitalization is the only time an assigned APC differs from the APC used for payment. The payment APC is used for billing and should be displayed in this field. The first component contains the APC identifier. The second component reports the text description for the APC group. Refer to User-defined table 0466 - Ambulatory Payment Classification Code for suggested values. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (ambulatoryPaymentClassificationCode.field.FieldRepetitions != null && ambulatoryPaymentClassificationCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ambulatoryPaymentClassificationCode.Id));
-            ambulatoryPaymentClassificationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(ambulatoryPaymentClassificationCode, fieldData);
-        }
-
-        return ambulatoryPaymentClassificationCode;
-    } 
-}
-
-internal HL7V27Field modifierEditCode;
-
-public HL7V27Field ModifierEditCode
-{
-    get
-    {
-        if (modifierEditCode != null)
-        {
-            return modifierEditCode;
-        }
-
-        modifierEditCode = new HL7V27Field
-        {
-            field = message[@"GP2"][8],
-            Id = @"GP2.8",
-            Type = @"Field",
-            Position = @"GP2.8",
-            Name = @"Modifier Edit Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0467",
-            TableName = @"Modifier Edit Code",
-            Description = @"This field contains calculated edits of the modifiers for each line or HCPCS/CPT. This field can be repeated up to five times, one edit for each of the modifiers present. This field relates to the values in PR1-16 - Procedure Code Modifier. Each repetition corresponds positionally to the order of the PR1-16 modifier codes. If no modifier code exists, use the code “U” (modifier edit code unknown) as a placeholder. The repetitions of Modifier Edit Codes must match the repetitions of Procedure Code Modifiers. For example, if PR1-16 - Procedure Code Modifier reports ...|01~02~03~04|... as modifier codes, and modifier code 03 modifier status code is unknown, GP2-8 - Modifier Edit Code would report ...|1~1~U~1|... Refer to User-defined table 0467 - Modifier Edit Code for suggested values. This field is defined by CMS or other regulatory agencies",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (modifierEditCode.field.FieldRepetitions != null && modifierEditCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(modifierEditCode.Id));
-            modifierEditCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(modifierEditCode, fieldData);
-        }
-
-        return modifierEditCode;
-    } 
-}
-
-internal HL7V27Field paymentAdjustmentCode;
-
-public HL7V27Field PaymentAdjustmentCode
-{
-    get
-    {
-        if (paymentAdjustmentCode != null)
-        {
-            return paymentAdjustmentCode;
-        }
-
-        paymentAdjustmentCode = new HL7V27Field
-        {
-            field = message[@"GP2"][9],
-            Id = @"GP2.9",
-            Type = @"Field",
-            Position = @"GP2.9",
-            Name = @"Payment Adjustment Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0468",
-            TableName = @"Payment Adjustment Code",
-            Description = @"This field contains any payment adjustment due to drugs or medical devices. Refer to User-defined Table 0468 - Payment Adjustment Code for suggested values. This field is defined by CMS or other regulatory agencies",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (paymentAdjustmentCode.field.FieldRepetitions != null && paymentAdjustmentCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(paymentAdjustmentCode.Id));
-            paymentAdjustmentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(paymentAdjustmentCode, fieldData);
-        }
-
-        return paymentAdjustmentCode;
-    } 
-}
-
-internal HL7V27Field packagingStatusCode;
-
-public HL7V27Field PackagingStatusCode
-{
-    get
-    {
-        if (packagingStatusCode != null)
-        {
-            return packagingStatusCode;
-        }
-
-        packagingStatusCode = new HL7V27Field
-        {
-            field = message[@"GP2"][10],
-            Id = @"GP2.10",
-            Type = @"Field",
-            Position = @"GP2.10",
-            Name = @"Packaging Status Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0469",
-            TableName = @"Packaging Status Code",
-            Description = @"This field contains the packaging status of the service. A status indicator of N may accompany this, unless it is part of a partial hospitalization. Refer to User-defined (CMS) Table 0469 - Packaging Status Code for suggested values. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (packagingStatusCode.field.FieldRepetitions != null && packagingStatusCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(packagingStatusCode.Id));
-            packagingStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(packagingStatusCode, fieldData);
-        }
-
-        return packagingStatusCode;
-    } 
-}
-
-internal HL7V27Field expectedCmsPaymentAmount;
-
-public HL7V27Field ExpectedCmsPaymentAmount
-{
-    get
-    {
-        if (expectedCmsPaymentAmount != null)
-        {
-            return expectedCmsPaymentAmount;
-        }
-
-        expectedCmsPaymentAmount = new HL7V27Field
-        {
-            field = message[@"GP2"][11],
-            Id = @"GP2.11",
-            Type = @"Field",
-            Position = @"GP2.11",
-            Name = @"Expected Cms Payment Amount",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the calculated dollar amount that CMS is expected to pay for the line item.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (expectedCmsPaymentAmount.field.FieldRepetitions != null && expectedCmsPaymentAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(expectedCmsPaymentAmount.Id));
-            expectedCmsPaymentAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(expectedCmsPaymentAmount, fieldData);
-        }
-
-        return expectedCmsPaymentAmount;
-    } 
-}
-
-internal HL7V27Field reimbursementTypeCode;
-
-public HL7V27Field ReimbursementTypeCode
-{
-    get
-    {
-        if (reimbursementTypeCode != null)
-        {
-            return reimbursementTypeCode;
-        }
-
-        reimbursementTypeCode = new HL7V27Field
-        {
-            field = message[@"GP2"][12],
-            Id = @"GP2.12",
-            Type = @"Field",
-            Position = @"GP2.12",
-            Name = @"Reimbursement Type Code",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0470",
-            TableName = @"Reimbursement Type Code",
-            Description = @"This field contains the fee schedule reimbursement type applied to the line item. Refer to User-defined Table 0470 - Reimbursement Type Code for suggested values. This field is defined by CMS or other regulatory agencies.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reimbursementTypeCode.field.FieldRepetitions != null && reimbursementTypeCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reimbursementTypeCode.Id));
-            reimbursementTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(reimbursementTypeCode, fieldData);
-        }
-
-        return reimbursementTypeCode;
-    } 
-}
-
-internal HL7V27Field copayAmount;
-
-public HL7V27Field CopayAmount
-{
-    get
-    {
-        if (copayAmount != null)
-        {
-            return copayAmount;
-        }
-
-        copayAmount = new HL7V27Field
+        _copayAmount = new HL7V27Field
         {
             field = message[@"GP2"][13],
-            Id = @"GP2.13",
-            Type = @"Field",
-            Position = @"GP2.13",
-            Name = @"Co-pay Amount",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the patient's Co-pay amount for the line item.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (copayAmount.field.FieldRepetitions != null && copayAmount.field.FieldRepetitions.Count > 0)
+        if (_copayAmount.field.FieldRepetitions != null && _copayAmount.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(copayAmount.Id));
-            copayAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(copayAmount, fieldData);
+            _copayAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_copayAmount, fieldData);
         }
 
-        return copayAmount;
+        return _copayAmount;
     } 
 }
 
-internal HL7V27Field payRatePerServiceUnit;
+internal HL7V27Field _payRatePerServiceUnit;
 
 public HL7V27Field PayRatePerServiceUnit
 {
     get
     {
-        if (payRatePerServiceUnit != null)
+        if (_payRatePerServiceUnit != null)
         {
-            return payRatePerServiceUnit;
+            return _payRatePerServiceUnit;
         }
 
-        payRatePerServiceUnit = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"GP2"][14],
             Id = @"GP2.14",
             Type = @"Field",
             Position = @"GP2.14",
@@ -6414,17 +6240,22 @@ public HL7V27Field PayRatePerServiceUnit
             TableName = null,
             Description = @"his field contains the calculated rate, or multiplying factor, for each service unit for the line item.",
             Sample = @"",
+            Fields = null
+        }
+
+        _payRatePerServiceUnit = new HL7V27Field
+        {
+            field = message[@"GP2"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (payRatePerServiceUnit.field.FieldRepetitions != null && payRatePerServiceUnit.field.FieldRepetitions.Count > 0)
+        if (_payRatePerServiceUnit.field.FieldRepetitions != null && _payRatePerServiceUnit.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(payRatePerServiceUnit.Id));
-            payRatePerServiceUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(payRatePerServiceUnit, fieldData);
+            _payRatePerServiceUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_payRatePerServiceUnit, fieldData);
         }
 
-        return payRatePerServiceUnit;
+        return _payRatePerServiceUnit;
     } 
 }
     }

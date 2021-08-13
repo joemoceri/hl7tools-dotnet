@@ -25,28 +25,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V21SegmentORO(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V21Field _orderItemId;
+
+public HL7V21Field OrderItemId
+{
+    get
+    {
+        if (_orderItemId != null)
+        {
+            return _orderItemId;
+        }
+
+        var fieldData = new HL7V21FieldData
+        {
+            Id = @"ORO.1",
+            Type = @"Field",
+            Position = @"ORO.1",
+            Name = @"Order Item Id",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ORO.1",
-                            Type = @"Field",
-                            Position = @"ORO.1",
-                            Name = @"Order Item Id",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ORO.1.1",
                             Type = @"Component",
@@ -152,126 +164,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORO.2",
-                            Type = @"Field",
-                            Position = @"ORO.2",
-                            Name = @"Substitute Allowed",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORO.3",
-                            Type = @"Field",
-                            Position = @"ORO.3",
-                            Name = @"Results Copies To",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CN",
-                            DataTypeName = @"Composite Id Number And Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ORO.4",
-                            Type = @"Field",
-                            Position = @"ORO.4",
-                            Name = @"Stock Location",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0012",
-                            TableName = @"STOCK LOCATION",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V21SegmentORO(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V21Field orderItemId;
-
-public HL7V21Field OrderItemId
-{
-    get
-    {
-        if (orderItemId != null)
-        {
-            return orderItemId;
-        }
-
-        orderItemId = new HL7V21Field
+        _orderItemId = new HL7V21Field
         {
             field = message[@"ORO"][1],
-            Id = @"ORO.1",
-            Type = @"Field",
-            Position = @"ORO.1",
-            Name = @"Order Item Id",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (orderItemId.field.FieldRepetitions != null && orderItemId.field.FieldRepetitions.Count > 0)
+        if (_orderItemId.field.FieldRepetitions != null && _orderItemId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderItemId.Id));
-            orderItemId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(orderItemId, fieldData);
+            _orderItemId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_orderItemId, fieldData);
         }
 
-        return orderItemId;
+        return _orderItemId;
     } 
 }
 
-internal HL7V21Field substituteAllowed;
+internal HL7V21Field _substituteAllowed;
 
 public HL7V21Field SubstituteAllowed
 {
     get
     {
-        if (substituteAllowed != null)
+        if (_substituteAllowed != null)
         {
-            return substituteAllowed;
+            return _substituteAllowed;
         }
 
-        substituteAllowed = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORO"][2],
             Id = @"ORO.2",
             Type = @"Field",
             Position = @"ORO.2",
@@ -285,34 +210,38 @@ public HL7V21Field SubstituteAllowed
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _substituteAllowed = new HL7V21Field
+        {
+            field = message[@"ORO"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (substituteAllowed.field.FieldRepetitions != null && substituteAllowed.field.FieldRepetitions.Count > 0)
+        if (_substituteAllowed.field.FieldRepetitions != null && _substituteAllowed.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substituteAllowed.Id));
-            substituteAllowed.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(substituteAllowed, fieldData);
+            _substituteAllowed.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_substituteAllowed, fieldData);
         }
 
-        return substituteAllowed;
+        return _substituteAllowed;
     } 
 }
 
-internal HL7V21Field resultsCopiesTo;
+internal HL7V21Field _resultsCopiesTo;
 
 public HL7V21Field ResultsCopiesTo
 {
     get
     {
-        if (resultsCopiesTo != null)
+        if (_resultsCopiesTo != null)
         {
-            return resultsCopiesTo;
+            return _resultsCopiesTo;
         }
 
-        resultsCopiesTo = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORO"][3],
             Id = @"ORO.3",
             Type = @"Field",
             Position = @"ORO.3",
@@ -326,34 +255,38 @@ public HL7V21Field ResultsCopiesTo
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _resultsCopiesTo = new HL7V21Field
+        {
+            field = message[@"ORO"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (resultsCopiesTo.field.FieldRepetitions != null && resultsCopiesTo.field.FieldRepetitions.Count > 0)
+        if (_resultsCopiesTo.field.FieldRepetitions != null && _resultsCopiesTo.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resultsCopiesTo.Id));
-            resultsCopiesTo.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(resultsCopiesTo, fieldData);
+            _resultsCopiesTo.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_resultsCopiesTo, fieldData);
         }
 
-        return resultsCopiesTo;
+        return _resultsCopiesTo;
     } 
 }
 
-internal HL7V21Field stockLocation;
+internal HL7V21Field _stockLocation;
 
 public HL7V21Field StockLocation
 {
     get
     {
-        if (stockLocation != null)
+        if (_stockLocation != null)
         {
-            return stockLocation;
+            return _stockLocation;
         }
 
-        stockLocation = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"ORO"][4],
             Id = @"ORO.4",
             Type = @"Field",
             Position = @"ORO.4",
@@ -367,17 +300,22 @@ public HL7V21Field StockLocation
             TableName = @"STOCK LOCATION",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _stockLocation = new HL7V21Field
+        {
+            field = message[@"ORO"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (stockLocation.field.FieldRepetitions != null && stockLocation.field.FieldRepetitions.Count > 0)
+        if (_stockLocation.field.FieldRepetitions != null && _stockLocation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(stockLocation.Id));
-            stockLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(stockLocation, fieldData);
+            _stockLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_stockLocation, fieldData);
         }
 
-        return stockLocation;
+        return _stockLocation;
     } 
 }
     }

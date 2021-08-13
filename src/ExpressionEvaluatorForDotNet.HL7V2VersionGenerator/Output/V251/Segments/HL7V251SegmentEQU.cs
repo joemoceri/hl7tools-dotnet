@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentEQU(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _equipmentInstanceIdentifier;
+
+public HL7V251Field EquipmentInstanceIdentifier
+{
+    get
+    {
+        if (_equipmentInstanceIdentifier != null)
+        {
+            return _equipmentInstanceIdentifier;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"EQU.1",
+            Type = @"Field",
+            Position = @"EQU.1",
+            Name = @"Equipment Instance Identifier",
+            Length = 22,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the equipment. This is the identifier from an institution's master list of equipment. The <namespace ID> identifies the institution.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"EQU.1",
-                            Type = @"Field",
-                            Position = @"EQU.1",
-                            Name = @"Equipment Instance Identifier",
-                            Length = 22,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the equipment. This is the identifier from an institution's master list of equipment. The <namespace ID> identifies the institution.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"EQU.1.1",
                             Type = @"Component",
@@ -120,25 +132,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _equipmentInstanceIdentifier = new HL7V251Field
+        {
+            field = message[@"EQU"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_equipmentInstanceIdentifier.field.FieldRepetitions != null && _equipmentInstanceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _equipmentInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_equipmentInstanceIdentifier, fieldData);
+        }
+
+        return _equipmentInstanceIdentifier;
+    } 
+}
+
+internal HL7V251Field _eventDateTime;
+
+public HL7V251Field EventDateTime
+{
+    get
+    {
+        if (_eventDateTime != null)
+        {
+            return _eventDateTime;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"EQU.2",
+            Type = @"Field",
+            Position = @"EQU.2",
+            Name = @"Event Date/Time",
+            Length = 26,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the date/time that the event (e.g., state transition, issuing of command, finishing of command execution) occurred.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EQU.2",
-                            Type = @"Field",
-                            Position = @"EQU.2",
-                            Name = @"Event Date/Time",
-                            Length = 26,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the date/time that the event (e.g., state transition, issuing of command, finishing of command execution) occurred.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EQU.2.1",
                             Type = @"Component",
@@ -174,25 +216,55 @@ namespace ExpressionEvaluatorForDotNet
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _eventDateTime = new HL7V251Field
+        {
+            field = message[@"EQU"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventDateTime.field.FieldRepetitions != null && _eventDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _eventDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_eventDateTime, fieldData);
+        }
+
+        return _eventDateTime;
+    } 
+}
+
+internal HL7V251Field _equipmentState;
+
+public HL7V251Field EquipmentState
+{
+    get
+    {
+        if (_equipmentState != null)
+        {
+            return _equipmentState;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"EQU.3",
+            Type = @"Field",
+            Position = @"EQU.3",
+            Name = @"Equipment State",
+            Length = 250,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0365",
+            TableName = @"Equipment state",
+            Description = @"This field identifies the status that the equipment was in at the time that the transaction was initiated. Refer to HL7 Table 0365 - Equipment state for valid values. The Equipment State is required in the ESU message and is optional otherwise.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EQU.3",
-                            Type = @"Field",
-                            Position = @"EQU.3",
-                            Name = @"Equipment State",
-                            Length = 250,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0365",
-                            TableName = @"Equipment state",
-                            Description = @"This field identifies the status that the equipment was in at the time that the transaction was initiated. Refer to HL7 Table 0365 - Equipment state for valid values. The Equipment State is required in the ESU message and is optional otherwise.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EQU.3.1",
                             Type = @"Component",
@@ -298,25 +370,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _equipmentState = new HL7V251Field
+        {
+            field = message[@"EQU"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_equipmentState.field.FieldRepetitions != null && _equipmentState.field.FieldRepetitions.Count > 0)
+        {
+            _equipmentState.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_equipmentState, fieldData);
+        }
+
+        return _equipmentState;
+    } 
+}
+
+internal HL7V251Field _localRemoteControlState;
+
+public HL7V251Field LocalRemoteControlState
+{
+    get
+    {
+        if (_localRemoteControlState != null)
+        {
+            return _localRemoteControlState;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"EQU.4",
+            Type = @"Field",
+            Position = @"EQU.4",
+            Name = @"Local/Remote Control State",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0366",
+            TableName = @"Local/remote control state",
+            Description = @"This field identifies the current state of control associated with the equipment. An equipment can either work autonomously ('Local' control state) or it can be controlled by another system, e.g., LAS computer ('Remote' control state). Refer to HL7 Table 0366 - Local/remote control state for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EQU.4",
-                            Type = @"Field",
-                            Position = @"EQU.4",
-                            Name = @"Local/Remote Control State",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0366",
-                            TableName = @"Local/remote control state",
-                            Description = @"This field identifies the current state of control associated with the equipment. An equipment can either work autonomously ('Local' control state) or it can be controlled by another system, e.g., LAS computer ('Remote' control state). Refer to HL7 Table 0366 - Local/remote control state for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EQU.4.1",
                             Type = @"Component",
@@ -422,25 +524,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _localRemoteControlState = new HL7V251Field
+        {
+            field = message[@"EQU"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_localRemoteControlState.field.FieldRepetitions != null && _localRemoteControlState.field.FieldRepetitions.Count > 0)
+        {
+            _localRemoteControlState.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_localRemoteControlState, fieldData);
+        }
+
+        return _localRemoteControlState;
+    } 
+}
+
+internal HL7V251Field _alertLevel;
+
+public HL7V251Field AlertLevel
+{
+    get
+    {
+        if (_alertLevel != null)
+        {
+            return _alertLevel;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"EQU.5",
+            Type = @"Field",
+            Position = @"EQU.5",
+            Name = @"Alert Level",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0367",
+            TableName = @"Alert level",
+            Description = @"This field identifies the highest level of the alert state (e.g., highest alert severity) that is associated with the indicated equipment (e.g. processing event, inventory event, QC event). Refer to HL7 Table 0367 - Alert level for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EQU.5",
-                            Type = @"Field",
-                            Position = @"EQU.5",
-                            Name = @"Alert Level",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0367",
-                            TableName = @"Alert level",
-                            Description = @"This field identifies the highest level of the alert state (e.g., highest alert severity) that is associated with the indicated equipment (e.g. processing event, inventory event, QC event). Refer to HL7 Table 0367 - Alert level for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EQU.5.1",
                             Type = @"Component",
@@ -546,219 +678,23 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentEQU(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field equipmentInstanceIdentifier;
-
-public HL7V251Field EquipmentInstanceIdentifier
-{
-    get
-    {
-        if (equipmentInstanceIdentifier != null)
-        {
-            return equipmentInstanceIdentifier;
-        }
-
-        equipmentInstanceIdentifier = new HL7V251Field
-        {
-            field = message[@"EQU"][1],
-            Id = @"EQU.1",
-            Type = @"Field",
-            Position = @"EQU.1",
-            Name = @"Equipment Instance Identifier",
-            Length = 22,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the equipment. This is the identifier from an institution's master list of equipment. The <namespace ID> identifies the institution.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (equipmentInstanceIdentifier.field.FieldRepetitions != null && equipmentInstanceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(equipmentInstanceIdentifier.Id));
-            equipmentInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(equipmentInstanceIdentifier, fieldData);
-        }
-
-        return equipmentInstanceIdentifier;
-    } 
-}
-
-internal HL7V251Field eventDateTime;
-
-public HL7V251Field EventDateTime
-{
-    get
-    {
-        if (eventDateTime != null)
-        {
-            return eventDateTime;
-        }
-
-        eventDateTime = new HL7V251Field
-        {
-            field = message[@"EQU"][2],
-            Id = @"EQU.2",
-            Type = @"Field",
-            Position = @"EQU.2",
-            Name = @"Event Date/Time",
-            Length = 26,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the date/time that the event (e.g., state transition, issuing of command, finishing of command execution) occurred.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventDateTime.field.FieldRepetitions != null && eventDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventDateTime.Id));
-            eventDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(eventDateTime, fieldData);
-        }
-
-        return eventDateTime;
-    } 
-}
-
-internal HL7V251Field equipmentState;
-
-public HL7V251Field EquipmentState
-{
-    get
-    {
-        if (equipmentState != null)
-        {
-            return equipmentState;
-        }
-
-        equipmentState = new HL7V251Field
-        {
-            field = message[@"EQU"][3],
-            Id = @"EQU.3",
-            Type = @"Field",
-            Position = @"EQU.3",
-            Name = @"Equipment State",
-            Length = 250,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0365",
-            TableName = @"Equipment state",
-            Description = @"This field identifies the status that the equipment was in at the time that the transaction was initiated. Refer to HL7 Table 0365 - Equipment state for valid values. The Equipment State is required in the ESU message and is optional otherwise.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (equipmentState.field.FieldRepetitions != null && equipmentState.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(equipmentState.Id));
-            equipmentState.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(equipmentState, fieldData);
-        }
-
-        return equipmentState;
-    } 
-}
-
-internal HL7V251Field localRemoteControlState;
-
-public HL7V251Field LocalRemoteControlState
-{
-    get
-    {
-        if (localRemoteControlState != null)
-        {
-            return localRemoteControlState;
-        }
-
-        localRemoteControlState = new HL7V251Field
-        {
-            field = message[@"EQU"][4],
-            Id = @"EQU.4",
-            Type = @"Field",
-            Position = @"EQU.4",
-            Name = @"Local/Remote Control State",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0366",
-            TableName = @"Local/remote control state",
-            Description = @"This field identifies the current state of control associated with the equipment. An equipment can either work autonomously ('Local' control state) or it can be controlled by another system, e.g., LAS computer ('Remote' control state). Refer to HL7 Table 0366 - Local/remote control state for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (localRemoteControlState.field.FieldRepetitions != null && localRemoteControlState.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(localRemoteControlState.Id));
-            localRemoteControlState.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(localRemoteControlState, fieldData);
-        }
-
-        return localRemoteControlState;
-    } 
-}
-
-internal HL7V251Field alertLevel;
-
-public HL7V251Field AlertLevel
-{
-    get
-    {
-        if (alertLevel != null)
-        {
-            return alertLevel;
-        }
-
-        alertLevel = new HL7V251Field
+        _alertLevel = new HL7V251Field
         {
             field = message[@"EQU"][5],
-            Id = @"EQU.5",
-            Type = @"Field",
-            Position = @"EQU.5",
-            Name = @"Alert Level",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0367",
-            TableName = @"Alert level",
-            Description = @"This field identifies the highest level of the alert state (e.g., highest alert severity) that is associated with the indicated equipment (e.g. processing event, inventory event, QC event). Refer to HL7 Table 0367 - Alert level for valid values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (alertLevel.field.FieldRepetitions != null && alertLevel.field.FieldRepetitions.Count > 0)
+        if (_alertLevel.field.FieldRepetitions != null && _alertLevel.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(alertLevel.Id));
-            alertLevel.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(alertLevel, fieldData);
+            _alertLevel.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_alertLevel, fieldData);
         }
 
-        return alertLevel;
+        return _alertLevel;
     } 
 }
     }

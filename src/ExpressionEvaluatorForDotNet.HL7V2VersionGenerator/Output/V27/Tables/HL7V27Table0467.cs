@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_06",
+
                     };
             } 
         }
@@ -65,6 +66,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Modifier edit code unknown",
                             Comment = null
                         },
+                        
                     };
             } 
         }

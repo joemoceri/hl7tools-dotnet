@@ -29,48 +29,87 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"RQ1.1",
-                            Type = @"Field",
-                            Position = @"RQ1.1",
-                            Name = @"Anticipated Price",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the reference price for the requisition unit of measure that is known to the requisition application. It may or may not be the actual cost of acquiring the item from a supplier. It is also not the price charged to the patient.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RQ1.2",
-                            Type = @"Field",
-                            Position = @"RQ1.2",
-                            Name = @"Manufacturer Identifier",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0385",
-                            TableName = @"Manufacturer Identifier",
-                            Description = @"This field contains the unique code that identifies the manufacturer on the application receiving the requisition. This field is conditional because either RQ1-2-manufacturer ID and RQ1-3-manufacturer's catalog or RQ1-4-vendor ID and RQ1-5-vendor catalog must be valued.
+        public HL7V28SegmentRQ1(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _anticipatedPrice;
+
+public HL7V28Field AnticipatedPrice
+{
+    get
+    {
+        if (_anticipatedPrice != null)
+        {
+            return _anticipatedPrice;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RQ1.1",
+            Type = @"Field",
+            Position = @"RQ1.1",
+            Name = @"Anticipated Price",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the reference price for the requisition unit of measure that is known to the requisition application. It may or may not be the actual cost of acquiring the item from a supplier. It is also not the price charged to the patient.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _anticipatedPrice = new HL7V28Field
+        {
+            field = message[@"RQ1"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_anticipatedPrice.field.FieldRepetitions != null && _anticipatedPrice.field.FieldRepetitions.Count > 0)
+        {
+            _anticipatedPrice.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_anticipatedPrice, fieldData);
+        }
+
+        return _anticipatedPrice;
+    } 
+}
+
+internal HL7V28Field _manufacturerIdentifier;
+
+public HL7V28Field ManufacturerIdentifier
+{
+    get
+    {
+        if (_manufacturerIdentifier != null)
+        {
+            return _manufacturerIdentifier;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RQ1.2",
+            Type = @"Field",
+            Position = @"RQ1.2",
+            Name = @"Manufacturer Identifier",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0385",
+            TableName = @"Manufacturer Identifier",
+            Description = @"This field contains the unique code that identifies the manufacturer on the application receiving the requisition. This field is conditional because either RQ1-2-manufacturer ID and RQ1-3-manufacturer's catalog or RQ1-4-vendor ID and RQ1-5-vendor catalog must be valued.
 
 Refer to User-defined Table 0385 – Manufacturer identifier for suggested values, or relevant external code sets may be used (e.g., HIBCC Manufacturers Labeler ID Code (LIC), UPC, NDC).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RQ1.2.1",
                             Type = @"Component",
@@ -498,45 +537,102 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RQ1.3",
-                            Type = @"Field",
-                            Position = @"RQ1.3",
-                            Name = @"Manufacturer's Catalog",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the manufacturer's catalog number or code for this item. This field is conditional because either RQ1-2-manufacturer ID and RQ1-3-manufacturer's catalog or RQ1-4-vendor ID and RQ1-5-vendor catalog must be valued.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RQ1.4",
-                            Type = @"Field",
-                            Position = @"RQ1.4",
-                            Name = @"Vendor Id",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field is the unique code that identifies the vendor on the application receiving the requisition. This field is conditional because either RQ1-2-manufacturer ID and RQ1-3-manufacturer's catalog or RQ1-4-vendor ID and RQ1-5-vendor catalog must be valued.
+                        }
+        }
+
+        _manufacturerIdentifier = new HL7V28Field
+        {
+            field = message[@"RQ1"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_manufacturerIdentifier.field.FieldRepetitions != null && _manufacturerIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _manufacturerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_manufacturerIdentifier, fieldData);
+        }
+
+        return _manufacturerIdentifier;
+    } 
+}
+
+internal HL7V28Field _manufacturersCatalog;
+
+public HL7V28Field ManufacturersCatalog
+{
+    get
+    {
+        if (_manufacturersCatalog != null)
+        {
+            return _manufacturersCatalog;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RQ1.3",
+            Type = @"Field",
+            Position = @"RQ1.3",
+            Name = @"Manufacturer's Catalog",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the manufacturer's catalog number or code for this item. This field is conditional because either RQ1-2-manufacturer ID and RQ1-3-manufacturer's catalog or RQ1-4-vendor ID and RQ1-5-vendor catalog must be valued.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _manufacturersCatalog = new HL7V28Field
+        {
+            field = message[@"RQ1"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_manufacturersCatalog.field.FieldRepetitions != null && _manufacturersCatalog.field.FieldRepetitions.Count > 0)
+        {
+            _manufacturersCatalog.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_manufacturersCatalog, fieldData);
+        }
+
+        return _manufacturersCatalog;
+    } 
+}
+
+internal HL7V28Field _vendorId;
+
+public HL7V28Field VendorId
+{
+    get
+    {
+        if (_vendorId != null)
+        {
+            return _vendorId;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"RQ1.4",
+            Type = @"Field",
+            Position = @"RQ1.4",
+            Name = @"Vendor Id",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field is the unique code that identifies the vendor on the application receiving the requisition. This field is conditional because either RQ1-2-manufacturer ID and RQ1-3-manufacturer's catalog or RQ1-4-vendor ID and RQ1-5-vendor catalog must be valued.
 
 Because of this, it is recommended that each non-stock item have RQ1-2-manufacturers ID and RQ1-3-manufacturer's catalog, or RQ1-4-vendor ID and RQ1-5-vendor catalog. It is also possible that the requisitioning application will not know the identifier, as listed in the Manufacturer's or Vendor's catalog. In this case, it is important to include the name portion of this coded element field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RQ1.4.1",
                             Type = @"Component",
@@ -964,255 +1060,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RQ1.5",
-                            Type = @"Field",
-                            Position = @"RQ1.5",
-                            Name = @"Vendor Catalog",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the vendor's catalog number, name, or code for this item. This field is conditional because either RQ1-2-manufacturer ID and RQ1-3-manufacturer's catalog or RQ1-4-vendor ID and RQ1-5-vendor catalog must be valued.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RQ1.6",
-                            Type = @"Field",
-                            Position = @"RQ1.6",
-                            Name = @"Taxable",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This field indicates whether this item is subject to tax.
-
-In general, non-stock requisitioned items will be printed by the receiving application and then processed by a human. In other words, the human will use the information to call the vendor or manufacturer to get pricing and other related purchasing information before placing the order with an outside vendor. Refer to HL7 Table 0136 -Yes/No Indicator as defined in Chapter 2.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RQ1.7",
-                            Type = @"Field",
-                            Position = @"RQ1.7",
-                            Name = @"Substitute Allowed",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"This field indicates whether the ancillary department may substitute an equivalent version of the item(s) ordered. Refer to HL7 Table 0136 - Yes/No Indicator as defined in Chapter 2.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentRQ1(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field anticipatedPrice;
-
-public HL7V28Field AnticipatedPrice
-{
-    get
-    {
-        if (anticipatedPrice != null)
-        {
-            return anticipatedPrice;
-        }
-
-        anticipatedPrice = new HL7V28Field
-        {
-            field = message[@"RQ1"][1],
-            Id = @"RQ1.1",
-            Type = @"Field",
-            Position = @"RQ1.1",
-            Name = @"Anticipated Price",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the reference price for the requisition unit of measure that is known to the requisition application. It may or may not be the actual cost of acquiring the item from a supplier. It is also not the price charged to the patient.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (anticipatedPrice.field.FieldRepetitions != null && anticipatedPrice.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(anticipatedPrice.Id));
-            anticipatedPrice.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(anticipatedPrice, fieldData);
-        }
-
-        return anticipatedPrice;
-    } 
-}
-
-internal HL7V28Field manufacturerIdentifier;
-
-public HL7V28Field ManufacturerIdentifier
-{
-    get
-    {
-        if (manufacturerIdentifier != null)
-        {
-            return manufacturerIdentifier;
-        }
-
-        manufacturerIdentifier = new HL7V28Field
-        {
-            field = message[@"RQ1"][2],
-            Id = @"RQ1.2",
-            Type = @"Field",
-            Position = @"RQ1.2",
-            Name = @"Manufacturer Identifier",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0385",
-            TableName = @"Manufacturer Identifier",
-            Description = @"This field contains the unique code that identifies the manufacturer on the application receiving the requisition. This field is conditional because either RQ1-2-manufacturer ID and RQ1-3-manufacturer's catalog or RQ1-4-vendor ID and RQ1-5-vendor catalog must be valued.
-
-Refer to User-defined Table 0385 – Manufacturer identifier for suggested values, or relevant external code sets may be used (e.g., HIBCC Manufacturers Labeler ID Code (LIC), UPC, NDC).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (manufacturerIdentifier.field.FieldRepetitions != null && manufacturerIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(manufacturerIdentifier.Id));
-            manufacturerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(manufacturerIdentifier, fieldData);
-        }
-
-        return manufacturerIdentifier;
-    } 
-}
-
-internal HL7V28Field manufacturersCatalog;
-
-public HL7V28Field ManufacturersCatalog
-{
-    get
-    {
-        if (manufacturersCatalog != null)
-        {
-            return manufacturersCatalog;
-        }
-
-        manufacturersCatalog = new HL7V28Field
-        {
-            field = message[@"RQ1"][3],
-            Id = @"RQ1.3",
-            Type = @"Field",
-            Position = @"RQ1.3",
-            Name = @"Manufacturer's Catalog",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the manufacturer's catalog number or code for this item. This field is conditional because either RQ1-2-manufacturer ID and RQ1-3-manufacturer's catalog or RQ1-4-vendor ID and RQ1-5-vendor catalog must be valued.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (manufacturersCatalog.field.FieldRepetitions != null && manufacturersCatalog.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(manufacturersCatalog.Id));
-            manufacturersCatalog.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(manufacturersCatalog, fieldData);
-        }
-
-        return manufacturersCatalog;
-    } 
-}
-
-internal HL7V28Field vendorId;
-
-public HL7V28Field VendorId
-{
-    get
-    {
-        if (vendorId != null)
-        {
-            return vendorId;
-        }
-
-        vendorId = new HL7V28Field
+        _vendorId = new HL7V28Field
         {
             field = message[@"RQ1"][4],
-            Id = @"RQ1.4",
-            Type = @"Field",
-            Position = @"RQ1.4",
-            Name = @"Vendor Id",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field is the unique code that identifies the vendor on the application receiving the requisition. This field is conditional because either RQ1-2-manufacturer ID and RQ1-3-manufacturer's catalog or RQ1-4-vendor ID and RQ1-5-vendor catalog must be valued.
-
-Because of this, it is recommended that each non-stock item have RQ1-2-manufacturers ID and RQ1-3-manufacturer's catalog, or RQ1-4-vendor ID and RQ1-5-vendor catalog. It is also possible that the requisitioning application will not know the identifier, as listed in the Manufacturer's or Vendor's catalog. In this case, it is important to include the name portion of this coded element field.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (vendorId.field.FieldRepetitions != null && vendorId.field.FieldRepetitions.Count > 0)
+        if (_vendorId.field.FieldRepetitions != null && _vendorId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(vendorId.Id));
-            vendorId.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(vendorId, fieldData);
+            _vendorId.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_vendorId, fieldData);
         }
 
-        return vendorId;
+        return _vendorId;
     } 
 }
 
-internal HL7V28Field vendorCatalog;
+internal HL7V28Field _vendorCatalog;
 
 public HL7V28Field VendorCatalog
 {
     get
     {
-        if (vendorCatalog != null)
+        if (_vendorCatalog != null)
         {
-            return vendorCatalog;
+            return _vendorCatalog;
         }
 
-        vendorCatalog = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"RQ1"][5],
             Id = @"RQ1.5",
             Type = @"Field",
             Position = @"RQ1.5",
@@ -1226,34 +1106,38 @@ public HL7V28Field VendorCatalog
             TableName = null,
             Description = @"This field is the vendor's catalog number, name, or code for this item. This field is conditional because either RQ1-2-manufacturer ID and RQ1-3-manufacturer's catalog or RQ1-4-vendor ID and RQ1-5-vendor catalog must be valued.",
             Sample = @"",
+            Fields = null
+        }
+
+        _vendorCatalog = new HL7V28Field
+        {
+            field = message[@"RQ1"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (vendorCatalog.field.FieldRepetitions != null && vendorCatalog.field.FieldRepetitions.Count > 0)
+        if (_vendorCatalog.field.FieldRepetitions != null && _vendorCatalog.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(vendorCatalog.Id));
-            vendorCatalog.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(vendorCatalog, fieldData);
+            _vendorCatalog.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_vendorCatalog, fieldData);
         }
 
-        return vendorCatalog;
+        return _vendorCatalog;
     } 
 }
 
-internal HL7V28Field taxable;
+internal HL7V28Field _taxable;
 
 public HL7V28Field Taxable
 {
     get
     {
-        if (taxable != null)
+        if (_taxable != null)
         {
-            return taxable;
+            return _taxable;
         }
 
-        taxable = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"RQ1"][6],
             Id = @"RQ1.6",
             Type = @"Field",
             Position = @"RQ1.6",
@@ -1269,34 +1153,38 @@ public HL7V28Field Taxable
 
 In general, non-stock requisitioned items will be printed by the receiving application and then processed by a human. In other words, the human will use the information to call the vendor or manufacturer to get pricing and other related purchasing information before placing the order with an outside vendor. Refer to HL7 Table 0136 -Yes/No Indicator as defined in Chapter 2.",
             Sample = @"",
+            Fields = null
+        }
+
+        _taxable = new HL7V28Field
+        {
+            field = message[@"RQ1"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (taxable.field.FieldRepetitions != null && taxable.field.FieldRepetitions.Count > 0)
+        if (_taxable.field.FieldRepetitions != null && _taxable.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(taxable.Id));
-            taxable.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(taxable, fieldData);
+            _taxable.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_taxable, fieldData);
         }
 
-        return taxable;
+        return _taxable;
     } 
 }
 
-internal HL7V28Field substituteAllowed;
+internal HL7V28Field _substituteAllowed;
 
 public HL7V28Field SubstituteAllowed
 {
     get
     {
-        if (substituteAllowed != null)
+        if (_substituteAllowed != null)
         {
-            return substituteAllowed;
+            return _substituteAllowed;
         }
 
-        substituteAllowed = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"RQ1"][7],
             Id = @"RQ1.7",
             Type = @"Field",
             Position = @"RQ1.7",
@@ -1310,17 +1198,22 @@ public HL7V28Field SubstituteAllowed
             TableName = @"Yes/no Indicator",
             Description = @"This field indicates whether the ancillary department may substitute an equivalent version of the item(s) ordered. Refer to HL7 Table 0136 - Yes/No Indicator as defined in Chapter 2.",
             Sample = @"",
+            Fields = null
+        }
+
+        _substituteAllowed = new HL7V28Field
+        {
+            field = message[@"RQ1"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (substituteAllowed.field.FieldRepetitions != null && substituteAllowed.field.FieldRepetitions.Count > 0)
+        if (_substituteAllowed.field.FieldRepetitions != null && _substituteAllowed.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substituteAllowed.Id));
-            substituteAllowed.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(substituteAllowed, fieldData);
+            _substituteAllowed.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_substituteAllowed, fieldData);
         }
 
-        return substituteAllowed;
+        return _substituteAllowed;
     } 
 }
     }

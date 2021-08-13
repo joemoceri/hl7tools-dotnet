@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -161,6 +162,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"UCS Transformation Format, 8-bit form",
                             Comment = @"UTF-8 is a variable-length encoding, each code value is represented by 1,2 or 3 bytes, depending on the code value. 7 bit ASCII is a proper subset of UTF-8. Note that the code contains a space before UTF but not before and after the hyphen."
                         },
+                        
                     };
             } 
         }

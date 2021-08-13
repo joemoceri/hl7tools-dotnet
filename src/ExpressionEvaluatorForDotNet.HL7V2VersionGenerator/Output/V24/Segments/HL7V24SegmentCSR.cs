@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentCSR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _sponsorStudyID;
+
+public HL7V24Field SponsorStudyID
+{
+    get
+    {
+        if (_sponsorStudyID != null)
+        {
+            return _sponsorStudyID;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.1",
+            Type = @"Field",
+            Position = @"CSR.1",
+            Name = @"Sponsor Study ID",
+            Length = 60,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"The field contains the universal identifier for the clinical trial. Since many clinical trials are collaborative and multi-centered, and since one goal of these standards is to promote automated data exchange among sites, the primary identifier should come from the sponsor. The coding system component may reference the sponsor. Example:",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"CSR.1",
-                            Type = @"Field",
-                            Position = @"CSR.1",
-                            Name = @"Sponsor Study ID",
-                            Length = 60,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The field contains the universal identifier for the clinical trial. Since many clinical trials are collaborative and multi-centered, and since one goal of these standards is to promote automated data exchange among sites, the primary identifier should come from the sponsor. The coding system component may reference the sponsor. Example:",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CSR.1.1",
                             Type = @"Component",
@@ -120,25 +132,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _sponsorStudyID = new HL7V24Field
+        {
+            field = message[@"CSR"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sponsorStudyID.field.FieldRepetitions != null && _sponsorStudyID.field.FieldRepetitions.Count > 0)
+        {
+            _sponsorStudyID.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_sponsorStudyID, fieldData);
+        }
+
+        return _sponsorStudyID;
+    } 
+}
+
+internal HL7V24Field _alternateStudyID;
+
+public HL7V24Field AlternateStudyID
+{
+    get
+    {
+        if (_alternateStudyID != null)
+        {
+            return _alternateStudyID;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.2",
+            Type = @"Field",
+            Position = @"CSR.2",
+            Name = @"Alternate Study ID",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an alternate identifier that may be used as agreed upon by messaging parties. For example, the sending application may code its internal study number here.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.2",
-                            Type = @"Field",
-                            Position = @"CSR.2",
-                            Name = @"Alternate Study ID",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an alternate identifier that may be used as agreed upon by messaging parties. For example, the sending application may code its internal study number here.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.2.1",
                             Type = @"Component",
@@ -208,25 +250,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _alternateStudyID = new HL7V24Field
+        {
+            field = message[@"CSR"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_alternateStudyID.field.FieldRepetitions != null && _alternateStudyID.field.FieldRepetitions.Count > 0)
+        {
+            _alternateStudyID.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_alternateStudyID, fieldData);
+        }
+
+        return _alternateStudyID;
+    } 
+}
+
+internal HL7V24Field _institutionRegisteringthePatient;
+
+public HL7V24Field InstitutionRegisteringthePatient
+{
+    get
+    {
+        if (_institutionRegisteringthePatient != null)
+        {
+            return _institutionRegisteringthePatient;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.3",
+            Type = @"Field",
+            Position = @"CSR.3",
+            Name = @"Institution Registering the Patient",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field distinguishes the institution where registration occurred. The legal approval to give patients access to a trial lies with the Internal Review Board for the institution. Universal healthcare provider facility codes should be used when they exist. Currently coding systems must be devised by users.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.3",
-                            Type = @"Field",
-                            Position = @"CSR.3",
-                            Name = @"Institution Registering the Patient",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field distinguishes the institution where registration occurred. The legal approval to give patients access to a trial lies with the Internal Review Board for the institution. Universal healthcare provider facility codes should be used when they exist. Currently coding systems must be devised by users.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.3.1",
                             Type = @"Component",
@@ -336,25 +408,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _institutionRegisteringthePatient = new HL7V24Field
+        {
+            field = message[@"CSR"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_institutionRegisteringthePatient.field.FieldRepetitions != null && _institutionRegisteringthePatient.field.FieldRepetitions.Count > 0)
+        {
+            _institutionRegisteringthePatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_institutionRegisteringthePatient, fieldData);
+        }
+
+        return _institutionRegisteringthePatient;
+    } 
+}
+
+internal HL7V24Field _sponsorPatientID;
+
+public HL7V24Field SponsorPatientID
+{
+    get
+    {
+        if (_sponsorPatientID != null)
+        {
+            return _sponsorPatientID;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.4",
+            Type = @"Field",
+            Position = @"CSR.4",
+            Name = @"Sponsor Patient ID",
+            Length = 30,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the main patient identification for the study. The sponsor patient ID allows automation of records on patients treated at various institutions. The sponsor patient ID should be unique for each patient participating on the study identified in CSR-1-sponsor study ID .",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.4",
-                            Type = @"Field",
-                            Position = @"CSR.4",
-                            Name = @"Sponsor Patient ID",
-                            Length = 30,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the main patient identification for the study. The sponsor patient ID allows automation of records on patients treated at various institutions. The sponsor patient ID should be unique for each patient participating on the study identified in CSR-1-sponsor study ID .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.4.1",
                             Type = @"Component",
@@ -600,25 +702,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"The last date, if known, on which the identifier is valid and active.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _sponsorPatientID = new HL7V24Field
+        {
+            field = message[@"CSR"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sponsorPatientID.field.FieldRepetitions != null && _sponsorPatientID.field.FieldRepetitions.Count > 0)
+        {
+            _sponsorPatientID.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_sponsorPatientID, fieldData);
+        }
+
+        return _sponsorPatientID;
+    } 
+}
+
+internal HL7V24Field _alternatePatientIDCSR;
+
+public HL7V24Field AlternatePatientIDCSR
+{
+    get
+    {
+        if (_alternatePatientIDCSR != null)
+        {
+            return _alternatePatientIDCSR;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.5",
+            Type = @"Field",
+            Position = @"CSR.5",
+            Name = @"Alternate Patient ID - CSR",
+            Length = 30,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field may be the sending applications patient identification. Coding conventions may be used as agreed upon by users.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.5",
-                            Type = @"Field",
-                            Position = @"CSR.5",
-                            Name = @"Alternate Patient ID - CSR",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field may be the sending applications patient identification. Coding conventions may be used as agreed upon by users.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.5.1",
                             Type = @"Component",
@@ -864,25 +996,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"The last date, if known, on which the identifier is valid and active.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _alternatePatientIDCSR = new HL7V24Field
+        {
+            field = message[@"CSR"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_alternatePatientIDCSR.field.FieldRepetitions != null && _alternatePatientIDCSR.field.FieldRepetitions.Count > 0)
+        {
+            _alternatePatientIDCSR.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_alternatePatientIDCSR, fieldData);
+        }
+
+        return _alternatePatientIDCSR;
+    } 
+}
+
+internal HL7V24Field _dateTimeOfPatientStudyRegistration;
+
+public HL7V24Field DateTimeOfPatientStudyRegistration
+{
+    get
+    {
+        if (_dateTimeOfPatientStudyRegistration != null)
+        {
+            return _dateTimeOfPatientStudyRegistration;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.6",
+            Type = @"Field",
+            Position = @"CSR.6",
+            Name = @"Date/Time Of Patient Study Registration",
+            Length = 26,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date of the patient registration is mandatory. The time component is optional. The time stamp for a registration may be useful. For example, patients may be randomized at the pharmacy according to the order in which they were registered.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.6",
-                            Type = @"Field",
-                            Position = @"CSR.6",
-                            Name = @"Date/Time Of Patient Study Registration",
-                            Length = 26,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date of the patient registration is mandatory. The time component is optional. The time stamp for a registration may be useful. For example, patients may be randomized at the pharmacy according to the order in which they were registered.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.6.1",
                             Type = @"Component",
@@ -916,25 +1078,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dateTimeOfPatientStudyRegistration = new HL7V24Field
+        {
+            field = message[@"CSR"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeOfPatientStudyRegistration.field.FieldRepetitions != null && _dateTimeOfPatientStudyRegistration.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeOfPatientStudyRegistration.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_dateTimeOfPatientStudyRegistration, fieldData);
+        }
+
+        return _dateTimeOfPatientStudyRegistration;
+    } 
+}
+
+internal HL7V24Field _personPerformingStudyRegistration;
+
+public HL7V24Field PersonPerformingStudyRegistration
+{
+    get
+    {
+        if (_personPerformingStudyRegistration != null)
+        {
+            return _personPerformingStudyRegistration;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.7",
+            Type = @"Field",
+            Position = @"CSR.7",
+            Name = @"Person Performing Study Registration",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the healthcare facility employee who actually phoned, submitted a form, or interactively registered the patient on the clinical trial. This is generally done under authorization from the attending physician or a principal or collaborating investigator.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.7",
-                            Type = @"Field",
-                            Position = @"CSR.7",
-                            Name = @"Person Performing Study Registration",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the healthcare facility employee who actually phoned, submitted a form, or interactively registered the patient on the clinical trial. This is generally done under authorization from the attending physician or a principal or collaborating investigator.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.7.1",
                             Type = @"Component",
@@ -1660,25 +1852,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 Table 0444 - Name assembly orde r for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _personPerformingStudyRegistration = new HL7V24Field
+        {
+            field = message[@"CSR"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_personPerformingStudyRegistration.field.FieldRepetitions != null && _personPerformingStudyRegistration.field.FieldRepetitions.Count > 0)
+        {
+            _personPerformingStudyRegistration.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_personPerformingStudyRegistration, fieldData);
+        }
+
+        return _personPerformingStudyRegistration;
+    } 
+}
+
+internal HL7V24Field _studyAuthorizingProvider;
+
+public HL7V24Field StudyAuthorizingProvider
+{
+    get
+    {
+        if (_studyAuthorizingProvider != null)
+        {
+            return _studyAuthorizingProvider;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.8",
+            Type = @"Field",
+            Position = @"CSR.8",
+            Name = @"Study Authorizing Provider",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the healthcare provider, generally the attending physician, who is accountable that the patient is eligible for the trial and has signed an informed consent. National standard healthcare provider codes should be used when they exist. This field is required for the patient registration trigger event (C01).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.8",
-                            Type = @"Field",
-                            Position = @"CSR.8",
-                            Name = @"Study Authorizing Provider",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the healthcare provider, generally the attending physician, who is accountable that the patient is eligible for the trial and has signed an informed consent. National standard healthcare provider codes should be used when they exist. This field is required for the patient registration trigger event (C01).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.8.1",
                             Type = @"Component",
@@ -2404,25 +2626,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 Table 0444 - Name assembly orde r for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _studyAuthorizingProvider = new HL7V24Field
+        {
+            field = message[@"CSR"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_studyAuthorizingProvider.field.FieldRepetitions != null && _studyAuthorizingProvider.field.FieldRepetitions.Count > 0)
+        {
+            _studyAuthorizingProvider.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_studyAuthorizingProvider, fieldData);
+        }
+
+        return _studyAuthorizingProvider;
+    } 
+}
+
+internal HL7V24Field _datetimePatientStudyConsentSigned;
+
+public HL7V24Field DatetimePatientStudyConsentSigned
+{
+    get
+    {
+        if (_datetimePatientStudyConsentSigned != null)
+        {
+            return _datetimePatientStudyConsentSigned;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.9",
+            Type = @"Field",
+            Position = @"CSR.9",
+            Name = @"Date/time Patient Study Consent Signed",
+            Length = 26,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the consent form signing date is collected to provide a checkpoint that the consent form was obtained. Since many trials involve unapproved drugs and other treatment modalities, the consent form is highly important to document and store. This field is required for the patient registration trigger event (C01). The time component is optional.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.9",
-                            Type = @"Field",
-                            Position = @"CSR.9",
-                            Name = @"Date/time Patient Study Consent Signed",
-                            Length = 26,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the consent form signing date is collected to provide a checkpoint that the consent form was obtained. Since many trials involve unapproved drugs and other treatment modalities, the consent form is highly important to document and store. This field is required for the patient registration trigger event (C01). The time component is optional.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.9.1",
                             Type = @"Component",
@@ -2456,25 +2708,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _datetimePatientStudyConsentSigned = new HL7V24Field
+        {
+            field = message[@"CSR"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_datetimePatientStudyConsentSigned.field.FieldRepetitions != null && _datetimePatientStudyConsentSigned.field.FieldRepetitions.Count > 0)
+        {
+            _datetimePatientStudyConsentSigned.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_datetimePatientStudyConsentSigned, fieldData);
+        }
+
+        return _datetimePatientStudyConsentSigned;
+    } 
+}
+
+internal HL7V24Field _patientStudyEligibilityStatus;
+
+public HL7V24Field PatientStudyEligibilityStatus
+{
+    get
+    {
+        if (_patientStudyEligibilityStatus != null)
+        {
+            return _patientStudyEligibilityStatus;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.10",
+            Type = @"Field",
+            Position = @"CSR.10",
+            Name = @"Patient Study Eligibility Status",
+            Length = 250,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates whether the patient was an appropriate candidate for the trial. It is important for quality control and data analysis. The code set will vary among clinical trials. An example answer set is: Yes, No, By Approval, Not Assessed, Unknown. This field is required for the patient registration trigger event (C01).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.10",
-                            Type = @"Field",
-                            Position = @"CSR.10",
-                            Name = @"Patient Study Eligibility Status",
-                            Length = 250,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates whether the patient was an appropriate candidate for the trial. It is important for quality control and data analysis. The code set will vary among clinical trials. An example answer set is: Yes, No, By Approval, Not Assessed, Unknown. This field is required for the patient registration trigger event (C01).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.10.1",
                             Type = @"Component",
@@ -2584,25 +2866,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _patientStudyEligibilityStatus = new HL7V24Field
+        {
+            field = message[@"CSR"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientStudyEligibilityStatus.field.FieldRepetitions != null && _patientStudyEligibilityStatus.field.FieldRepetitions.Count > 0)
+        {
+            _patientStudyEligibilityStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_patientStudyEligibilityStatus, fieldData);
+        }
+
+        return _patientStudyEligibilityStatus;
+    } 
+}
+
+internal HL7V24Field _studyRandomizationDatetime;
+
+public HL7V24Field StudyRandomizationDatetime
+{
+    get
+    {
+        if (_studyRandomizationDatetime != null)
+        {
+            return _studyRandomizationDatetime;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.11",
+            Type = @"Field",
+            Position = @"CSR.11",
+            Name = @"Study Randomization Date/time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"3",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date the patient was randomized. The time component is optional. Up to three randomizations are supported. Sequential randomizations are listed in chronological order.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.11",
-                            Type = @"Field",
-                            Position = @"CSR.11",
-                            Name = @"Study Randomization Date/time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"3",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date the patient was randomized. The time component is optional. Up to three randomizations are supported. Sequential randomizations are listed in chronological order.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.11.1",
                             Type = @"Component",
@@ -2636,25 +2948,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _studyRandomizationDatetime = new HL7V24Field
+        {
+            field = message[@"CSR"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_studyRandomizationDatetime.field.FieldRepetitions != null && _studyRandomizationDatetime.field.FieldRepetitions.Count > 0)
+        {
+            _studyRandomizationDatetime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_studyRandomizationDatetime, fieldData);
+        }
+
+        return _studyRandomizationDatetime;
+    } 
+}
+
+internal HL7V24Field _randomizedStudyArm;
+
+public HL7V24Field RandomizedStudyArm
+{
+    get
+    {
+        if (_randomizedStudyArm != null)
+        {
+            return _randomizedStudyArm;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.12",
+            Type = @"Field",
+            Position = @"CSR.12",
+            Name = @"Randomized Study Arm",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"3",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains codes that must be developed by users. The blind treatment assignment may be communicated as a dummy text: ^blind or if a coded treatment assignment must also be communicated : 1^blind^local_code . If more than one randomization occurs, the second and third repetitions will correspond to the second and third repetitions of CSR-11-study randomization date/time , if they exist.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.12",
-                            Type = @"Field",
-                            Position = @"CSR.12",
-                            Name = @"Randomized Study Arm",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"3",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains codes that must be developed by users. The blind treatment assignment may be communicated as a dummy text: ^blind or if a coded treatment assignment must also be communicated : 1^blind^local_code . If more than one randomization occurs, the second and third repetitions will correspond to the second and third repetitions of CSR-11-study randomization date/time , if they exist.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.12.1",
                             Type = @"Component",
@@ -2764,25 +3106,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _randomizedStudyArm = new HL7V24Field
+        {
+            field = message[@"CSR"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_randomizedStudyArm.field.FieldRepetitions != null && _randomizedStudyArm.field.FieldRepetitions.Count > 0)
+        {
+            _randomizedStudyArm.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_randomizedStudyArm, fieldData);
+        }
+
+        return _randomizedStudyArm;
+    } 
+}
+
+internal HL7V24Field _stratumforStudyRandomization;
+
+public HL7V24Field StratumforStudyRandomization
+{
+    get
+    {
+        if (_stratumforStudyRandomization != null)
+        {
+            return _stratumforStudyRandomization;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.13",
+            Type = @"Field",
+            Position = @"CSR.13",
+            Name = @"Stratum for Study Randomization",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"3",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"Many studies have stratified randomization schemas. The strata codes must be developed for each clinical trial. This field is important for statistical analysis of the study results. The second and third repetitions will correspond to the second and third repetitions of CSR-11-study randomization date/time and CSR-12-randomized study arm, if they exist.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.13",
-                            Type = @"Field",
-                            Position = @"CSR.13",
-                            Name = @"Stratum for Study Randomization",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"3",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Many studies have stratified randomization schemas. The strata codes must be developed for each clinical trial. This field is important for statistical analysis of the study results. The second and third repetitions will correspond to the second and third repetitions of CSR-11-study randomization date/time and CSR-12-randomized study arm, if they exist.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.13.1",
                             Type = @"Component",
@@ -2892,25 +3264,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _stratumforStudyRandomization = new HL7V24Field
+        {
+            field = message[@"CSR"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_stratumforStudyRandomization.field.FieldRepetitions != null && _stratumforStudyRandomization.field.FieldRepetitions.Count > 0)
+        {
+            _stratumforStudyRandomization.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_stratumforStudyRandomization, fieldData);
+        }
+
+        return _stratumforStudyRandomization;
+    } 
+}
+
+internal HL7V24Field _patientEvaluabilityStatus;
+
+public HL7V24Field PatientEvaluabilityStatus
+{
+    get
+    {
+        if (_patientEvaluabilityStatus != null)
+        {
+            return _patientEvaluabilityStatus;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.14",
+            Type = @"Field",
+            Position = @"CSR.14",
+            Name = @"Patient Evaluability Status",
+            Length = 250,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field categorizes the inclusion of this patients data for various analyses. The patients data may be evaluable for analysis of adverse events but not for outcomes. Or it may be evaluable for some outcomes and not others. The coding systems will vary among trials. This field is required for the off-study trigger event (C04).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.14",
-                            Type = @"Field",
-                            Position = @"CSR.14",
-                            Name = @"Patient Evaluability Status",
-                            Length = 250,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field categorizes the inclusion of this patients data for various analyses. The patients data may be evaluable for analysis of adverse events but not for outcomes. Or it may be evaluable for some outcomes and not others. The coding systems will vary among trials. This field is required for the off-study trigger event (C04).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.14.1",
                             Type = @"Component",
@@ -3020,25 +3422,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _patientEvaluabilityStatus = new HL7V24Field
+        {
+            field = message[@"CSR"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientEvaluabilityStatus.field.FieldRepetitions != null && _patientEvaluabilityStatus.field.FieldRepetitions.Count > 0)
+        {
+            _patientEvaluabilityStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_patientEvaluabilityStatus, fieldData);
+        }
+
+        return _patientEvaluabilityStatus;
+    } 
+}
+
+internal HL7V24Field _datetimeEndedStudy;
+
+public HL7V24Field DatetimeEndedStudy
+{
+    get
+    {
+        if (_datetimeEndedStudy != null)
+        {
+            return _datetimeEndedStudy;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.15",
+            Type = @"Field",
+            Position = @"CSR.15",
+            Name = @"Date/time Ended Study",
+            Length = 26,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date the patient completes or is otherwise removed from the study. This field is required for the off-study event (C04). The time component is optional.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.15",
-                            Type = @"Field",
-                            Position = @"CSR.15",
-                            Name = @"Date/time Ended Study",
-                            Length = 26,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date the patient completes or is otherwise removed from the study. This field is required for the off-study event (C04). The time component is optional.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.15.1",
                             Type = @"Component",
@@ -3072,25 +3504,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _datetimeEndedStudy = new HL7V24Field
+        {
+            field = message[@"CSR"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_datetimeEndedStudy.field.FieldRepetitions != null && _datetimeEndedStudy.field.FieldRepetitions.Count > 0)
+        {
+            _datetimeEndedStudy.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_datetimeEndedStudy, fieldData);
+        }
+
+        return _datetimeEndedStudy;
+    } 
+}
+
+internal HL7V24Field _reasonEndedStudy;
+
+public HL7V24Field ReasonEndedStudy
+{
+    get
+    {
+        if (_reasonEndedStudy != null)
+        {
+            return _reasonEndedStudy;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"CSR.16",
+            Type = @"Field",
+            Position = @"CSR.16",
+            Name = @"Reason Ended Study",
+            Length = 250,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This information is important for quality control and data analysis. The coding systems will vary among trials. An example answer set is: Adverse Events, Completed Trial, Death, Drug Resistance, Intercurrent Illness, Lost to Follow up, No Response to Therapy, Noncompliance, Progression of Disease, Protocol Violation, Refused Further Therapy . This field is required for the off-study trigger event (C04).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CSR.16",
-                            Type = @"Field",
-                            Position = @"CSR.16",
-                            Name = @"Reason Ended Study",
-                            Length = 250,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This information is important for quality control and data analysis. The coding systems will vary among trials. An example answer set is: Adverse Events, Completed Trial, Death, Drug Resistance, Intercurrent Illness, Lost to Follow up, No Response to Therapy, Noncompliance, Progression of Disease, Protocol Violation, Refused Further Therapy . This field is required for the off-study trigger event (C04).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CSR.16.1",
                             Type = @"Component",
@@ -3200,670 +3662,23 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentCSR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field sponsorStudyID;
-
-public HL7V24Field SponsorStudyID
-{
-    get
-    {
-        if (sponsorStudyID != null)
-        {
-            return sponsorStudyID;
-        }
-
-        sponsorStudyID = new HL7V24Field
-        {
-            field = message[@"CSR"][1],
-            Id = @"CSR.1",
-            Type = @"Field",
-            Position = @"CSR.1",
-            Name = @"Sponsor Study ID",
-            Length = 60,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"The field contains the universal identifier for the clinical trial. Since many clinical trials are collaborative and multi-centered, and since one goal of these standards is to promote automated data exchange among sites, the primary identifier should come from the sponsor. The coding system component may reference the sponsor. Example:",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sponsorStudyID.field.FieldRepetitions != null && sponsorStudyID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sponsorStudyID.Id));
-            sponsorStudyID.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(sponsorStudyID, fieldData);
-        }
-
-        return sponsorStudyID;
-    } 
-}
-
-internal HL7V24Field alternateStudyID;
-
-public HL7V24Field AlternateStudyID
-{
-    get
-    {
-        if (alternateStudyID != null)
-        {
-            return alternateStudyID;
-        }
-
-        alternateStudyID = new HL7V24Field
-        {
-            field = message[@"CSR"][2],
-            Id = @"CSR.2",
-            Type = @"Field",
-            Position = @"CSR.2",
-            Name = @"Alternate Study ID",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an alternate identifier that may be used as agreed upon by messaging parties. For example, the sending application may code its internal study number here.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (alternateStudyID.field.FieldRepetitions != null && alternateStudyID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(alternateStudyID.Id));
-            alternateStudyID.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(alternateStudyID, fieldData);
-        }
-
-        return alternateStudyID;
-    } 
-}
-
-internal HL7V24Field institutionRegisteringthePatient;
-
-public HL7V24Field InstitutionRegisteringthePatient
-{
-    get
-    {
-        if (institutionRegisteringthePatient != null)
-        {
-            return institutionRegisteringthePatient;
-        }
-
-        institutionRegisteringthePatient = new HL7V24Field
-        {
-            field = message[@"CSR"][3],
-            Id = @"CSR.3",
-            Type = @"Field",
-            Position = @"CSR.3",
-            Name = @"Institution Registering the Patient",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field distinguishes the institution where registration occurred. The legal approval to give patients access to a trial lies with the Internal Review Board for the institution. Universal healthcare provider facility codes should be used when they exist. Currently coding systems must be devised by users.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (institutionRegisteringthePatient.field.FieldRepetitions != null && institutionRegisteringthePatient.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(institutionRegisteringthePatient.Id));
-            institutionRegisteringthePatient.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(institutionRegisteringthePatient, fieldData);
-        }
-
-        return institutionRegisteringthePatient;
-    } 
-}
-
-internal HL7V24Field sponsorPatientID;
-
-public HL7V24Field SponsorPatientID
-{
-    get
-    {
-        if (sponsorPatientID != null)
-        {
-            return sponsorPatientID;
-        }
-
-        sponsorPatientID = new HL7V24Field
-        {
-            field = message[@"CSR"][4],
-            Id = @"CSR.4",
-            Type = @"Field",
-            Position = @"CSR.4",
-            Name = @"Sponsor Patient ID",
-            Length = 30,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the main patient identification for the study. The sponsor patient ID allows automation of records on patients treated at various institutions. The sponsor patient ID should be unique for each patient participating on the study identified in CSR-1-sponsor study ID .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sponsorPatientID.field.FieldRepetitions != null && sponsorPatientID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sponsorPatientID.Id));
-            sponsorPatientID.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(sponsorPatientID, fieldData);
-        }
-
-        return sponsorPatientID;
-    } 
-}
-
-internal HL7V24Field alternatePatientIDCSR;
-
-public HL7V24Field AlternatePatientIDCSR
-{
-    get
-    {
-        if (alternatePatientIDCSR != null)
-        {
-            return alternatePatientIDCSR;
-        }
-
-        alternatePatientIDCSR = new HL7V24Field
-        {
-            field = message[@"CSR"][5],
-            Id = @"CSR.5",
-            Type = @"Field",
-            Position = @"CSR.5",
-            Name = @"Alternate Patient ID - CSR",
-            Length = 30,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field may be the sending applications patient identification. Coding conventions may be used as agreed upon by users.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (alternatePatientIDCSR.field.FieldRepetitions != null && alternatePatientIDCSR.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(alternatePatientIDCSR.Id));
-            alternatePatientIDCSR.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(alternatePatientIDCSR, fieldData);
-        }
-
-        return alternatePatientIDCSR;
-    } 
-}
-
-internal HL7V24Field dateTimeOfPatientStudyRegistration;
-
-public HL7V24Field DateTimeOfPatientStudyRegistration
-{
-    get
-    {
-        if (dateTimeOfPatientStudyRegistration != null)
-        {
-            return dateTimeOfPatientStudyRegistration;
-        }
-
-        dateTimeOfPatientStudyRegistration = new HL7V24Field
-        {
-            field = message[@"CSR"][6],
-            Id = @"CSR.6",
-            Type = @"Field",
-            Position = @"CSR.6",
-            Name = @"Date/Time Of Patient Study Registration",
-            Length = 26,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date of the patient registration is mandatory. The time component is optional. The time stamp for a registration may be useful. For example, patients may be randomized at the pharmacy according to the order in which they were registered.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeOfPatientStudyRegistration.field.FieldRepetitions != null && dateTimeOfPatientStudyRegistration.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeOfPatientStudyRegistration.Id));
-            dateTimeOfPatientStudyRegistration.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(dateTimeOfPatientStudyRegistration, fieldData);
-        }
-
-        return dateTimeOfPatientStudyRegistration;
-    } 
-}
-
-internal HL7V24Field personPerformingStudyRegistration;
-
-public HL7V24Field PersonPerformingStudyRegistration
-{
-    get
-    {
-        if (personPerformingStudyRegistration != null)
-        {
-            return personPerformingStudyRegistration;
-        }
-
-        personPerformingStudyRegistration = new HL7V24Field
-        {
-            field = message[@"CSR"][7],
-            Id = @"CSR.7",
-            Type = @"Field",
-            Position = @"CSR.7",
-            Name = @"Person Performing Study Registration",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the healthcare facility employee who actually phoned, submitted a form, or interactively registered the patient on the clinical trial. This is generally done under authorization from the attending physician or a principal or collaborating investigator.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (personPerformingStudyRegistration.field.FieldRepetitions != null && personPerformingStudyRegistration.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(personPerformingStudyRegistration.Id));
-            personPerformingStudyRegistration.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(personPerformingStudyRegistration, fieldData);
-        }
-
-        return personPerformingStudyRegistration;
-    } 
-}
-
-internal HL7V24Field studyAuthorizingProvider;
-
-public HL7V24Field StudyAuthorizingProvider
-{
-    get
-    {
-        if (studyAuthorizingProvider != null)
-        {
-            return studyAuthorizingProvider;
-        }
-
-        studyAuthorizingProvider = new HL7V24Field
-        {
-            field = message[@"CSR"][8],
-            Id = @"CSR.8",
-            Type = @"Field",
-            Position = @"CSR.8",
-            Name = @"Study Authorizing Provider",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the healthcare provider, generally the attending physician, who is accountable that the patient is eligible for the trial and has signed an informed consent. National standard healthcare provider codes should be used when they exist. This field is required for the patient registration trigger event (C01).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (studyAuthorizingProvider.field.FieldRepetitions != null && studyAuthorizingProvider.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studyAuthorizingProvider.Id));
-            studyAuthorizingProvider.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(studyAuthorizingProvider, fieldData);
-        }
-
-        return studyAuthorizingProvider;
-    } 
-}
-
-internal HL7V24Field datetimePatientStudyConsentSigned;
-
-public HL7V24Field DatetimePatientStudyConsentSigned
-{
-    get
-    {
-        if (datetimePatientStudyConsentSigned != null)
-        {
-            return datetimePatientStudyConsentSigned;
-        }
-
-        datetimePatientStudyConsentSigned = new HL7V24Field
-        {
-            field = message[@"CSR"][9],
-            Id = @"CSR.9",
-            Type = @"Field",
-            Position = @"CSR.9",
-            Name = @"Date/time Patient Study Consent Signed",
-            Length = 26,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the consent form signing date is collected to provide a checkpoint that the consent form was obtained. Since many trials involve unapproved drugs and other treatment modalities, the consent form is highly important to document and store. This field is required for the patient registration trigger event (C01). The time component is optional.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (datetimePatientStudyConsentSigned.field.FieldRepetitions != null && datetimePatientStudyConsentSigned.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(datetimePatientStudyConsentSigned.Id));
-            datetimePatientStudyConsentSigned.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(datetimePatientStudyConsentSigned, fieldData);
-        }
-
-        return datetimePatientStudyConsentSigned;
-    } 
-}
-
-internal HL7V24Field patientStudyEligibilityStatus;
-
-public HL7V24Field PatientStudyEligibilityStatus
-{
-    get
-    {
-        if (patientStudyEligibilityStatus != null)
-        {
-            return patientStudyEligibilityStatus;
-        }
-
-        patientStudyEligibilityStatus = new HL7V24Field
-        {
-            field = message[@"CSR"][10],
-            Id = @"CSR.10",
-            Type = @"Field",
-            Position = @"CSR.10",
-            Name = @"Patient Study Eligibility Status",
-            Length = 250,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates whether the patient was an appropriate candidate for the trial. It is important for quality control and data analysis. The code set will vary among clinical trials. An example answer set is: Yes, No, By Approval, Not Assessed, Unknown. This field is required for the patient registration trigger event (C01).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientStudyEligibilityStatus.field.FieldRepetitions != null && patientStudyEligibilityStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientStudyEligibilityStatus.Id));
-            patientStudyEligibilityStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(patientStudyEligibilityStatus, fieldData);
-        }
-
-        return patientStudyEligibilityStatus;
-    } 
-}
-
-internal HL7V24Field studyRandomizationDatetime;
-
-public HL7V24Field StudyRandomizationDatetime
-{
-    get
-    {
-        if (studyRandomizationDatetime != null)
-        {
-            return studyRandomizationDatetime;
-        }
-
-        studyRandomizationDatetime = new HL7V24Field
-        {
-            field = message[@"CSR"][11],
-            Id = @"CSR.11",
-            Type = @"Field",
-            Position = @"CSR.11",
-            Name = @"Study Randomization Date/time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"3",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date the patient was randomized. The time component is optional. Up to three randomizations are supported. Sequential randomizations are listed in chronological order.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (studyRandomizationDatetime.field.FieldRepetitions != null && studyRandomizationDatetime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(studyRandomizationDatetime.Id));
-            studyRandomizationDatetime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(studyRandomizationDatetime, fieldData);
-        }
-
-        return studyRandomizationDatetime;
-    } 
-}
-
-internal HL7V24Field randomizedStudyArm;
-
-public HL7V24Field RandomizedStudyArm
-{
-    get
-    {
-        if (randomizedStudyArm != null)
-        {
-            return randomizedStudyArm;
-        }
-
-        randomizedStudyArm = new HL7V24Field
-        {
-            field = message[@"CSR"][12],
-            Id = @"CSR.12",
-            Type = @"Field",
-            Position = @"CSR.12",
-            Name = @"Randomized Study Arm",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"3",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains codes that must be developed by users. The blind treatment assignment may be communicated as a dummy text: ^blind or if a coded treatment assignment must also be communicated : 1^blind^local_code . If more than one randomization occurs, the second and third repetitions will correspond to the second and third repetitions of CSR-11-study randomization date/time , if they exist.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (randomizedStudyArm.field.FieldRepetitions != null && randomizedStudyArm.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(randomizedStudyArm.Id));
-            randomizedStudyArm.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(randomizedStudyArm, fieldData);
-        }
-
-        return randomizedStudyArm;
-    } 
-}
-
-internal HL7V24Field stratumforStudyRandomization;
-
-public HL7V24Field StratumforStudyRandomization
-{
-    get
-    {
-        if (stratumforStudyRandomization != null)
-        {
-            return stratumforStudyRandomization;
-        }
-
-        stratumforStudyRandomization = new HL7V24Field
-        {
-            field = message[@"CSR"][13],
-            Id = @"CSR.13",
-            Type = @"Field",
-            Position = @"CSR.13",
-            Name = @"Stratum for Study Randomization",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"3",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"Many studies have stratified randomization schemas. The strata codes must be developed for each clinical trial. This field is important for statistical analysis of the study results. The second and third repetitions will correspond to the second and third repetitions of CSR-11-study randomization date/time and CSR-12-randomized study arm, if they exist.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (stratumforStudyRandomization.field.FieldRepetitions != null && stratumforStudyRandomization.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(stratumforStudyRandomization.Id));
-            stratumforStudyRandomization.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(stratumforStudyRandomization, fieldData);
-        }
-
-        return stratumforStudyRandomization;
-    } 
-}
-
-internal HL7V24Field patientEvaluabilityStatus;
-
-public HL7V24Field PatientEvaluabilityStatus
-{
-    get
-    {
-        if (patientEvaluabilityStatus != null)
-        {
-            return patientEvaluabilityStatus;
-        }
-
-        patientEvaluabilityStatus = new HL7V24Field
-        {
-            field = message[@"CSR"][14],
-            Id = @"CSR.14",
-            Type = @"Field",
-            Position = @"CSR.14",
-            Name = @"Patient Evaluability Status",
-            Length = 250,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field categorizes the inclusion of this patients data for various analyses. The patients data may be evaluable for analysis of adverse events but not for outcomes. Or it may be evaluable for some outcomes and not others. The coding systems will vary among trials. This field is required for the off-study trigger event (C04).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientEvaluabilityStatus.field.FieldRepetitions != null && patientEvaluabilityStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientEvaluabilityStatus.Id));
-            patientEvaluabilityStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(patientEvaluabilityStatus, fieldData);
-        }
-
-        return patientEvaluabilityStatus;
-    } 
-}
-
-internal HL7V24Field datetimeEndedStudy;
-
-public HL7V24Field DatetimeEndedStudy
-{
-    get
-    {
-        if (datetimeEndedStudy != null)
-        {
-            return datetimeEndedStudy;
-        }
-
-        datetimeEndedStudy = new HL7V24Field
-        {
-            field = message[@"CSR"][15],
-            Id = @"CSR.15",
-            Type = @"Field",
-            Position = @"CSR.15",
-            Name = @"Date/time Ended Study",
-            Length = 26,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date the patient completes or is otherwise removed from the study. This field is required for the off-study event (C04). The time component is optional.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (datetimeEndedStudy.field.FieldRepetitions != null && datetimeEndedStudy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(datetimeEndedStudy.Id));
-            datetimeEndedStudy.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(datetimeEndedStudy, fieldData);
-        }
-
-        return datetimeEndedStudy;
-    } 
-}
-
-internal HL7V24Field reasonEndedStudy;
-
-public HL7V24Field ReasonEndedStudy
-{
-    get
-    {
-        if (reasonEndedStudy != null)
-        {
-            return reasonEndedStudy;
-        }
-
-        reasonEndedStudy = new HL7V24Field
+        _reasonEndedStudy = new HL7V24Field
         {
             field = message[@"CSR"][16],
-            Id = @"CSR.16",
-            Type = @"Field",
-            Position = @"CSR.16",
-            Name = @"Reason Ended Study",
-            Length = 250,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This information is important for quality control and data analysis. The coding systems will vary among trials. An example answer set is: Adverse Events, Completed Trial, Death, Drug Resistance, Intercurrent Illness, Lost to Follow up, No Response to Therapy, Noncompliance, Progression of Disease, Protocol Violation, Refused Further Therapy . This field is required for the off-study trigger event (C04).",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (reasonEndedStudy.field.FieldRepetitions != null && reasonEndedStudy.field.FieldRepetitions.Count > 0)
+        if (_reasonEndedStudy.field.FieldRepetitions != null && _reasonEndedStudy.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reasonEndedStudy.Id));
-            reasonEndedStudy.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(reasonEndedStudy, fieldData);
+            _reasonEndedStudy.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_reasonEndedStudy, fieldData);
         }
 
-        return reasonEndedStudy;
+        return _reasonEndedStudy;
     } 
 }
     }

@@ -50,6 +50,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Locally defined",
                             Comment = null
                         },
+                        
                     };
             } 
         }

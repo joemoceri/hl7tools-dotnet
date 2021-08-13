@@ -25,430 +25,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"FT1.1",
-                            Type = @"Field",
-                            Position = @"FT1.1",
-                            Name = @"Set Id - Financial Transaction",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Set Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.2",
-                            Type = @"Field",
-                            Position = @"FT1.2",
-                            Name = @"Transaction Id",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.3",
-                            Type = @"Field",
-                            Position = @"FT1.3",
-                            Name = @"Transaction Batch Id",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.4",
-                            Type = @"Field",
-                            Position = @"FT1.4",
-                            Name = @"Transaction Date",
-                            Length = 8,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.5",
-                            Type = @"Field",
-                            Position = @"FT1.5",
-                            Name = @"Transaction Posting Date",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.6",
-                            Type = @"Field",
-                            Position = @"FT1.6",
-                            Name = @"Transaction Type",
-                            Length = 8,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0017",
-                            TableName = @"TRANSACTION TYPE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.7",
-                            Type = @"Field",
-                            Position = @"FT1.7",
-                            Name = @"Transaction Code",
-                            Length = 20,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0096",
-                            TableName = @"FINANCIAL TRANSACTION CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.8",
-                            Type = @"Field",
-                            Position = @"FT1.8",
-                            Name = @"Transaction Description",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.9",
-                            Type = @"Field",
-                            Position = @"FT1.9",
-                            Name = @"Transaction Description - Alt",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.10",
-                            Type = @"Field",
-                            Position = @"FT1.10",
-                            Name = @"Transaction Amount - Extended",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.11",
-                            Type = @"Field",
-                            Position = @"FT1.11",
-                            Name = @"Transaction Quantity",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.12",
-                            Type = @"Field",
-                            Position = @"FT1.12",
-                            Name = @"Transaction Amount - Unit",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.13",
-                            Type = @"Field",
-                            Position = @"FT1.13",
-                            Name = @"Department Code",
-                            Length = 16,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = @"0049",
-                            TableName = @"DEPARTMENT CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.14",
-                            Type = @"Field",
-                            Position = @"FT1.14",
-                            Name = @"Insurance Plan Id",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0072",
-                            TableName = @"INS. PLAN ID",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.15",
-                            Type = @"Field",
-                            Position = @"FT1.15",
-                            Name = @"Insurance Amount",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.16",
-                            Type = @"Field",
-                            Position = @"FT1.16",
-                            Name = @"Patient Location",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = @"0079",
-                            TableName = @"LOCATION",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.17",
-                            Type = @"Field",
-                            Position = @"FT1.17",
-                            Name = @"Fee Schedule",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0024",
-                            TableName = @"FEE SCHEDULE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.18",
-                            Type = @"Field",
-                            Position = @"FT1.18",
-                            Name = @"Patient Type",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0018",
-                            TableName = @"PATIENT TYPE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.19",
-                            Type = @"Field",
-                            Position = @"FT1.19",
-                            Name = @"Diagnosis Code",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0051",
-                            TableName = @"DIAGNOSIS CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.20",
-                            Type = @"Field",
-                            Position = @"FT1.20",
-                            Name = @"Performed By Code",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CN",
-                            DataTypeName = @"Composite Id Number And Name",
-                            TableId = @"0084",
-                            TableName = @"PERFORMED BY CODE",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.21",
-                            Type = @"Field",
-                            Position = @"FT1.21",
-                            Name = @"Ordered By Code",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CN",
-                            DataTypeName = @"Composite Id Number And Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"FT1.22",
-                            Type = @"Field",
-                            Position = @"FT1.22",
-                            Name = @"Unit Cost",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V21SegmentFT1(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V21Field setIdFinancialTransaction;
+        internal HL7V21Field _setIdFinancialTransaction;
 
 public HL7V21Field SetIdFinancialTransaction
 {
     get
     {
-        if (setIdFinancialTransaction != null)
+        if (_setIdFinancialTransaction != null)
         {
-            return setIdFinancialTransaction;
+            return _setIdFinancialTransaction;
         }
 
-        setIdFinancialTransaction = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][1],
             Id = @"FT1.1",
             Type = @"Field",
             Position = @"FT1.1",
@@ -462,34 +56,38 @@ public HL7V21Field SetIdFinancialTransaction
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _setIdFinancialTransaction = new HL7V21Field
+        {
+            field = message[@"FT1"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (setIdFinancialTransaction.field.FieldRepetitions != null && setIdFinancialTransaction.field.FieldRepetitions.Count > 0)
+        if (_setIdFinancialTransaction.field.FieldRepetitions != null && _setIdFinancialTransaction.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdFinancialTransaction.Id));
-            setIdFinancialTransaction.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(setIdFinancialTransaction, fieldData);
+            _setIdFinancialTransaction.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_setIdFinancialTransaction, fieldData);
         }
 
-        return setIdFinancialTransaction;
+        return _setIdFinancialTransaction;
     } 
 }
 
-internal HL7V21Field transactionId;
+internal HL7V21Field _transactionId;
 
 public HL7V21Field TransactionId
 {
     get
     {
-        if (transactionId != null)
+        if (_transactionId != null)
         {
-            return transactionId;
+            return _transactionId;
         }
 
-        transactionId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][2],
             Id = @"FT1.2",
             Type = @"Field",
             Position = @"FT1.2",
@@ -503,34 +101,38 @@ public HL7V21Field TransactionId
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _transactionId = new HL7V21Field
+        {
+            field = message[@"FT1"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transactionId.field.FieldRepetitions != null && transactionId.field.FieldRepetitions.Count > 0)
+        if (_transactionId.field.FieldRepetitions != null && _transactionId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionId.Id));
-            transactionId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(transactionId, fieldData);
+            _transactionId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_transactionId, fieldData);
         }
 
-        return transactionId;
+        return _transactionId;
     } 
 }
 
-internal HL7V21Field transactionBatchId;
+internal HL7V21Field _transactionBatchId;
 
 public HL7V21Field TransactionBatchId
 {
     get
     {
-        if (transactionBatchId != null)
+        if (_transactionBatchId != null)
         {
-            return transactionBatchId;
+            return _transactionBatchId;
         }
 
-        transactionBatchId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][3],
             Id = @"FT1.3",
             Type = @"Field",
             Position = @"FT1.3",
@@ -544,34 +146,38 @@ public HL7V21Field TransactionBatchId
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _transactionBatchId = new HL7V21Field
+        {
+            field = message[@"FT1"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transactionBatchId.field.FieldRepetitions != null && transactionBatchId.field.FieldRepetitions.Count > 0)
+        if (_transactionBatchId.field.FieldRepetitions != null && _transactionBatchId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionBatchId.Id));
-            transactionBatchId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(transactionBatchId, fieldData);
+            _transactionBatchId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_transactionBatchId, fieldData);
         }
 
-        return transactionBatchId;
+        return _transactionBatchId;
     } 
 }
 
-internal HL7V21Field transactionDate;
+internal HL7V21Field _transactionDate;
 
 public HL7V21Field TransactionDate
 {
     get
     {
-        if (transactionDate != null)
+        if (_transactionDate != null)
         {
-            return transactionDate;
+            return _transactionDate;
         }
 
-        transactionDate = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][4],
             Id = @"FT1.4",
             Type = @"Field",
             Position = @"FT1.4",
@@ -585,34 +191,38 @@ public HL7V21Field TransactionDate
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _transactionDate = new HL7V21Field
+        {
+            field = message[@"FT1"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transactionDate.field.FieldRepetitions != null && transactionDate.field.FieldRepetitions.Count > 0)
+        if (_transactionDate.field.FieldRepetitions != null && _transactionDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionDate.Id));
-            transactionDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(transactionDate, fieldData);
+            _transactionDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_transactionDate, fieldData);
         }
 
-        return transactionDate;
+        return _transactionDate;
     } 
 }
 
-internal HL7V21Field transactionPostingDate;
+internal HL7V21Field _transactionPostingDate;
 
 public HL7V21Field TransactionPostingDate
 {
     get
     {
-        if (transactionPostingDate != null)
+        if (_transactionPostingDate != null)
         {
-            return transactionPostingDate;
+            return _transactionPostingDate;
         }
 
-        transactionPostingDate = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][5],
             Id = @"FT1.5",
             Type = @"Field",
             Position = @"FT1.5",
@@ -626,34 +236,38 @@ public HL7V21Field TransactionPostingDate
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _transactionPostingDate = new HL7V21Field
+        {
+            field = message[@"FT1"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transactionPostingDate.field.FieldRepetitions != null && transactionPostingDate.field.FieldRepetitions.Count > 0)
+        if (_transactionPostingDate.field.FieldRepetitions != null && _transactionPostingDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionPostingDate.Id));
-            transactionPostingDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(transactionPostingDate, fieldData);
+            _transactionPostingDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_transactionPostingDate, fieldData);
         }
 
-        return transactionPostingDate;
+        return _transactionPostingDate;
     } 
 }
 
-internal HL7V21Field transactionType;
+internal HL7V21Field _transactionType;
 
 public HL7V21Field TransactionType
 {
     get
     {
-        if (transactionType != null)
+        if (_transactionType != null)
         {
-            return transactionType;
+            return _transactionType;
         }
 
-        transactionType = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][6],
             Id = @"FT1.6",
             Type = @"Field",
             Position = @"FT1.6",
@@ -667,34 +281,38 @@ public HL7V21Field TransactionType
             TableName = @"TRANSACTION TYPE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _transactionType = new HL7V21Field
+        {
+            field = message[@"FT1"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transactionType.field.FieldRepetitions != null && transactionType.field.FieldRepetitions.Count > 0)
+        if (_transactionType.field.FieldRepetitions != null && _transactionType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionType.Id));
-            transactionType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(transactionType, fieldData);
+            _transactionType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_transactionType, fieldData);
         }
 
-        return transactionType;
+        return _transactionType;
     } 
 }
 
-internal HL7V21Field transactionCode;
+internal HL7V21Field _transactionCode;
 
 public HL7V21Field TransactionCode
 {
     get
     {
-        if (transactionCode != null)
+        if (_transactionCode != null)
         {
-            return transactionCode;
+            return _transactionCode;
         }
 
-        transactionCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][7],
             Id = @"FT1.7",
             Type = @"Field",
             Position = @"FT1.7",
@@ -708,34 +326,38 @@ public HL7V21Field TransactionCode
             TableName = @"FINANCIAL TRANSACTION CODE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _transactionCode = new HL7V21Field
+        {
+            field = message[@"FT1"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transactionCode.field.FieldRepetitions != null && transactionCode.field.FieldRepetitions.Count > 0)
+        if (_transactionCode.field.FieldRepetitions != null && _transactionCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionCode.Id));
-            transactionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(transactionCode, fieldData);
+            _transactionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_transactionCode, fieldData);
         }
 
-        return transactionCode;
+        return _transactionCode;
     } 
 }
 
-internal HL7V21Field transactionDescription;
+internal HL7V21Field _transactionDescription;
 
 public HL7V21Field TransactionDescription
 {
     get
     {
-        if (transactionDescription != null)
+        if (_transactionDescription != null)
         {
-            return transactionDescription;
+            return _transactionDescription;
         }
 
-        transactionDescription = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][8],
             Id = @"FT1.8",
             Type = @"Field",
             Position = @"FT1.8",
@@ -749,34 +371,38 @@ public HL7V21Field TransactionDescription
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _transactionDescription = new HL7V21Field
+        {
+            field = message[@"FT1"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transactionDescription.field.FieldRepetitions != null && transactionDescription.field.FieldRepetitions.Count > 0)
+        if (_transactionDescription.field.FieldRepetitions != null && _transactionDescription.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionDescription.Id));
-            transactionDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(transactionDescription, fieldData);
+            _transactionDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_transactionDescription, fieldData);
         }
 
-        return transactionDescription;
+        return _transactionDescription;
     } 
 }
 
-internal HL7V21Field transactionDescriptionAlt;
+internal HL7V21Field _transactionDescriptionAlt;
 
 public HL7V21Field TransactionDescriptionAlt
 {
     get
     {
-        if (transactionDescriptionAlt != null)
+        if (_transactionDescriptionAlt != null)
         {
-            return transactionDescriptionAlt;
+            return _transactionDescriptionAlt;
         }
 
-        transactionDescriptionAlt = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][9],
             Id = @"FT1.9",
             Type = @"Field",
             Position = @"FT1.9",
@@ -790,34 +416,38 @@ public HL7V21Field TransactionDescriptionAlt
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _transactionDescriptionAlt = new HL7V21Field
+        {
+            field = message[@"FT1"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transactionDescriptionAlt.field.FieldRepetitions != null && transactionDescriptionAlt.field.FieldRepetitions.Count > 0)
+        if (_transactionDescriptionAlt.field.FieldRepetitions != null && _transactionDescriptionAlt.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionDescriptionAlt.Id));
-            transactionDescriptionAlt.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(transactionDescriptionAlt, fieldData);
+            _transactionDescriptionAlt.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_transactionDescriptionAlt, fieldData);
         }
 
-        return transactionDescriptionAlt;
+        return _transactionDescriptionAlt;
     } 
 }
 
-internal HL7V21Field transactionAmountExtended;
+internal HL7V21Field _transactionAmountExtended;
 
 public HL7V21Field TransactionAmountExtended
 {
     get
     {
-        if (transactionAmountExtended != null)
+        if (_transactionAmountExtended != null)
         {
-            return transactionAmountExtended;
+            return _transactionAmountExtended;
         }
 
-        transactionAmountExtended = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][10],
             Id = @"FT1.10",
             Type = @"Field",
             Position = @"FT1.10",
@@ -831,34 +461,38 @@ public HL7V21Field TransactionAmountExtended
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _transactionAmountExtended = new HL7V21Field
+        {
+            field = message[@"FT1"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transactionAmountExtended.field.FieldRepetitions != null && transactionAmountExtended.field.FieldRepetitions.Count > 0)
+        if (_transactionAmountExtended.field.FieldRepetitions != null && _transactionAmountExtended.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionAmountExtended.Id));
-            transactionAmountExtended.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(transactionAmountExtended, fieldData);
+            _transactionAmountExtended.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_transactionAmountExtended, fieldData);
         }
 
-        return transactionAmountExtended;
+        return _transactionAmountExtended;
     } 
 }
 
-internal HL7V21Field transactionQuantity;
+internal HL7V21Field _transactionQuantity;
 
 public HL7V21Field TransactionQuantity
 {
     get
     {
-        if (transactionQuantity != null)
+        if (_transactionQuantity != null)
         {
-            return transactionQuantity;
+            return _transactionQuantity;
         }
 
-        transactionQuantity = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][11],
             Id = @"FT1.11",
             Type = @"Field",
             Position = @"FT1.11",
@@ -872,34 +506,38 @@ public HL7V21Field TransactionQuantity
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _transactionQuantity = new HL7V21Field
+        {
+            field = message[@"FT1"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transactionQuantity.field.FieldRepetitions != null && transactionQuantity.field.FieldRepetitions.Count > 0)
+        if (_transactionQuantity.field.FieldRepetitions != null && _transactionQuantity.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionQuantity.Id));
-            transactionQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(transactionQuantity, fieldData);
+            _transactionQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_transactionQuantity, fieldData);
         }
 
-        return transactionQuantity;
+        return _transactionQuantity;
     } 
 }
 
-internal HL7V21Field transactionAmountUnit;
+internal HL7V21Field _transactionAmountUnit;
 
 public HL7V21Field TransactionAmountUnit
 {
     get
     {
-        if (transactionAmountUnit != null)
+        if (_transactionAmountUnit != null)
         {
-            return transactionAmountUnit;
+            return _transactionAmountUnit;
         }
 
-        transactionAmountUnit = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][12],
             Id = @"FT1.12",
             Type = @"Field",
             Position = @"FT1.12",
@@ -913,34 +551,38 @@ public HL7V21Field TransactionAmountUnit
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _transactionAmountUnit = new HL7V21Field
+        {
+            field = message[@"FT1"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transactionAmountUnit.field.FieldRepetitions != null && transactionAmountUnit.field.FieldRepetitions.Count > 0)
+        if (_transactionAmountUnit.field.FieldRepetitions != null && _transactionAmountUnit.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transactionAmountUnit.Id));
-            transactionAmountUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(transactionAmountUnit, fieldData);
+            _transactionAmountUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_transactionAmountUnit, fieldData);
         }
 
-        return transactionAmountUnit;
+        return _transactionAmountUnit;
     } 
 }
 
-internal HL7V21Field departmentCode;
+internal HL7V21Field _departmentCode;
 
 public HL7V21Field DepartmentCode
 {
     get
     {
-        if (departmentCode != null)
+        if (_departmentCode != null)
         {
-            return departmentCode;
+            return _departmentCode;
         }
 
-        departmentCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][13],
             Id = @"FT1.13",
             Type = @"Field",
             Position = @"FT1.13",
@@ -954,34 +596,38 @@ public HL7V21Field DepartmentCode
             TableName = @"DEPARTMENT CODE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _departmentCode = new HL7V21Field
+        {
+            field = message[@"FT1"][13],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (departmentCode.field.FieldRepetitions != null && departmentCode.field.FieldRepetitions.Count > 0)
+        if (_departmentCode.field.FieldRepetitions != null && _departmentCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(departmentCode.Id));
-            departmentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(departmentCode, fieldData);
+            _departmentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_departmentCode, fieldData);
         }
 
-        return departmentCode;
+        return _departmentCode;
     } 
 }
 
-internal HL7V21Field insurancePlanId;
+internal HL7V21Field _insurancePlanId;
 
 public HL7V21Field InsurancePlanId
 {
     get
     {
-        if (insurancePlanId != null)
+        if (_insurancePlanId != null)
         {
-            return insurancePlanId;
+            return _insurancePlanId;
         }
 
-        insurancePlanId = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][14],
             Id = @"FT1.14",
             Type = @"Field",
             Position = @"FT1.14",
@@ -995,34 +641,38 @@ public HL7V21Field InsurancePlanId
             TableName = @"INS. PLAN ID",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _insurancePlanId = new HL7V21Field
+        {
+            field = message[@"FT1"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (insurancePlanId.field.FieldRepetitions != null && insurancePlanId.field.FieldRepetitions.Count > 0)
+        if (_insurancePlanId.field.FieldRepetitions != null && _insurancePlanId.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(insurancePlanId.Id));
-            insurancePlanId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(insurancePlanId, fieldData);
+            _insurancePlanId.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_insurancePlanId, fieldData);
         }
 
-        return insurancePlanId;
+        return _insurancePlanId;
     } 
 }
 
-internal HL7V21Field insuranceAmount;
+internal HL7V21Field _insuranceAmount;
 
 public HL7V21Field InsuranceAmount
 {
     get
     {
-        if (insuranceAmount != null)
+        if (_insuranceAmount != null)
         {
-            return insuranceAmount;
+            return _insuranceAmount;
         }
 
-        insuranceAmount = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][15],
             Id = @"FT1.15",
             Type = @"Field",
             Position = @"FT1.15",
@@ -1036,34 +686,38 @@ public HL7V21Field InsuranceAmount
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _insuranceAmount = new HL7V21Field
+        {
+            field = message[@"FT1"][15],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (insuranceAmount.field.FieldRepetitions != null && insuranceAmount.field.FieldRepetitions.Count > 0)
+        if (_insuranceAmount.field.FieldRepetitions != null && _insuranceAmount.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(insuranceAmount.Id));
-            insuranceAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(insuranceAmount, fieldData);
+            _insuranceAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_insuranceAmount, fieldData);
         }
 
-        return insuranceAmount;
+        return _insuranceAmount;
     } 
 }
 
-internal HL7V21Field patientLocation;
+internal HL7V21Field _patientLocation;
 
 public HL7V21Field PatientLocation
 {
     get
     {
-        if (patientLocation != null)
+        if (_patientLocation != null)
         {
-            return patientLocation;
+            return _patientLocation;
         }
 
-        patientLocation = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][16],
             Id = @"FT1.16",
             Type = @"Field",
             Position = @"FT1.16",
@@ -1077,34 +731,38 @@ public HL7V21Field PatientLocation
             TableName = @"LOCATION",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _patientLocation = new HL7V21Field
+        {
+            field = message[@"FT1"][16],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientLocation.field.FieldRepetitions != null && patientLocation.field.FieldRepetitions.Count > 0)
+        if (_patientLocation.field.FieldRepetitions != null && _patientLocation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientLocation.Id));
-            patientLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(patientLocation, fieldData);
+            _patientLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_patientLocation, fieldData);
         }
 
-        return patientLocation;
+        return _patientLocation;
     } 
 }
 
-internal HL7V21Field feeSchedule;
+internal HL7V21Field _feeSchedule;
 
 public HL7V21Field FeeSchedule
 {
     get
     {
-        if (feeSchedule != null)
+        if (_feeSchedule != null)
         {
-            return feeSchedule;
+            return _feeSchedule;
         }
 
-        feeSchedule = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][17],
             Id = @"FT1.17",
             Type = @"Field",
             Position = @"FT1.17",
@@ -1118,34 +776,38 @@ public HL7V21Field FeeSchedule
             TableName = @"FEE SCHEDULE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _feeSchedule = new HL7V21Field
+        {
+            field = message[@"FT1"][17],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (feeSchedule.field.FieldRepetitions != null && feeSchedule.field.FieldRepetitions.Count > 0)
+        if (_feeSchedule.field.FieldRepetitions != null && _feeSchedule.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(feeSchedule.Id));
-            feeSchedule.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(feeSchedule, fieldData);
+            _feeSchedule.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_feeSchedule, fieldData);
         }
 
-        return feeSchedule;
+        return _feeSchedule;
     } 
 }
 
-internal HL7V21Field patientType;
+internal HL7V21Field _patientType;
 
 public HL7V21Field PatientType
 {
     get
     {
-        if (patientType != null)
+        if (_patientType != null)
         {
-            return patientType;
+            return _patientType;
         }
 
-        patientType = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][18],
             Id = @"FT1.18",
             Type = @"Field",
             Position = @"FT1.18",
@@ -1159,34 +821,38 @@ public HL7V21Field PatientType
             TableName = @"PATIENT TYPE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _patientType = new HL7V21Field
+        {
+            field = message[@"FT1"][18],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientType.field.FieldRepetitions != null && patientType.field.FieldRepetitions.Count > 0)
+        if (_patientType.field.FieldRepetitions != null && _patientType.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientType.Id));
-            patientType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(patientType, fieldData);
+            _patientType.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_patientType, fieldData);
         }
 
-        return patientType;
+        return _patientType;
     } 
 }
 
-internal HL7V21Field diagnosisCode;
+internal HL7V21Field _diagnosisCode;
 
 public HL7V21Field DiagnosisCode
 {
     get
     {
-        if (diagnosisCode != null)
+        if (_diagnosisCode != null)
         {
-            return diagnosisCode;
+            return _diagnosisCode;
         }
 
-        diagnosisCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][19],
             Id = @"FT1.19",
             Type = @"Field",
             Position = @"FT1.19",
@@ -1200,34 +866,38 @@ public HL7V21Field DiagnosisCode
             TableName = @"DIAGNOSIS CODE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _diagnosisCode = new HL7V21Field
+        {
+            field = message[@"FT1"][19],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (diagnosisCode.field.FieldRepetitions != null && diagnosisCode.field.FieldRepetitions.Count > 0)
+        if (_diagnosisCode.field.FieldRepetitions != null && _diagnosisCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosisCode.Id));
-            diagnosisCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(diagnosisCode, fieldData);
+            _diagnosisCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_diagnosisCode, fieldData);
         }
 
-        return diagnosisCode;
+        return _diagnosisCode;
     } 
 }
 
-internal HL7V21Field performedByCode;
+internal HL7V21Field _performedByCode;
 
 public HL7V21Field PerformedByCode
 {
     get
     {
-        if (performedByCode != null)
+        if (_performedByCode != null)
         {
-            return performedByCode;
+            return _performedByCode;
         }
 
-        performedByCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][20],
             Id = @"FT1.20",
             Type = @"Field",
             Position = @"FT1.20",
@@ -1241,34 +911,38 @@ public HL7V21Field PerformedByCode
             TableName = @"PERFORMED BY CODE",
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _performedByCode = new HL7V21Field
+        {
+            field = message[@"FT1"][20],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (performedByCode.field.FieldRepetitions != null && performedByCode.field.FieldRepetitions.Count > 0)
+        if (_performedByCode.field.FieldRepetitions != null && _performedByCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(performedByCode.Id));
-            performedByCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(performedByCode, fieldData);
+            _performedByCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_performedByCode, fieldData);
         }
 
-        return performedByCode;
+        return _performedByCode;
     } 
 }
 
-internal HL7V21Field orderedByCode;
+internal HL7V21Field _orderedByCode;
 
 public HL7V21Field OrderedByCode
 {
     get
     {
-        if (orderedByCode != null)
+        if (_orderedByCode != null)
         {
-            return orderedByCode;
+            return _orderedByCode;
         }
 
-        orderedByCode = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][21],
             Id = @"FT1.21",
             Type = @"Field",
             Position = @"FT1.21",
@@ -1282,34 +956,38 @@ public HL7V21Field OrderedByCode
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _orderedByCode = new HL7V21Field
+        {
+            field = message[@"FT1"][21],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (orderedByCode.field.FieldRepetitions != null && orderedByCode.field.FieldRepetitions.Count > 0)
+        if (_orderedByCode.field.FieldRepetitions != null && _orderedByCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderedByCode.Id));
-            orderedByCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(orderedByCode, fieldData);
+            _orderedByCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_orderedByCode, fieldData);
         }
 
-        return orderedByCode;
+        return _orderedByCode;
     } 
 }
 
-internal HL7V21Field unitCost;
+internal HL7V21Field _unitCost;
 
 public HL7V21Field UnitCost
 {
     get
     {
-        if (unitCost != null)
+        if (_unitCost != null)
         {
-            return unitCost;
+            return _unitCost;
         }
 
-        unitCost = new HL7V21Field
+        var fieldData = new HL7V21FieldData
         {
-            field = message[@"FT1"][22],
             Id = @"FT1.22",
             Type = @"Field",
             Position = @"FT1.22",
@@ -1323,17 +1001,22 @@ public HL7V21Field UnitCost
             TableName = null,
             Description = null,
             Sample = @"",
+            Fields = null
+        }
+
+        _unitCost = new HL7V21Field
+        {
+            field = message[@"FT1"][22],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (unitCost.field.FieldRepetitions != null && unitCost.field.FieldRepetitions.Count > 0)
+        if (_unitCost.field.FieldRepetitions != null && _unitCost.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(unitCost.Id));
-            unitCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(unitCost, fieldData);
+            _unitCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV21FieldRepetitions(_unitCost, fieldData);
         }
 
-        return unitCost;
+        return _unitCost;
     } 
 }
     }

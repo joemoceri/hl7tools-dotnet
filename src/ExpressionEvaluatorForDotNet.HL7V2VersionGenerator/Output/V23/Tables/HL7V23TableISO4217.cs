@@ -1106,6 +1106,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Zimbabwe Dollar",
                             Comment = null
                         },
+                        
                     };
             } 
         }

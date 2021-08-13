@@ -29,30 +29,42 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"RXR.1",
-                            Type = @"Field",
-                            Position = @"RXR.1",
-                            Name = @"Route",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0162",
-                            TableName = @"Route of Administration",
-                            Description = @"This field is the route of administration.
+        public HL7V27SegmentRXR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _route;
+
+public HL7V27Field Route
+{
+    get
+    {
+        if (_route != null)
+        {
+            return _route;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"RXR.1",
+            Type = @"Field",
+            Position = @"RXR.1",
+            Name = @"Route",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0162",
+            TableName = @"Route of Administration",
+            Description = @"This field is the route of administration.
 
 Some current ""route codes,"" such as some of the NDC-derived codes include the site already.  In such cases, the entire code can be included in this field as a ""locally-defined code"" for the CE data type.  Refer to User-Defined Table 0162 - Route of Administration for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXR.1.1",
                             Type = @"Component",
@@ -478,27 +490,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXR.2",
-                            Type = @"Field",
-                            Position = @"RXR.2",
-                            Name = @"Administration Site",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0550",
-                            TableName = @"Body Parts",
-                            Description = @"This field contains the site of the administration route.  When using a post-coordinated code table in this field, RXR-6 Administration Site may be used to modify the meaning of this field.
+                        }
+        }
+
+        _route = new HL7V27Field
+        {
+            field = message[@"RXR"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_route.field.FieldRepetitions != null && _route.field.FieldRepetitions.Count > 0)
+        {
+            _route.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_route, fieldData);
+        }
+
+        return _route;
+    } 
+}
+
+internal HL7V27Field _administrationSite;
+
+public HL7V27Field AdministrationSite
+{
+    get
+    {
+        if (_administrationSite != null)
+        {
+            return _administrationSite;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"RXR.2",
+            Type = @"Field",
+            Position = @"RXR.2",
+            Name = @"Administration Site",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0550",
+            TableName = @"Body Parts",
+            Description = @"This field contains the site of the administration route.  When using a post-coordinated code table in this field, RXR-6 Administration Site may be used to modify the meaning of this field.
 
 Refer to HL7 Table 0550 - Body Parts for valid values.  Other appropriate external code sets (e.g., SNOMED) may also be employed.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXR.2.1",
                             Type = @"Component",
@@ -924,25 +966,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _administrationSite = new HL7V27Field
+        {
+            field = message[@"RXR"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_administrationSite.field.FieldRepetitions != null && _administrationSite.field.FieldRepetitions.Count > 0)
+        {
+            _administrationSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_administrationSite, fieldData);
+        }
+
+        return _administrationSite;
+    } 
+}
+
+internal HL7V27Field _administrationDevice;
+
+public HL7V27Field AdministrationDevice
+{
+    get
+    {
+        if (_administrationDevice != null)
+        {
+            return _administrationDevice;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"RXR.3",
+            Type = @"Field",
+            Position = @"RXR.3",
+            Name = @"Administration Device",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0164",
+            TableName = @"Administration Device",
+            Description = @"This field contains the mechanical device used to aid in the administration of the drug or other treatment.  Common examples are IV-sets of different types.  Refer to User-defined Table 0164 - Administration device for valid entries.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXR.3",
-                            Type = @"Field",
-                            Position = @"RXR.3",
-                            Name = @"Administration Device",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0164",
-                            TableName = @"Administration Device",
-                            Description = @"This field contains the mechanical device used to aid in the administration of the drug or other treatment.  Common examples are IV-sets of different types.  Refer to User-defined Table 0164 - Administration device for valid entries.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXR.3.1",
                             Type = @"Component",
@@ -1368,25 +1440,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _administrationDevice = new HL7V27Field
+        {
+            field = message[@"RXR"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_administrationDevice.field.FieldRepetitions != null && _administrationDevice.field.FieldRepetitions.Count > 0)
+        {
+            _administrationDevice.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_administrationDevice, fieldData);
+        }
+
+        return _administrationDevice;
+    } 
+}
+
+internal HL7V27Field _administrationMethod;
+
+public HL7V27Field AdministrationMethod
+{
+    get
+    {
+        if (_administrationMethod != null)
+        {
+            return _administrationMethod;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"RXR.4",
+            Type = @"Field",
+            Position = @"RXR.4",
+            Name = @"Administration Method",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0165",
+            TableName = @"Administration Method",
+            Description = @"This field identifies the specific method requested for the administration of the drug or treatment to the patient.  Refer To User-defined Table 0165 - Administration Method for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXR.4",
-                            Type = @"Field",
-                            Position = @"RXR.4",
-                            Name = @"Administration Method",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0165",
-                            TableName = @"Administration Method",
-                            Description = @"This field identifies the specific method requested for the administration of the drug or treatment to the patient.  Refer To User-defined Table 0165 - Administration Method for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXR.4.1",
                             Type = @"Component",
@@ -1812,25 +1914,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _administrationMethod = new HL7V27Field
+        {
+            field = message[@"RXR"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_administrationMethod.field.FieldRepetitions != null && _administrationMethod.field.FieldRepetitions.Count > 0)
+        {
+            _administrationMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_administrationMethod, fieldData);
+        }
+
+        return _administrationMethod;
+    } 
+}
+
+internal HL7V27Field _routingInstruction;
+
+public HL7V27Field RoutingInstruction
+{
+    get
+    {
+        if (_routingInstruction != null)
+        {
+            return _routingInstruction;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"RXR.5",
+            Type = @"Field",
+            Position = @"RXR.5",
+            Name = @"Routing Instruction",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field provides instruction on administration routing, especially in cases where more than one route of administration is possible. A typical case would be designating which IV line should be used when more than one IV line is a possible route for injection.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXR.5",
-                            Type = @"Field",
-                            Position = @"RXR.5",
-                            Name = @"Routing Instruction",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field provides instruction on administration routing, especially in cases where more than one route of administration is possible. A typical case would be designating which IV line should be used when more than one IV line is a possible route for injection.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXR.5.1",
                             Type = @"Component",
@@ -2256,29 +2388,59 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXR.6",
-                            Type = @"Field",
-                            Position = @"RXR.6",
-                            Name = @"Administration Site Modifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0495",
-                            TableName = @"Body Site Modifier",
-                            Description = @"This field contains a modifier which modifies the meaning of RXR-2 Administration Site.
+                        }
+        }
+
+        _routingInstruction = new HL7V27Field
+        {
+            field = message[@"RXR"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_routingInstruction.field.FieldRepetitions != null && _routingInstruction.field.FieldRepetitions.Count > 0)
+        {
+            _routingInstruction.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_routingInstruction, fieldData);
+        }
+
+        return _routingInstruction;
+    } 
+}
+
+internal HL7V27Field _administrationSiteModifier;
+
+public HL7V27Field AdministrationSiteModifier
+{
+    get
+    {
+        if (_administrationSiteModifier != null)
+        {
+            return _administrationSiteModifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"RXR.6",
+            Type = @"Field",
+            Position = @"RXR.6",
+            Name = @"Administration Site Modifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0495",
+            TableName = @"Body Site Modifier",
+            Description = @"This field contains a modifier which modifies the meaning of RXR-2 Administration Site.
 
 The code table used in this field is dependent upon the code table used in RXR-2 Administration site.  If RXR-2 employs HL7 Table 0550 - Body Parts, then this field may only be populated with values from HL7 Table 0495 - Body Parts Modifier.  In the case of other code sets (e.g., SNOMED) in RXR-2, RXR-6 may only be populated if modifiers are defined within, or related to, that code set.
 
 Condition Rule: This field may only be populated if RXR-2 Administration Site is populated.  This field is not required if RXR-2 is populated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXR.6.1",
                             Type = @"Component",
@@ -2704,268 +2866,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentRXR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field route;
-
-public HL7V27Field Route
-{
-    get
-    {
-        if (route != null)
-        {
-            return route;
-        }
-
-        route = new HL7V27Field
-        {
-            field = message[@"RXR"][1],
-            Id = @"RXR.1",
-            Type = @"Field",
-            Position = @"RXR.1",
-            Name = @"Route",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0162",
-            TableName = @"Route of Administration",
-            Description = @"This field is the route of administration.
-
-Some current ""route codes,"" such as some of the NDC-derived codes include the site already.  In such cases, the entire code can be included in this field as a ""locally-defined code"" for the CE data type.  Refer to User-Defined Table 0162 - Route of Administration for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (route.field.FieldRepetitions != null && route.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(route.Id));
-            route.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(route, fieldData);
-        }
-
-        return route;
-    } 
-}
-
-internal HL7V27Field administrationSite;
-
-public HL7V27Field AdministrationSite
-{
-    get
-    {
-        if (administrationSite != null)
-        {
-            return administrationSite;
-        }
-
-        administrationSite = new HL7V27Field
-        {
-            field = message[@"RXR"][2],
-            Id = @"RXR.2",
-            Type = @"Field",
-            Position = @"RXR.2",
-            Name = @"Administration Site",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0550",
-            TableName = @"Body Parts",
-            Description = @"This field contains the site of the administration route.  When using a post-coordinated code table in this field, RXR-6 Administration Site may be used to modify the meaning of this field.
-
-Refer to HL7 Table 0550 - Body Parts for valid values.  Other appropriate external code sets (e.g., SNOMED) may also be employed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (administrationSite.field.FieldRepetitions != null && administrationSite.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(administrationSite.Id));
-            administrationSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(administrationSite, fieldData);
-        }
-
-        return administrationSite;
-    } 
-}
-
-internal HL7V27Field administrationDevice;
-
-public HL7V27Field AdministrationDevice
-{
-    get
-    {
-        if (administrationDevice != null)
-        {
-            return administrationDevice;
-        }
-
-        administrationDevice = new HL7V27Field
-        {
-            field = message[@"RXR"][3],
-            Id = @"RXR.3",
-            Type = @"Field",
-            Position = @"RXR.3",
-            Name = @"Administration Device",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0164",
-            TableName = @"Administration Device",
-            Description = @"This field contains the mechanical device used to aid in the administration of the drug or other treatment.  Common examples are IV-sets of different types.  Refer to User-defined Table 0164 - Administration device for valid entries.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (administrationDevice.field.FieldRepetitions != null && administrationDevice.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(administrationDevice.Id));
-            administrationDevice.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(administrationDevice, fieldData);
-        }
-
-        return administrationDevice;
-    } 
-}
-
-internal HL7V27Field administrationMethod;
-
-public HL7V27Field AdministrationMethod
-{
-    get
-    {
-        if (administrationMethod != null)
-        {
-            return administrationMethod;
-        }
-
-        administrationMethod = new HL7V27Field
-        {
-            field = message[@"RXR"][4],
-            Id = @"RXR.4",
-            Type = @"Field",
-            Position = @"RXR.4",
-            Name = @"Administration Method",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0165",
-            TableName = @"Administration Method",
-            Description = @"This field identifies the specific method requested for the administration of the drug or treatment to the patient.  Refer To User-defined Table 0165 - Administration Method for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (administrationMethod.field.FieldRepetitions != null && administrationMethod.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(administrationMethod.Id));
-            administrationMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(administrationMethod, fieldData);
-        }
-
-        return administrationMethod;
-    } 
-}
-
-internal HL7V27Field routingInstruction;
-
-public HL7V27Field RoutingInstruction
-{
-    get
-    {
-        if (routingInstruction != null)
-        {
-            return routingInstruction;
-        }
-
-        routingInstruction = new HL7V27Field
-        {
-            field = message[@"RXR"][5],
-            Id = @"RXR.5",
-            Type = @"Field",
-            Position = @"RXR.5",
-            Name = @"Routing Instruction",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field provides instruction on administration routing, especially in cases where more than one route of administration is possible. A typical case would be designating which IV line should be used when more than one IV line is a possible route for injection.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (routingInstruction.field.FieldRepetitions != null && routingInstruction.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(routingInstruction.Id));
-            routingInstruction.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(routingInstruction, fieldData);
-        }
-
-        return routingInstruction;
-    } 
-}
-
-internal HL7V27Field administrationSiteModifier;
-
-public HL7V27Field AdministrationSiteModifier
-{
-    get
-    {
-        if (administrationSiteModifier != null)
-        {
-            return administrationSiteModifier;
-        }
-
-        administrationSiteModifier = new HL7V27Field
+        _administrationSiteModifier = new HL7V27Field
         {
             field = message[@"RXR"][6],
-            Id = @"RXR.6",
-            Type = @"Field",
-            Position = @"RXR.6",
-            Name = @"Administration Site Modifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0495",
-            TableName = @"Body Site Modifier",
-            Description = @"This field contains a modifier which modifies the meaning of RXR-2 Administration Site.
-
-The code table used in this field is dependent upon the code table used in RXR-2 Administration site.  If RXR-2 employs HL7 Table 0550 - Body Parts, then this field may only be populated with values from HL7 Table 0495 - Body Parts Modifier.  In the case of other code sets (e.g., SNOMED) in RXR-2, RXR-6 may only be populated if modifiers are defined within, or related to, that code set.
-
-Condition Rule: This field may only be populated if RXR-2 Administration Site is populated.  This field is not required if RXR-2 is populated.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (administrationSiteModifier.field.FieldRepetitions != null && administrationSiteModifier.field.FieldRepetitions.Count > 0)
+        if (_administrationSiteModifier.field.FieldRepetitions != null && _administrationSiteModifier.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(administrationSiteModifier.Id));
-            administrationSiteModifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(administrationSiteModifier, fieldData);
+            _administrationSiteModifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_administrationSiteModifier, fieldData);
         }
 
-        return administrationSiteModifier;
+        return _administrationSiteModifier;
     } 
 }
     }

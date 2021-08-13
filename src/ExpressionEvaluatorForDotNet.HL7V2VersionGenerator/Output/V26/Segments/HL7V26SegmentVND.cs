@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentVND(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _setIdVND;
+
+public HL7V26Field SetIdVND
+{
+    get
+    {
+        if (_setIdVND != null)
+        {
+            return _setIdVND;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"VND.1",
+            Type = @"Field",
+            Position = @"VND.1",
+            Name = @"Set Id – VND",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a sequential number that identifies this segment within a given PURCHASING_VENDOR segment group. For the first occurrence of the segment in a given group, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdVND = new HL7V26Field
+        {
+            field = message[@"VND"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdVND.field.FieldRepetitions != null && _setIdVND.field.FieldRepetitions.Count > 0)
+        {
+            _setIdVND.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_setIdVND, fieldData);
+        }
+
+        return _setIdVND;
+    } 
+}
+
+internal HL7V26Field _vendorIdentifier;
+
+public HL7V26Field VendorIdentifier
+{
+    get
+    {
+        if (_vendorIdentifier != null)
+        {
+            return _vendorIdentifier;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"VND.2",
+            Type = @"Field",
+            Position = @"VND.2",
+            Name = @"Vendor Identifier",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identifier of the vendor in the system.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"VND.1",
-                            Type = @"Field",
-                            Position = @"VND.1",
-                            Name = @"Set Id – VND",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a sequential number that identifies this segment within a given PURCHASING_VENDOR segment group. For the first occurrence of the segment in a given group, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"VND.2",
-                            Type = @"Field",
-                            Position = @"VND.2",
-                            Name = @"Vendor Identifier",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the identifier of the vendor in the system.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"VND.2.1",
                             Type = @"Component",
@@ -138,43 +177,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _vendorIdentifier = new HL7V26Field
+        {
+            field = message[@"VND"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_vendorIdentifier.field.FieldRepetitions != null && _vendorIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _vendorIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_vendorIdentifier, fieldData);
+        }
+
+        return _vendorIdentifier;
+    } 
+}
+
+internal HL7V26Field _vendorName;
+
+public HL7V26Field VendorName
+{
+    get
+    {
+        if (_vendorName != null)
+        {
+            return _vendorName;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"VND.3",
+            Type = @"Field",
+            Position = @"VND.3",
+            Name = @"Vendor Name",
+            Length = 999,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the vendor identified in VND-2.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _vendorName = new HL7V26Field
+        {
+            field = message[@"VND"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_vendorName.field.FieldRepetitions != null && _vendorName.field.FieldRepetitions.Count > 0)
+        {
+            _vendorName.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_vendorName, fieldData);
+        }
+
+        return _vendorName;
+    } 
+}
+
+internal HL7V26Field _vendorCatalogNumber;
+
+public HL7V26Field VendorCatalogNumber
+{
+    get
+    {
+        if (_vendorCatalogNumber != null)
+        {
+            return _vendorCatalogNumber;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"VND.4",
+            Type = @"Field",
+            Position = @"VND.4",
+            Name = @"Vendor Catalog Number",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the catalog number assigned to the item by a purchasing vendor.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"VND.3",
-                            Type = @"Field",
-                            Position = @"VND.3",
-                            Name = @"Vendor Name",
-                            Length = 999,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the vendor identified in VND-2.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"VND.4",
-                            Type = @"Field",
-                            Position = @"VND.4",
-                            Name = @"Vendor Catalog Number",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the catalog number assigned to the item by a purchasing vendor.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"VND.4.1",
                             Type = @"Component",
@@ -244,25 +340,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _vendorCatalogNumber = new HL7V26Field
+        {
+            field = message[@"VND"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_vendorCatalogNumber.field.FieldRepetitions != null && _vendorCatalogNumber.field.FieldRepetitions.Count > 0)
+        {
+            _vendorCatalogNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_vendorCatalogNumber, fieldData);
+        }
+
+        return _vendorCatalogNumber;
+    } 
+}
+
+internal HL7V26Field _primaryVendorIndicator;
+
+public HL7V26Field PrimaryVendorIndicator
+{
+    get
+    {
+        if (_primaryVendorIndicator != null)
+        {
+            return _primaryVendorIndicator;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"VND.5",
+            Type = @"Field",
+            Position = @"VND.5",
+            Name = @"Primary Vendor Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded with No Exceptions",
+            TableId = @"0532",
+            TableName = @"Expanded yes/no indicator",
+            Description = @"This field contains an indicator to communicate whether this purchasing vendor is the primary vendor used to place orders for inventory supply item. Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"VND.5",
-                            Type = @"Field",
-                            Position = @"VND.5",
-                            Name = @"Primary Vendor Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded with No Exceptions",
-                            TableId = @"0532",
-                            TableName = @"Expanded yes/no indicator",
-                            Description = @"This field contains an indicator to communicate whether this purchasing vendor is the primary vendor used to place orders for inventory supply item. Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"VND.5.1",
                             Type = @"Component",
@@ -422,219 +548,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentVND(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field setIdVND;
-
-public HL7V26Field SetIdVND
-{
-    get
-    {
-        if (setIdVND != null)
-        {
-            return setIdVND;
-        }
-
-        setIdVND = new HL7V26Field
-        {
-            field = message[@"VND"][1],
-            Id = @"VND.1",
-            Type = @"Field",
-            Position = @"VND.1",
-            Name = @"Set Id – VND",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a sequential number that identifies this segment within a given PURCHASING_VENDOR segment group. For the first occurrence of the segment in a given group, the sequence number shall be one; for the second occurrence, the sequence number shall be two; etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdVND.field.FieldRepetitions != null && setIdVND.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdVND.Id));
-            setIdVND.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(setIdVND, fieldData);
-        }
-
-        return setIdVND;
-    } 
-}
-
-internal HL7V26Field vendorIdentifier;
-
-public HL7V26Field VendorIdentifier
-{
-    get
-    {
-        if (vendorIdentifier != null)
-        {
-            return vendorIdentifier;
-        }
-
-        vendorIdentifier = new HL7V26Field
-        {
-            field = message[@"VND"][2],
-            Id = @"VND.2",
-            Type = @"Field",
-            Position = @"VND.2",
-            Name = @"Vendor Identifier",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the identifier of the vendor in the system.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (vendorIdentifier.field.FieldRepetitions != null && vendorIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(vendorIdentifier.Id));
-            vendorIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(vendorIdentifier, fieldData);
-        }
-
-        return vendorIdentifier;
-    } 
-}
-
-internal HL7V26Field vendorName;
-
-public HL7V26Field VendorName
-{
-    get
-    {
-        if (vendorName != null)
-        {
-            return vendorName;
-        }
-
-        vendorName = new HL7V26Field
-        {
-            field = message[@"VND"][3],
-            Id = @"VND.3",
-            Type = @"Field",
-            Position = @"VND.3",
-            Name = @"Vendor Name",
-            Length = 999,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the vendor identified in VND-2.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (vendorName.field.FieldRepetitions != null && vendorName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(vendorName.Id));
-            vendorName.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(vendorName, fieldData);
-        }
-
-        return vendorName;
-    } 
-}
-
-internal HL7V26Field vendorCatalogNumber;
-
-public HL7V26Field VendorCatalogNumber
-{
-    get
-    {
-        if (vendorCatalogNumber != null)
-        {
-            return vendorCatalogNumber;
-        }
-
-        vendorCatalogNumber = new HL7V26Field
-        {
-            field = message[@"VND"][4],
-            Id = @"VND.4",
-            Type = @"Field",
-            Position = @"VND.4",
-            Name = @"Vendor Catalog Number",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the catalog number assigned to the item by a purchasing vendor.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (vendorCatalogNumber.field.FieldRepetitions != null && vendorCatalogNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(vendorCatalogNumber.Id));
-            vendorCatalogNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(vendorCatalogNumber, fieldData);
-        }
-
-        return vendorCatalogNumber;
-    } 
-}
-
-internal HL7V26Field primaryVendorIndicator;
-
-public HL7V26Field PrimaryVendorIndicator
-{
-    get
-    {
-        if (primaryVendorIndicator != null)
-        {
-            return primaryVendorIndicator;
-        }
-
-        primaryVendorIndicator = new HL7V26Field
+        _primaryVendorIndicator = new HL7V26Field
         {
             field = message[@"VND"][5],
-            Id = @"VND.5",
-            Type = @"Field",
-            Position = @"VND.5",
-            Name = @"Primary Vendor Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded with No Exceptions",
-            TableId = @"0532",
-            TableName = @"Expanded yes/no indicator",
-            Description = @"This field contains an indicator to communicate whether this purchasing vendor is the primary vendor used to place orders for inventory supply item. Refer to HL7 Table 0532 - Expanded yes/no indicator table in Chapter 2 for valid values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (primaryVendorIndicator.field.FieldRepetitions != null && primaryVendorIndicator.field.FieldRepetitions.Count > 0)
+        if (_primaryVendorIndicator.field.FieldRepetitions != null && _primaryVendorIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryVendorIndicator.Id));
-            primaryVendorIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(primaryVendorIndicator, fieldData);
+            _primaryVendorIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_primaryVendorIndicator, fieldData);
         }
 
-        return primaryVendorIndicator;
+        return _primaryVendorIndicator;
     } 
 }
     }

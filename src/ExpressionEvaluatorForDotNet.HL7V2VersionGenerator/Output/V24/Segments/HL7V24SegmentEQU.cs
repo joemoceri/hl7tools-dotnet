@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentEQU(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _equipmentInstanceIdentifier;
+
+public HL7V24Field EquipmentInstanceIdentifier
+{
+    get
+    {
+        if (_equipmentInstanceIdentifier != null)
+        {
+            return _equipmentInstanceIdentifier;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"EQU.1",
+            Type = @"Field",
+            Position = @"EQU.1",
+            Name = @"Equipment Instance Identifier",
+            Length = 22,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"EI",
+            DataTypeName = @"Entity Identifier",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"EQU.1",
-                            Type = @"Field",
-                            Position = @"EQU.1",
-                            Name = @"Equipment Instance Identifier",
-                            Length = 22,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"EI",
-                            DataTypeName = @"Entity Identifier",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"EQU.1.1",
                             Type = @"Component",
@@ -120,25 +132,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"This component governs the interpretation of the second component of the HD.  If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _equipmentInstanceIdentifier = new HL7V24Field
+        {
+            field = message[@"EQU"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_equipmentInstanceIdentifier.field.FieldRepetitions != null && _equipmentInstanceIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _equipmentInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_equipmentInstanceIdentifier, fieldData);
+        }
+
+        return _equipmentInstanceIdentifier;
+    } 
+}
+
+internal HL7V24Field _eventDateTime;
+
+public HL7V24Field EventDateTime
+{
+    get
+    {
+        if (_eventDateTime != null)
+        {
+            return _eventDateTime;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"EQU.2",
+            Type = @"Field",
+            Position = @"EQU.2",
+            Name = @"Event Date/Time",
+            Length = 26,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EQU.2",
-                            Type = @"Field",
-                            Position = @"EQU.2",
-                            Name = @"Event Date/Time",
-                            Length = 26,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EQU.2.1",
                             Type = @"Component",
@@ -172,25 +214,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _eventDateTime = new HL7V24Field
+        {
+            field = message[@"EQU"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventDateTime.field.FieldRepetitions != null && _eventDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _eventDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_eventDateTime, fieldData);
+        }
+
+        return _eventDateTime;
+    } 
+}
+
+internal HL7V24Field _equipmentState;
+
+public HL7V24Field EquipmentState
+{
+    get
+    {
+        if (_equipmentState != null)
+        {
+            return _equipmentState;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"EQU.3",
+            Type = @"Field",
+            Position = @"EQU.3",
+            Name = @"Equipment State",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0365",
+            TableName = @"Equipment state",
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EQU.3",
-                            Type = @"Field",
-                            Position = @"EQU.3",
-                            Name = @"Equipment State",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0365",
-                            TableName = @"Equipment state",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EQU.3.1",
                             Type = @"Component",
@@ -300,25 +372,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _equipmentState = new HL7V24Field
+        {
+            field = message[@"EQU"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_equipmentState.field.FieldRepetitions != null && _equipmentState.field.FieldRepetitions.Count > 0)
+        {
+            _equipmentState.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_equipmentState, fieldData);
+        }
+
+        return _equipmentState;
+    } 
+}
+
+internal HL7V24Field _localRemoteControlState;
+
+public HL7V24Field LocalRemoteControlState
+{
+    get
+    {
+        if (_localRemoteControlState != null)
+        {
+            return _localRemoteControlState;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"EQU.4",
+            Type = @"Field",
+            Position = @"EQU.4",
+            Name = @"Local/Remote Control State",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0366",
+            TableName = @"Local/remote control state",
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EQU.4",
-                            Type = @"Field",
-                            Position = @"EQU.4",
-                            Name = @"Local/Remote Control State",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0366",
-                            TableName = @"Local/remote control state",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EQU.4.1",
                             Type = @"Component",
@@ -428,25 +530,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _localRemoteControlState = new HL7V24Field
+        {
+            field = message[@"EQU"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_localRemoteControlState.field.FieldRepetitions != null && _localRemoteControlState.field.FieldRepetitions.Count > 0)
+        {
+            _localRemoteControlState.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_localRemoteControlState, fieldData);
+        }
+
+        return _localRemoteControlState;
+    } 
+}
+
+internal HL7V24Field _alertLevel;
+
+public HL7V24Field AlertLevel
+{
+    get
+    {
+        if (_alertLevel != null)
+        {
+            return _alertLevel;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"EQU.5",
+            Type = @"Field",
+            Position = @"EQU.5",
+            Name = @"Alert Level",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0367",
+            TableName = @"Alert level",
+            Description = null,
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EQU.5",
-                            Type = @"Field",
-                            Position = @"EQU.5",
-                            Name = @"Alert Level",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0367",
-                            TableName = @"Alert level",
-                            Description = null,
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EQU.5.1",
                             Type = @"Component",
@@ -556,219 +688,23 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentEQU(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field equipmentInstanceIdentifier;
-
-public HL7V24Field EquipmentInstanceIdentifier
-{
-    get
-    {
-        if (equipmentInstanceIdentifier != null)
-        {
-            return equipmentInstanceIdentifier;
-        }
-
-        equipmentInstanceIdentifier = new HL7V24Field
-        {
-            field = message[@"EQU"][1],
-            Id = @"EQU.1",
-            Type = @"Field",
-            Position = @"EQU.1",
-            Name = @"Equipment Instance Identifier",
-            Length = 22,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"EI",
-            DataTypeName = @"Entity Identifier",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (equipmentInstanceIdentifier.field.FieldRepetitions != null && equipmentInstanceIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(equipmentInstanceIdentifier.Id));
-            equipmentInstanceIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(equipmentInstanceIdentifier, fieldData);
-        }
-
-        return equipmentInstanceIdentifier;
-    } 
-}
-
-internal HL7V24Field eventDateTime;
-
-public HL7V24Field EventDateTime
-{
-    get
-    {
-        if (eventDateTime != null)
-        {
-            return eventDateTime;
-        }
-
-        eventDateTime = new HL7V24Field
-        {
-            field = message[@"EQU"][2],
-            Id = @"EQU.2",
-            Type = @"Field",
-            Position = @"EQU.2",
-            Name = @"Event Date/Time",
-            Length = 26,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventDateTime.field.FieldRepetitions != null && eventDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventDateTime.Id));
-            eventDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(eventDateTime, fieldData);
-        }
-
-        return eventDateTime;
-    } 
-}
-
-internal HL7V24Field equipmentState;
-
-public HL7V24Field EquipmentState
-{
-    get
-    {
-        if (equipmentState != null)
-        {
-            return equipmentState;
-        }
-
-        equipmentState = new HL7V24Field
-        {
-            field = message[@"EQU"][3],
-            Id = @"EQU.3",
-            Type = @"Field",
-            Position = @"EQU.3",
-            Name = @"Equipment State",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0365",
-            TableName = @"Equipment state",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (equipmentState.field.FieldRepetitions != null && equipmentState.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(equipmentState.Id));
-            equipmentState.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(equipmentState, fieldData);
-        }
-
-        return equipmentState;
-    } 
-}
-
-internal HL7V24Field localRemoteControlState;
-
-public HL7V24Field LocalRemoteControlState
-{
-    get
-    {
-        if (localRemoteControlState != null)
-        {
-            return localRemoteControlState;
-        }
-
-        localRemoteControlState = new HL7V24Field
-        {
-            field = message[@"EQU"][4],
-            Id = @"EQU.4",
-            Type = @"Field",
-            Position = @"EQU.4",
-            Name = @"Local/Remote Control State",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0366",
-            TableName = @"Local/remote control state",
-            Description = null,
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (localRemoteControlState.field.FieldRepetitions != null && localRemoteControlState.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(localRemoteControlState.Id));
-            localRemoteControlState.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(localRemoteControlState, fieldData);
-        }
-
-        return localRemoteControlState;
-    } 
-}
-
-internal HL7V24Field alertLevel;
-
-public HL7V24Field AlertLevel
-{
-    get
-    {
-        if (alertLevel != null)
-        {
-            return alertLevel;
-        }
-
-        alertLevel = new HL7V24Field
+        _alertLevel = new HL7V24Field
         {
             field = message[@"EQU"][5],
-            Id = @"EQU.5",
-            Type = @"Field",
-            Position = @"EQU.5",
-            Name = @"Alert Level",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0367",
-            TableName = @"Alert level",
-            Description = null,
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (alertLevel.field.FieldRepetitions != null && alertLevel.field.FieldRepetitions.Count > 0)
+        if (_alertLevel.field.FieldRepetitions != null && _alertLevel.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(alertLevel.Id));
-            alertLevel.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(alertLevel, fieldData);
+            _alertLevel.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_alertLevel, fieldData);
         }
 
-        return alertLevel;
+        return _alertLevel;
     } 
 }
     }

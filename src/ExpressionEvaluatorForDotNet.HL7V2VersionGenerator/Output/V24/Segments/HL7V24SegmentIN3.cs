@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentIN3(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _setIDIN3;
+
+public HL7V24Field SetIDIN3
+{
+    get
+    {
+        if (_setIDIN3 != null)
+        {
+            return _setIDIN3;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.1",
+            Type = @"Field",
+            Position = @"IN3.1",
+            Name = @"Set ID - IN3",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"IN3-1 - Set ID - IN3 contains the number that identifies this transaction.  For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.  The set ID in the IN3 segment is used when there are multiple certifications for the insurance plan identified in IN1-2.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDIN3 = new HL7V24Field
+        {
+            field = message[@"IN3"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDIN3.field.FieldRepetitions != null && _setIDIN3.field.FieldRepetitions.Count > 0)
+        {
+            _setIDIN3.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_setIDIN3, fieldData);
+        }
+
+        return _setIDIN3;
+    } 
+}
+
+internal HL7V24Field _certificationNumber;
+
+public HL7V24Field CertificationNumber
+{
+    get
+    {
+        if (_certificationNumber != null)
+        {
+            return _certificationNumber;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.2",
+            Type = @"Field",
+            Position = @"IN3.2",
+            Name = @"Certification Number",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID With Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number assigned by the certification agency.  The assigning authority and identifier type code are strongly recommended for all CX data types",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"IN3.1",
-                            Type = @"Field",
-                            Position = @"IN3.1",
-                            Name = @"Set ID - IN3",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"IN3-1 - Set ID - IN3 contains the number that identifies this transaction.  For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.  The set ID in the IN3 segment is used when there are multiple certifications for the insurance plan identified in IN1-2.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IN3.2",
-                            Type = @"Field",
-                            Position = @"IN3.2",
-                            Name = @"Certification Number",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID With Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number assigned by the certification agency.  The assigning authority and identifier type code are strongly recommended for all CX data types",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"IN3.2.1",
                             Type = @"Component",
@@ -314,25 +353,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The last date, if known, on which the identifier is valid and active.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _certificationNumber = new HL7V24Field
+        {
+            field = message[@"IN3"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_certificationNumber.field.FieldRepetitions != null && _certificationNumber.field.FieldRepetitions.Count > 0)
+        {
+            _certificationNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_certificationNumber, fieldData);
+        }
+
+        return _certificationNumber;
+    } 
+}
+
+internal HL7V24Field _certifiedBy;
+
+public HL7V24Field CertifiedBy
+{
+    get
+    {
+        if (_certifiedBy != null)
+        {
+            return _certifiedBy;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.3",
+            Type = @"Field",
+            Position = @"IN3.3",
+            Name = @"Certified By",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the party that approved the certification.  Multiple names and identifiers for the same person may be sent in this sequence.  The legal name is assumed to be in the first repetition. When the legal name is not sent, a repeat delimiter must be sent first for the first repetition",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.3",
-                            Type = @"Field",
-                            Position = @"IN3.3",
-                            Name = @"Certified By",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the party that approved the certification.  Multiple names and identifiers for the same person may be sent in this sequence.  The legal name is assumed to be in the first repetition. When the legal name is not sent, a repeat delimiter must be sent first for the first repetition",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.3.1",
                             Type = @"Component",
@@ -1058,43 +1127,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 Table 0444 - Name assembly orde r for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _certifiedBy = new HL7V24Field
+        {
+            field = message[@"IN3"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_certifiedBy.field.FieldRepetitions != null && _certifiedBy.field.FieldRepetitions.Count > 0)
+        {
+            _certifiedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_certifiedBy, fieldData);
+        }
+
+        return _certifiedBy;
+    } 
+}
+
+internal HL7V24Field _certificationRequired;
+
+public HL7V24Field CertificationRequired
+{
+    get
+    {
+        if (_certificationRequired != null)
+        {
+            return _certificationRequired;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.4",
+            Type = @"Field",
+            Position = @"IN3.4",
+            Name = @"Certification Required",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field indicates whether certification is required.  Refer to HL7 table 0136 - Yes/no indicator for valid values",
+            Sample = @"",
+            Fields = null
+        }
+
+        _certificationRequired = new HL7V24Field
+        {
+            field = message[@"IN3"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_certificationRequired.field.FieldRepetitions != null && _certificationRequired.field.FieldRepetitions.Count > 0)
+        {
+            _certificationRequired.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_certificationRequired, fieldData);
+        }
+
+        return _certificationRequired;
+    } 
+}
+
+internal HL7V24Field _penalty;
+
+public HL7V24Field Penalty
+{
+    get
+    {
+        if (_penalty != null)
+        {
+            return _penalty;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.5",
+            Type = @"Field",
+            Position = @"IN3.5",
+            Name = @"Penalty",
+            Length = 10,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"MOP",
+            DataTypeName = @"Money Or Percentage",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the penalty, in dollars or a percentage that will be assessed if the precertification is not performed.  Refer to User-defined Table 0148 - Penalty type for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.4",
-                            Type = @"Field",
-                            Position = @"IN3.4",
-                            Name = @"Certification Required",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates whether certification is required.  Refer to HL7 table 0136 - Yes/no indicator for valid values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IN3.5",
-                            Type = @"Field",
-                            Position = @"IN3.5",
-                            Name = @"Penalty",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"MOP",
-                            DataTypeName = @"Money Or Percentage",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the penalty, in dollars or a percentage that will be assessed if the precertification is not performed.  Refer to User-defined Table 0148 - Penalty type for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.5.1",
                             Type = @"Component",
@@ -1128,25 +1254,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _penalty = new HL7V24Field
+        {
+            field = message[@"IN3"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_penalty.field.FieldRepetitions != null && _penalty.field.FieldRepetitions.Count > 0)
+        {
+            _penalty.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_penalty, fieldData);
+        }
+
+        return _penalty;
+    } 
+}
+
+internal HL7V24Field _certificationDateTime;
+
+public HL7V24Field CertificationDateTime
+{
+    get
+    {
+        if (_certificationDateTime != null)
+        {
+            return _certificationDateTime;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.6",
+            Type = @"Field",
+            Position = @"IN3.6",
+            Name = @"Certification Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time stamp that indicates when insurance was certified to exist for the patient",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.6",
-                            Type = @"Field",
-                            Position = @"IN3.6",
-                            Name = @"Certification Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time stamp that indicates when insurance was certified to exist for the patient",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.6.1",
                             Type = @"Component",
@@ -1180,25 +1336,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _certificationDateTime = new HL7V24Field
+        {
+            field = message[@"IN3"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_certificationDateTime.field.FieldRepetitions != null && _certificationDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _certificationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_certificationDateTime, fieldData);
+        }
+
+        return _certificationDateTime;
+    } 
+}
+
+internal HL7V24Field _certificationModifyDateTime;
+
+public HL7V24Field CertificationModifyDateTime
+{
+    get
+    {
+        if (_certificationModifyDateTime != null)
+        {
+            return _certificationModifyDateTime;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.7",
+            Type = @"Field",
+            Position = @"IN3.7",
+            Name = @"Certification Modify Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time that the certification was modified",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.7",
-                            Type = @"Field",
-                            Position = @"IN3.7",
-                            Name = @"Certification Modify Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time that the certification was modified",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.7.1",
                             Type = @"Component",
@@ -1232,25 +1418,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _certificationModifyDateTime = new HL7V24Field
+        {
+            field = message[@"IN3"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_certificationModifyDateTime.field.FieldRepetitions != null && _certificationModifyDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _certificationModifyDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_certificationModifyDateTime, fieldData);
+        }
+
+        return _certificationModifyDateTime;
+    } 
+}
+
+internal HL7V24Field _operator;
+
+public HL7V24Field Operator
+{
+    get
+    {
+        if (_operator != null)
+        {
+            return _operator;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.8",
+            Type = @"Field",
+            Position = @"IN3.8",
+            Name = @"Operator",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name party who is responsible for sending this certification information. Multiple names for the same person may be sent in this sequence.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.8",
-                            Type = @"Field",
-                            Position = @"IN3.8",
-                            Name = @"Operator",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name party who is responsible for sending this certification information. Multiple names for the same person may be sent in this sequence.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.8.1",
                             Type = @"Component",
@@ -1976,61 +2192,145 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 Table 0444 - Name assembly orde r for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _operator = new HL7V24Field
+        {
+            field = message[@"IN3"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_operator.field.FieldRepetitions != null && _operator.field.FieldRepetitions.Count > 0)
+        {
+            _operator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_operator, fieldData);
+        }
+
+        return _operator;
+    } 
+}
+
+internal HL7V24Field _certificationBeginDate;
+
+public HL7V24Field CertificationBeginDate
+{
+    get
+    {
+        if (_certificationBeginDate != null)
+        {
+            return _certificationBeginDate;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.9",
+            Type = @"Field",
+            Position = @"IN3.9",
+            Name = @"Certification Begin Date",
+            Length = 8,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date that this certification begins",
+            Sample = @"",
+            Fields = null
+        }
+
+        _certificationBeginDate = new HL7V24Field
+        {
+            field = message[@"IN3"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_certificationBeginDate.field.FieldRepetitions != null && _certificationBeginDate.field.FieldRepetitions.Count > 0)
+        {
+            _certificationBeginDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_certificationBeginDate, fieldData);
+        }
+
+        return _certificationBeginDate;
+    } 
+}
+
+internal HL7V24Field _certificationEndDate;
+
+public HL7V24Field CertificationEndDate
+{
+    get
+    {
+        if (_certificationEndDate != null)
+        {
+            return _certificationEndDate;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.10",
+            Type = @"Field",
+            Position = @"IN3.10",
+            Name = @"Certification End Date",
+            Length = 8,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains date that this certification ends",
+            Sample = @"",
+            Fields = null
+        }
+
+        _certificationEndDate = new HL7V24Field
+        {
+            field = message[@"IN3"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_certificationEndDate.field.FieldRepetitions != null && _certificationEndDate.field.FieldRepetitions.Count > 0)
+        {
+            _certificationEndDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_certificationEndDate, fieldData);
+        }
+
+        return _certificationEndDate;
+    } 
+}
+
+internal HL7V24Field _days;
+
+public HL7V24Field Days
+{
+    get
+    {
+        if (_days != null)
+        {
+            return _days;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.11",
+            Type = @"Field",
+            Position = @"IN3.11",
+            Name = @"Days",
+            Length = 3,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTN",
+            DataTypeName = @"Day Type And Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number of days for which this certification is valid.  This field applies to denied, pending, or approved days.  Refer to User-defined Table 0149 - Day type for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.9",
-                            Type = @"Field",
-                            Position = @"IN3.9",
-                            Name = @"Certification Begin Date",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date that this certification begins",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IN3.10",
-                            Type = @"Field",
-                            Position = @"IN3.10",
-                            Name = @"Certification End Date",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains date that this certification ends",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IN3.11",
-                            Type = @"Field",
-                            Position = @"IN3.11",
-                            Name = @"Days",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTN",
-                            DataTypeName = @"Day Type And Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number of days for which this certification is valid.  This field applies to denied, pending, or approved days.  Refer to User-defined Table 0149 - Day type for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.11.1",
                             Type = @"Component",
@@ -2064,25 +2364,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _days = new HL7V24Field
+        {
+            field = message[@"IN3"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_days.field.FieldRepetitions != null && _days.field.FieldRepetitions.Count > 0)
+        {
+            _days.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_days, fieldData);
+        }
+
+        return _days;
+    } 
+}
+
+internal HL7V24Field _nonConcurCodeDescription;
+
+public HL7V24Field NonConcurCodeDescription
+{
+    get
+    {
+        if (_nonConcurCodeDescription != null)
+        {
+            return _nonConcurCodeDescription;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.12",
+            Type = @"Field",
+            Position = @"IN3.12",
+            Name = @"Non-Concur Code/Description",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0233",
+            TableName = @"Non-concur code/description",
+            Description = @"This field contains the non-concur code and description for a denied request. Refer to Userdefined Table 0233 - Non-concur code/description for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.12",
-                            Type = @"Field",
-                            Position = @"IN3.12",
-                            Name = @"Non-Concur Code/Description",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0233",
-                            TableName = @"Non-concur code/description",
-                            Description = @"This field contains the non-concur code and description for a denied request. Refer to Userdefined Table 0233 - Non-concur code/description for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.12.1",
                             Type = @"Component",
@@ -2192,25 +2522,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _nonConcurCodeDescription = new HL7V24Field
+        {
+            field = message[@"IN3"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_nonConcurCodeDescription.field.FieldRepetitions != null && _nonConcurCodeDescription.field.FieldRepetitions.Count > 0)
+        {
+            _nonConcurCodeDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_nonConcurCodeDescription, fieldData);
+        }
+
+        return _nonConcurCodeDescription;
+    } 
+}
+
+internal HL7V24Field _nonConcurEffectiveDateTime;
+
+public HL7V24Field NonConcurEffectiveDateTime
+{
+    get
+    {
+        if (_nonConcurEffectiveDateTime != null)
+        {
+            return _nonConcurEffectiveDateTime;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.13",
+            Type = @"Field",
+            Position = @"IN3.13",
+            Name = @"Non-Concur Effective Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the effective date of the non-concurrence classification",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.13",
-                            Type = @"Field",
-                            Position = @"IN3.13",
-                            Name = @"Non-Concur Effective Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the effective date of the non-concurrence classification",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.13.1",
                             Type = @"Component",
@@ -2244,25 +2604,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _nonConcurEffectiveDateTime = new HL7V24Field
+        {
+            field = message[@"IN3"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_nonConcurEffectiveDateTime.field.FieldRepetitions != null && _nonConcurEffectiveDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _nonConcurEffectiveDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_nonConcurEffectiveDateTime, fieldData);
+        }
+
+        return _nonConcurEffectiveDateTime;
+    } 
+}
+
+internal HL7V24Field _physicianReviewer;
+
+public HL7V24Field PhysicianReviewer
+{
+    get
+    {
+        if (_physicianReviewer != null)
+        {
+            return _physicianReviewer;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.14",
+            Type = @"Field",
+            Position = @"IN3.14",
+            Name = @"Physician Reviewer",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = @"0010",
+            TableName = @"Physician ID",
+            Description = @"This field contains the physician who works with and reviews cases that are pending physician review for the certification agency.  Multiple names for the same person may be sent in this sequence.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.  Refer to User-defined Table 0010 - Physician ID for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.14",
-                            Type = @"Field",
-                            Position = @"IN3.14",
-                            Name = @"Physician Reviewer",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-                            TableId = @"0010",
-                            TableName = @"Physician ID",
-                            Description = @"This field contains the physician who works with and reviews cases that are pending physician review for the certification agency.  Multiple names for the same person may be sent in this sequence.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.  Refer to User-defined Table 0010 - Physician ID for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.14.1",
                             Type = @"Component",
@@ -2988,43 +3378,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 Table 0444 - Name assembly orde r for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _physicianReviewer = new HL7V24Field
+        {
+            field = message[@"IN3"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_physicianReviewer.field.FieldRepetitions != null && _physicianReviewer.field.FieldRepetitions.Count > 0)
+        {
+            _physicianReviewer.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_physicianReviewer, fieldData);
+        }
+
+        return _physicianReviewer;
+    } 
+}
+
+internal HL7V24Field _certificationContact;
+
+public HL7V24Field CertificationContact
+{
+    get
+    {
+        if (_certificationContact != null)
+        {
+            return _certificationContact;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.15",
+            Type = @"Field",
+            Position = @"IN3.15",
+            Name = @"Certification Contact",
+            Length = 48,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the party contacted at the certification agency who granted the certification and communicated the certification number",
+            Sample = @"",
+            Fields = null
+        }
+
+        _certificationContact = new HL7V24Field
+        {
+            field = message[@"IN3"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_certificationContact.field.FieldRepetitions != null && _certificationContact.field.FieldRepetitions.Count > 0)
+        {
+            _certificationContact.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_certificationContact, fieldData);
+        }
+
+        return _certificationContact;
+    } 
+}
+
+internal HL7V24Field _certificationContactPhoneNumber;
+
+public HL7V24Field CertificationContactPhoneNumber
+{
+    get
+    {
+        if (_certificationContactPhoneNumber != null)
+        {
+            return _certificationContactPhoneNumber;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.16",
+            Type = @"Field",
+            Position = @"IN3.16",
+            Name = @"Certification Contact Phone Number",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the phone number of the certification contact. Multiple phone numbers for the same certification contact may be sent in this sequence.  The primary phone number is assumed to be in the first repetition.  When the primary telephone number is not sent, a repeat delimiter must be sent first for the first repetition",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.15",
-                            Type = @"Field",
-                            Position = @"IN3.15",
-                            Name = @"Certification Contact",
-                            Length = 48,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the party contacted at the certification agency who granted the certification and communicated the certification number",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IN3.16",
-                            Type = @"Field",
-                            Position = @"IN3.16",
-                            Name = @"Certification Contact Phone Number",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the phone number of the certification contact. Multiple phone numbers for the same certification contact may be sent in this sequence.  The primary phone number is assumed to be in the first repetition.  When the primary telephone number is not sent, a repeat delimiter must be sent first for the first repetition",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.16.1",
                             Type = @"Component",
@@ -3184,25 +3631,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _certificationContactPhoneNumber = new HL7V24Field
+        {
+            field = message[@"IN3"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_certificationContactPhoneNumber.field.FieldRepetitions != null && _certificationContactPhoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            _certificationContactPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_certificationContactPhoneNumber, fieldData);
+        }
+
+        return _certificationContactPhoneNumber;
+    } 
+}
+
+internal HL7V24Field _appealReason;
+
+public HL7V24Field AppealReason
+{
+    get
+    {
+        if (_appealReason != null)
+        {
+            return _appealReason;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.17",
+            Type = @"Field",
+            Position = @"IN3.17",
+            Name = @"Appeal Reason",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0345",
+            TableName = @"Appeal reason",
+            Description = @"This field contains the reason that an appeal was made on a non-concur for certification.  Refer to User-defined Table 0345 - Appeal reason for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.17",
-                            Type = @"Field",
-                            Position = @"IN3.17",
-                            Name = @"Appeal Reason",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0345",
-                            TableName = @"Appeal reason",
-                            Description = @"This field contains the reason that an appeal was made on a non-concur for certification.  Refer to User-defined Table 0345 - Appeal reason for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.17.1",
                             Type = @"Component",
@@ -3312,25 +3789,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _appealReason = new HL7V24Field
+        {
+            field = message[@"IN3"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_appealReason.field.FieldRepetitions != null && _appealReason.field.FieldRepetitions.Count > 0)
+        {
+            _appealReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_appealReason, fieldData);
+        }
+
+        return _appealReason;
+    } 
+}
+
+internal HL7V24Field _certificationAgency;
+
+public HL7V24Field CertificationAgency
+{
+    get
+    {
+        if (_certificationAgency != null)
+        {
+            return _certificationAgency;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.18",
+            Type = @"Field",
+            Position = @"IN3.18",
+            Name = @"Certification Agency",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0346",
+            TableName = @"Certification agency",
+            Description = @"This field contains the certification agency.  Refer to User-defined Table 0346 - Certification agency for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.18",
-                            Type = @"Field",
-                            Position = @"IN3.18",
-                            Name = @"Certification Agency",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0346",
-                            TableName = @"Certification agency",
-                            Description = @"This field contains the certification agency.  Refer to User-defined Table 0346 - Certification agency for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.18.1",
                             Type = @"Component",
@@ -3440,25 +3947,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _certificationAgency = new HL7V24Field
+        {
+            field = message[@"IN3"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_certificationAgency.field.FieldRepetitions != null && _certificationAgency.field.FieldRepetitions.Count > 0)
+        {
+            _certificationAgency.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_certificationAgency, fieldData);
+        }
+
+        return _certificationAgency;
+    } 
+}
+
+internal HL7V24Field _certificationAgencyPhoneNumber;
+
+public HL7V24Field CertificationAgencyPhoneNumber
+{
+    get
+    {
+        if (_certificationAgencyPhoneNumber != null)
+        {
+            return _certificationAgencyPhoneNumber;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.19",
+            Type = @"Field",
+            Position = @"IN3.19",
+            Name = @"Certification Agency Phone Number",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the phone number of the certification agency",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.19",
-                            Type = @"Field",
-                            Position = @"IN3.19",
-                            Name = @"Certification Agency Phone Number",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the phone number of the certification agency",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.19.1",
                             Type = @"Component",
@@ -3618,25 +4155,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _certificationAgencyPhoneNumber = new HL7V24Field
+        {
+            field = message[@"IN3"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_certificationAgencyPhoneNumber.field.FieldRepetitions != null && _certificationAgencyPhoneNumber.field.FieldRepetitions.Count > 0)
+        {
+            _certificationAgencyPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_certificationAgencyPhoneNumber, fieldData);
+        }
+
+        return _certificationAgencyPhoneNumber;
+    } 
+}
+
+internal HL7V24Field _preCertificationReqWindow;
+
+public HL7V24Field PreCertificationReqWindow
+{
+    get
+    {
+        if (_preCertificationReqWindow != null)
+        {
+            return _preCertificationReqWindow;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.20",
+            Type = @"Field",
+            Position = @"IN3.20",
+            Name = @"Pre-Certification Req/Window",
+            Length = 40,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"PCF",
+            DataTypeName = @"Pre-certification Required",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates whether pre-certification is required for particular patient types, and the time window for obtaining the certification.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.20",
-                            Type = @"Field",
-                            Position = @"IN3.20",
-                            Name = @"Pre-Certification Req/Window",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"PCF",
-                            DataTypeName = @"Pre-certification Required",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates whether pre-certification is required for particular patient types, and the time window for obtaining the certification.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.20.1",
                             Type = @"Component",
@@ -3722,97 +4289,235 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _preCertificationReqWindow = new HL7V24Field
+        {
+            field = message[@"IN3"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_preCertificationReqWindow.field.FieldRepetitions != null && _preCertificationReqWindow.field.FieldRepetitions.Count > 0)
+        {
+            _preCertificationReqWindow.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_preCertificationReqWindow, fieldData);
+        }
+
+        return _preCertificationReqWindow;
+    } 
+}
+
+internal HL7V24Field _caseManager;
+
+public HL7V24Field CaseManager
+{
+    get
+    {
+        if (_caseManager != null)
+        {
+            return _caseManager;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.21",
+            Type = @"Field",
+            Position = @"IN3.21",
+            Name = @"Case Manager",
+            Length = 48,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the entity which is handling this particular patient’s case (e.g., UR nurse, or a specific healthcare facility location).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _caseManager = new HL7V24Field
+        {
+            field = message[@"IN3"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_caseManager.field.FieldRepetitions != null && _caseManager.field.FieldRepetitions.Count > 0)
+        {
+            _caseManager.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_caseManager, fieldData);
+        }
+
+        return _caseManager;
+    } 
+}
+
+internal HL7V24Field _secondOpinionDate;
+
+public HL7V24Field SecondOpinionDate
+{
+    get
+    {
+        if (_secondOpinionDate != null)
+        {
+            return _secondOpinionDate;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.22",
+            Type = @"Field",
+            Position = @"IN3.22",
+            Name = @"Second Opinion Date",
+            Length = 8,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date that the second opinion was obtained",
+            Sample = @"",
+            Fields = null
+        }
+
+        _secondOpinionDate = new HL7V24Field
+        {
+            field = message[@"IN3"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_secondOpinionDate.field.FieldRepetitions != null && _secondOpinionDate.field.FieldRepetitions.Count > 0)
+        {
+            _secondOpinionDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_secondOpinionDate, fieldData);
+        }
+
+        return _secondOpinionDate;
+    } 
+}
+
+internal HL7V24Field _secondOpinionStatus;
+
+public HL7V24Field SecondOpinionStatus
+{
+    get
+    {
+        if (_secondOpinionStatus != null)
+        {
+            return _secondOpinionStatus;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.23",
+            Type = @"Field",
+            Position = @"IN3.23",
+            Name = @"Second Opinion Status",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0151",
+            TableName = @"Second opinion status",
+            Description = @"This field contains the code that represents the status of the second opinion. Refer to Userdefined Table 0151 - Second opinion status for suggested values",
+            Sample = @"",
+            Fields = null
+        }
+
+        _secondOpinionStatus = new HL7V24Field
+        {
+            field = message[@"IN3"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_secondOpinionStatus.field.FieldRepetitions != null && _secondOpinionStatus.field.FieldRepetitions.Count > 0)
+        {
+            _secondOpinionStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_secondOpinionStatus, fieldData);
+        }
+
+        return _secondOpinionStatus;
+    } 
+}
+
+internal HL7V24Field _secondOpinionDocumentationReceived;
+
+public HL7V24Field SecondOpinionDocumentationReceived
+{
+    get
+    {
+        if (_secondOpinionDocumentationReceived != null)
+        {
+            return _secondOpinionDocumentationReceived;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.24",
+            Type = @"Field",
+            Position = @"IN3.24",
+            Name = @"Second Opinion Documentation Received",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0152",
+            TableName = @"Second opinion documentation received",
+            Description = @"Use this field if accompanying documentation has been received by the provider.  Refer to User-defined Table 0152 - Second opinion documentation received for suggested values",
+            Sample = @"",
+            Fields = null
+        }
+
+        _secondOpinionDocumentationReceived = new HL7V24Field
+        {
+            field = message[@"IN3"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_secondOpinionDocumentationReceived.field.FieldRepetitions != null && _secondOpinionDocumentationReceived.field.FieldRepetitions.Count > 0)
+        {
+            _secondOpinionDocumentationReceived.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_secondOpinionDocumentationReceived, fieldData);
+        }
+
+        return _secondOpinionDocumentationReceived;
+    } 
+}
+
+internal HL7V24Field _secondOpinionPhysician;
+
+public HL7V24Field SecondOpinionPhysician
+{
+    get
+    {
+        if (_secondOpinionPhysician != null)
+        {
+            return _secondOpinionPhysician;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"IN3.25",
+            Type = @"Field",
+            Position = @"IN3.25",
+            Name = @"Second Opinion Physician",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = @"0010",
+            TableName = @"Physician ID",
+            Description = @"This field contains an identifier and name of the physician who provided the second opinion. Multiple names and identifiers for the same person may be sent in this sequence.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.  Refer to User-defined Table 0010 - Physician ID for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"IN3.21",
-                            Type = @"Field",
-                            Position = @"IN3.21",
-                            Name = @"Case Manager",
-                            Length = 48,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the entity which is handling this particular patient’s case (e.g., UR nurse, or a specific healthcare facility location).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IN3.22",
-                            Type = @"Field",
-                            Position = @"IN3.22",
-                            Name = @"Second Opinion Date",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date that the second opinion was obtained",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IN3.23",
-                            Type = @"Field",
-                            Position = @"IN3.23",
-                            Name = @"Second Opinion Status",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0151",
-                            TableName = @"Second opinion status",
-                            Description = @"This field contains the code that represents the status of the second opinion. Refer to Userdefined Table 0151 - Second opinion status for suggested values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IN3.24",
-                            Type = @"Field",
-                            Position = @"IN3.24",
-                            Name = @"Second Opinion Documentation Received",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0152",
-                            TableName = @"Second opinion documentation received",
-                            Description = @"Use this field if accompanying documentation has been received by the provider.  Refer to User-defined Table 0152 - Second opinion documentation received for suggested values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"IN3.25",
-                            Type = @"Field",
-                            Position = @"IN3.25",
-                            Name = @"Second Opinion Physician",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-                            TableId = @"0010",
-                            TableName = @"Physician ID",
-                            Description = @"This field contains an identifier and name of the physician who provided the second opinion. Multiple names and identifiers for the same person may be sent in this sequence.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.  Refer to User-defined Table 0010 - Physician ID for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"IN3.25.1",
                             Type = @"Component",
@@ -4538,1039 +5243,23 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 Table 0444 - Name assembly orde r for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentIN3(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field setIDIN3;
-
-public HL7V24Field SetIDIN3
-{
-    get
-    {
-        if (setIDIN3 != null)
-        {
-            return setIDIN3;
-        }
-
-        setIDIN3 = new HL7V24Field
-        {
-            field = message[@"IN3"][1],
-            Id = @"IN3.1",
-            Type = @"Field",
-            Position = @"IN3.1",
-            Name = @"Set ID - IN3",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"IN3-1 - Set ID - IN3 contains the number that identifies this transaction.  For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.  The set ID in the IN3 segment is used when there are multiple certifications for the insurance plan identified in IN1-2.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDIN3.field.FieldRepetitions != null && setIDIN3.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDIN3.Id));
-            setIDIN3.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(setIDIN3, fieldData);
-        }
-
-        return setIDIN3;
-    } 
-}
-
-internal HL7V24Field certificationNumber;
-
-public HL7V24Field CertificationNumber
-{
-    get
-    {
-        if (certificationNumber != null)
-        {
-            return certificationNumber;
-        }
-
-        certificationNumber = new HL7V24Field
-        {
-            field = message[@"IN3"][2],
-            Id = @"IN3.2",
-            Type = @"Field",
-            Position = @"IN3.2",
-            Name = @"Certification Number",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID With Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number assigned by the certification agency.  The assigning authority and identifier type code are strongly recommended for all CX data types",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (certificationNumber.field.FieldRepetitions != null && certificationNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certificationNumber.Id));
-            certificationNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(certificationNumber, fieldData);
-        }
-
-        return certificationNumber;
-    } 
-}
-
-internal HL7V24Field certifiedBy;
-
-public HL7V24Field CertifiedBy
-{
-    get
-    {
-        if (certifiedBy != null)
-        {
-            return certifiedBy;
-        }
-
-        certifiedBy = new HL7V24Field
-        {
-            field = message[@"IN3"][3],
-            Id = @"IN3.3",
-            Type = @"Field",
-            Position = @"IN3.3",
-            Name = @"Certified By",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the party that approved the certification.  Multiple names and identifiers for the same person may be sent in this sequence.  The legal name is assumed to be in the first repetition. When the legal name is not sent, a repeat delimiter must be sent first for the first repetition",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (certifiedBy.field.FieldRepetitions != null && certifiedBy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certifiedBy.Id));
-            certifiedBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(certifiedBy, fieldData);
-        }
-
-        return certifiedBy;
-    } 
-}
-
-internal HL7V24Field certificationRequired;
-
-public HL7V24Field CertificationRequired
-{
-    get
-    {
-        if (certificationRequired != null)
-        {
-            return certificationRequired;
-        }
-
-        certificationRequired = new HL7V24Field
-        {
-            field = message[@"IN3"][4],
-            Id = @"IN3.4",
-            Type = @"Field",
-            Position = @"IN3.4",
-            Name = @"Certification Required",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field indicates whether certification is required.  Refer to HL7 table 0136 - Yes/no indicator for valid values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (certificationRequired.field.FieldRepetitions != null && certificationRequired.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certificationRequired.Id));
-            certificationRequired.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(certificationRequired, fieldData);
-        }
-
-        return certificationRequired;
-    } 
-}
-
-internal HL7V24Field penalty;
-
-public HL7V24Field Penalty
-{
-    get
-    {
-        if (penalty != null)
-        {
-            return penalty;
-        }
-
-        penalty = new HL7V24Field
-        {
-            field = message[@"IN3"][5],
-            Id = @"IN3.5",
-            Type = @"Field",
-            Position = @"IN3.5",
-            Name = @"Penalty",
-            Length = 10,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"MOP",
-            DataTypeName = @"Money Or Percentage",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the penalty, in dollars or a percentage that will be assessed if the precertification is not performed.  Refer to User-defined Table 0148 - Penalty type for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (penalty.field.FieldRepetitions != null && penalty.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(penalty.Id));
-            penalty.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(penalty, fieldData);
-        }
-
-        return penalty;
-    } 
-}
-
-internal HL7V24Field certificationDateTime;
-
-public HL7V24Field CertificationDateTime
-{
-    get
-    {
-        if (certificationDateTime != null)
-        {
-            return certificationDateTime;
-        }
-
-        certificationDateTime = new HL7V24Field
-        {
-            field = message[@"IN3"][6],
-            Id = @"IN3.6",
-            Type = @"Field",
-            Position = @"IN3.6",
-            Name = @"Certification Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time stamp that indicates when insurance was certified to exist for the patient",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (certificationDateTime.field.FieldRepetitions != null && certificationDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certificationDateTime.Id));
-            certificationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(certificationDateTime, fieldData);
-        }
-
-        return certificationDateTime;
-    } 
-}
-
-internal HL7V24Field certificationModifyDateTime;
-
-public HL7V24Field CertificationModifyDateTime
-{
-    get
-    {
-        if (certificationModifyDateTime != null)
-        {
-            return certificationModifyDateTime;
-        }
-
-        certificationModifyDateTime = new HL7V24Field
-        {
-            field = message[@"IN3"][7],
-            Id = @"IN3.7",
-            Type = @"Field",
-            Position = @"IN3.7",
-            Name = @"Certification Modify Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time that the certification was modified",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (certificationModifyDateTime.field.FieldRepetitions != null && certificationModifyDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certificationModifyDateTime.Id));
-            certificationModifyDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(certificationModifyDateTime, fieldData);
-        }
-
-        return certificationModifyDateTime;
-    } 
-}
-
-internal HL7V24Field operator;
-
-public HL7V24Field Operator
-{
-    get
-    {
-        if (operator != null)
-        {
-            return operator;
-        }
-
-        operator = new HL7V24Field
-        {
-            field = message[@"IN3"][8],
-            Id = @"IN3.8",
-            Type = @"Field",
-            Position = @"IN3.8",
-            Name = @"Operator",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name party who is responsible for sending this certification information. Multiple names for the same person may be sent in this sequence.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (operator.field.FieldRepetitions != null && operator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(operator.Id));
-            operator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(operator, fieldData);
-        }
-
-        return operator;
-    } 
-}
-
-internal HL7V24Field certificationBeginDate;
-
-public HL7V24Field CertificationBeginDate
-{
-    get
-    {
-        if (certificationBeginDate != null)
-        {
-            return certificationBeginDate;
-        }
-
-        certificationBeginDate = new HL7V24Field
-        {
-            field = message[@"IN3"][9],
-            Id = @"IN3.9",
-            Type = @"Field",
-            Position = @"IN3.9",
-            Name = @"Certification Begin Date",
-            Length = 8,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date that this certification begins",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (certificationBeginDate.field.FieldRepetitions != null && certificationBeginDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certificationBeginDate.Id));
-            certificationBeginDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(certificationBeginDate, fieldData);
-        }
-
-        return certificationBeginDate;
-    } 
-}
-
-internal HL7V24Field certificationEndDate;
-
-public HL7V24Field CertificationEndDate
-{
-    get
-    {
-        if (certificationEndDate != null)
-        {
-            return certificationEndDate;
-        }
-
-        certificationEndDate = new HL7V24Field
-        {
-            field = message[@"IN3"][10],
-            Id = @"IN3.10",
-            Type = @"Field",
-            Position = @"IN3.10",
-            Name = @"Certification End Date",
-            Length = 8,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains date that this certification ends",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (certificationEndDate.field.FieldRepetitions != null && certificationEndDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certificationEndDate.Id));
-            certificationEndDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(certificationEndDate, fieldData);
-        }
-
-        return certificationEndDate;
-    } 
-}
-
-internal HL7V24Field days;
-
-public HL7V24Field Days
-{
-    get
-    {
-        if (days != null)
-        {
-            return days;
-        }
-
-        days = new HL7V24Field
-        {
-            field = message[@"IN3"][11],
-            Id = @"IN3.11",
-            Type = @"Field",
-            Position = @"IN3.11",
-            Name = @"Days",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTN",
-            DataTypeName = @"Day Type And Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number of days for which this certification is valid.  This field applies to denied, pending, or approved days.  Refer to User-defined Table 0149 - Day type for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (days.field.FieldRepetitions != null && days.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(days.Id));
-            days.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(days, fieldData);
-        }
-
-        return days;
-    } 
-}
-
-internal HL7V24Field nonConcurCodeDescription;
-
-public HL7V24Field NonConcurCodeDescription
-{
-    get
-    {
-        if (nonConcurCodeDescription != null)
-        {
-            return nonConcurCodeDescription;
-        }
-
-        nonConcurCodeDescription = new HL7V24Field
-        {
-            field = message[@"IN3"][12],
-            Id = @"IN3.12",
-            Type = @"Field",
-            Position = @"IN3.12",
-            Name = @"Non-Concur Code/Description",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0233",
-            TableName = @"Non-concur code/description",
-            Description = @"This field contains the non-concur code and description for a denied request. Refer to Userdefined Table 0233 - Non-concur code/description for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (nonConcurCodeDescription.field.FieldRepetitions != null && nonConcurCodeDescription.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nonConcurCodeDescription.Id));
-            nonConcurCodeDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(nonConcurCodeDescription, fieldData);
-        }
-
-        return nonConcurCodeDescription;
-    } 
-}
-
-internal HL7V24Field nonConcurEffectiveDateTime;
-
-public HL7V24Field NonConcurEffectiveDateTime
-{
-    get
-    {
-        if (nonConcurEffectiveDateTime != null)
-        {
-            return nonConcurEffectiveDateTime;
-        }
-
-        nonConcurEffectiveDateTime = new HL7V24Field
-        {
-            field = message[@"IN3"][13],
-            Id = @"IN3.13",
-            Type = @"Field",
-            Position = @"IN3.13",
-            Name = @"Non-Concur Effective Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the effective date of the non-concurrence classification",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (nonConcurEffectiveDateTime.field.FieldRepetitions != null && nonConcurEffectiveDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nonConcurEffectiveDateTime.Id));
-            nonConcurEffectiveDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(nonConcurEffectiveDateTime, fieldData);
-        }
-
-        return nonConcurEffectiveDateTime;
-    } 
-}
-
-internal HL7V24Field physicianReviewer;
-
-public HL7V24Field PhysicianReviewer
-{
-    get
-    {
-        if (physicianReviewer != null)
-        {
-            return physicianReviewer;
-        }
-
-        physicianReviewer = new HL7V24Field
-        {
-            field = message[@"IN3"][14],
-            Id = @"IN3.14",
-            Type = @"Field",
-            Position = @"IN3.14",
-            Name = @"Physician Reviewer",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-            TableId = @"0010",
-            TableName = @"Physician ID",
-            Description = @"This field contains the physician who works with and reviews cases that are pending physician review for the certification agency.  Multiple names for the same person may be sent in this sequence.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.  Refer to User-defined Table 0010 - Physician ID for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (physicianReviewer.field.FieldRepetitions != null && physicianReviewer.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(physicianReviewer.Id));
-            physicianReviewer.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(physicianReviewer, fieldData);
-        }
-
-        return physicianReviewer;
-    } 
-}
-
-internal HL7V24Field certificationContact;
-
-public HL7V24Field CertificationContact
-{
-    get
-    {
-        if (certificationContact != null)
-        {
-            return certificationContact;
-        }
-
-        certificationContact = new HL7V24Field
-        {
-            field = message[@"IN3"][15],
-            Id = @"IN3.15",
-            Type = @"Field",
-            Position = @"IN3.15",
-            Name = @"Certification Contact",
-            Length = 48,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the party contacted at the certification agency who granted the certification and communicated the certification number",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (certificationContact.field.FieldRepetitions != null && certificationContact.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certificationContact.Id));
-            certificationContact.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(certificationContact, fieldData);
-        }
-
-        return certificationContact;
-    } 
-}
-
-internal HL7V24Field certificationContactPhoneNumber;
-
-public HL7V24Field CertificationContactPhoneNumber
-{
-    get
-    {
-        if (certificationContactPhoneNumber != null)
-        {
-            return certificationContactPhoneNumber;
-        }
-
-        certificationContactPhoneNumber = new HL7V24Field
-        {
-            field = message[@"IN3"][16],
-            Id = @"IN3.16",
-            Type = @"Field",
-            Position = @"IN3.16",
-            Name = @"Certification Contact Phone Number",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the phone number of the certification contact. Multiple phone numbers for the same certification contact may be sent in this sequence.  The primary phone number is assumed to be in the first repetition.  When the primary telephone number is not sent, a repeat delimiter must be sent first for the first repetition",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (certificationContactPhoneNumber.field.FieldRepetitions != null && certificationContactPhoneNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certificationContactPhoneNumber.Id));
-            certificationContactPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(certificationContactPhoneNumber, fieldData);
-        }
-
-        return certificationContactPhoneNumber;
-    } 
-}
-
-internal HL7V24Field appealReason;
-
-public HL7V24Field AppealReason
-{
-    get
-    {
-        if (appealReason != null)
-        {
-            return appealReason;
-        }
-
-        appealReason = new HL7V24Field
-        {
-            field = message[@"IN3"][17],
-            Id = @"IN3.17",
-            Type = @"Field",
-            Position = @"IN3.17",
-            Name = @"Appeal Reason",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0345",
-            TableName = @"Appeal reason",
-            Description = @"This field contains the reason that an appeal was made on a non-concur for certification.  Refer to User-defined Table 0345 - Appeal reason for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (appealReason.field.FieldRepetitions != null && appealReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(appealReason.Id));
-            appealReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(appealReason, fieldData);
-        }
-
-        return appealReason;
-    } 
-}
-
-internal HL7V24Field certificationAgency;
-
-public HL7V24Field CertificationAgency
-{
-    get
-    {
-        if (certificationAgency != null)
-        {
-            return certificationAgency;
-        }
-
-        certificationAgency = new HL7V24Field
-        {
-            field = message[@"IN3"][18],
-            Id = @"IN3.18",
-            Type = @"Field",
-            Position = @"IN3.18",
-            Name = @"Certification Agency",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0346",
-            TableName = @"Certification agency",
-            Description = @"This field contains the certification agency.  Refer to User-defined Table 0346 - Certification agency for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (certificationAgency.field.FieldRepetitions != null && certificationAgency.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certificationAgency.Id));
-            certificationAgency.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(certificationAgency, fieldData);
-        }
-
-        return certificationAgency;
-    } 
-}
-
-internal HL7V24Field certificationAgencyPhoneNumber;
-
-public HL7V24Field CertificationAgencyPhoneNumber
-{
-    get
-    {
-        if (certificationAgencyPhoneNumber != null)
-        {
-            return certificationAgencyPhoneNumber;
-        }
-
-        certificationAgencyPhoneNumber = new HL7V24Field
-        {
-            field = message[@"IN3"][19],
-            Id = @"IN3.19",
-            Type = @"Field",
-            Position = @"IN3.19",
-            Name = @"Certification Agency Phone Number",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the phone number of the certification agency",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (certificationAgencyPhoneNumber.field.FieldRepetitions != null && certificationAgencyPhoneNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(certificationAgencyPhoneNumber.Id));
-            certificationAgencyPhoneNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(certificationAgencyPhoneNumber, fieldData);
-        }
-
-        return certificationAgencyPhoneNumber;
-    } 
-}
-
-internal HL7V24Field preCertificationReqWindow;
-
-public HL7V24Field PreCertificationReqWindow
-{
-    get
-    {
-        if (preCertificationReqWindow != null)
-        {
-            return preCertificationReqWindow;
-        }
-
-        preCertificationReqWindow = new HL7V24Field
-        {
-            field = message[@"IN3"][20],
-            Id = @"IN3.20",
-            Type = @"Field",
-            Position = @"IN3.20",
-            Name = @"Pre-Certification Req/Window",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"PCF",
-            DataTypeName = @"Pre-certification Required",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates whether pre-certification is required for particular patient types, and the time window for obtaining the certification.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (preCertificationReqWindow.field.FieldRepetitions != null && preCertificationReqWindow.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(preCertificationReqWindow.Id));
-            preCertificationReqWindow.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(preCertificationReqWindow, fieldData);
-        }
-
-        return preCertificationReqWindow;
-    } 
-}
-
-internal HL7V24Field caseManager;
-
-public HL7V24Field CaseManager
-{
-    get
-    {
-        if (caseManager != null)
-        {
-            return caseManager;
-        }
-
-        caseManager = new HL7V24Field
-        {
-            field = message[@"IN3"][21],
-            Id = @"IN3.21",
-            Type = @"Field",
-            Position = @"IN3.21",
-            Name = @"Case Manager",
-            Length = 48,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the entity which is handling this particular patient’s case (e.g., UR nurse, or a specific healthcare facility location).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (caseManager.field.FieldRepetitions != null && caseManager.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(caseManager.Id));
-            caseManager.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(caseManager, fieldData);
-        }
-
-        return caseManager;
-    } 
-}
-
-internal HL7V24Field secondOpinionDate;
-
-public HL7V24Field SecondOpinionDate
-{
-    get
-    {
-        if (secondOpinionDate != null)
-        {
-            return secondOpinionDate;
-        }
-
-        secondOpinionDate = new HL7V24Field
-        {
-            field = message[@"IN3"][22],
-            Id = @"IN3.22",
-            Type = @"Field",
-            Position = @"IN3.22",
-            Name = @"Second Opinion Date",
-            Length = 8,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date that the second opinion was obtained",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (secondOpinionDate.field.FieldRepetitions != null && secondOpinionDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(secondOpinionDate.Id));
-            secondOpinionDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(secondOpinionDate, fieldData);
-        }
-
-        return secondOpinionDate;
-    } 
-}
-
-internal HL7V24Field secondOpinionStatus;
-
-public HL7V24Field SecondOpinionStatus
-{
-    get
-    {
-        if (secondOpinionStatus != null)
-        {
-            return secondOpinionStatus;
-        }
-
-        secondOpinionStatus = new HL7V24Field
-        {
-            field = message[@"IN3"][23],
-            Id = @"IN3.23",
-            Type = @"Field",
-            Position = @"IN3.23",
-            Name = @"Second Opinion Status",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0151",
-            TableName = @"Second opinion status",
-            Description = @"This field contains the code that represents the status of the second opinion. Refer to Userdefined Table 0151 - Second opinion status for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (secondOpinionStatus.field.FieldRepetitions != null && secondOpinionStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(secondOpinionStatus.Id));
-            secondOpinionStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(secondOpinionStatus, fieldData);
-        }
-
-        return secondOpinionStatus;
-    } 
-}
-
-internal HL7V24Field secondOpinionDocumentationReceived;
-
-public HL7V24Field SecondOpinionDocumentationReceived
-{
-    get
-    {
-        if (secondOpinionDocumentationReceived != null)
-        {
-            return secondOpinionDocumentationReceived;
-        }
-
-        secondOpinionDocumentationReceived = new HL7V24Field
-        {
-            field = message[@"IN3"][24],
-            Id = @"IN3.24",
-            Type = @"Field",
-            Position = @"IN3.24",
-            Name = @"Second Opinion Documentation Received",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0152",
-            TableName = @"Second opinion documentation received",
-            Description = @"Use this field if accompanying documentation has been received by the provider.  Refer to User-defined Table 0152 - Second opinion documentation received for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (secondOpinionDocumentationReceived.field.FieldRepetitions != null && secondOpinionDocumentationReceived.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(secondOpinionDocumentationReceived.Id));
-            secondOpinionDocumentationReceived.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(secondOpinionDocumentationReceived, fieldData);
-        }
-
-        return secondOpinionDocumentationReceived;
-    } 
-}
-
-internal HL7V24Field secondOpinionPhysician;
-
-public HL7V24Field SecondOpinionPhysician
-{
-    get
-    {
-        if (secondOpinionPhysician != null)
-        {
-            return secondOpinionPhysician;
-        }
-
-        secondOpinionPhysician = new HL7V24Field
+        _secondOpinionPhysician = new HL7V24Field
         {
             field = message[@"IN3"][25],
-            Id = @"IN3.25",
-            Type = @"Field",
-            Position = @"IN3.25",
-            Name = @"Second Opinion Physician",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-            TableId = @"0010",
-            TableName = @"Physician ID",
-            Description = @"This field contains an identifier and name of the physician who provided the second opinion. Multiple names and identifiers for the same person may be sent in this sequence.  The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.  Refer to User-defined Table 0010 - Physician ID for suggested values",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (secondOpinionPhysician.field.FieldRepetitions != null && secondOpinionPhysician.field.FieldRepetitions.Count > 0)
+        if (_secondOpinionPhysician.field.FieldRepetitions != null && _secondOpinionPhysician.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(secondOpinionPhysician.Id));
-            secondOpinionPhysician.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(secondOpinionPhysician, fieldData);
+            _secondOpinionPhysician.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_secondOpinionPhysician, fieldData);
         }
 
-        return secondOpinionPhysician;
+        return _secondOpinionPhysician;
     } 
 }
     }

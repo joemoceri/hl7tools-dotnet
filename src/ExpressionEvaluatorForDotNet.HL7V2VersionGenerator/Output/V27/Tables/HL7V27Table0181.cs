@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -41,6 +42,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Unsuccessful posting of the record defined by the MFE segment",
                             Comment = null
                         },
+                        
                     };
             } 
         }

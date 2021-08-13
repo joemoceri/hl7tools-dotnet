@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             } 
         }
@@ -53,6 +54,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Success.  Only MFA segments denoting success must be returned via the application-level acknowledgment for this message",
                             Comment = null
                         },
+                        
                     };
             } 
         }

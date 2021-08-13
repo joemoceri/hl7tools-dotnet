@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V23SegmentEVN(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field _eventTypeCode;
+
+public HL7V23Field EventTypeCode
+{
+    get
+    {
+        if (_eventTypeCode != null)
+        {
+            return _eventTypeCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"EVN.1",
+            Type = @"Field",
+            Position = @"EVN.1",
+            Name = @"Event Type Code",
+            Length = 3,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0003",
+            TableName = @"Event type",
+            Description = @"This field has been retained for backward compatibility only.  We recommend using the second component (trigger event) of MSH-9-message type to transmit event type code information.  This field contains the events corresponding to the trigger events described in this section, e.g., admission, transfer, or registration.  Refer to Chapter 2, HL7 table 0003 - Event type for valid values. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventTypeCode = new HL7V23Field
+        {
+            field = message[@"EVN"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventTypeCode.field.FieldRepetitions != null && _eventTypeCode.field.FieldRepetitions.Count > 0)
+        {
+            _eventTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_eventTypeCode, fieldData);
+        }
+
+        return _eventTypeCode;
+    } 
+}
+
+internal HL7V23Field _recordedDateTime;
+
+public HL7V23Field RecordedDateTime
+{
+    get
+    {
+        if (_recordedDateTime != null)
+        {
+            return _recordedDateTime;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"EVN.2",
+            Type = @"Field",
+            Position = @"EVN.2",
+            Name = @"Recorded Date/Time",
+            Length = 26,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"  Most systems will default to the system date/time when the transaction was entered, but they should also permit an override. ",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"EVN.1",
-                            Type = @"Field",
-                            Position = @"EVN.1",
-                            Name = @"Event Type Code",
-                            Length = 3,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0003",
-                            TableName = @"Event type",
-                            Description = @"This field has been retained for backward compatibility only.  We recommend using the second component (trigger event) of MSH-9-message type to transmit event type code information.  This field contains the events corresponding to the trigger events described in this section, e.g., admission, transfer, or registration.  Refer to Chapter 2, HL7 table 0003 - Event type for valid values. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EVN.2",
-                            Type = @"Field",
-                            Position = @"EVN.2",
-                            Name = @"Recorded Date/Time",
-                            Length = 26,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"  Most systems will default to the system date/time when the transaction was entered, but they should also permit an override. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"EVN.2.1",
                             Type = @"Component",
@@ -84,25 +123,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _recordedDateTime = new HL7V23Field
+        {
+            field = message[@"EVN"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_recordedDateTime.field.FieldRepetitions != null && _recordedDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _recordedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_recordedDateTime, fieldData);
+        }
+
+        return _recordedDateTime;
+    } 
+}
+
+internal HL7V23Field _dateTimePlannedEvent;
+
+public HL7V23Field DateTimePlannedEvent
+{
+    get
+    {
+        if (_dateTimePlannedEvent != null)
+        {
+            return _dateTimePlannedEvent;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"EVN.3",
+            Type = @"Field",
+            Position = @"EVN.3",
+            Name = @"Date/Time Planned Event",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time that the event is planned.  We recommend that the PV2expected admit date and PV2-9-expected discharge date be used whenever possible. ",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EVN.3",
-                            Type = @"Field",
-                            Position = @"EVN.3",
-                            Name = @"Date/Time Planned Event",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time that the event is planned.  We recommend that the PV2expected admit date and PV2-9-expected discharge date be used whenever possible. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EVN.3.1",
                             Type = @"Component",
@@ -118,43 +187,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dateTimePlannedEvent = new HL7V23Field
+        {
+            field = message[@"EVN"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimePlannedEvent.field.FieldRepetitions != null && _dateTimePlannedEvent.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimePlannedEvent.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_dateTimePlannedEvent, fieldData);
+        }
+
+        return _dateTimePlannedEvent;
+    } 
+}
+
+internal HL7V23Field _eventReasonCode;
+
+public HL7V23Field EventReasonCode
+{
+    get
+    {
+        if (_eventReasonCode != null)
+        {
+            return _eventReasonCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"EVN.4",
+            Type = @"Field",
+            Position = @"EVN.4",
+            Name = @"Event Reason Code",
+            Length = 3,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0062",
+            TableName = @"Event reason",
+            Description = @"This field contains the reason for this event (e.g., patient request, physician order, census management, etc.).  Refer to user-defined table 0062 - Event reason for suggested values. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eventReasonCode = new HL7V23Field
+        {
+            field = message[@"EVN"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eventReasonCode.field.FieldRepetitions != null && _eventReasonCode.field.FieldRepetitions.Count > 0)
+        {
+            _eventReasonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_eventReasonCode, fieldData);
+        }
+
+        return _eventReasonCode;
+    } 
+}
+
+internal HL7V23Field _operatorID;
+
+public HL7V23Field OperatorID
+{
+    get
+    {
+        if (_operatorID != null)
+        {
+            return _operatorID;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"EVN.5",
+            Type = @"Field",
+            Position = @"EVN.5",
+            Name = @"Operator ID",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name",
+            TableId = @"0188",
+            TableName = @"Operator ID",
+            Description = @"This field identifies the individual responsible for triggering the event.  Refer to user-defined table 0188 - Operator ID for suggested values",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EVN.4",
-                            Type = @"Field",
-                            Position = @"EVN.4",
-                            Name = @"Event Reason Code",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0062",
-                            TableName = @"Event reason",
-                            Description = @"This field contains the reason for this event (e.g., patient request, physician order, census management, etc.).  Refer to user-defined table 0062 - Event reason for suggested values. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"EVN.5",
-                            Type = @"Field",
-                            Position = @"EVN.5",
-                            Name = @"Operator ID",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name",
-                            TableId = @"0188",
-                            TableName = @"Operator ID",
-                            Description = @"This field identifies the individual responsible for triggering the event.  Refer to user-defined table 0188 - Operator ID for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EVN.5.1",
                             Type = @"Component",
@@ -508,25 +634,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _operatorID = new HL7V23Field
+        {
+            field = message[@"EVN"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_operatorID.field.FieldRepetitions != null && _operatorID.field.FieldRepetitions.Count > 0)
+        {
+            _operatorID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_operatorID, fieldData);
+        }
+
+        return _operatorID;
+    } 
+}
+
+internal HL7V23Field _eventOccurred;
+
+public HL7V23Field EventOccurred
+{
+    get
+    {
+        if (_eventOccurred != null)
+        {
+            return _eventOccurred;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"EVN.6",
+            Type = @"Field",
+            Position = @"EVN.6",
+            Name = @"Event Occurred",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time that the event actually occurred.  For example, on a transfer (A02 (transfer a patient)), this field would contain the date/time the patient was actually transferred.  On a cancellation event, this field should contain the date/time that the event being canceled occurred.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"EVN.6",
-                            Type = @"Field",
-                            Position = @"EVN.6",
-                            Name = @"Event Occurred",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time that the event actually occurred.  For example, on a transfer (A02 (transfer a patient)), this field would contain the date/time the patient was actually transferred.  On a cancellation event, this field should contain the date/time that the event being canceled occurred.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"EVN.6.1",
                             Type = @"Component",
@@ -542,260 +698,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V23SegmentEVN(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V23Field eventTypeCode;
-
-public HL7V23Field EventTypeCode
-{
-    get
-    {
-        if (eventTypeCode != null)
-        {
-            return eventTypeCode;
-        }
-
-        eventTypeCode = new HL7V23Field
-        {
-            field = message[@"EVN"][1],
-            Id = @"EVN.1",
-            Type = @"Field",
-            Position = @"EVN.1",
-            Name = @"Event Type Code",
-            Length = 3,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0003",
-            TableName = @"Event type",
-            Description = @"This field has been retained for backward compatibility only.  We recommend using the second component (trigger event) of MSH-9-message type to transmit event type code information.  This field contains the events corresponding to the trigger events described in this section, e.g., admission, transfer, or registration.  Refer to Chapter 2, HL7 table 0003 - Event type for valid values. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventTypeCode.field.FieldRepetitions != null && eventTypeCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventTypeCode.Id));
-            eventTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(eventTypeCode, fieldData);
-        }
-
-        return eventTypeCode;
-    } 
-}
-
-internal HL7V23Field recordedDateTime;
-
-public HL7V23Field RecordedDateTime
-{
-    get
-    {
-        if (recordedDateTime != null)
-        {
-            return recordedDateTime;
-        }
-
-        recordedDateTime = new HL7V23Field
-        {
-            field = message[@"EVN"][2],
-            Id = @"EVN.2",
-            Type = @"Field",
-            Position = @"EVN.2",
-            Name = @"Recorded Date/Time",
-            Length = 26,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"  Most systems will default to the system date/time when the transaction was entered, but they should also permit an override. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (recordedDateTime.field.FieldRepetitions != null && recordedDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(recordedDateTime.Id));
-            recordedDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(recordedDateTime, fieldData);
-        }
-
-        return recordedDateTime;
-    } 
-}
-
-internal HL7V23Field dateTimePlannedEvent;
-
-public HL7V23Field DateTimePlannedEvent
-{
-    get
-    {
-        if (dateTimePlannedEvent != null)
-        {
-            return dateTimePlannedEvent;
-        }
-
-        dateTimePlannedEvent = new HL7V23Field
-        {
-            field = message[@"EVN"][3],
-            Id = @"EVN.3",
-            Type = @"Field",
-            Position = @"EVN.3",
-            Name = @"Date/Time Planned Event",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time that the event is planned.  We recommend that the PV2expected admit date and PV2-9-expected discharge date be used whenever possible. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimePlannedEvent.field.FieldRepetitions != null && dateTimePlannedEvent.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimePlannedEvent.Id));
-            dateTimePlannedEvent.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(dateTimePlannedEvent, fieldData);
-        }
-
-        return dateTimePlannedEvent;
-    } 
-}
-
-internal HL7V23Field eventReasonCode;
-
-public HL7V23Field EventReasonCode
-{
-    get
-    {
-        if (eventReasonCode != null)
-        {
-            return eventReasonCode;
-        }
-
-        eventReasonCode = new HL7V23Field
-        {
-            field = message[@"EVN"][4],
-            Id = @"EVN.4",
-            Type = @"Field",
-            Position = @"EVN.4",
-            Name = @"Event Reason Code",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0062",
-            TableName = @"Event reason",
-            Description = @"This field contains the reason for this event (e.g., patient request, physician order, census management, etc.).  Refer to user-defined table 0062 - Event reason for suggested values. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eventReasonCode.field.FieldRepetitions != null && eventReasonCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventReasonCode.Id));
-            eventReasonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(eventReasonCode, fieldData);
-        }
-
-        return eventReasonCode;
-    } 
-}
-
-internal HL7V23Field operatorID;
-
-public HL7V23Field OperatorID
-{
-    get
-    {
-        if (operatorID != null)
-        {
-            return operatorID;
-        }
-
-        operatorID = new HL7V23Field
-        {
-            field = message[@"EVN"][5],
-            Id = @"EVN.5",
-            Type = @"Field",
-            Position = @"EVN.5",
-            Name = @"Operator ID",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name",
-            TableId = @"0188",
-            TableName = @"Operator ID",
-            Description = @"This field identifies the individual responsible for triggering the event.  Refer to user-defined table 0188 - Operator ID for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (operatorID.field.FieldRepetitions != null && operatorID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(operatorID.Id));
-            operatorID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(operatorID, fieldData);
-        }
-
-        return operatorID;
-    } 
-}
-
-internal HL7V23Field eventOccurred;
-
-public HL7V23Field EventOccurred
-{
-    get
-    {
-        if (eventOccurred != null)
-        {
-            return eventOccurred;
-        }
-
-        eventOccurred = new HL7V23Field
+        _eventOccurred = new HL7V23Field
         {
             field = message[@"EVN"][6],
-            Id = @"EVN.6",
-            Type = @"Field",
-            Position = @"EVN.6",
-            Name = @"Event Occurred",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time that the event actually occurred.  For example, on a transfer (A02 (transfer a patient)), this field would contain the date/time the patient was actually transferred.  On a cancellation event, this field should contain the date/time that the event being canceled occurred.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (eventOccurred.field.FieldRepetitions != null && eventOccurred.field.FieldRepetitions.Count > 0)
+        if (_eventOccurred.field.FieldRepetitions != null && _eventOccurred.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eventOccurred.Id));
-            eventOccurred.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(eventOccurred, fieldData);
+            _eventOccurred.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_eventOccurred, fieldData);
         }
 
-        return eventOccurred;
+        return _eventOccurred;
     } 
 }
     }

@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V23SegmentOM1(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V23Field _sequenceNumber;
+
+public HL7V23Field SequenceNumber
+{
+    get
+    {
+        if (_sequenceNumber != null)
+        {
+            return _sequenceNumber;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.1",
+            Type = @"Field",
+            Position = @"OM1.1",
+            Name = @"Sequence Number",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the first OM1 segment in a message and is described as 1, the second as 2, and so on",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sequenceNumber = new HL7V23Field
+        {
+            field = message[@"OM1"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sequenceNumber.field.FieldRepetitions != null && _sequenceNumber.field.FieldRepetitions.Count > 0)
+        {
+            _sequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_sequenceNumber, fieldData);
+        }
+
+        return _sequenceNumber;
+    } 
+}
+
+internal HL7V23Field _producersTestObservationID;
+
+public HL7V23Field ProducersTestObservationID
+{
+    get
+    {
+        if (_producersTestObservationID != null)
+        {
+            return _producersTestObservationID;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.2",
+            Type = @"Field",
+            Position = @"OM1.2",
+            Name = @"Producer's Test/Observation ID",
+            Length = 200,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the producer’s usual or preferred identification of the test or observation.   Only three components should be included: <ID code>^<service text name/description>^<source list of code>.  All components should be non-null.  The source list may be any of those included in ASTM Tables 3 and 5, or a local code",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"OM1.1",
-                            Type = @"Field",
-                            Position = @"OM1.1",
-                            Name = @"Sequence Number",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the first OM1 segment in a message and is described as 1, the second as 2, and so on",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.2",
-                            Type = @"Field",
-                            Position = @"OM1.2",
-                            Name = @"Producer's Test/Observation ID",
-                            Length = 200,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the producer’s usual or preferred identification of the test or observation.   Only three components should be included: <ID code>^<service text name/description>^<source list of code>.  All components should be non-null.  The source list may be any of those included in ASTM Tables 3 and 5, or a local code",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"OM1.2.1",
                             Type = @"Component",
@@ -174,68 +213,152 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.3",
-                            Type = @"Field",
-                            Position = @"OM1.3",
-                            Name = @"Permitted Data Types",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0125",
-                            TableName = @"Value type",
-                            Description = @"This field contains the allowed data type(s) for this observation.  The codes are the same as those listed for OBX (a given observation may, under different circumstances, take on different data types). Indeed, under limited circumstances, an observation can consist of one or more fragments of different data types. When an observation may have more than one data type, e.g., coded (CE) and numeric (NM) the allowable data types should be separated by repeat delimiters.  Refer to HL7 table 0125 - Value type for valid values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.4",
-                            Type = @"Field",
-                            Position = @"OM1.4",
-                            Name = @"Specimen Required",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field contains a flag indicating whether or not at least one specimen is required for the test/observation.  Refer to HL7 table 0136 - Yes/no indicator as defined in Chapter 2.
+                        }
+        }
+
+        _producersTestObservationID = new HL7V23Field
+        {
+            field = message[@"OM1"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_producersTestObservationID.field.FieldRepetitions != null && _producersTestObservationID.field.FieldRepetitions.Count > 0)
+        {
+            _producersTestObservationID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_producersTestObservationID, fieldData);
+        }
+
+        return _producersTestObservationID;
+    } 
+}
+
+internal HL7V23Field _permittedDataTypes;
+
+public HL7V23Field PermittedDataTypes
+{
+    get
+    {
+        if (_permittedDataTypes != null)
+        {
+            return _permittedDataTypes;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.3",
+            Type = @"Field",
+            Position = @"OM1.3",
+            Name = @"Permitted Data Types",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0125",
+            TableName = @"Value type",
+            Description = @"This field contains the allowed data type(s) for this observation.  The codes are the same as those listed for OBX (a given observation may, under different circumstances, take on different data types). Indeed, under limited circumstances, an observation can consist of one or more fragments of different data types. When an observation may have more than one data type, e.g., coded (CE) and numeric (NM) the allowable data types should be separated by repeat delimiters.  Refer to HL7 table 0125 - Value type for valid values",
+            Sample = @"",
+            Fields = null
+        }
+
+        _permittedDataTypes = new HL7V23Field
+        {
+            field = message[@"OM1"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_permittedDataTypes.field.FieldRepetitions != null && _permittedDataTypes.field.FieldRepetitions.Count > 0)
+        {
+            _permittedDataTypes.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_permittedDataTypes, fieldData);
+        }
+
+        return _permittedDataTypes;
+    } 
+}
+
+internal HL7V23Field _specimenRequired;
+
+public HL7V23Field SpecimenRequired
+{
+    get
+    {
+        if (_specimenRequired != null)
+        {
+            return _specimenRequired;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.4",
+            Type = @"Field",
+            Position = @"OM1.4",
+            Name = @"Specimen Required",
+            Length = 1,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field contains a flag indicating whether or not at least one specimen is required for the test/observation.  Refer to HL7 table 0136 - Yes/no indicator as defined in Chapter 2.
 
 Y  one or more specimens are required to obtain this observation 
 N  a specimen is not required 
 
 When a specimen is required, segment OM4 will usually be included (one per specimen is required)",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.5",
-                            Type = @"Field",
-                            Position = @"OM1.5",
-                            Name = @"Producer ID",
-                            Length = 200,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field uniquely identifies the service producing the observation described in this segment.  Three components should be included:  an identifying code, the name of the producer, and the identity of the coding system (e.g., 323-5678^Acme Special Lab^MC).  The identity of the coding system will usually be MC (Medicare provider number or HIBCC site codes) in the United States.  Each country may want to specify its preferred coding system and define a coding system ID to identify it.
+            Sample = @"",
+            Fields = null
+        }
+
+        _specimenRequired = new HL7V23Field
+        {
+            field = message[@"OM1"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_specimenRequired.field.FieldRepetitions != null && _specimenRequired.field.FieldRepetitions.Count > 0)
+        {
+            _specimenRequired.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_specimenRequired, fieldData);
+        }
+
+        return _specimenRequired;
+    } 
+}
+
+internal HL7V23Field _producerID;
+
+public HL7V23Field ProducerID
+{
+    get
+    {
+        if (_producerID != null)
+        {
+            return _producerID;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.5",
+            Type = @"Field",
+            Position = @"OM1.5",
+            Name = @"Producer ID",
+            Length = 200,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field uniquely identifies the service producing the observation described in this segment.  Three components should be included:  an identifying code, the name of the producer, and the identity of the coding system (e.g., 323-5678^Acme Special Lab^MC).  The identity of the coding system will usually be MC (Medicare provider number or HIBCC site codes) in the United States.  Each country may want to specify its preferred coding system and define a coding system ID to identify it.
 
 Remember that the magnitude of a treatment or the setting on a machine, such as a ventilator, can be regarded as an observation.  Thus, pharmacy, respiratory care, and nursing may be producers of such observations.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.5.1",
                             Type = @"Component",
@@ -341,47 +464,104 @@ Remember that the magnitude of a treatment or the setting on a machine, such as 
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.6",
-                            Type = @"Field",
-                            Position = @"OM1.6",
-                            Name = @"Observation Description",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a text description of this observation",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.7",
-                            Type = @"Field",
-                            Position = @"OM1.7",
-                            Name = @"Other Test/Observation IDs for the Observation",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains all alias codes/identifiers for this observation.  If more than one alias code needs to be specified, multiple three-component, CE-format entries (<code 1>^<name 1>^<code system 1>) may be given, separated by repeat delimiters.  An observation may have as many names/codes as are applicable (e.g., ICD9, ACR-NEMA, SNOMED, and READ).  We encourage the inclusion of as many different codes as may apply to assist cross-system mapping of terminology.  All components of each triplet should be non-null (that is, names and coding system IDs within the CE data type are required in addition to codes).  The source list may be any of those included in ASTM Tables 3 and 5.
+                        }
+        }
+
+        _producerID = new HL7V23Field
+        {
+            field = message[@"OM1"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_producerID.field.FieldRepetitions != null && _producerID.field.FieldRepetitions.Count > 0)
+        {
+            _producerID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_producerID, fieldData);
+        }
+
+        return _producerID;
+    } 
+}
+
+internal HL7V23Field _observationDescription;
+
+public HL7V23Field ObservationDescription
+{
+    get
+    {
+        if (_observationDescription != null)
+        {
+            return _observationDescription;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.6",
+            Type = @"Field",
+            Position = @"OM1.6",
+            Name = @"Observation Description",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a text description of this observation",
+            Sample = @"",
+            Fields = null
+        }
+
+        _observationDescription = new HL7V23Field
+        {
+            field = message[@"OM1"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationDescription.field.FieldRepetitions != null && _observationDescription.field.FieldRepetitions.Count > 0)
+        {
+            _observationDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_observationDescription, fieldData);
+        }
+
+        return _observationDescription;
+    } 
+}
+
+internal HL7V23Field _otherTestObservationIDsfortheObservation;
+
+public HL7V23Field OtherTestObservationIDsfortheObservation
+{
+    get
+    {
+        if (_otherTestObservationIDsfortheObservation != null)
+        {
+            return _otherTestObservationIDsfortheObservation;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.7",
+            Type = @"Field",
+            Position = @"OM1.7",
+            Name = @"Other Test/Observation IDs for the Observation",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains all alias codes/identifiers for this observation.  If more than one alias code needs to be specified, multiple three-component, CE-format entries (<code 1>^<name 1>^<code system 1>) may be given, separated by repeat delimiters.  An observation may have as many names/codes as are applicable (e.g., ICD9, ACR-NEMA, SNOMED, and READ).  We encourage the inclusion of as many different codes as may apply to assist cross-system mapping of terminology.  All components of each triplet should be non-null (that is, names and coding system IDs within the CE data type are required in addition to codes).  The source list may be any of those included in ASTM Tables 3 and 5.
 
 Because the size (dose) of a treatment can also be an observation, codes that identify treatments (e.g., NDC, ICCS) may also be included in this field.
 
 Note: In this field, the names within the CE data type are required. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.7.1",
                             Type = @"Component",
@@ -487,120 +667,285 @@ Note: In this field, the names within the CE data type are required. ",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.8",
-                            Type = @"Field",
-                            Position = @"OM1.8",
-                            Name = @"Other Names",
-                            Length = 200,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains any test aliases or synonyms for the name in the context of the ordering service.  These are alternative names, not associated with a particular coding system, by which the battery, test, or observation (e.g., measurement, test, diagnostic study, treatment) is known to users of the system.  Multiple names in this list are separated by repeat delimiters",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.9",
-                            Type = @"Field",
-                            Position = @"OM1.9",
-                            Name = @"Preferred Report Name for the Observation",
-                            Length = 30,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the preferred name for reporting the observation or battery.  The name can contain up to 30 characters (including blanks).  It is the preferred name for columnar reports that require a maximum name size",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.10",
-                            Type = @"Field",
-                            Position = @"OM1.10",
-                            Name = @"Preferred Short Name or Mnemonic for Observation",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name that can be used in space-limited reports (e.g., specimen labels) to identify the observation for the convenience of human readers.  The name can contain up to eight characters",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.11",
-                            Type = @"Field",
-                            Position = @"OM1.11",
-                            Name = @"Preferred Long Name for the Observation",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the fully-specified name for the observation or battery.  It may include the full (unabbreviated) multiple-word names and contain up to 200 characters.  It should be as scientifically precise as possible.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.12",
-                            Type = @"Field",
-                            Position = @"OM1.12",
-                            Name = @"Orderability",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates whether or not a test/observation is an orderable code.   Refer to HL7 table 0136 - Yes/no indicator for valid values.
+                        }
+        }
+
+        _otherTestObservationIDsfortheObservation = new HL7V23Field
+        {
+            field = message[@"OM1"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_otherTestObservationIDsfortheObservation.field.FieldRepetitions != null && _otherTestObservationIDsfortheObservation.field.FieldRepetitions.Count > 0)
+        {
+            _otherTestObservationIDsfortheObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_otherTestObservationIDsfortheObservation, fieldData);
+        }
+
+        return _otherTestObservationIDsfortheObservation;
+    } 
+}
+
+internal HL7V23Field _otherNames;
+
+public HL7V23Field OtherNames
+{
+    get
+    {
+        if (_otherNames != null)
+        {
+            return _otherNames;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.8",
+            Type = @"Field",
+            Position = @"OM1.8",
+            Name = @"Other Names",
+            Length = 200,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains any test aliases or synonyms for the name in the context of the ordering service.  These are alternative names, not associated with a particular coding system, by which the battery, test, or observation (e.g., measurement, test, diagnostic study, treatment) is known to users of the system.  Multiple names in this list are separated by repeat delimiters",
+            Sample = @"",
+            Fields = null
+        }
+
+        _otherNames = new HL7V23Field
+        {
+            field = message[@"OM1"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_otherNames.field.FieldRepetitions != null && _otherNames.field.FieldRepetitions.Count > 0)
+        {
+            _otherNames.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_otherNames, fieldData);
+        }
+
+        return _otherNames;
+    } 
+}
+
+internal HL7V23Field _preferredReportNamefortheObservation;
+
+public HL7V23Field PreferredReportNamefortheObservation
+{
+    get
+    {
+        if (_preferredReportNamefortheObservation != null)
+        {
+            return _preferredReportNamefortheObservation;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.9",
+            Type = @"Field",
+            Position = @"OM1.9",
+            Name = @"Preferred Report Name for the Observation",
+            Length = 30,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the preferred name for reporting the observation or battery.  The name can contain up to 30 characters (including blanks).  It is the preferred name for columnar reports that require a maximum name size",
+            Sample = @"",
+            Fields = null
+        }
+
+        _preferredReportNamefortheObservation = new HL7V23Field
+        {
+            field = message[@"OM1"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_preferredReportNamefortheObservation.field.FieldRepetitions != null && _preferredReportNamefortheObservation.field.FieldRepetitions.Count > 0)
+        {
+            _preferredReportNamefortheObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_preferredReportNamefortheObservation, fieldData);
+        }
+
+        return _preferredReportNamefortheObservation;
+    } 
+}
+
+internal HL7V23Field _preferredShortNameorMnemonicforObservation;
+
+public HL7V23Field PreferredShortNameorMnemonicforObservation
+{
+    get
+    {
+        if (_preferredShortNameorMnemonicforObservation != null)
+        {
+            return _preferredShortNameorMnemonicforObservation;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.10",
+            Type = @"Field",
+            Position = @"OM1.10",
+            Name = @"Preferred Short Name or Mnemonic for Observation",
+            Length = 8,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name that can be used in space-limited reports (e.g., specimen labels) to identify the observation for the convenience of human readers.  The name can contain up to eight characters",
+            Sample = @"",
+            Fields = null
+        }
+
+        _preferredShortNameorMnemonicforObservation = new HL7V23Field
+        {
+            field = message[@"OM1"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_preferredShortNameorMnemonicforObservation.field.FieldRepetitions != null && _preferredShortNameorMnemonicforObservation.field.FieldRepetitions.Count > 0)
+        {
+            _preferredShortNameorMnemonicforObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_preferredShortNameorMnemonicforObservation, fieldData);
+        }
+
+        return _preferredShortNameorMnemonicforObservation;
+    } 
+}
+
+internal HL7V23Field _preferredLongNamefortheObservation;
+
+public HL7V23Field PreferredLongNamefortheObservation
+{
+    get
+    {
+        if (_preferredLongNamefortheObservation != null)
+        {
+            return _preferredLongNamefortheObservation;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.11",
+            Type = @"Field",
+            Position = @"OM1.11",
+            Name = @"Preferred Long Name for the Observation",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the fully-specified name for the observation or battery.  It may include the full (unabbreviated) multiple-word names and contain up to 200 characters.  It should be as scientifically precise as possible.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _preferredLongNamefortheObservation = new HL7V23Field
+        {
+            field = message[@"OM1"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_preferredLongNamefortheObservation.field.FieldRepetitions != null && _preferredLongNamefortheObservation.field.FieldRepetitions.Count > 0)
+        {
+            _preferredLongNamefortheObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_preferredLongNamefortheObservation, fieldData);
+        }
+
+        return _preferredLongNamefortheObservation;
+    } 
+}
+
+internal HL7V23Field _orderability;
+
+public HL7V23Field Orderability
+{
+    get
+    {
+        if (_orderability != null)
+        {
+            return _orderability;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.12",
+            Type = @"Field",
+            Position = @"OM1.12",
+            Name = @"Orderability",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field indicates whether or not a test/observation is an orderable code.   Refer to HL7 table 0136 - Yes/no indicator for valid values.
 
 Y  the test/observation is an orderable code 
 N  the test/observation is not orderable 
 
 For example, blood differential count is usually an orderable “test,” MCV, contained within the differential count, is usually not independently orderable",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _orderability = new HL7V23Field
+        {
+            field = message[@"OM1"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_orderability.field.FieldRepetitions != null && _orderability.field.FieldRepetitions.Count > 0)
+        {
+            _orderability.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_orderability, fieldData);
+        }
+
+        return _orderability;
+    } 
+}
+
+internal HL7V23Field _identityofInstrumentUsedtoPerfromthisStudy;
+
+public HL7V23Field IdentityofInstrumentUsedtoPerfromthisStudy
+{
+    get
+    {
+        if (_identityofInstrumentUsedtoPerfromthisStudy != null)
+        {
+            return _identityofInstrumentUsedtoPerfromthisStudy;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.13",
+            Type = @"Field",
+            Position = @"OM1.13",
+            Name = @"Identity of Instrument Used to Perfrom this Study",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"When applicable, this field identifies the instrument or device that is used to generate this observation or battery.  Examples are the automated instrument in the laboratory, the imaging device and model number in radiology, and the automatic blood pressure machine on the ward.  The instrument is specified as a coded entry in anticipation that these identifiers could be specified as codes.  Initially, we expect that most of the information about devices will be transmitted as text in the second component of the CE identifier.  If more than one kind of instrument is used, all of them can be listed, separated by repeat delimiters",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM1.13",
-                            Type = @"Field",
-                            Position = @"OM1.13",
-                            Name = @"Identity of Instrument Used to Perfrom this Study",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"When applicable, this field identifies the instrument or device that is used to generate this observation or battery.  Examples are the automated instrument in the laboratory, the imaging device and model number in radiology, and the automatic blood pressure machine on the ward.  The instrument is specified as a coded entry in anticipation that these identifiers could be specified as codes.  Initially, we expect that most of the information about devices will be transmitted as text in the second component of the CE identifier.  If more than one kind of instrument is used, all of them can be listed, separated by repeat delimiters",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.13.1",
                             Type = @"Component",
@@ -706,25 +1051,55 @@ For example, blood differential count is usually an orderable “test,” MCV, c
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _identityofInstrumentUsedtoPerfromthisStudy = new HL7V23Field
+        {
+            field = message[@"OM1"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_identityofInstrumentUsedtoPerfromthisStudy.field.FieldRepetitions != null && _identityofInstrumentUsedtoPerfromthisStudy.field.FieldRepetitions.Count > 0)
+        {
+            _identityofInstrumentUsedtoPerfromthisStudy.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_identityofInstrumentUsedtoPerfromthisStudy, fieldData);
+        }
+
+        return _identityofInstrumentUsedtoPerfromthisStudy;
+    } 
+}
+
+internal HL7V23Field _codedRepresentationofMethod;
+
+public HL7V23Field CodedRepresentationofMethod
+{
+    get
+    {
+        if (_codedRepresentationofMethod != null)
+        {
+            return _codedRepresentationofMethod;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.14",
+            Type = @"Field",
+            Position = @"OM1.14",
+            Name = @"Coded Representation of Method",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the method(s) used to produce the observation and should be recorded in a computer-understandable (coded) form here.  This field should report the same method(s) reported in narrative in the following field.  More than one method may be listed, but only if they produce results that are clinically indistinguishable.  Multiple methods must be separated by repeat delimiters",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM1.14",
-                            Type = @"Field",
-                            Position = @"OM1.14",
-                            Name = @"Coded Representation of Method",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the method(s) used to produce the observation and should be recorded in a computer-understandable (coded) form here.  This field should report the same method(s) reported in narrative in the following field.  More than one method may be listed, but only if they produce results that are clinically indistinguishable.  Multiple methods must be separated by repeat delimiters",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.14.1",
                             Type = @"Component",
@@ -830,46 +1205,103 @@ For example, blood differential count is usually an orderable “test,” MCV, c
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.15",
-                            Type = @"Field",
-                            Position = @"OM1.15",
-                            Name = @"Portable",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates whether or not a portable device may be used for the test/observation.  Refer to HL7 table 0136 - Yes/no indicator for valid values.
+                        }
+        }
+
+        _codedRepresentationofMethod = new HL7V23Field
+        {
+            field = message[@"OM1"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_codedRepresentationofMethod.field.FieldRepetitions != null && _codedRepresentationofMethod.field.FieldRepetitions.Count > 0)
+        {
+            _codedRepresentationofMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_codedRepresentationofMethod, fieldData);
+        }
+
+        return _codedRepresentationofMethod;
+    } 
+}
+
+internal HL7V23Field _portable;
+
+public HL7V23Field Portable
+{
+    get
+    {
+        if (_portable != null)
+        {
+            return _portable;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.15",
+            Type = @"Field",
+            Position = @"OM1.15",
+            Name = @"Portable",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field indicates whether or not a portable device may be used for the test/observation.  Refer to HL7 table 0136 - Yes/no indicator for valid values.
 
 Y  the observation can be obtained with a portable device brought to the patient 
 N  the patient or specimen must be transported to the device ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _portable = new HL7V23Field
+        {
+            field = message[@"OM1"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_portable.field.FieldRepetitions != null && _portable.field.FieldRepetitions.Count > 0)
+        {
+            _portable.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_portable, fieldData);
+        }
+
+        return _portable;
+    } 
+}
+
+internal HL7V23Field _observationProducingDepartmentSection;
+
+public HL7V23Field ObservationProducingDepartmentSection
+{
+    get
+    {
+        if (_observationProducingDepartmentSection != null)
+        {
+            return _observationProducingDepartmentSection;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.16",
+            Type = @"Field",
+            Position = @"OM1.16",
+            Name = @"Observation Producing Department/Section",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field permits the sorting of observation orders and values by the providing service’s department/section.  It provides “source oriented” reporting when required.  The codes for this field should be taken from ASTM Table 15 (Diagnostic Service Codes).  Free text may be used instead of these codes, but in that case, they should be recorded as the second “component” of the field to distinguish them from the standard codes.  Multiple codes in this field are separated by repeat delimiters.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM1.16",
-                            Type = @"Field",
-                            Position = @"OM1.16",
-                            Name = @"Observation Producing Department/Section",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field permits the sorting of observation orders and values by the providing service’s department/section.  It provides “source oriented” reporting when required.  The codes for this field should be taken from ASTM Table 15 (Diagnostic Service Codes).  Free text may be used instead of these codes, but in that case, they should be recorded as the second “component” of the field to distinguish them from the standard codes.  Multiple codes in this field are separated by repeat delimiters.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.16.1",
                             Type = @"Component",
@@ -975,25 +1407,55 @@ N  the patient or specimen must be transported to the device ",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _observationProducingDepartmentSection = new HL7V23Field
+        {
+            field = message[@"OM1"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationProducingDepartmentSection.field.FieldRepetitions != null && _observationProducingDepartmentSection.field.FieldRepetitions.Count > 0)
+        {
+            _observationProducingDepartmentSection.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_observationProducingDepartmentSection, fieldData);
+        }
+
+        return _observationProducingDepartmentSection;
+    } 
+}
+
+internal HL7V23Field _telephoneNumberofSection;
+
+public HL7V23Field TelephoneNumberofSection
+{
+    get
+    {
+        if (_telephoneNumberofSection != null)
+        {
+            return _telephoneNumberofSection;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.17",
+            Type = @"Field",
+            Position = @"OM1.17",
+            Name = @"Telephone Number of Section",
+            Length = 40,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the telephone number for calling responsible parties in this section to ask results or advice about the use of this test",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM1.17",
-                            Type = @"Field",
-                            Position = @"OM1.17",
-                            Name = @"Telephone Number of Section",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the telephone number for calling responsible parties in this section to ask results or advice about the use of this test",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.17.1",
                             Type = @"Component",
@@ -1153,23 +1615,51 @@ N  the patient or specimen must be transported to the device ",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.18",
-                            Type = @"Field",
-                            Position = @"OM1.18",
-                            Name = @"Nature of Test/Observation",
-                            Length = 1,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0174",
-                            TableName = @"Nature of test/observation",
-                            Description = @"This field indicates whether the definition entry identifies a test battery, an entire functional procedure or study, a single test value (observation), multiple test batteries or functional procedures as an orderable unit (profile), or a single test value (observation) calculated from other independent observations.  Refer to user-defined table 0174 - Nature of test/observation for suggested values.
+                        }
+        }
+
+        _telephoneNumberofSection = new HL7V23Field
+        {
+            field = message[@"OM1"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_telephoneNumberofSection.field.FieldRepetitions != null && _telephoneNumberofSection.field.FieldRepetitions.Count > 0)
+        {
+            _telephoneNumberofSection.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_telephoneNumberofSection, fieldData);
+        }
+
+        return _telephoneNumberofSection;
+    } 
+}
+
+internal HL7V23Field _natureofTestObservation;
+
+public HL7V23Field NatureofTestObservation
+{
+    get
+    {
+        if (_natureofTestObservation != null)
+        {
+            return _natureofTestObservation;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.18",
+            Type = @"Field",
+            Position = @"OM1.18",
+            Name = @"Nature of Test/Observation",
+            Length = 1,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0174",
+            TableName = @"Nature of test/observation",
+            Description = @"This field indicates whether the definition entry identifies a test battery, an entire functional procedure or study, a single test value (observation), multiple test batteries or functional procedures as an orderable unit (profile), or a single test value (observation) calculated from other independent observations.  Refer to user-defined table 0174 - Nature of test/observation for suggested values.
 
 Codes P, F, and S identify sets (batteries) and should be associated with an OM5 segment that defines the list of elements.  The definitions for the contained elements would have to be sent in other independent OMx segments, one for each contained element.  In the ASTM context, most text reports--such as discharge summaries, admission H&Ps, and chest X-ray reports--are considered as sets, in which each section of the report (e.g., description, impression, and recommendation of an X-ray report) is considered a separate observation.
 
@@ -1178,26 +1668,55 @@ Code A identifies a single direct observation and would usually be associated wi
 Code C identifies a derived quantity and would usually be associated with an OM6 segment. 
 
 All of these codes can be associated with one or more OM4 (specimen) segments",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _natureofTestObservation = new HL7V23Field
+        {
+            field = message[@"OM1"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_natureofTestObservation.field.FieldRepetitions != null && _natureofTestObservation.field.FieldRepetitions.Count > 0)
+        {
+            _natureofTestObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_natureofTestObservation, fieldData);
+        }
+
+        return _natureofTestObservation;
+    } 
+}
+
+internal HL7V23Field _reportSubheader;
+
+public HL7V23Field ReportSubheader
+{
+    get
+    {
+        if (_reportSubheader != null)
+        {
+            return _reportSubheader;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.19",
+            Type = @"Field",
+            Position = @"OM1.19",
+            Name = @"Report Subheader",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an optional string that defines the preferred header under which this observation should be listed on a standard display.  For example, if the test is hemoglobin, this string might be “Complete blood count.”  It is represented as a coded data type so that a battery can be a header.  Only the description part of the string may be included in case the subheader does not have an associated code.  When a series of observations is displayed according to the sort order given below, the subheader that groups those observations is presented whenever the subheader changes",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM1.19",
-                            Type = @"Field",
-                            Position = @"OM1.19",
-                            Name = @"Report Subheader",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an optional string that defines the preferred header under which this observation should be listed on a standard display.  For example, if the test is hemoglobin, this string might be “Complete blood count.”  It is represented as a coded data type so that a battery can be a header.  Only the description part of the string may be included in case the subheader does not have an associated code.  When a series of observations is displayed according to the sort order given below, the subheader that groups those observations is presented whenever the subheader changes",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.19.1",
                             Type = @"Component",
@@ -1303,43 +1822,100 @@ All of these codes can be associated with one or more OM4 (specimen) segments",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _reportSubheader = new HL7V23Field
+        {
+            field = message[@"OM1"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reportSubheader.field.FieldRepetitions != null && _reportSubheader.field.FieldRepetitions.Count > 0)
+        {
+            _reportSubheader.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_reportSubheader, fieldData);
+        }
+
+        return _reportSubheader;
+    } 
+}
+
+internal HL7V23Field _reportDisplayOrder;
+
+public HL7V23Field ReportDisplayOrder
+{
+    get
+    {
+        if (_reportDisplayOrder != null)
+        {
+            return _reportDisplayOrder;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.20",
+            Type = @"Field",
+            Position = @"OM1.20",
+            Name = @"Report Display Order",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains an optional string that defines the sort order in which this observation is presented in a standard report or display that contains the many observations",
+            Sample = @"",
+            Fields = null
+        }
+
+        _reportDisplayOrder = new HL7V23Field
+        {
+            field = message[@"OM1"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reportDisplayOrder.field.FieldRepetitions != null && _reportDisplayOrder.field.FieldRepetitions.Count > 0)
+        {
+            _reportDisplayOrder.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_reportDisplayOrder, fieldData);
+        }
+
+        return _reportDisplayOrder;
+    } 
+}
+
+internal HL7V23Field _dateTimeStampforanychangeinDefAttriforObs;
+
+public HL7V23Field DateTimeStampforanychangeinDefAttriforObs
+{
+    get
+    {
+        if (_dateTimeStampforanychangeinDefAttriforObs != null)
+        {
+            return _dateTimeStampforanychangeinDefAttriforObs;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.21",
+            Type = @"Field",
+            Position = @"OM1.21",
+            Name = @"Date/Time Stamp for any change in Def Attri for Obs",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time that the last of any field change was made and in the host’s record corresponding to the OM1 segment",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM1.20",
-                            Type = @"Field",
-                            Position = @"OM1.20",
-                            Name = @"Report Display Order",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains an optional string that defines the sort order in which this observation is presented in a standard report or display that contains the many observations",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.21",
-                            Type = @"Field",
-                            Position = @"OM1.21",
-                            Name = @"Date/Time Stamp for any change in Def Attri for Obs",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time that the last of any field change was made and in the host’s record corresponding to the OM1 segment",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.21.1",
                             Type = @"Component",
@@ -1355,31 +1931,61 @@ All of these codes can be associated with one or more OM4 (specimen) segments",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.22",
-                            Type = @"Field",
-                            Position = @"OM1.22",
-                            Name = @"Effective Date/Time of Change in Test Proc. that make Results Non-Comparable",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time of the last change in the test procedure that would make previous results incompatible with new results, e.g., the last time that normal reference range or units changed for a numeric test/observation.
+                        }
+        }
+
+        _dateTimeStampforanychangeinDefAttriforObs = new HL7V23Field
+        {
+            field = message[@"OM1"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeStampforanychangeinDefAttriforObs.field.FieldRepetitions != null && _dateTimeStampforanychangeinDefAttriforObs.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeStampforanychangeinDefAttriforObs.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_dateTimeStampforanychangeinDefAttriforObs, fieldData);
+        }
+
+        return _dateTimeStampforanychangeinDefAttriforObs;
+    } 
+}
+
+internal HL7V23Field _effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable;
+
+public HL7V23Field EffectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable
+{
+    get
+    {
+        if (_effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable != null)
+        {
+            return _effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.22",
+            Type = @"Field",
+            Position = @"OM1.22",
+            Name = @"Effective Date/Time of Change in Test Proc. that make Results Non-Comparable",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time of the last change in the test procedure that would make previous results incompatible with new results, e.g., the last time that normal reference range or units changed for a numeric test/observation.
 
 We strongly suggest that observation producers never use the same observation ID when the measurement procedures change in such a way that results produced under the new procedure are clinically different from those produced with the old procedure. Rather, the producer should try to adjust the new procedure so that its values are clinically indistinguishable from the old. Failing that, one should create a new observation ID for the observation produced under the new procedure.
 
 In the rare circumstances when a procedure change occurs and neither of the above two options is viable, this field shall be used to transmit the effective date/time of the new procedure. The receiving system shall assume that any values that come across under this observation ID are under the new procedure after this date and take appropriate steps to distinguish the old from the new observations.
 
 This number is included to provide a means of communicating with the observation producing service when they have questions about particular observations or results",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.22.1",
                             Type = @"Component",
@@ -1395,99 +2001,237 @@ This number is included to provide a means of communicating with the observation
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.23",
-                            Type = @"Field",
-                            Position = @"OM1.23",
-                            Name = @"Typical Turn-Around Time",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the typical processing time for single test/observation.  This field indicates the time from the delivery of a specimen or transport of a patient to a diagnostic service and the completion of the study.  It includes the usual waiting time.  The units are measured in m",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.24",
-                            Type = @"Field",
-                            Position = @"OM1.24",
-                            Name = @"Processing Time",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the usual length of time (in minutes) between the start of a test process and its completion",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.25",
-                            Type = @"Field",
-                            Position = @"OM1.25",
-                            Name = @"Processing Priority",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0168",
-                            TableName = @"Processing priority",
-                            Description = @"This field contains one or more available priorities for performing the observation or test.  This is the priority that can be placed in OBR-28-quantity/timing.  For tests that require a specimen, this field may contain two components in the format <specimen priority>^<processing priority>.  The first component in this case indicates the priority with which the specimen will be collected and is the priority that is specified in an OBR segment when ordering the observation.  The second component indicates the corresponding priority with which the producer service will process the specimen, produce the observation, and return results, when this differs from collection priority.  Refer to HL7 table 0168 - Processing priority for valid values.
+                        }
+        }
+
+        _effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable = new HL7V23Field
+        {
+            field = message[@"OM1"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable.field.FieldRepetitions != null && _effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable.field.FieldRepetitions.Count > 0)
+        {
+            _effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable, fieldData);
+        }
+
+        return _effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable;
+    } 
+}
+
+internal HL7V23Field _typicalTurnAroundTime;
+
+public HL7V23Field TypicalTurnAroundTime
+{
+    get
+    {
+        if (_typicalTurnAroundTime != null)
+        {
+            return _typicalTurnAroundTime;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.23",
+            Type = @"Field",
+            Position = @"OM1.23",
+            Name = @"Typical Turn-Around Time",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the typical processing time for single test/observation.  This field indicates the time from the delivery of a specimen or transport of a patient to a diagnostic service and the completion of the study.  It includes the usual waiting time.  The units are measured in m",
+            Sample = @"",
+            Fields = null
+        }
+
+        _typicalTurnAroundTime = new HL7V23Field
+        {
+            field = message[@"OM1"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_typicalTurnAroundTime.field.FieldRepetitions != null && _typicalTurnAroundTime.field.FieldRepetitions.Count > 0)
+        {
+            _typicalTurnAroundTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_typicalTurnAroundTime, fieldData);
+        }
+
+        return _typicalTurnAroundTime;
+    } 
+}
+
+internal HL7V23Field _processingTime;
+
+public HL7V23Field ProcessingTime
+{
+    get
+    {
+        if (_processingTime != null)
+        {
+            return _processingTime;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.24",
+            Type = @"Field",
+            Position = @"OM1.24",
+            Name = @"Processing Time",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the usual length of time (in minutes) between the start of a test process and its completion",
+            Sample = @"",
+            Fields = null
+        }
+
+        _processingTime = new HL7V23Field
+        {
+            field = message[@"OM1"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_processingTime.field.FieldRepetitions != null && _processingTime.field.FieldRepetitions.Count > 0)
+        {
+            _processingTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_processingTime, fieldData);
+        }
+
+        return _processingTime;
+    } 
+}
+
+internal HL7V23Field _processingPriority;
+
+public HL7V23Field ProcessingPriority
+{
+    get
+    {
+        if (_processingPriority != null)
+        {
+            return _processingPriority;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.25",
+            Type = @"Field",
+            Position = @"OM1.25",
+            Name = @"Processing Priority",
+            Length = 40,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0168",
+            TableName = @"Processing priority",
+            Description = @"This field contains one or more available priorities for performing the observation or test.  This is the priority that can be placed in OBR-28-quantity/timing.  For tests that require a specimen, this field may contain two components in the format <specimen priority>^<processing priority>.  The first component in this case indicates the priority with which the specimen will be collected and is the priority that is specified in an OBR segment when ordering the observation.  The second component indicates the corresponding priority with which the producer service will process the specimen, produce the observation, and return results, when this differs from collection priority.  Refer to HL7 table 0168 - Processing priority for valid values.
 
 The priority for obtaining the specimen is included in OM4.  Multiple priorities may be given, separated by repeat delimiters.  For example, S~A~R~P~T indicates that the test may be ordered using codes S, A, R, P, or T.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _processingPriority = new HL7V23Field
+        {
+            field = message[@"OM1"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_processingPriority.field.FieldRepetitions != null && _processingPriority.field.FieldRepetitions.Count > 0)
+        {
+            _processingPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_processingPriority, fieldData);
+        }
+
+        return _processingPriority;
+    } 
+}
+
+internal HL7V23Field _reportingPriority;
+
+public HL7V23Field ReportingPriority
+{
+    get
+    {
+        if (_reportingPriority != null)
+        {
+            return _reportingPriority;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.26",
+            Type = @"Field",
+            Position = @"OM1.26",
+            Name = @"Reporting Priority",
+            Length = 5,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0169",
+            TableName = @"Reporting priority",
+            Description = @"This field contains the available priorities reporting the test results when the user is asked to specify the reporting priority independent of the processing priority.  Refer to HL7 table 0169 - Reporting priority for valid values",
+            Sample = @"",
+            Fields = null
+        }
+
+        _reportingPriority = new HL7V23Field
+        {
+            field = message[@"OM1"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reportingPriority.field.FieldRepetitions != null && _reportingPriority.field.FieldRepetitions.Count > 0)
+        {
+            _reportingPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_reportingPriority, fieldData);
+        }
+
+        return _reportingPriority;
+    } 
+}
+
+internal HL7V23Field _outsideSite;
+
+public HL7V23Field OutsideSite
+{
+    get
+    {
+        if (_outsideSite != null)
+        {
+            return _outsideSite;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.27",
+            Type = @"Field",
+            Position = @"OM1.27",
+            Name = @"Outside Site",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identification(s) of the outside service(s) that produce(s) the observation.  The format of this CE field uses the producer ID (as defined in OM1-6-producer ID) and the name of the service separated by component delimiters.  An example is 39221^ACME lab^MC.  If multiple services are used, they should be separated by repeat delimiter(s).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM1.26",
-                            Type = @"Field",
-                            Position = @"OM1.26",
-                            Name = @"Reporting Priority",
-                            Length = 5,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0169",
-                            TableName = @"Reporting priority",
-                            Description = @"This field contains the available priorities reporting the test results when the user is asked to specify the reporting priority independent of the processing priority.  Refer to HL7 table 0169 - Reporting priority for valid values",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.27",
-                            Type = @"Field",
-                            Position = @"OM1.27",
-                            Name = @"Outside Site",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the identification(s) of the outside service(s) that produce(s) the observation.  The format of this CE field uses the producer ID (as defined in OM1-6-producer ID) and the name of the service separated by component delimiters.  An example is 39221^ACME lab^MC.  If multiple services are used, they should be separated by repeat delimiter(s).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.27.1",
                             Type = @"Component",
@@ -1593,25 +2337,55 @@ The priority for obtaining the specimen is included in OM4.  Multiple priorities
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _outsideSite = new HL7V23Field
+        {
+            field = message[@"OM1"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_outsideSite.field.FieldRepetitions != null && _outsideSite.field.FieldRepetitions.Count > 0)
+        {
+            _outsideSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_outsideSite, fieldData);
+        }
+
+        return _outsideSite;
+    } 
+}
+
+internal HL7V23Field _addressofOutsideSite;
+
+public HL7V23Field AddressofOutsideSite
+{
+    get
+    {
+        if (_addressofOutsideSite != null)
+        {
+            return _addressofOutsideSite;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.28",
+            Type = @"Field",
+            Position = @"OM1.28",
+            Name = @"Address of Outside Site",
+            Length = 1000,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the address of the outside services listed in OM1-28-outside site(s) where observation may be performed.  If multiple services are recorded in that field, their addresses should be separated by repeat delimiters, and the addresses should appear in the same order in which the services appear in the preceding field.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM1.28",
-                            Type = @"Field",
-                            Position = @"OM1.28",
-                            Name = @"Address of Outside Site",
-                            Length = 1000,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the address of the outside services listed in OM1-28-outside site(s) where observation may be performed.  If multiple services are recorded in that field, their addresses should be separated by repeat delimiters, and the addresses should appear in the same order in which the services appear in the preceding field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.28.1",
                             Type = @"Component",
@@ -1792,25 +2566,55 @@ Allowable values:  codes defined by government",
 Allowable Values:  codes defined by government",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _addressofOutsideSite = new HL7V23Field
+        {
+            field = message[@"OM1"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_addressofOutsideSite.field.FieldRepetitions != null && _addressofOutsideSite.field.FieldRepetitions.Count > 0)
+        {
+            _addressofOutsideSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_addressofOutsideSite, fieldData);
+        }
+
+        return _addressofOutsideSite;
+    } 
+}
+
+internal HL7V23Field _phoneNumberofOutsideSite;
+
+public HL7V23Field PhoneNumberofOutsideSite
+{
+    get
+    {
+        if (_phoneNumberofOutsideSite != null)
+        {
+            return _phoneNumberofOutsideSite;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.29",
+            Type = @"Field",
+            Position = @"OM1.29",
+            Name = @"Phone Number of Outside Site",
+            Length = 400,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the telephone number of the outside site.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM1.29",
-                            Type = @"Field",
-                            Position = @"OM1.29",
-                            Name = @"Phone Number of Outside Site",
-                            Length = 400,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the telephone number of the outside site.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.29.1",
                             Type = @"Component",
@@ -1970,41 +2774,96 @@ Allowable Values:  codes defined by government",
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.30",
-                            Type = @"Field",
-                            Position = @"OM1.30",
-                            Name = @"Confidentiality Code",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0177",
-                            TableName = @"Confidentiality code",
-                            Description = @"This field contains the degree to which special confidentiality protection should be applied to the observation.  For example, a tighter control may be applied to an HIV test than to a CBC.  Refer to userdefined table 0177 - Confidentiality code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.31",
-                            Type = @"Field",
-                            Position = @"OM1.31",
-                            Name = @"Observations Required to Interpret the Observation",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the list of variables that the diagnostic service needs to interpret the results of an ordered study.  The observations specified here should be sent to the diagnostic service as OBX segments along with the order (OBR) segment. 
+                        }
+        }
+
+        _phoneNumberofOutsideSite = new HL7V23Field
+        {
+            field = message[@"OM1"][29],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_phoneNumberofOutsideSite.field.FieldRepetitions != null && _phoneNumberofOutsideSite.field.FieldRepetitions.Count > 0)
+        {
+            _phoneNumberofOutsideSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_phoneNumberofOutsideSite, fieldData);
+        }
+
+        return _phoneNumberofOutsideSite;
+    } 
+}
+
+internal HL7V23Field _confidentialityCode;
+
+public HL7V23Field ConfidentialityCode
+{
+    get
+    {
+        if (_confidentialityCode != null)
+        {
+            return _confidentialityCode;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.30",
+            Type = @"Field",
+            Position = @"OM1.30",
+            Name = @"Confidentiality Code",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0177",
+            TableName = @"Confidentiality code",
+            Description = @"This field contains the degree to which special confidentiality protection should be applied to the observation.  For example, a tighter control may be applied to an HIV test than to a CBC.  Refer to userdefined table 0177 - Confidentiality code for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _confidentialityCode = new HL7V23Field
+        {
+            field = message[@"OM1"][30],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_confidentialityCode.field.FieldRepetitions != null && _confidentialityCode.field.FieldRepetitions.Count > 0)
+        {
+            _confidentialityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_confidentialityCode, fieldData);
+        }
+
+        return _confidentialityCode;
+    } 
+}
+
+internal HL7V23Field _observationsRequiredtoInterprettheObservation;
+
+public HL7V23Field ObservationsRequiredtoInterprettheObservation
+{
+    get
+    {
+        if (_observationsRequiredtoInterprettheObservation != null)
+        {
+            return _observationsRequiredtoInterprettheObservation;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.31",
+            Type = @"Field",
+            Position = @"OM1.31",
+            Name = @"Observations Required to Interpret the Observation",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the list of variables that the diagnostic service needs to interpret the results of an ordered study.  The observations specified here should be sent to the diagnostic service as OBX segments along with the order (OBR) segment. 
 
 Example for cervical pap smear: 
 2000.32^date last menstrual period^AS4~2000.33^menstrual state^AS4 Example for arterial blood gas:
@@ -2012,8 +2871,10 @@ Example for cervical pap smear:
 94700^inspired 02^AS4 These examples use AS4 codes in code/text format to identify the variables.
 
 Separate multiple items by repeat delimiters.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.31.1",
                             Type = @"Component",
@@ -2119,44 +2980,101 @@ Separate multiple items by repeat delimiters.",
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.32",
-                            Type = @"Field",
-                            Position = @"OM1.32",
-                            Name = @"Interpretation of Observations",
-                            Length = 65536,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the clinical information about interpreting test results.  Examples are the conditions (drugs) that may cause false abnormals, and the information about the sensitivity and specificity of the test for diagnoses",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.33",
-                            Type = @"Field",
-                            Position = @"OM1.33",
-                            Name = @"Contraindications to Observations",
-                            Length = 65536,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the diagnosis or problem for which the test is a contraindication or of possible danger (e.g., pacemaker, pregnancy, diabetes).  For example, if the test identified in OM1 was an intravenous pyelogram, this field would include warnings about the use of contrast media in diabetes. The contraindication diagnoses should be separated by repeat delimiters. 
+                        }
+        }
+
+        _observationsRequiredtoInterprettheObservation = new HL7V23Field
+        {
+            field = message[@"OM1"][31],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_observationsRequiredtoInterprettheObservation.field.FieldRepetitions != null && _observationsRequiredtoInterprettheObservation.field.FieldRepetitions.Count > 0)
+        {
+            _observationsRequiredtoInterprettheObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_observationsRequiredtoInterprettheObservation, fieldData);
+        }
+
+        return _observationsRequiredtoInterprettheObservation;
+    } 
+}
+
+internal HL7V23Field _interpretationofObservations;
+
+public HL7V23Field InterpretationofObservations
+{
+    get
+    {
+        if (_interpretationofObservations != null)
+        {
+            return _interpretationofObservations;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.32",
+            Type = @"Field",
+            Position = @"OM1.32",
+            Name = @"Interpretation of Observations",
+            Length = 65536,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the clinical information about interpreting test results.  Examples are the conditions (drugs) that may cause false abnormals, and the information about the sensitivity and specificity of the test for diagnoses",
+            Sample = @"",
+            Fields = null
+        }
+
+        _interpretationofObservations = new HL7V23Field
+        {
+            field = message[@"OM1"][32],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_interpretationofObservations.field.FieldRepetitions != null && _interpretationofObservations.field.FieldRepetitions.Count > 0)
+        {
+            _interpretationofObservations.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_interpretationofObservations, fieldData);
+        }
+
+        return _interpretationofObservations;
+    } 
+}
+
+internal HL7V23Field _contraindicationstoObservations;
+
+public HL7V23Field ContraindicationstoObservations
+{
+    get
+    {
+        if (_contraindicationstoObservations != null)
+        {
+            return _contraindicationstoObservations;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.33",
+            Type = @"Field",
+            Position = @"OM1.33",
+            Name = @"Contraindications to Observations",
+            Length = 65536,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the diagnosis or problem for which the test is a contraindication or of possible danger (e.g., pacemaker, pregnancy, diabetes).  For example, if the test identified in OM1 was an intravenous pyelogram, this field would include warnings about the use of contrast media in diabetes. The contraindication diagnoses should be separated by repeat delimiters. 
 Most contraindication rules will be transmitted as free text.  In such cases, the contents serve only as information for human reading.  However, an alternative for machine readable contraindication rules also exists. The rule may be defined formally in the Arden Syntax (ASTM 1460-1992) which has syntax for defining algebraic and transcendental equations, as well as temporal and logical selection criteria based on patient information stored in the computer record. Reflex rules that are written in Arden Syntax should begin and end with a double semi-colon (;;), the Arden slot delimiter.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.33.1",
                             Type = @"Component",
@@ -2262,25 +3180,55 @@ Most contraindication rules will be transmitted as free text.  In such cases, th
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contraindicationstoObservations = new HL7V23Field
+        {
+            field = message[@"OM1"][33],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contraindicationstoObservations.field.FieldRepetitions != null && _contraindicationstoObservations.field.FieldRepetitions.Count > 0)
+        {
+            _contraindicationstoObservations.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_contraindicationstoObservations, fieldData);
+        }
+
+        return _contraindicationstoObservations;
+    } 
+}
+
+internal HL7V23Field _reflexTestsObservations;
+
+public HL7V23Field ReflexTestsObservations
+{
+    get
+    {
+        if (_reflexTestsObservations != null)
+        {
+            return _reflexTestsObservations;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.34",
+            Type = @"Field",
+            Position = @"OM1.34",
+            Name = @"Reflex Tests/Observations",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the test names as type CE (i.e., <code>^<text name>^<coding system>) that may be ordered automatically by the diagnostic service, depending on the results obtained from the ordered battery.  A screening CBC might trigger a reticulocyte count if the Hgb is less than 12.  Multiple reflex tests are separated by repeat delimiters",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM1.34",
-                            Type = @"Field",
-                            Position = @"OM1.34",
-                            Name = @"Reflex Tests/Observations",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the test names as type CE (i.e., <code>^<text name>^<coding system>) that may be ordered automatically by the diagnostic service, depending on the results obtained from the ordered battery.  A screening CBC might trigger a reticulocyte count if the Hgb is less than 12.  Multiple reflex tests are separated by repeat delimiters",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.34.1",
                             Type = @"Component",
@@ -2386,47 +3334,104 @@ Most contraindication rules will be transmitted as free text.  In such cases, th
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.35",
-                            Type = @"Field",
-                            Position = @"OM1.35",
-                            Name = @"Rules that Trigger Reflex Testing",
-                            Length = 80,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the rules that trigger the reflex tests listed above.  If multiple reflex tests are listed in OM1-34-reflex tests/observations separated by repeat delimiters, a set of corresponding rules will be included in this section.  The first rule will apply to the first test, the second to the second test, and so on.
+                        }
+        }
+
+        _reflexTestsObservations = new HL7V23Field
+        {
+            field = message[@"OM1"][34],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reflexTestsObservations.field.FieldRepetitions != null && _reflexTestsObservations.field.FieldRepetitions.Count > 0)
+        {
+            _reflexTestsObservations.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_reflexTestsObservations, fieldData);
+        }
+
+        return _reflexTestsObservations;
+    } 
+}
+
+internal HL7V23Field _rulesthatTriggerReflexTesting;
+
+public HL7V23Field RulesthatTriggerReflexTesting
+{
+    get
+    {
+        if (_rulesthatTriggerReflexTesting != null)
+        {
+            return _rulesthatTriggerReflexTesting;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.35",
+            Type = @"Field",
+            Position = @"OM1.35",
+            Name = @"Rules that Trigger Reflex Testing",
+            Length = 80,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the rules that trigger the reflex tests listed above.  If multiple reflex tests are listed in OM1-34-reflex tests/observations separated by repeat delimiters, a set of corresponding rules will be included in this section.  The first rule will apply to the first test, the second to the second test, and so on.
 
 Most reflex rules will usually be transmitted as free text.  In such cases, the contents serve only as information for human reading.  However, an alternative for machine readable rules also exists. The rule may be defined formally in the Arden Syntax (ASTM 1460-1992) which has syntax for defining algebraic and transcendental equations, as well as temporal and logical selection criteria based on patient information stored in the computer record.  Reflex rules that are written in Arden Syntax should begin and end with a double semi-colon (;;), the Arden slot delimiter.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.36",
-                            Type = @"Field",
-                            Position = @"OM1.36",
-                            Name = @"Fixed Canned Message",
-                            Length = 65536,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the codes and a fixed text message that is always associated with an abbreviation.  The field may include multiple messages separated by repeat delimiters. 
+            Sample = @"",
+            Fields = null
+        }
+
+        _rulesthatTriggerReflexTesting = new HL7V23Field
+        {
+            field = message[@"OM1"][35],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_rulesthatTriggerReflexTesting.field.FieldRepetitions != null && _rulesthatTriggerReflexTesting.field.FieldRepetitions.Count > 0)
+        {
+            _rulesthatTriggerReflexTesting.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_rulesthatTriggerReflexTesting, fieldData);
+        }
+
+        return _rulesthatTriggerReflexTesting;
+    } 
+}
+
+internal HL7V23Field _fixedCannedMessage;
+
+public HL7V23Field FixedCannedMessage
+{
+    get
+    {
+        if (_fixedCannedMessage != null)
+        {
+            return _fixedCannedMessage;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.36",
+            Type = @"Field",
+            Position = @"OM1.36",
+            Name = @"Fixed Canned Message",
+            Length = 65536,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the codes and a fixed text message that is always associated with an abbreviation.  The field may include multiple messages separated by repeat delimiters. 
 
 Most rules about patient testing will be transmitted as free text.  In such cases, the contents serves only as information for human reading.  However, an alternative for machine readable rules also exists.  The rule may be defined formally in the Arden Syntax (ASTM 1460-1992) which has syntax for defining algebraic and transcendental equations, as well as temporal and logical selection criteria based on patient information stored in the computer record.  Rules about patient preparation are written in Arden Syntax should begin and end with a double semi-colon (;;), the Arden slot delimiter",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.36.1",
                             Type = @"Component",
@@ -2532,43 +3537,100 @@ Most rules about patient testing will be transmitted as free text.  In such case
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _fixedCannedMessage = new HL7V23Field
+        {
+            field = message[@"OM1"][36],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_fixedCannedMessage.field.FieldRepetitions != null && _fixedCannedMessage.field.FieldRepetitions.Count > 0)
+        {
+            _fixedCannedMessage.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_fixedCannedMessage, fieldData);
+        }
+
+        return _fixedCannedMessage;
+    } 
+}
+
+internal HL7V23Field _patientPreparation;
+
+public HL7V23Field PatientPreparation
+{
+    get
+    {
+        if (_patientPreparation != null)
+        {
+            return _patientPreparation;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.37",
+            Type = @"Field",
+            Position = @"OM1.37",
+            Name = @"Patient Preparation",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the tests or observations that require special patient preparation, diet, or medications.  For GI contrast studies, this field would contain the pretest diet, e.g., low residue for two days, NPO before study, and the preferred purgatives.  Each separate med, diet, or preparation should be delimited by a repeat delimiter.  Separate each requirement by a repeat delimiter.  Example for a sigmoidectomy: clear liquid diet full day before procedure~take 8 oz mag citrate 6pm day before procedure~take 2 ducat tabs (5m) at 4pm day before procedure~NPO past midnight.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _patientPreparation = new HL7V23Field
+        {
+            field = message[@"OM1"][37],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_patientPreparation.field.FieldRepetitions != null && _patientPreparation.field.FieldRepetitions.Count > 0)
+        {
+            _patientPreparation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_patientPreparation, fieldData);
+        }
+
+        return _patientPreparation;
+    } 
+}
+
+internal HL7V23Field _procedureMedication;
+
+public HL7V23Field ProcedureMedication
+{
+    get
+    {
+        if (_procedureMedication != null)
+        {
+            return _procedureMedication;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.38",
+            Type = @"Field",
+            Position = @"OM1.38",
+            Name = @"Procedure Medication",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the treatments that may be needed as part of the procedure.  Examples are radioactive iodine for a thyroid screen, and methacholine for a methacholine spirometry challenge.  This field should be identified as a CE data type.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM1.37",
-                            Type = @"Field",
-                            Position = @"OM1.37",
-                            Name = @"Patient Preparation",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the tests or observations that require special patient preparation, diet, or medications.  For GI contrast studies, this field would contain the pretest diet, e.g., low residue for two days, NPO before study, and the preferred purgatives.  Each separate med, diet, or preparation should be delimited by a repeat delimiter.  Separate each requirement by a repeat delimiter.  Example for a sigmoidectomy: clear liquid diet full day before procedure~take 8 oz mag citrate 6pm day before procedure~take 2 ducat tabs (5m) at 4pm day before procedure~NPO past midnight.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.38",
-                            Type = @"Field",
-                            Position = @"OM1.38",
-                            Name = @"Procedure Medication",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the treatments that may be needed as part of the procedure.  Examples are radioactive iodine for a thyroid screen, and methacholine for a methacholine spirometry challenge.  This field should be identified as a CE data type.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.38.1",
                             Type = @"Component",
@@ -2674,87 +3736,198 @@ Most rules about patient testing will be transmitted as free text.  In such case
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.39",
-                            Type = @"Field",
-                            Position = @"OM1.39",
-                            Name = @"Factors that may Effect the Observation",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the text description of the foods, diagnoses, drugs, or other conditions that may influence the interpretation of the observation. Information about the direction of the effect, and any recommendation about altering the diet, conditions, or drug before initiating the test observation.
+                        }
+        }
+
+        _procedureMedication = new HL7V23Field
+        {
+            field = message[@"OM1"][38],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_procedureMedication.field.FieldRepetitions != null && _procedureMedication.field.FieldRepetitions.Count > 0)
+        {
+            _procedureMedication.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_procedureMedication, fieldData);
+        }
+
+        return _procedureMedication;
+    } 
+}
+
+internal HL7V23Field _factorsthatmayEffecttheObservation;
+
+public HL7V23Field FactorsthatmayEffecttheObservation
+{
+    get
+    {
+        if (_factorsthatmayEffecttheObservation != null)
+        {
+            return _factorsthatmayEffecttheObservation;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.39",
+            Type = @"Field",
+            Position = @"OM1.39",
+            Name = @"Factors that may Effect the Observation",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the text description of the foods, diagnoses, drugs, or other conditions that may influence the interpretation of the observation. Information about the direction of the effect, and any recommendation about altering the diet, conditions, or drug before initiating the test observation.
 
 Most rules about factors that effect the test interpretation will be transmitted as free text.  In such cases, the contents serves only as information for human reading.  However, an alternative for machine readable rules also exists.  The rule may be defined formally in the Arden Syntax (ASTM 1460-1992) which has syntax for defining algebraic and transcendental equations, as well as temporal and logical selection criteria based on patient information stored in the computer record.  Rules about patient preparation are written in Arden Syntax and should begin and end with a double semi-colon (;;), the Arden slot delimiter. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.40",
-                            Type = @"Field",
-                            Position = @"OM1.40",
-                            Name = @"Test/Observation Performance Schedule",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the diagnostic studies/tests that are performed only at certain times during the course of a work day or work week.  This field indicates the maximum interval between successive test performances (the test may actually be performed more frequently).  The format given in Chapter 4, Section 4.4.2.1, “Repeat Pattern,” should be used.  If necessary, multiple codes may be given, separated by repeat delimiters.  The use of multiple codes indicates that the test is performed at multiple concurrent intervals.  For example, Q6H indicates that the test is performed at least once every 6 hours around the clock.  QJ1 indicates that the test is performed at least every week on Mondays.  QAM~QPM indicates that the test is performed at least once every morning and every evening. QJ1~QJ3~QJ5 indicates that the test is performed at least every week on Mondays, Wednesdays, and Fridays.  C indicates that the test is performed continuously, 7 days per week.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.41",
-                            Type = @"Field",
-                            Position = @"OM1.41",
-                            Name = @"Description of Test Methods",
-                            Length = 65536,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the text description of the methods used to perform the text and generate the observations.  Bibliographic citations may be included.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.42",
-                            Type = @"Field",
-                            Position = @"OM1.42",
-                            Name = @"Kind of Quantity Observed",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0254",
-                            TableName = @"Kind of quantity",
-                            Description = @"This optional attribute describes the underlying kind of property represented by this observation.  This attribute distinguishes concentrations from total amounts, molar concentrations from mass concentrations, partial pressures from colors, and so forth.  These are discussed more fully in the LOINC Users’ Manual.1  They are derived from the approach described in 1995 edition of the IUPAC Silver Book. These distinctions are used in IUPAC and LOINC standard codes.  Defined categories are listed in HL7 table 0254 - Kind of quantity. 
+            Sample = @"",
+            Fields = null
+        }
+
+        _factorsthatmayEffecttheObservation = new HL7V23Field
+        {
+            field = message[@"OM1"][39],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_factorsthatmayEffecttheObservation.field.FieldRepetitions != null && _factorsthatmayEffecttheObservation.field.FieldRepetitions.Count > 0)
+        {
+            _factorsthatmayEffecttheObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_factorsthatmayEffecttheObservation, fieldData);
+        }
+
+        return _factorsthatmayEffecttheObservation;
+    } 
+}
+
+internal HL7V23Field _testObservationPerformanceSchedule;
+
+public HL7V23Field TestObservationPerformanceSchedule
+{
+    get
+    {
+        if (_testObservationPerformanceSchedule != null)
+        {
+            return _testObservationPerformanceSchedule;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.40",
+            Type = @"Field",
+            Position = @"OM1.40",
+            Name = @"Test/Observation Performance Schedule",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the diagnostic studies/tests that are performed only at certain times during the course of a work day or work week.  This field indicates the maximum interval between successive test performances (the test may actually be performed more frequently).  The format given in Chapter 4, Section 4.4.2.1, “Repeat Pattern,” should be used.  If necessary, multiple codes may be given, separated by repeat delimiters.  The use of multiple codes indicates that the test is performed at multiple concurrent intervals.  For example, Q6H indicates that the test is performed at least once every 6 hours around the clock.  QJ1 indicates that the test is performed at least every week on Mondays.  QAM~QPM indicates that the test is performed at least once every morning and every evening. QJ1~QJ3~QJ5 indicates that the test is performed at least every week on Mondays, Wednesdays, and Fridays.  C indicates that the test is performed continuously, 7 days per week.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _testObservationPerformanceSchedule = new HL7V23Field
+        {
+            field = message[@"OM1"][40],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_testObservationPerformanceSchedule.field.FieldRepetitions != null && _testObservationPerformanceSchedule.field.FieldRepetitions.Count > 0)
+        {
+            _testObservationPerformanceSchedule.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_testObservationPerformanceSchedule, fieldData);
+        }
+
+        return _testObservationPerformanceSchedule;
+    } 
+}
+
+internal HL7V23Field _descriptionofTestMethods;
+
+public HL7V23Field DescriptionofTestMethods
+{
+    get
+    {
+        if (_descriptionofTestMethods != null)
+        {
+            return _descriptionofTestMethods;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.41",
+            Type = @"Field",
+            Position = @"OM1.41",
+            Name = @"Description of Test Methods",
+            Length = 65536,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the text description of the methods used to perform the text and generate the observations.  Bibliographic citations may be included.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _descriptionofTestMethods = new HL7V23Field
+        {
+            field = message[@"OM1"][41],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_descriptionofTestMethods.field.FieldRepetitions != null && _descriptionofTestMethods.field.FieldRepetitions.Count > 0)
+        {
+            _descriptionofTestMethods.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_descriptionofTestMethods, fieldData);
+        }
+
+        return _descriptionofTestMethods;
+    } 
+}
+
+internal HL7V23Field _kindofQuantityObserved;
+
+public HL7V23Field KindofQuantityObserved
+{
+    get
+    {
+        if (_kindofQuantityObserved != null)
+        {
+            return _kindofQuantityObserved;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.42",
+            Type = @"Field",
+            Position = @"OM1.42",
+            Name = @"Kind of Quantity Observed",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0254",
+            TableName = @"Kind of quantity",
+            Description = @"This optional attribute describes the underlying kind of property represented by this observation.  This attribute distinguishes concentrations from total amounts, molar concentrations from mass concentrations, partial pressures from colors, and so forth.  These are discussed more fully in the LOINC Users’ Manual.1  They are derived from the approach described in 1995 edition of the IUPAC Silver Book. These distinctions are used in IUPAC and LOINC standard codes.  Defined categories are listed in HL7 table 0254 - Kind of quantity. 
 
 The distinctions of true quantities in this table are based primarily on dimensional analyses. The table contains a number of “families,” those related to simple counts (number, number concentration, etc.), to mass (mass, mass concentration, etc.), to enzyme activity (catalytic content, catalytic concentration, etc.), and molar or equivalents (substance content, substance concentration).   
 
 By this classification, a glucose (in the US) would be classed as a mass concentration. A sodium would be classed as a substance concentration. Within the family, a total amount should be described as the unadorned variant; e.g., the property of measure for a patient’s weight would be mass, not mass content.  Most chemical measures produce concentrations, as exemplified by sodium and glucose. However, a 24hour urine protein is not a mass concentration, but a mass rate (mass per unit time).  The content variants (e.g., mass content, substance content) are used to reflect an amount per mass (usually) of tissue. 
 
 This attribute would be valued in a master file only if the service sending the master file classified observations by their principle of measurement. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.42.1",
                             Type = @"Component",
@@ -2860,27 +4033,57 @@ This attribute would be valued in a master file only if the service sending the 
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.43",
-                            Type = @"Field",
-                            Position = @"OM1.43",
-                            Name = @"Point versus Interval",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0255",
-                            TableName = @"Duration categories",
-                            Description = @"This optional attribute allows master files to classify observations as measuring the patient’s state at a point in time (e.g., spot urines, random urines, serum potassium), or averaged over a interval of time (e.g., concentration, total amount, or clearance over a 24-hour collection).  Interval measures most often apply to urine and stool specimens (e.g., 24-hour urines, 3-day stool fats).  They also apply to clinical measurements such as urine outputs, which are reported as shift totals and 24-hour totals, and event counts on physiologic monitors such as the number of PVCs on a 24-hour Holter monitor.
+                        }
+        }
+
+        _kindofQuantityObserved = new HL7V23Field
+        {
+            field = message[@"OM1"][42],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_kindofQuantityObserved.field.FieldRepetitions != null && _kindofQuantityObserved.field.FieldRepetitions.Count > 0)
+        {
+            _kindofQuantityObserved.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_kindofQuantityObserved, fieldData);
+        }
+
+        return _kindofQuantityObserved;
+    } 
+}
+
+internal HL7V23Field _pointversusInterval;
+
+public HL7V23Field PointversusInterval
+{
+    get
+    {
+        if (_pointversusInterval != null)
+        {
+            return _pointversusInterval;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.43",
+            Type = @"Field",
+            Position = @"OM1.43",
+            Name = @"Point versus Interval",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0255",
+            TableName = @"Duration categories",
+            Description = @"This optional attribute allows master files to classify observations as measuring the patient’s state at a point in time (e.g., spot urines, random urines, serum potassium), or averaged over a interval of time (e.g., concentration, total amount, or clearance over a 24-hour collection).  Interval measures most often apply to urine and stool specimens (e.g., 24-hour urines, 3-day stool fats).  They also apply to clinical measurements such as urine outputs, which are reported as shift totals and 24-hour totals, and event counts on physiologic monitors such as the number of PVCs on a 24-hour Holter monitor.
 
 This field would only be valued in a transaction if the service sending this master file message classified its observation by point versus time interval. This field is not used to record the time collection interval for a particular sample. It is used to specify a characteristic of an observation which has a defined normal range and to distinguish observations of the same kind but observed over varying periods of time.  A spot urine sodium would have PT stored in this field. A 24-hour urine sodium and a 24-hour Holter monitor would have 24H stored here. This attribute would only be valued if the filling service classified its observations by timing.  Refer to user-defined table 0255 - Duration categories for suggested values",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.43.1",
                             Type = @"Component",
@@ -2986,49 +4189,106 @@ This field would only be valued in a transaction if the service sending this mas
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.44",
-                            Type = @"Field",
-                            Position = @"OM1.44",
-                            Name = @"Challenge information",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This optional attribute provides information for classifying observations by the challenge component of the test, if a challenge does speciate the observation.  For example, distinguishing tests that have a challenge component in database. There co-ascribes the physiologic or drug challenge that is intrinsic to the measurement. To identify, for example, tests that include a glucose challenge.   
+                        }
+        }
+
+        _pointversusInterval = new HL7V23Field
+        {
+            field = message[@"OM1"][43],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_pointversusInterval.field.FieldRepetitions != null && _pointversusInterval.field.FieldRepetitions.Count > 0)
+        {
+            _pointversusInterval.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_pointversusInterval, fieldData);
+        }
+
+        return _pointversusInterval;
+    } 
+}
+
+internal HL7V23Field _challengeinformation;
+
+public HL7V23Field Challengeinformation
+{
+    get
+    {
+        if (_challengeinformation != null)
+        {
+            return _challengeinformation;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.44",
+            Type = @"Field",
+            Position = @"OM1.44",
+            Name = @"Challenge information",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This optional attribute provides information for classifying observations by the challenge component of the test, if a challenge does speciate the observation.  For example, distinguishing tests that have a challenge component in database. There co-ascribes the physiologic or drug challenge that is intrinsic to the measurement. To identify, for example, tests that include a glucose challenge.   
 
 To construct this text string, use the following template.  (Note:  This field is not constructed of formally defined components; it is a free text field.  Component delimiters are not used and it is not necessary to supply placeholders if some “components” are not used.) 
 
 The time delay follows the syntax: n<S|M|H|D|W> where  n is a number (possibly a decimal);   S denotes seconds;  M denotes minutes;  H denotes hours;  D denotes days; and W denotes weeks.  The time delay can be preceded by a ‘greater than’ (>) sign, e.g. >4H. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"OM1.45",
-                            Type = @"Field",
-                            Position = @"OM1.45",
-                            Name = @"Relationship modifier",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0258",
-                            TableName = @"Relationship modifier",
-                            Description = @"This optional attribute provides a mechanism for classifying observations according to the subject, in relation to the patient whose results might be stored with as “patient” data.  It is standard practice, for example, to report values for controls, donors, and blood product units as well as the patient’s own values, and store them in the patient’s record. (This may not be the best way to model such information, but it is the way it is usually reported.) This should be valued when two values (e.g., one for patient and one for a blood product unit) could otherwise be confused. 
+            Sample = @"",
+            Fields = null
+        }
+
+        _challengeinformation = new HL7V23Field
+        {
+            field = message[@"OM1"][44],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_challengeinformation.field.FieldRepetitions != null && _challengeinformation.field.FieldRepetitions.Count > 0)
+        {
+            _challengeinformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_challengeinformation, fieldData);
+        }
+
+        return _challengeinformation;
+    } 
+}
+
+internal HL7V23Field _relationshipmodifier;
+
+public HL7V23Field Relationshipmodifier
+{
+    get
+    {
+        if (_relationshipmodifier != null)
+        {
+            return _relationshipmodifier;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.45",
+            Type = @"Field",
+            Position = @"OM1.45",
+            Name = @"Relationship modifier",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0258",
+            TableName = @"Relationship modifier",
+            Description = @"This optional attribute provides a mechanism for classifying observations according to the subject, in relation to the patient whose results might be stored with as “patient” data.  It is standard practice, for example, to report values for controls, donors, and blood product units as well as the patient’s own values, and store them in the patient’s record. (This may not be the best way to model such information, but it is the way it is usually reported.) This should be valued when two values (e.g., one for patient and one for a blood product unit) could otherwise be confused. 
 
 The default value is “Patient,” and if not specified, this value is assumed.  The persons sub-component can refer to HL7 table 0258 - Relationship modifier for valid values. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.45.1",
                             Type = @"Component",
@@ -3134,25 +4394,55 @@ The default value is “Patient,” and if not specified, this value is assumed.
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _relationshipmodifier = new HL7V23Field
+        {
+            field = message[@"OM1"][45],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_relationshipmodifier.field.FieldRepetitions != null && _relationshipmodifier.field.FieldRepetitions.Count > 0)
+        {
+            _relationshipmodifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_relationshipmodifier, fieldData);
+        }
+
+        return _relationshipmodifier;
+    } 
+}
+
+internal HL7V23Field _targetanatomicsiteoftest;
+
+public HL7V23Field Targetanatomicsiteoftest
+{
+    get
+    {
+        if (_targetanatomicsiteoftest != null)
+        {
+            return _targetanatomicsiteoftest;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.46",
+            Type = @"Field",
+            Position = @"OM1.46",
+            Name = @"Target anatomic site of test",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This optional attribute formally indicates the site of the observation (to make it easy for a system to find all tests related to one anatomic site). It can be used to classify the observation by target site of the examination.  For example, “heart” might be recorded as the target of the electrocardiogram, cardiac echo, and thallium exercise test.  This attribute would be applicable to most imaging and electro-physiologic examinations. The SNOMED topology axis is an example of a coding system for anatomic sites.  Userdefined tables may also apply here.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM1.46",
-                            Type = @"Field",
-                            Position = @"OM1.46",
-                            Name = @"Target anatomic site of test",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This optional attribute formally indicates the site of the observation (to make it easy for a system to find all tests related to one anatomic site). It can be used to classify the observation by target site of the examination.  For example, “heart” might be recorded as the target of the electrocardiogram, cardiac echo, and thallium exercise test.  This attribute would be applicable to most imaging and electro-physiologic examinations. The SNOMED topology axis is an example of a coding system for anatomic sites.  Userdefined tables may also apply here.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.46.1",
                             Type = @"Component",
@@ -3258,25 +4548,55 @@ The default value is “Patient,” and if not specified, this value is assumed.
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _targetanatomicsiteoftest = new HL7V23Field
+        {
+            field = message[@"OM1"][46],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_targetanatomicsiteoftest.field.FieldRepetitions != null && _targetanatomicsiteoftest.field.FieldRepetitions.Count > 0)
+        {
+            _targetanatomicsiteoftest.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_targetanatomicsiteoftest, fieldData);
+        }
+
+        return _targetanatomicsiteoftest;
+    } 
+}
+
+internal HL7V23Field _modalityofimagingmeasurement;
+
+public HL7V23Field Modalityofimagingmeasurement
+{
+    get
+    {
+        if (_modalityofimagingmeasurement != null)
+        {
+            return _modalityofimagingmeasurement;
+        }
+
+        var fieldData = new HL7V23FieldData
+        {
+            Id = @"OM1.47",
+            Type = @"Field",
+            Position = @"OM1.47",
+            Name = @"Modality of imaging measurement",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0259",
+            TableName = @"Modality",
+            Description = @"This optional attribute describes the modality used to classify the observations, e.g., radiograph, ultrasound, CT scan, NMR, etc..  This attribute is especially important for imaging studies.  Refer to userdefined table 0259 - Modality for suggested values; it is adopted from DICOM C.7.3.1.1.1 Modality.  If these are used, the code source ID would be DCM.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"OM1.47",
-                            Type = @"Field",
-                            Position = @"OM1.47",
-                            Name = @"Modality of imaging measurement",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0259",
-                            TableName = @"Modality",
-                            Description = @"This optional attribute describes the modality used to classify the observations, e.g., radiograph, ultrasound, CT scan, NMR, etc..  This attribute is especially important for imaging studies.  Refer to userdefined table 0259 - Modality for suggested values; it is adopted from DICOM C.7.3.1.1.1 Modality.  If these are used, the code source ID would be DCM.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"OM1.47.1",
                             Type = @"Component",
@@ -3382,2004 +4702,23 @@ The default value is “Patient,” and if not specified, this value is assumed.
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally-defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V23SegmentOM1(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V23Field sequenceNumber;
-
-public HL7V23Field SequenceNumber
-{
-    get
-    {
-        if (sequenceNumber != null)
-        {
-            return sequenceNumber;
-        }
-
-        sequenceNumber = new HL7V23Field
-        {
-            field = message[@"OM1"][1],
-            Id = @"OM1.1",
-            Type = @"Field",
-            Position = @"OM1.1",
-            Name = @"Sequence Number",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the first OM1 segment in a message and is described as 1, the second as 2, and so on",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sequenceNumber.field.FieldRepetitions != null && sequenceNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sequenceNumber.Id));
-            sequenceNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(sequenceNumber, fieldData);
-        }
-
-        return sequenceNumber;
-    } 
-}
-
-internal HL7V23Field producersTestObservationID;
-
-public HL7V23Field ProducersTestObservationID
-{
-    get
-    {
-        if (producersTestObservationID != null)
-        {
-            return producersTestObservationID;
-        }
-
-        producersTestObservationID = new HL7V23Field
-        {
-            field = message[@"OM1"][2],
-            Id = @"OM1.2",
-            Type = @"Field",
-            Position = @"OM1.2",
-            Name = @"Producer's Test/Observation ID",
-            Length = 200,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the producer’s usual or preferred identification of the test or observation.   Only three components should be included: <ID code>^<service text name/description>^<source list of code>.  All components should be non-null.  The source list may be any of those included in ASTM Tables 3 and 5, or a local code",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (producersTestObservationID.field.FieldRepetitions != null && producersTestObservationID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(producersTestObservationID.Id));
-            producersTestObservationID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(producersTestObservationID, fieldData);
-        }
-
-        return producersTestObservationID;
-    } 
-}
-
-internal HL7V23Field permittedDataTypes;
-
-public HL7V23Field PermittedDataTypes
-{
-    get
-    {
-        if (permittedDataTypes != null)
-        {
-            return permittedDataTypes;
-        }
-
-        permittedDataTypes = new HL7V23Field
-        {
-            field = message[@"OM1"][3],
-            Id = @"OM1.3",
-            Type = @"Field",
-            Position = @"OM1.3",
-            Name = @"Permitted Data Types",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0125",
-            TableName = @"Value type",
-            Description = @"This field contains the allowed data type(s) for this observation.  The codes are the same as those listed for OBX (a given observation may, under different circumstances, take on different data types). Indeed, under limited circumstances, an observation can consist of one or more fragments of different data types. When an observation may have more than one data type, e.g., coded (CE) and numeric (NM) the allowable data types should be separated by repeat delimiters.  Refer to HL7 table 0125 - Value type for valid values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (permittedDataTypes.field.FieldRepetitions != null && permittedDataTypes.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(permittedDataTypes.Id));
-            permittedDataTypes.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(permittedDataTypes, fieldData);
-        }
-
-        return permittedDataTypes;
-    } 
-}
-
-internal HL7V23Field specimenRequired;
-
-public HL7V23Field SpecimenRequired
-{
-    get
-    {
-        if (specimenRequired != null)
-        {
-            return specimenRequired;
-        }
-
-        specimenRequired = new HL7V23Field
-        {
-            field = message[@"OM1"][4],
-            Id = @"OM1.4",
-            Type = @"Field",
-            Position = @"OM1.4",
-            Name = @"Specimen Required",
-            Length = 1,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field contains a flag indicating whether or not at least one specimen is required for the test/observation.  Refer to HL7 table 0136 - Yes/no indicator as defined in Chapter 2.
-
-Y  one or more specimens are required to obtain this observation 
-N  a specimen is not required 
-
-When a specimen is required, segment OM4 will usually be included (one per specimen is required)",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (specimenRequired.field.FieldRepetitions != null && specimenRequired.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specimenRequired.Id));
-            specimenRequired.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(specimenRequired, fieldData);
-        }
-
-        return specimenRequired;
-    } 
-}
-
-internal HL7V23Field producerID;
-
-public HL7V23Field ProducerID
-{
-    get
-    {
-        if (producerID != null)
-        {
-            return producerID;
-        }
-
-        producerID = new HL7V23Field
-        {
-            field = message[@"OM1"][5],
-            Id = @"OM1.5",
-            Type = @"Field",
-            Position = @"OM1.5",
-            Name = @"Producer ID",
-            Length = 200,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field uniquely identifies the service producing the observation described in this segment.  Three components should be included:  an identifying code, the name of the producer, and the identity of the coding system (e.g., 323-5678^Acme Special Lab^MC).  The identity of the coding system will usually be MC (Medicare provider number or HIBCC site codes) in the United States.  Each country may want to specify its preferred coding system and define a coding system ID to identify it.
-
-Remember that the magnitude of a treatment or the setting on a machine, such as a ventilator, can be regarded as an observation.  Thus, pharmacy, respiratory care, and nursing may be producers of such observations.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (producerID.field.FieldRepetitions != null && producerID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(producerID.Id));
-            producerID.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(producerID, fieldData);
-        }
-
-        return producerID;
-    } 
-}
-
-internal HL7V23Field observationDescription;
-
-public HL7V23Field ObservationDescription
-{
-    get
-    {
-        if (observationDescription != null)
-        {
-            return observationDescription;
-        }
-
-        observationDescription = new HL7V23Field
-        {
-            field = message[@"OM1"][6],
-            Id = @"OM1.6",
-            Type = @"Field",
-            Position = @"OM1.6",
-            Name = @"Observation Description",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a text description of this observation",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationDescription.field.FieldRepetitions != null && observationDescription.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationDescription.Id));
-            observationDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(observationDescription, fieldData);
-        }
-
-        return observationDescription;
-    } 
-}
-
-internal HL7V23Field otherTestObservationIDsfortheObservation;
-
-public HL7V23Field OtherTestObservationIDsfortheObservation
-{
-    get
-    {
-        if (otherTestObservationIDsfortheObservation != null)
-        {
-            return otherTestObservationIDsfortheObservation;
-        }
-
-        otherTestObservationIDsfortheObservation = new HL7V23Field
-        {
-            field = message[@"OM1"][7],
-            Id = @"OM1.7",
-            Type = @"Field",
-            Position = @"OM1.7",
-            Name = @"Other Test/Observation IDs for the Observation",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains all alias codes/identifiers for this observation.  If more than one alias code needs to be specified, multiple three-component, CE-format entries (<code 1>^<name 1>^<code system 1>) may be given, separated by repeat delimiters.  An observation may have as many names/codes as are applicable (e.g., ICD9, ACR-NEMA, SNOMED, and READ).  We encourage the inclusion of as many different codes as may apply to assist cross-system mapping of terminology.  All components of each triplet should be non-null (that is, names and coding system IDs within the CE data type are required in addition to codes).  The source list may be any of those included in ASTM Tables 3 and 5.
-
-Because the size (dose) of a treatment can also be an observation, codes that identify treatments (e.g., NDC, ICCS) may also be included in this field.
-
-Note: In this field, the names within the CE data type are required. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (otherTestObservationIDsfortheObservation.field.FieldRepetitions != null && otherTestObservationIDsfortheObservation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(otherTestObservationIDsfortheObservation.Id));
-            otherTestObservationIDsfortheObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(otherTestObservationIDsfortheObservation, fieldData);
-        }
-
-        return otherTestObservationIDsfortheObservation;
-    } 
-}
-
-internal HL7V23Field otherNames;
-
-public HL7V23Field OtherNames
-{
-    get
-    {
-        if (otherNames != null)
-        {
-            return otherNames;
-        }
-
-        otherNames = new HL7V23Field
-        {
-            field = message[@"OM1"][8],
-            Id = @"OM1.8",
-            Type = @"Field",
-            Position = @"OM1.8",
-            Name = @"Other Names",
-            Length = 200,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains any test aliases or synonyms for the name in the context of the ordering service.  These are alternative names, not associated with a particular coding system, by which the battery, test, or observation (e.g., measurement, test, diagnostic study, treatment) is known to users of the system.  Multiple names in this list are separated by repeat delimiters",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (otherNames.field.FieldRepetitions != null && otherNames.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(otherNames.Id));
-            otherNames.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(otherNames, fieldData);
-        }
-
-        return otherNames;
-    } 
-}
-
-internal HL7V23Field preferredReportNamefortheObservation;
-
-public HL7V23Field PreferredReportNamefortheObservation
-{
-    get
-    {
-        if (preferredReportNamefortheObservation != null)
-        {
-            return preferredReportNamefortheObservation;
-        }
-
-        preferredReportNamefortheObservation = new HL7V23Field
-        {
-            field = message[@"OM1"][9],
-            Id = @"OM1.9",
-            Type = @"Field",
-            Position = @"OM1.9",
-            Name = @"Preferred Report Name for the Observation",
-            Length = 30,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the preferred name for reporting the observation or battery.  The name can contain up to 30 characters (including blanks).  It is the preferred name for columnar reports that require a maximum name size",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (preferredReportNamefortheObservation.field.FieldRepetitions != null && preferredReportNamefortheObservation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(preferredReportNamefortheObservation.Id));
-            preferredReportNamefortheObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(preferredReportNamefortheObservation, fieldData);
-        }
-
-        return preferredReportNamefortheObservation;
-    } 
-}
-
-internal HL7V23Field preferredShortNameorMnemonicforObservation;
-
-public HL7V23Field PreferredShortNameorMnemonicforObservation
-{
-    get
-    {
-        if (preferredShortNameorMnemonicforObservation != null)
-        {
-            return preferredShortNameorMnemonicforObservation;
-        }
-
-        preferredShortNameorMnemonicforObservation = new HL7V23Field
-        {
-            field = message[@"OM1"][10],
-            Id = @"OM1.10",
-            Type = @"Field",
-            Position = @"OM1.10",
-            Name = @"Preferred Short Name or Mnemonic for Observation",
-            Length = 8,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name that can be used in space-limited reports (e.g., specimen labels) to identify the observation for the convenience of human readers.  The name can contain up to eight characters",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (preferredShortNameorMnemonicforObservation.field.FieldRepetitions != null && preferredShortNameorMnemonicforObservation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(preferredShortNameorMnemonicforObservation.Id));
-            preferredShortNameorMnemonicforObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(preferredShortNameorMnemonicforObservation, fieldData);
-        }
-
-        return preferredShortNameorMnemonicforObservation;
-    } 
-}
-
-internal HL7V23Field preferredLongNamefortheObservation;
-
-public HL7V23Field PreferredLongNamefortheObservation
-{
-    get
-    {
-        if (preferredLongNamefortheObservation != null)
-        {
-            return preferredLongNamefortheObservation;
-        }
-
-        preferredLongNamefortheObservation = new HL7V23Field
-        {
-            field = message[@"OM1"][11],
-            Id = @"OM1.11",
-            Type = @"Field",
-            Position = @"OM1.11",
-            Name = @"Preferred Long Name for the Observation",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the fully-specified name for the observation or battery.  It may include the full (unabbreviated) multiple-word names and contain up to 200 characters.  It should be as scientifically precise as possible.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (preferredLongNamefortheObservation.field.FieldRepetitions != null && preferredLongNamefortheObservation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(preferredLongNamefortheObservation.Id));
-            preferredLongNamefortheObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(preferredLongNamefortheObservation, fieldData);
-        }
-
-        return preferredLongNamefortheObservation;
-    } 
-}
-
-internal HL7V23Field orderability;
-
-public HL7V23Field Orderability
-{
-    get
-    {
-        if (orderability != null)
-        {
-            return orderability;
-        }
-
-        orderability = new HL7V23Field
-        {
-            field = message[@"OM1"][12],
-            Id = @"OM1.12",
-            Type = @"Field",
-            Position = @"OM1.12",
-            Name = @"Orderability",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field indicates whether or not a test/observation is an orderable code.   Refer to HL7 table 0136 - Yes/no indicator for valid values.
-
-Y  the test/observation is an orderable code 
-N  the test/observation is not orderable 
-
-For example, blood differential count is usually an orderable “test,” MCV, contained within the differential count, is usually not independently orderable",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (orderability.field.FieldRepetitions != null && orderability.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderability.Id));
-            orderability.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(orderability, fieldData);
-        }
-
-        return orderability;
-    } 
-}
-
-internal HL7V23Field identityofInstrumentUsedtoPerfromthisStudy;
-
-public HL7V23Field IdentityofInstrumentUsedtoPerfromthisStudy
-{
-    get
-    {
-        if (identityofInstrumentUsedtoPerfromthisStudy != null)
-        {
-            return identityofInstrumentUsedtoPerfromthisStudy;
-        }
-
-        identityofInstrumentUsedtoPerfromthisStudy = new HL7V23Field
-        {
-            field = message[@"OM1"][13],
-            Id = @"OM1.13",
-            Type = @"Field",
-            Position = @"OM1.13",
-            Name = @"Identity of Instrument Used to Perfrom this Study",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"When applicable, this field identifies the instrument or device that is used to generate this observation or battery.  Examples are the automated instrument in the laboratory, the imaging device and model number in radiology, and the automatic blood pressure machine on the ward.  The instrument is specified as a coded entry in anticipation that these identifiers could be specified as codes.  Initially, we expect that most of the information about devices will be transmitted as text in the second component of the CE identifier.  If more than one kind of instrument is used, all of them can be listed, separated by repeat delimiters",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (identityofInstrumentUsedtoPerfromthisStudy.field.FieldRepetitions != null && identityofInstrumentUsedtoPerfromthisStudy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(identityofInstrumentUsedtoPerfromthisStudy.Id));
-            identityofInstrumentUsedtoPerfromthisStudy.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(identityofInstrumentUsedtoPerfromthisStudy, fieldData);
-        }
-
-        return identityofInstrumentUsedtoPerfromthisStudy;
-    } 
-}
-
-internal HL7V23Field codedRepresentationofMethod;
-
-public HL7V23Field CodedRepresentationofMethod
-{
-    get
-    {
-        if (codedRepresentationofMethod != null)
-        {
-            return codedRepresentationofMethod;
-        }
-
-        codedRepresentationofMethod = new HL7V23Field
-        {
-            field = message[@"OM1"][14],
-            Id = @"OM1.14",
-            Type = @"Field",
-            Position = @"OM1.14",
-            Name = @"Coded Representation of Method",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the method(s) used to produce the observation and should be recorded in a computer-understandable (coded) form here.  This field should report the same method(s) reported in narrative in the following field.  More than one method may be listed, but only if they produce results that are clinically indistinguishable.  Multiple methods must be separated by repeat delimiters",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (codedRepresentationofMethod.field.FieldRepetitions != null && codedRepresentationofMethod.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(codedRepresentationofMethod.Id));
-            codedRepresentationofMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(codedRepresentationofMethod, fieldData);
-        }
-
-        return codedRepresentationofMethod;
-    } 
-}
-
-internal HL7V23Field portable;
-
-public HL7V23Field Portable
-{
-    get
-    {
-        if (portable != null)
-        {
-            return portable;
-        }
-
-        portable = new HL7V23Field
-        {
-            field = message[@"OM1"][15],
-            Id = @"OM1.15",
-            Type = @"Field",
-            Position = @"OM1.15",
-            Name = @"Portable",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field indicates whether or not a portable device may be used for the test/observation.  Refer to HL7 table 0136 - Yes/no indicator for valid values.
-
-Y  the observation can be obtained with a portable device brought to the patient 
-N  the patient or specimen must be transported to the device ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (portable.field.FieldRepetitions != null && portable.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(portable.Id));
-            portable.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(portable, fieldData);
-        }
-
-        return portable;
-    } 
-}
-
-internal HL7V23Field observationProducingDepartmentSection;
-
-public HL7V23Field ObservationProducingDepartmentSection
-{
-    get
-    {
-        if (observationProducingDepartmentSection != null)
-        {
-            return observationProducingDepartmentSection;
-        }
-
-        observationProducingDepartmentSection = new HL7V23Field
-        {
-            field = message[@"OM1"][16],
-            Id = @"OM1.16",
-            Type = @"Field",
-            Position = @"OM1.16",
-            Name = @"Observation Producing Department/Section",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field permits the sorting of observation orders and values by the providing service’s department/section.  It provides “source oriented” reporting when required.  The codes for this field should be taken from ASTM Table 15 (Diagnostic Service Codes).  Free text may be used instead of these codes, but in that case, they should be recorded as the second “component” of the field to distinguish them from the standard codes.  Multiple codes in this field are separated by repeat delimiters.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationProducingDepartmentSection.field.FieldRepetitions != null && observationProducingDepartmentSection.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationProducingDepartmentSection.Id));
-            observationProducingDepartmentSection.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(observationProducingDepartmentSection, fieldData);
-        }
-
-        return observationProducingDepartmentSection;
-    } 
-}
-
-internal HL7V23Field telephoneNumberofSection;
-
-public HL7V23Field TelephoneNumberofSection
-{
-    get
-    {
-        if (telephoneNumberofSection != null)
-        {
-            return telephoneNumberofSection;
-        }
-
-        telephoneNumberofSection = new HL7V23Field
-        {
-            field = message[@"OM1"][17],
-            Id = @"OM1.17",
-            Type = @"Field",
-            Position = @"OM1.17",
-            Name = @"Telephone Number of Section",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the telephone number for calling responsible parties in this section to ask results or advice about the use of this test",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (telephoneNumberofSection.field.FieldRepetitions != null && telephoneNumberofSection.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(telephoneNumberofSection.Id));
-            telephoneNumberofSection.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(telephoneNumberofSection, fieldData);
-        }
-
-        return telephoneNumberofSection;
-    } 
-}
-
-internal HL7V23Field natureofTestObservation;
-
-public HL7V23Field NatureofTestObservation
-{
-    get
-    {
-        if (natureofTestObservation != null)
-        {
-            return natureofTestObservation;
-        }
-
-        natureofTestObservation = new HL7V23Field
-        {
-            field = message[@"OM1"][18],
-            Id = @"OM1.18",
-            Type = @"Field",
-            Position = @"OM1.18",
-            Name = @"Nature of Test/Observation",
-            Length = 1,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0174",
-            TableName = @"Nature of test/observation",
-            Description = @"This field indicates whether the definition entry identifies a test battery, an entire functional procedure or study, a single test value (observation), multiple test batteries or functional procedures as an orderable unit (profile), or a single test value (observation) calculated from other independent observations.  Refer to user-defined table 0174 - Nature of test/observation for suggested values.
-
-Codes P, F, and S identify sets (batteries) and should be associated with an OM5 segment that defines the list of elements.  The definitions for the contained elements would have to be sent in other independent OMx segments, one for each contained element.  In the ASTM context, most text reports--such as discharge summaries, admission H&Ps, and chest X-ray reports--are considered as sets, in which each section of the report (e.g., description, impression, and recommendation of an X-ray report) is considered a separate observation.
-
-Code A identifies a single direct observation and would usually be associated with an OM2 and/or OM3 segments.
-
-Code C identifies a derived quantity and would usually be associated with an OM6 segment. 
-
-All of these codes can be associated with one or more OM4 (specimen) segments",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (natureofTestObservation.field.FieldRepetitions != null && natureofTestObservation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(natureofTestObservation.Id));
-            natureofTestObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(natureofTestObservation, fieldData);
-        }
-
-        return natureofTestObservation;
-    } 
-}
-
-internal HL7V23Field reportSubheader;
-
-public HL7V23Field ReportSubheader
-{
-    get
-    {
-        if (reportSubheader != null)
-        {
-            return reportSubheader;
-        }
-
-        reportSubheader = new HL7V23Field
-        {
-            field = message[@"OM1"][19],
-            Id = @"OM1.19",
-            Type = @"Field",
-            Position = @"OM1.19",
-            Name = @"Report Subheader",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an optional string that defines the preferred header under which this observation should be listed on a standard display.  For example, if the test is hemoglobin, this string might be “Complete blood count.”  It is represented as a coded data type so that a battery can be a header.  Only the description part of the string may be included in case the subheader does not have an associated code.  When a series of observations is displayed according to the sort order given below, the subheader that groups those observations is presented whenever the subheader changes",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reportSubheader.field.FieldRepetitions != null && reportSubheader.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reportSubheader.Id));
-            reportSubheader.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(reportSubheader, fieldData);
-        }
-
-        return reportSubheader;
-    } 
-}
-
-internal HL7V23Field reportDisplayOrder;
-
-public HL7V23Field ReportDisplayOrder
-{
-    get
-    {
-        if (reportDisplayOrder != null)
-        {
-            return reportDisplayOrder;
-        }
-
-        reportDisplayOrder = new HL7V23Field
-        {
-            field = message[@"OM1"][20],
-            Id = @"OM1.20",
-            Type = @"Field",
-            Position = @"OM1.20",
-            Name = @"Report Display Order",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains an optional string that defines the sort order in which this observation is presented in a standard report or display that contains the many observations",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reportDisplayOrder.field.FieldRepetitions != null && reportDisplayOrder.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reportDisplayOrder.Id));
-            reportDisplayOrder.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(reportDisplayOrder, fieldData);
-        }
-
-        return reportDisplayOrder;
-    } 
-}
-
-internal HL7V23Field dateTimeStampforanychangeinDefAttriforObs;
-
-public HL7V23Field DateTimeStampforanychangeinDefAttriforObs
-{
-    get
-    {
-        if (dateTimeStampforanychangeinDefAttriforObs != null)
-        {
-            return dateTimeStampforanychangeinDefAttriforObs;
-        }
-
-        dateTimeStampforanychangeinDefAttriforObs = new HL7V23Field
-        {
-            field = message[@"OM1"][21],
-            Id = @"OM1.21",
-            Type = @"Field",
-            Position = @"OM1.21",
-            Name = @"Date/Time Stamp for any change in Def Attri for Obs",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time that the last of any field change was made and in the host’s record corresponding to the OM1 segment",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeStampforanychangeinDefAttriforObs.field.FieldRepetitions != null && dateTimeStampforanychangeinDefAttriforObs.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeStampforanychangeinDefAttriforObs.Id));
-            dateTimeStampforanychangeinDefAttriforObs.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(dateTimeStampforanychangeinDefAttriforObs, fieldData);
-        }
-
-        return dateTimeStampforanychangeinDefAttriforObs;
-    } 
-}
-
-internal HL7V23Field effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable;
-
-public HL7V23Field EffectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable
-{
-    get
-    {
-        if (effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable != null)
-        {
-            return effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable;
-        }
-
-        effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable = new HL7V23Field
-        {
-            field = message[@"OM1"][22],
-            Id = @"OM1.22",
-            Type = @"Field",
-            Position = @"OM1.22",
-            Name = @"Effective Date/Time of Change in Test Proc. that make Results Non-Comparable",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time of the last change in the test procedure that would make previous results incompatible with new results, e.g., the last time that normal reference range or units changed for a numeric test/observation.
-
-We strongly suggest that observation producers never use the same observation ID when the measurement procedures change in such a way that results produced under the new procedure are clinically different from those produced with the old procedure. Rather, the producer should try to adjust the new procedure so that its values are clinically indistinguishable from the old. Failing that, one should create a new observation ID for the observation produced under the new procedure.
-
-In the rare circumstances when a procedure change occurs and neither of the above two options is viable, this field shall be used to transmit the effective date/time of the new procedure. The receiving system shall assume that any values that come across under this observation ID are under the new procedure after this date and take appropriate steps to distinguish the old from the new observations.
-
-This number is included to provide a means of communicating with the observation producing service when they have questions about particular observations or results",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable.field.FieldRepetitions != null && effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable.Id));
-            effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable, fieldData);
-        }
-
-        return effectiveDateTimeofChangeinTestProcthatmakeResultsNonComparable;
-    } 
-}
-
-internal HL7V23Field typicalTurnAroundTime;
-
-public HL7V23Field TypicalTurnAroundTime
-{
-    get
-    {
-        if (typicalTurnAroundTime != null)
-        {
-            return typicalTurnAroundTime;
-        }
-
-        typicalTurnAroundTime = new HL7V23Field
-        {
-            field = message[@"OM1"][23],
-            Id = @"OM1.23",
-            Type = @"Field",
-            Position = @"OM1.23",
-            Name = @"Typical Turn-Around Time",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the typical processing time for single test/observation.  This field indicates the time from the delivery of a specimen or transport of a patient to a diagnostic service and the completion of the study.  It includes the usual waiting time.  The units are measured in m",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (typicalTurnAroundTime.field.FieldRepetitions != null && typicalTurnAroundTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(typicalTurnAroundTime.Id));
-            typicalTurnAroundTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(typicalTurnAroundTime, fieldData);
-        }
-
-        return typicalTurnAroundTime;
-    } 
-}
-
-internal HL7V23Field processingTime;
-
-public HL7V23Field ProcessingTime
-{
-    get
-    {
-        if (processingTime != null)
-        {
-            return processingTime;
-        }
-
-        processingTime = new HL7V23Field
-        {
-            field = message[@"OM1"][24],
-            Id = @"OM1.24",
-            Type = @"Field",
-            Position = @"OM1.24",
-            Name = @"Processing Time",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the usual length of time (in minutes) between the start of a test process and its completion",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (processingTime.field.FieldRepetitions != null && processingTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(processingTime.Id));
-            processingTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(processingTime, fieldData);
-        }
-
-        return processingTime;
-    } 
-}
-
-internal HL7V23Field processingPriority;
-
-public HL7V23Field ProcessingPriority
-{
-    get
-    {
-        if (processingPriority != null)
-        {
-            return processingPriority;
-        }
-
-        processingPriority = new HL7V23Field
-        {
-            field = message[@"OM1"][25],
-            Id = @"OM1.25",
-            Type = @"Field",
-            Position = @"OM1.25",
-            Name = @"Processing Priority",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0168",
-            TableName = @"Processing priority",
-            Description = @"This field contains one or more available priorities for performing the observation or test.  This is the priority that can be placed in OBR-28-quantity/timing.  For tests that require a specimen, this field may contain two components in the format <specimen priority>^<processing priority>.  The first component in this case indicates the priority with which the specimen will be collected and is the priority that is specified in an OBR segment when ordering the observation.  The second component indicates the corresponding priority with which the producer service will process the specimen, produce the observation, and return results, when this differs from collection priority.  Refer to HL7 table 0168 - Processing priority for valid values.
-
-The priority for obtaining the specimen is included in OM4.  Multiple priorities may be given, separated by repeat delimiters.  For example, S~A~R~P~T indicates that the test may be ordered using codes S, A, R, P, or T.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (processingPriority.field.FieldRepetitions != null && processingPriority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(processingPriority.Id));
-            processingPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(processingPriority, fieldData);
-        }
-
-        return processingPriority;
-    } 
-}
-
-internal HL7V23Field reportingPriority;
-
-public HL7V23Field ReportingPriority
-{
-    get
-    {
-        if (reportingPriority != null)
-        {
-            return reportingPriority;
-        }
-
-        reportingPriority = new HL7V23Field
-        {
-            field = message[@"OM1"][26],
-            Id = @"OM1.26",
-            Type = @"Field",
-            Position = @"OM1.26",
-            Name = @"Reporting Priority",
-            Length = 5,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0169",
-            TableName = @"Reporting priority",
-            Description = @"This field contains the available priorities reporting the test results when the user is asked to specify the reporting priority independent of the processing priority.  Refer to HL7 table 0169 - Reporting priority for valid values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reportingPriority.field.FieldRepetitions != null && reportingPriority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reportingPriority.Id));
-            reportingPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(reportingPriority, fieldData);
-        }
-
-        return reportingPriority;
-    } 
-}
-
-internal HL7V23Field outsideSite;
-
-public HL7V23Field OutsideSite
-{
-    get
-    {
-        if (outsideSite != null)
-        {
-            return outsideSite;
-        }
-
-        outsideSite = new HL7V23Field
-        {
-            field = message[@"OM1"][27],
-            Id = @"OM1.27",
-            Type = @"Field",
-            Position = @"OM1.27",
-            Name = @"Outside Site",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the identification(s) of the outside service(s) that produce(s) the observation.  The format of this CE field uses the producer ID (as defined in OM1-6-producer ID) and the name of the service separated by component delimiters.  An example is 39221^ACME lab^MC.  If multiple services are used, they should be separated by repeat delimiter(s).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (outsideSite.field.FieldRepetitions != null && outsideSite.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(outsideSite.Id));
-            outsideSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(outsideSite, fieldData);
-        }
-
-        return outsideSite;
-    } 
-}
-
-internal HL7V23Field addressofOutsideSite;
-
-public HL7V23Field AddressofOutsideSite
-{
-    get
-    {
-        if (addressofOutsideSite != null)
-        {
-            return addressofOutsideSite;
-        }
-
-        addressofOutsideSite = new HL7V23Field
-        {
-            field = message[@"OM1"][28],
-            Id = @"OM1.28",
-            Type = @"Field",
-            Position = @"OM1.28",
-            Name = @"Address of Outside Site",
-            Length = 1000,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the address of the outside services listed in OM1-28-outside site(s) where observation may be performed.  If multiple services are recorded in that field, their addresses should be separated by repeat delimiters, and the addresses should appear in the same order in which the services appear in the preceding field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (addressofOutsideSite.field.FieldRepetitions != null && addressofOutsideSite.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(addressofOutsideSite.Id));
-            addressofOutsideSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(addressofOutsideSite, fieldData);
-        }
-
-        return addressofOutsideSite;
-    } 
-}
-
-internal HL7V23Field phoneNumberofOutsideSite;
-
-public HL7V23Field PhoneNumberofOutsideSite
-{
-    get
-    {
-        if (phoneNumberofOutsideSite != null)
-        {
-            return phoneNumberofOutsideSite;
-        }
-
-        phoneNumberofOutsideSite = new HL7V23Field
-        {
-            field = message[@"OM1"][29],
-            Id = @"OM1.29",
-            Type = @"Field",
-            Position = @"OM1.29",
-            Name = @"Phone Number of Outside Site",
-            Length = 400,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the telephone number of the outside site.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phoneNumberofOutsideSite.field.FieldRepetitions != null && phoneNumberofOutsideSite.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phoneNumberofOutsideSite.Id));
-            phoneNumberofOutsideSite.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(phoneNumberofOutsideSite, fieldData);
-        }
-
-        return phoneNumberofOutsideSite;
-    } 
-}
-
-internal HL7V23Field confidentialityCode;
-
-public HL7V23Field ConfidentialityCode
-{
-    get
-    {
-        if (confidentialityCode != null)
-        {
-            return confidentialityCode;
-        }
-
-        confidentialityCode = new HL7V23Field
-        {
-            field = message[@"OM1"][30],
-            Id = @"OM1.30",
-            Type = @"Field",
-            Position = @"OM1.30",
-            Name = @"Confidentiality Code",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0177",
-            TableName = @"Confidentiality code",
-            Description = @"This field contains the degree to which special confidentiality protection should be applied to the observation.  For example, a tighter control may be applied to an HIV test than to a CBC.  Refer to userdefined table 0177 - Confidentiality code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (confidentialityCode.field.FieldRepetitions != null && confidentialityCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(confidentialityCode.Id));
-            confidentialityCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(confidentialityCode, fieldData);
-        }
-
-        return confidentialityCode;
-    } 
-}
-
-internal HL7V23Field observationsRequiredtoInterprettheObservation;
-
-public HL7V23Field ObservationsRequiredtoInterprettheObservation
-{
-    get
-    {
-        if (observationsRequiredtoInterprettheObservation != null)
-        {
-            return observationsRequiredtoInterprettheObservation;
-        }
-
-        observationsRequiredtoInterprettheObservation = new HL7V23Field
-        {
-            field = message[@"OM1"][31],
-            Id = @"OM1.31",
-            Type = @"Field",
-            Position = @"OM1.31",
-            Name = @"Observations Required to Interpret the Observation",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the list of variables that the diagnostic service needs to interpret the results of an ordered study.  The observations specified here should be sent to the diagnostic service as OBX segments along with the order (OBR) segment. 
-
-Example for cervical pap smear: 
-2000.32^date last menstrual period^AS4~2000.33^menstrual state^AS4 Example for arterial blood gas:
- 
-94700^inspired 02^AS4 These examples use AS4 codes in code/text format to identify the variables.
-
-Separate multiple items by repeat delimiters.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (observationsRequiredtoInterprettheObservation.field.FieldRepetitions != null && observationsRequiredtoInterprettheObservation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(observationsRequiredtoInterprettheObservation.Id));
-            observationsRequiredtoInterprettheObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(observationsRequiredtoInterprettheObservation, fieldData);
-        }
-
-        return observationsRequiredtoInterprettheObservation;
-    } 
-}
-
-internal HL7V23Field interpretationofObservations;
-
-public HL7V23Field InterpretationofObservations
-{
-    get
-    {
-        if (interpretationofObservations != null)
-        {
-            return interpretationofObservations;
-        }
-
-        interpretationofObservations = new HL7V23Field
-        {
-            field = message[@"OM1"][32],
-            Id = @"OM1.32",
-            Type = @"Field",
-            Position = @"OM1.32",
-            Name = @"Interpretation of Observations",
-            Length = 65536,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the clinical information about interpreting test results.  Examples are the conditions (drugs) that may cause false abnormals, and the information about the sensitivity and specificity of the test for diagnoses",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (interpretationofObservations.field.FieldRepetitions != null && interpretationofObservations.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(interpretationofObservations.Id));
-            interpretationofObservations.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(interpretationofObservations, fieldData);
-        }
-
-        return interpretationofObservations;
-    } 
-}
-
-internal HL7V23Field contraindicationstoObservations;
-
-public HL7V23Field ContraindicationstoObservations
-{
-    get
-    {
-        if (contraindicationstoObservations != null)
-        {
-            return contraindicationstoObservations;
-        }
-
-        contraindicationstoObservations = new HL7V23Field
-        {
-            field = message[@"OM1"][33],
-            Id = @"OM1.33",
-            Type = @"Field",
-            Position = @"OM1.33",
-            Name = @"Contraindications to Observations",
-            Length = 65536,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the diagnosis or problem for which the test is a contraindication or of possible danger (e.g., pacemaker, pregnancy, diabetes).  For example, if the test identified in OM1 was an intravenous pyelogram, this field would include warnings about the use of contrast media in diabetes. The contraindication diagnoses should be separated by repeat delimiters. 
-Most contraindication rules will be transmitted as free text.  In such cases, the contents serve only as information for human reading.  However, an alternative for machine readable contraindication rules also exists. The rule may be defined formally in the Arden Syntax (ASTM 1460-1992) which has syntax for defining algebraic and transcendental equations, as well as temporal and logical selection criteria based on patient information stored in the computer record. Reflex rules that are written in Arden Syntax should begin and end with a double semi-colon (;;), the Arden slot delimiter.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contraindicationstoObservations.field.FieldRepetitions != null && contraindicationstoObservations.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contraindicationstoObservations.Id));
-            contraindicationstoObservations.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(contraindicationstoObservations, fieldData);
-        }
-
-        return contraindicationstoObservations;
-    } 
-}
-
-internal HL7V23Field reflexTestsObservations;
-
-public HL7V23Field ReflexTestsObservations
-{
-    get
-    {
-        if (reflexTestsObservations != null)
-        {
-            return reflexTestsObservations;
-        }
-
-        reflexTestsObservations = new HL7V23Field
-        {
-            field = message[@"OM1"][34],
-            Id = @"OM1.34",
-            Type = @"Field",
-            Position = @"OM1.34",
-            Name = @"Reflex Tests/Observations",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the test names as type CE (i.e., <code>^<text name>^<coding system>) that may be ordered automatically by the diagnostic service, depending on the results obtained from the ordered battery.  A screening CBC might trigger a reticulocyte count if the Hgb is less than 12.  Multiple reflex tests are separated by repeat delimiters",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reflexTestsObservations.field.FieldRepetitions != null && reflexTestsObservations.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reflexTestsObservations.Id));
-            reflexTestsObservations.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(reflexTestsObservations, fieldData);
-        }
-
-        return reflexTestsObservations;
-    } 
-}
-
-internal HL7V23Field rulesthatTriggerReflexTesting;
-
-public HL7V23Field RulesthatTriggerReflexTesting
-{
-    get
-    {
-        if (rulesthatTriggerReflexTesting != null)
-        {
-            return rulesthatTriggerReflexTesting;
-        }
-
-        rulesthatTriggerReflexTesting = new HL7V23Field
-        {
-            field = message[@"OM1"][35],
-            Id = @"OM1.35",
-            Type = @"Field",
-            Position = @"OM1.35",
-            Name = @"Rules that Trigger Reflex Testing",
-            Length = 80,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the rules that trigger the reflex tests listed above.  If multiple reflex tests are listed in OM1-34-reflex tests/observations separated by repeat delimiters, a set of corresponding rules will be included in this section.  The first rule will apply to the first test, the second to the second test, and so on.
-
-Most reflex rules will usually be transmitted as free text.  In such cases, the contents serve only as information for human reading.  However, an alternative for machine readable rules also exists. The rule may be defined formally in the Arden Syntax (ASTM 1460-1992) which has syntax for defining algebraic and transcendental equations, as well as temporal and logical selection criteria based on patient information stored in the computer record.  Reflex rules that are written in Arden Syntax should begin and end with a double semi-colon (;;), the Arden slot delimiter.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (rulesthatTriggerReflexTesting.field.FieldRepetitions != null && rulesthatTriggerReflexTesting.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(rulesthatTriggerReflexTesting.Id));
-            rulesthatTriggerReflexTesting.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(rulesthatTriggerReflexTesting, fieldData);
-        }
-
-        return rulesthatTriggerReflexTesting;
-    } 
-}
-
-internal HL7V23Field fixedCannedMessage;
-
-public HL7V23Field FixedCannedMessage
-{
-    get
-    {
-        if (fixedCannedMessage != null)
-        {
-            return fixedCannedMessage;
-        }
-
-        fixedCannedMessage = new HL7V23Field
-        {
-            field = message[@"OM1"][36],
-            Id = @"OM1.36",
-            Type = @"Field",
-            Position = @"OM1.36",
-            Name = @"Fixed Canned Message",
-            Length = 65536,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the codes and a fixed text message that is always associated with an abbreviation.  The field may include multiple messages separated by repeat delimiters. 
-
-Most rules about patient testing will be transmitted as free text.  In such cases, the contents serves only as information for human reading.  However, an alternative for machine readable rules also exists.  The rule may be defined formally in the Arden Syntax (ASTM 1460-1992) which has syntax for defining algebraic and transcendental equations, as well as temporal and logical selection criteria based on patient information stored in the computer record.  Rules about patient preparation are written in Arden Syntax should begin and end with a double semi-colon (;;), the Arden slot delimiter",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (fixedCannedMessage.field.FieldRepetitions != null && fixedCannedMessage.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fixedCannedMessage.Id));
-            fixedCannedMessage.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(fixedCannedMessage, fieldData);
-        }
-
-        return fixedCannedMessage;
-    } 
-}
-
-internal HL7V23Field patientPreparation;
-
-public HL7V23Field PatientPreparation
-{
-    get
-    {
-        if (patientPreparation != null)
-        {
-            return patientPreparation;
-        }
-
-        patientPreparation = new HL7V23Field
-        {
-            field = message[@"OM1"][37],
-            Id = @"OM1.37",
-            Type = @"Field",
-            Position = @"OM1.37",
-            Name = @"Patient Preparation",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the tests or observations that require special patient preparation, diet, or medications.  For GI contrast studies, this field would contain the pretest diet, e.g., low residue for two days, NPO before study, and the preferred purgatives.  Each separate med, diet, or preparation should be delimited by a repeat delimiter.  Separate each requirement by a repeat delimiter.  Example for a sigmoidectomy: clear liquid diet full day before procedure~take 8 oz mag citrate 6pm day before procedure~take 2 ducat tabs (5m) at 4pm day before procedure~NPO past midnight.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (patientPreparation.field.FieldRepetitions != null && patientPreparation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientPreparation.Id));
-            patientPreparation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(patientPreparation, fieldData);
-        }
-
-        return patientPreparation;
-    } 
-}
-
-internal HL7V23Field procedureMedication;
-
-public HL7V23Field ProcedureMedication
-{
-    get
-    {
-        if (procedureMedication != null)
-        {
-            return procedureMedication;
-        }
-
-        procedureMedication = new HL7V23Field
-        {
-            field = message[@"OM1"][38],
-            Id = @"OM1.38",
-            Type = @"Field",
-            Position = @"OM1.38",
-            Name = @"Procedure Medication",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the treatments that may be needed as part of the procedure.  Examples are radioactive iodine for a thyroid screen, and methacholine for a methacholine spirometry challenge.  This field should be identified as a CE data type.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (procedureMedication.field.FieldRepetitions != null && procedureMedication.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(procedureMedication.Id));
-            procedureMedication.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(procedureMedication, fieldData);
-        }
-
-        return procedureMedication;
-    } 
-}
-
-internal HL7V23Field factorsthatmayEffecttheObservation;
-
-public HL7V23Field FactorsthatmayEffecttheObservation
-{
-    get
-    {
-        if (factorsthatmayEffecttheObservation != null)
-        {
-            return factorsthatmayEffecttheObservation;
-        }
-
-        factorsthatmayEffecttheObservation = new HL7V23Field
-        {
-            field = message[@"OM1"][39],
-            Id = @"OM1.39",
-            Type = @"Field",
-            Position = @"OM1.39",
-            Name = @"Factors that may Effect the Observation",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the text description of the foods, diagnoses, drugs, or other conditions that may influence the interpretation of the observation. Information about the direction of the effect, and any recommendation about altering the diet, conditions, or drug before initiating the test observation.
-
-Most rules about factors that effect the test interpretation will be transmitted as free text.  In such cases, the contents serves only as information for human reading.  However, an alternative for machine readable rules also exists.  The rule may be defined formally in the Arden Syntax (ASTM 1460-1992) which has syntax for defining algebraic and transcendental equations, as well as temporal and logical selection criteria based on patient information stored in the computer record.  Rules about patient preparation are written in Arden Syntax and should begin and end with a double semi-colon (;;), the Arden slot delimiter. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (factorsthatmayEffecttheObservation.field.FieldRepetitions != null && factorsthatmayEffecttheObservation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(factorsthatmayEffecttheObservation.Id));
-            factorsthatmayEffecttheObservation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(factorsthatmayEffecttheObservation, fieldData);
-        }
-
-        return factorsthatmayEffecttheObservation;
-    } 
-}
-
-internal HL7V23Field testObservationPerformanceSchedule;
-
-public HL7V23Field TestObservationPerformanceSchedule
-{
-    get
-    {
-        if (testObservationPerformanceSchedule != null)
-        {
-            return testObservationPerformanceSchedule;
-        }
-
-        testObservationPerformanceSchedule = new HL7V23Field
-        {
-            field = message[@"OM1"][40],
-            Id = @"OM1.40",
-            Type = @"Field",
-            Position = @"OM1.40",
-            Name = @"Test/Observation Performance Schedule",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the diagnostic studies/tests that are performed only at certain times during the course of a work day or work week.  This field indicates the maximum interval between successive test performances (the test may actually be performed more frequently).  The format given in Chapter 4, Section 4.4.2.1, “Repeat Pattern,” should be used.  If necessary, multiple codes may be given, separated by repeat delimiters.  The use of multiple codes indicates that the test is performed at multiple concurrent intervals.  For example, Q6H indicates that the test is performed at least once every 6 hours around the clock.  QJ1 indicates that the test is performed at least every week on Mondays.  QAM~QPM indicates that the test is performed at least once every morning and every evening. QJ1~QJ3~QJ5 indicates that the test is performed at least every week on Mondays, Wednesdays, and Fridays.  C indicates that the test is performed continuously, 7 days per week.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (testObservationPerformanceSchedule.field.FieldRepetitions != null && testObservationPerformanceSchedule.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(testObservationPerformanceSchedule.Id));
-            testObservationPerformanceSchedule.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(testObservationPerformanceSchedule, fieldData);
-        }
-
-        return testObservationPerformanceSchedule;
-    } 
-}
-
-internal HL7V23Field descriptionofTestMethods;
-
-public HL7V23Field DescriptionofTestMethods
-{
-    get
-    {
-        if (descriptionofTestMethods != null)
-        {
-            return descriptionofTestMethods;
-        }
-
-        descriptionofTestMethods = new HL7V23Field
-        {
-            field = message[@"OM1"][41],
-            Id = @"OM1.41",
-            Type = @"Field",
-            Position = @"OM1.41",
-            Name = @"Description of Test Methods",
-            Length = 65536,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the text description of the methods used to perform the text and generate the observations.  Bibliographic citations may be included.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (descriptionofTestMethods.field.FieldRepetitions != null && descriptionofTestMethods.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(descriptionofTestMethods.Id));
-            descriptionofTestMethods.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(descriptionofTestMethods, fieldData);
-        }
-
-        return descriptionofTestMethods;
-    } 
-}
-
-internal HL7V23Field kindofQuantityObserved;
-
-public HL7V23Field KindofQuantityObserved
-{
-    get
-    {
-        if (kindofQuantityObserved != null)
-        {
-            return kindofQuantityObserved;
-        }
-
-        kindofQuantityObserved = new HL7V23Field
-        {
-            field = message[@"OM1"][42],
-            Id = @"OM1.42",
-            Type = @"Field",
-            Position = @"OM1.42",
-            Name = @"Kind of Quantity Observed",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0254",
-            TableName = @"Kind of quantity",
-            Description = @"This optional attribute describes the underlying kind of property represented by this observation.  This attribute distinguishes concentrations from total amounts, molar concentrations from mass concentrations, partial pressures from colors, and so forth.  These are discussed more fully in the LOINC Users’ Manual.1  They are derived from the approach described in 1995 edition of the IUPAC Silver Book. These distinctions are used in IUPAC and LOINC standard codes.  Defined categories are listed in HL7 table 0254 - Kind of quantity. 
-
-The distinctions of true quantities in this table are based primarily on dimensional analyses. The table contains a number of “families,” those related to simple counts (number, number concentration, etc.), to mass (mass, mass concentration, etc.), to enzyme activity (catalytic content, catalytic concentration, etc.), and molar or equivalents (substance content, substance concentration).   
-
-By this classification, a glucose (in the US) would be classed as a mass concentration. A sodium would be classed as a substance concentration. Within the family, a total amount should be described as the unadorned variant; e.g., the property of measure for a patient’s weight would be mass, not mass content.  Most chemical measures produce concentrations, as exemplified by sodium and glucose. However, a 24hour urine protein is not a mass concentration, but a mass rate (mass per unit time).  The content variants (e.g., mass content, substance content) are used to reflect an amount per mass (usually) of tissue. 
-
-This attribute would be valued in a master file only if the service sending the master file classified observations by their principle of measurement. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (kindofQuantityObserved.field.FieldRepetitions != null && kindofQuantityObserved.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(kindofQuantityObserved.Id));
-            kindofQuantityObserved.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(kindofQuantityObserved, fieldData);
-        }
-
-        return kindofQuantityObserved;
-    } 
-}
-
-internal HL7V23Field pointversusInterval;
-
-public HL7V23Field PointversusInterval
-{
-    get
-    {
-        if (pointversusInterval != null)
-        {
-            return pointversusInterval;
-        }
-
-        pointversusInterval = new HL7V23Field
-        {
-            field = message[@"OM1"][43],
-            Id = @"OM1.43",
-            Type = @"Field",
-            Position = @"OM1.43",
-            Name = @"Point versus Interval",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0255",
-            TableName = @"Duration categories",
-            Description = @"This optional attribute allows master files to classify observations as measuring the patient’s state at a point in time (e.g., spot urines, random urines, serum potassium), or averaged over a interval of time (e.g., concentration, total amount, or clearance over a 24-hour collection).  Interval measures most often apply to urine and stool specimens (e.g., 24-hour urines, 3-day stool fats).  They also apply to clinical measurements such as urine outputs, which are reported as shift totals and 24-hour totals, and event counts on physiologic monitors such as the number of PVCs on a 24-hour Holter monitor.
-
-This field would only be valued in a transaction if the service sending this master file message classified its observation by point versus time interval. This field is not used to record the time collection interval for a particular sample. It is used to specify a characteristic of an observation which has a defined normal range and to distinguish observations of the same kind but observed over varying periods of time.  A spot urine sodium would have PT stored in this field. A 24-hour urine sodium and a 24-hour Holter monitor would have 24H stored here. This attribute would only be valued if the filling service classified its observations by timing.  Refer to user-defined table 0255 - Duration categories for suggested values",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (pointversusInterval.field.FieldRepetitions != null && pointversusInterval.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pointversusInterval.Id));
-            pointversusInterval.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(pointversusInterval, fieldData);
-        }
-
-        return pointversusInterval;
-    } 
-}
-
-internal HL7V23Field challengeinformation;
-
-public HL7V23Field Challengeinformation
-{
-    get
-    {
-        if (challengeinformation != null)
-        {
-            return challengeinformation;
-        }
-
-        challengeinformation = new HL7V23Field
-        {
-            field = message[@"OM1"][44],
-            Id = @"OM1.44",
-            Type = @"Field",
-            Position = @"OM1.44",
-            Name = @"Challenge information",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This optional attribute provides information for classifying observations by the challenge component of the test, if a challenge does speciate the observation.  For example, distinguishing tests that have a challenge component in database. There co-ascribes the physiologic or drug challenge that is intrinsic to the measurement. To identify, for example, tests that include a glucose challenge.   
-
-To construct this text string, use the following template.  (Note:  This field is not constructed of formally defined components; it is a free text field.  Component delimiters are not used and it is not necessary to supply placeholders if some “components” are not used.) 
-
-The time delay follows the syntax: n<S|M|H|D|W> where  n is a number (possibly a decimal);   S denotes seconds;  M denotes minutes;  H denotes hours;  D denotes days; and W denotes weeks.  The time delay can be preceded by a ‘greater than’ (>) sign, e.g. >4H. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (challengeinformation.field.FieldRepetitions != null && challengeinformation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(challengeinformation.Id));
-            challengeinformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(challengeinformation, fieldData);
-        }
-
-        return challengeinformation;
-    } 
-}
-
-internal HL7V23Field relationshipmodifier;
-
-public HL7V23Field Relationshipmodifier
-{
-    get
-    {
-        if (relationshipmodifier != null)
-        {
-            return relationshipmodifier;
-        }
-
-        relationshipmodifier = new HL7V23Field
-        {
-            field = message[@"OM1"][45],
-            Id = @"OM1.45",
-            Type = @"Field",
-            Position = @"OM1.45",
-            Name = @"Relationship modifier",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0258",
-            TableName = @"Relationship modifier",
-            Description = @"This optional attribute provides a mechanism for classifying observations according to the subject, in relation to the patient whose results might be stored with as “patient” data.  It is standard practice, for example, to report values for controls, donors, and blood product units as well as the patient’s own values, and store them in the patient’s record. (This may not be the best way to model such information, but it is the way it is usually reported.) This should be valued when two values (e.g., one for patient and one for a blood product unit) could otherwise be confused. 
-
-The default value is “Patient,” and if not specified, this value is assumed.  The persons sub-component can refer to HL7 table 0258 - Relationship modifier for valid values. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (relationshipmodifier.field.FieldRepetitions != null && relationshipmodifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(relationshipmodifier.Id));
-            relationshipmodifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(relationshipmodifier, fieldData);
-        }
-
-        return relationshipmodifier;
-    } 
-}
-
-internal HL7V23Field targetanatomicsiteoftest;
-
-public HL7V23Field Targetanatomicsiteoftest
-{
-    get
-    {
-        if (targetanatomicsiteoftest != null)
-        {
-            return targetanatomicsiteoftest;
-        }
-
-        targetanatomicsiteoftest = new HL7V23Field
-        {
-            field = message[@"OM1"][46],
-            Id = @"OM1.46",
-            Type = @"Field",
-            Position = @"OM1.46",
-            Name = @"Target anatomic site of test",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This optional attribute formally indicates the site of the observation (to make it easy for a system to find all tests related to one anatomic site). It can be used to classify the observation by target site of the examination.  For example, “heart” might be recorded as the target of the electrocardiogram, cardiac echo, and thallium exercise test.  This attribute would be applicable to most imaging and electro-physiologic examinations. The SNOMED topology axis is an example of a coding system for anatomic sites.  Userdefined tables may also apply here.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (targetanatomicsiteoftest.field.FieldRepetitions != null && targetanatomicsiteoftest.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(targetanatomicsiteoftest.Id));
-            targetanatomicsiteoftest.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(targetanatomicsiteoftest, fieldData);
-        }
-
-        return targetanatomicsiteoftest;
-    } 
-}
-
-internal HL7V23Field modalityofimagingmeasurement;
-
-public HL7V23Field Modalityofimagingmeasurement
-{
-    get
-    {
-        if (modalityofimagingmeasurement != null)
-        {
-            return modalityofimagingmeasurement;
-        }
-
-        modalityofimagingmeasurement = new HL7V23Field
+        _modalityofimagingmeasurement = new HL7V23Field
         {
             field = message[@"OM1"][47],
-            Id = @"OM1.47",
-            Type = @"Field",
-            Position = @"OM1.47",
-            Name = @"Modality of imaging measurement",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0259",
-            TableName = @"Modality",
-            Description = @"This optional attribute describes the modality used to classify the observations, e.g., radiograph, ultrasound, CT scan, NMR, etc..  This attribute is especially important for imaging studies.  Refer to userdefined table 0259 - Modality for suggested values; it is adopted from DICOM C.7.3.1.1.1 Modality.  If these are used, the code source ID would be DCM.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (modalityofimagingmeasurement.field.FieldRepetitions != null && modalityofimagingmeasurement.field.FieldRepetitions.Count > 0)
+        if (_modalityofimagingmeasurement.field.FieldRepetitions != null && _modalityofimagingmeasurement.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(modalityofimagingmeasurement.Id));
-            modalityofimagingmeasurement.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(modalityofimagingmeasurement, fieldData);
+            _modalityofimagingmeasurement.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_modalityofimagingmeasurement, fieldData);
         }
 
-        return modalityofimagingmeasurement;
+        return _modalityofimagingmeasurement;
     } 
 }
     }

@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_08",
+
                     };
             } 
         }
@@ -83,6 +84,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Staff master file (see chapter 8, Appendix)",
                             Comment = null
                         },
+                        
                     };
             } 
         }

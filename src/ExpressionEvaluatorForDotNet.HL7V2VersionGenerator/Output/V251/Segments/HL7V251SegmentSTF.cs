@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentSTF(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _primaryKeyValueSTF;
+
+public HL7V251Field PrimaryKeyValueSTF
+{
+    get
+    {
+        if (_primaryKeyValueSTF != null)
+        {
+            return _primaryKeyValueSTF;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.1",
+            Type = @"Field",
+            Position = @"STF.1",
+            Name = @"Primary Key Value - STF",
+            Length = 250,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"For MFN Master File Notification, this field is required and must match MFE-4-primary key value to identify which entry is being referenced. For all other messages, this field should not be used.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"STF.1",
-                            Type = @"Field",
-                            Position = @"STF.1",
-                            Name = @"Primary Key Value - STF",
-                            Length = 250,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"For MFN Master File Notification, this field is required and must match MFE-4-primary key value to identify which entry is being referenced. For all other messages, this field should not be used.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"STF.1.1",
                             Type = @"Component",
@@ -156,25 +168,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _primaryKeyValueSTF = new HL7V251Field
+        {
+            field = message[@"STF"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryKeyValueSTF.field.FieldRepetitions != null && _primaryKeyValueSTF.field.FieldRepetitions.Count > 0)
+        {
+            _primaryKeyValueSTF.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_primaryKeyValueSTF, fieldData);
+        }
+
+        return _primaryKeyValueSTF;
+    } 
+}
+
+internal HL7V251Field _staffIdentifierList;
+
+public HL7V251Field StaffIdentifierList
+{
+    get
+    {
+        if (_staffIdentifierList != null)
+        {
+            return _staffIdentifierList;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.2",
+            Type = @"Field",
+            Position = @"STF.2",
+            Name = @"Staff Identifier List",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CX",
+            DataTypeName = @"Extended Composite ID with Check Digit",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the list of identifiers (one or more) used by the institution to identify this person. Refer to HL7 Table 0061 - Check digit scheme (component 2), User-defined Table 0203 - Identifier type (component 5) and User-defined Table 0363 - Assigning authority (component 4) for valid values. If a Staff Member has institution identifiers that are valid only in specific organization units, that Staff identifier should be recorded in the ORG-Practitioner Organization Unit segment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.2",
-                            Type = @"Field",
-                            Position = @"STF.2",
-                            Name = @"Staff Identifier List",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CX",
-                            DataTypeName = @"Extended Composite ID with Check Digit",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the list of identifiers (one or more) used by the institution to identify this person. Refer to HL7 Table 0061 - Check digit scheme (component 2), User-defined Table 0203 - Identifier type (component 5) and User-defined Table 0363 - Assigning authority (component 4) for valid values. If a Staff Member has institution identifiers that are valid only in specific organization units, that Staff identifier should be recorded in the ORG-Practitioner Organization Unit segment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.2.1",
                             Type = @"Component",
@@ -780,25 +822,55 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _staffIdentifierList = new HL7V251Field
+        {
+            field = message[@"STF"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_staffIdentifierList.field.FieldRepetitions != null && _staffIdentifierList.field.FieldRepetitions.Count > 0)
+        {
+            _staffIdentifierList.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_staffIdentifierList, fieldData);
+        }
+
+        return _staffIdentifierList;
+    } 
+}
+
+internal HL7V251Field _staffName;
+
+public HL7V251Field StaffName
+{
+    get
+    {
+        if (_staffName != null)
+        {
+            return _staffName;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.3",
+            Type = @"Field",
+            Position = @"STF.3",
+            Name = @"Staff Name",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the staff persons name. This field may repeat to transmit multiple names for the same person.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.3",
-                            Type = @"Field",
-                            Position = @"STF.3",
-                            Name = @"Staff Name",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the staff persons name. This field may repeat to transmit multiple names for the same person.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.3.1",
                             Type = @"Component",
@@ -1422,61 +1494,145 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Used to specify an abbreviation, or a string of abbreviations denoting qualifications that support the persons profession, (e.g., licenses, certificates, degrees, affiliations with professional societies, etc.). The Professional Suffix normally follows the Family Name when the Person Name is used for display purposes. Please note that this component is an unformatted string and is used for display purposes only. Detailed information regarding the contents of Professional Suffix is obtained using appropriate segments in Chapter 15, Personnel Management.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _staffName = new HL7V251Field
+        {
+            field = message[@"STF"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_staffName.field.FieldRepetitions != null && _staffName.field.FieldRepetitions.Count > 0)
+        {
+            _staffName.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_staffName, fieldData);
+        }
+
+        return _staffName;
+    } 
+}
+
+internal HL7V251Field _staffType;
+
+public HL7V251Field StaffType
+{
+    get
+    {
+        if (_staffType != null)
+        {
+            return _staffType;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.4",
+            Type = @"Field",
+            Position = @"STF.4",
+            Name = @"Staff Type",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0182",
+            TableName = @"Staff type",
+            Description = @"This field contains a code identifying what type of staff. Refer to User-defined Table 0182 - Staff type for suggested values. Values may include codes for staff, practitioner (physician, nurse, therapist, etc.), referral agent or agency, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _staffType = new HL7V251Field
+        {
+            field = message[@"STF"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_staffType.field.FieldRepetitions != null && _staffType.field.FieldRepetitions.Count > 0)
+        {
+            _staffType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_staffType, fieldData);
+        }
+
+        return _staffType;
+    } 
+}
+
+internal HL7V251Field _administrativeSex;
+
+public HL7V251Field AdministrativeSex
+{
+    get
+    {
+        if (_administrativeSex != null)
+        {
+            return _administrativeSex;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.5",
+            Type = @"Field",
+            Position = @"STF.5",
+            Name = @"Administrative Sex",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0001",
+            TableName = @"Administrative Sex",
+            Description = @"This field contains the staff persons sex. Refer to User-defined Table 0001 - Administrative Sex for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _administrativeSex = new HL7V251Field
+        {
+            field = message[@"STF"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_administrativeSex.field.FieldRepetitions != null && _administrativeSex.field.FieldRepetitions.Count > 0)
+        {
+            _administrativeSex.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_administrativeSex, fieldData);
+        }
+
+        return _administrativeSex;
+    } 
+}
+
+internal HL7V251Field _dateTimeofBirth;
+
+public HL7V251Field DateTimeofBirth
+{
+    get
+    {
+        if (_dateTimeofBirth != null)
+        {
+            return _dateTimeofBirth;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.6",
+            Type = @"Field",
+            Position = @"STF.6",
+            Name = @"Date/Time of Birth",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a staff members date and time of birth.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.4",
-                            Type = @"Field",
-                            Position = @"STF.4",
-                            Name = @"Staff Type",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0182",
-                            TableName = @"Staff type",
-                            Description = @"This field contains a code identifying what type of staff. Refer to User-defined Table 0182 - Staff type for suggested values. Values may include codes for staff, practitioner (physician, nurse, therapist, etc.), referral agent or agency, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.5",
-                            Type = @"Field",
-                            Position = @"STF.5",
-                            Name = @"Administrative Sex",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0001",
-                            TableName = @"Administrative Sex",
-                            Description = @"This field contains the staff persons sex. Refer to User-defined Table 0001 - Administrative Sex for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.6",
-                            Type = @"Field",
-                            Position = @"STF.6",
-                            Name = @"Date/Time of Birth",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a staff members date and time of birth.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.6.1",
                             Type = @"Component",
@@ -1512,43 +1668,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dateTimeofBirth = new HL7V251Field
+        {
+            field = message[@"STF"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateTimeofBirth.field.FieldRepetitions != null && _dateTimeofBirth.field.FieldRepetitions.Count > 0)
+        {
+            _dateTimeofBirth.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_dateTimeofBirth, fieldData);
+        }
+
+        return _dateTimeofBirth;
+    } 
+}
+
+internal HL7V251Field _activeInactiveFlag;
+
+public HL7V251Field ActiveInactiveFlag
+{
+    get
+    {
+        if (_activeInactiveFlag != null)
+        {
+            return _activeInactiveFlag;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.7",
+            Type = @"Field",
+            Position = @"STF.7",
+            Name = @"Active/Inactive Flag",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0183",
+            TableName = @"Active/Inactive",
+            Description = @"This field indicates whether person is currently a valid staff member. Refer to HL7 Table 0183 - Active/inactive for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _activeInactiveFlag = new HL7V251Field
+        {
+            field = message[@"STF"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_activeInactiveFlag.field.FieldRepetitions != null && _activeInactiveFlag.field.FieldRepetitions.Count > 0)
+        {
+            _activeInactiveFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_activeInactiveFlag, fieldData);
+        }
+
+        return _activeInactiveFlag;
+    } 
+}
+
+internal HL7V251Field _department;
+
+public HL7V251Field Department
+{
+    get
+    {
+        if (_department != null)
+        {
+            return _department;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.8",
+            Type = @"Field",
+            Position = @"STF.8",
+            Name = @"Department",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0184",
+            TableName = @"Department",
+            Description = @"This field contains the institution department to which this person reports or belongs. Refer to User-defined Table 0184 - Department for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.7",
-                            Type = @"Field",
-                            Position = @"STF.7",
-                            Name = @"Active/Inactive Flag",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0183",
-                            TableName = @"Active/Inactive",
-                            Description = @"This field indicates whether person is currently a valid staff member. Refer to HL7 Table 0183 - Active/inactive for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.8",
-                            Type = @"Field",
-                            Position = @"STF.8",
-                            Name = @"Department",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0184",
-                            TableName = @"Department",
-                            Description = @"This field contains the institution department to which this person reports or belongs. Refer to User-defined Table 0184 - Department for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.8.1",
                             Type = @"Component",
@@ -1654,25 +1867,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _department = new HL7V251Field
+        {
+            field = message[@"STF"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_department.field.FieldRepetitions != null && _department.field.FieldRepetitions.Count > 0)
+        {
+            _department.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_department, fieldData);
+        }
+
+        return _department;
+    } 
+}
+
+internal HL7V251Field _hospitalServiceSTF;
+
+public HL7V251Field HospitalServiceSTF
+{
+    get
+    {
+        if (_hospitalServiceSTF != null)
+        {
+            return _hospitalServiceSTF;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.9",
+            Type = @"Field",
+            Position = @"STF.9",
+            Name = @"Hospital Service - STF",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0069",
+            TableName = @"Hospital Service",
+            Description = @"This field contains the hospital or ancillary service with which this staff person is associated. Refer to User-defined Table 0069 - Hospital service for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.9",
-                            Type = @"Field",
-                            Position = @"STF.9",
-                            Name = @"Hospital Service - STF",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0069",
-                            TableName = @"Hospital Service",
-                            Description = @"This field contains the hospital or ancillary service with which this staff person is associated. Refer to User-defined Table 0069 - Hospital service for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.9.1",
                             Type = @"Component",
@@ -1778,25 +2021,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _hospitalServiceSTF = new HL7V251Field
+        {
+            field = message[@"STF"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_hospitalServiceSTF.field.FieldRepetitions != null && _hospitalServiceSTF.field.FieldRepetitions.Count > 0)
+        {
+            _hospitalServiceSTF.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_hospitalServiceSTF, fieldData);
+        }
+
+        return _hospitalServiceSTF;
+    } 
+}
+
+internal HL7V251Field _phone;
+
+public HL7V251Field Phone
+{
+    get
+    {
+        if (_phone != null)
+        {
+            return _phone;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.10",
+            Type = @"Field",
+            Position = @"STF.10",
+            Name = @"Phone",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the staff persons phone number. This is a repeating field with a component for indicating which phone number is which.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.10",
-                            Type = @"Field",
-                            Position = @"STF.10",
-                            Name = @"Phone",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the staff persons phone number. This is a repeating field with a component for indicating which phone number is which.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.10.1",
                             Type = @"Component",
@@ -2016,25 +2289,55 @@ Format: [NNN] [(999)]999-9999 [X99999] [B99999] [C any text] ",
 Example: |^^^^^^^^^^^1-800-Dentist| ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _phone = new HL7V251Field
+        {
+            field = message[@"STF"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_phone.field.FieldRepetitions != null && _phone.field.FieldRepetitions.Count > 0)
+        {
+            _phone.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_phone, fieldData);
+        }
+
+        return _phone;
+    } 
+}
+
+internal HL7V251Field _officeHomeAddressBirthplace;
+
+public HL7V251Field OfficeHomeAddressBirthplace
+{
+    get
+    {
+        if (_officeHomeAddressBirthplace != null)
+        {
+            return _officeHomeAddressBirthplace;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.11",
+            Type = @"Field",
+            Position = @"STF.11",
+            Name = @"Office/Home Address/Birthplace",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the office, and home address and/or place of birth of the staff person. This is a repeating field. The address type identifies the usage.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.11",
-                            Type = @"Field",
-                            Position = @"STF.11",
-                            Name = @"Office/Home Address/Birthplace",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the office, and home address and/or place of birth of the staff person. This is a repeating field. The address type identifies the usage.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.11.1",
                             Type = @"Component",
@@ -2516,25 +2819,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _officeHomeAddressBirthplace = new HL7V251Field
+        {
+            field = message[@"STF"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_officeHomeAddressBirthplace.field.FieldRepetitions != null && _officeHomeAddressBirthplace.field.FieldRepetitions.Count > 0)
+        {
+            _officeHomeAddressBirthplace.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_officeHomeAddressBirthplace, fieldData);
+        }
+
+        return _officeHomeAddressBirthplace;
+    } 
+}
+
+internal HL7V251Field _institutionActivationDate;
+
+public HL7V251Field InstitutionActivationDate
+{
+    get
+    {
+        if (_institutionActivationDate != null)
+        {
+            return _institutionActivationDate;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.12",
+            Type = @"Field",
+            Position = @"STF.12",
+            Name = @"Institution Activation Date",
+            Length = 276,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"DIN",
+            DataTypeName = @"Date and Institution Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date when staff became active for an institution. This is a repeating field. Refer to User-defined Table 0537 - Institution for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.12",
-                            Type = @"Field",
-                            Position = @"STF.12",
-                            Name = @"Institution Activation Date",
-                            Length = 276,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"DIN",
-                            DataTypeName = @"Date and Institution Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date when staff became active for an institution. This is a repeating field. Refer to User-defined Table 0537 - Institution for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.12.1",
                             Type = @"Component",
@@ -2710,25 +3043,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _institutionActivationDate = new HL7V251Field
+        {
+            field = message[@"STF"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_institutionActivationDate.field.FieldRepetitions != null && _institutionActivationDate.field.FieldRepetitions.Count > 0)
+        {
+            _institutionActivationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_institutionActivationDate, fieldData);
+        }
+
+        return _institutionActivationDate;
+    } 
+}
+
+internal HL7V251Field _institutionInactivationDate;
+
+public HL7V251Field InstitutionInactivationDate
+{
+    get
+    {
+        if (_institutionInactivationDate != null)
+        {
+            return _institutionInactivationDate;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.13",
+            Type = @"Field",
+            Position = @"STF.13",
+            Name = @"Institution Inactivation Date",
+            Length = 276,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"DIN",
+            DataTypeName = @"Date and Institution Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date when staff became inactive for an institution. This is a repeating field. Refer to HL7 Table 0537 - Institution for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.13",
-                            Type = @"Field",
-                            Position = @"STF.13",
-                            Name = @"Institution Inactivation Date",
-                            Length = 276,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"DIN",
-                            DataTypeName = @"Date and Institution Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date when staff became inactive for an institution. This is a repeating field. Refer to HL7 Table 0537 - Institution for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.13.1",
                             Type = @"Component",
@@ -2904,25 +3267,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _institutionInactivationDate = new HL7V251Field
+        {
+            field = message[@"STF"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_institutionInactivationDate.field.FieldRepetitions != null && _institutionInactivationDate.field.FieldRepetitions.Count > 0)
+        {
+            _institutionInactivationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_institutionInactivationDate, fieldData);
+        }
+
+        return _institutionInactivationDate;
+    } 
+}
+
+internal HL7V251Field _backupPersonID;
+
+public HL7V251Field BackupPersonID
+{
+    get
+    {
+        if (_backupPersonID != null)
+        {
+            return _backupPersonID;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.14",
+            Type = @"Field",
+            Position = @"STF.14",
+            Name = @"Backup Person ID",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the MFE-4-primary key value of the master file entry that corresponds to the designated backup person for this staff person.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.14",
-                            Type = @"Field",
-                            Position = @"STF.14",
-                            Name = @"Backup Person ID",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the MFE-4-primary key value of the master file entry that corresponds to the designated backup person for this staff person.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.14.1",
                             Type = @"Component",
@@ -3028,43 +3421,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _backupPersonID = new HL7V251Field
+        {
+            field = message[@"STF"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_backupPersonID.field.FieldRepetitions != null && _backupPersonID.field.FieldRepetitions.Count > 0)
+        {
+            _backupPersonID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_backupPersonID, fieldData);
+        }
+
+        return _backupPersonID;
+    } 
+}
+
+internal HL7V251Field _eMailAddress;
+
+public HL7V251Field EMailAddress
+{
+    get
+    {
+        if (_eMailAddress != null)
+        {
+            return _eMailAddress;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.15",
+            Type = @"Field",
+            Position = @"STF.15",
+            Name = @"E-Mail Address",
+            Length = 40,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has been retained for backward compatibility.  (It is now present in the fourth component of STF-10-phone).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _eMailAddress = new HL7V251Field
+        {
+            field = message[@"STF"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_eMailAddress.field.FieldRepetitions != null && _eMailAddress.field.FieldRepetitions.Count > 0)
+        {
+            _eMailAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_eMailAddress, fieldData);
+        }
+
+        return _eMailAddress;
+    } 
+}
+
+internal HL7V251Field _preferredMethodofContact;
+
+public HL7V251Field PreferredMethodofContact
+{
+    get
+    {
+        if (_preferredMethodofContact != null)
+        {
+            return _preferredMethodofContact;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.16",
+            Type = @"Field",
+            Position = @"STF.16",
+            Name = @"Preferred Method of Contact",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0185",
+            TableName = @"Preferred method of contact",
+            Description = @"This field indicates which of a group of multiple phone numbers is the preferred method of contact for this person. Note that all values of this code refer to this segments phone field, except for the value E, which refers to the E-mail address field. If more than one phone number of the preferred type exists in STF-10-phone, this field refers to the first such instance. Refer to HL7 Table 0185 - Preferred method of contact for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.15",
-                            Type = @"Field",
-                            Position = @"STF.15",
-                            Name = @"E-Mail Address",
-                            Length = 40,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has been retained for backward compatibility.  (It is now present in the fourth component of STF-10-phone).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.16",
-                            Type = @"Field",
-                            Position = @"STF.16",
-                            Name = @"Preferred Method of Contact",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0185",
-                            TableName = @"Preferred method of contact",
-                            Description = @"This field indicates which of a group of multiple phone numbers is the preferred method of contact for this person. Note that all values of this code refer to this segments phone field, except for the value E, which refers to the E-mail address field. If more than one phone number of the preferred type exists in STF-10-phone, this field refers to the first such instance. Refer to HL7 Table 0185 - Preferred method of contact for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.16.1",
                             Type = @"Component",
@@ -3170,25 +3620,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _preferredMethodofContact = new HL7V251Field
+        {
+            field = message[@"STF"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_preferredMethodofContact.field.FieldRepetitions != null && _preferredMethodofContact.field.FieldRepetitions.Count > 0)
+        {
+            _preferredMethodofContact.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_preferredMethodofContact, fieldData);
+        }
+
+        return _preferredMethodofContact;
+    } 
+}
+
+internal HL7V251Field _maritalStatus;
+
+public HL7V251Field MaritalStatus
+{
+    get
+    {
+        if (_maritalStatus != null)
+        {
+            return _maritalStatus;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.17",
+            Type = @"Field",
+            Position = @"STF.17",
+            Name = @"Marital Status",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0002",
+            TableName = @"Marital Status",
+            Description = @"This field contains the staff members marital status. Refer to User-defined Table 0002 - Marital status for suggested values. Same values as those for PID-16-marital status.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.17",
-                            Type = @"Field",
-                            Position = @"STF.17",
-                            Name = @"Marital Status",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0002",
-                            TableName = @"Marital Status",
-                            Description = @"This field contains the staff members marital status. Refer to User-defined Table 0002 - Marital status for suggested values. Same values as those for PID-16-marital status.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.17.1",
                             Type = @"Component",
@@ -3294,43 +3774,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _maritalStatus = new HL7V251Field
+        {
+            field = message[@"STF"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_maritalStatus.field.FieldRepetitions != null && _maritalStatus.field.FieldRepetitions.Count > 0)
+        {
+            _maritalStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_maritalStatus, fieldData);
+        }
+
+        return _maritalStatus;
+    } 
+}
+
+internal HL7V251Field _jobTitle;
+
+public HL7V251Field JobTitle
+{
+    get
+    {
+        if (_jobTitle != null)
+        {
+            return _jobTitle;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.18",
+            Type = @"Field",
+            Position = @"STF.18",
+            Name = @"Job Title",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a descriptive name of the staff members occupation (e.g., Sr. Systems Analyst, Sr. Accountant).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _jobTitle = new HL7V251Field
+        {
+            field = message[@"STF"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_jobTitle.field.FieldRepetitions != null && _jobTitle.field.FieldRepetitions.Count > 0)
+        {
+            _jobTitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_jobTitle, fieldData);
+        }
+
+        return _jobTitle;
+    } 
+}
+
+internal HL7V251Field _jobCodeClass;
+
+public HL7V251Field JobCodeClass
+{
+    get
+    {
+        if (_jobCodeClass != null)
+        {
+            return _jobCodeClass;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.19",
+            Type = @"Field",
+            Position = @"STF.19",
+            Name = @"Job Code/Class",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"JCC",
+            DataTypeName = @"Job Code/Class",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the staff members job code and employee classification. Refer to User-defined Table 0327 - Job code and User-defined Table 0328 - Employee classification for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.18",
-                            Type = @"Field",
-                            Position = @"STF.18",
-                            Name = @"Job Title",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a descriptive name of the staff members occupation (e.g., Sr. Systems Analyst, Sr. Accountant).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.19",
-                            Type = @"Field",
-                            Position = @"STF.19",
-                            Name = @"Job Code/Class",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"JCC",
-                            DataTypeName = @"Job Code/Class",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the staff members job code and employee classification. Refer to User-defined Table 0327 - Job code and User-defined Table 0328 - Employee classification for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.19.1",
                             Type = @"Component",
@@ -3382,25 +3919,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"This component contains the text of the job description. This will accommodate systems where job descriptions are not codified.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _jobCodeClass = new HL7V251Field
+        {
+            field = message[@"STF"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_jobCodeClass.field.FieldRepetitions != null && _jobCodeClass.field.FieldRepetitions.Count > 0)
+        {
+            _jobCodeClass.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_jobCodeClass, fieldData);
+        }
+
+        return _jobCodeClass;
+    } 
+}
+
+internal HL7V251Field _employmentStatusCode;
+
+public HL7V251Field EmploymentStatusCode
+{
+    get
+    {
+        if (_employmentStatusCode != null)
+        {
+            return _employmentStatusCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.20",
+            Type = @"Field",
+            Position = @"STF.20",
+            Name = @"Employment Status Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0066",
+            TableName = @"Employment Status",
+            Description = @"This field contains the code that indicates the staff members employment status, e.g., full-time, part-time, self-employed, etc. Refer to User-defined Table 0066 - Employment status for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.20",
-                            Type = @"Field",
-                            Position = @"STF.20",
-                            Name = @"Employment Status Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0066",
-                            TableName = @"Employment Status",
-                            Description = @"This field contains the code that indicates the staff members employment status, e.g., full-time, part-time, self-employed, etc. Refer to User-defined Table 0066 - Employment status for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.20.1",
                             Type = @"Component",
@@ -3506,43 +4073,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _employmentStatusCode = new HL7V251Field
+        {
+            field = message[@"STF"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_employmentStatusCode.field.FieldRepetitions != null && _employmentStatusCode.field.FieldRepetitions.Count > 0)
+        {
+            _employmentStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_employmentStatusCode, fieldData);
+        }
+
+        return _employmentStatusCode;
+    } 
+}
+
+internal HL7V251Field _additionalInsuredonAuto;
+
+public HL7V251Field AdditionalInsuredonAuto
+{
+    get
+    {
+        if (_additionalInsuredonAuto != null)
+        {
+            return _additionalInsuredonAuto;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.21",
+            Type = @"Field",
+            Position = @"STF.21",
+            Name = @"Additional Insured on Auto",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field contains an indicator for whether the present institution is named as an additional insured on the staff members auto insurance, especially for use when staff is a driver for the institution. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _additionalInsuredonAuto = new HL7V251Field
+        {
+            field = message[@"STF"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_additionalInsuredonAuto.field.FieldRepetitions != null && _additionalInsuredonAuto.field.FieldRepetitions.Count > 0)
+        {
+            _additionalInsuredonAuto.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_additionalInsuredonAuto, fieldData);
+        }
+
+        return _additionalInsuredonAuto;
+    } 
+}
+
+internal HL7V251Field _driversLicenseNumberStaff;
+
+public HL7V251Field DriversLicenseNumberStaff
+{
+    get
+    {
+        if (_driversLicenseNumberStaff != null)
+        {
+            return _driversLicenseNumberStaff;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.22",
+            Type = @"Field",
+            Position = @"STF.22",
+            Name = @"Driver's License Number - Staff",
+            Length = 25,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DLN",
+            DataTypeName = @"Driver License Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the drivers license information of staff, especially for use when staff is a driver for the institution. For state or province refer to official postal codes for that country; for country refer to ISO 3166 for codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.21",
-                            Type = @"Field",
-                            Position = @"STF.21",
-                            Name = @"Additional Insured on Auto",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field contains an indicator for whether the present institution is named as an additional insured on the staff members auto insurance, especially for use when staff is a driver for the institution. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.22",
-                            Type = @"Field",
-                            Position = @"STF.22",
-                            Name = @"Driver's License Number - Staff",
-                            Length = 25,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DLN",
-                            DataTypeName = @"Driver License Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the drivers license information of staff, especially for use when staff is a driver for the institution. For state or province refer to official postal codes for that country; for country refer to ISO 3166 for codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.22.1",
                             Type = @"Component",
@@ -3594,97 +4218,235 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Expiration date (DT) for drivers license.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _driversLicenseNumberStaff = new HL7V251Field
+        {
+            field = message[@"STF"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_driversLicenseNumberStaff.field.FieldRepetitions != null && _driversLicenseNumberStaff.field.FieldRepetitions.Count > 0)
+        {
+            _driversLicenseNumberStaff.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_driversLicenseNumberStaff, fieldData);
+        }
+
+        return _driversLicenseNumberStaff;
+    } 
+}
+
+internal HL7V251Field _copyAutoIns;
+
+public HL7V251Field CopyAutoIns
+{
+    get
+    {
+        if (_copyAutoIns != null)
+        {
+            return _copyAutoIns;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.23",
+            Type = @"Field",
+            Position = @"STF.23",
+            Name = @"Copy Auto Ins",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field contains an indicator for whether the institution has on file a copy of the staff members auto insurance, especially for use when staff is a driver for the institution. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _copyAutoIns = new HL7V251Field
+        {
+            field = message[@"STF"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_copyAutoIns.field.FieldRepetitions != null && _copyAutoIns.field.FieldRepetitions.Count > 0)
+        {
+            _copyAutoIns.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_copyAutoIns, fieldData);
+        }
+
+        return _copyAutoIns;
+    } 
+}
+
+internal HL7V251Field _autoInsExpires;
+
+public HL7V251Field AutoInsExpires
+{
+    get
+    {
+        if (_autoInsExpires != null)
+        {
+            return _autoInsExpires;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.24",
+            Type = @"Field",
+            Position = @"STF.24",
+            Name = @"Auto Ins. Expires",
+            Length = 8,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date on which the staff members drivers license expires, especially for use when staff is a driver for the institution.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _autoInsExpires = new HL7V251Field
+        {
+            field = message[@"STF"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_autoInsExpires.field.FieldRepetitions != null && _autoInsExpires.field.FieldRepetitions.Count > 0)
+        {
+            _autoInsExpires.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_autoInsExpires, fieldData);
+        }
+
+        return _autoInsExpires;
+    } 
+}
+
+internal HL7V251Field _dateLastDMVReview;
+
+public HL7V251Field DateLastDMVReview
+{
+    get
+    {
+        if (_dateLastDMVReview != null)
+        {
+            return _dateLastDMVReview;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.25",
+            Type = @"Field",
+            Position = @"STF.25",
+            Name = @"Date Last DMV Review",
+            Length = 8,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date of the staff members most recent Department of Motor Vehicles review, especially for use when staff is a driver for the institution.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dateLastDMVReview = new HL7V251Field
+        {
+            field = message[@"STF"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateLastDMVReview.field.FieldRepetitions != null && _dateLastDMVReview.field.FieldRepetitions.Count > 0)
+        {
+            _dateLastDMVReview.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_dateLastDMVReview, fieldData);
+        }
+
+        return _dateLastDMVReview;
+    } 
+}
+
+internal HL7V251Field _dateNextDMVReview;
+
+public HL7V251Field DateNextDMVReview
+{
+    get
+    {
+        if (_dateNextDMVReview != null)
+        {
+            return _dateNextDMVReview;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.26",
+            Type = @"Field",
+            Position = @"STF.26",
+            Name = @"Date Next DMV Review",
+            Length = 8,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date of the staff members next Department of Motor Vehicles review, especially for use when staff is a driver for the institution.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dateNextDMVReview = new HL7V251Field
+        {
+            field = message[@"STF"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dateNextDMVReview.field.FieldRepetitions != null && _dateNextDMVReview.field.FieldRepetitions.Count > 0)
+        {
+            _dateNextDMVReview.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_dateNextDMVReview, fieldData);
+        }
+
+        return _dateNextDMVReview;
+    } 
+}
+
+internal HL7V251Field _race;
+
+public HL7V251Field Race
+{
+    get
+    {
+        if (_race != null)
+        {
+            return _race;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.27",
+            Type = @"Field",
+            Position = @"STF.27",
+            Name = @"Race",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0005",
+            TableName = @"Race",
+            Description = @"This field refers to the person's race. Refer to User-defined Table 0005 - Race for suggested values. The second triplet of the CE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.23",
-                            Type = @"Field",
-                            Position = @"STF.23",
-                            Name = @"Copy Auto Ins",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field contains an indicator for whether the institution has on file a copy of the staff members auto insurance, especially for use when staff is a driver for the institution. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.24",
-                            Type = @"Field",
-                            Position = @"STF.24",
-                            Name = @"Auto Ins. Expires",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date on which the staff members drivers license expires, especially for use when staff is a driver for the institution.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.25",
-                            Type = @"Field",
-                            Position = @"STF.25",
-                            Name = @"Date Last DMV Review",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date of the staff members most recent Department of Motor Vehicles review, especially for use when staff is a driver for the institution.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.26",
-                            Type = @"Field",
-                            Position = @"STF.26",
-                            Name = @"Date Next DMV Review",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date of the staff members next Department of Motor Vehicles review, especially for use when staff is a driver for the institution.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.27",
-                            Type = @"Field",
-                            Position = @"STF.27",
-                            Name = @"Race",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0005",
-                            TableName = @"Race",
-                            Description = @"This field refers to the person's race. Refer to User-defined Table 0005 - Race for suggested values. The second triplet of the CE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.27.1",
                             Type = @"Component",
@@ -3790,25 +4552,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _race = new HL7V251Field
+        {
+            field = message[@"STF"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_race.field.FieldRepetitions != null && _race.field.FieldRepetitions.Count > 0)
+        {
+            _race.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_race, fieldData);
+        }
+
+        return _race;
+    } 
+}
+
+internal HL7V251Field _ethnicGroup;
+
+public HL7V251Field EthnicGroup
+{
+    get
+    {
+        if (_ethnicGroup != null)
+        {
+            return _ethnicGroup;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.28",
+            Type = @"Field",
+            Position = @"STF.28",
+            Name = @"Ethnic Group",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0189",
+            TableName = @"Ethnic Group",
+            Description = @"This field further defines the persons ancestry. Refer to User-defined Table 0189 - Ethnic group for suggested values. The second couplet of the CE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes. In the United States, a current use is to report ethnicity in line with US federal standards for Hispanic origin.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.28",
-                            Type = @"Field",
-                            Position = @"STF.28",
-                            Name = @"Ethnic Group",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0189",
-                            TableName = @"Ethnic Group",
-                            Description = @"This field further defines the persons ancestry. Refer to User-defined Table 0189 - Ethnic group for suggested values. The second couplet of the CE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes. In the United States, a current use is to report ethnicity in line with US federal standards for Hispanic origin.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.28.1",
                             Type = @"Component",
@@ -3914,43 +4706,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _ethnicGroup = new HL7V251Field
+        {
+            field = message[@"STF"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_ethnicGroup.field.FieldRepetitions != null && _ethnicGroup.field.FieldRepetitions.Count > 0)
+        {
+            _ethnicGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_ethnicGroup, fieldData);
+        }
+
+        return _ethnicGroup;
+    } 
+}
+
+internal HL7V251Field _reactivationApprovalIndicator;
+
+public HL7V251Field ReactivationApprovalIndicator
+{
+    get
+    {
+        if (_reactivationApprovalIndicator != null)
+        {
+            return _reactivationApprovalIndicator;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.29",
+            Type = @"Field",
+            Position = @"STF.29",
+            Name = @"Re-activation Approval Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field contains an indicator for whether the re-activation of this record requires special approval. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _reactivationApprovalIndicator = new HL7V251Field
+        {
+            field = message[@"STF"][29],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_reactivationApprovalIndicator.field.FieldRepetitions != null && _reactivationApprovalIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _reactivationApprovalIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_reactivationApprovalIndicator, fieldData);
+        }
+
+        return _reactivationApprovalIndicator;
+    } 
+}
+
+internal HL7V251Field _citizenship;
+
+public HL7V251Field Citizenship
+{
+    get
+    {
+        if (_citizenship != null)
+        {
+            return _citizenship;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.30",
+            Type = @"Field",
+            Position = @"STF.30",
+            Name = @"Citizenship",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0171",
+            TableName = @"Citizenship",
+            Description = @"This field contains the staff persons current country of citizenship. HL7 recommends using ISO table 3166 as the suggested values in User-defined Table 0171 - Citizenship .",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.29",
-                            Type = @"Field",
-                            Position = @"STF.29",
-                            Name = @"Re-activation Approval Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field contains an indicator for whether the re-activation of this record requires special approval. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.30",
-                            Type = @"Field",
-                            Position = @"STF.30",
-                            Name = @"Citizenship",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0171",
-                            TableName = @"Citizenship",
-                            Description = @"This field contains the staff persons current country of citizenship. HL7 recommends using ISO table 3166 as the suggested values in User-defined Table 0171 - Citizenship .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.30.1",
                             Type = @"Component",
@@ -4110,25 +4959,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _citizenship = new HL7V251Field
+        {
+            field = message[@"STF"][30],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_citizenship.field.FieldRepetitions != null && _citizenship.field.FieldRepetitions.Count > 0)
+        {
+            _citizenship.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_citizenship, fieldData);
+        }
+
+        return _citizenship;
+    } 
+}
+
+internal HL7V251Field _deathDateandTime;
+
+public HL7V251Field DeathDateandTime
+{
+    get
+    {
+        if (_deathDateandTime != null)
+        {
+            return _deathDateandTime;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.31",
+            Type = @"Field",
+            Position = @"STF.31",
+            Name = @"Death Date and Time",
+            Length = 8,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time at which the staff person death occurred.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.31",
-                            Type = @"Field",
-                            Position = @"STF.31",
-                            Name = @"Death Date and Time",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time at which the staff person death occurred.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.31.1",
                             Type = @"Component",
@@ -4164,43 +5043,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _deathDateandTime = new HL7V251Field
+        {
+            field = message[@"STF"][31],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_deathDateandTime.field.FieldRepetitions != null && _deathDateandTime.field.FieldRepetitions.Count > 0)
+        {
+            _deathDateandTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_deathDateandTime, fieldData);
+        }
+
+        return _deathDateandTime;
+    } 
+}
+
+internal HL7V251Field _deathIndicator;
+
+public HL7V251Field DeathIndicator
+{
+    get
+    {
+        if (_deathIndicator != null)
+        {
+            return _deathIndicator;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.32",
+            Type = @"Field",
+            Position = @"STF.32",
+            Name = @"Death Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field indicates whether the staff person is deceased. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _deathIndicator = new HL7V251Field
+        {
+            field = message[@"STF"][32],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_deathIndicator.field.FieldRepetitions != null && _deathIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _deathIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_deathIndicator, fieldData);
+        }
+
+        return _deathIndicator;
+    } 
+}
+
+internal HL7V251Field _institutionRelationshipTypeCode;
+
+public HL7V251Field InstitutionRelationshipTypeCode
+{
+    get
+    {
+        if (_institutionRelationshipTypeCode != null)
+        {
+            return _institutionRelationshipTypeCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.33",
+            Type = @"Field",
+            Position = @"STF.33",
+            Name = @"Institution Relationship Type Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0538",
+            TableName = @"Institution Relationship Type",
+            Description = @"This field specifies the relationship the staff person has with the institution for whom he/she provides services. Refer to User -defined Table 0538 - Institution Relationship Type for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.32",
-                            Type = @"Field",
-                            Position = @"STF.32",
-                            Name = @"Death Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates whether the staff person is deceased. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.33",
-                            Type = @"Field",
-                            Position = @"STF.33",
-                            Name = @"Institution Relationship Type Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0538",
-                            TableName = @"Institution Relationship Type",
-                            Description = @"This field specifies the relationship the staff person has with the institution for whom he/she provides services. Refer to User -defined Table 0538 - Institution Relationship Type for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.33.1",
                             Type = @"Component",
@@ -4360,25 +5296,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _institutionRelationshipTypeCode = new HL7V251Field
+        {
+            field = message[@"STF"][33],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_institutionRelationshipTypeCode.field.FieldRepetitions != null && _institutionRelationshipTypeCode.field.FieldRepetitions.Count > 0)
+        {
+            _institutionRelationshipTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_institutionRelationshipTypeCode, fieldData);
+        }
+
+        return _institutionRelationshipTypeCode;
+    } 
+}
+
+internal HL7V251Field _institutionRelationshipPeriod;
+
+public HL7V251Field InstitutionRelationshipPeriod
+{
+    get
+    {
+        if (_institutionRelationshipPeriod != null)
+        {
+            return _institutionRelationshipPeriod;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.34",
+            Type = @"Field",
+            Position = @"STF.34",
+            Name = @"Institution Relationship Period",
+            Length = 52,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DR",
+            DataTypeName = @"Date/Time Range",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the period during which the staff person started and ended the relationship specified in STF-35, Institution Relationship Type Code.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.34",
-                            Type = @"Field",
-                            Position = @"STF.34",
-                            Name = @"Institution Relationship Period",
-                            Length = 52,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DR",
-                            DataTypeName = @"Date/Time Range",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the period during which the staff person started and ended the relationship specified in STF-35, Institution Relationship Type Code.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.34.1",
                             Type = @"Component",
@@ -4484,43 +5450,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _institutionRelationshipPeriod = new HL7V251Field
+        {
+            field = message[@"STF"][34],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_institutionRelationshipPeriod.field.FieldRepetitions != null && _institutionRelationshipPeriod.field.FieldRepetitions.Count > 0)
+        {
+            _institutionRelationshipPeriod.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_institutionRelationshipPeriod, fieldData);
+        }
+
+        return _institutionRelationshipPeriod;
+    } 
+}
+
+internal HL7V251Field _expectedReturnDate;
+
+public HL7V251Field ExpectedReturnDate
+{
+    get
+    {
+        if (_expectedReturnDate != null)
+        {
+            return _expectedReturnDate;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.35",
+            Type = @"Field",
+            Position = @"STF.35",
+            Name = @"Expected Return Date",
+            Length = 8,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DT",
+            DataTypeName = @"Date",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date on which an inactive staff member expects to return to work.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _expectedReturnDate = new HL7V251Field
+        {
+            field = message[@"STF"][35],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_expectedReturnDate.field.FieldRepetitions != null && _expectedReturnDate.field.FieldRepetitions.Count > 0)
+        {
+            _expectedReturnDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_expectedReturnDate, fieldData);
+        }
+
+        return _expectedReturnDate;
+    } 
+}
+
+internal HL7V251Field _costCenterCode;
+
+public HL7V251Field CostCenterCode
+{
+    get
+    {
+        if (_costCenterCode != null)
+        {
+            return _costCenterCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.36",
+            Type = @"Field",
+            Position = @"STF.36",
+            Name = @"Cost Center Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0539",
+            TableName = @"Cost Center Code",
+            Description = @"This field describes the organization unit in the General Ledger to which the staff member is currently assigned. It is sometimes referred to as the home cost center because it is the organization unit to which the staff members regular costs are accrued. Refer to HL7 User-defined Table 0539 - Cost center code for valid values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.35",
-                            Type = @"Field",
-                            Position = @"STF.35",
-                            Name = @"Expected Return Date",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date on which an inactive staff member expects to return to work.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.36",
-                            Type = @"Field",
-                            Position = @"STF.36",
-                            Name = @"Cost Center Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0539",
-                            TableName = @"Cost Center Code",
-                            Description = @"This field describes the organization unit in the General Ledger to which the staff member is currently assigned. It is sometimes referred to as the home cost center because it is the organization unit to which the staff members regular costs are accrued. Refer to HL7 User-defined Table 0539 - Cost center code for valid values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.36.1",
                             Type = @"Component",
@@ -4680,43 +5703,100 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _costCenterCode = new HL7V251Field
+        {
+            field = message[@"STF"][36],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_costCenterCode.field.FieldRepetitions != null && _costCenterCode.field.FieldRepetitions.Count > 0)
+        {
+            _costCenterCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_costCenterCode, fieldData);
+        }
+
+        return _costCenterCode;
+    } 
+}
+
+internal HL7V251Field _genericClassificationIndicator;
+
+public HL7V251Field GenericClassificationIndicator
+{
+    get
+    {
+        if (_genericClassificationIndicator != null)
+        {
+            return _genericClassificationIndicator;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.37",
+            Type = @"Field",
+            Position = @"STF.37",
+            Name = @"Generic Classification Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field describes whether or not this STF record represents an identifiable (i.e., real) human being or is a placeholder for one whose identity is not yet known. For example, work schedules may need to be created before the actual staff member has been hired, or appointments may be made with a floating resource who is not specifically known until the actual appointment date/time. Because these functions require a Staff Member ID code, it is important to distinguish whether or not the Staff Member is a real human resource or not. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _genericClassificationIndicator = new HL7V251Field
+        {
+            field = message[@"STF"][37],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_genericClassificationIndicator.field.FieldRepetitions != null && _genericClassificationIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _genericClassificationIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_genericClassificationIndicator, fieldData);
+        }
+
+        return _genericClassificationIndicator;
+    } 
+}
+
+internal HL7V251Field _inactiveReasonCode;
+
+public HL7V251Field InactiveReasonCode
+{
+    get
+    {
+        if (_inactiveReasonCode != null)
+        {
+            return _inactiveReasonCode;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"STF.38",
+            Type = @"Field",
+            Position = @"STF.38",
+            Name = @"Inactive Reason Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0540",
+            TableName = @"Inactive Reason Code",
+            Description = @"This field contains the reason that the staff member is inactive. Refer to User-defined Table 0540 - Inactive Reason Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"STF.37",
-                            Type = @"Field",
-                            Position = @"STF.37",
-                            Name = @"Generic Classification Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field describes whether or not this STF record represents an identifiable (i.e., real) human being or is a placeholder for one whose identity is not yet known. For example, work schedules may need to be created before the actual staff member has been hired, or appointments may be made with a floating resource who is not specifically known until the actual appointment date/time. Because these functions require a Staff Member ID code, it is important to distinguish whether or not the Staff Member is a real human resource or not. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"STF.38",
-                            Type = @"Field",
-                            Position = @"STF.38",
-                            Name = @"Inactive Reason Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0540",
-                            TableName = @"Inactive Reason Code",
-                            Description = @"This field contains the reason that the staff member is inactive. Refer to User-defined Table 0540 - Inactive Reason Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"STF.38.1",
                             Type = @"Component",
@@ -4876,1572 +5956,23 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentSTF(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field primaryKeyValueSTF;
-
-public HL7V251Field PrimaryKeyValueSTF
-{
-    get
-    {
-        if (primaryKeyValueSTF != null)
-        {
-            return primaryKeyValueSTF;
-        }
-
-        primaryKeyValueSTF = new HL7V251Field
-        {
-            field = message[@"STF"][1],
-            Id = @"STF.1",
-            Type = @"Field",
-            Position = @"STF.1",
-            Name = @"Primary Key Value - STF",
-            Length = 250,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"For MFN Master File Notification, this field is required and must match MFE-4-primary key value to identify which entry is being referenced. For all other messages, this field should not be used.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryKeyValueSTF.field.FieldRepetitions != null && primaryKeyValueSTF.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryKeyValueSTF.Id));
-            primaryKeyValueSTF.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(primaryKeyValueSTF, fieldData);
-        }
-
-        return primaryKeyValueSTF;
-    } 
-}
-
-internal HL7V251Field staffIdentifierList;
-
-public HL7V251Field StaffIdentifierList
-{
-    get
-    {
-        if (staffIdentifierList != null)
-        {
-            return staffIdentifierList;
-        }
-
-        staffIdentifierList = new HL7V251Field
-        {
-            field = message[@"STF"][2],
-            Id = @"STF.2",
-            Type = @"Field",
-            Position = @"STF.2",
-            Name = @"Staff Identifier List",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CX",
-            DataTypeName = @"Extended Composite ID with Check Digit",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the list of identifiers (one or more) used by the institution to identify this person. Refer to HL7 Table 0061 - Check digit scheme (component 2), User-defined Table 0203 - Identifier type (component 5) and User-defined Table 0363 - Assigning authority (component 4) for valid values. If a Staff Member has institution identifiers that are valid only in specific organization units, that Staff identifier should be recorded in the ORG-Practitioner Organization Unit segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (staffIdentifierList.field.FieldRepetitions != null && staffIdentifierList.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(staffIdentifierList.Id));
-            staffIdentifierList.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(staffIdentifierList, fieldData);
-        }
-
-        return staffIdentifierList;
-    } 
-}
-
-internal HL7V251Field staffName;
-
-public HL7V251Field StaffName
-{
-    get
-    {
-        if (staffName != null)
-        {
-            return staffName;
-        }
-
-        staffName = new HL7V251Field
-        {
-            field = message[@"STF"][3],
-            Id = @"STF.3",
-            Type = @"Field",
-            Position = @"STF.3",
-            Name = @"Staff Name",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the staff persons name. This field may repeat to transmit multiple names for the same person.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (staffName.field.FieldRepetitions != null && staffName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(staffName.Id));
-            staffName.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(staffName, fieldData);
-        }
-
-        return staffName;
-    } 
-}
-
-internal HL7V251Field staffType;
-
-public HL7V251Field StaffType
-{
-    get
-    {
-        if (staffType != null)
-        {
-            return staffType;
-        }
-
-        staffType = new HL7V251Field
-        {
-            field = message[@"STF"][4],
-            Id = @"STF.4",
-            Type = @"Field",
-            Position = @"STF.4",
-            Name = @"Staff Type",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0182",
-            TableName = @"Staff type",
-            Description = @"This field contains a code identifying what type of staff. Refer to User-defined Table 0182 - Staff type for suggested values. Values may include codes for staff, practitioner (physician, nurse, therapist, etc.), referral agent or agency, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (staffType.field.FieldRepetitions != null && staffType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(staffType.Id));
-            staffType.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(staffType, fieldData);
-        }
-
-        return staffType;
-    } 
-}
-
-internal HL7V251Field administrativeSex;
-
-public HL7V251Field AdministrativeSex
-{
-    get
-    {
-        if (administrativeSex != null)
-        {
-            return administrativeSex;
-        }
-
-        administrativeSex = new HL7V251Field
-        {
-            field = message[@"STF"][5],
-            Id = @"STF.5",
-            Type = @"Field",
-            Position = @"STF.5",
-            Name = @"Administrative Sex",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0001",
-            TableName = @"Administrative Sex",
-            Description = @"This field contains the staff persons sex. Refer to User-defined Table 0001 - Administrative Sex for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (administrativeSex.field.FieldRepetitions != null && administrativeSex.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(administrativeSex.Id));
-            administrativeSex.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(administrativeSex, fieldData);
-        }
-
-        return administrativeSex;
-    } 
-}
-
-internal HL7V251Field dateTimeofBirth;
-
-public HL7V251Field DateTimeofBirth
-{
-    get
-    {
-        if (dateTimeofBirth != null)
-        {
-            return dateTimeofBirth;
-        }
-
-        dateTimeofBirth = new HL7V251Field
-        {
-            field = message[@"STF"][6],
-            Id = @"STF.6",
-            Type = @"Field",
-            Position = @"STF.6",
-            Name = @"Date/Time of Birth",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a staff members date and time of birth.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateTimeofBirth.field.FieldRepetitions != null && dateTimeofBirth.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateTimeofBirth.Id));
-            dateTimeofBirth.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(dateTimeofBirth, fieldData);
-        }
-
-        return dateTimeofBirth;
-    } 
-}
-
-internal HL7V251Field activeInactiveFlag;
-
-public HL7V251Field ActiveInactiveFlag
-{
-    get
-    {
-        if (activeInactiveFlag != null)
-        {
-            return activeInactiveFlag;
-        }
-
-        activeInactiveFlag = new HL7V251Field
-        {
-            field = message[@"STF"][7],
-            Id = @"STF.7",
-            Type = @"Field",
-            Position = @"STF.7",
-            Name = @"Active/Inactive Flag",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0183",
-            TableName = @"Active/Inactive",
-            Description = @"This field indicates whether person is currently a valid staff member. Refer to HL7 Table 0183 - Active/inactive for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (activeInactiveFlag.field.FieldRepetitions != null && activeInactiveFlag.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(activeInactiveFlag.Id));
-            activeInactiveFlag.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(activeInactiveFlag, fieldData);
-        }
-
-        return activeInactiveFlag;
-    } 
-}
-
-internal HL7V251Field department;
-
-public HL7V251Field Department
-{
-    get
-    {
-        if (department != null)
-        {
-            return department;
-        }
-
-        department = new HL7V251Field
-        {
-            field = message[@"STF"][8],
-            Id = @"STF.8",
-            Type = @"Field",
-            Position = @"STF.8",
-            Name = @"Department",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0184",
-            TableName = @"Department",
-            Description = @"This field contains the institution department to which this person reports or belongs. Refer to User-defined Table 0184 - Department for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (department.field.FieldRepetitions != null && department.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(department.Id));
-            department.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(department, fieldData);
-        }
-
-        return department;
-    } 
-}
-
-internal HL7V251Field hospitalServiceSTF;
-
-public HL7V251Field HospitalServiceSTF
-{
-    get
-    {
-        if (hospitalServiceSTF != null)
-        {
-            return hospitalServiceSTF;
-        }
-
-        hospitalServiceSTF = new HL7V251Field
-        {
-            field = message[@"STF"][9],
-            Id = @"STF.9",
-            Type = @"Field",
-            Position = @"STF.9",
-            Name = @"Hospital Service - STF",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0069",
-            TableName = @"Hospital Service",
-            Description = @"This field contains the hospital or ancillary service with which this staff person is associated. Refer to User-defined Table 0069 - Hospital service for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (hospitalServiceSTF.field.FieldRepetitions != null && hospitalServiceSTF.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(hospitalServiceSTF.Id));
-            hospitalServiceSTF.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(hospitalServiceSTF, fieldData);
-        }
-
-        return hospitalServiceSTF;
-    } 
-}
-
-internal HL7V251Field phone;
-
-public HL7V251Field Phone
-{
-    get
-    {
-        if (phone != null)
-        {
-            return phone;
-        }
-
-        phone = new HL7V251Field
-        {
-            field = message[@"STF"][10],
-            Id = @"STF.10",
-            Type = @"Field",
-            Position = @"STF.10",
-            Name = @"Phone",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the staff persons phone number. This is a repeating field with a component for indicating which phone number is which.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (phone.field.FieldRepetitions != null && phone.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(phone.Id));
-            phone.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(phone, fieldData);
-        }
-
-        return phone;
-    } 
-}
-
-internal HL7V251Field officeHomeAddressBirthplace;
-
-public HL7V251Field OfficeHomeAddressBirthplace
-{
-    get
-    {
-        if (officeHomeAddressBirthplace != null)
-        {
-            return officeHomeAddressBirthplace;
-        }
-
-        officeHomeAddressBirthplace = new HL7V251Field
-        {
-            field = message[@"STF"][11],
-            Id = @"STF.11",
-            Type = @"Field",
-            Position = @"STF.11",
-            Name = @"Office/Home Address/Birthplace",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the office, and home address and/or place of birth of the staff person. This is a repeating field. The address type identifies the usage.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (officeHomeAddressBirthplace.field.FieldRepetitions != null && officeHomeAddressBirthplace.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(officeHomeAddressBirthplace.Id));
-            officeHomeAddressBirthplace.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(officeHomeAddressBirthplace, fieldData);
-        }
-
-        return officeHomeAddressBirthplace;
-    } 
-}
-
-internal HL7V251Field institutionActivationDate;
-
-public HL7V251Field InstitutionActivationDate
-{
-    get
-    {
-        if (institutionActivationDate != null)
-        {
-            return institutionActivationDate;
-        }
-
-        institutionActivationDate = new HL7V251Field
-        {
-            field = message[@"STF"][12],
-            Id = @"STF.12",
-            Type = @"Field",
-            Position = @"STF.12",
-            Name = @"Institution Activation Date",
-            Length = 276,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"DIN",
-            DataTypeName = @"Date and Institution Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date when staff became active for an institution. This is a repeating field. Refer to User-defined Table 0537 - Institution for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (institutionActivationDate.field.FieldRepetitions != null && institutionActivationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(institutionActivationDate.Id));
-            institutionActivationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(institutionActivationDate, fieldData);
-        }
-
-        return institutionActivationDate;
-    } 
-}
-
-internal HL7V251Field institutionInactivationDate;
-
-public HL7V251Field InstitutionInactivationDate
-{
-    get
-    {
-        if (institutionInactivationDate != null)
-        {
-            return institutionInactivationDate;
-        }
-
-        institutionInactivationDate = new HL7V251Field
-        {
-            field = message[@"STF"][13],
-            Id = @"STF.13",
-            Type = @"Field",
-            Position = @"STF.13",
-            Name = @"Institution Inactivation Date",
-            Length = 276,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"DIN",
-            DataTypeName = @"Date and Institution Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date when staff became inactive for an institution. This is a repeating field. Refer to HL7 Table 0537 - Institution for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (institutionInactivationDate.field.FieldRepetitions != null && institutionInactivationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(institutionInactivationDate.Id));
-            institutionInactivationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(institutionInactivationDate, fieldData);
-        }
-
-        return institutionInactivationDate;
-    } 
-}
-
-internal HL7V251Field backupPersonID;
-
-public HL7V251Field BackupPersonID
-{
-    get
-    {
-        if (backupPersonID != null)
-        {
-            return backupPersonID;
-        }
-
-        backupPersonID = new HL7V251Field
-        {
-            field = message[@"STF"][14],
-            Id = @"STF.14",
-            Type = @"Field",
-            Position = @"STF.14",
-            Name = @"Backup Person ID",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the MFE-4-primary key value of the master file entry that corresponds to the designated backup person for this staff person.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (backupPersonID.field.FieldRepetitions != null && backupPersonID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(backupPersonID.Id));
-            backupPersonID.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(backupPersonID, fieldData);
-        }
-
-        return backupPersonID;
-    } 
-}
-
-internal HL7V251Field eMailAddress;
-
-public HL7V251Field EMailAddress
-{
-    get
-    {
-        if (eMailAddress != null)
-        {
-            return eMailAddress;
-        }
-
-        eMailAddress = new HL7V251Field
-        {
-            field = message[@"STF"][15],
-            Id = @"STF.15",
-            Type = @"Field",
-            Position = @"STF.15",
-            Name = @"E-Mail Address",
-            Length = 40,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has been retained for backward compatibility.  (It is now present in the fourth component of STF-10-phone).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (eMailAddress.field.FieldRepetitions != null && eMailAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(eMailAddress.Id));
-            eMailAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(eMailAddress, fieldData);
-        }
-
-        return eMailAddress;
-    } 
-}
-
-internal HL7V251Field preferredMethodofContact;
-
-public HL7V251Field PreferredMethodofContact
-{
-    get
-    {
-        if (preferredMethodofContact != null)
-        {
-            return preferredMethodofContact;
-        }
-
-        preferredMethodofContact = new HL7V251Field
-        {
-            field = message[@"STF"][16],
-            Id = @"STF.16",
-            Type = @"Field",
-            Position = @"STF.16",
-            Name = @"Preferred Method of Contact",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0185",
-            TableName = @"Preferred method of contact",
-            Description = @"This field indicates which of a group of multiple phone numbers is the preferred method of contact for this person. Note that all values of this code refer to this segments phone field, except for the value E, which refers to the E-mail address field. If more than one phone number of the preferred type exists in STF-10-phone, this field refers to the first such instance. Refer to HL7 Table 0185 - Preferred method of contact for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (preferredMethodofContact.field.FieldRepetitions != null && preferredMethodofContact.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(preferredMethodofContact.Id));
-            preferredMethodofContact.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(preferredMethodofContact, fieldData);
-        }
-
-        return preferredMethodofContact;
-    } 
-}
-
-internal HL7V251Field maritalStatus;
-
-public HL7V251Field MaritalStatus
-{
-    get
-    {
-        if (maritalStatus != null)
-        {
-            return maritalStatus;
-        }
-
-        maritalStatus = new HL7V251Field
-        {
-            field = message[@"STF"][17],
-            Id = @"STF.17",
-            Type = @"Field",
-            Position = @"STF.17",
-            Name = @"Marital Status",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0002",
-            TableName = @"Marital Status",
-            Description = @"This field contains the staff members marital status. Refer to User-defined Table 0002 - Marital status for suggested values. Same values as those for PID-16-marital status.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (maritalStatus.field.FieldRepetitions != null && maritalStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(maritalStatus.Id));
-            maritalStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(maritalStatus, fieldData);
-        }
-
-        return maritalStatus;
-    } 
-}
-
-internal HL7V251Field jobTitle;
-
-public HL7V251Field JobTitle
-{
-    get
-    {
-        if (jobTitle != null)
-        {
-            return jobTitle;
-        }
-
-        jobTitle = new HL7V251Field
-        {
-            field = message[@"STF"][18],
-            Id = @"STF.18",
-            Type = @"Field",
-            Position = @"STF.18",
-            Name = @"Job Title",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a descriptive name of the staff members occupation (e.g., Sr. Systems Analyst, Sr. Accountant).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (jobTitle.field.FieldRepetitions != null && jobTitle.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(jobTitle.Id));
-            jobTitle.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(jobTitle, fieldData);
-        }
-
-        return jobTitle;
-    } 
-}
-
-internal HL7V251Field jobCodeClass;
-
-public HL7V251Field JobCodeClass
-{
-    get
-    {
-        if (jobCodeClass != null)
-        {
-            return jobCodeClass;
-        }
-
-        jobCodeClass = new HL7V251Field
-        {
-            field = message[@"STF"][19],
-            Id = @"STF.19",
-            Type = @"Field",
-            Position = @"STF.19",
-            Name = @"Job Code/Class",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"JCC",
-            DataTypeName = @"Job Code/Class",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the staff members job code and employee classification. Refer to User-defined Table 0327 - Job code and User-defined Table 0328 - Employee classification for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (jobCodeClass.field.FieldRepetitions != null && jobCodeClass.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(jobCodeClass.Id));
-            jobCodeClass.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(jobCodeClass, fieldData);
-        }
-
-        return jobCodeClass;
-    } 
-}
-
-internal HL7V251Field employmentStatusCode;
-
-public HL7V251Field EmploymentStatusCode
-{
-    get
-    {
-        if (employmentStatusCode != null)
-        {
-            return employmentStatusCode;
-        }
-
-        employmentStatusCode = new HL7V251Field
-        {
-            field = message[@"STF"][20],
-            Id = @"STF.20",
-            Type = @"Field",
-            Position = @"STF.20",
-            Name = @"Employment Status Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0066",
-            TableName = @"Employment Status",
-            Description = @"This field contains the code that indicates the staff members employment status, e.g., full-time, part-time, self-employed, etc. Refer to User-defined Table 0066 - Employment status for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (employmentStatusCode.field.FieldRepetitions != null && employmentStatusCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(employmentStatusCode.Id));
-            employmentStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(employmentStatusCode, fieldData);
-        }
-
-        return employmentStatusCode;
-    } 
-}
-
-internal HL7V251Field additionalInsuredonAuto;
-
-public HL7V251Field AdditionalInsuredonAuto
-{
-    get
-    {
-        if (additionalInsuredonAuto != null)
-        {
-            return additionalInsuredonAuto;
-        }
-
-        additionalInsuredonAuto = new HL7V251Field
-        {
-            field = message[@"STF"][21],
-            Id = @"STF.21",
-            Type = @"Field",
-            Position = @"STF.21",
-            Name = @"Additional Insured on Auto",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field contains an indicator for whether the present institution is named as an additional insured on the staff members auto insurance, especially for use when staff is a driver for the institution. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (additionalInsuredonAuto.field.FieldRepetitions != null && additionalInsuredonAuto.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(additionalInsuredonAuto.Id));
-            additionalInsuredonAuto.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(additionalInsuredonAuto, fieldData);
-        }
-
-        return additionalInsuredonAuto;
-    } 
-}
-
-internal HL7V251Field driversLicenseNumberStaff;
-
-public HL7V251Field DriversLicenseNumberStaff
-{
-    get
-    {
-        if (driversLicenseNumberStaff != null)
-        {
-            return driversLicenseNumberStaff;
-        }
-
-        driversLicenseNumberStaff = new HL7V251Field
-        {
-            field = message[@"STF"][22],
-            Id = @"STF.22",
-            Type = @"Field",
-            Position = @"STF.22",
-            Name = @"Driver's License Number - Staff",
-            Length = 25,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DLN",
-            DataTypeName = @"Driver License Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the drivers license information of staff, especially for use when staff is a driver for the institution. For state or province refer to official postal codes for that country; for country refer to ISO 3166 for codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (driversLicenseNumberStaff.field.FieldRepetitions != null && driversLicenseNumberStaff.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(driversLicenseNumberStaff.Id));
-            driversLicenseNumberStaff.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(driversLicenseNumberStaff, fieldData);
-        }
-
-        return driversLicenseNumberStaff;
-    } 
-}
-
-internal HL7V251Field copyAutoIns;
-
-public HL7V251Field CopyAutoIns
-{
-    get
-    {
-        if (copyAutoIns != null)
-        {
-            return copyAutoIns;
-        }
-
-        copyAutoIns = new HL7V251Field
-        {
-            field = message[@"STF"][23],
-            Id = @"STF.23",
-            Type = @"Field",
-            Position = @"STF.23",
-            Name = @"Copy Auto Ins",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field contains an indicator for whether the institution has on file a copy of the staff members auto insurance, especially for use when staff is a driver for the institution. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (copyAutoIns.field.FieldRepetitions != null && copyAutoIns.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(copyAutoIns.Id));
-            copyAutoIns.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(copyAutoIns, fieldData);
-        }
-
-        return copyAutoIns;
-    } 
-}
-
-internal HL7V251Field autoInsExpires;
-
-public HL7V251Field AutoInsExpires
-{
-    get
-    {
-        if (autoInsExpires != null)
-        {
-            return autoInsExpires;
-        }
-
-        autoInsExpires = new HL7V251Field
-        {
-            field = message[@"STF"][24],
-            Id = @"STF.24",
-            Type = @"Field",
-            Position = @"STF.24",
-            Name = @"Auto Ins. Expires",
-            Length = 8,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date on which the staff members drivers license expires, especially for use when staff is a driver for the institution.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (autoInsExpires.field.FieldRepetitions != null && autoInsExpires.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(autoInsExpires.Id));
-            autoInsExpires.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(autoInsExpires, fieldData);
-        }
-
-        return autoInsExpires;
-    } 
-}
-
-internal HL7V251Field dateLastDMVReview;
-
-public HL7V251Field DateLastDMVReview
-{
-    get
-    {
-        if (dateLastDMVReview != null)
-        {
-            return dateLastDMVReview;
-        }
-
-        dateLastDMVReview = new HL7V251Field
-        {
-            field = message[@"STF"][25],
-            Id = @"STF.25",
-            Type = @"Field",
-            Position = @"STF.25",
-            Name = @"Date Last DMV Review",
-            Length = 8,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date of the staff members most recent Department of Motor Vehicles review, especially for use when staff is a driver for the institution.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateLastDMVReview.field.FieldRepetitions != null && dateLastDMVReview.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateLastDMVReview.Id));
-            dateLastDMVReview.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(dateLastDMVReview, fieldData);
-        }
-
-        return dateLastDMVReview;
-    } 
-}
-
-internal HL7V251Field dateNextDMVReview;
-
-public HL7V251Field DateNextDMVReview
-{
-    get
-    {
-        if (dateNextDMVReview != null)
-        {
-            return dateNextDMVReview;
-        }
-
-        dateNextDMVReview = new HL7V251Field
-        {
-            field = message[@"STF"][26],
-            Id = @"STF.26",
-            Type = @"Field",
-            Position = @"STF.26",
-            Name = @"Date Next DMV Review",
-            Length = 8,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date of the staff members next Department of Motor Vehicles review, especially for use when staff is a driver for the institution.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dateNextDMVReview.field.FieldRepetitions != null && dateNextDMVReview.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dateNextDMVReview.Id));
-            dateNextDMVReview.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(dateNextDMVReview, fieldData);
-        }
-
-        return dateNextDMVReview;
-    } 
-}
-
-internal HL7V251Field race;
-
-public HL7V251Field Race
-{
-    get
-    {
-        if (race != null)
-        {
-            return race;
-        }
-
-        race = new HL7V251Field
-        {
-            field = message[@"STF"][27],
-            Id = @"STF.27",
-            Type = @"Field",
-            Position = @"STF.27",
-            Name = @"Race",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0005",
-            TableName = @"Race",
-            Description = @"This field refers to the person's race. Refer to User-defined Table 0005 - Race for suggested values. The second triplet of the CE data type for race (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (race.field.FieldRepetitions != null && race.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(race.Id));
-            race.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(race, fieldData);
-        }
-
-        return race;
-    } 
-}
-
-internal HL7V251Field ethnicGroup;
-
-public HL7V251Field EthnicGroup
-{
-    get
-    {
-        if (ethnicGroup != null)
-        {
-            return ethnicGroup;
-        }
-
-        ethnicGroup = new HL7V251Field
-        {
-            field = message[@"STF"][28],
-            Id = @"STF.28",
-            Type = @"Field",
-            Position = @"STF.28",
-            Name = @"Ethnic Group",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0189",
-            TableName = @"Ethnic Group",
-            Description = @"This field further defines the persons ancestry. Refer to User-defined Table 0189 - Ethnic group for suggested values. The second couplet of the CE data type for ethnic group (alternate identifier, alternate text, and name of alternate coding system) is reserved for governmentally assigned codes. In the United States, a current use is to report ethnicity in line with US federal standards for Hispanic origin.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (ethnicGroup.field.FieldRepetitions != null && ethnicGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ethnicGroup.Id));
-            ethnicGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(ethnicGroup, fieldData);
-        }
-
-        return ethnicGroup;
-    } 
-}
-
-internal HL7V251Field reactivationApprovalIndicator;
-
-public HL7V251Field ReactivationApprovalIndicator
-{
-    get
-    {
-        if (reactivationApprovalIndicator != null)
-        {
-            return reactivationApprovalIndicator;
-        }
-
-        reactivationApprovalIndicator = new HL7V251Field
-        {
-            field = message[@"STF"][29],
-            Id = @"STF.29",
-            Type = @"Field",
-            Position = @"STF.29",
-            Name = @"Re-activation Approval Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field contains an indicator for whether the re-activation of this record requires special approval. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (reactivationApprovalIndicator.field.FieldRepetitions != null && reactivationApprovalIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(reactivationApprovalIndicator.Id));
-            reactivationApprovalIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(reactivationApprovalIndicator, fieldData);
-        }
-
-        return reactivationApprovalIndicator;
-    } 
-}
-
-internal HL7V251Field citizenship;
-
-public HL7V251Field Citizenship
-{
-    get
-    {
-        if (citizenship != null)
-        {
-            return citizenship;
-        }
-
-        citizenship = new HL7V251Field
-        {
-            field = message[@"STF"][30],
-            Id = @"STF.30",
-            Type = @"Field",
-            Position = @"STF.30",
-            Name = @"Citizenship",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0171",
-            TableName = @"Citizenship",
-            Description = @"This field contains the staff persons current country of citizenship. HL7 recommends using ISO table 3166 as the suggested values in User-defined Table 0171 - Citizenship .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (citizenship.field.FieldRepetitions != null && citizenship.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(citizenship.Id));
-            citizenship.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(citizenship, fieldData);
-        }
-
-        return citizenship;
-    } 
-}
-
-internal HL7V251Field deathDateandTime;
-
-public HL7V251Field DeathDateandTime
-{
-    get
-    {
-        if (deathDateandTime != null)
-        {
-            return deathDateandTime;
-        }
-
-        deathDateandTime = new HL7V251Field
-        {
-            field = message[@"STF"][31],
-            Id = @"STF.31",
-            Type = @"Field",
-            Position = @"STF.31",
-            Name = @"Death Date and Time",
-            Length = 8,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time at which the staff person death occurred.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (deathDateandTime.field.FieldRepetitions != null && deathDateandTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deathDateandTime.Id));
-            deathDateandTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(deathDateandTime, fieldData);
-        }
-
-        return deathDateandTime;
-    } 
-}
-
-internal HL7V251Field deathIndicator;
-
-public HL7V251Field DeathIndicator
-{
-    get
-    {
-        if (deathIndicator != null)
-        {
-            return deathIndicator;
-        }
-
-        deathIndicator = new HL7V251Field
-        {
-            field = message[@"STF"][32],
-            Id = @"STF.32",
-            Type = @"Field",
-            Position = @"STF.32",
-            Name = @"Death Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field indicates whether the staff person is deceased. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (deathIndicator.field.FieldRepetitions != null && deathIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(deathIndicator.Id));
-            deathIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(deathIndicator, fieldData);
-        }
-
-        return deathIndicator;
-    } 
-}
-
-internal HL7V251Field institutionRelationshipTypeCode;
-
-public HL7V251Field InstitutionRelationshipTypeCode
-{
-    get
-    {
-        if (institutionRelationshipTypeCode != null)
-        {
-            return institutionRelationshipTypeCode;
-        }
-
-        institutionRelationshipTypeCode = new HL7V251Field
-        {
-            field = message[@"STF"][33],
-            Id = @"STF.33",
-            Type = @"Field",
-            Position = @"STF.33",
-            Name = @"Institution Relationship Type Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0538",
-            TableName = @"Institution Relationship Type",
-            Description = @"This field specifies the relationship the staff person has with the institution for whom he/she provides services. Refer to User -defined Table 0538 - Institution Relationship Type for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (institutionRelationshipTypeCode.field.FieldRepetitions != null && institutionRelationshipTypeCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(institutionRelationshipTypeCode.Id));
-            institutionRelationshipTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(institutionRelationshipTypeCode, fieldData);
-        }
-
-        return institutionRelationshipTypeCode;
-    } 
-}
-
-internal HL7V251Field institutionRelationshipPeriod;
-
-public HL7V251Field InstitutionRelationshipPeriod
-{
-    get
-    {
-        if (institutionRelationshipPeriod != null)
-        {
-            return institutionRelationshipPeriod;
-        }
-
-        institutionRelationshipPeriod = new HL7V251Field
-        {
-            field = message[@"STF"][34],
-            Id = @"STF.34",
-            Type = @"Field",
-            Position = @"STF.34",
-            Name = @"Institution Relationship Period",
-            Length = 52,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DR",
-            DataTypeName = @"Date/Time Range",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the period during which the staff person started and ended the relationship specified in STF-35, Institution Relationship Type Code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (institutionRelationshipPeriod.field.FieldRepetitions != null && institutionRelationshipPeriod.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(institutionRelationshipPeriod.Id));
-            institutionRelationshipPeriod.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(institutionRelationshipPeriod, fieldData);
-        }
-
-        return institutionRelationshipPeriod;
-    } 
-}
-
-internal HL7V251Field expectedReturnDate;
-
-public HL7V251Field ExpectedReturnDate
-{
-    get
-    {
-        if (expectedReturnDate != null)
-        {
-            return expectedReturnDate;
-        }
-
-        expectedReturnDate = new HL7V251Field
-        {
-            field = message[@"STF"][35],
-            Id = @"STF.35",
-            Type = @"Field",
-            Position = @"STF.35",
-            Name = @"Expected Return Date",
-            Length = 8,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DT",
-            DataTypeName = @"Date",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date on which an inactive staff member expects to return to work.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (expectedReturnDate.field.FieldRepetitions != null && expectedReturnDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(expectedReturnDate.Id));
-            expectedReturnDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(expectedReturnDate, fieldData);
-        }
-
-        return expectedReturnDate;
-    } 
-}
-
-internal HL7V251Field costCenterCode;
-
-public HL7V251Field CostCenterCode
-{
-    get
-    {
-        if (costCenterCode != null)
-        {
-            return costCenterCode;
-        }
-
-        costCenterCode = new HL7V251Field
-        {
-            field = message[@"STF"][36],
-            Id = @"STF.36",
-            Type = @"Field",
-            Position = @"STF.36",
-            Name = @"Cost Center Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0539",
-            TableName = @"Cost Center Code",
-            Description = @"This field describes the organization unit in the General Ledger to which the staff member is currently assigned. It is sometimes referred to as the home cost center because it is the organization unit to which the staff members regular costs are accrued. Refer to HL7 User-defined Table 0539 - Cost center code for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (costCenterCode.field.FieldRepetitions != null && costCenterCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(costCenterCode.Id));
-            costCenterCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(costCenterCode, fieldData);
-        }
-
-        return costCenterCode;
-    } 
-}
-
-internal HL7V251Field genericClassificationIndicator;
-
-public HL7V251Field GenericClassificationIndicator
-{
-    get
-    {
-        if (genericClassificationIndicator != null)
-        {
-            return genericClassificationIndicator;
-        }
-
-        genericClassificationIndicator = new HL7V251Field
-        {
-            field = message[@"STF"][37],
-            Id = @"STF.37",
-            Type = @"Field",
-            Position = @"STF.37",
-            Name = @"Generic Classification Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field describes whether or not this STF record represents an identifiable (i.e., real) human being or is a placeholder for one whose identity is not yet known. For example, work schedules may need to be created before the actual staff member has been hired, or appointments may be made with a floating resource who is not specifically known until the actual appointment date/time. Because these functions require a Staff Member ID code, it is important to distinguish whether or not the Staff Member is a real human resource or not. Refer to HL7 Table 0136 - Yes/no indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (genericClassificationIndicator.field.FieldRepetitions != null && genericClassificationIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(genericClassificationIndicator.Id));
-            genericClassificationIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(genericClassificationIndicator, fieldData);
-        }
-
-        return genericClassificationIndicator;
-    } 
-}
-
-internal HL7V251Field inactiveReasonCode;
-
-public HL7V251Field InactiveReasonCode
-{
-    get
-    {
-        if (inactiveReasonCode != null)
-        {
-            return inactiveReasonCode;
-        }
-
-        inactiveReasonCode = new HL7V251Field
+        _inactiveReasonCode = new HL7V251Field
         {
             field = message[@"STF"][38],
-            Id = @"STF.38",
-            Type = @"Field",
-            Position = @"STF.38",
-            Name = @"Inactive Reason Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0540",
-            TableName = @"Inactive Reason Code",
-            Description = @"This field contains the reason that the staff member is inactive. Refer to User-defined Table 0540 - Inactive Reason Code for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (inactiveReasonCode.field.FieldRepetitions != null && inactiveReasonCode.field.FieldRepetitions.Count > 0)
+        if (_inactiveReasonCode.field.FieldRepetitions != null && _inactiveReasonCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(inactiveReasonCode.Id));
-            inactiveReasonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(inactiveReasonCode, fieldData);
+            _inactiveReasonCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_inactiveReasonCode, fieldData);
         }
 
-        return inactiveReasonCode;
+        return _inactiveReasonCode;
     } 
 }
     }

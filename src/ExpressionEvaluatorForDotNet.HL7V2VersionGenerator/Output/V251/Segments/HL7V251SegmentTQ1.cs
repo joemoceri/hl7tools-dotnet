@@ -29,46 +29,85 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentTQ1(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _setIDTQ1;
+
+public HL7V251Field SetIDTQ1
+{
+    get
+    {
+        if (_setIDTQ1 != null)
+        {
+            return _setIDTQ1;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"TQ1.1",
+            Type = @"Field",
+            Position = @"TQ1.1",
+            Name = @"Set ID - TQ1",
+            Length = 4,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"For the first timing specification transmitted, the sequence number shall be 1; for the second timing specification, it shall be 2; and so on.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDTQ1 = new HL7V251Field
+        {
+            field = message[@"TQ1"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDTQ1.field.FieldRepetitions != null && _setIDTQ1.field.FieldRepetitions.Count > 0)
+        {
+            _setIDTQ1.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_setIDTQ1, fieldData);
+        }
+
+        return _setIDTQ1;
+    } 
+}
+
+internal HL7V251Field _quantity;
+
+public HL7V251Field Quantity
+{
+    get
+    {
+        if (_quantity != null)
+        {
+            return _quantity;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"TQ1.2",
+            Type = @"Field",
+            Position = @"TQ1.2",
+            Name = @"Quantity",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity with Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the numeric quantity of the service that should be provided at each service interval. For example, if two blood cultures are to be obtained every 4 hours, the quantity would be 2 or if three units of blood are to be typed and cross-matched, the quantity would be 3. The default value for this field is 1.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"TQ1.1",
-                            Type = @"Field",
-                            Position = @"TQ1.1",
-                            Name = @"Set ID - TQ1",
-                            Length = 4,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"For the first timing specification transmitted, the sequence number shall be 1; for the second timing specification, it shall be 2; and so on.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TQ1.2",
-                            Type = @"Field",
-                            Position = @"TQ1.2",
-                            Name = @"Quantity",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity with Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the numeric quantity of the service that should be provided at each service interval. For example, if two blood cultures are to be obtained every 4 hours, the quantity would be 2 or if three units of blood are to be typed and cross-matched, the quantity would be 3. The default value for this field is 1.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"TQ1.2.1",
                             Type = @"Component",
@@ -208,25 +247,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _quantity = new HL7V251Field
+        {
+            field = message[@"TQ1"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_quantity.field.FieldRepetitions != null && _quantity.field.FieldRepetitions.Count > 0)
+        {
+            _quantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_quantity, fieldData);
+        }
+
+        return _quantity;
+    } 
+}
+
+internal HL7V251Field _repeatPattern;
+
+public HL7V251Field RepeatPattern
+{
+    get
+    {
+        if (_repeatPattern != null)
+        {
+            return _repeatPattern;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"TQ1.3",
+            Type = @"Field",
+            Position = @"TQ1.3",
+            Name = @"Repeat Pattern",
+            Length = 540,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"RPT",
+            DataTypeName = @"Repeat Pattern",
+            TableId = null,
+            TableName = null,
+            Description = @"The repeating frequency with which the treatment is to be administered. It is similar to the frequency and SIG code tables used in order entry systems.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TQ1.3",
-                            Type = @"Field",
-                            Position = @"TQ1.3",
-                            Name = @"Repeat Pattern",
-                            Length = 540,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"RPT",
-                            DataTypeName = @"Repeat Pattern",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The repeating frequency with which the treatment is to be administered. It is similar to the frequency and SIG code tables used in order entry systems.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TQ1.3.1",
                             Type = @"Component",
@@ -582,43 +651,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The General Timing Specification as defined by the Version 3 Data Types document.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _repeatPattern = new HL7V251Field
+        {
+            field = message[@"TQ1"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_repeatPattern.field.FieldRepetitions != null && _repeatPattern.field.FieldRepetitions.Count > 0)
+        {
+            _repeatPattern.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_repeatPattern, fieldData);
+        }
+
+        return _repeatPattern;
+    } 
+}
+
+internal HL7V251Field _explicitTime;
+
+public HL7V251Field ExplicitTime
+{
+    get
+    {
+        if (_explicitTime != null)
+        {
+            return _explicitTime;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"TQ1.4",
+            Type = @"Field",
+            Position = @"TQ1.4",
+            Name = @"Explicit Time",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"TM",
+            DataTypeName = @"Time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field explicitly lists the actual times referenced by the code in TQ1-3. This field will be used to clarify the TQ1-3 in cases where the actual administration times vary within an institution. If the time of the service request spans more than a single day, this field is only practical if the same times of administration occur for each day of the service request. If the actual start time of the service request (as given by TQ1-7 ) is after the first explicit time, the first administration is taken to be the first explicit time after the start time. In the case where the patient moves to a location having a different set of explicit times, the existing service request may be updated with a new quantity/timing segment showing the changed explicit times.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _explicitTime = new HL7V251Field
+        {
+            field = message[@"TQ1"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_explicitTime.field.FieldRepetitions != null && _explicitTime.field.FieldRepetitions.Count > 0)
+        {
+            _explicitTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_explicitTime, fieldData);
+        }
+
+        return _explicitTime;
+    } 
+}
+
+internal HL7V251Field _relativeTimeandUnits;
+
+public HL7V251Field RelativeTimeandUnits
+{
+    get
+    {
+        if (_relativeTimeandUnits != null)
+        {
+            return _relativeTimeandUnits;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"TQ1.5",
+            Type = @"Field",
+            Position = @"TQ1.5",
+            Name = @"Relative Time and Units",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity with Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is used to define the interval between schedules for service request or bottle records. If this field contains a value, it overrides any value in the explicit time interval field. The units component of the CQ data type is constrained to units of time.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TQ1.4",
-                            Type = @"Field",
-                            Position = @"TQ1.4",
-                            Name = @"Explicit Time",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"TM",
-                            DataTypeName = @"Time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field explicitly lists the actual times referenced by the code in TQ1-3. This field will be used to clarify the TQ1-3 in cases where the actual administration times vary within an institution. If the time of the service request spans more than a single day, this field is only practical if the same times of administration occur for each day of the service request. If the actual start time of the service request (as given by TQ1-7 ) is after the first explicit time, the first administration is taken to be the first explicit time after the start time. In the case where the patient moves to a location having a different set of explicit times, the existing service request may be updated with a new quantity/timing segment showing the changed explicit times.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TQ1.5",
-                            Type = @"Field",
-                            Position = @"TQ1.5",
-                            Name = @"Relative Time and Units",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity with Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is used to define the interval between schedules for service request or bottle records. If this field contains a value, it overrides any value in the explicit time interval field. The units component of the CQ data type is constrained to units of time.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TQ1.5.1",
                             Type = @"Component",
@@ -758,25 +884,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _relativeTimeandUnits = new HL7V251Field
+        {
+            field = message[@"TQ1"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_relativeTimeandUnits.field.FieldRepetitions != null && _relativeTimeandUnits.field.FieldRepetitions.Count > 0)
+        {
+            _relativeTimeandUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_relativeTimeandUnits, fieldData);
+        }
+
+        return _relativeTimeandUnits;
+    } 
+}
+
+internal HL7V251Field _serviceDuration;
+
+public HL7V251Field ServiceDuration
+{
+    get
+    {
+        if (_serviceDuration != null)
+        {
+            return _serviceDuration;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"TQ1.6",
+            Type = @"Field",
+            Position = @"TQ1.6",
+            Name = @"Service Duration",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity with Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the duration for which the service is requested.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TQ1.6",
-                            Type = @"Field",
-                            Position = @"TQ1.6",
-                            Name = @"Service Duration",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity with Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the duration for which the service is requested.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TQ1.6.1",
                             Type = @"Component",
@@ -916,25 +1072,55 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _serviceDuration = new HL7V251Field
+        {
+            field = message[@"TQ1"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_serviceDuration.field.FieldRepetitions != null && _serviceDuration.field.FieldRepetitions.Count > 0)
+        {
+            _serviceDuration.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_serviceDuration, fieldData);
+        }
+
+        return _serviceDuration;
+    } 
+}
+
+internal HL7V251Field _startdatetime;
+
+public HL7V251Field Startdatetime
+{
+    get
+    {
+        if (_startdatetime != null)
+        {
+            return _startdatetime;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"TQ1.7",
+            Type = @"Field",
+            Position = @"TQ1.7",
+            Name = @"Start date/time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field may be specified by the requester, in which case it indicates the earliest date/time at which the services should be started. In many cases, however, the start date/time will be implied or will be defined by other fields in the service request record (e.g., urgency - STAT). In such a case, this field will be empty.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TQ1.7",
-                            Type = @"Field",
-                            Position = @"TQ1.7",
-                            Name = @"Start date/time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field may be specified by the requester, in which case it indicates the earliest date/time at which the services should be started. In many cases, however, the start date/time will be implied or will be defined by other fields in the service request record (e.g., urgency - STAT). In such a case, this field will be empty.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TQ1.7.1",
                             Type = @"Component",
@@ -970,25 +1156,55 @@ namespace ExpressionEvaluatorForDotNet
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _startdatetime = new HL7V251Field
+        {
+            field = message[@"TQ1"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_startdatetime.field.FieldRepetitions != null && _startdatetime.field.FieldRepetitions.Count > 0)
+        {
+            _startdatetime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_startdatetime, fieldData);
+        }
+
+        return _startdatetime;
+    } 
+}
+
+internal HL7V251Field _enddatetime;
+
+public HL7V251Field Enddatetime
+{
+    get
+    {
+        if (_enddatetime != null)
+        {
+            return _enddatetime;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"TQ1.8",
+            Type = @"Field",
+            Position = @"TQ1.8",
+            Name = @"End date/time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"When filled in by the requester of the service, this field should contain the latest date/time that the service should be performed. If it has not been performed by the specified time, it should not be performed at all. The requester may not always fill in this value, yet the filling service may fill it in on the basis of the instruction it receives and the actual start time.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TQ1.8",
-                            Type = @"Field",
-                            Position = @"TQ1.8",
-                            Name = @"End date/time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"When filled in by the requester of the service, this field should contain the latest date/time that the service should be performed. If it has not been performed by the specified time, it should not be performed at all. The requester may not always fill in this value, yet the filling service may fill it in on the basis of the instruction it receives and the actual start time.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TQ1.8.1",
                             Type = @"Component",
@@ -1024,25 +1240,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
 Indicates the degree of precision of the time stamp (Y = year, L = month, D = day, H = hour, M = minute, S = second). Refer to HL7 Table 0529 - Precision for valid value.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _enddatetime = new HL7V251Field
+        {
+            field = message[@"TQ1"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_enddatetime.field.FieldRepetitions != null && _enddatetime.field.FieldRepetitions.Count > 0)
+        {
+            _enddatetime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_enddatetime, fieldData);
+        }
+
+        return _enddatetime;
+    } 
+}
+
+internal HL7V251Field _priority;
+
+public HL7V251Field Priority
+{
+    get
+    {
+        if (_priority != null)
+        {
+            return _priority;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"TQ1.9",
+            Type = @"Field",
+            Position = @"TQ1.9",
+            Name = @"Priority",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0485",
+            TableName = @"Extended Priority Codes",
+            Description = @"This field describes the urgency of the request. If this field is blank, the default is R. Refer to User-Defined Table 0485 - Extended Priority Codes for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TQ1.9",
-                            Type = @"Field",
-                            Position = @"TQ1.9",
-                            Name = @"Priority",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0485",
-                            TableName = @"Extended Priority Codes",
-                            Description = @"This field describes the urgency of the request. If this field is blank, the default is R. Refer to User-Defined Table 0485 - Extended Priority Codes for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TQ1.9.1",
                             Type = @"Component",
@@ -1202,81 +1448,192 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TQ1.10",
-                            Type = @"Field",
-                            Position = @"TQ1.10",
-                            Name = @"Condition text",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This is a free text field that describes the conditions under which the drug is to be given. For example, PRN pain , or to keep blood pressure below 110.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TQ1.11",
-                            Type = @"Field",
-                            Position = @"TQ1.11",
-                            Name = @"Text instruction",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TX",
-                            DataTypeName = @"Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is a full text version of the instruction (optional).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TQ1.12",
-                            Type = @"Field",
-                            Position = @"TQ1.12",
-                            Name = @"Conjunction",
-                            Length = 10,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0427",
-                            TableName = @"Risk Management Incident Code",
-                            Description = @"This field indicates that a second TQ1 segment is to follow. Refer To HL7 Table 0472 - TQ Conjunction ID for allowed values.
+                        }
+        }
+
+        _priority = new HL7V251Field
+        {
+            field = message[@"TQ1"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priority.field.FieldRepetitions != null && _priority.field.FieldRepetitions.Count > 0)
+        {
+            _priority.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_priority, fieldData);
+        }
+
+        return _priority;
+    } 
+}
+
+internal HL7V251Field _conditiontext;
+
+public HL7V251Field Conditiontext
+{
+    get
+    {
+        if (_conditiontext != null)
+        {
+            return _conditiontext;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"TQ1.10",
+            Type = @"Field",
+            Position = @"TQ1.10",
+            Name = @"Condition text",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This is a free text field that describes the conditions under which the drug is to be given. For example, PRN pain , or to keep blood pressure below 110.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _conditiontext = new HL7V251Field
+        {
+            field = message[@"TQ1"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_conditiontext.field.FieldRepetitions != null && _conditiontext.field.FieldRepetitions.Count > 0)
+        {
+            _conditiontext.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_conditiontext, fieldData);
+        }
+
+        return _conditiontext;
+    } 
+}
+
+internal HL7V251Field _textinstruction;
+
+public HL7V251Field Textinstruction
+{
+    get
+    {
+        if (_textinstruction != null)
+        {
+            return _textinstruction;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"TQ1.11",
+            Type = @"Field",
+            Position = @"TQ1.11",
+            Name = @"Text instruction",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TX",
+            DataTypeName = @"Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is a full text version of the instruction (optional).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _textinstruction = new HL7V251Field
+        {
+            field = message[@"TQ1"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_textinstruction.field.FieldRepetitions != null && _textinstruction.field.FieldRepetitions.Count > 0)
+        {
+            _textinstruction.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_textinstruction, fieldData);
+        }
+
+        return _textinstruction;
+    } 
+}
+
+internal HL7V251Field _conjunction;
+
+public HL7V251Field Conjunction
+{
+    get
+    {
+        if (_conjunction != null)
+        {
+            return _conjunction;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"TQ1.12",
+            Type = @"Field",
+            Position = @"TQ1.12",
+            Name = @"Conjunction",
+            Length = 10,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0427",
+            TableName = @"Risk Management Incident Code",
+            Description = @"This field indicates that a second TQ1 segment is to follow. Refer To HL7 Table 0472 - TQ Conjunction ID for allowed values.
 
 Condition Rule: If the TQ1 segment is repeated in the message, this field must be populated with the appropriate Conjunction code indicating the sequencing of the following TQ1 segment. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _conjunction = new HL7V251Field
+        {
+            field = message[@"TQ1"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_conjunction.field.FieldRepetitions != null && _conjunction.field.FieldRepetitions.Count > 0)
+        {
+            _conjunction.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_conjunction, fieldData);
+        }
+
+        return _conjunction;
+    } 
+}
+
+internal HL7V251Field _occurrenceduration;
+
+public HL7V251Field Occurrenceduration
+{
+    get
+    {
+        if (_occurrenceduration != null)
+        {
+            return _occurrenceduration;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"TQ1.13",
+            Type = @"Field",
+            Position = @"TQ1.13",
+            Name = @"Occurrence duration",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity with Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the duration for which a single performance of a service is requested. The quantity component of this field must be a positive, non-zero number when populated. The units component is constrained to be units of time.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"TQ1.13",
-                            Type = @"Field",
-                            Position = @"TQ1.13",
-                            Name = @"Occurrence duration",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity with Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the duration for which a single performance of a service is requested. The quantity component of this field must be a positive, non-zero number when populated. The units component is constrained to be units of time.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"TQ1.13.1",
                             Type = @"Component",
@@ -1416,584 +1773,39 @@ Condition Rule: If the TQ1 segment is repeated in the message, this field must b
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"TQ1.14",
-                            Type = @"Field",
-                            Position = @"TQ1.14",
-                            Name = @"Total occurrences",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the total number of occurrences of a service that should result from this service request. If both the end date/time (TQ1-8) and the total occurrences are valued and the occurrences would extend beyond the end date/time, then the end date/time takes precedence. Otherwise the number of occurrences takes precedence.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentTQ1(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field setIDTQ1;
-
-public HL7V251Field SetIDTQ1
-{
-    get
-    {
-        if (setIDTQ1 != null)
-        {
-            return setIDTQ1;
-        }
-
-        setIDTQ1 = new HL7V251Field
-        {
-            field = message[@"TQ1"][1],
-            Id = @"TQ1.1",
-            Type = @"Field",
-            Position = @"TQ1.1",
-            Name = @"Set ID - TQ1",
-            Length = 4,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"For the first timing specification transmitted, the sequence number shall be 1; for the second timing specification, it shall be 2; and so on.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDTQ1.field.FieldRepetitions != null && setIDTQ1.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDTQ1.Id));
-            setIDTQ1.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(setIDTQ1, fieldData);
-        }
-
-        return setIDTQ1;
-    } 
-}
-
-internal HL7V251Field quantity;
-
-public HL7V251Field Quantity
-{
-    get
-    {
-        if (quantity != null)
-        {
-            return quantity;
-        }
-
-        quantity = new HL7V251Field
-        {
-            field = message[@"TQ1"][2],
-            Id = @"TQ1.2",
-            Type = @"Field",
-            Position = @"TQ1.2",
-            Name = @"Quantity",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity with Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the numeric quantity of the service that should be provided at each service interval. For example, if two blood cultures are to be obtained every 4 hours, the quantity would be 2 or if three units of blood are to be typed and cross-matched, the quantity would be 3. The default value for this field is 1.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (quantity.field.FieldRepetitions != null && quantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(quantity.Id));
-            quantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(quantity, fieldData);
-        }
-
-        return quantity;
-    } 
-}
-
-internal HL7V251Field repeatPattern;
-
-public HL7V251Field RepeatPattern
-{
-    get
-    {
-        if (repeatPattern != null)
-        {
-            return repeatPattern;
-        }
-
-        repeatPattern = new HL7V251Field
-        {
-            field = message[@"TQ1"][3],
-            Id = @"TQ1.3",
-            Type = @"Field",
-            Position = @"TQ1.3",
-            Name = @"Repeat Pattern",
-            Length = 540,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"RPT",
-            DataTypeName = @"Repeat Pattern",
-            TableId = null,
-            TableName = null,
-            Description = @"The repeating frequency with which the treatment is to be administered. It is similar to the frequency and SIG code tables used in order entry systems.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (repeatPattern.field.FieldRepetitions != null && repeatPattern.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(repeatPattern.Id));
-            repeatPattern.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(repeatPattern, fieldData);
-        }
-
-        return repeatPattern;
-    } 
-}
-
-internal HL7V251Field explicitTime;
-
-public HL7V251Field ExplicitTime
-{
-    get
-    {
-        if (explicitTime != null)
-        {
-            return explicitTime;
-        }
-
-        explicitTime = new HL7V251Field
-        {
-            field = message[@"TQ1"][4],
-            Id = @"TQ1.4",
-            Type = @"Field",
-            Position = @"TQ1.4",
-            Name = @"Explicit Time",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"TM",
-            DataTypeName = @"Time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field explicitly lists the actual times referenced by the code in TQ1-3. This field will be used to clarify the TQ1-3 in cases where the actual administration times vary within an institution. If the time of the service request spans more than a single day, this field is only practical if the same times of administration occur for each day of the service request. If the actual start time of the service request (as given by TQ1-7 ) is after the first explicit time, the first administration is taken to be the first explicit time after the start time. In the case where the patient moves to a location having a different set of explicit times, the existing service request may be updated with a new quantity/timing segment showing the changed explicit times.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (explicitTime.field.FieldRepetitions != null && explicitTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(explicitTime.Id));
-            explicitTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(explicitTime, fieldData);
-        }
-
-        return explicitTime;
-    } 
-}
-
-internal HL7V251Field relativeTimeandUnits;
-
-public HL7V251Field RelativeTimeandUnits
-{
-    get
-    {
-        if (relativeTimeandUnits != null)
-        {
-            return relativeTimeandUnits;
-        }
-
-        relativeTimeandUnits = new HL7V251Field
-        {
-            field = message[@"TQ1"][5],
-            Id = @"TQ1.5",
-            Type = @"Field",
-            Position = @"TQ1.5",
-            Name = @"Relative Time and Units",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity with Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is used to define the interval between schedules for service request or bottle records. If this field contains a value, it overrides any value in the explicit time interval field. The units component of the CQ data type is constrained to units of time.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (relativeTimeandUnits.field.FieldRepetitions != null && relativeTimeandUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(relativeTimeandUnits.Id));
-            relativeTimeandUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(relativeTimeandUnits, fieldData);
-        }
-
-        return relativeTimeandUnits;
-    } 
-}
-
-internal HL7V251Field serviceDuration;
-
-public HL7V251Field ServiceDuration
-{
-    get
-    {
-        if (serviceDuration != null)
-        {
-            return serviceDuration;
-        }
-
-        serviceDuration = new HL7V251Field
-        {
-            field = message[@"TQ1"][6],
-            Id = @"TQ1.6",
-            Type = @"Field",
-            Position = @"TQ1.6",
-            Name = @"Service Duration",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity with Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the duration for which the service is requested.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (serviceDuration.field.FieldRepetitions != null && serviceDuration.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(serviceDuration.Id));
-            serviceDuration.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(serviceDuration, fieldData);
-        }
-
-        return serviceDuration;
-    } 
-}
-
-internal HL7V251Field startdatetime;
-
-public HL7V251Field Startdatetime
-{
-    get
-    {
-        if (startdatetime != null)
-        {
-            return startdatetime;
-        }
-
-        startdatetime = new HL7V251Field
-        {
-            field = message[@"TQ1"][7],
-            Id = @"TQ1.7",
-            Type = @"Field",
-            Position = @"TQ1.7",
-            Name = @"Start date/time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field may be specified by the requester, in which case it indicates the earliest date/time at which the services should be started. In many cases, however, the start date/time will be implied or will be defined by other fields in the service request record (e.g., urgency - STAT). In such a case, this field will be empty.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (startdatetime.field.FieldRepetitions != null && startdatetime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(startdatetime.Id));
-            startdatetime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(startdatetime, fieldData);
-        }
-
-        return startdatetime;
-    } 
-}
-
-internal HL7V251Field enddatetime;
-
-public HL7V251Field Enddatetime
-{
-    get
-    {
-        if (enddatetime != null)
-        {
-            return enddatetime;
-        }
-
-        enddatetime = new HL7V251Field
-        {
-            field = message[@"TQ1"][8],
-            Id = @"TQ1.8",
-            Type = @"Field",
-            Position = @"TQ1.8",
-            Name = @"End date/time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"When filled in by the requester of the service, this field should contain the latest date/time that the service should be performed. If it has not been performed by the specified time, it should not be performed at all. The requester may not always fill in this value, yet the filling service may fill it in on the basis of the instruction it receives and the actual start time.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (enddatetime.field.FieldRepetitions != null && enddatetime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enddatetime.Id));
-            enddatetime.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(enddatetime, fieldData);
-        }
-
-        return enddatetime;
-    } 
-}
-
-internal HL7V251Field priority;
-
-public HL7V251Field Priority
-{
-    get
-    {
-        if (priority != null)
-        {
-            return priority;
-        }
-
-        priority = new HL7V251Field
-        {
-            field = message[@"TQ1"][9],
-            Id = @"TQ1.9",
-            Type = @"Field",
-            Position = @"TQ1.9",
-            Name = @"Priority",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0485",
-            TableName = @"Extended Priority Codes",
-            Description = @"This field describes the urgency of the request. If this field is blank, the default is R. Refer to User-Defined Table 0485 - Extended Priority Codes for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priority.field.FieldRepetitions != null && priority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priority.Id));
-            priority.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(priority, fieldData);
-        }
-
-        return priority;
-    } 
-}
-
-internal HL7V251Field conditiontext;
-
-public HL7V251Field Conditiontext
-{
-    get
-    {
-        if (conditiontext != null)
-        {
-            return conditiontext;
-        }
-
-        conditiontext = new HL7V251Field
-        {
-            field = message[@"TQ1"][10],
-            Id = @"TQ1.10",
-            Type = @"Field",
-            Position = @"TQ1.10",
-            Name = @"Condition text",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This is a free text field that describes the conditions under which the drug is to be given. For example, PRN pain , or to keep blood pressure below 110.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (conditiontext.field.FieldRepetitions != null && conditiontext.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(conditiontext.Id));
-            conditiontext.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(conditiontext, fieldData);
-        }
-
-        return conditiontext;
-    } 
-}
-
-internal HL7V251Field textinstruction;
-
-public HL7V251Field Textinstruction
-{
-    get
-    {
-        if (textinstruction != null)
-        {
-            return textinstruction;
-        }
-
-        textinstruction = new HL7V251Field
-        {
-            field = message[@"TQ1"][11],
-            Id = @"TQ1.11",
-            Type = @"Field",
-            Position = @"TQ1.11",
-            Name = @"Text instruction",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TX",
-            DataTypeName = @"Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is a full text version of the instruction (optional).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (textinstruction.field.FieldRepetitions != null && textinstruction.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(textinstruction.Id));
-            textinstruction.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(textinstruction, fieldData);
-        }
-
-        return textinstruction;
-    } 
-}
-
-internal HL7V251Field conjunction;
-
-public HL7V251Field Conjunction
-{
-    get
-    {
-        if (conjunction != null)
-        {
-            return conjunction;
-        }
-
-        conjunction = new HL7V251Field
-        {
-            field = message[@"TQ1"][12],
-            Id = @"TQ1.12",
-            Type = @"Field",
-            Position = @"TQ1.12",
-            Name = @"Conjunction",
-            Length = 10,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0427",
-            TableName = @"Risk Management Incident Code",
-            Description = @"This field indicates that a second TQ1 segment is to follow. Refer To HL7 Table 0472 - TQ Conjunction ID for allowed values.
-
-Condition Rule: If the TQ1 segment is repeated in the message, this field must be populated with the appropriate Conjunction code indicating the sequencing of the following TQ1 segment. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (conjunction.field.FieldRepetitions != null && conjunction.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(conjunction.Id));
-            conjunction.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(conjunction, fieldData);
-        }
-
-        return conjunction;
-    } 
-}
-
-internal HL7V251Field occurrenceduration;
-
-public HL7V251Field Occurrenceduration
-{
-    get
-    {
-        if (occurrenceduration != null)
-        {
-            return occurrenceduration;
-        }
-
-        occurrenceduration = new HL7V251Field
+        _occurrenceduration = new HL7V251Field
         {
             field = message[@"TQ1"][13],
-            Id = @"TQ1.13",
-            Type = @"Field",
-            Position = @"TQ1.13",
-            Name = @"Occurrence duration",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity with Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the duration for which a single performance of a service is requested. The quantity component of this field must be a positive, non-zero number when populated. The units component is constrained to be units of time.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (occurrenceduration.field.FieldRepetitions != null && occurrenceduration.field.FieldRepetitions.Count > 0)
+        if (_occurrenceduration.field.FieldRepetitions != null && _occurrenceduration.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(occurrenceduration.Id));
-            occurrenceduration.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(occurrenceduration, fieldData);
+            _occurrenceduration.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_occurrenceduration, fieldData);
         }
 
-        return occurrenceduration;
+        return _occurrenceduration;
     } 
 }
 
-internal HL7V251Field totaloccurrences;
+internal HL7V251Field _totaloccurrences;
 
 public HL7V251Field Totaloccurrences
 {
     get
     {
-        if (totaloccurrences != null)
+        if (_totaloccurrences != null)
         {
-            return totaloccurrences;
+            return _totaloccurrences;
         }
 
-        totaloccurrences = new HL7V251Field
+        var fieldData = new HL7V251FieldData
         {
-            field = message[@"TQ1"][14],
             Id = @"TQ1.14",
             Type = @"Field",
             Position = @"TQ1.14",
@@ -2007,17 +1819,22 @@ public HL7V251Field Totaloccurrences
             TableName = null,
             Description = @"This field contains the total number of occurrences of a service that should result from this service request. If both the end date/time (TQ1-8) and the total occurrences are valued and the occurrences would extend beyond the end date/time, then the end date/time takes precedence. Otherwise the number of occurrences takes precedence.",
             Sample = @"",
+            Fields = null
+        }
+
+        _totaloccurrences = new HL7V251Field
+        {
+            field = message[@"TQ1"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (totaloccurrences.field.FieldRepetitions != null && totaloccurrences.field.FieldRepetitions.Count > 0)
+        if (_totaloccurrences.field.FieldRepetitions != null && _totaloccurrences.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(totaloccurrences.Id));
-            totaloccurrences.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(totaloccurrences, fieldData);
+            _totaloccurrences.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_totaloccurrences, fieldData);
         }
 
-        return totaloccurrences;
+        return _totaloccurrences;
     } 
 }
     }

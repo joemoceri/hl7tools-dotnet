@@ -25,14 +25,6 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return [{-FIELD_DATAS-}];
-            }
-        }
-
         public HL7V[{-VERSION-}]Segment[{-SEGMENT_ID_CLASS_NAME-}](HL7V2Message message)
         {
             this.message = message;

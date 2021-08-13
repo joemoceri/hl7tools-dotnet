@@ -31,28 +31,40 @@ Note: The UAC segment is defined for use within simple protocols, such as MLLP, 
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentUAC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _userAuthenticationCredentialTypeCode;
+
+public HL7V26Field UserAuthenticationCredentialTypeCode
+{
+    get
+    {
+        if (_userAuthenticationCredentialTypeCode != null)
+        {
+            return _userAuthenticationCredentialTypeCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"UAC.1",
+            Type = @"Field",
+            Position = @"UAC.1",
+            Name = @"User Authentication Credential Type Code",
+            Length = 705,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0615",
+            TableName = @"User Authentication Credential Type Code",
+            Description = @"This an identifier code for the type of user authentication credential.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"UAC.1",
-                            Type = @"Field",
-                            Position = @"UAC.1",
-                            Name = @"User Authentication Credential Type Code",
-                            Length = 705,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0615",
-                            TableName = @"User Authentication Credential Type Code",
-                            Description = @"This an identifier code for the type of user authentication credential.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"UAC.1.1",
                             Type = @"Component",
@@ -212,25 +224,55 @@ Note: The UAC segment is defined for use within simple protocols, such as MLLP, 
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _userAuthenticationCredentialTypeCode = new HL7V26Field
+        {
+            field = message[@"UAC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_userAuthenticationCredentialTypeCode.field.FieldRepetitions != null && _userAuthenticationCredentialTypeCode.field.FieldRepetitions.Count > 0)
+        {
+            _userAuthenticationCredentialTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_userAuthenticationCredentialTypeCode, fieldData);
+        }
+
+        return _userAuthenticationCredentialTypeCode;
+    } 
+}
+
+internal HL7V26Field _userAuthenticationCredential;
+
+public HL7V26Field UserAuthenticationCredential
+{
+    get
+    {
+        if (_userAuthenticationCredential != null)
+        {
+            return _userAuthenticationCredential;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"UAC.2",
+            Type = @"Field",
+            Position = @"UAC.2",
+            Name = @"User Authentication Credential",
+            Length = 65536,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ED",
+            DataTypeName = @"Encapsulated Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This is user credential data as supplied by the sender's operating platform. The content and structure of this is defined by other standards and contain no HL7-relevant data.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"UAC.2",
-                            Type = @"Field",
-                            Position = @"UAC.2",
-                            Name = @"User Authentication Credential",
-                            Length = 65536,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ED",
-                            DataTypeName = @"Encapsulated Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This is user credential data as supplied by the sender's operating platform. The content and structure of this is defined by other standards and contain no HL7-relevant data.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"UAC.2.1",
                             Type = @"Component",
@@ -370,96 +412,23 @@ Note: The UAC segment is defined for use within simple protocols, such as MLLP, 
                             Description = @"Displayable ASCII characters which constitute the data to be sent from source application to destination application. The characters are limited to the legal characters of the ST data type, as defined in Section 2.A.74, "" ST - string data ,"" and, if encoded binary, are encoded according to the method of Section 2.A.24.2, ""Type of Data (ID)"".",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentUAC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field userAuthenticationCredentialTypeCode;
-
-public HL7V26Field UserAuthenticationCredentialTypeCode
-{
-    get
-    {
-        if (userAuthenticationCredentialTypeCode != null)
-        {
-            return userAuthenticationCredentialTypeCode;
-        }
-
-        userAuthenticationCredentialTypeCode = new HL7V26Field
-        {
-            field = message[@"UAC"][1],
-            Id = @"UAC.1",
-            Type = @"Field",
-            Position = @"UAC.1",
-            Name = @"User Authentication Credential Type Code",
-            Length = 705,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0615",
-            TableName = @"User Authentication Credential Type Code",
-            Description = @"This an identifier code for the type of user authentication credential.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (userAuthenticationCredentialTypeCode.field.FieldRepetitions != null && userAuthenticationCredentialTypeCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(userAuthenticationCredentialTypeCode.Id));
-            userAuthenticationCredentialTypeCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(userAuthenticationCredentialTypeCode, fieldData);
-        }
-
-        return userAuthenticationCredentialTypeCode;
-    } 
-}
-
-internal HL7V26Field userAuthenticationCredential;
-
-public HL7V26Field UserAuthenticationCredential
-{
-    get
-    {
-        if (userAuthenticationCredential != null)
-        {
-            return userAuthenticationCredential;
-        }
-
-        userAuthenticationCredential = new HL7V26Field
+        _userAuthenticationCredential = new HL7V26Field
         {
             field = message[@"UAC"][2],
-            Id = @"UAC.2",
-            Type = @"Field",
-            Position = @"UAC.2",
-            Name = @"User Authentication Credential",
-            Length = 65536,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ED",
-            DataTypeName = @"Encapsulated Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This is user credential data as supplied by the sender's operating platform. The content and structure of this is defined by other standards and contain no HL7-relevant data.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (userAuthenticationCredential.field.FieldRepetitions != null && userAuthenticationCredential.field.FieldRepetitions.Count > 0)
+        if (_userAuthenticationCredential.field.FieldRepetitions != null && _userAuthenticationCredential.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(userAuthenticationCredential.Id));
-            userAuthenticationCredential.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(userAuthenticationCredential, fieldData);
+            _userAuthenticationCredential.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_userAuthenticationCredential, fieldData);
         }
 
-        return userAuthenticationCredential;
+        return _userAuthenticationCredential;
     } 
 }
     }

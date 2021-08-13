@@ -29,70 +29,24 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"QAK.1",
-                            Type = @"Field",
-                            Position = @"QAK.1",
-                            Name = @"Query tag",
-                            Length = 32,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field may be valued by the initiating system to identify the query, and may be used to match response messages to the originating query.  If it is valued, the responding system is required to echo it back as the first field in the query acknowledgment segment (QAK).  This field differs from MSA-2-message control ID in that its value remains constant for each message (i.e., all continuation messages) associated with the query, whereas MSA-2-message control ID may vary with each continuation message, since it is associated with each individual message, not the query as a whole",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QAK.2",
-                            Type = @"Field",
-                            Position = @"QAK.2",
-                            Name = @"Query response status",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0208",
-                            TableName = @"Query response status",
-                            Description = @"This field allows the responding system to return a precise response status.  It is especially useful in the case where no data is found that matches the query parameters, but where there is also no error.  It is defined with HL7 table 0208 - Query response status",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V23SegmentQAK(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V23Field querytag;
+        internal HL7V23Field _querytag;
 
 public HL7V23Field Querytag
 {
     get
     {
-        if (querytag != null)
+        if (_querytag != null)
         {
-            return querytag;
+            return _querytag;
         }
 
-        querytag = new HL7V23Field
+        var fieldData = new HL7V23FieldData
         {
-            field = message[@"QAK"][1],
             Id = @"QAK.1",
             Type = @"Field",
             Position = @"QAK.1",
@@ -106,34 +60,38 @@ public HL7V23Field Querytag
             TableName = null,
             Description = @"This field may be valued by the initiating system to identify the query, and may be used to match response messages to the originating query.  If it is valued, the responding system is required to echo it back as the first field in the query acknowledgment segment (QAK).  This field differs from MSA-2-message control ID in that its value remains constant for each message (i.e., all continuation messages) associated with the query, whereas MSA-2-message control ID may vary with each continuation message, since it is associated with each individual message, not the query as a whole",
             Sample = @"",
+            Fields = null
+        }
+
+        _querytag = new HL7V23Field
+        {
+            field = message[@"QAK"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (querytag.field.FieldRepetitions != null && querytag.field.FieldRepetitions.Count > 0)
+        if (_querytag.field.FieldRepetitions != null && _querytag.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(querytag.Id));
-            querytag.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(querytag, fieldData);
+            _querytag.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_querytag, fieldData);
         }
 
-        return querytag;
+        return _querytag;
     } 
 }
 
-internal HL7V23Field queryresponsestatus;
+internal HL7V23Field _queryresponsestatus;
 
 public HL7V23Field Queryresponsestatus
 {
     get
     {
-        if (queryresponsestatus != null)
+        if (_queryresponsestatus != null)
         {
-            return queryresponsestatus;
+            return _queryresponsestatus;
         }
 
-        queryresponsestatus = new HL7V23Field
+        var fieldData = new HL7V23FieldData
         {
-            field = message[@"QAK"][2],
             Id = @"QAK.2",
             Type = @"Field",
             Position = @"QAK.2",
@@ -147,17 +105,22 @@ public HL7V23Field Queryresponsestatus
             TableName = @"Query response status",
             Description = @"This field allows the responding system to return a precise response status.  It is especially useful in the case where no data is found that matches the query parameters, but where there is also no error.  It is defined with HL7 table 0208 - Query response status",
             Sample = @"",
+            Fields = null
+        }
+
+        _queryresponsestatus = new HL7V23Field
+        {
+            field = message[@"QAK"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (queryresponsestatus.field.FieldRepetitions != null && queryresponsestatus.field.FieldRepetitions.Count > 0)
+        if (_queryresponsestatus.field.FieldRepetitions != null && _queryresponsestatus.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(queryresponsestatus.Id));
-            queryresponsestatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(queryresponsestatus, fieldData);
+            _queryresponsestatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV23FieldRepetitions(_queryresponsestatus, fieldData);
         }
 
-        return queryresponsestatus;
+        return _queryresponsestatus;
     } 
 }
     }

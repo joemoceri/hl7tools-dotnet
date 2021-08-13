@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V22SegmentACC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V22Field _accidentDateTime;
+
+public HL7V22Field AccidentDateTime
+{
+    get
+    {
+        if (_accidentDateTime != null)
+        {
+            return _accidentDateTime;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"ACC.1",
+            Type = @"Field",
+            Position = @"ACC.1",
+            Name = @"Accident Date / Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"date/time of the accident",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ACC.1",
-                            Type = @"Field",
-                            Position = @"ACC.1",
-                            Name = @"Accident Date / Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"date/time of the accident",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ACC.1.1",
                             Type = @"Component",
@@ -84,108 +96,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ACC.2",
-                            Type = @"Field",
-                            Position = @"ACC.2",
-                            Name = @"Accident Code",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0050",
-                            TableName = @"ACCIDENT CODE",
-                            Description = @"type of accident.  Refer to user-defined table 0050 - accident code",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"ACC.3",
-                            Type = @"Field",
-                            Position = @"ACC.3",
-                            Name = @"Accident Location",
-                            Length = 25,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"location of the accident",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V22SegmentACC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V22Field accidentDateTime;
-
-public HL7V22Field AccidentDateTime
-{
-    get
-    {
-        if (accidentDateTime != null)
-        {
-            return accidentDateTime;
-        }
-
-        accidentDateTime = new HL7V22Field
+        _accidentDateTime = new HL7V22Field
         {
             field = message[@"ACC"][1],
-            Id = @"ACC.1",
-            Type = @"Field",
-            Position = @"ACC.1",
-            Name = @"Accident Date / Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"date/time of the accident",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (accidentDateTime.field.FieldRepetitions != null && accidentDateTime.field.FieldRepetitions.Count > 0)
+        if (_accidentDateTime.field.FieldRepetitions != null && _accidentDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accidentDateTime.Id));
-            accidentDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(accidentDateTime, fieldData);
+            _accidentDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_accidentDateTime, fieldData);
         }
 
-        return accidentDateTime;
+        return _accidentDateTime;
     } 
 }
 
-internal HL7V22Field accidentCode;
+internal HL7V22Field _accidentCode;
 
 public HL7V22Field AccidentCode
 {
     get
     {
-        if (accidentCode != null)
+        if (_accidentCode != null)
         {
-            return accidentCode;
+            return _accidentCode;
         }
 
-        accidentCode = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"ACC"][2],
             Id = @"ACC.2",
             Type = @"Field",
             Position = @"ACC.2",
@@ -199,34 +142,38 @@ public HL7V22Field AccidentCode
             TableName = @"ACCIDENT CODE",
             Description = @"type of accident.  Refer to user-defined table 0050 - accident code",
             Sample = @"",
+            Fields = null
+        }
+
+        _accidentCode = new HL7V22Field
+        {
+            field = message[@"ACC"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (accidentCode.field.FieldRepetitions != null && accidentCode.field.FieldRepetitions.Count > 0)
+        if (_accidentCode.field.FieldRepetitions != null && _accidentCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accidentCode.Id));
-            accidentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(accidentCode, fieldData);
+            _accidentCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_accidentCode, fieldData);
         }
 
-        return accidentCode;
+        return _accidentCode;
     } 
 }
 
-internal HL7V22Field accidentLocation;
+internal HL7V22Field _accidentLocation;
 
 public HL7V22Field AccidentLocation
 {
     get
     {
-        if (accidentLocation != null)
+        if (_accidentLocation != null)
         {
-            return accidentLocation;
+            return _accidentLocation;
         }
 
-        accidentLocation = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"ACC"][3],
             Id = @"ACC.3",
             Type = @"Field",
             Position = @"ACC.3",
@@ -240,17 +187,22 @@ public HL7V22Field AccidentLocation
             TableName = null,
             Description = @"location of the accident",
             Sample = @"",
+            Fields = null
+        }
+
+        _accidentLocation = new HL7V22Field
+        {
+            field = message[@"ACC"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (accidentLocation.field.FieldRepetitions != null && accidentLocation.field.FieldRepetitions.Count > 0)
+        if (_accidentLocation.field.FieldRepetitions != null && _accidentLocation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accidentLocation.Id));
-            accidentLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(accidentLocation, fieldData);
+            _accidentLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_accidentLocation, fieldData);
         }
 
-        return accidentLocation;
+        return _accidentLocation;
     } 
 }
     }

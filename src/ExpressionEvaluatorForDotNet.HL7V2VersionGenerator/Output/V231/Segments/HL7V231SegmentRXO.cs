@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V231SegmentRXO(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V231Field _requestedGiveCode;
+
+public HL7V231Field RequestedGiveCode
+{
+    get
+    {
+        if (_requestedGiveCode != null)
+        {
+            return _requestedGiveCode;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.1",
+            Type = @"Field",
+            Position = @"RXO.1",
+            Name = @"Requested Give Code",
+            Length = 100,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the medical substance or product ordered to be given to the patient; it is equivalent to OBR-4-universal service ID in function. The request-to-dispense fields, which define the type and amount of what is to be issued to the patient (see RXO-10 requested dispense code , RXO-11-requested dispense amount, and RXO-12-requested dispense units ), do not necessarily correlate with the instructions of what amount is to be 'given' or administered with each dose, and may or may not be specified with the order. For example, the 'give' part of the order may convey the field-representation of give 15 mg of Librium every 6 hours, while the request to dispense part of the order may convey issue 30 tablets of 10 mg generic equivalent for this outpatient prescription . When the give code does not include the dosage form, use RXO-5-requested dosage form.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"RXO.1",
-                            Type = @"Field",
-                            Position = @"RXO.1",
-                            Name = @"Requested Give Code",
-                            Length = 100,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the medical substance or product ordered to be given to the patient; it is equivalent to OBR-4-universal service ID in function. The request-to-dispense fields, which define the type and amount of what is to be issued to the patient (see RXO-10 requested dispense code , RXO-11-requested dispense amount, and RXO-12-requested dispense units ), do not necessarily correlate with the instructions of what amount is to be 'given' or administered with each dose, and may or may not be specified with the order. For example, the 'give' part of the order may convey the field-representation of give 15 mg of Librium every 6 hours, while the request to dispense part of the order may convey issue 30 tablets of 10 mg generic equivalent for this outpatient prescription . When the give code does not include the dosage form, use RXO-5-requested dosage form.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"RXO.1.1",
                             Type = @"Component",
@@ -156,61 +168,145 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _requestedGiveCode = new HL7V231Field
+        {
+            field = message[@"RXO"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedGiveCode.field.FieldRepetitions != null && _requestedGiveCode.field.FieldRepetitions.Count > 0)
+        {
+            _requestedGiveCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_requestedGiveCode, fieldData);
+        }
+
+        return _requestedGiveCode;
+    } 
+}
+
+internal HL7V231Field _requestedGiveAmountMinimum;
+
+public HL7V231Field RequestedGiveAmountMinimum
+{
+    get
+    {
+        if (_requestedGiveAmountMinimum != null)
+        {
+            return _requestedGiveAmountMinimum;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.2",
+            Type = @"Field",
+            Position = @"RXO.2",
+            Name = @"Requested Give Amount - Minimum",
+            Length = 20,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the ordered amount. In a variable dose order, this is the minimum ordered amount. In a nonvarying dose order, this is the exact amount of the order.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _requestedGiveAmountMinimum = new HL7V231Field
+        {
+            field = message[@"RXO"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedGiveAmountMinimum.field.FieldRepetitions != null && _requestedGiveAmountMinimum.field.FieldRepetitions.Count > 0)
+        {
+            _requestedGiveAmountMinimum.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_requestedGiveAmountMinimum, fieldData);
+        }
+
+        return _requestedGiveAmountMinimum;
+    } 
+}
+
+internal HL7V231Field _requestedGiveAmountMaximum;
+
+public HL7V231Field RequestedGiveAmountMaximum
+{
+    get
+    {
+        if (_requestedGiveAmountMaximum != null)
+        {
+            return _requestedGiveAmountMaximum;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.3",
+            Type = @"Field",
+            Position = @"RXO.3",
+            Name = @"Requested Give Amount - Maximum",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"In a variable dose order, this is the maximum ordered amount. In a nonvarying dose order, this field is not used.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _requestedGiveAmountMaximum = new HL7V231Field
+        {
+            field = message[@"RXO"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedGiveAmountMaximum.field.FieldRepetitions != null && _requestedGiveAmountMaximum.field.FieldRepetitions.Count > 0)
+        {
+            _requestedGiveAmountMaximum.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_requestedGiveAmountMaximum, fieldData);
+        }
+
+        return _requestedGiveAmountMaximum;
+    } 
+}
+
+internal HL7V231Field _requestedGiveUnits;
+
+public HL7V231Field RequestedGiveUnits
+{
+    get
+    {
+        if (_requestedGiveUnits != null)
+        {
+            return _requestedGiveUnits;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.4",
+            Type = @"Field",
+            Position = @"RXO.4",
+            Name = @"Requested Give Units",
+            Length = 60,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the units for the give amount.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXO.2",
-                            Type = @"Field",
-                            Position = @"RXO.2",
-                            Name = @"Requested Give Amount - Minimum",
-                            Length = 20,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the ordered amount. In a variable dose order, this is the minimum ordered amount. In a nonvarying dose order, this is the exact amount of the order.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXO.3",
-                            Type = @"Field",
-                            Position = @"RXO.3",
-                            Name = @"Requested Give Amount - Maximum",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"In a variable dose order, this is the maximum ordered amount. In a nonvarying dose order, this field is not used.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXO.4",
-                            Type = @"Field",
-                            Position = @"RXO.4",
-                            Name = @"Requested Give Units",
-                            Length = 60,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the units for the give amount.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXO.4.1",
                             Type = @"Component",
@@ -316,25 +412,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _requestedGiveUnits = new HL7V231Field
+        {
+            field = message[@"RXO"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedGiveUnits.field.FieldRepetitions != null && _requestedGiveUnits.field.FieldRepetitions.Count > 0)
+        {
+            _requestedGiveUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_requestedGiveUnits, fieldData);
+        }
+
+        return _requestedGiveUnits;
+    } 
+}
+
+internal HL7V231Field _requestedDosageForm;
+
+public HL7V231Field RequestedDosageForm
+{
+    get
+    {
+        if (_requestedDosageForm != null)
+        {
+            return _requestedDosageForm;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.5",
+            Type = @"Field",
+            Position = @"RXO.5",
+            Name = @"Requested Dosage Form",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the manner in which the medication is aggregated for dispensing, e.g., tablets, capsules, suppositories. In some cases, this information is implied by the dispense/give code in RXO-1-requested give code or RXO-10-requested dispense code. Use when both RXO-1-requested give code and RXO-10-requested dispense code do not specify the drug/treatment form.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXO.5",
-                            Type = @"Field",
-                            Position = @"RXO.5",
-                            Name = @"Requested Dosage Form",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the manner in which the medication is aggregated for dispensing, e.g., tablets, capsules, suppositories. In some cases, this information is implied by the dispense/give code in RXO-1-requested give code or RXO-10-requested dispense code. Use when both RXO-1-requested give code and RXO-10-requested dispense code do not specify the drug/treatment form.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXO.5.1",
                             Type = @"Component",
@@ -440,25 +566,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _requestedDosageForm = new HL7V231Field
+        {
+            field = message[@"RXO"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedDosageForm.field.FieldRepetitions != null && _requestedDosageForm.field.FieldRepetitions.Count > 0)
+        {
+            _requestedDosageForm.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_requestedDosageForm, fieldData);
+        }
+
+        return _requestedDosageForm;
+    } 
+}
+
+internal HL7V231Field _providersPharmacyTreatmentInstructions;
+
+public HL7V231Field ProvidersPharmacyTreatmentInstructions
+{
+    get
+    {
+        if (_providersPharmacyTreatmentInstructions != null)
+        {
+            return _providersPharmacyTreatmentInstructions;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.6",
+            Type = @"Field",
+            Position = @"RXO.6",
+            Name = @"Provider s Pharmacy/Treatment Instructions",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the ordering provider's instructions to the pharmacy or the non-pharmacy treatment provider (e.g., respiratory therapy). If coded, a user-defined table must be used. If transmitted as a free text field, place a null in the first component and the text in the second, e.g., |^this is a free text treatment instruction|.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXO.6",
-                            Type = @"Field",
-                            Position = @"RXO.6",
-                            Name = @"Provider s Pharmacy/Treatment Instructions",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the ordering provider's instructions to the pharmacy or the non-pharmacy treatment provider (e.g., respiratory therapy). If coded, a user-defined table must be used. If transmitted as a free text field, place a null in the first component and the text in the second, e.g., |^this is a free text treatment instruction|.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXO.6.1",
                             Type = @"Component",
@@ -564,25 +720,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providersPharmacyTreatmentInstructions = new HL7V231Field
+        {
+            field = message[@"RXO"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providersPharmacyTreatmentInstructions.field.FieldRepetitions != null && _providersPharmacyTreatmentInstructions.field.FieldRepetitions.Count > 0)
+        {
+            _providersPharmacyTreatmentInstructions.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_providersPharmacyTreatmentInstructions, fieldData);
+        }
+
+        return _providersPharmacyTreatmentInstructions;
+    } 
+}
+
+internal HL7V231Field _providersAdministrationInstructions;
+
+public HL7V231Field ProvidersAdministrationInstructions
+{
+    get
+    {
+        if (_providersAdministrationInstructions != null)
+        {
+            return _providersAdministrationInstructions;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.7",
+            Type = @"Field",
+            Position = @"RXO.7",
+            Name = @"Provider s Administration Instructions",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the ordering provider's instructions to the patient or to the provider administering the drug or treatment. If coded, a user-defined table must be used. If transmitted as free text, place a null in the first component and the text in the second, e.g., |^this is a free text administration instruction|.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXO.7",
-                            Type = @"Field",
-                            Position = @"RXO.7",
-                            Name = @"Provider s Administration Instructions",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the ordering provider's instructions to the patient or to the provider administering the drug or treatment. If coded, a user-defined table must be used. If transmitted as free text, place a null in the first component and the text in the second, e.g., |^this is a free text administration instruction|.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXO.7.1",
                             Type = @"Component",
@@ -688,25 +874,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _providersAdministrationInstructions = new HL7V231Field
+        {
+            field = message[@"RXO"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_providersAdministrationInstructions.field.FieldRepetitions != null && _providersAdministrationInstructions.field.FieldRepetitions.Count > 0)
+        {
+            _providersAdministrationInstructions.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_providersAdministrationInstructions, fieldData);
+        }
+
+        return _providersAdministrationInstructions;
+    } 
+}
+
+internal HL7V231Field _delivertoLocation;
+
+public HL7V231Field DelivertoLocation
+{
+    get
+    {
+        if (_delivertoLocation != null)
+        {
+            return _delivertoLocation;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.8",
+            Type = @"Field",
+            Position = @"RXO.8",
+            Name = @"Deliver-to Location",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"LA1",
+            DataTypeName = @"Location With Address Information (variant 1)",
+            TableId = null,
+            TableName = null,
+            Description = @"The first components, modeled after the PL data type, contain the inpatient or outpatient location to which the pharmacy provider or treatment supplier is to deliver the drug or treatment device (if applicable). The default (null) value is the current census location for the patient. This component has the same form as PV1-3-assigned patient location. The last component can be used to specify an address. This could be used to fill mail orders to a patient or provider, or to account for home health care.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXO.8",
-                            Type = @"Field",
-                            Position = @"RXO.8",
-                            Name = @"Deliver-to Location",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"LA1",
-                            DataTypeName = @"Location With Address Information (variant 1)",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"The first components, modeled after the PL data type, contain the inpatient or outpatient location to which the pharmacy provider or treatment supplier is to deliver the drug or treatment device (if applicable). The default (null) value is the current census location for the patient. This component has the same form as PV1-3-assigned patient location. The last component can be used to specify an address. This could be used to fill mail orders to a patient or provider, or to account for home health care.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXO.8.1",
                             Type = @"Component",
@@ -1060,43 +1276,100 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _delivertoLocation = new HL7V231Field
+        {
+            field = message[@"RXO"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_delivertoLocation.field.FieldRepetitions != null && _delivertoLocation.field.FieldRepetitions.Count > 0)
+        {
+            _delivertoLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_delivertoLocation, fieldData);
+        }
+
+        return _delivertoLocation;
+    } 
+}
+
+internal HL7V231Field _allowSubstitutions;
+
+public HL7V231Field AllowSubstitutions
+{
+    get
+    {
+        if (_allowSubstitutions != null)
+        {
+            return _allowSubstitutions;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.9",
+            Type = @"Field",
+            Position = @"RXO.9",
+            Name = @"Allow Substitutions",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0161",
+            TableName = @"Allow substitution",
+            Description = @"Following are the values:",
+            Sample = @"",
+            Fields = null
+        }
+
+        _allowSubstitutions = new HL7V231Field
+        {
+            field = message[@"RXO"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_allowSubstitutions.field.FieldRepetitions != null && _allowSubstitutions.field.FieldRepetitions.Count > 0)
+        {
+            _allowSubstitutions.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_allowSubstitutions, fieldData);
+        }
+
+        return _allowSubstitutions;
+    } 
+}
+
+internal HL7V231Field _requestedDispenseCode;
+
+public HL7V231Field RequestedDispenseCode
+{
+    get
+    {
+        if (_requestedDispenseCode != null)
+        {
+            return _requestedDispenseCode;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.10",
+            Type = @"Field",
+            Position = @"RXO.10",
+            Name = @"Requested Dispense Code",
+            Length = 100,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates what is to be/was dispensed; it is equivalent to OBR-4-universal service ID in function. It may be present in the order or not, depending on the application. If not present, and values are given for RXO-11-requested dispense amount and RXO-12-requested dispense units , the RXO-1-requested give code is assumed. If the requested dispense code does not include the dosage form, use RXO-5-requested dosage form .",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXO.9",
-                            Type = @"Field",
-                            Position = @"RXO.9",
-                            Name = @"Allow Substitutions",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0161",
-                            TableName = @"Allow substitution",
-                            Description = @"Following are the values:",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXO.10",
-                            Type = @"Field",
-                            Position = @"RXO.10",
-                            Name = @"Requested Dispense Code",
-                            Length = 100,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates what is to be/was dispensed; it is equivalent to OBR-4-universal service ID in function. It may be present in the order or not, depending on the application. If not present, and values are given for RXO-11-requested dispense amount and RXO-12-requested dispense units , the RXO-1-requested give code is assumed. If the requested dispense code does not include the dosage form, use RXO-5-requested dosage form .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXO.10.1",
                             Type = @"Component",
@@ -1202,43 +1475,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _requestedDispenseCode = new HL7V231Field
+        {
+            field = message[@"RXO"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedDispenseCode.field.FieldRepetitions != null && _requestedDispenseCode.field.FieldRepetitions.Count > 0)
+        {
+            _requestedDispenseCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_requestedDispenseCode, fieldData);
+        }
+
+        return _requestedDispenseCode;
+    } 
+}
+
+internal HL7V231Field _requestedDispenseAmount;
+
+public HL7V231Field RequestedDispenseAmount
+{
+    get
+    {
+        if (_requestedDispenseAmount != null)
+        {
+            return _requestedDispenseAmount;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.11",
+            Type = @"Field",
+            Position = @"RXO.11",
+            Name = @"Requested Dispense Amount",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the amount to be dispensed.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _requestedDispenseAmount = new HL7V231Field
+        {
+            field = message[@"RXO"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedDispenseAmount.field.FieldRepetitions != null && _requestedDispenseAmount.field.FieldRepetitions.Count > 0)
+        {
+            _requestedDispenseAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_requestedDispenseAmount, fieldData);
+        }
+
+        return _requestedDispenseAmount;
+    } 
+}
+
+internal HL7V231Field _requestedDispenseUnits;
+
+public HL7V231Field RequestedDispenseUnits
+{
+    get
+    {
+        if (_requestedDispenseUnits != null)
+        {
+            return _requestedDispenseUnits;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.12",
+            Type = @"Field",
+            Position = @"RXO.12",
+            Name = @"Requested Dispense Units",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the units for the dispense amount. This must be in simple units that reflect the actual quantity of the substance to be dispensed. It does not include compound units.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXO.11",
-                            Type = @"Field",
-                            Position = @"RXO.11",
-                            Name = @"Requested Dispense Amount",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the amount to be dispensed.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXO.12",
-                            Type = @"Field",
-                            Position = @"RXO.12",
-                            Name = @"Requested Dispense Units",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the units for the dispense amount. This must be in simple units that reflect the actual quantity of the substance to be dispensed. It does not include compound units.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXO.12.1",
                             Type = @"Component",
@@ -1344,43 +1674,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _requestedDispenseUnits = new HL7V231Field
+        {
+            field = message[@"RXO"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedDispenseUnits.field.FieldRepetitions != null && _requestedDispenseUnits.field.FieldRepetitions.Count > 0)
+        {
+            _requestedDispenseUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_requestedDispenseUnits, fieldData);
+        }
+
+        return _requestedDispenseUnits;
+    } 
+}
+
+internal HL7V231Field _numberOfRefills;
+
+public HL7V231Field NumberOfRefills
+{
+    get
+    {
+        if (_numberOfRefills != null)
+        {
+            return _numberOfRefills;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.13",
+            Type = @"Field",
+            Position = @"RXO.13",
+            Name = @"Number Of Refills",
+            Length = 3,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field defines the number of times the requested dispense amount can be given to the patient, subject to local regulation. Refers to outpatient only.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _numberOfRefills = new HL7V231Field
+        {
+            field = message[@"RXO"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_numberOfRefills.field.FieldRepetitions != null && _numberOfRefills.field.FieldRepetitions.Count > 0)
+        {
+            _numberOfRefills.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_numberOfRefills, fieldData);
+        }
+
+        return _numberOfRefills;
+    } 
+}
+
+internal HL7V231Field _orderingProvidersDEANumber;
+
+public HL7V231Field OrderingProvidersDEANumber
+{
+    get
+    {
+        if (_orderingProvidersDEANumber != null)
+        {
+            return _orderingProvidersDEANumber;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.14",
+            Type = @"Field",
+            Position = @"RXO.14",
+            Name = @"Ordering Provider s DEA Number",
+            Length = 60,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the provider's controlled substance number, if required by site. It is defined as conditional because it is required when the substance being requested is a controlled substance (e.g., a narcotic).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXO.13",
-                            Type = @"Field",
-                            Position = @"RXO.13",
-                            Name = @"Number Of Refills",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field defines the number of times the requested dispense amount can be given to the patient, subject to local regulation. Refers to outpatient only.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXO.14",
-                            Type = @"Field",
-                            Position = @"RXO.14",
-                            Name = @"Ordering Provider s DEA Number",
-                            Length = 60,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the provider's controlled substance number, if required by site. It is defined as conditional because it is required when the substance being requested is a controlled substance (e.g., a narcotic).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXO.14.1",
                             Type = @"Component",
@@ -1786,25 +2173,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Different <name/address types> and representations of the same <name/address> should be described by repeating of this field, with different values of the <name/address type> and/or <name/address representation> component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _orderingProvidersDEANumber = new HL7V231Field
+        {
+            field = message[@"RXO"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_orderingProvidersDEANumber.field.FieldRepetitions != null && _orderingProvidersDEANumber.field.FieldRepetitions.Count > 0)
+        {
+            _orderingProvidersDEANumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_orderingProvidersDEANumber, fieldData);
+        }
+
+        return _orderingProvidersDEANumber;
+    } 
+}
+
+internal HL7V231Field _pharmacistTreatmentSuppliersVerifierID;
+
+public HL7V231Field PharmacistTreatmentSuppliersVerifierID
+{
+    get
+    {
+        if (_pharmacistTreatmentSuppliersVerifierID != null)
+        {
+            return _pharmacistTreatmentSuppliersVerifierID;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.15",
+            Type = @"Field",
+            Position = @"RXO.15",
+            Name = @"Pharmacist/Treatment Supplier s Verifier ID",
+            Length = 60,
+            Usage = @"C",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is the provider ID of the pharmacist/treatment substance supplier verifier. Use if required by the pharmacy or treatment application or site on orders (or some subgroup of orders), in addition to ORC-11-verified by.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXO.15",
-                            Type = @"Field",
-                            Position = @"RXO.15",
-                            Name = @"Pharmacist/Treatment Supplier s Verifier ID",
-                            Length = 60,
-                            Usage = @"C",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is the provider ID of the pharmacist/treatment substance supplier verifier. Use if required by the pharmacy or treatment application or site on orders (or some subgroup of orders), in addition to ORC-11-verified by.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXO.15.1",
                             Type = @"Component",
@@ -2210,79 +2627,190 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Different <name/address types> and representations of the same <name/address> should be described by repeating of this field, with different values of the <name/address type> and/or <name/address representation> component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _pharmacistTreatmentSuppliersVerifierID = new HL7V231Field
+        {
+            field = message[@"RXO"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_pharmacistTreatmentSuppliersVerifierID.field.FieldRepetitions != null && _pharmacistTreatmentSuppliersVerifierID.field.FieldRepetitions.Count > 0)
+        {
+            _pharmacistTreatmentSuppliersVerifierID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_pharmacistTreatmentSuppliersVerifierID, fieldData);
+        }
+
+        return _pharmacistTreatmentSuppliersVerifierID;
+    } 
+}
+
+internal HL7V231Field _needsHumanReview;
+
+public HL7V231Field NeedsHumanReview
+{
+    get
+    {
+        if (_needsHumanReview != null)
+        {
+            return _needsHumanReview;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.16",
+            Type = @"Field",
+            Position = @"RXO.16",
+            Name = @"Needs Human Review",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field uses HL7 table 0136 - Yes/no indicator . The values have the following meaning for this field:",
+            Sample = @"",
+            Fields = null
+        }
+
+        _needsHumanReview = new HL7V231Field
+        {
+            field = message[@"RXO"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_needsHumanReview.field.FieldRepetitions != null && _needsHumanReview.field.FieldRepetitions.Count > 0)
+        {
+            _needsHumanReview.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_needsHumanReview, fieldData);
+        }
+
+        return _needsHumanReview;
+    } 
+}
+
+internal HL7V231Field _requestedGivePer;
+
+public HL7V231Field RequestedGivePer
+{
+    get
+    {
+        if (_requestedGivePer != null)
+        {
+            return _requestedGivePer;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.17",
+            Type = @"Field",
+            Position = @"RXO.17",
+            Name = @"Requested Give Per",
+            Length = 20,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the time unit to use to calculate the rate at which the pharmaceutical is to be administered.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _requestedGivePer = new HL7V231Field
+        {
+            field = message[@"RXO"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedGivePer.field.FieldRepetitions != null && _requestedGivePer.field.FieldRepetitions.Count > 0)
+        {
+            _requestedGivePer.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_requestedGivePer, fieldData);
+        }
+
+        return _requestedGivePer;
+    } 
+}
+
+internal HL7V231Field _requestedGiveStrength;
+
+public HL7V231Field RequestedGiveStrength
+{
+    get
+    {
+        if (_requestedGiveStrength != null)
+        {
+            return _requestedGiveStrength;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.18",
+            Type = @"Field",
+            Position = @"RXO.18",
+            Name = @"Requested Give Strength",
+            Length = 20,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Use this field when RXO-1-requested give code does not specify the strength. This is the numeric part of the strength, used in combination with RXO-19-requested give strength units.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _requestedGiveStrength = new HL7V231Field
+        {
+            field = message[@"RXO"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedGiveStrength.field.FieldRepetitions != null && _requestedGiveStrength.field.FieldRepetitions.Count > 0)
+        {
+            _requestedGiveStrength.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_requestedGiveStrength, fieldData);
+        }
+
+        return _requestedGiveStrength;
+    } 
+}
+
+internal HL7V231Field _requestedGiveStrengthUnits;
+
+public HL7V231Field RequestedGiveStrengthUnits
+{
+    get
+    {
+        if (_requestedGiveStrengthUnits != null)
+        {
+            return _requestedGiveStrengthUnits;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.19",
+            Type = @"Field",
+            Position = @"RXO.19",
+            Name = @"Requested Give Strength Units",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"Use when both RXO-1-requested give code and RXO-10-requested dispense code do not specify the strength. This is the unit of the strength, used in combination with RXO-18-requested give strength .",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXO.16",
-                            Type = @"Field",
-                            Position = @"RXO.16",
-                            Name = @"Needs Human Review",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field uses HL7 table 0136 - Yes/no indicator . The values have the following meaning for this field:",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXO.17",
-                            Type = @"Field",
-                            Position = @"RXO.17",
-                            Name = @"Requested Give Per",
-                            Length = 20,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the time unit to use to calculate the rate at which the pharmaceutical is to be administered.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXO.18",
-                            Type = @"Field",
-                            Position = @"RXO.18",
-                            Name = @"Requested Give Strength",
-                            Length = 20,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Use this field when RXO-1-requested give code does not specify the strength. This is the numeric part of the strength, used in combination with RXO-19-requested give strength units.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXO.19",
-                            Type = @"Field",
-                            Position = @"RXO.19",
-                            Name = @"Requested Give Strength Units",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Use when both RXO-1-requested give code and RXO-10-requested dispense code do not specify the strength. This is the unit of the strength, used in combination with RXO-18-requested give strength .",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXO.19.1",
                             Type = @"Component",
@@ -2388,25 +2916,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _requestedGiveStrengthUnits = new HL7V231Field
+        {
+            field = message[@"RXO"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedGiveStrengthUnits.field.FieldRepetitions != null && _requestedGiveStrengthUnits.field.FieldRepetitions.Count > 0)
+        {
+            _requestedGiveStrengthUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_requestedGiveStrengthUnits, fieldData);
+        }
+
+        return _requestedGiveStrengthUnits;
+    } 
+}
+
+internal HL7V231Field _indication;
+
+public HL7V231Field Indication
+{
+    get
+    {
+        if (_indication != null)
+        {
+            return _indication;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.20",
+            Type = @"Field",
+            Position = @"RXO.20",
+            Name = @"Indication",
+            Length = 200,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the condition or problem for which the drug/treatment was prescribed. May repeat if multiple indications are relevant.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXO.20",
-                            Type = @"Field",
-                            Position = @"RXO.20",
-                            Name = @"Indication",
-                            Length = 200,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the condition or problem for which the drug/treatment was prescribed. May repeat if multiple indications are relevant.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXO.20.1",
                             Type = @"Component",
@@ -2512,43 +3070,100 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _indication = new HL7V231Field
+        {
+            field = message[@"RXO"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_indication.field.FieldRepetitions != null && _indication.field.FieldRepetitions.Count > 0)
+        {
+            _indication.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_indication, fieldData);
+        }
+
+        return _indication;
+    } 
+}
+
+internal HL7V231Field _requestedGiveRateAmount;
+
+public HL7V231Field RequestedGiveRateAmount
+{
+    get
+    {
+        if (_requestedGiveRateAmount != null)
+        {
+            return _requestedGiveRateAmount;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.21",
+            Type = @"Field",
+            Position = @"RXO.21",
+            Name = @"Requested Give Rate Amount",
+            Length = 6,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the rate at which to administer treatment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _requestedGiveRateAmount = new HL7V231Field
+        {
+            field = message[@"RXO"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedGiveRateAmount.field.FieldRepetitions != null && _requestedGiveRateAmount.field.FieldRepetitions.Count > 0)
+        {
+            _requestedGiveRateAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_requestedGiveRateAmount, fieldData);
+        }
+
+        return _requestedGiveRateAmount;
+    } 
+}
+
+internal HL7V231Field _requestedGiveRateUnits;
+
+public HL7V231Field RequestedGiveRateUnits
+{
+    get
+    {
+        if (_requestedGiveRateUnits != null)
+        {
+            return _requestedGiveRateUnits;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.22",
+            Type = @"Field",
+            Position = @"RXO.22",
+            Name = @"Requested Give Rate Units",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the units in which RXO-21-requested give rate amount is denominated.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXO.21",
-                            Type = @"Field",
-                            Position = @"RXO.21",
-                            Name = @"Requested Give Rate Amount",
-                            Length = 6,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the rate at which to administer treatment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXO.22",
-                            Type = @"Field",
-                            Position = @"RXO.22",
-                            Name = @"Requested Give Rate Units",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the units in which RXO-21-requested give rate amount is denominated.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXO.22.1",
                             Type = @"Component",
@@ -2654,25 +3269,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _requestedGiveRateUnits = new HL7V231Field
+        {
+            field = message[@"RXO"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_requestedGiveRateUnits.field.FieldRepetitions != null && _requestedGiveRateUnits.field.FieldRepetitions.Count > 0)
+        {
+            _requestedGiveRateUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_requestedGiveRateUnits, fieldData);
+        }
+
+        return _requestedGiveRateUnits;
+    } 
+}
+
+internal HL7V231Field _totalDailyDose;
+
+public HL7V231Field TotalDailyDose
+{
+    get
+    {
+        if (_totalDailyDose != null)
+        {
+            return _totalDailyDose;
+        }
+
+        var fieldData = new HL7V231FieldData
+        {
+            Id = @"RXO.23",
+            Type = @"Field",
+            Position = @"RXO.23",
+            Name = @"Total Daily Dose",
+            Length = 10,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity With Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the total daily dose for this particular pharmaceutical as expressed in terms of actual dispense units.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXO.23",
-                            Type = @"Field",
-                            Position = @"RXO.23",
-                            Name = @"Total Daily Dose",
-                            Length = 10,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity With Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the total daily dose for this particular pharmaceutical as expressed in terms of actual dispense units.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXO.23.1",
                             Type = @"Component",
@@ -2706,957 +3351,23 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The units in which the quantity is expressed. Field-by-field, default units may be defined within the specifications. When the observation is measured in the default units, the units need not be transmitted. If the measure is recorded in units different from the default, the measurement units must be transmitted as the second component. If the units are ISO+ units, then units should be recorded as lowercase abbreviations as specified in Chapter 7. If the units are ANSI or local, the units and the source table must be recorded as specified in Chapter 7. But in these cases the component separator should be replaced by the subcomponent delimiter",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V231SegmentRXO(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V231Field requestedGiveCode;
-
-public HL7V231Field RequestedGiveCode
-{
-    get
-    {
-        if (requestedGiveCode != null)
-        {
-            return requestedGiveCode;
-        }
-
-        requestedGiveCode = new HL7V231Field
-        {
-            field = message[@"RXO"][1],
-            Id = @"RXO.1",
-            Type = @"Field",
-            Position = @"RXO.1",
-            Name = @"Requested Give Code",
-            Length = 100,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the medical substance or product ordered to be given to the patient; it is equivalent to OBR-4-universal service ID in function. The request-to-dispense fields, which define the type and amount of what is to be issued to the patient (see RXO-10 requested dispense code , RXO-11-requested dispense amount, and RXO-12-requested dispense units ), do not necessarily correlate with the instructions of what amount is to be 'given' or administered with each dose, and may or may not be specified with the order. For example, the 'give' part of the order may convey the field-representation of give 15 mg of Librium every 6 hours, while the request to dispense part of the order may convey issue 30 tablets of 10 mg generic equivalent for this outpatient prescription . When the give code does not include the dosage form, use RXO-5-requested dosage form.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedGiveCode.field.FieldRepetitions != null && requestedGiveCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedGiveCode.Id));
-            requestedGiveCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(requestedGiveCode, fieldData);
-        }
-
-        return requestedGiveCode;
-    } 
-}
-
-internal HL7V231Field requestedGiveAmountMinimum;
-
-public HL7V231Field RequestedGiveAmountMinimum
-{
-    get
-    {
-        if (requestedGiveAmountMinimum != null)
-        {
-            return requestedGiveAmountMinimum;
-        }
-
-        requestedGiveAmountMinimum = new HL7V231Field
-        {
-            field = message[@"RXO"][2],
-            Id = @"RXO.2",
-            Type = @"Field",
-            Position = @"RXO.2",
-            Name = @"Requested Give Amount - Minimum",
-            Length = 20,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the ordered amount. In a variable dose order, this is the minimum ordered amount. In a nonvarying dose order, this is the exact amount of the order.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedGiveAmountMinimum.field.FieldRepetitions != null && requestedGiveAmountMinimum.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedGiveAmountMinimum.Id));
-            requestedGiveAmountMinimum.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(requestedGiveAmountMinimum, fieldData);
-        }
-
-        return requestedGiveAmountMinimum;
-    } 
-}
-
-internal HL7V231Field requestedGiveAmountMaximum;
-
-public HL7V231Field RequestedGiveAmountMaximum
-{
-    get
-    {
-        if (requestedGiveAmountMaximum != null)
-        {
-            return requestedGiveAmountMaximum;
-        }
-
-        requestedGiveAmountMaximum = new HL7V231Field
-        {
-            field = message[@"RXO"][3],
-            Id = @"RXO.3",
-            Type = @"Field",
-            Position = @"RXO.3",
-            Name = @"Requested Give Amount - Maximum",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"In a variable dose order, this is the maximum ordered amount. In a nonvarying dose order, this field is not used.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedGiveAmountMaximum.field.FieldRepetitions != null && requestedGiveAmountMaximum.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedGiveAmountMaximum.Id));
-            requestedGiveAmountMaximum.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(requestedGiveAmountMaximum, fieldData);
-        }
-
-        return requestedGiveAmountMaximum;
-    } 
-}
-
-internal HL7V231Field requestedGiveUnits;
-
-public HL7V231Field RequestedGiveUnits
-{
-    get
-    {
-        if (requestedGiveUnits != null)
-        {
-            return requestedGiveUnits;
-        }
-
-        requestedGiveUnits = new HL7V231Field
-        {
-            field = message[@"RXO"][4],
-            Id = @"RXO.4",
-            Type = @"Field",
-            Position = @"RXO.4",
-            Name = @"Requested Give Units",
-            Length = 60,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the units for the give amount.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedGiveUnits.field.FieldRepetitions != null && requestedGiveUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedGiveUnits.Id));
-            requestedGiveUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(requestedGiveUnits, fieldData);
-        }
-
-        return requestedGiveUnits;
-    } 
-}
-
-internal HL7V231Field requestedDosageForm;
-
-public HL7V231Field RequestedDosageForm
-{
-    get
-    {
-        if (requestedDosageForm != null)
-        {
-            return requestedDosageForm;
-        }
-
-        requestedDosageForm = new HL7V231Field
-        {
-            field = message[@"RXO"][5],
-            Id = @"RXO.5",
-            Type = @"Field",
-            Position = @"RXO.5",
-            Name = @"Requested Dosage Form",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the manner in which the medication is aggregated for dispensing, e.g., tablets, capsules, suppositories. In some cases, this information is implied by the dispense/give code in RXO-1-requested give code or RXO-10-requested dispense code. Use when both RXO-1-requested give code and RXO-10-requested dispense code do not specify the drug/treatment form.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedDosageForm.field.FieldRepetitions != null && requestedDosageForm.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedDosageForm.Id));
-            requestedDosageForm.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(requestedDosageForm, fieldData);
-        }
-
-        return requestedDosageForm;
-    } 
-}
-
-internal HL7V231Field providersPharmacyTreatmentInstructions;
-
-public HL7V231Field ProvidersPharmacyTreatmentInstructions
-{
-    get
-    {
-        if (providersPharmacyTreatmentInstructions != null)
-        {
-            return providersPharmacyTreatmentInstructions;
-        }
-
-        providersPharmacyTreatmentInstructions = new HL7V231Field
-        {
-            field = message[@"RXO"][6],
-            Id = @"RXO.6",
-            Type = @"Field",
-            Position = @"RXO.6",
-            Name = @"Provider s Pharmacy/Treatment Instructions",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the ordering provider's instructions to the pharmacy or the non-pharmacy treatment provider (e.g., respiratory therapy). If coded, a user-defined table must be used. If transmitted as a free text field, place a null in the first component and the text in the second, e.g., |^this is a free text treatment instruction|.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providersPharmacyTreatmentInstructions.field.FieldRepetitions != null && providersPharmacyTreatmentInstructions.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providersPharmacyTreatmentInstructions.Id));
-            providersPharmacyTreatmentInstructions.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(providersPharmacyTreatmentInstructions, fieldData);
-        }
-
-        return providersPharmacyTreatmentInstructions;
-    } 
-}
-
-internal HL7V231Field providersAdministrationInstructions;
-
-public HL7V231Field ProvidersAdministrationInstructions
-{
-    get
-    {
-        if (providersAdministrationInstructions != null)
-        {
-            return providersAdministrationInstructions;
-        }
-
-        providersAdministrationInstructions = new HL7V231Field
-        {
-            field = message[@"RXO"][7],
-            Id = @"RXO.7",
-            Type = @"Field",
-            Position = @"RXO.7",
-            Name = @"Provider s Administration Instructions",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the ordering provider's instructions to the patient or to the provider administering the drug or treatment. If coded, a user-defined table must be used. If transmitted as free text, place a null in the first component and the text in the second, e.g., |^this is a free text administration instruction|.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (providersAdministrationInstructions.field.FieldRepetitions != null && providersAdministrationInstructions.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(providersAdministrationInstructions.Id));
-            providersAdministrationInstructions.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(providersAdministrationInstructions, fieldData);
-        }
-
-        return providersAdministrationInstructions;
-    } 
-}
-
-internal HL7V231Field delivertoLocation;
-
-public HL7V231Field DelivertoLocation
-{
-    get
-    {
-        if (delivertoLocation != null)
-        {
-            return delivertoLocation;
-        }
-
-        delivertoLocation = new HL7V231Field
-        {
-            field = message[@"RXO"][8],
-            Id = @"RXO.8",
-            Type = @"Field",
-            Position = @"RXO.8",
-            Name = @"Deliver-to Location",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"LA1",
-            DataTypeName = @"Location With Address Information (variant 1)",
-            TableId = null,
-            TableName = null,
-            Description = @"The first components, modeled after the PL data type, contain the inpatient or outpatient location to which the pharmacy provider or treatment supplier is to deliver the drug or treatment device (if applicable). The default (null) value is the current census location for the patient. This component has the same form as PV1-3-assigned patient location. The last component can be used to specify an address. This could be used to fill mail orders to a patient or provider, or to account for home health care.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (delivertoLocation.field.FieldRepetitions != null && delivertoLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(delivertoLocation.Id));
-            delivertoLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(delivertoLocation, fieldData);
-        }
-
-        return delivertoLocation;
-    } 
-}
-
-internal HL7V231Field allowSubstitutions;
-
-public HL7V231Field AllowSubstitutions
-{
-    get
-    {
-        if (allowSubstitutions != null)
-        {
-            return allowSubstitutions;
-        }
-
-        allowSubstitutions = new HL7V231Field
-        {
-            field = message[@"RXO"][9],
-            Id = @"RXO.9",
-            Type = @"Field",
-            Position = @"RXO.9",
-            Name = @"Allow Substitutions",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0161",
-            TableName = @"Allow substitution",
-            Description = @"Following are the values:",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (allowSubstitutions.field.FieldRepetitions != null && allowSubstitutions.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(allowSubstitutions.Id));
-            allowSubstitutions.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(allowSubstitutions, fieldData);
-        }
-
-        return allowSubstitutions;
-    } 
-}
-
-internal HL7V231Field requestedDispenseCode;
-
-public HL7V231Field RequestedDispenseCode
-{
-    get
-    {
-        if (requestedDispenseCode != null)
-        {
-            return requestedDispenseCode;
-        }
-
-        requestedDispenseCode = new HL7V231Field
-        {
-            field = message[@"RXO"][10],
-            Id = @"RXO.10",
-            Type = @"Field",
-            Position = @"RXO.10",
-            Name = @"Requested Dispense Code",
-            Length = 100,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates what is to be/was dispensed; it is equivalent to OBR-4-universal service ID in function. It may be present in the order or not, depending on the application. If not present, and values are given for RXO-11-requested dispense amount and RXO-12-requested dispense units , the RXO-1-requested give code is assumed. If the requested dispense code does not include the dosage form, use RXO-5-requested dosage form .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedDispenseCode.field.FieldRepetitions != null && requestedDispenseCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedDispenseCode.Id));
-            requestedDispenseCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(requestedDispenseCode, fieldData);
-        }
-
-        return requestedDispenseCode;
-    } 
-}
-
-internal HL7V231Field requestedDispenseAmount;
-
-public HL7V231Field RequestedDispenseAmount
-{
-    get
-    {
-        if (requestedDispenseAmount != null)
-        {
-            return requestedDispenseAmount;
-        }
-
-        requestedDispenseAmount = new HL7V231Field
-        {
-            field = message[@"RXO"][11],
-            Id = @"RXO.11",
-            Type = @"Field",
-            Position = @"RXO.11",
-            Name = @"Requested Dispense Amount",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the amount to be dispensed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedDispenseAmount.field.FieldRepetitions != null && requestedDispenseAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedDispenseAmount.Id));
-            requestedDispenseAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(requestedDispenseAmount, fieldData);
-        }
-
-        return requestedDispenseAmount;
-    } 
-}
-
-internal HL7V231Field requestedDispenseUnits;
-
-public HL7V231Field RequestedDispenseUnits
-{
-    get
-    {
-        if (requestedDispenseUnits != null)
-        {
-            return requestedDispenseUnits;
-        }
-
-        requestedDispenseUnits = new HL7V231Field
-        {
-            field = message[@"RXO"][12],
-            Id = @"RXO.12",
-            Type = @"Field",
-            Position = @"RXO.12",
-            Name = @"Requested Dispense Units",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the units for the dispense amount. This must be in simple units that reflect the actual quantity of the substance to be dispensed. It does not include compound units.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedDispenseUnits.field.FieldRepetitions != null && requestedDispenseUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedDispenseUnits.Id));
-            requestedDispenseUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(requestedDispenseUnits, fieldData);
-        }
-
-        return requestedDispenseUnits;
-    } 
-}
-
-internal HL7V231Field numberOfRefills;
-
-public HL7V231Field NumberOfRefills
-{
-    get
-    {
-        if (numberOfRefills != null)
-        {
-            return numberOfRefills;
-        }
-
-        numberOfRefills = new HL7V231Field
-        {
-            field = message[@"RXO"][13],
-            Id = @"RXO.13",
-            Type = @"Field",
-            Position = @"RXO.13",
-            Name = @"Number Of Refills",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field defines the number of times the requested dispense amount can be given to the patient, subject to local regulation. Refers to outpatient only.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (numberOfRefills.field.FieldRepetitions != null && numberOfRefills.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfRefills.Id));
-            numberOfRefills.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(numberOfRefills, fieldData);
-        }
-
-        return numberOfRefills;
-    } 
-}
-
-internal HL7V231Field orderingProvidersDEANumber;
-
-public HL7V231Field OrderingProvidersDEANumber
-{
-    get
-    {
-        if (orderingProvidersDEANumber != null)
-        {
-            return orderingProvidersDEANumber;
-        }
-
-        orderingProvidersDEANumber = new HL7V231Field
-        {
-            field = message[@"RXO"][14],
-            Id = @"RXO.14",
-            Type = @"Field",
-            Position = @"RXO.14",
-            Name = @"Ordering Provider s DEA Number",
-            Length = 60,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the provider's controlled substance number, if required by site. It is defined as conditional because it is required when the substance being requested is a controlled substance (e.g., a narcotic).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (orderingProvidersDEANumber.field.FieldRepetitions != null && orderingProvidersDEANumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(orderingProvidersDEANumber.Id));
-            orderingProvidersDEANumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(orderingProvidersDEANumber, fieldData);
-        }
-
-        return orderingProvidersDEANumber;
-    } 
-}
-
-internal HL7V231Field pharmacistTreatmentSuppliersVerifierID;
-
-public HL7V231Field PharmacistTreatmentSuppliersVerifierID
-{
-    get
-    {
-        if (pharmacistTreatmentSuppliersVerifierID != null)
-        {
-            return pharmacistTreatmentSuppliersVerifierID;
-        }
-
-        pharmacistTreatmentSuppliersVerifierID = new HL7V231Field
-        {
-            field = message[@"RXO"][15],
-            Id = @"RXO.15",
-            Type = @"Field",
-            Position = @"RXO.15",
-            Name = @"Pharmacist/Treatment Supplier s Verifier ID",
-            Length = 60,
-            Usage = @"C",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is the provider ID of the pharmacist/treatment substance supplier verifier. Use if required by the pharmacy or treatment application or site on orders (or some subgroup of orders), in addition to ORC-11-verified by.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (pharmacistTreatmentSuppliersVerifierID.field.FieldRepetitions != null && pharmacistTreatmentSuppliersVerifierID.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pharmacistTreatmentSuppliersVerifierID.Id));
-            pharmacistTreatmentSuppliersVerifierID.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(pharmacistTreatmentSuppliersVerifierID, fieldData);
-        }
-
-        return pharmacistTreatmentSuppliersVerifierID;
-    } 
-}
-
-internal HL7V231Field needsHumanReview;
-
-public HL7V231Field NeedsHumanReview
-{
-    get
-    {
-        if (needsHumanReview != null)
-        {
-            return needsHumanReview;
-        }
-
-        needsHumanReview = new HL7V231Field
-        {
-            field = message[@"RXO"][16],
-            Id = @"RXO.16",
-            Type = @"Field",
-            Position = @"RXO.16",
-            Name = @"Needs Human Review",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field uses HL7 table 0136 - Yes/no indicator . The values have the following meaning for this field:",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (needsHumanReview.field.FieldRepetitions != null && needsHumanReview.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(needsHumanReview.Id));
-            needsHumanReview.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(needsHumanReview, fieldData);
-        }
-
-        return needsHumanReview;
-    } 
-}
-
-internal HL7V231Field requestedGivePer;
-
-public HL7V231Field RequestedGivePer
-{
-    get
-    {
-        if (requestedGivePer != null)
-        {
-            return requestedGivePer;
-        }
-
-        requestedGivePer = new HL7V231Field
-        {
-            field = message[@"RXO"][17],
-            Id = @"RXO.17",
-            Type = @"Field",
-            Position = @"RXO.17",
-            Name = @"Requested Give Per",
-            Length = 20,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the time unit to use to calculate the rate at which the pharmaceutical is to be administered.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedGivePer.field.FieldRepetitions != null && requestedGivePer.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedGivePer.Id));
-            requestedGivePer.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(requestedGivePer, fieldData);
-        }
-
-        return requestedGivePer;
-    } 
-}
-
-internal HL7V231Field requestedGiveStrength;
-
-public HL7V231Field RequestedGiveStrength
-{
-    get
-    {
-        if (requestedGiveStrength != null)
-        {
-            return requestedGiveStrength;
-        }
-
-        requestedGiveStrength = new HL7V231Field
-        {
-            field = message[@"RXO"][18],
-            Id = @"RXO.18",
-            Type = @"Field",
-            Position = @"RXO.18",
-            Name = @"Requested Give Strength",
-            Length = 20,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Use this field when RXO-1-requested give code does not specify the strength. This is the numeric part of the strength, used in combination with RXO-19-requested give strength units.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedGiveStrength.field.FieldRepetitions != null && requestedGiveStrength.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedGiveStrength.Id));
-            requestedGiveStrength.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(requestedGiveStrength, fieldData);
-        }
-
-        return requestedGiveStrength;
-    } 
-}
-
-internal HL7V231Field requestedGiveStrengthUnits;
-
-public HL7V231Field RequestedGiveStrengthUnits
-{
-    get
-    {
-        if (requestedGiveStrengthUnits != null)
-        {
-            return requestedGiveStrengthUnits;
-        }
-
-        requestedGiveStrengthUnits = new HL7V231Field
-        {
-            field = message[@"RXO"][19],
-            Id = @"RXO.19",
-            Type = @"Field",
-            Position = @"RXO.19",
-            Name = @"Requested Give Strength Units",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"Use when both RXO-1-requested give code and RXO-10-requested dispense code do not specify the strength. This is the unit of the strength, used in combination with RXO-18-requested give strength .",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedGiveStrengthUnits.field.FieldRepetitions != null && requestedGiveStrengthUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedGiveStrengthUnits.Id));
-            requestedGiveStrengthUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(requestedGiveStrengthUnits, fieldData);
-        }
-
-        return requestedGiveStrengthUnits;
-    } 
-}
-
-internal HL7V231Field indication;
-
-public HL7V231Field Indication
-{
-    get
-    {
-        if (indication != null)
-        {
-            return indication;
-        }
-
-        indication = new HL7V231Field
-        {
-            field = message[@"RXO"][20],
-            Id = @"RXO.20",
-            Type = @"Field",
-            Position = @"RXO.20",
-            Name = @"Indication",
-            Length = 200,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the condition or problem for which the drug/treatment was prescribed. May repeat if multiple indications are relevant.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (indication.field.FieldRepetitions != null && indication.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(indication.Id));
-            indication.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(indication, fieldData);
-        }
-
-        return indication;
-    } 
-}
-
-internal HL7V231Field requestedGiveRateAmount;
-
-public HL7V231Field RequestedGiveRateAmount
-{
-    get
-    {
-        if (requestedGiveRateAmount != null)
-        {
-            return requestedGiveRateAmount;
-        }
-
-        requestedGiveRateAmount = new HL7V231Field
-        {
-            field = message[@"RXO"][21],
-            Id = @"RXO.21",
-            Type = @"Field",
-            Position = @"RXO.21",
-            Name = @"Requested Give Rate Amount",
-            Length = 6,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the rate at which to administer treatment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedGiveRateAmount.field.FieldRepetitions != null && requestedGiveRateAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedGiveRateAmount.Id));
-            requestedGiveRateAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(requestedGiveRateAmount, fieldData);
-        }
-
-        return requestedGiveRateAmount;
-    } 
-}
-
-internal HL7V231Field requestedGiveRateUnits;
-
-public HL7V231Field RequestedGiveRateUnits
-{
-    get
-    {
-        if (requestedGiveRateUnits != null)
-        {
-            return requestedGiveRateUnits;
-        }
-
-        requestedGiveRateUnits = new HL7V231Field
-        {
-            field = message[@"RXO"][22],
-            Id = @"RXO.22",
-            Type = @"Field",
-            Position = @"RXO.22",
-            Name = @"Requested Give Rate Units",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the units in which RXO-21-requested give rate amount is denominated.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (requestedGiveRateUnits.field.FieldRepetitions != null && requestedGiveRateUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(requestedGiveRateUnits.Id));
-            requestedGiveRateUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(requestedGiveRateUnits, fieldData);
-        }
-
-        return requestedGiveRateUnits;
-    } 
-}
-
-internal HL7V231Field totalDailyDose;
-
-public HL7V231Field TotalDailyDose
-{
-    get
-    {
-        if (totalDailyDose != null)
-        {
-            return totalDailyDose;
-        }
-
-        totalDailyDose = new HL7V231Field
+        _totalDailyDose = new HL7V231Field
         {
             field = message[@"RXO"][23],
-            Id = @"RXO.23",
-            Type = @"Field",
-            Position = @"RXO.23",
-            Name = @"Total Daily Dose",
-            Length = 10,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity With Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the total daily dose for this particular pharmaceutical as expressed in terms of actual dispense units.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (totalDailyDose.field.FieldRepetitions != null && totalDailyDose.field.FieldRepetitions.Count > 0)
+        if (_totalDailyDose.field.FieldRepetitions != null && _totalDailyDose.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(totalDailyDose.Id));
-            totalDailyDose.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(totalDailyDose, fieldData);
+            _totalDailyDose.fieldRepetitions = HL7V2FieldGenerator.GenerateV231FieldRepetitions(_totalDailyDose, fieldData);
         }
 
-        return totalDailyDose;
+        return _totalDailyDose;
     } 
 }
     }

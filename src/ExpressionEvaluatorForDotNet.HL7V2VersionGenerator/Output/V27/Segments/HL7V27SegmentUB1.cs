@@ -31,448 +31,24 @@ Attention: UB1-2 was deprecated as of v2.3 and the detail was withdrawn and remo
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"UB1.1",
-                            Type = @"Field",
-                            Position = @"UB1.1",
-                            Name = @"Set Id - Ub1",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-1 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.2",
-                            Type = @"Field",
-                            Position = @"UB1.2",
-                            Name = @"Blood Deductible",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-2 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.3",
-                            Type = @"Field",
-                            Position = @"UB1.3",
-                            Name = @"Blood Furnished-pints",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-3 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.4",
-                            Type = @"Field",
-                            Position = @"UB1.4",
-                            Name = @"Blood Replaced-pints",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-4 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.5",
-                            Type = @"Field",
-                            Position = @"UB1.5",
-                            Name = @"Blood Not Replaced-pints",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-5 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.6",
-                            Type = @"Field",
-                            Position = @"UB1.6",
-                            Name = @"Co-insurance Days",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-6 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.7",
-                            Type = @"Field",
-                            Position = @"UB1.7",
-                            Name = @"Condition Code",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"5",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-7 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.8",
-                            Type = @"Field",
-                            Position = @"UB1.8",
-                            Name = @"Covered Days",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-8 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.9",
-                            Type = @"Field",
-                            Position = @"UB1.9",
-                            Name = @"Non Covered Days",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-9 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.10",
-                            Type = @"Field",
-                            Position = @"UB1.10",
-                            Name = @"Value Amount & Code",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"8",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-10 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.11",
-                            Type = @"Field",
-                            Position = @"UB1.11",
-                            Name = @"Number Of Grace Days",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-11 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.12",
-                            Type = @"Field",
-                            Position = @"UB1.12",
-                            Name = @"Special Program Indicator",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-12 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.13",
-                            Type = @"Field",
-                            Position = @"UB1.13",
-                            Name = @"Psro/Ur Approval Indicator",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-13 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.14",
-                            Type = @"Field",
-                            Position = @"UB1.14",
-                            Name = @"Psro/Ur Approved Stay-fm",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-14 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.15",
-                            Type = @"Field",
-                            Position = @"UB1.15",
-                            Name = @"Psro/Ur Approved Stay-to",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-15 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.16",
-                            Type = @"Field",
-                            Position = @"UB1.16",
-                            Name = @"Occurrence",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"5",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-16 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.17",
-                            Type = @"Field",
-                            Position = @"UB1.17",
-                            Name = @"Occurrence Span",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-17 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.18",
-                            Type = @"Field",
-                            Position = @"UB1.18",
-                            Name = @"Occur Span Start Date",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-18 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.19",
-                            Type = @"Field",
-                            Position = @"UB1.19",
-                            Name = @"Occur Span End Date",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-19 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.20",
-                            Type = @"Field",
-                            Position = @"UB1.20",
-                            Name = @"Ub-82 Locator 2",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-20 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.21",
-                            Type = @"Field",
-                            Position = @"UB1.21",
-                            Name = @"Ub-82 Locator 9",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-21 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.22",
-                            Type = @"Field",
-                            Position = @"UB1.22",
-                            Name = @"Ub-82 Locator 27",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-22 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"UB1.23",
-                            Type = @"Field",
-                            Position = @"UB1.23",
-                            Name = @"Ub-82 Locator 45",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: UB1-23 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
-        }
-
         public HL7V27SegmentUB1(HL7V2Message message)
         {
             this.message = message;
         }
 
-        internal HL7V27Field setIdUb1;
+        internal HL7V27Field _setIdUb1;
 
 public HL7V27Field SetIdUb1
 {
     get
     {
-        if (setIdUb1 != null)
+        if (_setIdUb1 != null)
         {
-            return setIdUb1;
+            return _setIdUb1;
         }
 
-        setIdUb1 = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][1],
             Id = @"UB1.1",
             Type = @"Field",
             Position = @"UB1.1",
@@ -486,34 +62,38 @@ public HL7V27Field SetIdUb1
             TableName = null,
             Description = @"Attention: UB1-1 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _setIdUb1 = new HL7V27Field
+        {
+            field = message[@"UB1"][1],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (setIdUb1.field.FieldRepetitions != null && setIdUb1.field.FieldRepetitions.Count > 0)
+        if (_setIdUb1.field.FieldRepetitions != null && _setIdUb1.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdUb1.Id));
-            setIdUb1.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(setIdUb1, fieldData);
+            _setIdUb1.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_setIdUb1, fieldData);
         }
 
-        return setIdUb1;
+        return _setIdUb1;
     } 
 }
 
-internal HL7V27Field bloodDeductible;
+internal HL7V27Field _bloodDeductible;
 
 public HL7V27Field BloodDeductible
 {
     get
     {
-        if (bloodDeductible != null)
+        if (_bloodDeductible != null)
         {
-            return bloodDeductible;
+            return _bloodDeductible;
         }
 
-        bloodDeductible = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][2],
             Id = @"UB1.2",
             Type = @"Field",
             Position = @"UB1.2",
@@ -527,34 +107,38 @@ public HL7V27Field BloodDeductible
             TableName = null,
             Description = @"Attention: UB1-2 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _bloodDeductible = new HL7V27Field
+        {
+            field = message[@"UB1"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (bloodDeductible.field.FieldRepetitions != null && bloodDeductible.field.FieldRepetitions.Count > 0)
+        if (_bloodDeductible.field.FieldRepetitions != null && _bloodDeductible.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bloodDeductible.Id));
-            bloodDeductible.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(bloodDeductible, fieldData);
+            _bloodDeductible.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_bloodDeductible, fieldData);
         }
 
-        return bloodDeductible;
+        return _bloodDeductible;
     } 
 }
 
-internal HL7V27Field bloodFurnishedpints;
+internal HL7V27Field _bloodFurnishedpints;
 
 public HL7V27Field BloodFurnishedpints
 {
     get
     {
-        if (bloodFurnishedpints != null)
+        if (_bloodFurnishedpints != null)
         {
-            return bloodFurnishedpints;
+            return _bloodFurnishedpints;
         }
 
-        bloodFurnishedpints = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][3],
             Id = @"UB1.3",
             Type = @"Field",
             Position = @"UB1.3",
@@ -568,34 +152,38 @@ public HL7V27Field BloodFurnishedpints
             TableName = null,
             Description = @"Attention: UB1-3 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _bloodFurnishedpints = new HL7V27Field
+        {
+            field = message[@"UB1"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (bloodFurnishedpints.field.FieldRepetitions != null && bloodFurnishedpints.field.FieldRepetitions.Count > 0)
+        if (_bloodFurnishedpints.field.FieldRepetitions != null && _bloodFurnishedpints.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bloodFurnishedpints.Id));
-            bloodFurnishedpints.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(bloodFurnishedpints, fieldData);
+            _bloodFurnishedpints.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_bloodFurnishedpints, fieldData);
         }
 
-        return bloodFurnishedpints;
+        return _bloodFurnishedpints;
     } 
 }
 
-internal HL7V27Field bloodReplacedpints;
+internal HL7V27Field _bloodReplacedpints;
 
 public HL7V27Field BloodReplacedpints
 {
     get
     {
-        if (bloodReplacedpints != null)
+        if (_bloodReplacedpints != null)
         {
-            return bloodReplacedpints;
+            return _bloodReplacedpints;
         }
 
-        bloodReplacedpints = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][4],
             Id = @"UB1.4",
             Type = @"Field",
             Position = @"UB1.4",
@@ -609,34 +197,38 @@ public HL7V27Field BloodReplacedpints
             TableName = null,
             Description = @"Attention: UB1-4 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _bloodReplacedpints = new HL7V27Field
+        {
+            field = message[@"UB1"][4],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (bloodReplacedpints.field.FieldRepetitions != null && bloodReplacedpints.field.FieldRepetitions.Count > 0)
+        if (_bloodReplacedpints.field.FieldRepetitions != null && _bloodReplacedpints.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bloodReplacedpints.Id));
-            bloodReplacedpints.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(bloodReplacedpints, fieldData);
+            _bloodReplacedpints.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_bloodReplacedpints, fieldData);
         }
 
-        return bloodReplacedpints;
+        return _bloodReplacedpints;
     } 
 }
 
-internal HL7V27Field bloodNotReplacedpints;
+internal HL7V27Field _bloodNotReplacedpints;
 
 public HL7V27Field BloodNotReplacedpints
 {
     get
     {
-        if (bloodNotReplacedpints != null)
+        if (_bloodNotReplacedpints != null)
         {
-            return bloodNotReplacedpints;
+            return _bloodNotReplacedpints;
         }
 
-        bloodNotReplacedpints = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][5],
             Id = @"UB1.5",
             Type = @"Field",
             Position = @"UB1.5",
@@ -650,34 +242,38 @@ public HL7V27Field BloodNotReplacedpints
             TableName = null,
             Description = @"Attention: UB1-5 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _bloodNotReplacedpints = new HL7V27Field
+        {
+            field = message[@"UB1"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (bloodNotReplacedpints.field.FieldRepetitions != null && bloodNotReplacedpints.field.FieldRepetitions.Count > 0)
+        if (_bloodNotReplacedpints.field.FieldRepetitions != null && _bloodNotReplacedpints.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bloodNotReplacedpints.Id));
-            bloodNotReplacedpints.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(bloodNotReplacedpints, fieldData);
+            _bloodNotReplacedpints.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_bloodNotReplacedpints, fieldData);
         }
 
-        return bloodNotReplacedpints;
+        return _bloodNotReplacedpints;
     } 
 }
 
-internal HL7V27Field coinsuranceDays;
+internal HL7V27Field _coinsuranceDays;
 
 public HL7V27Field CoinsuranceDays
 {
     get
     {
-        if (coinsuranceDays != null)
+        if (_coinsuranceDays != null)
         {
-            return coinsuranceDays;
+            return _coinsuranceDays;
         }
 
-        coinsuranceDays = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][6],
             Id = @"UB1.6",
             Type = @"Field",
             Position = @"UB1.6",
@@ -691,34 +287,38 @@ public HL7V27Field CoinsuranceDays
             TableName = null,
             Description = @"Attention: UB1-6 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _coinsuranceDays = new HL7V27Field
+        {
+            field = message[@"UB1"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (coinsuranceDays.field.FieldRepetitions != null && coinsuranceDays.field.FieldRepetitions.Count > 0)
+        if (_coinsuranceDays.field.FieldRepetitions != null && _coinsuranceDays.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(coinsuranceDays.Id));
-            coinsuranceDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(coinsuranceDays, fieldData);
+            _coinsuranceDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_coinsuranceDays, fieldData);
         }
 
-        return coinsuranceDays;
+        return _coinsuranceDays;
     } 
 }
 
-internal HL7V27Field conditionCode;
+internal HL7V27Field _conditionCode;
 
 public HL7V27Field ConditionCode
 {
     get
     {
-        if (conditionCode != null)
+        if (_conditionCode != null)
         {
-            return conditionCode;
+            return _conditionCode;
         }
 
-        conditionCode = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][7],
             Id = @"UB1.7",
             Type = @"Field",
             Position = @"UB1.7",
@@ -732,34 +332,38 @@ public HL7V27Field ConditionCode
             TableName = null,
             Description = @"Attention: UB1-7 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _conditionCode = new HL7V27Field
+        {
+            field = message[@"UB1"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (conditionCode.field.FieldRepetitions != null && conditionCode.field.FieldRepetitions.Count > 0)
+        if (_conditionCode.field.FieldRepetitions != null && _conditionCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(conditionCode.Id));
-            conditionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(conditionCode, fieldData);
+            _conditionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_conditionCode, fieldData);
         }
 
-        return conditionCode;
+        return _conditionCode;
     } 
 }
 
-internal HL7V27Field coveredDays;
+internal HL7V27Field _coveredDays;
 
 public HL7V27Field CoveredDays
 {
     get
     {
-        if (coveredDays != null)
+        if (_coveredDays != null)
         {
-            return coveredDays;
+            return _coveredDays;
         }
 
-        coveredDays = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][8],
             Id = @"UB1.8",
             Type = @"Field",
             Position = @"UB1.8",
@@ -773,34 +377,38 @@ public HL7V27Field CoveredDays
             TableName = null,
             Description = @"Attention: UB1-8 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _coveredDays = new HL7V27Field
+        {
+            field = message[@"UB1"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (coveredDays.field.FieldRepetitions != null && coveredDays.field.FieldRepetitions.Count > 0)
+        if (_coveredDays.field.FieldRepetitions != null && _coveredDays.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(coveredDays.Id));
-            coveredDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(coveredDays, fieldData);
+            _coveredDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_coveredDays, fieldData);
         }
 
-        return coveredDays;
+        return _coveredDays;
     } 
 }
 
-internal HL7V27Field nonCoveredDays;
+internal HL7V27Field _nonCoveredDays;
 
 public HL7V27Field NonCoveredDays
 {
     get
     {
-        if (nonCoveredDays != null)
+        if (_nonCoveredDays != null)
         {
-            return nonCoveredDays;
+            return _nonCoveredDays;
         }
 
-        nonCoveredDays = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][9],
             Id = @"UB1.9",
             Type = @"Field",
             Position = @"UB1.9",
@@ -814,34 +422,38 @@ public HL7V27Field NonCoveredDays
             TableName = null,
             Description = @"Attention: UB1-9 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _nonCoveredDays = new HL7V27Field
+        {
+            field = message[@"UB1"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (nonCoveredDays.field.FieldRepetitions != null && nonCoveredDays.field.FieldRepetitions.Count > 0)
+        if (_nonCoveredDays.field.FieldRepetitions != null && _nonCoveredDays.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(nonCoveredDays.Id));
-            nonCoveredDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(nonCoveredDays, fieldData);
+            _nonCoveredDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_nonCoveredDays, fieldData);
         }
 
-        return nonCoveredDays;
+        return _nonCoveredDays;
     } 
 }
 
-internal HL7V27Field valueAmountAndCode;
+internal HL7V27Field _valueAmountAndCode;
 
 public HL7V27Field ValueAmountAndCode
 {
     get
     {
-        if (valueAmountAndCode != null)
+        if (_valueAmountAndCode != null)
         {
-            return valueAmountAndCode;
+            return _valueAmountAndCode;
         }
 
-        valueAmountAndCode = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][10],
             Id = @"UB1.10",
             Type = @"Field",
             Position = @"UB1.10",
@@ -855,34 +467,38 @@ public HL7V27Field ValueAmountAndCode
             TableName = null,
             Description = @"Attention: UB1-10 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _valueAmountAndCode = new HL7V27Field
+        {
+            field = message[@"UB1"][10],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (valueAmountAndCode.field.FieldRepetitions != null && valueAmountAndCode.field.FieldRepetitions.Count > 0)
+        if (_valueAmountAndCode.field.FieldRepetitions != null && _valueAmountAndCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(valueAmountAndCode.Id));
-            valueAmountAndCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(valueAmountAndCode, fieldData);
+            _valueAmountAndCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_valueAmountAndCode, fieldData);
         }
 
-        return valueAmountAndCode;
+        return _valueAmountAndCode;
     } 
 }
 
-internal HL7V27Field numberOfGraceDays;
+internal HL7V27Field _numberOfGraceDays;
 
 public HL7V27Field NumberOfGraceDays
 {
     get
     {
-        if (numberOfGraceDays != null)
+        if (_numberOfGraceDays != null)
         {
-            return numberOfGraceDays;
+            return _numberOfGraceDays;
         }
 
-        numberOfGraceDays = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][11],
             Id = @"UB1.11",
             Type = @"Field",
             Position = @"UB1.11",
@@ -896,34 +512,38 @@ public HL7V27Field NumberOfGraceDays
             TableName = null,
             Description = @"Attention: UB1-11 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _numberOfGraceDays = new HL7V27Field
+        {
+            field = message[@"UB1"][11],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (numberOfGraceDays.field.FieldRepetitions != null && numberOfGraceDays.field.FieldRepetitions.Count > 0)
+        if (_numberOfGraceDays.field.FieldRepetitions != null && _numberOfGraceDays.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(numberOfGraceDays.Id));
-            numberOfGraceDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(numberOfGraceDays, fieldData);
+            _numberOfGraceDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_numberOfGraceDays, fieldData);
         }
 
-        return numberOfGraceDays;
+        return _numberOfGraceDays;
     } 
 }
 
-internal HL7V27Field specialProgramIndicator;
+internal HL7V27Field _specialProgramIndicator;
 
 public HL7V27Field SpecialProgramIndicator
 {
     get
     {
-        if (specialProgramIndicator != null)
+        if (_specialProgramIndicator != null)
         {
-            return specialProgramIndicator;
+            return _specialProgramIndicator;
         }
 
-        specialProgramIndicator = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][12],
             Id = @"UB1.12",
             Type = @"Field",
             Position = @"UB1.12",
@@ -937,34 +557,38 @@ public HL7V27Field SpecialProgramIndicator
             TableName = null,
             Description = @"Attention: UB1-12 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _specialProgramIndicator = new HL7V27Field
+        {
+            field = message[@"UB1"][12],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (specialProgramIndicator.field.FieldRepetitions != null && specialProgramIndicator.field.FieldRepetitions.Count > 0)
+        if (_specialProgramIndicator.field.FieldRepetitions != null && _specialProgramIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(specialProgramIndicator.Id));
-            specialProgramIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(specialProgramIndicator, fieldData);
+            _specialProgramIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_specialProgramIndicator, fieldData);
         }
 
-        return specialProgramIndicator;
+        return _specialProgramIndicator;
     } 
 }
 
-internal HL7V27Field psroUrApprovalIndicator;
+internal HL7V27Field _psroUrApprovalIndicator;
 
 public HL7V27Field PsroUrApprovalIndicator
 {
     get
     {
-        if (psroUrApprovalIndicator != null)
+        if (_psroUrApprovalIndicator != null)
         {
-            return psroUrApprovalIndicator;
+            return _psroUrApprovalIndicator;
         }
 
-        psroUrApprovalIndicator = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][13],
             Id = @"UB1.13",
             Type = @"Field",
             Position = @"UB1.13",
@@ -978,34 +602,38 @@ public HL7V27Field PsroUrApprovalIndicator
             TableName = null,
             Description = @"Attention: UB1-13 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _psroUrApprovalIndicator = new HL7V27Field
+        {
+            field = message[@"UB1"][13],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (psroUrApprovalIndicator.field.FieldRepetitions != null && psroUrApprovalIndicator.field.FieldRepetitions.Count > 0)
+        if (_psroUrApprovalIndicator.field.FieldRepetitions != null && _psroUrApprovalIndicator.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(psroUrApprovalIndicator.Id));
-            psroUrApprovalIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(psroUrApprovalIndicator, fieldData);
+            _psroUrApprovalIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_psroUrApprovalIndicator, fieldData);
         }
 
-        return psroUrApprovalIndicator;
+        return _psroUrApprovalIndicator;
     } 
 }
 
-internal HL7V27Field psroUrApprovedStayfm;
+internal HL7V27Field _psroUrApprovedStayfm;
 
 public HL7V27Field PsroUrApprovedStayfm
 {
     get
     {
-        if (psroUrApprovedStayfm != null)
+        if (_psroUrApprovedStayfm != null)
         {
-            return psroUrApprovedStayfm;
+            return _psroUrApprovedStayfm;
         }
 
-        psroUrApprovedStayfm = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][14],
             Id = @"UB1.14",
             Type = @"Field",
             Position = @"UB1.14",
@@ -1019,34 +647,38 @@ public HL7V27Field PsroUrApprovedStayfm
             TableName = null,
             Description = @"Attention: UB1-14 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _psroUrApprovedStayfm = new HL7V27Field
+        {
+            field = message[@"UB1"][14],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (psroUrApprovedStayfm.field.FieldRepetitions != null && psroUrApprovedStayfm.field.FieldRepetitions.Count > 0)
+        if (_psroUrApprovedStayfm.field.FieldRepetitions != null && _psroUrApprovedStayfm.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(psroUrApprovedStayfm.Id));
-            psroUrApprovedStayfm.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(psroUrApprovedStayfm, fieldData);
+            _psroUrApprovedStayfm.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_psroUrApprovedStayfm, fieldData);
         }
 
-        return psroUrApprovedStayfm;
+        return _psroUrApprovedStayfm;
     } 
 }
 
-internal HL7V27Field psroUrApprovedStayto;
+internal HL7V27Field _psroUrApprovedStayto;
 
 public HL7V27Field PsroUrApprovedStayto
 {
     get
     {
-        if (psroUrApprovedStayto != null)
+        if (_psroUrApprovedStayto != null)
         {
-            return psroUrApprovedStayto;
+            return _psroUrApprovedStayto;
         }
 
-        psroUrApprovedStayto = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][15],
             Id = @"UB1.15",
             Type = @"Field",
             Position = @"UB1.15",
@@ -1060,34 +692,38 @@ public HL7V27Field PsroUrApprovedStayto
             TableName = null,
             Description = @"Attention: UB1-15 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _psroUrApprovedStayto = new HL7V27Field
+        {
+            field = message[@"UB1"][15],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (psroUrApprovedStayto.field.FieldRepetitions != null && psroUrApprovedStayto.field.FieldRepetitions.Count > 0)
+        if (_psroUrApprovedStayto.field.FieldRepetitions != null && _psroUrApprovedStayto.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(psroUrApprovedStayto.Id));
-            psroUrApprovedStayto.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(psroUrApprovedStayto, fieldData);
+            _psroUrApprovedStayto.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_psroUrApprovedStayto, fieldData);
         }
 
-        return psroUrApprovedStayto;
+        return _psroUrApprovedStayto;
     } 
 }
 
-internal HL7V27Field occurrence;
+internal HL7V27Field _occurrence;
 
 public HL7V27Field Occurrence
 {
     get
     {
-        if (occurrence != null)
+        if (_occurrence != null)
         {
-            return occurrence;
+            return _occurrence;
         }
 
-        occurrence = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][16],
             Id = @"UB1.16",
             Type = @"Field",
             Position = @"UB1.16",
@@ -1101,34 +737,38 @@ public HL7V27Field Occurrence
             TableName = null,
             Description = @"Attention: UB1-16 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _occurrence = new HL7V27Field
+        {
+            field = message[@"UB1"][16],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (occurrence.field.FieldRepetitions != null && occurrence.field.FieldRepetitions.Count > 0)
+        if (_occurrence.field.FieldRepetitions != null && _occurrence.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(occurrence.Id));
-            occurrence.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(occurrence, fieldData);
+            _occurrence.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_occurrence, fieldData);
         }
 
-        return occurrence;
+        return _occurrence;
     } 
 }
 
-internal HL7V27Field occurrenceSpan;
+internal HL7V27Field _occurrenceSpan;
 
 public HL7V27Field OccurrenceSpan
 {
     get
     {
-        if (occurrenceSpan != null)
+        if (_occurrenceSpan != null)
         {
-            return occurrenceSpan;
+            return _occurrenceSpan;
         }
 
-        occurrenceSpan = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][17],
             Id = @"UB1.17",
             Type = @"Field",
             Position = @"UB1.17",
@@ -1142,34 +782,38 @@ public HL7V27Field OccurrenceSpan
             TableName = null,
             Description = @"Attention: UB1-17 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _occurrenceSpan = new HL7V27Field
+        {
+            field = message[@"UB1"][17],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (occurrenceSpan.field.FieldRepetitions != null && occurrenceSpan.field.FieldRepetitions.Count > 0)
+        if (_occurrenceSpan.field.FieldRepetitions != null && _occurrenceSpan.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(occurrenceSpan.Id));
-            occurrenceSpan.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(occurrenceSpan, fieldData);
+            _occurrenceSpan.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_occurrenceSpan, fieldData);
         }
 
-        return occurrenceSpan;
+        return _occurrenceSpan;
     } 
 }
 
-internal HL7V27Field occurSpanStartDate;
+internal HL7V27Field _occurSpanStartDate;
 
 public HL7V27Field OccurSpanStartDate
 {
     get
     {
-        if (occurSpanStartDate != null)
+        if (_occurSpanStartDate != null)
         {
-            return occurSpanStartDate;
+            return _occurSpanStartDate;
         }
 
-        occurSpanStartDate = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][18],
             Id = @"UB1.18",
             Type = @"Field",
             Position = @"UB1.18",
@@ -1183,34 +827,38 @@ public HL7V27Field OccurSpanStartDate
             TableName = null,
             Description = @"Attention: UB1-18 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _occurSpanStartDate = new HL7V27Field
+        {
+            field = message[@"UB1"][18],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (occurSpanStartDate.field.FieldRepetitions != null && occurSpanStartDate.field.FieldRepetitions.Count > 0)
+        if (_occurSpanStartDate.field.FieldRepetitions != null && _occurSpanStartDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(occurSpanStartDate.Id));
-            occurSpanStartDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(occurSpanStartDate, fieldData);
+            _occurSpanStartDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_occurSpanStartDate, fieldData);
         }
 
-        return occurSpanStartDate;
+        return _occurSpanStartDate;
     } 
 }
 
-internal HL7V27Field occurSpanEndDate;
+internal HL7V27Field _occurSpanEndDate;
 
 public HL7V27Field OccurSpanEndDate
 {
     get
     {
-        if (occurSpanEndDate != null)
+        if (_occurSpanEndDate != null)
         {
-            return occurSpanEndDate;
+            return _occurSpanEndDate;
         }
 
-        occurSpanEndDate = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][19],
             Id = @"UB1.19",
             Type = @"Field",
             Position = @"UB1.19",
@@ -1224,34 +872,38 @@ public HL7V27Field OccurSpanEndDate
             TableName = null,
             Description = @"Attention: UB1-19 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _occurSpanEndDate = new HL7V27Field
+        {
+            field = message[@"UB1"][19],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (occurSpanEndDate.field.FieldRepetitions != null && occurSpanEndDate.field.FieldRepetitions.Count > 0)
+        if (_occurSpanEndDate.field.FieldRepetitions != null && _occurSpanEndDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(occurSpanEndDate.Id));
-            occurSpanEndDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(occurSpanEndDate, fieldData);
+            _occurSpanEndDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_occurSpanEndDate, fieldData);
         }
 
-        return occurSpanEndDate;
+        return _occurSpanEndDate;
     } 
 }
 
-internal HL7V27Field ub82Locator2;
+internal HL7V27Field _ub82Locator2;
 
 public HL7V27Field Ub82Locator2
 {
     get
     {
-        if (ub82Locator2 != null)
+        if (_ub82Locator2 != null)
         {
-            return ub82Locator2;
+            return _ub82Locator2;
         }
 
-        ub82Locator2 = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][20],
             Id = @"UB1.20",
             Type = @"Field",
             Position = @"UB1.20",
@@ -1265,34 +917,38 @@ public HL7V27Field Ub82Locator2
             TableName = null,
             Description = @"Attention: UB1-20 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _ub82Locator2 = new HL7V27Field
+        {
+            field = message[@"UB1"][20],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (ub82Locator2.field.FieldRepetitions != null && ub82Locator2.field.FieldRepetitions.Count > 0)
+        if (_ub82Locator2.field.FieldRepetitions != null && _ub82Locator2.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ub82Locator2.Id));
-            ub82Locator2.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(ub82Locator2, fieldData);
+            _ub82Locator2.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_ub82Locator2, fieldData);
         }
 
-        return ub82Locator2;
+        return _ub82Locator2;
     } 
 }
 
-internal HL7V27Field ub82Locator9;
+internal HL7V27Field _ub82Locator9;
 
 public HL7V27Field Ub82Locator9
 {
     get
     {
-        if (ub82Locator9 != null)
+        if (_ub82Locator9 != null)
         {
-            return ub82Locator9;
+            return _ub82Locator9;
         }
 
-        ub82Locator9 = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][21],
             Id = @"UB1.21",
             Type = @"Field",
             Position = @"UB1.21",
@@ -1306,34 +962,38 @@ public HL7V27Field Ub82Locator9
             TableName = null,
             Description = @"Attention: UB1-21 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _ub82Locator9 = new HL7V27Field
+        {
+            field = message[@"UB1"][21],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (ub82Locator9.field.FieldRepetitions != null && ub82Locator9.field.FieldRepetitions.Count > 0)
+        if (_ub82Locator9.field.FieldRepetitions != null && _ub82Locator9.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ub82Locator9.Id));
-            ub82Locator9.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(ub82Locator9, fieldData);
+            _ub82Locator9.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_ub82Locator9, fieldData);
         }
 
-        return ub82Locator9;
+        return _ub82Locator9;
     } 
 }
 
-internal HL7V27Field ub82Locator27;
+internal HL7V27Field _ub82Locator27;
 
 public HL7V27Field Ub82Locator27
 {
     get
     {
-        if (ub82Locator27 != null)
+        if (_ub82Locator27 != null)
         {
-            return ub82Locator27;
+            return _ub82Locator27;
         }
 
-        ub82Locator27 = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][22],
             Id = @"UB1.22",
             Type = @"Field",
             Position = @"UB1.22",
@@ -1347,34 +1007,38 @@ public HL7V27Field Ub82Locator27
             TableName = null,
             Description = @"Attention: UB1-22 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _ub82Locator27 = new HL7V27Field
+        {
+            field = message[@"UB1"][22],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (ub82Locator27.field.FieldRepetitions != null && ub82Locator27.field.FieldRepetitions.Count > 0)
+        if (_ub82Locator27.field.FieldRepetitions != null && _ub82Locator27.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ub82Locator27.Id));
-            ub82Locator27.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(ub82Locator27, fieldData);
+            _ub82Locator27.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_ub82Locator27, fieldData);
         }
 
-        return ub82Locator27;
+        return _ub82Locator27;
     } 
 }
 
-internal HL7V27Field ub82Locator45;
+internal HL7V27Field _ub82Locator45;
 
 public HL7V27Field Ub82Locator45
 {
     get
     {
-        if (ub82Locator45 != null)
+        if (_ub82Locator45 != null)
         {
-            return ub82Locator45;
+            return _ub82Locator45;
         }
 
-        ub82Locator45 = new HL7V27Field
+        var fieldData = new HL7V27FieldData
         {
-            field = message[@"UB1"][23],
             Id = @"UB1.23",
             Type = @"Field",
             Position = @"UB1.23",
@@ -1388,17 +1052,22 @@ public HL7V27Field Ub82Locator45
             TableName = null,
             Description = @"Attention: UB1-23 was deprecated as of v2.3 and the detail was withdrawn and removed from the standard as of v 2.6.",
             Sample = @"",
+            Fields = null
+        }
+
+        _ub82Locator45 = new HL7V27Field
+        {
+            field = message[@"UB1"][23],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (ub82Locator45.field.FieldRepetitions != null && ub82Locator45.field.FieldRepetitions.Count > 0)
+        if (_ub82Locator45.field.FieldRepetitions != null && _ub82Locator45.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(ub82Locator45.Id));
-            ub82Locator45.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(ub82Locator45, fieldData);
+            _ub82Locator45.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_ub82Locator45, fieldData);
         }
 
-        return ub82Locator45;
+        return _ub82Locator45;
     } 
 }
     }

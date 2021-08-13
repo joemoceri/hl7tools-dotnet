@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -89,6 +90,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"An X.500 directory name",
                             Comment = null
                         },
+                        
                     };
             } 
         }

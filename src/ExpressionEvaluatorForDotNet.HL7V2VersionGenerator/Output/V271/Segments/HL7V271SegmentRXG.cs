@@ -29,86 +29,179 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"RXG.1",
-                            Type = @"Field",
-                            Position = @"RXG.1",
-                            Name = @"Give Sub-id Counter",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Use if this RXG segment carries information about a single administration. This field must contain a unique number for the placer order number.  This field along with the placer order number provides a unique reference to the specific scheduled give date/time transmitted by the pharmacy/treatment supplier for this order.
+        public HL7V271SegmentRXG(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _giveSubidCounter;
+
+public HL7V271Field GiveSubidCounter
+{
+    get
+    {
+        if (_giveSubidCounter != null)
+        {
+            return _giveSubidCounter;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.1",
+            Type = @"Field",
+            Position = @"RXG.1",
+            Name = @"Give Sub-id Counter",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Use if this RXG segment carries information about a single administration. This field must contain a unique number for the placer order number.  This field along with the placer order number provides a unique reference to the specific scheduled give date/time transmitted by the pharmacy/treatment supplier for this order.
 
 If the RXG segment carries information about multiple administrations, this field's value is zero (0), since in this case a one-to-one matching with the RXA segment is ambiguous.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.2",
-                            Type = @"Field",
-                            Position = @"RXG.2",
-                            Name = @"Dispense Sub-id Counter",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This is the dispense sub-ID to which this give message is related.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.3",
-                            Type = @"Field",
-                            Position = @"RXG.3",
-                            Name = @"Quantity/Timing",
-                            Length = 0,
-                            Usage = @"W",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Attention: The RXG-3 field was retained for backward compatibilty only as of v2.5 and the detail was withdrawn and removed from the standard as of v2.7.
+            Sample = @"",
+            Fields = null
+        }
+
+        _giveSubidCounter = new HL7V271Field
+        {
+            field = message[@"RXG"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_giveSubidCounter.field.FieldRepetitions != null && _giveSubidCounter.field.FieldRepetitions.Count > 0)
+        {
+            _giveSubidCounter.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_giveSubidCounter, fieldData);
+        }
+
+        return _giveSubidCounter;
+    } 
+}
+
+internal HL7V271Field _dispenseSubidCounter;
+
+public HL7V271Field DispenseSubidCounter
+{
+    get
+    {
+        if (_dispenseSubidCounter != null)
+        {
+            return _dispenseSubidCounter;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.2",
+            Type = @"Field",
+            Position = @"RXG.2",
+            Name = @"Dispense Sub-id Counter",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This is the dispense sub-ID to which this give message is related.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dispenseSubidCounter = new HL7V271Field
+        {
+            field = message[@"RXG"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dispenseSubidCounter.field.FieldRepetitions != null && _dispenseSubidCounter.field.FieldRepetitions.Count > 0)
+        {
+            _dispenseSubidCounter.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_dispenseSubidCounter, fieldData);
+        }
+
+        return _dispenseSubidCounter;
+    } 
+}
+
+internal HL7V271Field _quantityTiming;
+
+public HL7V271Field QuantityTiming
+{
+    get
+    {
+        if (_quantityTiming != null)
+        {
+            return _quantityTiming;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.3",
+            Type = @"Field",
+            Position = @"RXG.3",
+            Name = @"Quantity/Timing",
+            Length = 0,
+            Usage = @"W",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"Attention: The RXG-3 field was retained for backward compatibilty only as of v2.5 and the detail was withdrawn and removed from the standard as of v2.7.
 
 Note: The contents of fields 3-8 should be identical to the comparable fields in the RXE (RXE-2 thru 5).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _quantityTiming = new HL7V271Field
+        {
+            field = message[@"RXG"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_quantityTiming.field.FieldRepetitions != null && _quantityTiming.field.FieldRepetitions.Count > 0)
+        {
+            _quantityTiming.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_quantityTiming, fieldData);
+        }
+
+        return _quantityTiming;
+    } 
+}
+
+internal HL7V271Field _giveCode;
+
+public HL7V271Field GiveCode
+{
+    get
+    {
+        if (_giveCode != null)
+        {
+            return _giveCode;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.4",
+            Type = @"Field",
+            Position = @"RXG.4",
+            Name = @"Give Code",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0292",
+            TableName = @"Vaccines Administered",
+            Description = @"This field is the identifier of the medical substance/treatment ordered to be given to the patient; it is equivalent to OBR-4-Universal service ID in function. See the RXE segment for a complete definition of the RXE-2-Give code. If the substance given is a vaccine, CVX codes may be used to code this field (see HL7 Table 0292 - Vaccines administered).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXG.4",
-                            Type = @"Field",
-                            Position = @"RXG.4",
-                            Name = @"Give Code",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0292",
-                            TableName = @"Vaccines Administered",
-                            Description = @"This field is the identifier of the medical substance/treatment ordered to be given to the patient; it is equivalent to OBR-4-Universal service ID in function. See the RXE segment for a complete definition of the RXE-2-Give code. If the substance given is a vaccine, CVX codes may be used to code this field (see HL7 Table 0292 - Vaccines administered).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.4.1",
                             Type = @"Component",
@@ -534,68 +627,152 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.5",
-                            Type = @"Field",
-                            Position = @"RXG.5",
-                            Name = @"Give Amount - Minimum",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the ordered amount as encoded by the pharmacy/treatment supplier. In a variable dose order, this is the minimum ordered amount. In a non-varying dose order, this is the exact amount of the order.
+                        }
+        }
+
+        _giveCode = new HL7V271Field
+        {
+            field = message[@"RXG"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_giveCode.field.FieldRepetitions != null && _giveCode.field.FieldRepetitions.Count > 0)
+        {
+            _giveCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_giveCode, fieldData);
+        }
+
+        return _giveCode;
+    } 
+}
+
+internal HL7V271Field _giveAmountMinimum;
+
+public HL7V271Field GiveAmountMinimum
+{
+    get
+    {
+        if (_giveAmountMinimum != null)
+        {
+            return _giveAmountMinimum;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.5",
+            Type = @"Field",
+            Position = @"RXG.5",
+            Name = @"Give Amount - Minimum",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the ordered amount as encoded by the pharmacy/treatment supplier. In a variable dose order, this is the minimum ordered amount. In a non-varying dose order, this is the exact amount of the order.
 Note: This field is not a duplication of the first component of the quantity/timing field, since in non-pharmacy/treatment orders, that component can be used to specify multiples of an ordered amount.
 
 Another way to say this is that, for pharmacy/treatment orders, the quantity component of the quantity/timing field refers to what is to be given out at each service interval; and thus, in terms of the RX order, that first component always defaults to 1. Hence, in the actual execution of the order, the value of 1 in the first component of the quantity/timing field always refers to one administration of the amount specified in this field (the requested Give Amount field).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.6",
-                            Type = @"Field",
-                            Position = @"RXG.6",
-                            Name = @"Give Amount - Maximum",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"In a variable dose order, this is the maximum ordered amount.  In a non-varying dose, this field is not used.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.7",
-                            Type = @"Field",
-                            Position = @"RXG.7",
-                            Name = @"Give Units",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the units for the give amount.
+            Sample = @"",
+            Fields = null
+        }
+
+        _giveAmountMinimum = new HL7V271Field
+        {
+            field = message[@"RXG"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_giveAmountMinimum.field.FieldRepetitions != null && _giveAmountMinimum.field.FieldRepetitions.Count > 0)
+        {
+            _giveAmountMinimum.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_giveAmountMinimum, fieldData);
+        }
+
+        return _giveAmountMinimum;
+    } 
+}
+
+internal HL7V271Field _giveAmountMaximum;
+
+public HL7V271Field GiveAmountMaximum
+{
+    get
+    {
+        if (_giveAmountMaximum != null)
+        {
+            return _giveAmountMaximum;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.6",
+            Type = @"Field",
+            Position = @"RXG.6",
+            Name = @"Give Amount - Maximum",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"In a variable dose order, this is the maximum ordered amount.  In a non-varying dose, this field is not used.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _giveAmountMaximum = new HL7V271Field
+        {
+            field = message[@"RXG"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_giveAmountMaximum.field.FieldRepetitions != null && _giveAmountMaximum.field.FieldRepetitions.Count > 0)
+        {
+            _giveAmountMaximum.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_giveAmountMaximum, fieldData);
+        }
+
+        return _giveAmountMaximum;
+    } 
+}
+
+internal HL7V271Field _giveUnits;
+
+public HL7V271Field GiveUnits
+{
+    get
+    {
+        if (_giveUnits != null)
+        {
+            return _giveUnits;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.7",
+            Type = @"Field",
+            Position = @"RXG.7",
+            Name = @"Give Units",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the units for the give amount.
 
 A table of standard units that contains compound units is needed. Until such a table is agreed on, a user-defined table is needed for each site.
 
 Note: These units can be a ""compound quantity;"" i.e., the units may contain the word ""per."" For example, micrograms per KG (micg/kg) is an acceptable value, which means that the units are micrograms per KG (of body weight).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.7.1",
                             Type = @"Component",
@@ -1021,25 +1198,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _giveUnits = new HL7V271Field
+        {
+            field = message[@"RXG"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_giveUnits.field.FieldRepetitions != null && _giveUnits.field.FieldRepetitions.Count > 0)
+        {
+            _giveUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_giveUnits, fieldData);
+        }
+
+        return _giveUnits;
+    } 
+}
+
+internal HL7V271Field _giveDosageForm;
+
+public HL7V271Field GiveDosageForm
+{
+    get
+    {
+        if (_giveDosageForm != null)
+        {
+            return _giveDosageForm;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.8",
+            Type = @"Field",
+            Position = @"RXG.8",
+            Name = @"Give Dosage Form",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"The dosage form indicates the manner in which the medication or treatment is aggregated for dispensing, e.g., tablets, capsules, suppositories.  In some cases, this information is implied by the give code in RXE-2-Give Code.  Use the RXE-6-Give Dosage Form when the give code does not specify the dosage form.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXG.8",
-                            Type = @"Field",
-                            Position = @"RXG.8",
-                            Name = @"Give Dosage Form",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"The dosage form indicates the manner in which the medication or treatment is aggregated for dispensing, e.g., tablets, capsules, suppositories.  In some cases, this information is implied by the give code in RXE-2-Give Code.  Use the RXE-6-Give Dosage Form when the give code does not specify the dosage form.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.8.1",
                             Type = @"Component",
@@ -1465,25 +1672,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _giveDosageForm = new HL7V271Field
+        {
+            field = message[@"RXG"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_giveDosageForm.field.FieldRepetitions != null && _giveDosageForm.field.FieldRepetitions.Count > 0)
+        {
+            _giveDosageForm.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_giveDosageForm, fieldData);
+        }
+
+        return _giveDosageForm;
+    } 
+}
+
+internal HL7V271Field _administrationNotes;
+
+public HL7V271Field AdministrationNotes
+{
+    get
+    {
+        if (_administrationNotes != null)
+        {
+            return _administrationNotes;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.9",
+            Type = @"Field",
+            Position = @"RXG.9",
+            Name = @"Administration Notes",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains notes to the person administering the medication/treatment (may include the ordering provider's original notes, as well as any notes from the formulary or the pharmacy or treatment supplier).  If coded, a user-defined table must be used.  If free text, place a null in the first component and the text in the second, e.g., |^this is a free text administration note|.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXG.9",
-                            Type = @"Field",
-                            Position = @"RXG.9",
-                            Name = @"Administration Notes",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains notes to the person administering the medication/treatment (may include the ordering provider's original notes, as well as any notes from the formulary or the pharmacy or treatment supplier).  If coded, a user-defined table must be used.  If free text, place a null in the first component and the text in the second, e.g., |^this is a free text administration note|.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.9.1",
                             Type = @"Component",
@@ -1909,45 +2146,102 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.10",
-                            Type = @"Field",
-                            Position = @"RXG.10",
-                            Name = @"Substitution Status",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0167",
-                            TableName = @"Substitution Status",
-                            Description = @"Refer to HL7 Table 0167 - Substitution Status for valid values.
+                        }
+        }
+
+        _administrationNotes = new HL7V271Field
+        {
+            field = message[@"RXG"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_administrationNotes.field.FieldRepetitions != null && _administrationNotes.field.FieldRepetitions.Count > 0)
+        {
+            _administrationNotes.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_administrationNotes, fieldData);
+        }
+
+        return _administrationNotes;
+    } 
+}
+
+internal HL7V271Field _substitutionStatus;
+
+public HL7V271Field SubstitutionStatus
+{
+    get
+    {
+        if (_substitutionStatus != null)
+        {
+            return _substitutionStatus;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.10",
+            Type = @"Field",
+            Position = @"RXG.10",
+            Name = @"Substitution Status",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0167",
+            TableName = @"Substitution Status",
+            Description = @"Refer to HL7 Table 0167 - Substitution Status for valid values.
 
 Note: The next two fields are equivalent to the corresponding fields of the RXE segment. They are included (optionally) in the RXG so that it may ""stand alone"" as a ""give"" instruction segment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _substitutionStatus = new HL7V271Field
+        {
+            field = message[@"RXG"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_substitutionStatus.field.FieldRepetitions != null && _substitutionStatus.field.FieldRepetitions.Count > 0)
+        {
+            _substitutionStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_substitutionStatus, fieldData);
+        }
+
+        return _substitutionStatus;
+    } 
+}
+
+internal HL7V271Field _dispensetoLocation;
+
+public HL7V271Field DispensetoLocation
+{
+    get
+    {
+        if (_dispensetoLocation != null)
+        {
+            return _dispensetoLocation;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.11",
+            Type = @"Field",
+            Position = @"RXG.11",
+            Name = @"Dispense-to Location",
+            Length = 0,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"LA2",
+            DataTypeName = @"Location With Address Variation 2",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is retained for backward compatibility only as of v 2.6. The reader is referred to RXG-27 and RXG-28. The first component contains the inpatient or outpatient location where the drug or treatment was dispensed (if applicable). The default (null) value is the current census location for the patient. Site-specific table. The first eight components have the same form as the first eight components of PV1-3-assigned patient location. The final eight components replace the ninth component of PV1-3-assigned patient location and represent the full address specification.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXG.11",
-                            Type = @"Field",
-                            Position = @"RXG.11",
-                            Name = @"Dispense-to Location",
-                            Length = 0,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"LA2",
-                            DataTypeName = @"Location With Address Variation 2",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is retained for backward compatibility only as of v 2.6. The reader is referred to RXG-27 and RXG-28. The first component contains the inpatient or outpatient location where the drug or treatment was dispensed (if applicable). The default (null) value is the current census location for the patient. Site-specific table. The first eight components have the same form as the first eight components of PV1-3-assigned patient location. The final eight components replace the ninth component of PV1-3-assigned patient location and represent the full address specification.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.11.1",
                             Type = @"Component",
@@ -2289,45 +2583,102 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"This component specifies any other geographic designation that may be necessary. It includes county, bioregion, SMSA, etc.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.12",
-                            Type = @"Field",
-                            Position = @"RXG.12",
-                            Name = @"Needs Human Review",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no Indicator",
-                            Description = @"Refer to HL7 Table 0136 - Yes/No Indicator for valid values. The values have the following meaning for this field:
+                        }
+        }
+
+        _dispensetoLocation = new HL7V271Field
+        {
+            field = message[@"RXG"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dispensetoLocation.field.FieldRepetitions != null && _dispensetoLocation.field.FieldRepetitions.Count > 0)
+        {
+            _dispensetoLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_dispensetoLocation, fieldData);
+        }
+
+        return _dispensetoLocation;
+    } 
+}
+
+internal HL7V271Field _needsHumanReview;
+
+public HL7V271Field NeedsHumanReview
+{
+    get
+    {
+        if (_needsHumanReview != null)
+        {
+            return _needsHumanReview;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.12",
+            Type = @"Field",
+            Position = @"RXG.12",
+            Name = @"Needs Human Review",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0136",
+            TableName = @"Yes/no Indicator",
+            Description = @"Refer to HL7 Table 0136 - Yes/No Indicator for valid values. The values have the following meaning for this field:
 Y - Indicates that a warning is present. The application receiving the dispense order needs to warn the person dispensing/administering the drug or treatment to pay attention to the text in RXG-13-pharmacy/treatment supplier's special administration instructions.
 N - Indicates no warning is present. This is the equivalent default (null) value.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _needsHumanReview = new HL7V271Field
+        {
+            field = message[@"RXG"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_needsHumanReview.field.FieldRepetitions != null && _needsHumanReview.field.FieldRepetitions.Count > 0)
+        {
+            _needsHumanReview.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_needsHumanReview, fieldData);
+        }
+
+        return _needsHumanReview;
+    } 
+}
+
+internal HL7V271Field _pharmacyTreatmentSuppliersSpecialAdministrationInstructions;
+
+public HL7V271Field PharmacyTreatmentSuppliersSpecialAdministrationInstructions
+{
+    get
+    {
+        if (_pharmacyTreatmentSuppliersSpecialAdministrationInstructions != null)
+        {
+            return _pharmacyTreatmentSuppliersSpecialAdministrationInstructions;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.13",
+            Type = @"Field",
+            Position = @"RXG.13",
+            Name = @"Pharmacy/Treatment Supplier's Special Administration Instructions",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains pharmacy/treatment supplier-generated special instructions to the provider administering the order.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXG.13",
-                            Type = @"Field",
-                            Position = @"RXG.13",
-                            Name = @"Pharmacy/Treatment Supplier's Special Administration Instructions",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains pharmacy/treatment supplier-generated special instructions to the provider administering the order.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.13.1",
                             Type = @"Component",
@@ -2753,23 +3104,51 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.14",
-                            Type = @"Field",
-                            Position = @"RXG.14",
-                            Name = @"Give Per (time Unit)",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the time unit to use to calculate the rate at which the pharmaceutical/treatment is to be administered.
+                        }
+        }
+
+        _pharmacyTreatmentSuppliersSpecialAdministrationInstructions = new HL7V271Field
+        {
+            field = message[@"RXG"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_pharmacyTreatmentSuppliersSpecialAdministrationInstructions.field.FieldRepetitions != null && _pharmacyTreatmentSuppliersSpecialAdministrationInstructions.field.FieldRepetitions.Count > 0)
+        {
+            _pharmacyTreatmentSuppliersSpecialAdministrationInstructions.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_pharmacyTreatmentSuppliersSpecialAdministrationInstructions, fieldData);
+        }
+
+        return _pharmacyTreatmentSuppliersSpecialAdministrationInstructions;
+    } 
+}
+
+internal HL7V271Field _givePertimeUnit;
+
+public HL7V271Field GivePertimeUnit
+{
+    get
+    {
+        if (_givePertimeUnit != null)
+        {
+            return _givePertimeUnit;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.14",
+            Type = @"Field",
+            Position = @"RXG.14",
+            Name = @"Give Per (time Unit)",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the time unit to use to calculate the rate at which the pharmaceutical/treatment is to be administered.
 Format:
 S<integer> = <integer> seconds
 M<integer> = <integer> minutes
@@ -2783,44 +3162,100 @@ INDEF = do indefinitely - also the default
 This is the same as the format specified for the DURATION component of the quantity/timing field, excluding the ""X"" specification.
 
 Required when relevant (e.g., certain IVs). For example, if the ""give amount/units"" were 300 ml and the ""give per"" time unit were H1 (equivalent to one hour), the rate is 300ml/hr.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _givePertimeUnit = new HL7V271Field
+        {
+            field = message[@"RXG"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_givePertimeUnit.field.FieldRepetitions != null && _givePertimeUnit.field.FieldRepetitions.Count > 0)
+        {
+            _givePertimeUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_givePertimeUnit, fieldData);
+        }
+
+        return _givePertimeUnit;
+    } 
+}
+
+internal HL7V271Field _giveRateAmount;
+
+public HL7V271Field GiveRateAmount
+{
+    get
+    {
+        if (_giveRateAmount != null)
+        {
+            return _giveRateAmount;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.15",
+            Type = @"Field",
+            Position = @"RXG.15",
+            Name = @"Give Rate Amount",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the rate at which the substance should be administered.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _giveRateAmount = new HL7V271Field
+        {
+            field = message[@"RXG"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_giveRateAmount.field.FieldRepetitions != null && _giveRateAmount.field.FieldRepetitions.Count > 0)
+        {
+            _giveRateAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_giveRateAmount, fieldData);
+        }
+
+        return _giveRateAmount;
+    } 
+}
+
+internal HL7V271Field _giveRateUnits;
+
+public HL7V271Field GiveRateUnits
+{
+    get
+    {
+        if (_giveRateUnits != null)
+        {
+            return _giveRateUnits;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.16",
+            Type = @"Field",
+            Position = @"RXG.16",
+            Name = @"Give Rate Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the units for RXG-15-give rate amount. May be composite. The ratio of the RXG-15-give rate amount and RXG-16-give rate units fields define the actual rate of administration. Thus, if RXG-15-give rate amount = 100 and RXG-16-give rate units = ml/hr, the requested rate of administration is 100 ml/hr.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXG.15",
-                            Type = @"Field",
-                            Position = @"RXG.15",
-                            Name = @"Give Rate Amount",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the rate at which the substance should be administered.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.16",
-                            Type = @"Field",
-                            Position = @"RXG.16",
-                            Name = @"Give Rate Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the units for RXG-15-give rate amount. May be composite. The ratio of the RXG-15-give rate amount and RXG-16-give rate units fields define the actual rate of administration. Thus, if RXG-15-give rate amount = 100 and RXG-16-give rate units = ml/hr, the requested rate of administration is 100 ml/hr.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.16.1",
                             Type = @"Component",
@@ -3246,45 +3681,102 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.17",
-                            Type = @"Field",
-                            Position = @"RXG.17",
-                            Name = @"Give Strength",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"Use when RXE-2-give code does not specify the strength.  This is the numeric part of the strength, used in combination with RXE-26-give strength units.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.18",
-                            Type = @"Field",
-                            Position = @"RXG.18",
-                            Name = @"Give Strength Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"Use when RXG-4-Give Code does not specify the strength. This is the unit of the strength, used in combination with RXG-17-Give Strength.
+                        }
+        }
+
+        _giveRateUnits = new HL7V271Field
+        {
+            field = message[@"RXG"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_giveRateUnits.field.FieldRepetitions != null && _giveRateUnits.field.FieldRepetitions.Count > 0)
+        {
+            _giveRateUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_giveRateUnits, fieldData);
+        }
+
+        return _giveRateUnits;
+    } 
+}
+
+internal HL7V271Field _giveStrength;
+
+public HL7V271Field GiveStrength
+{
+    get
+    {
+        if (_giveStrength != null)
+        {
+            return _giveStrength;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.17",
+            Type = @"Field",
+            Position = @"RXG.17",
+            Name = @"Give Strength",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"Use when RXE-2-give code does not specify the strength.  This is the numeric part of the strength, used in combination with RXE-26-give strength units.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _giveStrength = new HL7V271Field
+        {
+            field = message[@"RXG"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_giveStrength.field.FieldRepetitions != null && _giveStrength.field.FieldRepetitions.Count > 0)
+        {
+            _giveStrength.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_giveStrength, fieldData);
+        }
+
+        return _giveStrength;
+    } 
+}
+
+internal HL7V271Field _giveStrengthUnits;
+
+public HL7V271Field GiveStrengthUnits
+{
+    get
+    {
+        if (_giveStrengthUnits != null)
+        {
+            return _giveStrengthUnits;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.18",
+            Type = @"Field",
+            Position = @"RXG.18",
+            Name = @"Give Strength Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"Use when RXG-4-Give Code does not specify the strength. This is the unit of the strength, used in combination with RXG-17-Give Strength.
 
 Note: These units can be a ""compound quantity""; i.e., the units may express a quantity per unit of time. For example, micrograms per hour (micg/h) is an acceptable value. These compound units are contained in the ISO+ table. See Chapter 7 for full definition of ISO+ units.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.18.1",
                             Type = @"Component",
@@ -3710,67 +4202,151 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.19",
-                            Type = @"Field",
-                            Position = @"RXG.19",
-                            Name = @"Substance Lot Number",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the lot number of the medical substance administered.
+                        }
+        }
+
+        _giveStrengthUnits = new HL7V271Field
+        {
+            field = message[@"RXG"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_giveStrengthUnits.field.FieldRepetitions != null && _giveStrengthUnits.field.FieldRepetitions.Count > 0)
+        {
+            _giveStrengthUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_giveStrengthUnits, fieldData);
+        }
+
+        return _giveStrengthUnits;
+    } 
+}
+
+internal HL7V271Field _substanceLotNumber;
+
+public HL7V271Field SubstanceLotNumber
+{
+    get
+    {
+        if (_substanceLotNumber != null)
+        {
+            return _substanceLotNumber;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.19",
+            Type = @"Field",
+            Position = @"RXG.19",
+            Name = @"Substance Lot Number",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the lot number of the medical substance administered.
 
 Note: The lot number is the number printed on the label attached to the container holding the substance and on the packaging which houses the container. If the substance is a vaccine, for example, and a diluent is required, a lot number may appear on the vial containing the diluent; however, any such identifier associated with a diluent is not the identifier of interest. The substance lot number should be reported, not that of the diluent.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.20",
-                            Type = @"Field",
-                            Position = @"RXG.20",
-                            Name = @"Substance Expiration Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the expiration date of the medical substance administered.
+            Sample = @"",
+            Fields = null
+        }
+
+        _substanceLotNumber = new HL7V271Field
+        {
+            field = message[@"RXG"][19],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_substanceLotNumber.field.FieldRepetitions != null && _substanceLotNumber.field.FieldRepetitions.Count > 0)
+        {
+            _substanceLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_substanceLotNumber, fieldData);
+        }
+
+        return _substanceLotNumber;
+    } 
+}
+
+internal HL7V271Field _substanceExpirationDate;
+
+public HL7V271Field SubstanceExpirationDate
+{
+    get
+    {
+        if (_substanceExpirationDate != null)
+        {
+            return _substanceExpirationDate;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.20",
+            Type = @"Field",
+            Position = @"RXG.20",
+            Name = @"Substance Expiration Date",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the expiration date of the medical substance administered.
 
 Note: Vaccine expiration date does not always have a ""day"" component; therefore, such a date may be transmitted as YYYYMM.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.21",
-                            Type = @"Field",
-                            Position = @"RXG.21",
-                            Name = @"Substance Manufacturer Name",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0227",
-                            TableName = @"Manufacturers of Vaccines",
-                            Description = @"This field contains the manufacturer of the medical substance administered.
+            Sample = @"",
+            Fields = null
+        }
+
+        _substanceExpirationDate = new HL7V271Field
+        {
+            field = message[@"RXG"][20],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_substanceExpirationDate.field.FieldRepetitions != null && _substanceExpirationDate.field.FieldRepetitions.Count > 0)
+        {
+            _substanceExpirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_substanceExpirationDate, fieldData);
+        }
+
+        return _substanceExpirationDate;
+    } 
+}
+
+internal HL7V271Field _substanceManufacturerName;
+
+public HL7V271Field SubstanceManufacturerName
+{
+    get
+    {
+        if (_substanceManufacturerName != null)
+        {
+            return _substanceManufacturerName;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.21",
+            Type = @"Field",
+            Position = @"RXG.21",
+            Name = @"Substance Manufacturer Name",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0227",
+            TableName = @"Manufacturers of Vaccines",
+            Description = @"This field contains the manufacturer of the medical substance administered.
 
 Note: For vaccines, code system MVX may be used to code this field (see section 4A.7.1, ""Vaccine administration data""). This field may be used if the manufacturer of the substance is not identified by the code used in RXA-5-administered code.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.21.1",
                             Type = @"Component",
@@ -4196,25 +4772,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _substanceManufacturerName = new HL7V271Field
+        {
+            field = message[@"RXG"][21],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_substanceManufacturerName.field.FieldRepetitions != null && _substanceManufacturerName.field.FieldRepetitions.Count > 0)
+        {
+            _substanceManufacturerName.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_substanceManufacturerName, fieldData);
+        }
+
+        return _substanceManufacturerName;
+    } 
+}
+
+internal HL7V271Field _indication;
+
+public HL7V271Field Indication
+{
+    get
+    {
+        if (_indication != null)
+        {
+            return _indication;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.22",
+            Type = @"Field",
+            Position = @"RXG.22",
+            Name = @"Indication",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the identifier of the condition or problem for which the drug/treatment was prescribed. May repeat if multiple indications are relevant.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXG.22",
-                            Type = @"Field",
-                            Position = @"RXG.22",
-                            Name = @"Indication",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the identifier of the condition or problem for which the drug/treatment was prescribed. May repeat if multiple indications are relevant.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.22.1",
                             Type = @"Component",
@@ -4640,44 +5246,101 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.23",
-                            Type = @"Field",
-                            Position = @"RXG.23",
-                            Name = @"Give Drug Strength Volume",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This numeric field defines the volume measurement in which the drug strength concentration is contained. For example, Acetaminophen 120 MG/5ML Elixir means that 120 MG of the drug is in a solution with an RXG-17, RXG-18, RXG-23 and RXG-24 as:
+                        }
+        }
+
+        _indication = new HL7V271Field
+        {
+            field = message[@"RXG"][22],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_indication.field.FieldRepetitions != null && _indication.field.FieldRepetitions.Count > 0)
+        {
+            _indication.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_indication, fieldData);
+        }
+
+        return _indication;
+    } 
+}
+
+internal HL7V271Field _giveDrugStrengthVolume;
+
+public HL7V271Field GiveDrugStrengthVolume
+{
+    get
+    {
+        if (_giveDrugStrengthVolume != null)
+        {
+            return _giveDrugStrengthVolume;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.23",
+            Type = @"Field",
+            Position = @"RXG.23",
+            Name = @"Give Drug Strength Volume",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This numeric field defines the volume measurement in which the drug strength concentration is contained. For example, Acetaminophen 120 MG/5ML Elixir means that 120 MG of the drug is in a solution with an RXG-17, RXG-18, RXG-23 and RXG-24 as:
 RXG|||||||||||||||||120|mg^^ISO|||||5|ml^^ISO ...<cr>",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _giveDrugStrengthVolume = new HL7V271Field
+        {
+            field = message[@"RXG"][23],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_giveDrugStrengthVolume.field.FieldRepetitions != null && _giveDrugStrengthVolume.field.FieldRepetitions.Count > 0)
+        {
+            _giveDrugStrengthVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_giveDrugStrengthVolume, fieldData);
+        }
+
+        return _giveDrugStrengthVolume;
+    } 
+}
+
+internal HL7V271Field _giveDrugStrengthVolumeUnits;
+
+public HL7V271Field GiveDrugStrengthVolumeUnits
+{
+    get
+    {
+        if (_giveDrugStrengthVolumeUnits != null)
+        {
+            return _giveDrugStrengthVolumeUnits;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.24",
+            Type = @"Field",
+            Position = @"RXG.24",
+            Name = @"Give Drug Strength Volume Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"Description: This field indicates the volumetric unit associated with RXG-23 Give Drug Strength Volume.  See example in RXG-23.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXG.24",
-                            Type = @"Field",
-                            Position = @"RXG.24",
-                            Name = @"Give Drug Strength Volume Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"Description: This field indicates the volumetric unit associated with RXG-23 Give Drug Strength Volume.  See example in RXG-23.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.24.1",
                             Type = @"Component",
@@ -5103,31 +5766,61 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.25",
-                            Type = @"Field",
-                            Position = @"RXG.25",
-                            Name = @"Give Barcode Identifier",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field contains the pharmacy system's assigned barcode number for the give occurrence. For IV orders, many pharmacy systems generate a barcode number to identify a specific bag/bottle of the order. This number can be an instance identifier; unique for the patient, drug combination, and schedule instance or it may be just a drug identifier.
+                        }
+        }
+
+        _giveDrugStrengthVolumeUnits = new HL7V271Field
+        {
+            field = message[@"RXG"][24],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_giveDrugStrengthVolumeUnits.field.FieldRepetitions != null && _giveDrugStrengthVolumeUnits.field.FieldRepetitions.Count > 0)
+        {
+            _giveDrugStrengthVolumeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_giveDrugStrengthVolumeUnits, fieldData);
+        }
+
+        return _giveDrugStrengthVolumeUnits;
+    } 
+}
+
+internal HL7V271Field _giveBarcodeIdentifier;
+
+public HL7V271Field GiveBarcodeIdentifier
+{
+    get
+    {
+        if (_giveBarcodeIdentifier != null)
+        {
+            return _giveBarcodeIdentifier;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.25",
+            Type = @"Field",
+            Position = @"RXG.25",
+            Name = @"Give Barcode Identifier",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field contains the pharmacy system's assigned barcode number for the give occurrence. For IV orders, many pharmacy systems generate a barcode number to identify a specific bag/bottle of the order. This number can be an instance identifier; unique for the patient, drug combination, and schedule instance or it may be just a drug identifier.
 
 The composition and use of the barcode number is dependent on application negotiation. An example of this field follows: The barcode number is in the following format, 9XXXXXXX000. The number '9' is a constant, XXXXXXX is seven (7) characters for a unique identifier assigned or derived from the patient account and order ID and 000 is the zero-filled three (3) character IV bottle number.
 
 The maximum length of the first component of this field is 40 characters to allow for the maximum existing barcode length in use today. The second component contains the description of the item being coded and the third component may define the barcode type.
 
 12345678901^IV bottle^3X9",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.25.1",
                             Type = @"Component",
@@ -5553,49 +6246,106 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.26",
-                            Type = @"Field",
-                            Position = @"RXG.26",
-                            Name = @"Pharmacy Order Type",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0480",
-                            TableName = @"Pharmacy Order Types",
-                            Description = @"The Pharmacy Order Type field defines the general category of pharmacy order which may be used to determine the processing path the order will take.  Refer to HL7 Table 0480 Pharmacy Order Types for valid values.
+                        }
+        }
+
+        _giveBarcodeIdentifier = new HL7V271Field
+        {
+            field = message[@"RXG"][25],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_giveBarcodeIdentifier.field.FieldRepetitions != null && _giveBarcodeIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _giveBarcodeIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_giveBarcodeIdentifier, fieldData);
+        }
+
+        return _giveBarcodeIdentifier;
+    } 
+}
+
+internal HL7V271Field _pharmacyOrderType;
+
+public HL7V271Field PharmacyOrderType
+{
+    get
+    {
+        if (_pharmacyOrderType != null)
+        {
+            return _pharmacyOrderType;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.26",
+            Type = @"Field",
+            Position = @"RXG.26",
+            Name = @"Pharmacy Order Type",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0480",
+            TableName = @"Pharmacy Order Types",
+            Description = @"The Pharmacy Order Type field defines the general category of pharmacy order which may be used to determine the processing path the order will take.  Refer to HL7 Table 0480 Pharmacy Order Types for valid values.
 
 This field may also be used for grouping of related orders for processing and/or reports.  For example, Medication Administration Records (MARs) often group large volume solutions, medications and small volume solutions differently based upon site-specific workflow.
 
 Usage Rule: This field is optional for all Pharmacy transactions.  When not populated, a default value of ""M"" is assumed.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.27",
-                            Type = @"Field",
-                            Position = @"RXG.27",
-                            Name = @"Dispense To Pharmacy",
-                            Length = 0,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field is retained for backward compatibility only as of v27. The information formerly communicated using this field should now be communicated using the PRT segment. The reader is referred to chapter 7 for a description of that segment.
+            Sample = @"",
+            Fields = null
+        }
+
+        _pharmacyOrderType = new HL7V271Field
+        {
+            field = message[@"RXG"][26],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_pharmacyOrderType.field.FieldRepetitions != null && _pharmacyOrderType.field.FieldRepetitions.Count > 0)
+        {
+            _pharmacyOrderType.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_pharmacyOrderType, fieldData);
+        }
+
+        return _pharmacyOrderType;
+    } 
+}
+
+internal HL7V271Field _dispenseToPharmacy;
+
+public HL7V271Field DispenseToPharmacy
+{
+    get
+    {
+        if (_dispenseToPharmacy != null)
+        {
+            return _dispenseToPharmacy;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.27",
+            Type = @"Field",
+            Position = @"RXG.27",
+            Name = @"Dispense To Pharmacy",
+            Length = 0,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field is retained for backward compatibility only as of v27. The information formerly communicated using this field should now be communicated using the PRT segment. The reader is referred to chapter 7 for a description of that segment.
 
 This field specifies the pharmacy that will dispense the prescription.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.27.1",
                             Type = @"Component",
@@ -6021,27 +6771,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"RXG.28",
-                            Type = @"Field",
-                            Position = @"RXG.28",
-                            Name = @"Dispense To Pharmacy Address",
-                            Length = 0,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field is retained for backward compatibility only as of v27. The information formerly communicated using this field should now be communicated using the PRT segment. The reader is referred to chapter 7 for a description of that segment.
+                        }
+        }
+
+        _dispenseToPharmacy = new HL7V271Field
+        {
+            field = message[@"RXG"][27],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dispenseToPharmacy.field.FieldRepetitions != null && _dispenseToPharmacy.field.FieldRepetitions.Count > 0)
+        {
+            _dispenseToPharmacy.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_dispenseToPharmacy, fieldData);
+        }
+
+        return _dispenseToPharmacy;
+    } 
+}
+
+internal HL7V271Field _dispenseToPharmacyAddress;
+
+public HL7V271Field DispenseToPharmacyAddress
+{
+    get
+    {
+        if (_dispenseToPharmacyAddress != null)
+        {
+            return _dispenseToPharmacyAddress;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.28",
+            Type = @"Field",
+            Position = @"RXG.28",
+            Name = @"Dispense To Pharmacy Address",
+            Length = 0,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field is retained for backward compatibility only as of v27. The information formerly communicated using this field should now be communicated using the PRT segment. The reader is referred to chapter 7 for a description of that segment.
 
 This field specifies the address of the dispensing facility or the patient's location where the dispensing will occur.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.28.1",
                             Type = @"Component",
@@ -8307,25 +9087,55 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _dispenseToPharmacyAddress = new HL7V271Field
+        {
+            field = message[@"RXG"][28],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dispenseToPharmacyAddress.field.FieldRepetitions != null && _dispenseToPharmacyAddress.field.FieldRepetitions.Count > 0)
+        {
+            _dispenseToPharmacyAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_dispenseToPharmacyAddress, fieldData);
+        }
+
+        return _dispenseToPharmacyAddress;
+    } 
+}
+
+internal HL7V271Field _delivertoPatientLocation;
+
+public HL7V271Field DelivertoPatientLocation
+{
+    get
+    {
+        if (_delivertoPatientLocation != null)
+        {
+            return _delivertoPatientLocation;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.29",
+            Type = @"Field",
+            Position = @"RXG.29",
+            Name = @"Deliver-to Patient Location",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the location of the patient to whom the pharmaceutical substance is to be delivered.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXG.29",
-                            Type = @"Field",
-                            Position = @"RXG.29",
-                            Name = @"Deliver-to Patient Location",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the location of the patient to whom the pharmaceutical substance is to be delivered.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.29.1",
                             Type = @"Component",
@@ -9001,25 +9811,55 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _delivertoPatientLocation = new HL7V271Field
+        {
+            field = message[@"RXG"][29],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_delivertoPatientLocation.field.FieldRepetitions != null && _delivertoPatientLocation.field.FieldRepetitions.Count > 0)
+        {
+            _delivertoPatientLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_delivertoPatientLocation, fieldData);
+        }
+
+        return _delivertoPatientLocation;
+    } 
+}
+
+internal HL7V271Field _delivertoAddress;
+
+public HL7V271Field DelivertoAddress
+{
+    get
+    {
+        if (_delivertoAddress != null)
+        {
+            return _delivertoAddress;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"RXG.30",
+            Type = @"Field",
+            Position = @"RXG.30",
+            Name = @"Deliver-to Address",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the address, either mailing or physical, to which the prescription should be mailed or delivered.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"RXG.30",
-                            Type = @"Field",
-                            Position = @"RXG.30",
-                            Name = @"Deliver-to Address",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the address, either mailing or physical, to which the prescription should be mailed or delivered.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"RXG.30.1",
                             Type = @"Component",
@@ -11285,1295 +12125,23 @@ Refer to HL7 Table 0301 - Universal ID Type for valid values.",
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentRXG(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field giveSubidCounter;
-
-public HL7V271Field GiveSubidCounter
-{
-    get
-    {
-        if (giveSubidCounter != null)
-        {
-            return giveSubidCounter;
-        }
-
-        giveSubidCounter = new HL7V271Field
-        {
-            field = message[@"RXG"][1],
-            Id = @"RXG.1",
-            Type = @"Field",
-            Position = @"RXG.1",
-            Name = @"Give Sub-id Counter",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Use if this RXG segment carries information about a single administration. This field must contain a unique number for the placer order number.  This field along with the placer order number provides a unique reference to the specific scheduled give date/time transmitted by the pharmacy/treatment supplier for this order.
-
-If the RXG segment carries information about multiple administrations, this field's value is zero (0), since in this case a one-to-one matching with the RXA segment is ambiguous.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (giveSubidCounter.field.FieldRepetitions != null && giveSubidCounter.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(giveSubidCounter.Id));
-            giveSubidCounter.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(giveSubidCounter, fieldData);
-        }
-
-        return giveSubidCounter;
-    } 
-}
-
-internal HL7V271Field dispenseSubidCounter;
-
-public HL7V271Field DispenseSubidCounter
-{
-    get
-    {
-        if (dispenseSubidCounter != null)
-        {
-            return dispenseSubidCounter;
-        }
-
-        dispenseSubidCounter = new HL7V271Field
-        {
-            field = message[@"RXG"][2],
-            Id = @"RXG.2",
-            Type = @"Field",
-            Position = @"RXG.2",
-            Name = @"Dispense Sub-id Counter",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This is the dispense sub-ID to which this give message is related.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dispenseSubidCounter.field.FieldRepetitions != null && dispenseSubidCounter.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dispenseSubidCounter.Id));
-            dispenseSubidCounter.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(dispenseSubidCounter, fieldData);
-        }
-
-        return dispenseSubidCounter;
-    } 
-}
-
-internal HL7V271Field quantityTiming;
-
-public HL7V271Field QuantityTiming
-{
-    get
-    {
-        if (quantityTiming != null)
-        {
-            return quantityTiming;
-        }
-
-        quantityTiming = new HL7V271Field
-        {
-            field = message[@"RXG"][3],
-            Id = @"RXG.3",
-            Type = @"Field",
-            Position = @"RXG.3",
-            Name = @"Quantity/Timing",
-            Length = 0,
-            Usage = @"W",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"Attention: The RXG-3 field was retained for backward compatibilty only as of v2.5 and the detail was withdrawn and removed from the standard as of v2.7.
-
-Note: The contents of fields 3-8 should be identical to the comparable fields in the RXE (RXE-2 thru 5).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (quantityTiming.field.FieldRepetitions != null && quantityTiming.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(quantityTiming.Id));
-            quantityTiming.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(quantityTiming, fieldData);
-        }
-
-        return quantityTiming;
-    } 
-}
-
-internal HL7V271Field giveCode;
-
-public HL7V271Field GiveCode
-{
-    get
-    {
-        if (giveCode != null)
-        {
-            return giveCode;
-        }
-
-        giveCode = new HL7V271Field
-        {
-            field = message[@"RXG"][4],
-            Id = @"RXG.4",
-            Type = @"Field",
-            Position = @"RXG.4",
-            Name = @"Give Code",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0292",
-            TableName = @"Vaccines Administered",
-            Description = @"This field is the identifier of the medical substance/treatment ordered to be given to the patient; it is equivalent to OBR-4-Universal service ID in function. See the RXE segment for a complete definition of the RXE-2-Give code. If the substance given is a vaccine, CVX codes may be used to code this field (see HL7 Table 0292 - Vaccines administered).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (giveCode.field.FieldRepetitions != null && giveCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(giveCode.Id));
-            giveCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(giveCode, fieldData);
-        }
-
-        return giveCode;
-    } 
-}
-
-internal HL7V271Field giveAmountMinimum;
-
-public HL7V271Field GiveAmountMinimum
-{
-    get
-    {
-        if (giveAmountMinimum != null)
-        {
-            return giveAmountMinimum;
-        }
-
-        giveAmountMinimum = new HL7V271Field
-        {
-            field = message[@"RXG"][5],
-            Id = @"RXG.5",
-            Type = @"Field",
-            Position = @"RXG.5",
-            Name = @"Give Amount - Minimum",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the ordered amount as encoded by the pharmacy/treatment supplier. In a variable dose order, this is the minimum ordered amount. In a non-varying dose order, this is the exact amount of the order.
-Note: This field is not a duplication of the first component of the quantity/timing field, since in non-pharmacy/treatment orders, that component can be used to specify multiples of an ordered amount.
-
-Another way to say this is that, for pharmacy/treatment orders, the quantity component of the quantity/timing field refers to what is to be given out at each service interval; and thus, in terms of the RX order, that first component always defaults to 1. Hence, in the actual execution of the order, the value of 1 in the first component of the quantity/timing field always refers to one administration of the amount specified in this field (the requested Give Amount field).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (giveAmountMinimum.field.FieldRepetitions != null && giveAmountMinimum.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(giveAmountMinimum.Id));
-            giveAmountMinimum.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(giveAmountMinimum, fieldData);
-        }
-
-        return giveAmountMinimum;
-    } 
-}
-
-internal HL7V271Field giveAmountMaximum;
-
-public HL7V271Field GiveAmountMaximum
-{
-    get
-    {
-        if (giveAmountMaximum != null)
-        {
-            return giveAmountMaximum;
-        }
-
-        giveAmountMaximum = new HL7V271Field
-        {
-            field = message[@"RXG"][6],
-            Id = @"RXG.6",
-            Type = @"Field",
-            Position = @"RXG.6",
-            Name = @"Give Amount - Maximum",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"In a variable dose order, this is the maximum ordered amount.  In a non-varying dose, this field is not used.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (giveAmountMaximum.field.FieldRepetitions != null && giveAmountMaximum.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(giveAmountMaximum.Id));
-            giveAmountMaximum.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(giveAmountMaximum, fieldData);
-        }
-
-        return giveAmountMaximum;
-    } 
-}
-
-internal HL7V271Field giveUnits;
-
-public HL7V271Field GiveUnits
-{
-    get
-    {
-        if (giveUnits != null)
-        {
-            return giveUnits;
-        }
-
-        giveUnits = new HL7V271Field
-        {
-            field = message[@"RXG"][7],
-            Id = @"RXG.7",
-            Type = @"Field",
-            Position = @"RXG.7",
-            Name = @"Give Units",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the units for the give amount.
-
-A table of standard units that contains compound units is needed. Until such a table is agreed on, a user-defined table is needed for each site.
-
-Note: These units can be a ""compound quantity;"" i.e., the units may contain the word ""per."" For example, micrograms per KG (micg/kg) is an acceptable value, which means that the units are micrograms per KG (of body weight).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (giveUnits.field.FieldRepetitions != null && giveUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(giveUnits.Id));
-            giveUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(giveUnits, fieldData);
-        }
-
-        return giveUnits;
-    } 
-}
-
-internal HL7V271Field giveDosageForm;
-
-public HL7V271Field GiveDosageForm
-{
-    get
-    {
-        if (giveDosageForm != null)
-        {
-            return giveDosageForm;
-        }
-
-        giveDosageForm = new HL7V271Field
-        {
-            field = message[@"RXG"][8],
-            Id = @"RXG.8",
-            Type = @"Field",
-            Position = @"RXG.8",
-            Name = @"Give Dosage Form",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"The dosage form indicates the manner in which the medication or treatment is aggregated for dispensing, e.g., tablets, capsules, suppositories.  In some cases, this information is implied by the give code in RXE-2-Give Code.  Use the RXE-6-Give Dosage Form when the give code does not specify the dosage form.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (giveDosageForm.field.FieldRepetitions != null && giveDosageForm.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(giveDosageForm.Id));
-            giveDosageForm.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(giveDosageForm, fieldData);
-        }
-
-        return giveDosageForm;
-    } 
-}
-
-internal HL7V271Field administrationNotes;
-
-public HL7V271Field AdministrationNotes
-{
-    get
-    {
-        if (administrationNotes != null)
-        {
-            return administrationNotes;
-        }
-
-        administrationNotes = new HL7V271Field
-        {
-            field = message[@"RXG"][9],
-            Id = @"RXG.9",
-            Type = @"Field",
-            Position = @"RXG.9",
-            Name = @"Administration Notes",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains notes to the person administering the medication/treatment (may include the ordering provider's original notes, as well as any notes from the formulary or the pharmacy or treatment supplier).  If coded, a user-defined table must be used.  If free text, place a null in the first component and the text in the second, e.g., |^this is a free text administration note|.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (administrationNotes.field.FieldRepetitions != null && administrationNotes.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(administrationNotes.Id));
-            administrationNotes.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(administrationNotes, fieldData);
-        }
-
-        return administrationNotes;
-    } 
-}
-
-internal HL7V271Field substitutionStatus;
-
-public HL7V271Field SubstitutionStatus
-{
-    get
-    {
-        if (substitutionStatus != null)
-        {
-            return substitutionStatus;
-        }
-
-        substitutionStatus = new HL7V271Field
-        {
-            field = message[@"RXG"][10],
-            Id = @"RXG.10",
-            Type = @"Field",
-            Position = @"RXG.10",
-            Name = @"Substitution Status",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0167",
-            TableName = @"Substitution Status",
-            Description = @"Refer to HL7 Table 0167 - Substitution Status for valid values.
-
-Note: The next two fields are equivalent to the corresponding fields of the RXE segment. They are included (optionally) in the RXG so that it may ""stand alone"" as a ""give"" instruction segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (substitutionStatus.field.FieldRepetitions != null && substitutionStatus.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substitutionStatus.Id));
-            substitutionStatus.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(substitutionStatus, fieldData);
-        }
-
-        return substitutionStatus;
-    } 
-}
-
-internal HL7V271Field dispensetoLocation;
-
-public HL7V271Field DispensetoLocation
-{
-    get
-    {
-        if (dispensetoLocation != null)
-        {
-            return dispensetoLocation;
-        }
-
-        dispensetoLocation = new HL7V271Field
-        {
-            field = message[@"RXG"][11],
-            Id = @"RXG.11",
-            Type = @"Field",
-            Position = @"RXG.11",
-            Name = @"Dispense-to Location",
-            Length = 0,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"LA2",
-            DataTypeName = @"Location With Address Variation 2",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is retained for backward compatibility only as of v 2.6. The reader is referred to RXG-27 and RXG-28. The first component contains the inpatient or outpatient location where the drug or treatment was dispensed (if applicable). The default (null) value is the current census location for the patient. Site-specific table. The first eight components have the same form as the first eight components of PV1-3-assigned patient location. The final eight components replace the ninth component of PV1-3-assigned patient location and represent the full address specification.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dispensetoLocation.field.FieldRepetitions != null && dispensetoLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dispensetoLocation.Id));
-            dispensetoLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(dispensetoLocation, fieldData);
-        }
-
-        return dispensetoLocation;
-    } 
-}
-
-internal HL7V271Field needsHumanReview;
-
-public HL7V271Field NeedsHumanReview
-{
-    get
-    {
-        if (needsHumanReview != null)
-        {
-            return needsHumanReview;
-        }
-
-        needsHumanReview = new HL7V271Field
-        {
-            field = message[@"RXG"][12],
-            Id = @"RXG.12",
-            Type = @"Field",
-            Position = @"RXG.12",
-            Name = @"Needs Human Review",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0136",
-            TableName = @"Yes/no Indicator",
-            Description = @"Refer to HL7 Table 0136 - Yes/No Indicator for valid values. The values have the following meaning for this field:
-Y - Indicates that a warning is present. The application receiving the dispense order needs to warn the person dispensing/administering the drug or treatment to pay attention to the text in RXG-13-pharmacy/treatment supplier's special administration instructions.
-N - Indicates no warning is present. This is the equivalent default (null) value.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (needsHumanReview.field.FieldRepetitions != null && needsHumanReview.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(needsHumanReview.Id));
-            needsHumanReview.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(needsHumanReview, fieldData);
-        }
-
-        return needsHumanReview;
-    } 
-}
-
-internal HL7V271Field pharmacyTreatmentSuppliersSpecialAdministrationInstructions;
-
-public HL7V271Field PharmacyTreatmentSuppliersSpecialAdministrationInstructions
-{
-    get
-    {
-        if (pharmacyTreatmentSuppliersSpecialAdministrationInstructions != null)
-        {
-            return pharmacyTreatmentSuppliersSpecialAdministrationInstructions;
-        }
-
-        pharmacyTreatmentSuppliersSpecialAdministrationInstructions = new HL7V271Field
-        {
-            field = message[@"RXG"][13],
-            Id = @"RXG.13",
-            Type = @"Field",
-            Position = @"RXG.13",
-            Name = @"Pharmacy/Treatment Supplier's Special Administration Instructions",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains pharmacy/treatment supplier-generated special instructions to the provider administering the order.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (pharmacyTreatmentSuppliersSpecialAdministrationInstructions.field.FieldRepetitions != null && pharmacyTreatmentSuppliersSpecialAdministrationInstructions.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pharmacyTreatmentSuppliersSpecialAdministrationInstructions.Id));
-            pharmacyTreatmentSuppliersSpecialAdministrationInstructions.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(pharmacyTreatmentSuppliersSpecialAdministrationInstructions, fieldData);
-        }
-
-        return pharmacyTreatmentSuppliersSpecialAdministrationInstructions;
-    } 
-}
-
-internal HL7V271Field givePertimeUnit;
-
-public HL7V271Field GivePertimeUnit
-{
-    get
-    {
-        if (givePertimeUnit != null)
-        {
-            return givePertimeUnit;
-        }
-
-        givePertimeUnit = new HL7V271Field
-        {
-            field = message[@"RXG"][14],
-            Id = @"RXG.14",
-            Type = @"Field",
-            Position = @"RXG.14",
-            Name = @"Give Per (time Unit)",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the time unit to use to calculate the rate at which the pharmaceutical/treatment is to be administered.
-Format:
-S<integer> = <integer> seconds
-M<integer> = <integer> minutes
-H<integer> = <integer> hours
-D<integer> = <integer> days
-W<integer> = <integer> weeks
-L<integer> = <integer> months
-T<integer> = at the interval and amount stated until a total of <integer> ""DOSAGE"" is accumulated. Units would be assumed to be the same as in the QUANTITY field.
-INDEF = do indefinitely - also the default
-
-This is the same as the format specified for the DURATION component of the quantity/timing field, excluding the ""X"" specification.
-
-Required when relevant (e.g., certain IVs). For example, if the ""give amount/units"" were 300 ml and the ""give per"" time unit were H1 (equivalent to one hour), the rate is 300ml/hr.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (givePertimeUnit.field.FieldRepetitions != null && givePertimeUnit.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(givePertimeUnit.Id));
-            givePertimeUnit.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(givePertimeUnit, fieldData);
-        }
-
-        return givePertimeUnit;
-    } 
-}
-
-internal HL7V271Field giveRateAmount;
-
-public HL7V271Field GiveRateAmount
-{
-    get
-    {
-        if (giveRateAmount != null)
-        {
-            return giveRateAmount;
-        }
-
-        giveRateAmount = new HL7V271Field
-        {
-            field = message[@"RXG"][15],
-            Id = @"RXG.15",
-            Type = @"Field",
-            Position = @"RXG.15",
-            Name = @"Give Rate Amount",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the rate at which the substance should be administered.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (giveRateAmount.field.FieldRepetitions != null && giveRateAmount.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(giveRateAmount.Id));
-            giveRateAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(giveRateAmount, fieldData);
-        }
-
-        return giveRateAmount;
-    } 
-}
-
-internal HL7V271Field giveRateUnits;
-
-public HL7V271Field GiveRateUnits
-{
-    get
-    {
-        if (giveRateUnits != null)
-        {
-            return giveRateUnits;
-        }
-
-        giveRateUnits = new HL7V271Field
-        {
-            field = message[@"RXG"][16],
-            Id = @"RXG.16",
-            Type = @"Field",
-            Position = @"RXG.16",
-            Name = @"Give Rate Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the units for RXG-15-give rate amount. May be composite. The ratio of the RXG-15-give rate amount and RXG-16-give rate units fields define the actual rate of administration. Thus, if RXG-15-give rate amount = 100 and RXG-16-give rate units = ml/hr, the requested rate of administration is 100 ml/hr.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (giveRateUnits.field.FieldRepetitions != null && giveRateUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(giveRateUnits.Id));
-            giveRateUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(giveRateUnits, fieldData);
-        }
-
-        return giveRateUnits;
-    } 
-}
-
-internal HL7V271Field giveStrength;
-
-public HL7V271Field GiveStrength
-{
-    get
-    {
-        if (giveStrength != null)
-        {
-            return giveStrength;
-        }
-
-        giveStrength = new HL7V271Field
-        {
-            field = message[@"RXG"][17],
-            Id = @"RXG.17",
-            Type = @"Field",
-            Position = @"RXG.17",
-            Name = @"Give Strength",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"Use when RXE-2-give code does not specify the strength.  This is the numeric part of the strength, used in combination with RXE-26-give strength units.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (giveStrength.field.FieldRepetitions != null && giveStrength.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(giveStrength.Id));
-            giveStrength.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(giveStrength, fieldData);
-        }
-
-        return giveStrength;
-    } 
-}
-
-internal HL7V271Field giveStrengthUnits;
-
-public HL7V271Field GiveStrengthUnits
-{
-    get
-    {
-        if (giveStrengthUnits != null)
-        {
-            return giveStrengthUnits;
-        }
-
-        giveStrengthUnits = new HL7V271Field
-        {
-            field = message[@"RXG"][18],
-            Id = @"RXG.18",
-            Type = @"Field",
-            Position = @"RXG.18",
-            Name = @"Give Strength Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"Use when RXG-4-Give Code does not specify the strength. This is the unit of the strength, used in combination with RXG-17-Give Strength.
-
-Note: These units can be a ""compound quantity""; i.e., the units may express a quantity per unit of time. For example, micrograms per hour (micg/h) is an acceptable value. These compound units are contained in the ISO+ table. See Chapter 7 for full definition of ISO+ units.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (giveStrengthUnits.field.FieldRepetitions != null && giveStrengthUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(giveStrengthUnits.Id));
-            giveStrengthUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(giveStrengthUnits, fieldData);
-        }
-
-        return giveStrengthUnits;
-    } 
-}
-
-internal HL7V271Field substanceLotNumber;
-
-public HL7V271Field SubstanceLotNumber
-{
-    get
-    {
-        if (substanceLotNumber != null)
-        {
-            return substanceLotNumber;
-        }
-
-        substanceLotNumber = new HL7V271Field
-        {
-            field = message[@"RXG"][19],
-            Id = @"RXG.19",
-            Type = @"Field",
-            Position = @"RXG.19",
-            Name = @"Substance Lot Number",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the lot number of the medical substance administered.
-
-Note: The lot number is the number printed on the label attached to the container holding the substance and on the packaging which houses the container. If the substance is a vaccine, for example, and a diluent is required, a lot number may appear on the vial containing the diluent; however, any such identifier associated with a diluent is not the identifier of interest. The substance lot number should be reported, not that of the diluent.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (substanceLotNumber.field.FieldRepetitions != null && substanceLotNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substanceLotNumber.Id));
-            substanceLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(substanceLotNumber, fieldData);
-        }
-
-        return substanceLotNumber;
-    } 
-}
-
-internal HL7V271Field substanceExpirationDate;
-
-public HL7V271Field SubstanceExpirationDate
-{
-    get
-    {
-        if (substanceExpirationDate != null)
-        {
-            return substanceExpirationDate;
-        }
-
-        substanceExpirationDate = new HL7V271Field
-        {
-            field = message[@"RXG"][20],
-            Id = @"RXG.20",
-            Type = @"Field",
-            Position = @"RXG.20",
-            Name = @"Substance Expiration Date",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the expiration date of the medical substance administered.
-
-Note: Vaccine expiration date does not always have a ""day"" component; therefore, such a date may be transmitted as YYYYMM.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (substanceExpirationDate.field.FieldRepetitions != null && substanceExpirationDate.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substanceExpirationDate.Id));
-            substanceExpirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(substanceExpirationDate, fieldData);
-        }
-
-        return substanceExpirationDate;
-    } 
-}
-
-internal HL7V271Field substanceManufacturerName;
-
-public HL7V271Field SubstanceManufacturerName
-{
-    get
-    {
-        if (substanceManufacturerName != null)
-        {
-            return substanceManufacturerName;
-        }
-
-        substanceManufacturerName = new HL7V271Field
-        {
-            field = message[@"RXG"][21],
-            Id = @"RXG.21",
-            Type = @"Field",
-            Position = @"RXG.21",
-            Name = @"Substance Manufacturer Name",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0227",
-            TableName = @"Manufacturers of Vaccines",
-            Description = @"This field contains the manufacturer of the medical substance administered.
-
-Note: For vaccines, code system MVX may be used to code this field (see section 4A.7.1, ""Vaccine administration data""). This field may be used if the manufacturer of the substance is not identified by the code used in RXA-5-administered code.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (substanceManufacturerName.field.FieldRepetitions != null && substanceManufacturerName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substanceManufacturerName.Id));
-            substanceManufacturerName.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(substanceManufacturerName, fieldData);
-        }
-
-        return substanceManufacturerName;
-    } 
-}
-
-internal HL7V271Field indication;
-
-public HL7V271Field Indication
-{
-    get
-    {
-        if (indication != null)
-        {
-            return indication;
-        }
-
-        indication = new HL7V271Field
-        {
-            field = message[@"RXG"][22],
-            Id = @"RXG.22",
-            Type = @"Field",
-            Position = @"RXG.22",
-            Name = @"Indication",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the identifier of the condition or problem for which the drug/treatment was prescribed. May repeat if multiple indications are relevant.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (indication.field.FieldRepetitions != null && indication.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(indication.Id));
-            indication.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(indication, fieldData);
-        }
-
-        return indication;
-    } 
-}
-
-internal HL7V271Field giveDrugStrengthVolume;
-
-public HL7V271Field GiveDrugStrengthVolume
-{
-    get
-    {
-        if (giveDrugStrengthVolume != null)
-        {
-            return giveDrugStrengthVolume;
-        }
-
-        giveDrugStrengthVolume = new HL7V271Field
-        {
-            field = message[@"RXG"][23],
-            Id = @"RXG.23",
-            Type = @"Field",
-            Position = @"RXG.23",
-            Name = @"Give Drug Strength Volume",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This numeric field defines the volume measurement in which the drug strength concentration is contained. For example, Acetaminophen 120 MG/5ML Elixir means that 120 MG of the drug is in a solution with an RXG-17, RXG-18, RXG-23 and RXG-24 as:
-RXG|||||||||||||||||120|mg^^ISO|||||5|ml^^ISO ...<cr>",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (giveDrugStrengthVolume.field.FieldRepetitions != null && giveDrugStrengthVolume.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(giveDrugStrengthVolume.Id));
-            giveDrugStrengthVolume.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(giveDrugStrengthVolume, fieldData);
-        }
-
-        return giveDrugStrengthVolume;
-    } 
-}
-
-internal HL7V271Field giveDrugStrengthVolumeUnits;
-
-public HL7V271Field GiveDrugStrengthVolumeUnits
-{
-    get
-    {
-        if (giveDrugStrengthVolumeUnits != null)
-        {
-            return giveDrugStrengthVolumeUnits;
-        }
-
-        giveDrugStrengthVolumeUnits = new HL7V271Field
-        {
-            field = message[@"RXG"][24],
-            Id = @"RXG.24",
-            Type = @"Field",
-            Position = @"RXG.24",
-            Name = @"Give Drug Strength Volume Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"Description: This field indicates the volumetric unit associated with RXG-23 Give Drug Strength Volume.  See example in RXG-23.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (giveDrugStrengthVolumeUnits.field.FieldRepetitions != null && giveDrugStrengthVolumeUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(giveDrugStrengthVolumeUnits.Id));
-            giveDrugStrengthVolumeUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(giveDrugStrengthVolumeUnits, fieldData);
-        }
-
-        return giveDrugStrengthVolumeUnits;
-    } 
-}
-
-internal HL7V271Field giveBarcodeIdentifier;
-
-public HL7V271Field GiveBarcodeIdentifier
-{
-    get
-    {
-        if (giveBarcodeIdentifier != null)
-        {
-            return giveBarcodeIdentifier;
-        }
-
-        giveBarcodeIdentifier = new HL7V271Field
-        {
-            field = message[@"RXG"][25],
-            Id = @"RXG.25",
-            Type = @"Field",
-            Position = @"RXG.25",
-            Name = @"Give Barcode Identifier",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field contains the pharmacy system's assigned barcode number for the give occurrence. For IV orders, many pharmacy systems generate a barcode number to identify a specific bag/bottle of the order. This number can be an instance identifier; unique for the patient, drug combination, and schedule instance or it may be just a drug identifier.
-
-The composition and use of the barcode number is dependent on application negotiation. An example of this field follows: The barcode number is in the following format, 9XXXXXXX000. The number '9' is a constant, XXXXXXX is seven (7) characters for a unique identifier assigned or derived from the patient account and order ID and 000 is the zero-filled three (3) character IV bottle number.
-
-The maximum length of the first component of this field is 40 characters to allow for the maximum existing barcode length in use today. The second component contains the description of the item being coded and the third component may define the barcode type.
-
-12345678901^IV bottle^3X9",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (giveBarcodeIdentifier.field.FieldRepetitions != null && giveBarcodeIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(giveBarcodeIdentifier.Id));
-            giveBarcodeIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(giveBarcodeIdentifier, fieldData);
-        }
-
-        return giveBarcodeIdentifier;
-    } 
-}
-
-internal HL7V271Field pharmacyOrderType;
-
-public HL7V271Field PharmacyOrderType
-{
-    get
-    {
-        if (pharmacyOrderType != null)
-        {
-            return pharmacyOrderType;
-        }
-
-        pharmacyOrderType = new HL7V271Field
-        {
-            field = message[@"RXG"][26],
-            Id = @"RXG.26",
-            Type = @"Field",
-            Position = @"RXG.26",
-            Name = @"Pharmacy Order Type",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0480",
-            TableName = @"Pharmacy Order Types",
-            Description = @"The Pharmacy Order Type field defines the general category of pharmacy order which may be used to determine the processing path the order will take.  Refer to HL7 Table 0480 Pharmacy Order Types for valid values.
-
-This field may also be used for grouping of related orders for processing and/or reports.  For example, Medication Administration Records (MARs) often group large volume solutions, medications and small volume solutions differently based upon site-specific workflow.
-
-Usage Rule: This field is optional for all Pharmacy transactions.  When not populated, a default value of ""M"" is assumed.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (pharmacyOrderType.field.FieldRepetitions != null && pharmacyOrderType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(pharmacyOrderType.Id));
-            pharmacyOrderType.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(pharmacyOrderType, fieldData);
-        }
-
-        return pharmacyOrderType;
-    } 
-}
-
-internal HL7V271Field dispenseToPharmacy;
-
-public HL7V271Field DispenseToPharmacy
-{
-    get
-    {
-        if (dispenseToPharmacy != null)
-        {
-            return dispenseToPharmacy;
-        }
-
-        dispenseToPharmacy = new HL7V271Field
-        {
-            field = message[@"RXG"][27],
-            Id = @"RXG.27",
-            Type = @"Field",
-            Position = @"RXG.27",
-            Name = @"Dispense To Pharmacy",
-            Length = 0,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field is retained for backward compatibility only as of v27. The information formerly communicated using this field should now be communicated using the PRT segment. The reader is referred to chapter 7 for a description of that segment.
-
-This field specifies the pharmacy that will dispense the prescription.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dispenseToPharmacy.field.FieldRepetitions != null && dispenseToPharmacy.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dispenseToPharmacy.Id));
-            dispenseToPharmacy.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(dispenseToPharmacy, fieldData);
-        }
-
-        return dispenseToPharmacy;
-    } 
-}
-
-internal HL7V271Field dispenseToPharmacyAddress;
-
-public HL7V271Field DispenseToPharmacyAddress
-{
-    get
-    {
-        if (dispenseToPharmacyAddress != null)
-        {
-            return dispenseToPharmacyAddress;
-        }
-
-        dispenseToPharmacyAddress = new HL7V271Field
-        {
-            field = message[@"RXG"][28],
-            Id = @"RXG.28",
-            Type = @"Field",
-            Position = @"RXG.28",
-            Name = @"Dispense To Pharmacy Address",
-            Length = 0,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field is retained for backward compatibility only as of v27. The information formerly communicated using this field should now be communicated using the PRT segment. The reader is referred to chapter 7 for a description of that segment.
-
-This field specifies the address of the dispensing facility or the patient's location where the dispensing will occur.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dispenseToPharmacyAddress.field.FieldRepetitions != null && dispenseToPharmacyAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dispenseToPharmacyAddress.Id));
-            dispenseToPharmacyAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(dispenseToPharmacyAddress, fieldData);
-        }
-
-        return dispenseToPharmacyAddress;
-    } 
-}
-
-internal HL7V271Field delivertoPatientLocation;
-
-public HL7V271Field DelivertoPatientLocation
-{
-    get
-    {
-        if (delivertoPatientLocation != null)
-        {
-            return delivertoPatientLocation;
-        }
-
-        delivertoPatientLocation = new HL7V271Field
-        {
-            field = message[@"RXG"][29],
-            Id = @"RXG.29",
-            Type = @"Field",
-            Position = @"RXG.29",
-            Name = @"Deliver-to Patient Location",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the location of the patient to whom the pharmaceutical substance is to be delivered.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (delivertoPatientLocation.field.FieldRepetitions != null && delivertoPatientLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(delivertoPatientLocation.Id));
-            delivertoPatientLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(delivertoPatientLocation, fieldData);
-        }
-
-        return delivertoPatientLocation;
-    } 
-}
-
-internal HL7V271Field delivertoAddress;
-
-public HL7V271Field DelivertoAddress
-{
-    get
-    {
-        if (delivertoAddress != null)
-        {
-            return delivertoAddress;
-        }
-
-        delivertoAddress = new HL7V271Field
+        _delivertoAddress = new HL7V271Field
         {
             field = message[@"RXG"][30],
-            Id = @"RXG.30",
-            Type = @"Field",
-            Position = @"RXG.30",
-            Name = @"Deliver-to Address",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the address, either mailing or physical, to which the prescription should be mailed or delivered.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (delivertoAddress.field.FieldRepetitions != null && delivertoAddress.field.FieldRepetitions.Count > 0)
+        if (_delivertoAddress.field.FieldRepetitions != null && _delivertoAddress.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(delivertoAddress.Id));
-            delivertoAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(delivertoAddress, fieldData);
+            _delivertoAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_delivertoAddress, fieldData);
         }
 
-        return delivertoAddress;
+        return _delivertoAddress;
     } 
 }
     }

@@ -29,136 +29,310 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentMFE(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _recordlevelEventCode;
+
+public HL7V28Field RecordlevelEventCode
+{
+    get
+    {
+        if (_recordlevelEventCode != null)
+        {
+            return _recordlevelEventCode;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"MFE.1",
+            Type = @"Field",
+            Position = @"MFE.1",
+            Name = @"Record-level Event Code",
+            Length = 3,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0180",
+            TableName = @"Record-level Event Code",
+            Description = @"A number or other identifier that uniquely identifies this change to this record from the point of view of the originating system.  When returned to the originating system via the MFA segment, this field allows the target system to precisely identify which change to this record is being acknowledged.  It is only required if the MFI response level code requires responses at the record level (any value other than NE).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _recordlevelEventCode = new HL7V28Field
+        {
+            field = message[@"MFE"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_recordlevelEventCode.field.FieldRepetitions != null && _recordlevelEventCode.field.FieldRepetitions.Count > 0)
+        {
+            _recordlevelEventCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_recordlevelEventCode, fieldData);
+        }
+
+        return _recordlevelEventCode;
+    } 
+}
+
+internal HL7V28Field _mfnControlId;
+
+public HL7V28Field MfnControlId
+{
+    get
+    {
+        if (_mfnControlId != null)
+        {
+            return _mfnControlId;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"MFE.2",
+            Type = @"Field",
+            Position = @"MFE.2",
+            Name = @"Mfn Control Id",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"An optional effective date/time can be included for the record-level action specified.  It is the date/time the originating system expects that the event is to have been completed on the receiving system.  If this field is not present, the effective date/time should default to the current date/time (when the message is received).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _mfnControlId = new HL7V28Field
+        {
+            field = message[@"MFE"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_mfnControlId.field.FieldRepetitions != null && _mfnControlId.field.FieldRepetitions.Count > 0)
+        {
+            _mfnControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_mfnControlId, fieldData);
+        }
+
+        return _mfnControlId;
+    } 
+}
+
+internal HL7V28Field _effectiveDateTime;
+
+public HL7V28Field EffectiveDateTime
+{
+    get
+    {
+        if (_effectiveDateTime != null)
+        {
+            return _effectiveDateTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"MFE.3",
+            Type = @"Field",
+            Position = @"MFE.3",
+            Name = @"Effective Date/Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"These codes specify the application response level defined for a given Master File Message at the MFE segment level as defined in HL7 Table 0179 - Response Level.  Required for MFN-Master File Notification message.  Specifies additional detail (beyond MSH-15 - Accept Acknowledgment Type and MSH-16 - Application Acknowledgment Type) for application-level acknowledgment paradigms for Master Files transactions.  MSH-15 - Accept Acknowledgment Type and MSH-16 - Application Acknowledgment Type operate as defined in Chapter 2.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _effectiveDateTime = new HL7V28Field
+        {
+            field = message[@"MFE"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_effectiveDateTime.field.FieldRepetitions != null && _effectiveDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _effectiveDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_effectiveDateTime, fieldData);
+        }
+
+        return _effectiveDateTime;
+    } 
+}
+
+internal HL7V28Field _primaryKeyValueMfe;
+
+public HL7V28Field PrimaryKeyValueMfe
+{
+    get
+    {
+        if (_primaryKeyValueMfe != null)
+        {
+            return _primaryKeyValueMfe;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"MFE.4",
+            Type = @"Field",
+            Position = @"MFE.4",
+            Name = @"Primary Key Value - Mfe",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"varies",
+            DataTypeName = @"Varies",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the HL7 data type of MFE-4 - Primary Key Value - MFE.  The valid values for the data type of a primary key are listed in HL7 Table 0355 - Primary Key Value Type.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _primaryKeyValueMfe = new HL7V28Field
+        {
+            field = message[@"MFE"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryKeyValueMfe.field.FieldRepetitions != null && _primaryKeyValueMfe.field.FieldRepetitions.Count > 0)
+        {
+            _primaryKeyValueMfe.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_primaryKeyValueMfe, fieldData);
+        }
+
+        return _primaryKeyValueMfe;
+    } 
+}
+
+internal HL7V28Field _primaryKeyValueType;
+
+public HL7V28Field PrimaryKeyValueType
+{
+    get
+    {
+        if (_primaryKeyValueType != null)
+        {
+            return _primaryKeyValueType;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"MFE.5",
+            Type = @"Field",
+            Position = @"MFE.5",
+            Name = @"Primary Key Value Type",
+            Length = 3,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0355",
+            TableName = @"Primary Key Value Type",
+            Description = @"This field contains the date and time of the last change of the record.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _primaryKeyValueType = new HL7V28Field
+        {
+            field = message[@"MFE"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_primaryKeyValueType.field.FieldRepetitions != null && _primaryKeyValueType.field.FieldRepetitions.Count > 0)
+        {
+            _primaryKeyValueType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_primaryKeyValueType, fieldData);
+        }
+
+        return _primaryKeyValueType;
+    } 
+}
+
+internal HL7V28Field _enteredDateTime;
+
+public HL7V28Field EnteredDateTime
+{
+    get
+    {
+        if (_enteredDateTime != null)
+        {
+            return _enteredDateTime;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"MFE.6",
+            Type = @"Field",
+            Position = @"MFE.6",
+            Name = @"Entered Date/Time",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date the comment becomes or became effective.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _enteredDateTime = new HL7V28Field
+        {
+            field = message[@"MFE"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_enteredDateTime.field.FieldRepetitions != null && _enteredDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _enteredDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_enteredDateTime, fieldData);
+        }
+
+        return _enteredDateTime;
+    } 
+}
+
+internal HL7V28Field _enteredBy;
+
+public HL7V28Field EnteredBy
+{
+    get
+    {
+        if (_enteredBy != null)
+        {
+            return _enteredBy;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"MFE.7",
+            Type = @"Field",
+            Position = @"MFE.7",
+            Name = @"Entered By",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the actual date the comment was keyed into the application.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"MFE.1",
-                            Type = @"Field",
-                            Position = @"MFE.1",
-                            Name = @"Record-level Event Code",
-                            Length = 3,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0180",
-                            TableName = @"Record-level Event Code",
-                            Description = @"A number or other identifier that uniquely identifies this change to this record from the point of view of the originating system.  When returned to the originating system via the MFA segment, this field allows the target system to precisely identify which change to this record is being acknowledged.  It is only required if the MFI response level code requires responses at the record level (any value other than NE).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MFE.2",
-                            Type = @"Field",
-                            Position = @"MFE.2",
-                            Name = @"Mfn Control Id",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"An optional effective date/time can be included for the record-level action specified.  It is the date/time the originating system expects that the event is to have been completed on the receiving system.  If this field is not present, the effective date/time should default to the current date/time (when the message is received).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MFE.3",
-                            Type = @"Field",
-                            Position = @"MFE.3",
-                            Name = @"Effective Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"These codes specify the application response level defined for a given Master File Message at the MFE segment level as defined in HL7 Table 0179 - Response Level.  Required for MFN-Master File Notification message.  Specifies additional detail (beyond MSH-15 - Accept Acknowledgment Type and MSH-16 - Application Acknowledgment Type) for application-level acknowledgment paradigms for Master Files transactions.  MSH-15 - Accept Acknowledgment Type and MSH-16 - Application Acknowledgment Type operate as defined in Chapter 2.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MFE.4",
-                            Type = @"Field",
-                            Position = @"MFE.4",
-                            Name = @"Primary Key Value - Mfe",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"varies",
-                            DataTypeName = @"Varies",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the HL7 data type of MFE-4 - Primary Key Value - MFE.  The valid values for the data type of a primary key are listed in HL7 Table 0355 - Primary Key Value Type.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MFE.5",
-                            Type = @"Field",
-                            Position = @"MFE.5",
-                            Name = @"Primary Key Value Type",
-                            Length = 3,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0355",
-                            TableName = @"Primary Key Value Type",
-                            Description = @"This field contains the date and time of the last change of the record.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MFE.6",
-                            Type = @"Field",
-                            Position = @"MFE.6",
-                            Name = @"Entered Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date the comment becomes or became effective.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"MFE.7",
-                            Type = @"Field",
-                            Position = @"MFE.7",
-                            Name = @"Entered By",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the actual date the comment was keyed into the application.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"MFE.7.1",
                             Type = @"Component",
@@ -2564,301 +2738,23 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentMFE(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field recordlevelEventCode;
-
-public HL7V28Field RecordlevelEventCode
-{
-    get
-    {
-        if (recordlevelEventCode != null)
-        {
-            return recordlevelEventCode;
-        }
-
-        recordlevelEventCode = new HL7V28Field
-        {
-            field = message[@"MFE"][1],
-            Id = @"MFE.1",
-            Type = @"Field",
-            Position = @"MFE.1",
-            Name = @"Record-level Event Code",
-            Length = 3,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0180",
-            TableName = @"Record-level Event Code",
-            Description = @"A number or other identifier that uniquely identifies this change to this record from the point of view of the originating system.  When returned to the originating system via the MFA segment, this field allows the target system to precisely identify which change to this record is being acknowledged.  It is only required if the MFI response level code requires responses at the record level (any value other than NE).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (recordlevelEventCode.field.FieldRepetitions != null && recordlevelEventCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(recordlevelEventCode.Id));
-            recordlevelEventCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(recordlevelEventCode, fieldData);
-        }
-
-        return recordlevelEventCode;
-    } 
-}
-
-internal HL7V28Field mfnControlId;
-
-public HL7V28Field MfnControlId
-{
-    get
-    {
-        if (mfnControlId != null)
-        {
-            return mfnControlId;
-        }
-
-        mfnControlId = new HL7V28Field
-        {
-            field = message[@"MFE"][2],
-            Id = @"MFE.2",
-            Type = @"Field",
-            Position = @"MFE.2",
-            Name = @"Mfn Control Id",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"An optional effective date/time can be included for the record-level action specified.  It is the date/time the originating system expects that the event is to have been completed on the receiving system.  If this field is not present, the effective date/time should default to the current date/time (when the message is received).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (mfnControlId.field.FieldRepetitions != null && mfnControlId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(mfnControlId.Id));
-            mfnControlId.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(mfnControlId, fieldData);
-        }
-
-        return mfnControlId;
-    } 
-}
-
-internal HL7V28Field effectiveDateTime;
-
-public HL7V28Field EffectiveDateTime
-{
-    get
-    {
-        if (effectiveDateTime != null)
-        {
-            return effectiveDateTime;
-        }
-
-        effectiveDateTime = new HL7V28Field
-        {
-            field = message[@"MFE"][3],
-            Id = @"MFE.3",
-            Type = @"Field",
-            Position = @"MFE.3",
-            Name = @"Effective Date/Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"These codes specify the application response level defined for a given Master File Message at the MFE segment level as defined in HL7 Table 0179 - Response Level.  Required for MFN-Master File Notification message.  Specifies additional detail (beyond MSH-15 - Accept Acknowledgment Type and MSH-16 - Application Acknowledgment Type) for application-level acknowledgment paradigms for Master Files transactions.  MSH-15 - Accept Acknowledgment Type and MSH-16 - Application Acknowledgment Type operate as defined in Chapter 2.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (effectiveDateTime.field.FieldRepetitions != null && effectiveDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(effectiveDateTime.Id));
-            effectiveDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(effectiveDateTime, fieldData);
-        }
-
-        return effectiveDateTime;
-    } 
-}
-
-internal HL7V28Field primaryKeyValueMfe;
-
-public HL7V28Field PrimaryKeyValueMfe
-{
-    get
-    {
-        if (primaryKeyValueMfe != null)
-        {
-            return primaryKeyValueMfe;
-        }
-
-        primaryKeyValueMfe = new HL7V28Field
-        {
-            field = message[@"MFE"][4],
-            Id = @"MFE.4",
-            Type = @"Field",
-            Position = @"MFE.4",
-            Name = @"Primary Key Value - Mfe",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"varies",
-            DataTypeName = @"Varies",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the HL7 data type of MFE-4 - Primary Key Value - MFE.  The valid values for the data type of a primary key are listed in HL7 Table 0355 - Primary Key Value Type.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryKeyValueMfe.field.FieldRepetitions != null && primaryKeyValueMfe.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryKeyValueMfe.Id));
-            primaryKeyValueMfe.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(primaryKeyValueMfe, fieldData);
-        }
-
-        return primaryKeyValueMfe;
-    } 
-}
-
-internal HL7V28Field primaryKeyValueType;
-
-public HL7V28Field PrimaryKeyValueType
-{
-    get
-    {
-        if (primaryKeyValueType != null)
-        {
-            return primaryKeyValueType;
-        }
-
-        primaryKeyValueType = new HL7V28Field
-        {
-            field = message[@"MFE"][5],
-            Id = @"MFE.5",
-            Type = @"Field",
-            Position = @"MFE.5",
-            Name = @"Primary Key Value Type",
-            Length = 3,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0355",
-            TableName = @"Primary Key Value Type",
-            Description = @"This field contains the date and time of the last change of the record.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (primaryKeyValueType.field.FieldRepetitions != null && primaryKeyValueType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(primaryKeyValueType.Id));
-            primaryKeyValueType.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(primaryKeyValueType, fieldData);
-        }
-
-        return primaryKeyValueType;
-    } 
-}
-
-internal HL7V28Field enteredDateTime;
-
-public HL7V28Field EnteredDateTime
-{
-    get
-    {
-        if (enteredDateTime != null)
-        {
-            return enteredDateTime;
-        }
-
-        enteredDateTime = new HL7V28Field
-        {
-            field = message[@"MFE"][6],
-            Id = @"MFE.6",
-            Type = @"Field",
-            Position = @"MFE.6",
-            Name = @"Entered Date/Time",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date the comment becomes or became effective.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (enteredDateTime.field.FieldRepetitions != null && enteredDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteredDateTime.Id));
-            enteredDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(enteredDateTime, fieldData);
-        }
-
-        return enteredDateTime;
-    } 
-}
-
-internal HL7V28Field enteredBy;
-
-public HL7V28Field EnteredBy
-{
-    get
-    {
-        if (enteredBy != null)
-        {
-            return enteredBy;
-        }
-
-        enteredBy = new HL7V28Field
+        _enteredBy = new HL7V28Field
         {
             field = message[@"MFE"][7],
-            Id = @"MFE.7",
-            Type = @"Field",
-            Position = @"MFE.7",
-            Name = @"Entered By",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the actual date the comment was keyed into the application.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (enteredBy.field.FieldRepetitions != null && enteredBy.field.FieldRepetitions.Count > 0)
+        if (_enteredBy.field.FieldRepetitions != null && _enteredBy.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteredBy.Id));
-            enteredBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(enteredBy, fieldData);
+            _enteredBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_enteredBy, fieldData);
         }
 
-        return enteredBy;
+        return _enteredBy;
     } 
 }
     }

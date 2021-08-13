@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V25SegmentQPD(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V25Field _messageQueryName;
+
+public HL7V25Field MessageQueryName
+{
+    get
+    {
+        if (_messageQueryName != null)
+        {
+            return _messageQueryName;
+        }
+
+        var fieldData = new HL7V25FieldData
+        {
+            Id = @"QPD.1",
+            Type = @"Field",
+            Position = @"QPD.1",
+            Name = @"Message Query Name",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0471",
+            TableName = @"Query name",
+            Description = @"This field contains the name of the query. These names are assigned by the function-specific chapters of this specification. It is one to one with the conformance statement for this query name, and it is in fact an identifier for that conformance statement. Site-specific query names begin with the letter Z. Refer to User defined table 0471 - Query name for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"QPD.1",
-                            Type = @"Field",
-                            Position = @"QPD.1",
-                            Name = @"Message Query Name",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0471",
-                            TableName = @"Query name",
-                            Description = @"This field contains the name of the query. These names are assigned by the function-specific chapters of this specification. It is one to one with the conformance statement for this query name, and it is in fact an identifier for that conformance statement. Site-specific query names begin with the letter Z. Refer to User defined table 0471 - Query name for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QPD.1.1",
                             Type = @"Component",
@@ -156,108 +168,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QPD.2",
-                            Type = @"Field",
-                            Position = @"QPD.2",
-                            Name = @"Query Tag",
-                            Length = 32,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field may be valued by the initiating system to identify the query, and may be used to match response messages to the originating query. If this field is valued, the responding system is required to echo it back as the first field in the query acknowledgement segment (QAK).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QPD.3",
-                            Type = @"Field",
-                            Position = @"QPD.3",
-                            Name = @"User Parameters (in successive fields)",
-                            Length = 256,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"VARIES",
-                            DataTypeName = @"Variable Datatype",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"These successive parameter fields hold the values that the Client passes to the Server.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V25SegmentQPD(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V25Field messageQueryName;
-
-public HL7V25Field MessageQueryName
-{
-    get
-    {
-        if (messageQueryName != null)
-        {
-            return messageQueryName;
-        }
-
-        messageQueryName = new HL7V25Field
+        _messageQueryName = new HL7V25Field
         {
             field = message[@"QPD"][1],
-            Id = @"QPD.1",
-            Type = @"Field",
-            Position = @"QPD.1",
-            Name = @"Message Query Name",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0471",
-            TableName = @"Query name",
-            Description = @"This field contains the name of the query. These names are assigned by the function-specific chapters of this specification. It is one to one with the conformance statement for this query name, and it is in fact an identifier for that conformance statement. Site-specific query names begin with the letter Z. Refer to User defined table 0471 - Query name for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (messageQueryName.field.FieldRepetitions != null && messageQueryName.field.FieldRepetitions.Count > 0)
+        if (_messageQueryName.field.FieldRepetitions != null && _messageQueryName.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(messageQueryName.Id));
-            messageQueryName.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(messageQueryName, fieldData);
+            _messageQueryName.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_messageQueryName, fieldData);
         }
 
-        return messageQueryName;
+        return _messageQueryName;
     } 
 }
 
-internal HL7V25Field queryTag;
+internal HL7V25Field _queryTag;
 
 public HL7V25Field QueryTag
 {
     get
     {
-        if (queryTag != null)
+        if (_queryTag != null)
         {
-            return queryTag;
+            return _queryTag;
         }
 
-        queryTag = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"QPD"][2],
             Id = @"QPD.2",
             Type = @"Field",
             Position = @"QPD.2",
@@ -271,34 +214,38 @@ public HL7V25Field QueryTag
             TableName = null,
             Description = @"This field may be valued by the initiating system to identify the query, and may be used to match response messages to the originating query. If this field is valued, the responding system is required to echo it back as the first field in the query acknowledgement segment (QAK).",
             Sample = @"",
+            Fields = null
+        }
+
+        _queryTag = new HL7V25Field
+        {
+            field = message[@"QPD"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (queryTag.field.FieldRepetitions != null && queryTag.field.FieldRepetitions.Count > 0)
+        if (_queryTag.field.FieldRepetitions != null && _queryTag.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(queryTag.Id));
-            queryTag.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(queryTag, fieldData);
+            _queryTag.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_queryTag, fieldData);
         }
 
-        return queryTag;
+        return _queryTag;
     } 
 }
 
-internal HL7V25Field userParametersinsuccessivefields;
+internal HL7V25Field _userParametersinsuccessivefields;
 
 public HL7V25Field UserParametersinsuccessivefields
 {
     get
     {
-        if (userParametersinsuccessivefields != null)
+        if (_userParametersinsuccessivefields != null)
         {
-            return userParametersinsuccessivefields;
+            return _userParametersinsuccessivefields;
         }
 
-        userParametersinsuccessivefields = new HL7V25Field
+        var fieldData = new HL7V25FieldData
         {
-            field = message[@"QPD"][3],
             Id = @"QPD.3",
             Type = @"Field",
             Position = @"QPD.3",
@@ -312,17 +259,22 @@ public HL7V25Field UserParametersinsuccessivefields
             TableName = null,
             Description = @"These successive parameter fields hold the values that the Client passes to the Server.",
             Sample = @"",
+            Fields = null
+        }
+
+        _userParametersinsuccessivefields = new HL7V25Field
+        {
+            field = message[@"QPD"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (userParametersinsuccessivefields.field.FieldRepetitions != null && userParametersinsuccessivefields.field.FieldRepetitions.Count > 0)
+        if (_userParametersinsuccessivefields.field.FieldRepetitions != null && _userParametersinsuccessivefields.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(userParametersinsuccessivefields.Id));
-            userParametersinsuccessivefields.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(userParametersinsuccessivefields, fieldData);
+            _userParametersinsuccessivefields.fieldRepetitions = HL7V2FieldGenerator.GenerateV25FieldRepetitions(_userParametersinsuccessivefields, fieldData);
         }
 
-        return userParametersinsuccessivefields;
+        return _userParametersinsuccessivefields;
     } 
 }
     }

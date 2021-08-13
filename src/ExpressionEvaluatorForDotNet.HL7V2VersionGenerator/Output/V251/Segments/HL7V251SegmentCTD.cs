@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V251SegmentCTD(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V251Field _contactRole;
+
+public HL7V251Field ContactRole
+{
+    get
+    {
+        if (_contactRole != null)
+        {
+            return _contactRole;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"CTD.1",
+            Type = @"Field",
+            Position = @"CTD.1",
+            Name = @"Contact Role",
+            Length = 250,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0131",
+            TableName = @"Contact Role",
+            Description = @"This field contains the contact role that defines the relationship of the person described in this segment to the patient being referred. When a referral is inter-enterprise in nature, there are some important relationships that must be identified. For example, it may be necessary to identify the contact representative at the clinic that sent the referral. User-defined Table 0131 - Contact role is used as the HL7 identifier for the user-defined table of values for this field.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"CTD.1",
-                            Type = @"Field",
-                            Position = @"CTD.1",
-                            Name = @"Contact Role",
-                            Length = 250,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0131",
-                            TableName = @"Contact Role",
-                            Description = @"This field contains the contact role that defines the relationship of the person described in this segment to the patient being referred. When a referral is inter-enterprise in nature, there are some important relationships that must be identified. For example, it may be necessary to identify the contact representative at the clinic that sent the referral. User-defined Table 0131 - Contact role is used as the HL7 identifier for the user-defined table of values for this field.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"CTD.1.1",
                             Type = @"Component",
@@ -156,25 +168,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactRole = new HL7V251Field
+        {
+            field = message[@"CTD"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactRole.field.FieldRepetitions != null && _contactRole.field.FieldRepetitions.Count > 0)
+        {
+            _contactRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_contactRole, fieldData);
+        }
+
+        return _contactRole;
+    } 
+}
+
+internal HL7V251Field _contactName;
+
+public HL7V251Field ContactName
+{
+    get
+    {
+        if (_contactName != null)
+        {
+            return _contactName;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"CTD.2",
+            Type = @"Field",
+            Position = @"CTD.2",
+            Name = @"Contact Name",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XPN",
+            DataTypeName = @"Extended Person Name",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the name of the contact person identified in this segment. Generally, this field will describe a person or provider associated with the referral. If this contact name is a physician, you may refer to the CTD-7-Contact identifiers for the physician identifier.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CTD.2",
-                            Type = @"Field",
-                            Position = @"CTD.2",
-                            Name = @"Contact Name",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XPN",
-                            DataTypeName = @"Extended Person Name",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the name of the contact person identified in this segment. Generally, this field will describe a person or provider associated with the referral. If this contact name is a physician, you may refer to the CTD-7-Contact identifiers for the physician identifier.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CTD.2.1",
                             Type = @"Component",
@@ -798,25 +840,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Description = @"Used to specify an abbreviation, or a string of abbreviations denoting qualifications that support the persons profession, (e.g., licenses, certificates, degrees, affiliations with professional societies, etc.). The Professional Suffix normally follows the Family Name when the Person Name is used for display purposes. Please note that this component is an unformatted string and is used for display purposes only. Detailed information regarding the contents of Professional Suffix is obtained using appropriate segments in Chapter 15, Personnel Management.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactName = new HL7V251Field
+        {
+            field = message[@"CTD"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactName.field.FieldRepetitions != null && _contactName.field.FieldRepetitions.Count > 0)
+        {
+            _contactName.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_contactName, fieldData);
+        }
+
+        return _contactName;
+    } 
+}
+
+internal HL7V251Field _contactAddress;
+
+public HL7V251Field ContactAddress
+{
+    get
+    {
+        if (_contactAddress != null)
+        {
+            return _contactAddress;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"CTD.3",
+            Type = @"Field",
+            Position = @"CTD.3",
+            Name = @"Contact Address",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XAD",
+            DataTypeName = @"Extended Address",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the mailing address of the contact person identified in this segment. One of the key components for completing the circle of care and provider/institution bonding is the issuance of follow-up correspondence to the referring provider.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CTD.3",
-                            Type = @"Field",
-                            Position = @"CTD.3",
-                            Name = @"Contact Address",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XAD",
-                            DataTypeName = @"Extended Address",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the mailing address of the contact person identified in this segment. One of the key components for completing the circle of care and provider/institution bonding is the issuance of follow-up correspondence to the referring provider.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CTD.3.1",
                             Type = @"Component",
@@ -1298,25 +1370,55 @@ Indicates the degree of precision of the time stamp (Y = year, L = month, D = da
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactAddress = new HL7V251Field
+        {
+            field = message[@"CTD"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactAddress.field.FieldRepetitions != null && _contactAddress.field.FieldRepetitions.Count > 0)
+        {
+            _contactAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_contactAddress, fieldData);
+        }
+
+        return _contactAddress;
+    } 
+}
+
+internal HL7V251Field _contactLocation;
+
+public HL7V251Field ContactLocation
+{
+    get
+    {
+        if (_contactLocation != null)
+        {
+            return _contactLocation;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"CTD.4",
+            Type = @"Field",
+            Position = @"CTD.4",
+            Name = @"Contact Location",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"PL",
+            DataTypeName = @"Person Location",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the location of the contact, which is required when a contact that may be external to a given enterprise must be referenced. For example, if this contact represents the office manager of the referred-to physician, then the contact location should identify the clinic of the physician or provider to whom this referral has been sent. The identification of the contacts location is specified by an application and facility identifier carried in the facility field. The application identifier and the facility identifier would be used in the same manner as their corresponding fields in the MSH segment ( MSH-3-Sending application, MSH-5-Receiving application, MSH-4-Sending facility, MSH-6-Receiving facility ). That is, the facility field will contain an application identifier and facility identifier which describe the location of this contact. However, it should be noted that they may describe a different location because the contact location being referenced in this field may not be the location from which the message originated, which is being described by the MSH.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CTD.4",
-                            Type = @"Field",
-                            Position = @"CTD.4",
-                            Name = @"Contact Location",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"PL",
-                            DataTypeName = @"Person Location",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the location of the contact, which is required when a contact that may be external to a given enterprise must be referenced. For example, if this contact represents the office manager of the referred-to physician, then the contact location should identify the clinic of the physician or provider to whom this referral has been sent. The identification of the contacts location is specified by an application and facility identifier carried in the facility field. The application identifier and the facility identifier would be used in the same manner as their corresponding fields in the MSH segment ( MSH-3-Sending application, MSH-5-Receiving application, MSH-4-Sending facility, MSH-6-Receiving facility ). That is, the facility field will contain an application identifier and facility identifier which describe the location of this contact. However, it should be noted that they may describe a different location because the contact location being referenced in this field may not be the location from which the message originated, which is being described by the MSH.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CTD.4.1",
                             Type = @"Component",
@@ -1690,25 +1792,55 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactLocation = new HL7V251Field
+        {
+            field = message[@"CTD"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactLocation.field.FieldRepetitions != null && _contactLocation.field.FieldRepetitions.Count > 0)
+        {
+            _contactLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_contactLocation, fieldData);
+        }
+
+        return _contactLocation;
+    } 
+}
+
+internal HL7V251Field _contactCommunicationInformation;
+
+public HL7V251Field ContactCommunicationInformation
+{
+    get
+    {
+        if (_contactCommunicationInformation != null)
+        {
+            return _contactCommunicationInformation;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"CTD.5",
+            Type = @"Field",
+            Position = @"CTD.5",
+            Name = @"Contact Communication Information",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XTN",
+            DataTypeName = @"Extended Telecommunication Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the information, such as the phone number or electronic mail address, used to communicate with the contact person or organization.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CTD.5",
-                            Type = @"Field",
-                            Position = @"CTD.5",
-                            Name = @"Contact Communication Information",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XTN",
-                            DataTypeName = @"Extended Telecommunication Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the information, such as the phone number or electronic mail address, used to communicate with the contact person or organization.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CTD.5.1",
                             Type = @"Component",
@@ -1928,25 +2060,55 @@ Format: [NNN] [(999)]999-9999 [X99999] [B99999] [C any text] ",
 Example: |^^^^^^^^^^^1-800-Dentist| ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _contactCommunicationInformation = new HL7V251Field
+        {
+            field = message[@"CTD"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_contactCommunicationInformation.field.FieldRepetitions != null && _contactCommunicationInformation.field.FieldRepetitions.Count > 0)
+        {
+            _contactCommunicationInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_contactCommunicationInformation, fieldData);
+        }
+
+        return _contactCommunicationInformation;
+    } 
+}
+
+internal HL7V251Field _preferredMethodofContact;
+
+public HL7V251Field PreferredMethodofContact
+{
+    get
+    {
+        if (_preferredMethodofContact != null)
+        {
+            return _preferredMethodofContact;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"CTD.6",
+            Type = @"Field",
+            Position = @"CTD.6",
+            Name = @"Preferred Method of Contact",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0185",
+            TableName = @"Preferred method of contact",
+            Description = @"This field contains the preferred method to use when communicating with the contact person. Refer to User-defined Table 0185 - Preferred method of contact for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CTD.6",
-                            Type = @"Field",
-                            Position = @"CTD.6",
-                            Name = @"Preferred Method of Contact",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0185",
-                            TableName = @"Preferred method of contact",
-                            Description = @"This field contains the preferred method to use when communicating with the contact person. Refer to User-defined Table 0185 - Preferred method of contact for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CTD.6.1",
                             Type = @"Component",
@@ -2052,25 +2214,55 @@ Example: |^^^^^^^^^^^1-800-Dentist| ",
                             Description = @"Identifies the coding scheme being used in the alternate identifier component.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _preferredMethodofContact = new HL7V251Field
+        {
+            field = message[@"CTD"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_preferredMethodofContact.field.FieldRepetitions != null && _preferredMethodofContact.field.FieldRepetitions.Count > 0)
+        {
+            _preferredMethodofContact.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_preferredMethodofContact, fieldData);
+        }
+
+        return _preferredMethodofContact;
+    } 
+}
+
+internal HL7V251Field _contactIdentifiers;
+
+public HL7V251Field ContactIdentifiers
+{
+    get
+    {
+        if (_contactIdentifiers != null)
+        {
+            return _contactIdentifiers;
+        }
+
+        var fieldData = new HL7V251FieldData
+        {
+            Id = @"CTD.7",
+            Type = @"Field",
+            Position = @"CTD.7",
+            Name = @"Contact Identifiers",
+            Length = 100,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"PLN",
+            DataTypeName = @"Practitioner License or Other ID Number",
+            TableId = null,
+            TableName = null,
+            Description = @"This repeating field contains the contact’s unique identifiers such as UPIN, Medicare and Medicaid numbers.  Refer to User-defined Table 0338 - Practitioner ID number type for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"CTD.7",
-                            Type = @"Field",
-                            Position = @"CTD.7",
-                            Name = @"Contact Identifiers",
-                            Length = 100,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"PLN",
-                            DataTypeName = @"Practitioner License or Other ID Number",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This repeating field contains the contact’s unique identifiers such as UPIN, Medicare and Medicaid numbers.  Refer to User-defined Table 0338 - Practitioner ID number type for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"CTD.7.1",
                             Type = @"Component",
@@ -2140,301 +2332,23 @@ Example: |^^^^^^^^^^^1-800-Dentist| ",
                             Description = @"Specifies the date when the license or ID is no longer valid.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V251SegmentCTD(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V251Field contactRole;
-
-public HL7V251Field ContactRole
-{
-    get
-    {
-        if (contactRole != null)
-        {
-            return contactRole;
-        }
-
-        contactRole = new HL7V251Field
-        {
-            field = message[@"CTD"][1],
-            Id = @"CTD.1",
-            Type = @"Field",
-            Position = @"CTD.1",
-            Name = @"Contact Role",
-            Length = 250,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0131",
-            TableName = @"Contact Role",
-            Description = @"This field contains the contact role that defines the relationship of the person described in this segment to the patient being referred. When a referral is inter-enterprise in nature, there are some important relationships that must be identified. For example, it may be necessary to identify the contact representative at the clinic that sent the referral. User-defined Table 0131 - Contact role is used as the HL7 identifier for the user-defined table of values for this field.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactRole.field.FieldRepetitions != null && contactRole.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactRole.Id));
-            contactRole.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(contactRole, fieldData);
-        }
-
-        return contactRole;
-    } 
-}
-
-internal HL7V251Field contactName;
-
-public HL7V251Field ContactName
-{
-    get
-    {
-        if (contactName != null)
-        {
-            return contactName;
-        }
-
-        contactName = new HL7V251Field
-        {
-            field = message[@"CTD"][2],
-            Id = @"CTD.2",
-            Type = @"Field",
-            Position = @"CTD.2",
-            Name = @"Contact Name",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XPN",
-            DataTypeName = @"Extended Person Name",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the name of the contact person identified in this segment. Generally, this field will describe a person or provider associated with the referral. If this contact name is a physician, you may refer to the CTD-7-Contact identifiers for the physician identifier.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactName.field.FieldRepetitions != null && contactName.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactName.Id));
-            contactName.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(contactName, fieldData);
-        }
-
-        return contactName;
-    } 
-}
-
-internal HL7V251Field contactAddress;
-
-public HL7V251Field ContactAddress
-{
-    get
-    {
-        if (contactAddress != null)
-        {
-            return contactAddress;
-        }
-
-        contactAddress = new HL7V251Field
-        {
-            field = message[@"CTD"][3],
-            Id = @"CTD.3",
-            Type = @"Field",
-            Position = @"CTD.3",
-            Name = @"Contact Address",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XAD",
-            DataTypeName = @"Extended Address",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the mailing address of the contact person identified in this segment. One of the key components for completing the circle of care and provider/institution bonding is the issuance of follow-up correspondence to the referring provider.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactAddress.field.FieldRepetitions != null && contactAddress.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactAddress.Id));
-            contactAddress.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(contactAddress, fieldData);
-        }
-
-        return contactAddress;
-    } 
-}
-
-internal HL7V251Field contactLocation;
-
-public HL7V251Field ContactLocation
-{
-    get
-    {
-        if (contactLocation != null)
-        {
-            return contactLocation;
-        }
-
-        contactLocation = new HL7V251Field
-        {
-            field = message[@"CTD"][4],
-            Id = @"CTD.4",
-            Type = @"Field",
-            Position = @"CTD.4",
-            Name = @"Contact Location",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"PL",
-            DataTypeName = @"Person Location",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the location of the contact, which is required when a contact that may be external to a given enterprise must be referenced. For example, if this contact represents the office manager of the referred-to physician, then the contact location should identify the clinic of the physician or provider to whom this referral has been sent. The identification of the contacts location is specified by an application and facility identifier carried in the facility field. The application identifier and the facility identifier would be used in the same manner as their corresponding fields in the MSH segment ( MSH-3-Sending application, MSH-5-Receiving application, MSH-4-Sending facility, MSH-6-Receiving facility ). That is, the facility field will contain an application identifier and facility identifier which describe the location of this contact. However, it should be noted that they may describe a different location because the contact location being referenced in this field may not be the location from which the message originated, which is being described by the MSH.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactLocation.field.FieldRepetitions != null && contactLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactLocation.Id));
-            contactLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(contactLocation, fieldData);
-        }
-
-        return contactLocation;
-    } 
-}
-
-internal HL7V251Field contactCommunicationInformation;
-
-public HL7V251Field ContactCommunicationInformation
-{
-    get
-    {
-        if (contactCommunicationInformation != null)
-        {
-            return contactCommunicationInformation;
-        }
-
-        contactCommunicationInformation = new HL7V251Field
-        {
-            field = message[@"CTD"][5],
-            Id = @"CTD.5",
-            Type = @"Field",
-            Position = @"CTD.5",
-            Name = @"Contact Communication Information",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XTN",
-            DataTypeName = @"Extended Telecommunication Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the information, such as the phone number or electronic mail address, used to communicate with the contact person or organization.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (contactCommunicationInformation.field.FieldRepetitions != null && contactCommunicationInformation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactCommunicationInformation.Id));
-            contactCommunicationInformation.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(contactCommunicationInformation, fieldData);
-        }
-
-        return contactCommunicationInformation;
-    } 
-}
-
-internal HL7V251Field preferredMethodofContact;
-
-public HL7V251Field PreferredMethodofContact
-{
-    get
-    {
-        if (preferredMethodofContact != null)
-        {
-            return preferredMethodofContact;
-        }
-
-        preferredMethodofContact = new HL7V251Field
-        {
-            field = message[@"CTD"][6],
-            Id = @"CTD.6",
-            Type = @"Field",
-            Position = @"CTD.6",
-            Name = @"Preferred Method of Contact",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0185",
-            TableName = @"Preferred method of contact",
-            Description = @"This field contains the preferred method to use when communicating with the contact person. Refer to User-defined Table 0185 - Preferred method of contact for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (preferredMethodofContact.field.FieldRepetitions != null && preferredMethodofContact.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(preferredMethodofContact.Id));
-            preferredMethodofContact.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(preferredMethodofContact, fieldData);
-        }
-
-        return preferredMethodofContact;
-    } 
-}
-
-internal HL7V251Field contactIdentifiers;
-
-public HL7V251Field ContactIdentifiers
-{
-    get
-    {
-        if (contactIdentifiers != null)
-        {
-            return contactIdentifiers;
-        }
-
-        contactIdentifiers = new HL7V251Field
+        _contactIdentifiers = new HL7V251Field
         {
             field = message[@"CTD"][7],
-            Id = @"CTD.7",
-            Type = @"Field",
-            Position = @"CTD.7",
-            Name = @"Contact Identifiers",
-            Length = 100,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"PLN",
-            DataTypeName = @"Practitioner License or Other ID Number",
-            TableId = null,
-            TableName = null,
-            Description = @"This repeating field contains the contact’s unique identifiers such as UPIN, Medicare and Medicaid numbers.  Refer to User-defined Table 0338 - Practitioner ID number type for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (contactIdentifiers.field.FieldRepetitions != null && contactIdentifiers.field.FieldRepetitions.Count > 0)
+        if (_contactIdentifiers.field.FieldRepetitions != null && _contactIdentifiers.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(contactIdentifiers.Id));
-            contactIdentifiers.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(contactIdentifiers, fieldData);
+            _contactIdentifiers.fieldRepetitions = HL7V2FieldGenerator.GenerateV251FieldRepetitions(_contactIdentifiers, fieldData);
         }
 
-        return contactIdentifiers;
+        return _contactIdentifiers;
     } 
 }
     }

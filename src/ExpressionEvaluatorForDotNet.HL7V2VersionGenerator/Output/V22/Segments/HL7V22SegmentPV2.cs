@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V22SegmentPV2(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V22Field _priorPendingLocation;
+
+public HL7V22Field PriorPendingLocation
+{
+    get
+    {
+        if (_priorPendingLocation != null)
+        {
+            return _priorPendingLocation;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"PV2.1",
+            Type = @"Field",
+            Position = @"PV2.1",
+            Name = @"Prior Pending Location",
+            Length = 12,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CM_INTERNAL_LOCATION",
+            DataTypeName = @"Cm For Location Information In Hospital",
+            TableId = null,
+            TableName = null,
+            Description = @"required only for Cancel Pending Transfer (A27) messages",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"PV2.1",
-                            Type = @"Field",
-                            Position = @"PV2.1",
-                            Name = @"Prior Pending Location",
-                            Length = 12,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CM_INTERNAL_LOCATION",
-                            DataTypeName = @"Cm For Location Information In Hospital",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"required only for Cancel Pending Transfer (A27) messages",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"PV2.1.1",
                             Type = @"Component",
@@ -138,25 +150,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = null,
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _priorPendingLocation = new HL7V22Field
+        {
+            field = message[@"PV2"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_priorPendingLocation.field.FieldRepetitions != null && _priorPendingLocation.field.FieldRepetitions.Count > 0)
+        {
+            _priorPendingLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_priorPendingLocation, fieldData);
+        }
+
+        return _priorPendingLocation;
+    } 
+}
+
+internal HL7V22Field _accommodationCode;
+
+public HL7V22Field AccommodationCode
+{
+    get
+    {
+        if (_accommodationCode != null)
+        {
+            return _accommodationCode;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"PV2.2",
+            Type = @"Field",
+            Position = @"PV2.2",
+            Name = @"Accommodation Code",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0129",
+            TableName = @"ACCOMODATION CODE",
+            Description = @"indicates the specific patient accommodations for this visit.  Refer to user-defined table 0129 - accommodation code",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PV2.2",
-                            Type = @"Field",
-                            Position = @"PV2.2",
-                            Name = @"Accommodation Code",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0129",
-                            TableName = @"ACCOMODATION CODE",
-                            Description = @"indicates the specific patient accommodations for this visit.  Refer to user-defined table 0129 - accommodation code",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PV2.2.1",
                             Type = @"Component",
@@ -262,25 +304,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _accommodationCode = new HL7V22Field
+        {
+            field = message[@"PV2"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_accommodationCode.field.FieldRepetitions != null && _accommodationCode.field.FieldRepetitions.Count > 0)
+        {
+            _accommodationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_accommodationCode, fieldData);
+        }
+
+        return _accommodationCode;
+    } 
+}
+
+internal HL7V22Field _admitReason;
+
+public HL7V22Field AdmitReason
+{
+    get
+    {
+        if (_admitReason != null)
+        {
+            return _admitReason;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"PV2.3",
+            Type = @"Field",
+            Position = @"PV2.3",
+            Name = @"Admit Reason",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"short description the patient admission reason",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PV2.3",
-                            Type = @"Field",
-                            Position = @"PV2.3",
-                            Name = @"Admit Reason",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"short description the patient admission reason",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PV2.3.1",
                             Type = @"Component",
@@ -386,25 +458,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _admitReason = new HL7V22Field
+        {
+            field = message[@"PV2"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_admitReason.field.FieldRepetitions != null && _admitReason.field.FieldRepetitions.Count > 0)
+        {
+            _admitReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_admitReason, fieldData);
+        }
+
+        return _admitReason;
+    } 
+}
+
+internal HL7V22Field _transferReason;
+
+public HL7V22Field TransferReason
+{
+    get
+    {
+        if (_transferReason != null)
+        {
+            return _transferReason;
+        }
+
+        var fieldData = new HL7V22FieldData
+        {
+            Id = @"PV2.4",
+            Type = @"Field",
+            Position = @"PV2.4",
+            Name = @"Transfer Reason",
+            Length = 60,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = null,
+            TableName = null,
+            Description = @"short description of the patient location change reason",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"PV2.4",
-                            Type = @"Field",
-                            Position = @"PV2.4",
-                            Name = @"Transfer Reason",
-                            Length = 60,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"short description of the patient location change reason",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"PV2.4.1",
                             Type = @"Component",
@@ -510,285 +612,39 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"These three components are defined analogously to the above for the alternate or local coding system.  If the Alternate Text component is absent, and the Alternate Identifier is present, the Alternate Text will be taken to be the same as the Text component.  If the Alternate Coding System component is absent, it will be taken to mean the locally defined system",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PV2.5",
-                            Type = @"Field",
-                            Position = @"PV2.5",
-                            Name = @"Patient Valuables",
-                            Length = 25,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"short description of patient valuables checked in during admission",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PV2.6",
-                            Type = @"Field",
-                            Position = @"PV2.6",
-                            Name = @"Patient Valuables Location",
-                            Length = 25,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"indicates the location of the patient's valuables",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PV2.7",
-                            Type = @"Field",
-                            Position = @"PV2.7",
-                            Name = @"Visit User Code",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value",
-                            TableId = @"0130",
-                            TableName = @"VISIT USER CODE",
-                            Description = @"further categorizes a patient's visit with respect to an individual institution's needs (e.g., teaching flag = TE, indicating the patient is a teaching case).  Refer to user-defined table 0130 - visit user code",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PV2.8",
-                            Type = @"Field",
-                            Position = @"PV2.8",
-                            Name = @"Expected Admit Date",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"date patient expected to be admitted",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"PV2.9",
-                            Type = @"Field",
-                            Position = @"PV2.9",
-                            Name = @"Expected Discharge Date",
-                            Length = 8,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DT",
-                            DataTypeName = @"Date",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"non-event related date used by ancillaries to more accurately determine projected workloads",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V22SegmentPV2(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V22Field priorPendingLocation;
-
-public HL7V22Field PriorPendingLocation
-{
-    get
-    {
-        if (priorPendingLocation != null)
-        {
-            return priorPendingLocation;
-        }
-
-        priorPendingLocation = new HL7V22Field
-        {
-            field = message[@"PV2"][1],
-            Id = @"PV2.1",
-            Type = @"Field",
-            Position = @"PV2.1",
-            Name = @"Prior Pending Location",
-            Length = 12,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CM_INTERNAL_LOCATION",
-            DataTypeName = @"Cm For Location Information In Hospital",
-            TableId = null,
-            TableName = null,
-            Description = @"required only for Cancel Pending Transfer (A27) messages",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (priorPendingLocation.field.FieldRepetitions != null && priorPendingLocation.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(priorPendingLocation.Id));
-            priorPendingLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(priorPendingLocation, fieldData);
-        }
-
-        return priorPendingLocation;
-    } 
-}
-
-internal HL7V22Field accommodationCode;
-
-public HL7V22Field AccommodationCode
-{
-    get
-    {
-        if (accommodationCode != null)
-        {
-            return accommodationCode;
-        }
-
-        accommodationCode = new HL7V22Field
-        {
-            field = message[@"PV2"][2],
-            Id = @"PV2.2",
-            Type = @"Field",
-            Position = @"PV2.2",
-            Name = @"Accommodation Code",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0129",
-            TableName = @"ACCOMODATION CODE",
-            Description = @"indicates the specific patient accommodations for this visit.  Refer to user-defined table 0129 - accommodation code",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (accommodationCode.field.FieldRepetitions != null && accommodationCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(accommodationCode.Id));
-            accommodationCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(accommodationCode, fieldData);
-        }
-
-        return accommodationCode;
-    } 
-}
-
-internal HL7V22Field admitReason;
-
-public HL7V22Field AdmitReason
-{
-    get
-    {
-        if (admitReason != null)
-        {
-            return admitReason;
-        }
-
-        admitReason = new HL7V22Field
-        {
-            field = message[@"PV2"][3],
-            Id = @"PV2.3",
-            Type = @"Field",
-            Position = @"PV2.3",
-            Name = @"Admit Reason",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"short description the patient admission reason",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (admitReason.field.FieldRepetitions != null && admitReason.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(admitReason.Id));
-            admitReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(admitReason, fieldData);
-        }
-
-        return admitReason;
-    } 
-}
-
-internal HL7V22Field transferReason;
-
-public HL7V22Field TransferReason
-{
-    get
-    {
-        if (transferReason != null)
-        {
-            return transferReason;
-        }
-
-        transferReason = new HL7V22Field
+        _transferReason = new HL7V22Field
         {
             field = message[@"PV2"][4],
-            Id = @"PV2.4",
-            Type = @"Field",
-            Position = @"PV2.4",
-            Name = @"Transfer Reason",
-            Length = 60,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = null,
-            TableName = null,
-            Description = @"short description of the patient location change reason",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (transferReason.field.FieldRepetitions != null && transferReason.field.FieldRepetitions.Count > 0)
+        if (_transferReason.field.FieldRepetitions != null && _transferReason.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(transferReason.Id));
-            transferReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(transferReason, fieldData);
+            _transferReason.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_transferReason, fieldData);
         }
 
-        return transferReason;
+        return _transferReason;
     } 
 }
 
-internal HL7V22Field patientValuables;
+internal HL7V22Field _patientValuables;
 
 public HL7V22Field PatientValuables
 {
     get
     {
-        if (patientValuables != null)
+        if (_patientValuables != null)
         {
-            return patientValuables;
+            return _patientValuables;
         }
 
-        patientValuables = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"PV2"][5],
             Id = @"PV2.5",
             Type = @"Field",
             Position = @"PV2.5",
@@ -802,34 +658,38 @@ public HL7V22Field PatientValuables
             TableName = null,
             Description = @"short description of patient valuables checked in during admission",
             Sample = @"",
+            Fields = null
+        }
+
+        _patientValuables = new HL7V22Field
+        {
+            field = message[@"PV2"][5],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientValuables.field.FieldRepetitions != null && patientValuables.field.FieldRepetitions.Count > 0)
+        if (_patientValuables.field.FieldRepetitions != null && _patientValuables.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientValuables.Id));
-            patientValuables.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(patientValuables, fieldData);
+            _patientValuables.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_patientValuables, fieldData);
         }
 
-        return patientValuables;
+        return _patientValuables;
     } 
 }
 
-internal HL7V22Field patientValuablesLocation;
+internal HL7V22Field _patientValuablesLocation;
 
 public HL7V22Field PatientValuablesLocation
 {
     get
     {
-        if (patientValuablesLocation != null)
+        if (_patientValuablesLocation != null)
         {
-            return patientValuablesLocation;
+            return _patientValuablesLocation;
         }
 
-        patientValuablesLocation = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"PV2"][6],
             Id = @"PV2.6",
             Type = @"Field",
             Position = @"PV2.6",
@@ -843,34 +703,38 @@ public HL7V22Field PatientValuablesLocation
             TableName = null,
             Description = @"indicates the location of the patient's valuables",
             Sample = @"",
+            Fields = null
+        }
+
+        _patientValuablesLocation = new HL7V22Field
+        {
+            field = message[@"PV2"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (patientValuablesLocation.field.FieldRepetitions != null && patientValuablesLocation.field.FieldRepetitions.Count > 0)
+        if (_patientValuablesLocation.field.FieldRepetitions != null && _patientValuablesLocation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(patientValuablesLocation.Id));
-            patientValuablesLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(patientValuablesLocation, fieldData);
+            _patientValuablesLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_patientValuablesLocation, fieldData);
         }
 
-        return patientValuablesLocation;
+        return _patientValuablesLocation;
     } 
 }
 
-internal HL7V22Field visitUserCode;
+internal HL7V22Field _visitUserCode;
 
 public HL7V22Field VisitUserCode
 {
     get
     {
-        if (visitUserCode != null)
+        if (_visitUserCode != null)
         {
-            return visitUserCode;
+            return _visitUserCode;
         }
 
-        visitUserCode = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"PV2"][7],
             Id = @"PV2.7",
             Type = @"Field",
             Position = @"PV2.7",
@@ -884,34 +748,38 @@ public HL7V22Field VisitUserCode
             TableName = @"VISIT USER CODE",
             Description = @"further categorizes a patient's visit with respect to an individual institution's needs (e.g., teaching flag = TE, indicating the patient is a teaching case).  Refer to user-defined table 0130 - visit user code",
             Sample = @"",
+            Fields = null
+        }
+
+        _visitUserCode = new HL7V22Field
+        {
+            field = message[@"PV2"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (visitUserCode.field.FieldRepetitions != null && visitUserCode.field.FieldRepetitions.Count > 0)
+        if (_visitUserCode.field.FieldRepetitions != null && _visitUserCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(visitUserCode.Id));
-            visitUserCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(visitUserCode, fieldData);
+            _visitUserCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_visitUserCode, fieldData);
         }
 
-        return visitUserCode;
+        return _visitUserCode;
     } 
 }
 
-internal HL7V22Field expectedAdmitDate;
+internal HL7V22Field _expectedAdmitDate;
 
 public HL7V22Field ExpectedAdmitDate
 {
     get
     {
-        if (expectedAdmitDate != null)
+        if (_expectedAdmitDate != null)
         {
-            return expectedAdmitDate;
+            return _expectedAdmitDate;
         }
 
-        expectedAdmitDate = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"PV2"][8],
             Id = @"PV2.8",
             Type = @"Field",
             Position = @"PV2.8",
@@ -925,34 +793,38 @@ public HL7V22Field ExpectedAdmitDate
             TableName = null,
             Description = @"date patient expected to be admitted",
             Sample = @"",
+            Fields = null
+        }
+
+        _expectedAdmitDate = new HL7V22Field
+        {
+            field = message[@"PV2"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (expectedAdmitDate.field.FieldRepetitions != null && expectedAdmitDate.field.FieldRepetitions.Count > 0)
+        if (_expectedAdmitDate.field.FieldRepetitions != null && _expectedAdmitDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(expectedAdmitDate.Id));
-            expectedAdmitDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(expectedAdmitDate, fieldData);
+            _expectedAdmitDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_expectedAdmitDate, fieldData);
         }
 
-        return expectedAdmitDate;
+        return _expectedAdmitDate;
     } 
 }
 
-internal HL7V22Field expectedDischargeDate;
+internal HL7V22Field _expectedDischargeDate;
 
 public HL7V22Field ExpectedDischargeDate
 {
     get
     {
-        if (expectedDischargeDate != null)
+        if (_expectedDischargeDate != null)
         {
-            return expectedDischargeDate;
+            return _expectedDischargeDate;
         }
 
-        expectedDischargeDate = new HL7V22Field
+        var fieldData = new HL7V22FieldData
         {
-            field = message[@"PV2"][9],
             Id = @"PV2.9",
             Type = @"Field",
             Position = @"PV2.9",
@@ -966,17 +838,22 @@ public HL7V22Field ExpectedDischargeDate
             TableName = null,
             Description = @"non-event related date used by ancillaries to more accurately determine projected workloads",
             Sample = @"",
+            Fields = null
+        }
+
+        _expectedDischargeDate = new HL7V22Field
+        {
+            field = message[@"PV2"][9],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (expectedDischargeDate.field.FieldRepetitions != null && expectedDischargeDate.field.FieldRepetitions.Count > 0)
+        if (_expectedDischargeDate.field.FieldRepetitions != null && _expectedDischargeDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(expectedDischargeDate.Id));
-            expectedDischargeDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(expectedDischargeDate, fieldData);
+            _expectedDischargeDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV22FieldRepetitions(_expectedDischargeDate, fieldData);
         }
 
-        return expectedDischargeDate;
+        return _expectedDischargeDate;
     } 
 }
     }

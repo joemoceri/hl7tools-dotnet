@@ -19,6 +19,7 @@ namespace ExpressionEvaluatorForDotNet
                 return new[]
                     {
                         "CH_02",
+
                     };
             } 
         }
@@ -41,6 +42,7 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"Change file records as defined in the record-level event codes for each record that follows",
                             Comment = null
                         },
+                        
                     };
             } 
         }

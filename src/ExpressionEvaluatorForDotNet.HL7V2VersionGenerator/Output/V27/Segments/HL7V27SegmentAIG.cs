@@ -29,64 +29,128 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"AIG.1",
-                            Type = @"Field",
-                            Position = @"AIG.1",
-                            Name = @"Set Id - Aig",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a number that uniquely identifies the information represented by this segment in this transaction for the purposes of addition, change or deletion.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIG.2",
-                            Type = @"Field",
-                            Position = @"AIG.2",
-                            Name = @"Segment Action Code",
-                            Length = 1,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0206",
-                            TableName = @"Segment action code",
-                            Description = @"This field contains the action to be taken when updating or modifying information in this segment from previously sent interface transactions.  Refer to HL7 Table 0206 - Segment Action Code in Chapter 2, Code Tables, for valid values.
+        public HL7V27SegmentAIG(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _setIdAig;
+
+public HL7V27Field SetIdAig
+{
+    get
+    {
+        if (_setIdAig != null)
+        {
+            return _setIdAig;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AIG.1",
+            Type = @"Field",
+            Position = @"AIG.1",
+            Name = @"Set Id - Aig",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a number that uniquely identifies the information represented by this segment in this transaction for the purposes of addition, change or deletion.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdAig = new HL7V27Field
+        {
+            field = message[@"AIG"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdAig.field.FieldRepetitions != null && _setIdAig.field.FieldRepetitions.Count > 0)
+        {
+            _setIdAig.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_setIdAig, fieldData);
+        }
+
+        return _setIdAig;
+    } 
+}
+
+internal HL7V27Field _segmentActionCode;
+
+public HL7V27Field SegmentActionCode
+{
+    get
+    {
+        if (_segmentActionCode != null)
+        {
+            return _segmentActionCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AIG.2",
+            Type = @"Field",
+            Position = @"AIG.2",
+            Name = @"Segment Action Code",
+            Length = 1,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0206",
+            TableName = @"Segment action code",
+            Description = @"This field contains the action to be taken when updating or modifying information in this segment from previously sent interface transactions.  Refer to HL7 Table 0206 - Segment Action Code in Chapter 2, Code Tables, for valid values.
 
 This field is conditionally required.  It is required for all updating or modifying trigger events.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIG.3",
-                            Type = @"Field",
-                            Position = @"AIG.3",
-                            Name = @"Resource Id",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the ID number and name of the resource being requested or scheduled for an appointment.  This field is used to identify a specific resource being requested, or a specific resource that has been scheduled for an appointment.  If the specific resource is not known but the type of resource is, AIG-4 Resource Type is used to identify the type of resource required or scheduled.
+            Sample = @"",
+            Fields = null
+        }
+
+        _segmentActionCode = new HL7V27Field
+        {
+            field = message[@"AIG"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_segmentActionCode.field.FieldRepetitions != null && _segmentActionCode.field.FieldRepetitions.Count > 0)
+        {
+            _segmentActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_segmentActionCode, fieldData);
+        }
+
+        return _segmentActionCode;
+    } 
+}
+
+internal HL7V27Field _resourceId;
+
+public HL7V27Field ResourceId
+{
+    get
+    {
+        if (_resourceId != null)
+        {
+            return _resourceId;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AIG.3",
+            Type = @"Field",
+            Position = @"AIG.3",
+            Name = @"Resource Id",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the ID number and name of the resource being requested or scheduled for an appointment.  This field is used to identify a specific resource being requested, or a specific resource that has been scheduled for an appointment.  If the specific resource is not known but the type of resource is, AIG-4 Resource Type is used to identify the type of resource required or scheduled.
 
 At a minimum, the ID number component should be supplied to identify either the specific resource being requested or the specific resource that has been scheduled.  For inter-enterprise communications, for which a shared ID number may not be available, the minimum components required to uniquely identify a resource may be defined by site-specific negotiations.
 
@@ -95,8 +159,10 @@ This field is conditionally required for this segment.  In new schedule request 
 This field is required for all unsolicited transactions from the filler application.
 
 This field is optional for all query transactions.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"AIG.3.1",
                             Type = @"Component",
@@ -522,25 +588,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _resourceId = new HL7V27Field
+        {
+            field = message[@"AIG"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_resourceId.field.FieldRepetitions != null && _resourceId.field.FieldRepetitions.Count > 0)
+        {
+            _resourceId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_resourceId, fieldData);
+        }
+
+        return _resourceId;
+    } 
+}
+
+internal HL7V27Field _resourceType;
+
+public HL7V27Field ResourceType
+{
+    get
+    {
+        if (_resourceType != null)
+        {
+            return _resourceType;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AIG.4",
+            Type = @"Field",
+            Position = @"AIG.4",
+            Name = @"Resource Type",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the role of the resource requested/scheduled for this appointment.  For requests, if a specific resource is not identified in AIG-3-Resource ID, then this field identifies the type of resource that should be scheduled by the filler application.  At a minimum, the type of the identifier component should be valued.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AIG.4",
-                            Type = @"Field",
-                            Position = @"AIG.4",
-                            Name = @"Resource Type",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the role of the resource requested/scheduled for this appointment.  For requests, if a specific resource is not identified in AIG-3-Resource ID, then this field identifies the type of resource that should be scheduled by the filler application.  At a minimum, the type of the identifier component should be valued.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AIG.4.1",
                             Type = @"Component",
@@ -966,25 +1062,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _resourceType = new HL7V27Field
+        {
+            field = message[@"AIG"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_resourceType.field.FieldRepetitions != null && _resourceType.field.FieldRepetitions.Count > 0)
+        {
+            _resourceType.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_resourceType, fieldData);
+        }
+
+        return _resourceType;
+    } 
+}
+
+internal HL7V27Field _resourceGroup;
+
+public HL7V27Field ResourceGroup
+{
+    get
+    {
+        if (_resourceGroup != null)
+        {
+            return _resourceGroup;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AIG.5",
+            Type = @"Field",
+            Position = @"AIG.5",
+            Name = @"Resource Group",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies the requested resource as a member of the indicated group.  If, in a Schedule Request Message (SRM), no specific resource is requested, but a resource type is requested, this field can be used to further qualify the type of resource being requested.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AIG.5",
-                            Type = @"Field",
-                            Position = @"AIG.5",
-                            Name = @"Resource Group",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies the requested resource as a member of the indicated group.  If, in a Schedule Request Message (SRM), no specific resource is requested, but a resource type is requested, this field can be used to further qualify the type of resource being requested.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AIG.5.1",
                             Type = @"Component",
@@ -1410,43 +1536,100 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _resourceGroup = new HL7V27Field
+        {
+            field = message[@"AIG"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_resourceGroup.field.FieldRepetitions != null && _resourceGroup.field.FieldRepetitions.Count > 0)
+        {
+            _resourceGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_resourceGroup, fieldData);
+        }
+
+        return _resourceGroup;
+    } 
+}
+
+internal HL7V27Field _resourceQuantity;
+
+public HL7V27Field ResourceQuantity
+{
+    get
+    {
+        if (_resourceQuantity != null)
+        {
+            return _resourceQuantity;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AIG.6",
+            Type = @"Field",
+            Position = @"AIG.6",
+            Name = @"Resource Quantity",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the quantity of the specified resource or resource type identified in either or both of the preceding two fields.  If it is not valued, this field defaults to a value of one (1).",
+            Sample = @"",
+            Fields = null
+        }
+
+        _resourceQuantity = new HL7V27Field
+        {
+            field = message[@"AIG"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_resourceQuantity.field.FieldRepetitions != null && _resourceQuantity.field.FieldRepetitions.Count > 0)
+        {
+            _resourceQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_resourceQuantity, fieldData);
+        }
+
+        return _resourceQuantity;
+    } 
+}
+
+internal HL7V27Field _resourceQuantityUnits;
+
+public HL7V27Field ResourceQuantityUnits
+{
+    get
+    {
+        if (_resourceQuantityUnits != null)
+        {
+            return _resourceQuantityUnits;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AIG.7",
+            Type = @"Field",
+            Position = @"AIG.7",
+            Name = @"Resource Quantity Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the quantity of the specified resource or resource type identified in either or both of the preceding two fields.  If it is not valued, this field defaults to a value of one (1).",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"AIG.6",
-                            Type = @"Field",
-                            Position = @"AIG.6",
-                            Name = @"Resource Quantity",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the quantity of the specified resource or resource type identified in either or both of the preceding two fields.  If it is not valued, this field defaults to a value of one (1).",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIG.7",
-                            Type = @"Field",
-                            Position = @"AIG.7",
-                            Name = @"Resource Quantity Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the quantity of the specified resource or resource type identified in either or both of the preceding two fields.  If it is not valued, this field defaults to a value of one (1).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"AIG.7.1",
                             Type = @"Component",
@@ -1883,71 +2066,155 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIG.8",
-                            Type = @"Field",
-                            Position = @"AIG.8",
-                            Name = @"Start Date/Time",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date and time this service needs for the appointment.  This field allows the application to identify that the service is required for the appointment at a different time than the appointment's start date/time
+                        }
+        }
+
+        _resourceQuantityUnits = new HL7V27Field
+        {
+            field = message[@"AIG"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_resourceQuantityUnits.field.FieldRepetitions != null && _resourceQuantityUnits.field.FieldRepetitions.Count > 0)
+        {
+            _resourceQuantityUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_resourceQuantityUnits, fieldData);
+        }
+
+        return _resourceQuantityUnits;
+    } 
+}
+
+internal HL7V27Field _startDateTime;
+
+public HL7V27Field StartDateTime
+{
+    get
+    {
+        if (_startDateTime != null)
+        {
+            return _startDateTime;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AIG.8",
+            Type = @"Field",
+            Position = @"AIG.8",
+            Name = @"Start Date/Time",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"DTM",
+            DataTypeName = @"Date/time",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date and time this service needs for the appointment.  This field allows the application to identify that the service is required for the appointment at a different time than the appointment's start date/time
 
 This field is conditionally required.  If a value for AIG-9-Start Date/Time Offset is not provided, then a value is required for this field.  To specify that there is no difference between the appointment's start date/time and the resource's start date/time either replicate the appointment's start date/time into this field, or specify an offset of zero (0) in AIG-9-Start Date/Time Offset and any valid time unit code in AIG-10-Start Date/Time Offset Units.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIG.9",
-                            Type = @"Field",
-                            Position = @"AIG.9",
-                            Name = @"Start Date/Time Offset",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the offset that this resource needs for the appointment, expressed in units of time relative to the scheduled start date/time.  This field indicates to the application that the resource is required for the appointment at a different time than the appointment's start date/time.  The first component indicates the offset amount.  An offset of zero (0), or an unvalued field, indicates that the resource is required at the start date/time of the appointment.
+            Sample = @"",
+            Fields = null
+        }
+
+        _startDateTime = new HL7V27Field
+        {
+            field = message[@"AIG"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_startDateTime.field.FieldRepetitions != null && _startDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _startDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_startDateTime, fieldData);
+        }
+
+        return _startDateTime;
+    } 
+}
+
+internal HL7V27Field _startDateTimeOffset;
+
+public HL7V27Field StartDateTimeOffset
+{
+    get
+    {
+        if (_startDateTimeOffset != null)
+        {
+            return _startDateTimeOffset;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AIG.9",
+            Type = @"Field",
+            Position = @"AIG.9",
+            Name = @"Start Date/Time Offset",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the offset that this resource needs for the appointment, expressed in units of time relative to the scheduled start date/time.  This field indicates to the application that the resource is required for the appointment at a different time than the appointment's start date/time.  The first component indicates the offset amount.  An offset of zero (0), or an unvalued field, indicates that the resource is required at the start date/time of the appointment.
 
 A positive offset (an unsigned or positive number) indicates that the resource is required after the appointment's start date/time.  Specifying a negative offset indicates that the resource is required prior to the specified start date/time of the appointment.  Negative offsets are allowed, and sites should clearly define the effect of a negative offset on the appointment's start date/time.
 
 This field is conditionally required.  If a value for AIG-8-Start Date/Time is not provided, then a value is required for this field.  To specify that there is no difference between the appointment's start date/time and the resource's start date/time either replicate the appointment's start date/time into this field, or specify an offset of zero (0) in AIG-9-Start Date/Time Offset and any valid time unit code in AIG10-Start Date/Time Offset Units.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIG.10",
-                            Type = @"Field",
-                            Position = @"AIG.10",
-                            Name = @"Start Date/Time Offset Units",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a code describing the units of time used for expressing AIG-9-Start Date/Time Offset. This field should be valued according to the recommendations made in Chapters 2 and 7.  If this field is not valued, the ISO base unit of seconds (code ""s"") will be assumed.  Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO+ and ANS+ unit codes.
+            Sample = @"",
+            Fields = null
+        }
+
+        _startDateTimeOffset = new HL7V27Field
+        {
+            field = message[@"AIG"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_startDateTimeOffset.field.FieldRepetitions != null && _startDateTimeOffset.field.FieldRepetitions.Count > 0)
+        {
+            _startDateTimeOffset.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_startDateTimeOffset, fieldData);
+        }
+
+        return _startDateTimeOffset;
+    } 
+}
+
+internal HL7V27Field _startDateTimeOffsetUnits;
+
+public HL7V27Field StartDateTimeOffsetUnits
+{
+    get
+    {
+        if (_startDateTimeOffsetUnits != null)
+        {
+            return _startDateTimeOffsetUnits;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AIG.10",
+            Type = @"Field",
+            Position = @"AIG.10",
+            Name = @"Start Date/Time Offset Units",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a code describing the units of time used for expressing AIG-9-Start Date/Time Offset. This field should be valued according to the recommendations made in Chapters 2 and 7.  If this field is not valued, the ISO base unit of seconds (code ""s"") will be assumed.  Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO+ and ANS+ unit codes.
 
 This field is conditionally required.  If a value for AIG-9-Start Date/Time Offset is provided, then a value is required for this field.
 
 As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"AIG.10.1",
                             Type = @"Component",
@@ -2384,47 +2651,104 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIG.11",
-                            Type = @"Field",
-                            Position = @"AIG.11",
-                            Name = @"Duration",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a code describing the units of time used for expressing the AIG-11-Duration field.  This field should be valued according to the recommendations in Chapters 2 and 7.  If this field is not valued, the ISO base unit of seconds (code ""s"") will be assumed.  Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO+ and ANS+ unit codes.
+                        }
+        }
+
+        _startDateTimeOffsetUnits = new HL7V27Field
+        {
+            field = message[@"AIG"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_startDateTimeOffsetUnits.field.FieldRepetitions != null && _startDateTimeOffsetUnits.field.FieldRepetitions.Count > 0)
+        {
+            _startDateTimeOffsetUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_startDateTimeOffsetUnits, fieldData);
+        }
+
+        return _startDateTimeOffsetUnits;
+    } 
+}
+
+internal HL7V27Field _duration;
+
+public HL7V27Field Duration
+{
+    get
+    {
+        if (_duration != null)
+        {
+            return _duration;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AIG.11",
+            Type = @"Field",
+            Position = @"AIG.11",
+            Name = @"Duration",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a code describing the units of time used for expressing the AIG-11-Duration field.  This field should be valued according to the recommendations in Chapters 2 and 7.  If this field is not valued, the ISO base unit of seconds (code ""s"") will be assumed.  Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO+ and ANS+ unit codes.
 
 As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIG.12",
-                            Type = @"Field",
-                            Position = @"AIG.12",
-                            Name = @"Duration Units",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CNE",
-                            DataTypeName = @"Coded With No Exceptions",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a code describing the units of time used for expressing the AIG-11-Duration field.  This field should be valued according to the recommendations in Chapters 2 and 7.  If this field is not valued, the ISO base unit of seconds (code ""s"") will be assumed.  Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO+ and ANS+ unit codes.
+            Sample = @"",
+            Fields = null
+        }
+
+        _duration = new HL7V27Field
+        {
+            field = message[@"AIG"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_duration.field.FieldRepetitions != null && _duration.field.FieldRepetitions.Count > 0)
+        {
+            _duration.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_duration, fieldData);
+        }
+
+        return _duration;
+    } 
+}
+
+internal HL7V27Field _durationUnits;
+
+public HL7V27Field DurationUnits
+{
+    get
+    {
+        if (_durationUnits != null)
+        {
+            return _durationUnits;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AIG.12",
+            Type = @"Field",
+            Position = @"AIG.12",
+            Name = @"Duration Units",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CNE",
+            DataTypeName = @"Coded With No Exceptions",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a code describing the units of time used for expressing the AIG-11-Duration field.  This field should be valued according to the recommendations in Chapters 2 and 7.  If this field is not valued, the ISO base unit of seconds (code ""s"") will be assumed.  Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO+ and ANS+ unit codes.
 
 As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"AIG.12.1",
                             Type = @"Component",
@@ -2861,27 +3185,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CNE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIG.13",
-                            Type = @"Field",
-                            Position = @"AIG.13",
-                            Name = @"Allow Substitution Code",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0279",
-                            TableName = @"Allow Substitution Codes",
-                            Description = @"This field contains a code indicating whether the identified resource can be substituted with an equivalent resource by the filler application.  Refer to User-Defined Table 0279 - Allow Substitution Codes for suggested codes.
+                        }
+        }
+
+        _durationUnits = new HL7V27Field
+        {
+            field = message[@"AIG"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_durationUnits.field.FieldRepetitions != null && _durationUnits.field.FieldRepetitions.Count > 0)
+        {
+            _durationUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_durationUnits, fieldData);
+        }
+
+        return _durationUnits;
+    } 
+}
+
+internal HL7V27Field _allowSubstitutionCode;
+
+public HL7V27Field AllowSubstitutionCode
+{
+    get
+    {
+        if (_allowSubstitutionCode != null)
+        {
+            return _allowSubstitutionCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AIG.13",
+            Type = @"Field",
+            Position = @"AIG.13",
+            Name = @"Allow Substitution Code",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0279",
+            TableName = @"Allow Substitution Codes",
+            Description = @"This field contains a code indicating whether the identified resource can be substituted with an equivalent resource by the filler application.  Refer to User-Defined Table 0279 - Allow Substitution Codes for suggested codes.
 
 This field is conditionally required.  It is required for all request messages.  It is optional for all unsolicited transactions, and for all query messages.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"AIG.13.1",
                             Type = @"Component",
@@ -3307,27 +3661,57 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"AIG.14",
-                            Type = @"Field",
-                            Position = @"AIG.14",
-                            Name = @"Filler Status Code",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0278",
-                            TableName = @"Filler status codes",
-                            Description = @"This field contains a code that describes the requested/scheduled status of scheduling resource or activity, from the point of view of the filler application.  Refer to User-Defined Table 0278 - Filler Status Codes for suggested codes.
+                        }
+        }
+
+        _allowSubstitutionCode = new HL7V27Field
+        {
+            field = message[@"AIG"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_allowSubstitutionCode.field.FieldRepetitions != null && _allowSubstitutionCode.field.FieldRepetitions.Count > 0)
+        {
+            _allowSubstitutionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_allowSubstitutionCode, fieldData);
+        }
+
+        return _allowSubstitutionCode;
+    } 
+}
+
+internal HL7V27Field _fillerStatusCode;
+
+public HL7V27Field FillerStatusCode
+{
+    get
+    {
+        if (_fillerStatusCode != null)
+        {
+            return _fillerStatusCode;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"AIG.14",
+            Type = @"Field",
+            Position = @"AIG.14",
+            Name = @"Filler Status Code",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0278",
+            TableName = @"Filler status codes",
+            Description = @"This field contains a code that describes the requested/scheduled status of scheduling resource or activity, from the point of view of the filler application.  Refer to User-Defined Table 0278 - Filler Status Codes for suggested codes.
 
 This is a conditionally required field.  Because the information contained in this field is only appropriate in transactions originating from a filler application, it is required for those messages.  This includes all unsolicited transactions originating from a filler application, as well as all response messages originating from a filler application.  This field is optional for all transactions originating from placer, querying and auxiliary applications.  It is recommended that this field be left unvalued in transactions originating from applications other than the filler application.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"AIG.14.1",
                             Type = @"Component",
@@ -3753,616 +4137,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentAIG(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field setIdAig;
-
-public HL7V27Field SetIdAig
-{
-    get
-    {
-        if (setIdAig != null)
-        {
-            return setIdAig;
-        }
-
-        setIdAig = new HL7V27Field
-        {
-            field = message[@"AIG"][1],
-            Id = @"AIG.1",
-            Type = @"Field",
-            Position = @"AIG.1",
-            Name = @"Set Id - Aig",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a number that uniquely identifies the information represented by this segment in this transaction for the purposes of addition, change or deletion.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdAig.field.FieldRepetitions != null && setIdAig.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdAig.Id));
-            setIdAig.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(setIdAig, fieldData);
-        }
-
-        return setIdAig;
-    } 
-}
-
-internal HL7V27Field segmentActionCode;
-
-public HL7V27Field SegmentActionCode
-{
-    get
-    {
-        if (segmentActionCode != null)
-        {
-            return segmentActionCode;
-        }
-
-        segmentActionCode = new HL7V27Field
-        {
-            field = message[@"AIG"][2],
-            Id = @"AIG.2",
-            Type = @"Field",
-            Position = @"AIG.2",
-            Name = @"Segment Action Code",
-            Length = 1,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0206",
-            TableName = @"Segment action code",
-            Description = @"This field contains the action to be taken when updating or modifying information in this segment from previously sent interface transactions.  Refer to HL7 Table 0206 - Segment Action Code in Chapter 2, Code Tables, for valid values.
-
-This field is conditionally required.  It is required for all updating or modifying trigger events.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (segmentActionCode.field.FieldRepetitions != null && segmentActionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(segmentActionCode.Id));
-            segmentActionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(segmentActionCode, fieldData);
-        }
-
-        return segmentActionCode;
-    } 
-}
-
-internal HL7V27Field resourceId;
-
-public HL7V27Field ResourceId
-{
-    get
-    {
-        if (resourceId != null)
-        {
-            return resourceId;
-        }
-
-        resourceId = new HL7V27Field
-        {
-            field = message[@"AIG"][3],
-            Id = @"AIG.3",
-            Type = @"Field",
-            Position = @"AIG.3",
-            Name = @"Resource Id",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the ID number and name of the resource being requested or scheduled for an appointment.  This field is used to identify a specific resource being requested, or a specific resource that has been scheduled for an appointment.  If the specific resource is not known but the type of resource is, AIG-4 Resource Type is used to identify the type of resource required or scheduled.
-
-At a minimum, the ID number component should be supplied to identify either the specific resource being requested or the specific resource that has been scheduled.  For inter-enterprise communications, for which a shared ID number may not be available, the minimum components required to uniquely identify a resource may be defined by site-specific negotiations.
-
-This field is conditionally required for this segment.  In new schedule request messages, it is required if the request asks that a specific resource be scheduled.  For all other request messages, the specific resource should be identified if the information is available (either because a specific resource was initially requested, or because the filler application returned the ID of the specific resource that has been scheduled).
-
-This field is required for all unsolicited transactions from the filler application.
-
-This field is optional for all query transactions.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (resourceId.field.FieldRepetitions != null && resourceId.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resourceId.Id));
-            resourceId.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(resourceId, fieldData);
-        }
-
-        return resourceId;
-    } 
-}
-
-internal HL7V27Field resourceType;
-
-public HL7V27Field ResourceType
-{
-    get
-    {
-        if (resourceType != null)
-        {
-            return resourceType;
-        }
-
-        resourceType = new HL7V27Field
-        {
-            field = message[@"AIG"][4],
-            Id = @"AIG.4",
-            Type = @"Field",
-            Position = @"AIG.4",
-            Name = @"Resource Type",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the role of the resource requested/scheduled for this appointment.  For requests, if a specific resource is not identified in AIG-3-Resource ID, then this field identifies the type of resource that should be scheduled by the filler application.  At a minimum, the type of the identifier component should be valued.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (resourceType.field.FieldRepetitions != null && resourceType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resourceType.Id));
-            resourceType.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(resourceType, fieldData);
-        }
-
-        return resourceType;
-    } 
-}
-
-internal HL7V27Field resourceGroup;
-
-public HL7V27Field ResourceGroup
-{
-    get
-    {
-        if (resourceGroup != null)
-        {
-            return resourceGroup;
-        }
-
-        resourceGroup = new HL7V27Field
-        {
-            field = message[@"AIG"][5],
-            Id = @"AIG.5",
-            Type = @"Field",
-            Position = @"AIG.5",
-            Name = @"Resource Group",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies the requested resource as a member of the indicated group.  If, in a Schedule Request Message (SRM), no specific resource is requested, but a resource type is requested, this field can be used to further qualify the type of resource being requested.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (resourceGroup.field.FieldRepetitions != null && resourceGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resourceGroup.Id));
-            resourceGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(resourceGroup, fieldData);
-        }
-
-        return resourceGroup;
-    } 
-}
-
-internal HL7V27Field resourceQuantity;
-
-public HL7V27Field ResourceQuantity
-{
-    get
-    {
-        if (resourceQuantity != null)
-        {
-            return resourceQuantity;
-        }
-
-        resourceQuantity = new HL7V27Field
-        {
-            field = message[@"AIG"][6],
-            Id = @"AIG.6",
-            Type = @"Field",
-            Position = @"AIG.6",
-            Name = @"Resource Quantity",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the quantity of the specified resource or resource type identified in either or both of the preceding two fields.  If it is not valued, this field defaults to a value of one (1).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (resourceQuantity.field.FieldRepetitions != null && resourceQuantity.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resourceQuantity.Id));
-            resourceQuantity.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(resourceQuantity, fieldData);
-        }
-
-        return resourceQuantity;
-    } 
-}
-
-internal HL7V27Field resourceQuantityUnits;
-
-public HL7V27Field ResourceQuantityUnits
-{
-    get
-    {
-        if (resourceQuantityUnits != null)
-        {
-            return resourceQuantityUnits;
-        }
-
-        resourceQuantityUnits = new HL7V27Field
-        {
-            field = message[@"AIG"][7],
-            Id = @"AIG.7",
-            Type = @"Field",
-            Position = @"AIG.7",
-            Name = @"Resource Quantity Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the quantity of the specified resource or resource type identified in either or both of the preceding two fields.  If it is not valued, this field defaults to a value of one (1).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (resourceQuantityUnits.field.FieldRepetitions != null && resourceQuantityUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(resourceQuantityUnits.Id));
-            resourceQuantityUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(resourceQuantityUnits, fieldData);
-        }
-
-        return resourceQuantityUnits;
-    } 
-}
-
-internal HL7V27Field startDateTime;
-
-public HL7V27Field StartDateTime
-{
-    get
-    {
-        if (startDateTime != null)
-        {
-            return startDateTime;
-        }
-
-        startDateTime = new HL7V27Field
-        {
-            field = message[@"AIG"][8],
-            Id = @"AIG.8",
-            Type = @"Field",
-            Position = @"AIG.8",
-            Name = @"Start Date/Time",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"DTM",
-            DataTypeName = @"Date/time",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date and time this service needs for the appointment.  This field allows the application to identify that the service is required for the appointment at a different time than the appointment's start date/time
-
-This field is conditionally required.  If a value for AIG-9-Start Date/Time Offset is not provided, then a value is required for this field.  To specify that there is no difference between the appointment's start date/time and the resource's start date/time either replicate the appointment's start date/time into this field, or specify an offset of zero (0) in AIG-9-Start Date/Time Offset and any valid time unit code in AIG-10-Start Date/Time Offset Units.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (startDateTime.field.FieldRepetitions != null && startDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(startDateTime.Id));
-            startDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(startDateTime, fieldData);
-        }
-
-        return startDateTime;
-    } 
-}
-
-internal HL7V27Field startDateTimeOffset;
-
-public HL7V27Field StartDateTimeOffset
-{
-    get
-    {
-        if (startDateTimeOffset != null)
-        {
-            return startDateTimeOffset;
-        }
-
-        startDateTimeOffset = new HL7V27Field
-        {
-            field = message[@"AIG"][9],
-            Id = @"AIG.9",
-            Type = @"Field",
-            Position = @"AIG.9",
-            Name = @"Start Date/Time Offset",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the offset that this resource needs for the appointment, expressed in units of time relative to the scheduled start date/time.  This field indicates to the application that the resource is required for the appointment at a different time than the appointment's start date/time.  The first component indicates the offset amount.  An offset of zero (0), or an unvalued field, indicates that the resource is required at the start date/time of the appointment.
-
-A positive offset (an unsigned or positive number) indicates that the resource is required after the appointment's start date/time.  Specifying a negative offset indicates that the resource is required prior to the specified start date/time of the appointment.  Negative offsets are allowed, and sites should clearly define the effect of a negative offset on the appointment's start date/time.
-
-This field is conditionally required.  If a value for AIG-8-Start Date/Time is not provided, then a value is required for this field.  To specify that there is no difference between the appointment's start date/time and the resource's start date/time either replicate the appointment's start date/time into this field, or specify an offset of zero (0) in AIG-9-Start Date/Time Offset and any valid time unit code in AIG10-Start Date/Time Offset Units.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (startDateTimeOffset.field.FieldRepetitions != null && startDateTimeOffset.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(startDateTimeOffset.Id));
-            startDateTimeOffset.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(startDateTimeOffset, fieldData);
-        }
-
-        return startDateTimeOffset;
-    } 
-}
-
-internal HL7V27Field startDateTimeOffsetUnits;
-
-public HL7V27Field StartDateTimeOffsetUnits
-{
-    get
-    {
-        if (startDateTimeOffsetUnits != null)
-        {
-            return startDateTimeOffsetUnits;
-        }
-
-        startDateTimeOffsetUnits = new HL7V27Field
-        {
-            field = message[@"AIG"][10],
-            Id = @"AIG.10",
-            Type = @"Field",
-            Position = @"AIG.10",
-            Name = @"Start Date/Time Offset Units",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a code describing the units of time used for expressing AIG-9-Start Date/Time Offset. This field should be valued according to the recommendations made in Chapters 2 and 7.  If this field is not valued, the ISO base unit of seconds (code ""s"") will be assumed.  Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO+ and ANS+ unit codes.
-
-This field is conditionally required.  If a value for AIG-9-Start Date/Time Offset is provided, then a value is required for this field.
-
-As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (startDateTimeOffsetUnits.field.FieldRepetitions != null && startDateTimeOffsetUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(startDateTimeOffsetUnits.Id));
-            startDateTimeOffsetUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(startDateTimeOffsetUnits, fieldData);
-        }
-
-        return startDateTimeOffsetUnits;
-    } 
-}
-
-internal HL7V27Field duration;
-
-public HL7V27Field Duration
-{
-    get
-    {
-        if (duration != null)
-        {
-            return duration;
-        }
-
-        duration = new HL7V27Field
-        {
-            field = message[@"AIG"][11],
-            Id = @"AIG.11",
-            Type = @"Field",
-            Position = @"AIG.11",
-            Name = @"Duration",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a code describing the units of time used for expressing the AIG-11-Duration field.  This field should be valued according to the recommendations in Chapters 2 and 7.  If this field is not valued, the ISO base unit of seconds (code ""s"") will be assumed.  Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO+ and ANS+ unit codes.
-
-As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (duration.field.FieldRepetitions != null && duration.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(duration.Id));
-            duration.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(duration, fieldData);
-        }
-
-        return duration;
-    } 
-}
-
-internal HL7V27Field durationUnits;
-
-public HL7V27Field DurationUnits
-{
-    get
-    {
-        if (durationUnits != null)
-        {
-            return durationUnits;
-        }
-
-        durationUnits = new HL7V27Field
-        {
-            field = message[@"AIG"][12],
-            Id = @"AIG.12",
-            Type = @"Field",
-            Position = @"AIG.12",
-            Name = @"Duration Units",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CNE",
-            DataTypeName = @"Coded With No Exceptions",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a code describing the units of time used for expressing the AIG-11-Duration field.  This field should be valued according to the recommendations in Chapters 2 and 7.  If this field is not valued, the ISO base unit of seconds (code ""s"") will be assumed.  Refer to Chapter 7, Figures 7-6 through 7-9, for a list of ISO+ and ANS+ unit codes.
-
-As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (durationUnits.field.FieldRepetitions != null && durationUnits.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(durationUnits.Id));
-            durationUnits.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(durationUnits, fieldData);
-        }
-
-        return durationUnits;
-    } 
-}
-
-internal HL7V27Field allowSubstitutionCode;
-
-public HL7V27Field AllowSubstitutionCode
-{
-    get
-    {
-        if (allowSubstitutionCode != null)
-        {
-            return allowSubstitutionCode;
-        }
-
-        allowSubstitutionCode = new HL7V27Field
-        {
-            field = message[@"AIG"][13],
-            Id = @"AIG.13",
-            Type = @"Field",
-            Position = @"AIG.13",
-            Name = @"Allow Substitution Code",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0279",
-            TableName = @"Allow Substitution Codes",
-            Description = @"This field contains a code indicating whether the identified resource can be substituted with an equivalent resource by the filler application.  Refer to User-Defined Table 0279 - Allow Substitution Codes for suggested codes.
-
-This field is conditionally required.  It is required for all request messages.  It is optional for all unsolicited transactions, and for all query messages.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (allowSubstitutionCode.field.FieldRepetitions != null && allowSubstitutionCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(allowSubstitutionCode.Id));
-            allowSubstitutionCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(allowSubstitutionCode, fieldData);
-        }
-
-        return allowSubstitutionCode;
-    } 
-}
-
-internal HL7V27Field fillerStatusCode;
-
-public HL7V27Field FillerStatusCode
-{
-    get
-    {
-        if (fillerStatusCode != null)
-        {
-            return fillerStatusCode;
-        }
-
-        fillerStatusCode = new HL7V27Field
+        _fillerStatusCode = new HL7V27Field
         {
             field = message[@"AIG"][14],
-            Id = @"AIG.14",
-            Type = @"Field",
-            Position = @"AIG.14",
-            Name = @"Filler Status Code",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0278",
-            TableName = @"Filler status codes",
-            Description = @"This field contains a code that describes the requested/scheduled status of scheduling resource or activity, from the point of view of the filler application.  Refer to User-Defined Table 0278 - Filler Status Codes for suggested codes.
-
-This is a conditionally required field.  Because the information contained in this field is only appropriate in transactions originating from a filler application, it is required for those messages.  This includes all unsolicited transactions originating from a filler application, as well as all response messages originating from a filler application.  This field is optional for all transactions originating from placer, querying and auxiliary applications.  It is recommended that this field be left unvalued in transactions originating from applications other than the filler application.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (fillerStatusCode.field.FieldRepetitions != null && fillerStatusCode.field.FieldRepetitions.Count > 0)
+        if (_fillerStatusCode.field.FieldRepetitions != null && _fillerStatusCode.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(fillerStatusCode.Id));
-            fillerStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(fillerStatusCode, fieldData);
+            _fillerStatusCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_fillerStatusCode, fieldData);
         }
 
-        return fillerStatusCode;
+        return _fillerStatusCode;
     } 
 }
     }

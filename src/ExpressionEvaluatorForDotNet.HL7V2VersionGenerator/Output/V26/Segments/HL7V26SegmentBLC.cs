@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V26SegmentBLC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V26Field _bloodProductCode;
+
+public HL7V26Field BloodProductCode
+{
+    get
+    {
+        if (_bloodProductCode != null)
+        {
+            return _bloodProductCode;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"BLC.1",
+            Type = @"Field",
+            Position = @"BLC.1",
+            Name = @"Blood Product Code",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded with Exceptions",
+            TableId = @"0426",
+            TableName = @"Blood Product Code",
+            Description = @"This field reports the blood product code. Refer to User-defined Table 0426 - Blood Product Code for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"BLC.1",
-                            Type = @"Field",
-                            Position = @"BLC.1",
-                            Name = @"Blood Product Code",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded with Exceptions",
-                            TableId = @"0426",
-                            TableName = @"Blood Product Code",
-                            Description = @"This field reports the blood product code. Refer to User-defined Table 0426 - Blood Product Code for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"BLC.1.1",
                             Type = @"Component",
@@ -210,25 +222,55 @@ namespace ExpressionEvaluatorForDotNet
                             Description = @"The original text that was available to an automated process or a human before a specific code was assigned.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _bloodProductCode = new HL7V26Field
+        {
+            field = message[@"BLC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_bloodProductCode.field.FieldRepetitions != null && _bloodProductCode.field.FieldRepetitions.Count > 0)
+        {
+            _bloodProductCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_bloodProductCode, fieldData);
+        }
+
+        return _bloodProductCode;
+    } 
+}
+
+internal HL7V26Field _bloodAmount;
+
+public HL7V26Field BloodAmount
+{
+    get
+    {
+        if (_bloodAmount != null)
+        {
+            return _bloodAmount;
+        }
+
+        var fieldData = new HL7V26FieldData
+        {
+            Id = @"BLC.2",
+            Type = @"Field",
+            Position = @"BLC.2",
+            Name = @"Blood Amount",
+            Length = 267,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CQ",
+            DataTypeName = @"Composite Quantity with Units",
+            TableId = null,
+            TableName = null,
+            Description = @"This field indicates the quantity and units administered for the blood code identified in field 1, for example, 2^pt. Standard ISO or ANSI units, as defined in Chapter 7 are recommended.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"BLC.2",
-                            Type = @"Field",
-                            Position = @"BLC.2",
-                            Name = @"Blood Amount",
-                            Length = 267,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CQ",
-                            DataTypeName = @"Composite Quantity with Units",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field indicates the quantity and units administered for the blood code identified in field 1, for example, 2^pt. Standard ISO or ANSI units, as defined in Chapter 7 are recommended.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"BLC.2.1",
                             Type = @"Component",
@@ -422,96 +464,23 @@ namespace ExpressionEvaluatorForDotNet
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V26SegmentBLC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V26Field bloodProductCode;
-
-public HL7V26Field BloodProductCode
-{
-    get
-    {
-        if (bloodProductCode != null)
-        {
-            return bloodProductCode;
-        }
-
-        bloodProductCode = new HL7V26Field
-        {
-            field = message[@"BLC"][1],
-            Id = @"BLC.1",
-            Type = @"Field",
-            Position = @"BLC.1",
-            Name = @"Blood Product Code",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded with Exceptions",
-            TableId = @"0426",
-            TableName = @"Blood Product Code",
-            Description = @"This field reports the blood product code. Refer to User-defined Table 0426 - Blood Product Code for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (bloodProductCode.field.FieldRepetitions != null && bloodProductCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bloodProductCode.Id));
-            bloodProductCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(bloodProductCode, fieldData);
-        }
-
-        return bloodProductCode;
-    } 
-}
-
-internal HL7V26Field bloodAmount;
-
-public HL7V26Field BloodAmount
-{
-    get
-    {
-        if (bloodAmount != null)
-        {
-            return bloodAmount;
-        }
-
-        bloodAmount = new HL7V26Field
+        _bloodAmount = new HL7V26Field
         {
             field = message[@"BLC"][2],
-            Id = @"BLC.2",
-            Type = @"Field",
-            Position = @"BLC.2",
-            Name = @"Blood Amount",
-            Length = 267,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CQ",
-            DataTypeName = @"Composite Quantity with Units",
-            TableId = null,
-            TableName = null,
-            Description = @"This field indicates the quantity and units administered for the blood code identified in field 1, for example, 2^pt. Standard ISO or ANSI units, as defined in Chapter 7 are recommended.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (bloodAmount.field.FieldRepetitions != null && bloodAmount.field.FieldRepetitions.Count > 0)
+        if (_bloodAmount.field.FieldRepetitions != null && _bloodAmount.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(bloodAmount.Id));
-            bloodAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(bloodAmount, fieldData);
+            _bloodAmount.fieldRepetitions = HL7V2FieldGenerator.GenerateV26FieldRepetitions(_bloodAmount, fieldData);
         }
 
-        return bloodAmount;
+        return _bloodAmount;
     } 
 }
     }

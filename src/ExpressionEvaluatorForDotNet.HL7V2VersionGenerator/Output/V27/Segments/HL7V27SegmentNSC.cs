@@ -34,28 +34,40 @@ Fields 2-3, 6-7: entirely site-defined."; } }
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V27SegmentNSC(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _applicationChangeType;
+
+public HL7V27Field ApplicationChangeType
+{
+    get
+    {
+        if (_applicationChangeType != null)
+        {
+            return _applicationChangeType;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"NSC.1",
+            Type = @"Field",
+            Position = @"NSC.1",
+            Name = @"Application Change Type",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0409",
+            TableName = @"Application Change Type",
+            Description = @"This field contains the type of change being requested (if NMR query) or announced (if NMD unsolicited update).  Refer to User-Defined Table 0409 - Application Change Type for suggested values. It is assumed that ""new"" version starts up with no loss or duplication of data as old one is shutting down (if possible).",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"NSC.1",
-                            Type = @"Field",
-                            Position = @"NSC.1",
-                            Name = @"Application Change Type",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0409",
-                            TableName = @"Application Change Type",
-                            Description = @"This field contains the type of change being requested (if NMR query) or announced (if NMD unsolicited update).  Refer to User-Defined Table 0409 - Application Change Type for suggested values. It is assumed that ""new"" version starts up with no loss or duplication of data as old one is shutting down (if possible).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"NSC.1.1",
                             Type = @"Component",
@@ -481,63 +493,147 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.2",
-                            Type = @"Field",
-                            Position = @"NSC.2",
-                            Name = @"Current Cpu",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a site-specific name for the current CPU. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.3",
-                            Type = @"Field",
-                            Position = @"NSC.3",
-                            Name = @"Current Fileserver",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a site specific name for the current fileserver or file system used by this application. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.4",
-                            Type = @"Field",
-                            Position = @"NSC.4",
-                            Name = @"Current Application",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"HD",
-                            DataTypeName = @"Hierarchic Designator",
-                            TableId = @"0361",
-                            TableName = @"Application",
-                            Description = @"This field contains a site-specific name used to identify the ""current"" application process for interfacing with lower level protocols.  To be used in conjunction with the sending/receiving system and facility values in the MSH.  Entirely site-defined. User-defined Table 0361-Sending/Receiving Application is used as the user-defined table of values for the first component.
+                        }
+        }
+
+        _applicationChangeType = new HL7V27Field
+        {
+            field = message[@"NSC"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_applicationChangeType.field.FieldRepetitions != null && _applicationChangeType.field.FieldRepetitions.Count > 0)
+        {
+            _applicationChangeType.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_applicationChangeType, fieldData);
+        }
+
+        return _applicationChangeType;
+    } 
+}
+
+internal HL7V27Field _currentCpu;
+
+public HL7V27Field CurrentCpu
+{
+    get
+    {
+        if (_currentCpu != null)
+        {
+            return _currentCpu;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"NSC.2",
+            Type = @"Field",
+            Position = @"NSC.2",
+            Name = @"Current Cpu",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a site-specific name for the current CPU. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _currentCpu = new HL7V27Field
+        {
+            field = message[@"NSC"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_currentCpu.field.FieldRepetitions != null && _currentCpu.field.FieldRepetitions.Count > 0)
+        {
+            _currentCpu.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_currentCpu, fieldData);
+        }
+
+        return _currentCpu;
+    } 
+}
+
+internal HL7V27Field _currentFileserver;
+
+public HL7V27Field CurrentFileserver
+{
+    get
+    {
+        if (_currentFileserver != null)
+        {
+            return _currentFileserver;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"NSC.3",
+            Type = @"Field",
+            Position = @"NSC.3",
+            Name = @"Current Fileserver",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a site specific name for the current fileserver or file system used by this application. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _currentFileserver = new HL7V27Field
+        {
+            field = message[@"NSC"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_currentFileserver.field.FieldRepetitions != null && _currentFileserver.field.FieldRepetitions.Count > 0)
+        {
+            _currentFileserver.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_currentFileserver, fieldData);
+        }
+
+        return _currentFileserver;
+    } 
+}
+
+internal HL7V27Field _currentApplication;
+
+public HL7V27Field CurrentApplication
+{
+    get
+    {
+        if (_currentApplication != null)
+        {
+            return _currentApplication;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"NSC.4",
+            Type = @"Field",
+            Position = @"NSC.4",
+            Name = @"Current Application",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"HD",
+            DataTypeName = @"Hierarchic Designator",
+            TableId = @"0361",
+            TableName = @"Application",
+            Description = @"This field contains a site-specific name used to identify the ""current"" application process for interfacing with lower level protocols.  To be used in conjunction with the sending/receiving system and facility values in the MSH.  Entirely site-defined. User-defined Table 0361-Sending/Receiving Application is used as the user-defined table of values for the first component.
 
 Note: By site agreement, implementors may continue to use User-defined Table 0300 – Namespace ID for the first component.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"NSC.4.1",
                             Type = @"Component",
@@ -593,27 +689,57 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.5",
-                            Type = @"Field",
-                            Position = @"NSC.5",
-                            Name = @"Current Facility",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"HD",
-                            DataTypeName = @"Hierarchic Designator",
-                            TableId = @"0362",
-                            TableName = @"Facility",
-                            Description = @"This field contains a site-specific name for the current facility used by this application. To be used in conjunction with the values for the sending/receiving system and facility values in the MSH. This field further describes the current application, NSC-5 Current Application.  With the promotion of this field to an HD data type, the usage has been broadened to include not just the current facility but other organizational entities, such as: a) the organizational entity responsible for current application; b) the responsible unit; c) a product or vendor's identifier, etc. Entirely site defined. User-defined Table 0362 – Sending/Receiving Facility is used as the HL7 identifier for the user-defined table of values for the first component.  
+                        }
+        }
+
+        _currentApplication = new HL7V27Field
+        {
+            field = message[@"NSC"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_currentApplication.field.FieldRepetitions != null && _currentApplication.field.FieldRepetitions.Count > 0)
+        {
+            _currentApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_currentApplication, fieldData);
+        }
+
+        return _currentApplication;
+    } 
+}
+
+internal HL7V27Field _currentFacility;
+
+public HL7V27Field CurrentFacility
+{
+    get
+    {
+        if (_currentFacility != null)
+        {
+            return _currentFacility;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"NSC.5",
+            Type = @"Field",
+            Position = @"NSC.5",
+            Name = @"Current Facility",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"HD",
+            DataTypeName = @"Hierarchic Designator",
+            TableId = @"0362",
+            TableName = @"Facility",
+            Description = @"This field contains a site-specific name for the current facility used by this application. To be used in conjunction with the values for the sending/receiving system and facility values in the MSH. This field further describes the current application, NSC-5 Current Application.  With the promotion of this field to an HD data type, the usage has been broadened to include not just the current facility but other organizational entities, such as: a) the organizational entity responsible for current application; b) the responsible unit; c) a product or vendor's identifier, etc. Entirely site defined. User-defined Table 0362 – Sending/Receiving Facility is used as the HL7 identifier for the user-defined table of values for the first component.  
 
 Note: By site agreement, implementors may continue to use User-defined Table 0300 – Namespace ID for the first component.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"NSC.5.1",
                             Type = @"Component",
@@ -669,63 +795,147 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.6",
-                            Type = @"Field",
-                            Position = @"NSC.6",
-                            Name = @"New Cpu",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a site-specific name for the new CPU. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.7",
-                            Type = @"Field",
-                            Position = @"NSC.7",
-                            Name = @"New Fileserver",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains a site-specific name for the new fileserver or file system used by this application. ",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.8",
-                            Type = @"Field",
-                            Position = @"NSC.8",
-                            Name = @"New Application",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"HD",
-                            DataTypeName = @"Hierarchic Designator",
-                            TableId = @"0361",
-                            TableName = @"Application",
-                            Description = @"This field contains a site-specific name used to identify ""new"" application processes for interfacing with lower level protocols.  To be used in conjunction with the sending/receiving system and facility values in the MSH.  Entirely site-defined. User-defined Table 0361-Sending/Receiving Application is used as the user-defined table of values for the first component.
+                        }
+        }
+
+        _currentFacility = new HL7V27Field
+        {
+            field = message[@"NSC"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_currentFacility.field.FieldRepetitions != null && _currentFacility.field.FieldRepetitions.Count > 0)
+        {
+            _currentFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_currentFacility, fieldData);
+        }
+
+        return _currentFacility;
+    } 
+}
+
+internal HL7V27Field _newCpu;
+
+public HL7V27Field NewCpu
+{
+    get
+    {
+        if (_newCpu != null)
+        {
+            return _newCpu;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"NSC.6",
+            Type = @"Field",
+            Position = @"NSC.6",
+            Name = @"New Cpu",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a site-specific name for the new CPU. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _newCpu = new HL7V27Field
+        {
+            field = message[@"NSC"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_newCpu.field.FieldRepetitions != null && _newCpu.field.FieldRepetitions.Count > 0)
+        {
+            _newCpu.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_newCpu, fieldData);
+        }
+
+        return _newCpu;
+    } 
+}
+
+internal HL7V27Field _newFileserver;
+
+public HL7V27Field NewFileserver
+{
+    get
+    {
+        if (_newFileserver != null)
+        {
+            return _newFileserver;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"NSC.7",
+            Type = @"Field",
+            Position = @"NSC.7",
+            Name = @"New Fileserver",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains a site-specific name for the new fileserver or file system used by this application. ",
+            Sample = @"",
+            Fields = null
+        }
+
+        _newFileserver = new HL7V27Field
+        {
+            field = message[@"NSC"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_newFileserver.field.FieldRepetitions != null && _newFileserver.field.FieldRepetitions.Count > 0)
+        {
+            _newFileserver.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_newFileserver, fieldData);
+        }
+
+        return _newFileserver;
+    } 
+}
+
+internal HL7V27Field _newApplication;
+
+public HL7V27Field NewApplication
+{
+    get
+    {
+        if (_newApplication != null)
+        {
+            return _newApplication;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"NSC.8",
+            Type = @"Field",
+            Position = @"NSC.8",
+            Name = @"New Application",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"HD",
+            DataTypeName = @"Hierarchic Designator",
+            TableId = @"0361",
+            TableName = @"Application",
+            Description = @"This field contains a site-specific name used to identify ""new"" application processes for interfacing with lower level protocols.  To be used in conjunction with the sending/receiving system and facility values in the MSH.  Entirely site-defined. User-defined Table 0361-Sending/Receiving Application is used as the user-defined table of values for the first component.
 
 Note: By site agreement, implementors may continue to use User-defined Table 0300 – Namespace ID for the first component.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"NSC.8.1",
                             Type = @"Component",
@@ -781,29 +991,59 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NSC.9",
-                            Type = @"Field",
-                            Position = @"NSC.9",
-                            Name = @"New Facility",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"HD",
-                            DataTypeName = @"Hierarchic Designator",
-                            TableId = @"0362",
-                            TableName = @"Facility",
-                            Description = @"This field contains a site-specific name for the new facility used by this application. To be used in conjunction with the values for the sending/receiving system and facility values in the MSH. 
+                        }
+        }
+
+        _newApplication = new HL7V27Field
+        {
+            field = message[@"NSC"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_newApplication.field.FieldRepetitions != null && _newApplication.field.FieldRepetitions.Count > 0)
+        {
+            _newApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_newApplication, fieldData);
+        }
+
+        return _newApplication;
+    } 
+}
+
+internal HL7V27Field _newFacility;
+
+public HL7V27Field NewFacility
+{
+    get
+    {
+        if (_newFacility != null)
+        {
+            return _newFacility;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"NSC.9",
+            Type = @"Field",
+            Position = @"NSC.9",
+            Name = @"New Facility",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"HD",
+            DataTypeName = @"Hierarchic Designator",
+            TableId = @"0362",
+            TableName = @"Facility",
+            Description = @"This field contains a site-specific name for the new facility used by this application. To be used in conjunction with the values for the sending/receiving system and facility values in the MSH. 
 
 This field further describes the new application, NSC-8 New Application.  With the promotion of this field to an HD data type, the usage has been broadened to include not just the new facility but other organizational entities, such as: a) the organizational entity responsible for new application; b) the responsible unit; c) a product or vendor's identifier, etc. Entirely site defined. User-defined Table 0362 – Sending/Receiving Facility is used as the HL7 identifier for the user-defined table of values for the first component.  
 
 Note: By site agreement, implementors may continue to use User-defined Table 0300 – Namespace ID for the first component.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"NSC.9.1",
                             Type = @"Component",
@@ -859,393 +1099,23 @@ Note: When the HD is used in a given segment (either as a field or as a componen
                             Description = @"The third component governs the interpretation of the second component of the HD. If the third component is a known UID refer to HL7 Table 0301 - Universal ID type for valid values, then the second component is a universal ID of that type.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentNSC(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field applicationChangeType;
-
-public HL7V27Field ApplicationChangeType
-{
-    get
-    {
-        if (applicationChangeType != null)
-        {
-            return applicationChangeType;
-        }
-
-        applicationChangeType = new HL7V27Field
-        {
-            field = message[@"NSC"][1],
-            Id = @"NSC.1",
-            Type = @"Field",
-            Position = @"NSC.1",
-            Name = @"Application Change Type",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0409",
-            TableName = @"Application Change Type",
-            Description = @"This field contains the type of change being requested (if NMR query) or announced (if NMD unsolicited update).  Refer to User-Defined Table 0409 - Application Change Type for suggested values. It is assumed that ""new"" version starts up with no loss or duplication of data as old one is shutting down (if possible).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (applicationChangeType.field.FieldRepetitions != null && applicationChangeType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(applicationChangeType.Id));
-            applicationChangeType.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(applicationChangeType, fieldData);
-        }
-
-        return applicationChangeType;
-    } 
-}
-
-internal HL7V27Field currentCpu;
-
-public HL7V27Field CurrentCpu
-{
-    get
-    {
-        if (currentCpu != null)
-        {
-            return currentCpu;
-        }
-
-        currentCpu = new HL7V27Field
-        {
-            field = message[@"NSC"][2],
-            Id = @"NSC.2",
-            Type = @"Field",
-            Position = @"NSC.2",
-            Name = @"Current Cpu",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a site-specific name for the current CPU. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (currentCpu.field.FieldRepetitions != null && currentCpu.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(currentCpu.Id));
-            currentCpu.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(currentCpu, fieldData);
-        }
-
-        return currentCpu;
-    } 
-}
-
-internal HL7V27Field currentFileserver;
-
-public HL7V27Field CurrentFileserver
-{
-    get
-    {
-        if (currentFileserver != null)
-        {
-            return currentFileserver;
-        }
-
-        currentFileserver = new HL7V27Field
-        {
-            field = message[@"NSC"][3],
-            Id = @"NSC.3",
-            Type = @"Field",
-            Position = @"NSC.3",
-            Name = @"Current Fileserver",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a site specific name for the current fileserver or file system used by this application. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (currentFileserver.field.FieldRepetitions != null && currentFileserver.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(currentFileserver.Id));
-            currentFileserver.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(currentFileserver, fieldData);
-        }
-
-        return currentFileserver;
-    } 
-}
-
-internal HL7V27Field currentApplication;
-
-public HL7V27Field CurrentApplication
-{
-    get
-    {
-        if (currentApplication != null)
-        {
-            return currentApplication;
-        }
-
-        currentApplication = new HL7V27Field
-        {
-            field = message[@"NSC"][4],
-            Id = @"NSC.4",
-            Type = @"Field",
-            Position = @"NSC.4",
-            Name = @"Current Application",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"HD",
-            DataTypeName = @"Hierarchic Designator",
-            TableId = @"0361",
-            TableName = @"Application",
-            Description = @"This field contains a site-specific name used to identify the ""current"" application process for interfacing with lower level protocols.  To be used in conjunction with the sending/receiving system and facility values in the MSH.  Entirely site-defined. User-defined Table 0361-Sending/Receiving Application is used as the user-defined table of values for the first component.
-
-Note: By site agreement, implementors may continue to use User-defined Table 0300 – Namespace ID for the first component.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (currentApplication.field.FieldRepetitions != null && currentApplication.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(currentApplication.Id));
-            currentApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(currentApplication, fieldData);
-        }
-
-        return currentApplication;
-    } 
-}
-
-internal HL7V27Field currentFacility;
-
-public HL7V27Field CurrentFacility
-{
-    get
-    {
-        if (currentFacility != null)
-        {
-            return currentFacility;
-        }
-
-        currentFacility = new HL7V27Field
-        {
-            field = message[@"NSC"][5],
-            Id = @"NSC.5",
-            Type = @"Field",
-            Position = @"NSC.5",
-            Name = @"Current Facility",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"HD",
-            DataTypeName = @"Hierarchic Designator",
-            TableId = @"0362",
-            TableName = @"Facility",
-            Description = @"This field contains a site-specific name for the current facility used by this application. To be used in conjunction with the values for the sending/receiving system and facility values in the MSH. This field further describes the current application, NSC-5 Current Application.  With the promotion of this field to an HD data type, the usage has been broadened to include not just the current facility but other organizational entities, such as: a) the organizational entity responsible for current application; b) the responsible unit; c) a product or vendor's identifier, etc. Entirely site defined. User-defined Table 0362 – Sending/Receiving Facility is used as the HL7 identifier for the user-defined table of values for the first component.  
-
-Note: By site agreement, implementors may continue to use User-defined Table 0300 – Namespace ID for the first component.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (currentFacility.field.FieldRepetitions != null && currentFacility.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(currentFacility.Id));
-            currentFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(currentFacility, fieldData);
-        }
-
-        return currentFacility;
-    } 
-}
-
-internal HL7V27Field newCpu;
-
-public HL7V27Field NewCpu
-{
-    get
-    {
-        if (newCpu != null)
-        {
-            return newCpu;
-        }
-
-        newCpu = new HL7V27Field
-        {
-            field = message[@"NSC"][6],
-            Id = @"NSC.6",
-            Type = @"Field",
-            Position = @"NSC.6",
-            Name = @"New Cpu",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a site-specific name for the new CPU. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (newCpu.field.FieldRepetitions != null && newCpu.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(newCpu.Id));
-            newCpu.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(newCpu, fieldData);
-        }
-
-        return newCpu;
-    } 
-}
-
-internal HL7V27Field newFileserver;
-
-public HL7V27Field NewFileserver
-{
-    get
-    {
-        if (newFileserver != null)
-        {
-            return newFileserver;
-        }
-
-        newFileserver = new HL7V27Field
-        {
-            field = message[@"NSC"][7],
-            Id = @"NSC.7",
-            Type = @"Field",
-            Position = @"NSC.7",
-            Name = @"New Fileserver",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains a site-specific name for the new fileserver or file system used by this application. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (newFileserver.field.FieldRepetitions != null && newFileserver.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(newFileserver.Id));
-            newFileserver.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(newFileserver, fieldData);
-        }
-
-        return newFileserver;
-    } 
-}
-
-internal HL7V27Field newApplication;
-
-public HL7V27Field NewApplication
-{
-    get
-    {
-        if (newApplication != null)
-        {
-            return newApplication;
-        }
-
-        newApplication = new HL7V27Field
-        {
-            field = message[@"NSC"][8],
-            Id = @"NSC.8",
-            Type = @"Field",
-            Position = @"NSC.8",
-            Name = @"New Application",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"HD",
-            DataTypeName = @"Hierarchic Designator",
-            TableId = @"0361",
-            TableName = @"Application",
-            Description = @"This field contains a site-specific name used to identify ""new"" application processes for interfacing with lower level protocols.  To be used in conjunction with the sending/receiving system and facility values in the MSH.  Entirely site-defined. User-defined Table 0361-Sending/Receiving Application is used as the user-defined table of values for the first component.
-
-Note: By site agreement, implementors may continue to use User-defined Table 0300 – Namespace ID for the first component.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (newApplication.field.FieldRepetitions != null && newApplication.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(newApplication.Id));
-            newApplication.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(newApplication, fieldData);
-        }
-
-        return newApplication;
-    } 
-}
-
-internal HL7V27Field newFacility;
-
-public HL7V27Field NewFacility
-{
-    get
-    {
-        if (newFacility != null)
-        {
-            return newFacility;
-        }
-
-        newFacility = new HL7V27Field
+        _newFacility = new HL7V27Field
         {
             field = message[@"NSC"][9],
-            Id = @"NSC.9",
-            Type = @"Field",
-            Position = @"NSC.9",
-            Name = @"New Facility",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"HD",
-            DataTypeName = @"Hierarchic Designator",
-            TableId = @"0362",
-            TableName = @"Facility",
-            Description = @"This field contains a site-specific name for the new facility used by this application. To be used in conjunction with the values for the sending/receiving system and facility values in the MSH. 
-
-This field further describes the new application, NSC-8 New Application.  With the promotion of this field to an HD data type, the usage has been broadened to include not just the new facility but other organizational entities, such as: a) the organizational entity responsible for new application; b) the responsible unit; c) a product or vendor's identifier, etc. Entirely site defined. User-defined Table 0362 – Sending/Receiving Facility is used as the HL7 identifier for the user-defined table of values for the first component.  
-
-Note: By site agreement, implementors may continue to use User-defined Table 0300 – Namespace ID for the first component.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (newFacility.field.FieldRepetitions != null && newFacility.field.FieldRepetitions.Count > 0)
+        if (_newFacility.field.FieldRepetitions != null && _newFacility.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(newFacility.Id));
-            newFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(newFacility, fieldData);
+            _newFacility.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_newFacility, fieldData);
         }
 
-        return newFacility;
+        return _newFacility;
     } 
 }
     }

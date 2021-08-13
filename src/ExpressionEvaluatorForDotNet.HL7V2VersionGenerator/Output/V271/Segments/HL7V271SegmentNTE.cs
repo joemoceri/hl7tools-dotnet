@@ -31,86 +31,179 @@ The technical committees define the meaning of the NTE segments within the conte
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"NTE.1",
-                            Type = @"Field",
-                            Position = @"NTE.1",
-                            Name = @"Set Id - Nte",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence Id",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field may be used where multiple NTE segments are included in a message. Their numbering must be described in the application message definition.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NTE.2",
-                            Type = @"Field",
-                            Position = @"NTE.2",
-                            Name = @"Source Of Comment",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-                            TableId = @"0105",
-                            TableName = @"Source of Comment",
-                            Description = @"This field is used when source of comment must be identified. This table may be extended locally during implementation. Refer to HL7 Table 0105 - Source of Comment for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NTE.3",
-                            Type = @"Field",
-                            Position = @"NTE.3",
-                            Name = @"Comment",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"FT",
-                            DataTypeName = @"Formatted Text Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the comment contained in the segment.
+        public HL7V271SegmentNTE(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V271Field _setIdNte;
+
+public HL7V271Field SetIdNte
+{
+    get
+    {
+        if (_setIdNte != null)
+        {
+            return _setIdNte;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"NTE.1",
+            Type = @"Field",
+            Position = @"NTE.1",
+            Name = @"Set Id - Nte",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence Id",
+            TableId = null,
+            TableName = null,
+            Description = @"This field may be used where multiple NTE segments are included in a message. Their numbering must be described in the application message definition.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIdNte = new HL7V271Field
+        {
+            field = message[@"NTE"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIdNte.field.FieldRepetitions != null && _setIdNte.field.FieldRepetitions.Count > 0)
+        {
+            _setIdNte.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_setIdNte, fieldData);
+        }
+
+        return _setIdNte;
+    } 
+}
+
+internal HL7V271Field _sourceOfComment;
+
+public HL7V271Field SourceOfComment
+{
+    get
+    {
+        if (_sourceOfComment != null)
+        {
+            return _sourceOfComment;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"NTE.2",
+            Type = @"Field",
+            Position = @"NTE.2",
+            Name = @"Source Of Comment",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded Value For Hl7 Defined Tables",
+            TableId = @"0105",
+            TableName = @"Source of Comment",
+            Description = @"This field is used when source of comment must be identified. This table may be extended locally during implementation. Refer to HL7 Table 0105 - Source of Comment for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _sourceOfComment = new HL7V271Field
+        {
+            field = message[@"NTE"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_sourceOfComment.field.FieldRepetitions != null && _sourceOfComment.field.FieldRepetitions.Count > 0)
+        {
+            _sourceOfComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_sourceOfComment, fieldData);
+        }
+
+        return _sourceOfComment;
+    } 
+}
+
+internal HL7V271Field _comment;
+
+public HL7V271Field Comment
+{
+    get
+    {
+        if (_comment != null)
+        {
+            return _comment;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"NTE.3",
+            Type = @"Field",
+            Position = @"NTE.3",
+            Name = @"Comment",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"FT",
+            DataTypeName = @"Formatted Text Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the comment contained in the segment.
 
 Note: As of v2.2, this field uses the FT rather than a TX data type. Since there is no difference between an FT data type without any embedded formatting commands, and a TX data type, this change is compatible with the previous version.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NTE.4",
-                            Type = @"Field",
-                            Position = @"NTE.4",
-                            Name = @"Comment Type",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0364",
-                            TableName = @"Comment Type",
-                            Description = @"This field contains a value to identify the type of comment text being sent in the specific comment record. Refer to User-Defined Table 0364 - Comment Type for suggested values.
+            Sample = @"",
+            Fields = null
+        }
+
+        _comment = new HL7V271Field
+        {
+            field = message[@"NTE"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_comment.field.FieldRepetitions != null && _comment.field.FieldRepetitions.Count > 0)
+        {
+            _comment.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_comment, fieldData);
+        }
+
+        return _comment;
+    } 
+}
+
+internal HL7V271Field _commentType;
+
+public HL7V271Field CommentType
+{
+    get
+    {
+        if (_commentType != null)
+        {
+            return _commentType;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"NTE.4",
+            Type = @"Field",
+            Position = @"NTE.4",
+            Name = @"Comment Type",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0364",
+            TableName = @"Comment Type",
+            Description = @"This field contains a value to identify the type of comment text being sent in the specific comment record. Refer to User-Defined Table 0364 - Comment Type for suggested values.
 
 Note: A field already exists on the NTE record that identifies the Sources of Comment (e.g., ancillary, placer, other). However some applications need to support other types of comment text (e.g., instructions, reason, remarks, etc.). A separate NTE segment can be used for each type of comment (e.g., instructions are on one NTE and remarks on another NTE).",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"NTE.4.1",
                             Type = @"Component",
@@ -536,25 +629,55 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _commentType = new HL7V271Field
+        {
+            field = message[@"NTE"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_commentType.field.FieldRepetitions != null && _commentType.field.FieldRepetitions.Count > 0)
+        {
+            _commentType.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_commentType, fieldData);
+        }
+
+        return _commentType;
+    } 
+}
+
+internal HL7V271Field _enteredBy;
+
+public HL7V271Field EnteredBy
+{
+    get
+    {
+        if (_enteredBy != null)
+        {
+            return _enteredBy;
+        }
+
+        var fieldData = new HL7V271FieldData
+        {
+            Id = @"NTE.5",
+            Type = @"Field",
+            Position = @"NTE.5",
+            Name = @"Entered By",
+            Length = 0,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite Id Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the identity of the person who actually keyed the comment into the application. It provides an audit trail in case the comment is entered incorrectly and the ancillary department needs to clarify the comment. By local agreement, either the ID number or name component may be omitted.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"NTE.5",
-                            Type = @"Field",
-                            Position = @"NTE.5",
-                            Name = @"Entered By",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the identity of the person who actually keyed the comment into the application. It provides an audit trail in case the comment is entered incorrectly and the ancillary department needs to clarify the comment. By local agreement, either the ID number or name component may be omitted.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"NTE.5.1",
                             Type = @"Component",
@@ -2953,294 +3076,39 @@ Value set version ID is required if CWE.21 is populated.",
 Refer to HL7 Table 0904 - Security Check Scheme for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NTE.6",
-                            Type = @"Field",
-                            Position = @"NTE.6",
-                            Name = @"Entered Date/Time",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the actual date the comment was keyed into the application.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NTE.7",
-                            Type = @"Field",
-                            Position = @"NTE.7",
-                            Name = @"Effective Start Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date the comment becomes or became effective.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"NTE.8",
-                            Type = @"Field",
-                            Position = @"NTE.8",
-                            Name = @"Expiration Date",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"DTM",
-                            DataTypeName = @"Date/time",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date the comment becomes or became non-effective.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V271SegmentNTE(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V271Field setIdNte;
-
-public HL7V271Field SetIdNte
-{
-    get
-    {
-        if (setIdNte != null)
-        {
-            return setIdNte;
-        }
-
-        setIdNte = new HL7V271Field
-        {
-            field = message[@"NTE"][1],
-            Id = @"NTE.1",
-            Type = @"Field",
-            Position = @"NTE.1",
-            Name = @"Set Id - Nte",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence Id",
-            TableId = null,
-            TableName = null,
-            Description = @"This field may be used where multiple NTE segments are included in a message. Their numbering must be described in the application message definition.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIdNte.field.FieldRepetitions != null && setIdNte.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIdNte.Id));
-            setIdNte.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(setIdNte, fieldData);
-        }
-
-        return setIdNte;
-    } 
-}
-
-internal HL7V271Field sourceOfComment;
-
-public HL7V271Field SourceOfComment
-{
-    get
-    {
-        if (sourceOfComment != null)
-        {
-            return sourceOfComment;
-        }
-
-        sourceOfComment = new HL7V271Field
-        {
-            field = message[@"NTE"][2],
-            Id = @"NTE.2",
-            Type = @"Field",
-            Position = @"NTE.2",
-            Name = @"Source Of Comment",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded Value For Hl7 Defined Tables",
-            TableId = @"0105",
-            TableName = @"Source of Comment",
-            Description = @"This field is used when source of comment must be identified. This table may be extended locally during implementation. Refer to HL7 Table 0105 - Source of Comment for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (sourceOfComment.field.FieldRepetitions != null && sourceOfComment.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(sourceOfComment.Id));
-            sourceOfComment.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(sourceOfComment, fieldData);
-        }
-
-        return sourceOfComment;
-    } 
-}
-
-internal HL7V271Field comment;
-
-public HL7V271Field Comment
-{
-    get
-    {
-        if (comment != null)
-        {
-            return comment;
-        }
-
-        comment = new HL7V271Field
-        {
-            field = message[@"NTE"][3],
-            Id = @"NTE.3",
-            Type = @"Field",
-            Position = @"NTE.3",
-            Name = @"Comment",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"FT",
-            DataTypeName = @"Formatted Text Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the comment contained in the segment.
-
-Note: As of v2.2, this field uses the FT rather than a TX data type. Since there is no difference between an FT data type without any embedded formatting commands, and a TX data type, this change is compatible with the previous version.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (comment.field.FieldRepetitions != null && comment.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(comment.Id));
-            comment.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(comment, fieldData);
-        }
-
-        return comment;
-    } 
-}
-
-internal HL7V271Field commentType;
-
-public HL7V271Field CommentType
-{
-    get
-    {
-        if (commentType != null)
-        {
-            return commentType;
-        }
-
-        commentType = new HL7V271Field
-        {
-            field = message[@"NTE"][4],
-            Id = @"NTE.4",
-            Type = @"Field",
-            Position = @"NTE.4",
-            Name = @"Comment Type",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0364",
-            TableName = @"Comment Type",
-            Description = @"This field contains a value to identify the type of comment text being sent in the specific comment record. Refer to User-Defined Table 0364 - Comment Type for suggested values.
-
-Note: A field already exists on the NTE record that identifies the Sources of Comment (e.g., ancillary, placer, other). However some applications need to support other types of comment text (e.g., instructions, reason, remarks, etc.). A separate NTE segment can be used for each type of comment (e.g., instructions are on one NTE and remarks on another NTE).",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (commentType.field.FieldRepetitions != null && commentType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(commentType.Id));
-            commentType.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(commentType, fieldData);
-        }
-
-        return commentType;
-    } 
-}
-
-internal HL7V271Field enteredBy;
-
-public HL7V271Field EnteredBy
-{
-    get
-    {
-        if (enteredBy != null)
-        {
-            return enteredBy;
-        }
-
-        enteredBy = new HL7V271Field
+        _enteredBy = new HL7V271Field
         {
             field = message[@"NTE"][5],
-            Id = @"NTE.5",
-            Type = @"Field",
-            Position = @"NTE.5",
-            Name = @"Entered By",
-            Length = 0,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite Id Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the identity of the person who actually keyed the comment into the application. It provides an audit trail in case the comment is entered incorrectly and the ancillary department needs to clarify the comment. By local agreement, either the ID number or name component may be omitted.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (enteredBy.field.FieldRepetitions != null && enteredBy.field.FieldRepetitions.Count > 0)
+        if (_enteredBy.field.FieldRepetitions != null && _enteredBy.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteredBy.Id));
-            enteredBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(enteredBy, fieldData);
+            _enteredBy.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_enteredBy, fieldData);
         }
 
-        return enteredBy;
+        return _enteredBy;
     } 
 }
 
-internal HL7V271Field enteredDateTime;
+internal HL7V271Field _enteredDateTime;
 
 public HL7V271Field EnteredDateTime
 {
     get
     {
-        if (enteredDateTime != null)
+        if (_enteredDateTime != null)
         {
-            return enteredDateTime;
+            return _enteredDateTime;
         }
 
-        enteredDateTime = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"NTE"][6],
             Id = @"NTE.6",
             Type = @"Field",
             Position = @"NTE.6",
@@ -3254,34 +3122,38 @@ public HL7V271Field EnteredDateTime
             TableName = null,
             Description = @"This field contains the actual date the comment was keyed into the application.",
             Sample = @"",
+            Fields = null
+        }
+
+        _enteredDateTime = new HL7V271Field
+        {
+            field = message[@"NTE"][6],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (enteredDateTime.field.FieldRepetitions != null && enteredDateTime.field.FieldRepetitions.Count > 0)
+        if (_enteredDateTime.field.FieldRepetitions != null && _enteredDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(enteredDateTime.Id));
-            enteredDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(enteredDateTime, fieldData);
+            _enteredDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_enteredDateTime, fieldData);
         }
 
-        return enteredDateTime;
+        return _enteredDateTime;
     } 
 }
 
-internal HL7V271Field effectiveStartDate;
+internal HL7V271Field _effectiveStartDate;
 
 public HL7V271Field EffectiveStartDate
 {
     get
     {
-        if (effectiveStartDate != null)
+        if (_effectiveStartDate != null)
         {
-            return effectiveStartDate;
+            return _effectiveStartDate;
         }
 
-        effectiveStartDate = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"NTE"][7],
             Id = @"NTE.7",
             Type = @"Field",
             Position = @"NTE.7",
@@ -3295,34 +3167,38 @@ public HL7V271Field EffectiveStartDate
             TableName = null,
             Description = @"This field contains the date the comment becomes or became effective.",
             Sample = @"",
+            Fields = null
+        }
+
+        _effectiveStartDate = new HL7V271Field
+        {
+            field = message[@"NTE"][7],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (effectiveStartDate.field.FieldRepetitions != null && effectiveStartDate.field.FieldRepetitions.Count > 0)
+        if (_effectiveStartDate.field.FieldRepetitions != null && _effectiveStartDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(effectiveStartDate.Id));
-            effectiveStartDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(effectiveStartDate, fieldData);
+            _effectiveStartDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_effectiveStartDate, fieldData);
         }
 
-        return effectiveStartDate;
+        return _effectiveStartDate;
     } 
 }
 
-internal HL7V271Field expirationDate;
+internal HL7V271Field _expirationDate;
 
 public HL7V271Field ExpirationDate
 {
     get
     {
-        if (expirationDate != null)
+        if (_expirationDate != null)
         {
-            return expirationDate;
+            return _expirationDate;
         }
 
-        expirationDate = new HL7V271Field
+        var fieldData = new HL7V271FieldData
         {
-            field = message[@"NTE"][8],
             Id = @"NTE.8",
             Type = @"Field",
             Position = @"NTE.8",
@@ -3336,17 +3212,22 @@ public HL7V271Field ExpirationDate
             TableName = null,
             Description = @"This field contains the date the comment becomes or became non-effective.",
             Sample = @"",
+            Fields = null
+        }
+
+        _expirationDate = new HL7V271Field
+        {
+            field = message[@"NTE"][8],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (expirationDate.field.FieldRepetitions != null && expirationDate.field.FieldRepetitions.Count > 0)
+        if (_expirationDate.field.FieldRepetitions != null && _expirationDate.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(expirationDate.Id));
-            expirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(expirationDate, fieldData);
+            _expirationDate.fieldRepetitions = HL7V2FieldGenerator.GenerateV271FieldRepetitions(_expirationDate, fieldData);
         }
 
-        return expirationDate;
+        return _expirationDate;
     } 
 }
     }

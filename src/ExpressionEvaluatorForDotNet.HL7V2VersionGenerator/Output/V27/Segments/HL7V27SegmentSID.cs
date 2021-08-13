@@ -31,30 +31,42 @@ Another purpose of this segment is to transfer the control manufacturer, lot, et
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
-                        {
-                            new HL7V2FieldData
-                        {
-                            Id = @"SID.1",
-                            Type = @"Field",
-                            Position = @"SID.1",
-                            Name = @"Application/Method Identifier",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"9999",
-                            TableName = @"no table for CE",
-                            Description = @"This field identifies the application/method used for the analysis. 
+        public HL7V27SegmentSID(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V27Field _applicationMethodIdentifier;
+
+public HL7V27Field ApplicationMethodIdentifier
+{
+    get
+    {
+        if (_applicationMethodIdentifier != null)
+        {
+            return _applicationMethodIdentifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SID.1",
+            Type = @"Field",
+            Position = @"SID.1",
+            Name = @"Application/Method Identifier",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"9999",
+            TableName = @"no table for CE",
+            Description = @"This field identifies the application/method used for the analysis. 
 
 Example: GLUCOSE is an orderable test. GLUCOSE can be analyzed using various applications/methods, which have manufacturer specific identifiers. ",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+            Sample = @"",
+            Fields = new[]
+                        {
+                            new HL7V2FieldData
                         {
                             Id = @"SID.1.1",
                             Type = @"Component",
@@ -480,61 +492,145 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _applicationMethodIdentifier = new HL7V27Field
+        {
+            field = message[@"SID"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_applicationMethodIdentifier.field.FieldRepetitions != null && _applicationMethodIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _applicationMethodIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_applicationMethodIdentifier, fieldData);
+        }
+
+        return _applicationMethodIdentifier;
+    } 
+}
+
+internal HL7V27Field _substanceLotNumber;
+
+public HL7V27Field SubstanceLotNumber
+{
+    get
+    {
+        if (_substanceLotNumber != null)
+        {
+            return _substanceLotNumber;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SID.2",
+            Type = @"Field",
+            Position = @"SID.2",
+            Name = @"Substance Lot Number",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the lot number assigned by the manufacturer during production of the substance.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _substanceLotNumber = new HL7V27Field
+        {
+            field = message[@"SID"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_substanceLotNumber.field.FieldRepetitions != null && _substanceLotNumber.field.FieldRepetitions.Count > 0)
+        {
+            _substanceLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_substanceLotNumber, fieldData);
+        }
+
+        return _substanceLotNumber;
+    } 
+}
+
+internal HL7V27Field _substanceContainerIdentifier;
+
+public HL7V27Field SubstanceContainerIdentifier
+{
+    get
+    {
+        if (_substanceContainerIdentifier != null)
+        {
+            return _substanceContainerIdentifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SID.3",
+            Type = @"Field",
+            Position = @"SID.3",
+            Name = @"Substance Container Identifier",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field specifies the container assigned by the manufacturer during production of the substance.  This identifier should be unique within specific lot of specific application / method.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _substanceContainerIdentifier = new HL7V27Field
+        {
+            field = message[@"SID"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_substanceContainerIdentifier.field.FieldRepetitions != null && _substanceContainerIdentifier.field.FieldRepetitions.Count > 0)
+        {
+            _substanceContainerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_substanceContainerIdentifier, fieldData);
+        }
+
+        return _substanceContainerIdentifier;
+    } 
+}
+
+internal HL7V27Field _substanceManufacturerIdentifier;
+
+public HL7V27Field SubstanceManufacturerIdentifier
+{
+    get
+    {
+        if (_substanceManufacturerIdentifier != null)
+        {
+            return _substanceManufacturerIdentifier;
+        }
+
+        var fieldData = new HL7V27FieldData
+        {
+            Id = @"SID.4",
+            Type = @"Field",
+            Position = @"SID.4",
+            Name = @"Substance Manufacturer Identifier",
+            Length = 0,
+            Usage = @"C",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0385",
+            TableName = @"Manufacturer Identifier",
+            Description = @"This field identifies the manufacturer of this substance. Refer to User-defined Table 0385 - Manufacturer Identifier for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"SID.2",
-                            Type = @"Field",
-                            Position = @"SID.2",
-                            Name = @"Substance Lot Number",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the lot number assigned by the manufacturer during production of the substance.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SID.3",
-                            Type = @"Field",
-                            Position = @"SID.3",
-                            Name = @"Substance Container Identifier",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field specifies the container assigned by the manufacturer during production of the substance.  This identifier should be unique within specific lot of specific application / method.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"SID.4",
-                            Type = @"Field",
-                            Position = @"SID.4",
-                            Name = @"Substance Manufacturer Identifier",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0385",
-                            TableName = @"Manufacturer Identifier",
-                            Description = @"This field identifies the manufacturer of this substance. Refer to User-defined Table 0385 - Manufacturer Identifier for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"SID.4.1",
                             Type = @"Component",
@@ -960,180 +1056,23 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V27SegmentSID(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V27Field applicationMethodIdentifier;
-
-public HL7V27Field ApplicationMethodIdentifier
-{
-    get
-    {
-        if (applicationMethodIdentifier != null)
-        {
-            return applicationMethodIdentifier;
-        }
-
-        applicationMethodIdentifier = new HL7V27Field
-        {
-            field = message[@"SID"][1],
-            Id = @"SID.1",
-            Type = @"Field",
-            Position = @"SID.1",
-            Name = @"Application/Method Identifier",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"9999",
-            TableName = @"no table for CE",
-            Description = @"This field identifies the application/method used for the analysis. 
-
-Example: GLUCOSE is an orderable test. GLUCOSE can be analyzed using various applications/methods, which have manufacturer specific identifiers. ",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (applicationMethodIdentifier.field.FieldRepetitions != null && applicationMethodIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(applicationMethodIdentifier.Id));
-            applicationMethodIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(applicationMethodIdentifier, fieldData);
-        }
-
-        return applicationMethodIdentifier;
-    } 
-}
-
-internal HL7V27Field substanceLotNumber;
-
-public HL7V27Field SubstanceLotNumber
-{
-    get
-    {
-        if (substanceLotNumber != null)
-        {
-            return substanceLotNumber;
-        }
-
-        substanceLotNumber = new HL7V27Field
-        {
-            field = message[@"SID"][2],
-            Id = @"SID.2",
-            Type = @"Field",
-            Position = @"SID.2",
-            Name = @"Substance Lot Number",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the lot number assigned by the manufacturer during production of the substance.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (substanceLotNumber.field.FieldRepetitions != null && substanceLotNumber.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substanceLotNumber.Id));
-            substanceLotNumber.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(substanceLotNumber, fieldData);
-        }
-
-        return substanceLotNumber;
-    } 
-}
-
-internal HL7V27Field substanceContainerIdentifier;
-
-public HL7V27Field SubstanceContainerIdentifier
-{
-    get
-    {
-        if (substanceContainerIdentifier != null)
-        {
-            return substanceContainerIdentifier;
-        }
-
-        substanceContainerIdentifier = new HL7V27Field
-        {
-            field = message[@"SID"][3],
-            Id = @"SID.3",
-            Type = @"Field",
-            Position = @"SID.3",
-            Name = @"Substance Container Identifier",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field specifies the container assigned by the manufacturer during production of the substance.  This identifier should be unique within specific lot of specific application / method.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (substanceContainerIdentifier.field.FieldRepetitions != null && substanceContainerIdentifier.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substanceContainerIdentifier.Id));
-            substanceContainerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(substanceContainerIdentifier, fieldData);
-        }
-
-        return substanceContainerIdentifier;
-    } 
-}
-
-internal HL7V27Field substanceManufacturerIdentifier;
-
-public HL7V27Field SubstanceManufacturerIdentifier
-{
-    get
-    {
-        if (substanceManufacturerIdentifier != null)
-        {
-            return substanceManufacturerIdentifier;
-        }
-
-        substanceManufacturerIdentifier = new HL7V27Field
+        _substanceManufacturerIdentifier = new HL7V27Field
         {
             field = message[@"SID"][4],
-            Id = @"SID.4",
-            Type = @"Field",
-            Position = @"SID.4",
-            Name = @"Substance Manufacturer Identifier",
-            Length = 0,
-            Usage = @"C",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0385",
-            TableName = @"Manufacturer Identifier",
-            Description = @"This field identifies the manufacturer of this substance. Refer to User-defined Table 0385 - Manufacturer Identifier for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (substanceManufacturerIdentifier.field.FieldRepetitions != null && substanceManufacturerIdentifier.field.FieldRepetitions.Count > 0)
+        if (_substanceManufacturerIdentifier.field.FieldRepetitions != null && _substanceManufacturerIdentifier.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(substanceManufacturerIdentifier.Id));
-            substanceManufacturerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(substanceManufacturerIdentifier, fieldData);
+            _substanceManufacturerIdentifier.fieldRepetitions = HL7V2FieldGenerator.GenerateV27FieldRepetitions(_substanceManufacturerIdentifier, fieldData);
         }
 
-        return substanceManufacturerIdentifier;
+        return _substanceManufacturerIdentifier;
     } 
 }
     }

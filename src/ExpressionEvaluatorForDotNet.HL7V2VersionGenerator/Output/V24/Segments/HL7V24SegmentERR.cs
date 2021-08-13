@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentERR(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _errorCodeandLocation;
+
+public HL7V24Field ErrorCodeandLocation
+{
+    get
+    {
+        if (_errorCodeandLocation != null)
+        {
+            return _errorCodeandLocation;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"ERR.1",
+            Type = @"Field",
+            Position = @"ERR.1",
+            Name = @"Error Code and Location",
+            Length = 80,
+            Usage = @"R",
+            Rpt = @"*",
+            DataType = @"ELD",
+            DataTypeName = @"Error",
+            TableId = null,
+            TableName = null,
+            Description = @"This field identifies an erroneous segment in another message. The second component is an index if there is more than one segment of type <segment ID>. For systems that do not use the HL7 Encoding Rules, the data item number may be used for the third component. The fourth component (which references HL7 Table 0357 - Message error condition codes , (as a CE data type)) is restricted from having any subcomponents as the subcomponent separator is now the CEs component separator.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"ERR.1",
-                            Type = @"Field",
-                            Position = @"ERR.1",
-                            Name = @"Error Code and Location",
-                            Length = 80,
-                            Usage = @"R",
-                            Rpt = @"*",
-                            DataType = @"ELD",
-                            DataTypeName = @"Error",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field identifies an erroneous segment in another message. The second component is an index if there is more than one segment of type <segment ID>. For systems that do not use the HL7 Encoding Rules, the data item number may be used for the third component. The fourth component (which references HL7 Table 0357 - Message error condition codes , (as a CE data type)) is restricted from having any subcomponents as the subcomponent separator is now the CEs component separator.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"ERR.1.1",
                             Type = @"Component",
@@ -230,55 +242,23 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Sample = @"",
                             FieldDatas = null
                         },}
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentERR(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field errorCodeandLocation;
-
-public HL7V24Field ErrorCodeandLocation
-{
-    get
-    {
-        if (errorCodeandLocation != null)
-        {
-            return errorCodeandLocation;
-        }
-
-        errorCodeandLocation = new HL7V24Field
+        _errorCodeandLocation = new HL7V24Field
         {
             field = message[@"ERR"][1],
-            Id = @"ERR.1",
-            Type = @"Field",
-            Position = @"ERR.1",
-            Name = @"Error Code and Location",
-            Length = 80,
-            Usage = @"R",
-            Rpt = @"*",
-            DataType = @"ELD",
-            DataTypeName = @"Error",
-            TableId = null,
-            TableName = null,
-            Description = @"This field identifies an erroneous segment in another message. The second component is an index if there is more than one segment of type <segment ID>. For systems that do not use the HL7 Encoding Rules, the data item number may be used for the third component. The fourth component (which references HL7 Table 0357 - Message error condition codes , (as a CE data type)) is restricted from having any subcomponents as the subcomponent separator is now the CEs component separator.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (errorCodeandLocation.field.FieldRepetitions != null && errorCodeandLocation.field.FieldRepetitions.Count > 0)
+        if (_errorCodeandLocation.field.FieldRepetitions != null && _errorCodeandLocation.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(errorCodeandLocation.Id));
-            errorCodeandLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(errorCodeandLocation, fieldData);
+            _errorCodeandLocation.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_errorCodeandLocation, fieldData);
         }
 
-        return errorCodeandLocation;
+        return _errorCodeandLocation;
     } 
 }
     }

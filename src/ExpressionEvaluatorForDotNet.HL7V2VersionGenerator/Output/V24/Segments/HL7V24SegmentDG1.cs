@@ -29,64 +29,130 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V24SegmentDG1(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V24Field _setIDDG1;
+
+public HL7V24Field SetIDDG1
+{
+    get
+    {
+        if (_setIDDG1 != null)
+        {
+            return _setIDDG1;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.1",
+            Type = @"Field",
+            Position = @"DG1.1",
+            Name = @"Set ID - DG1",
+            Length = 4,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"SI",
+            DataTypeName = @"Sequence ID",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the number that identifies this transaction.  For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _setIDDG1 = new HL7V24Field
+        {
+            field = message[@"DG1"][1],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_setIDDG1.field.FieldRepetitions != null && _setIDDG1.field.FieldRepetitions.Count > 0)
+        {
+            _setIDDG1.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_setIDDG1, fieldData);
+        }
+
+        return _setIDDG1;
+    } 
+}
+
+internal HL7V24Field _diagnosisCodingMethod;
+
+public HL7V24Field DiagnosisCodingMethod
+{
+    get
+    {
+        if (_diagnosisCodingMethod != null)
+        {
+            return _diagnosisCodingMethod;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.2",
+            Type = @"Field",
+            Position = @"DG1.2",
+            Name = @"Diagnosis Coding Method",
+            Length = 2,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0053",
+            TableName = @"Diagnosis coding method",
+            Description = @"This field has been retained for backward compatibility only.  Use the components of DG1-3 diagnosis code-DG1 instead of this field.  When used for backward compatibility, ICD9 is the recommended coding methodology.  Refer to User-defined Table 0053 - Diagnosis coding method for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _diagnosisCodingMethod = new HL7V24Field
+        {
+            field = message[@"DG1"][2],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_diagnosisCodingMethod.field.FieldRepetitions != null && _diagnosisCodingMethod.field.FieldRepetitions.Count > 0)
+        {
+            _diagnosisCodingMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_diagnosisCodingMethod, fieldData);
+        }
+
+        return _diagnosisCodingMethod;
+    } 
+}
+
+internal HL7V24Field _diagnosisCodeDG1;
+
+public HL7V24Field DiagnosisCodeDG1
+{
+    get
+    {
+        if (_diagnosisCodeDG1 != null)
+        {
+            return _diagnosisCodeDG1;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.3",
+            Type = @"Field",
+            Position = @"DG1.3",
+            Name = @"Diagnosis Code - DG1",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0051",
+            TableName = @"Diagnosis code",
+            Description = @" Use this field instead of DG1-2 - diagnosis coding method and DG1-4 - diagnosis description. (Those two fields have been retained for backward compatibility only.)  DG1-3 - diagnosis code DG1 contains the diagnosis code assigned to this diagnosis.  Refer to User-defined Table 0051 - Diagnosis code for suggested values. This field is a CE data type for compatibility with clinical and ancillary systems.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"DG1.1",
-                            Type = @"Field",
-                            Position = @"DG1.1",
-                            Name = @"Set ID - DG1",
-                            Length = 4,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"SI",
-                            DataTypeName = @"Sequence ID",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the number that identifies this transaction.  For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.2",
-                            Type = @"Field",
-                            Position = @"DG1.2",
-                            Name = @"Diagnosis Coding Method",
-                            Length = 2,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0053",
-                            TableName = @"Diagnosis coding method",
-                            Description = @"This field has been retained for backward compatibility only.  Use the components of DG1-3 diagnosis code-DG1 instead of this field.  When used for backward compatibility, ICD9 is the recommended coding methodology.  Refer to User-defined Table 0053 - Diagnosis coding method for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.3",
-                            Type = @"Field",
-                            Position = @"DG1.3",
-                            Name = @"Diagnosis Code - DG1",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0051",
-                            TableName = @"Diagnosis code",
-                            Description = @" Use this field instead of DG1-2 - diagnosis coding method and DG1-4 - diagnosis description. (Those two fields have been retained for backward compatibility only.)  DG1-3 - diagnosis code DG1 contains the diagnosis code assigned to this diagnosis.  Refer to User-defined Table 0051 - Diagnosis code for suggested values. This field is a CE data type for compatibility with clinical and ancillary systems.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"DG1.3.1",
                             Type = @"Component",
@@ -196,43 +262,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _diagnosisCodeDG1 = new HL7V24Field
+        {
+            field = message[@"DG1"][3],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_diagnosisCodeDG1.field.FieldRepetitions != null && _diagnosisCodeDG1.field.FieldRepetitions.Count > 0)
+        {
+            _diagnosisCodeDG1.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_diagnosisCodeDG1, fieldData);
+        }
+
+        return _diagnosisCodeDG1;
+    } 
+}
+
+internal HL7V24Field _diagnosisDescription;
+
+public HL7V24Field DiagnosisDescription
+{
+    get
+    {
+        if (_diagnosisDescription != null)
+        {
+            return _diagnosisDescription;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.4",
+            Type = @"Field",
+            Position = @"DG1.4",
+            Name = @"Diagnosis Description",
+            Length = 40,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has been retained for backward compatibility only.  Use the components of DG1-3 diagnosis code-DG1 field instead of this field.  When used for backward compatibility, DG1-4 - diagnosis description contains a description that best describes the diagnosis.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _diagnosisDescription = new HL7V24Field
+        {
+            field = message[@"DG1"][4],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_diagnosisDescription.field.FieldRepetitions != null && _diagnosisDescription.field.FieldRepetitions.Count > 0)
+        {
+            _diagnosisDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_diagnosisDescription, fieldData);
+        }
+
+        return _diagnosisDescription;
+    } 
+}
+
+internal HL7V24Field _diagnosisDateTime;
+
+public HL7V24Field DiagnosisDateTime
+{
+    get
+    {
+        if (_diagnosisDateTime != null)
+        {
+            return _diagnosisDateTime;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.5",
+            Type = @"Field",
+            Position = @"DG1.5",
+            Name = @"Diagnosis Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the date/time that the diagnosis was determined.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DG1.4",
-                            Type = @"Field",
-                            Position = @"DG1.4",
-                            Name = @"Diagnosis Description",
-                            Length = 40,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has been retained for backward compatibility only.  Use the components of DG1-3 diagnosis code-DG1 field instead of this field.  When used for backward compatibility, DG1-4 - diagnosis description contains a description that best describes the diagnosis.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.5",
-                            Type = @"Field",
-                            Position = @"DG1.5",
-                            Name = @"Diagnosis Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the date/time that the diagnosis was determined.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DG1.5.1",
                             Type = @"Component",
@@ -266,43 +389,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _diagnosisDateTime = new HL7V24Field
+        {
+            field = message[@"DG1"][5],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_diagnosisDateTime.field.FieldRepetitions != null && _diagnosisDateTime.field.FieldRepetitions.Count > 0)
+        {
+            _diagnosisDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_diagnosisDateTime, fieldData);
+        }
+
+        return _diagnosisDateTime;
+    } 
+}
+
+internal HL7V24Field _diagnosisType;
+
+public HL7V24Field DiagnosisType
+{
+    get
+    {
+        if (_diagnosisType != null)
+        {
+            return _diagnosisType;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.6",
+            Type = @"Field",
+            Position = @"DG1.6",
+            Name = @"Diagnosis Type",
+            Length = 2,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0052",
+            TableName = @"Diagnosis type",
+            Description = @"This field contains a code that identifies the type of diagnosis being sent.  Refer to Userdefined Table 0052 - Diagnosis type for suggested values.  This field should no longer be used to indicate “DRG” because the DRG fields have moved to the new DRG segment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _diagnosisType = new HL7V24Field
+        {
+            field = message[@"DG1"][6],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_diagnosisType.field.FieldRepetitions != null && _diagnosisType.field.FieldRepetitions.Count > 0)
+        {
+            _diagnosisType.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_diagnosisType, fieldData);
+        }
+
+        return _diagnosisType;
+    } 
+}
+
+internal HL7V24Field _majorDiagnosticCategory;
+
+public HL7V24Field MajorDiagnosticCategory
+{
+    get
+    {
+        if (_majorDiagnosticCategory != null)
+        {
+            return _majorDiagnosticCategory;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.7",
+            Type = @"Field",
+            Position = @"DG1.7",
+            Name = @"Major Diagnostic Category",
+            Length = 250,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0118",
+            TableName = @"Major diagnostic category",
+            Description = @"This field has been retained for backward compatibility only.  This field should only be used in a master file transaction.  Refer to User-defined Table 0118 - Major diagnostic category for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DG1.6",
-                            Type = @"Field",
-                            Position = @"DG1.6",
-                            Name = @"Diagnosis Type",
-                            Length = 2,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0052",
-                            TableName = @"Diagnosis type",
-                            Description = @"This field contains a code that identifies the type of diagnosis being sent.  Refer to Userdefined Table 0052 - Diagnosis type for suggested values.  This field should no longer be used to indicate “DRG” because the DRG fields have moved to the new DRG segment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.7",
-                            Type = @"Field",
-                            Position = @"DG1.7",
-                            Name = @"Major Diagnostic Category",
-                            Length = 250,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0118",
-                            TableName = @"Major diagnostic category",
-                            Description = @"This field has been retained for backward compatibility only.  This field should only be used in a master file transaction.  Refer to User-defined Table 0118 - Major diagnostic category for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DG1.7.1",
                             Type = @"Component",
@@ -412,25 +592,55 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _majorDiagnosticCategory = new HL7V24Field
+        {
+            field = message[@"DG1"][7],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_majorDiagnosticCategory.field.FieldRepetitions != null && _majorDiagnosticCategory.field.FieldRepetitions.Count > 0)
+        {
+            _majorDiagnosticCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_majorDiagnosticCategory, fieldData);
+        }
+
+        return _majorDiagnosticCategory;
+    } 
+}
+
+internal HL7V24Field _diagnosticRelatedGroup;
+
+public HL7V24Field DiagnosticRelatedGroup
+{
+    get
+    {
+        if (_diagnosticRelatedGroup != null)
+        {
+            return _diagnosticRelatedGroup;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.8",
+            Type = @"Field",
+            Position = @"DG1.8",
+            Name = @"Diagnostic Related Group",
+            Length = 250,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0055",
+            TableName = @"Diagnosis related group",
+            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  It contains the DRG for the transaction.  Interim DRGs could be determined for an encounter.  Refer to User-defined Table 0055 - Diagnosis Related Group for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DG1.8",
-                            Type = @"Field",
-                            Position = @"DG1.8",
-                            Name = @"Diagnostic Related Group",
-                            Length = 250,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0055",
-                            TableName = @"Diagnosis related group",
-                            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  It contains the DRG for the transaction.  Interim DRGs could be determined for an encounter.  Refer to User-defined Table 0055 - Diagnosis Related Group for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DG1.8.1",
                             Type = @"Component",
@@ -540,61 +750,145 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _diagnosticRelatedGroup = new HL7V24Field
+        {
+            field = message[@"DG1"][8],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_diagnosticRelatedGroup.field.FieldRepetitions != null && _diagnosticRelatedGroup.field.FieldRepetitions.Count > 0)
+        {
+            _diagnosticRelatedGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_diagnosticRelatedGroup, fieldData);
+        }
+
+        return _diagnosticRelatedGroup;
+    } 
+}
+
+internal HL7V24Field _dRGApprovalIndicator;
+
+public HL7V24Field DRGApprovalIndicator
+{
+    get
+    {
+        if (_dRGApprovalIndicator != null)
+        {
+            return _dRGApprovalIndicator;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.9",
+            Type = @"Field",
+            Position = @"DG1.9",
+            Name = @"DRG Approval Indicator",
+            Length = 1,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  This field indicates if the DRG has been approved by a reviewing entity.  Refer to HL7 table 0136 - Yes/no indicator for valid values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dRGApprovalIndicator = new HL7V24Field
+        {
+            field = message[@"DG1"][9],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dRGApprovalIndicator.field.FieldRepetitions != null && _dRGApprovalIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _dRGApprovalIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_dRGApprovalIndicator, fieldData);
+        }
+
+        return _dRGApprovalIndicator;
+    } 
+}
+
+internal HL7V24Field _dRGGrouperReviewCode;
+
+public HL7V24Field DRGGrouperReviewCode
+{
+    get
+    {
+        if (_dRGGrouperReviewCode != null)
+        {
+            return _dRGGrouperReviewCode;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.10",
+            Type = @"Field",
+            Position = @"DG1.10",
+            Name = @"DRG Grouper Review Code",
+            Length = 2,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0056",
+            TableName = @"DRG grouper review code",
+            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  Refer to User-defined Table 0056 - DRG grouper review code for suggested values.  This code indicates that the grouper results have been reviewed and approved.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _dRGGrouperReviewCode = new HL7V24Field
+        {
+            field = message[@"DG1"][10],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_dRGGrouperReviewCode.field.FieldRepetitions != null && _dRGGrouperReviewCode.field.FieldRepetitions.Count > 0)
+        {
+            _dRGGrouperReviewCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_dRGGrouperReviewCode, fieldData);
+        }
+
+        return _dRGGrouperReviewCode;
+    } 
+}
+
+internal HL7V24Field _outlierType;
+
+public HL7V24Field OutlierType
+{
+    get
+    {
+        if (_outlierType != null)
+        {
+            return _outlierType;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.11",
+            Type = @"Field",
+            Position = @"DG1.11",
+            Name = @"Outlier Type",
+            Length = 250,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"CE",
+            DataTypeName = @"Coded Element",
+            TableId = @"0083",
+            TableName = @"Outlier type",
+            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  When used for backward compatibility, this field contains the type of outlier (i.e. period of care beyond DRG-standard stay in facility) that has been paid.  Refer to User-defined Table 0083 - Outlier type for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DG1.9",
-                            Type = @"Field",
-                            Position = @"DG1.9",
-                            Name = @"DRG Approval Indicator",
-                            Length = 1,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  This field indicates if the DRG has been approved by a reviewing entity.  Refer to HL7 table 0136 - Yes/no indicator for valid values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.10",
-                            Type = @"Field",
-                            Position = @"DG1.10",
-                            Name = @"DRG Grouper Review Code",
-                            Length = 2,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0056",
-                            TableName = @"DRG grouper review code",
-                            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  Refer to User-defined Table 0056 - DRG grouper review code for suggested values.  This code indicates that the grouper results have been reviewed and approved.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.11",
-                            Type = @"Field",
-                            Position = @"DG1.11",
-                            Name = @"Outlier Type",
-                            Length = 250,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"CE",
-                            DataTypeName = @"Coded Element",
-                            TableId = @"0083",
-                            TableName = @"Outlier type",
-                            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  When used for backward compatibility, this field contains the type of outlier (i.e. period of care beyond DRG-standard stay in facility) that has been paid.  Refer to User-defined Table 0083 - Outlier type for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DG1.11.1",
                             Type = @"Component",
@@ -704,43 +998,100 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
 Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 table is used for a CE data type, the name of coding system component is defined as HL7nnnn where nnnn is the HL7 table number. ",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _outlierType = new HL7V24Field
+        {
+            field = message[@"DG1"][11],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_outlierType.field.FieldRepetitions != null && _outlierType.field.FieldRepetitions.Count > 0)
+        {
+            _outlierType.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_outlierType, fieldData);
+        }
+
+        return _outlierType;
+    } 
+}
+
+internal HL7V24Field _outlierDays;
+
+public HL7V24Field OutlierDays
+{
+    get
+    {
+        if (_outlierDays != null)
+        {
+            return _outlierDays;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.12",
+            Type = @"Field",
+            Position = @"DG1.12",
+            Name = @"Outlier Days",
+            Length = 3,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"NM",
+            DataTypeName = @"Numeric",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  When used for backward compatibility, this field contains the number of days that have been approved for an outlier payment.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _outlierDays = new HL7V24Field
+        {
+            field = message[@"DG1"][12],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_outlierDays.field.FieldRepetitions != null && _outlierDays.field.FieldRepetitions.Count > 0)
+        {
+            _outlierDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_outlierDays, fieldData);
+        }
+
+        return _outlierDays;
+    } 
+}
+
+internal HL7V24Field _outlierCost;
+
+public HL7V24Field OutlierCost
+{
+    get
+    {
+        if (_outlierCost != null)
+        {
+            return _outlierCost;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.13",
+            Type = @"Field",
+            Position = @"DG1.13",
+            Name = @"Outlier Cost",
+            Length = 12,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"CP",
+            DataTypeName = @"Composite Price",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  When used for backward compatibility, this field contains the amount of money that has been approved for an outlier payment.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DG1.12",
-                            Type = @"Field",
-                            Position = @"DG1.12",
-                            Name = @"Outlier Days",
-                            Length = 3,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"NM",
-                            DataTypeName = @"Numeric",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  When used for backward compatibility, this field contains the number of days that have been approved for an outlier payment.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.13",
-                            Type = @"Field",
-                            Position = @"DG1.13",
-                            Name = @"Outlier Cost",
-                            Length = 12,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"CP",
-                            DataTypeName = @"Composite Price",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  When used for backward compatibility, this field contains the amount of money that has been approved for an outlier payment.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DG1.13.1",
                             Type = @"Component",
@@ -997,61 +1348,145 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Refers to HL7 Table 0298 - CP range type for valid values.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
+                        }
+        }
+
+        _outlierCost = new HL7V24Field
+        {
+            field = message[@"DG1"][13],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_outlierCost.field.FieldRepetitions != null && _outlierCost.field.FieldRepetitions.Count > 0)
+        {
+            _outlierCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_outlierCost, fieldData);
+        }
+
+        return _outlierCost;
+    } 
+}
+
+internal HL7V24Field _grouperVersionAndType;
+
+public HL7V24Field GrouperVersionAndType
+{
+    get
+    {
+        if (_grouperVersionAndType != null)
+        {
+            return _grouperVersionAndType;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.14",
+            Type = @"Field",
+            Position = @"DG1.14",
+            Name = @"Grouper Version And Type",
+            Length = 4,
+            Usage = @"B",
+            Rpt = @"1",
+            DataType = @"ST",
+            DataTypeName = @"String Data",
+            TableId = null,
+            TableName = null,
+            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment; refer to the field definition in Section 6.5.3.1.  When used for backward compatibility, this field contains the grouper version and type.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _grouperVersionAndType = new HL7V24Field
+        {
+            field = message[@"DG1"][14],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_grouperVersionAndType.field.FieldRepetitions != null && _grouperVersionAndType.field.FieldRepetitions.Count > 0)
+        {
+            _grouperVersionAndType.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_grouperVersionAndType, fieldData);
+        }
+
+        return _grouperVersionAndType;
+    } 
+}
+
+internal HL7V24Field _diagnosisPriority;
+
+public HL7V24Field DiagnosisPriority
+{
+    get
+    {
+        if (_diagnosisPriority != null)
+        {
+            return _diagnosisPriority;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.15",
+            Type = @"Field",
+            Position = @"DG1.15",
+            Name = @"Diagnosis Priority",
+            Length = 2,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0359",
+            TableName = @"Diagnosis priority",
+            Description = @"This field contains the number that identifies the significance or priority of the diagnosis code. Refer to User-defined Table 0359 - Diagnosis priority for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _diagnosisPriority = new HL7V24Field
+        {
+            field = message[@"DG1"][15],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_diagnosisPriority.field.FieldRepetitions != null && _diagnosisPriority.field.FieldRepetitions.Count > 0)
+        {
+            _diagnosisPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_diagnosisPriority, fieldData);
+        }
+
+        return _diagnosisPriority;
+    } 
+}
+
+internal HL7V24Field _diagnosingClinician;
+
+public HL7V24Field DiagnosingClinician
+{
+    get
+    {
+        if (_diagnosingClinician != null)
+        {
+            return _diagnosingClinician;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.16",
+            Type = @"Field",
+            Position = @"DG1.16",
+            Name = @"Diagnosing Clinician",
+            Length = 250,
+            Usage = @"O",
+            Rpt = @"*",
+            DataType = @"XCN",
+            DataTypeName = @"Extended Composite ID Number And Name For Persons",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the individual responsible for generating the diagnosis information. Multiple names and identifiers for the same person may be sent in this field, not multiple diagnosing clinicians. The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DG1.14",
-                            Type = @"Field",
-                            Position = @"DG1.14",
-                            Name = @"Grouper Version And Type",
-                            Length = 4,
-                            Usage = @"B",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment; refer to the field definition in Section 6.5.3.1.  When used for backward compatibility, this field contains the grouper version and type.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.15",
-                            Type = @"Field",
-                            Position = @"DG1.15",
-                            Name = @"Diagnosis Priority",
-                            Length = 2,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0359",
-                            TableName = @"Diagnosis priority",
-                            Description = @"This field contains the number that identifies the significance or priority of the diagnosis code. Refer to User-defined Table 0359 - Diagnosis priority for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.16",
-                            Type = @"Field",
-                            Position = @"DG1.16",
-                            Name = @"Diagnosing Clinician",
-                            Length = 250,
-                            Usage = @"O",
-                            Rpt = @"*",
-                            DataType = @"XCN",
-                            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the individual responsible for generating the diagnosis information. Multiple names and identifiers for the same person may be sent in this field, not multiple diagnosing clinicians. The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DG1.16.1",
                             Type = @"Component",
@@ -1777,64 +2212,148 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"A code that represents the preferred display order of the components of this person name. Refer to HL7 Table 0444 - Name assembly orde r for valid values",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.17",
-                            Type = @"Field",
-                            Position = @"DG1.17",
-                            Name = @"Diagnosis Classification",
-                            Length = 3,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"IS",
-                            DataTypeName = @"Coded value for user-defined tables",
-                            TableId = @"0228",
-                            TableName = @"Diagnosis classification",
-                            Description = @"This field indicates if the patient information is for a diagnosis or a non-diagnosis code.  Refer to User-defined Table 0228 - Diagnosis classification for suggested values.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"DG1.18",
-                            Type = @"Field",
-                            Position = @"DG1.18",
-                            Name = @"Confidential Indicator",
-                            Length = 1,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"ID",
-                            DataTypeName = @"Coded values for HL7 tables",
-                            TableId = @"0136",
-                            TableName = @"Yes/no indicator",
-                            Description = @"This field indicates whether the diagnosis is confidential.  Refer to HL7 table 0136 - Yes/no indicator for valid values
+                        }
+        }
+
+        _diagnosingClinician = new HL7V24Field
+        {
+            field = message[@"DG1"][16],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_diagnosingClinician.field.FieldRepetitions != null && _diagnosingClinician.field.FieldRepetitions.Count > 0)
+        {
+            _diagnosingClinician.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_diagnosingClinician, fieldData);
+        }
+
+        return _diagnosingClinician;
+    } 
+}
+
+internal HL7V24Field _diagnosisClassification;
+
+public HL7V24Field DiagnosisClassification
+{
+    get
+    {
+        if (_diagnosisClassification != null)
+        {
+            return _diagnosisClassification;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.17",
+            Type = @"Field",
+            Position = @"DG1.17",
+            Name = @"Diagnosis Classification",
+            Length = 3,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"IS",
+            DataTypeName = @"Coded value for user-defined tables",
+            TableId = @"0228",
+            TableName = @"Diagnosis classification",
+            Description = @"This field indicates if the patient information is for a diagnosis or a non-diagnosis code.  Refer to User-defined Table 0228 - Diagnosis classification for suggested values.",
+            Sample = @"",
+            Fields = null
+        }
+
+        _diagnosisClassification = new HL7V24Field
+        {
+            field = message[@"DG1"][17],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_diagnosisClassification.field.FieldRepetitions != null && _diagnosisClassification.field.FieldRepetitions.Count > 0)
+        {
+            _diagnosisClassification.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_diagnosisClassification, fieldData);
+        }
+
+        return _diagnosisClassification;
+    } 
+}
+
+internal HL7V24Field _confidentialIndicator;
+
+public HL7V24Field ConfidentialIndicator
+{
+    get
+    {
+        if (_confidentialIndicator != null)
+        {
+            return _confidentialIndicator;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.18",
+            Type = @"Field",
+            Position = @"DG1.18",
+            Name = @"Confidential Indicator",
+            Length = 1,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"ID",
+            DataTypeName = @"Coded values for HL7 tables",
+            TableId = @"0136",
+            TableName = @"Yes/no indicator",
+            Description = @"This field indicates whether the diagnosis is confidential.  Refer to HL7 table 0136 - Yes/no indicator for valid values
 
 - Y the diagnosis is a confidential diagnosis
 - N the diagnosis does not contain a confidential diagnosis",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
+            Sample = @"",
+            Fields = null
+        }
+
+        _confidentialIndicator = new HL7V24Field
+        {
+            field = message[@"DG1"][18],
+            fieldData = fieldData
+        };
+
+        // check for repetitions
+        if (_confidentialIndicator.field.FieldRepetitions != null && _confidentialIndicator.field.FieldRepetitions.Count > 0)
+        {
+            _confidentialIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_confidentialIndicator, fieldData);
+        }
+
+        return _confidentialIndicator;
+    } 
+}
+
+internal HL7V24Field _attestationDateTime;
+
+public HL7V24Field AttestationDateTime
+{
+    get
+    {
+        if (_attestationDateTime != null)
+        {
+            return _attestationDateTime;
+        }
+
+        var fieldData = new HL7V24FieldData
+        {
+            Id = @"DG1.19",
+            Type = @"Field",
+            Position = @"DG1.19",
+            Name = @"Attestation Date/Time",
+            Length = 26,
+            Usage = @"O",
+            Rpt = @"1",
+            DataType = @"TS",
+            DataTypeName = @"Time Stamp",
+            TableId = null,
+            TableName = null,
+            Description = @"This field contains the time stamp that indicates the date and time that the attestation was signed.",
+            Sample = @"",
+            Fields = new[]
                         {
-                            Id = @"DG1.19",
-                            Type = @"Field",
-                            Position = @"DG1.19",
-                            Name = @"Attestation Date/Time",
-                            Length = 26,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"TS",
-                            DataTypeName = @"Time Stamp",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field contains the time stamp that indicates the date and time that the attestation was signed.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
+                            new HL7V2FieldData
                         {
                             Id = @"DG1.19.1",
                             Type = @"Component",
@@ -1868,796 +2387,23 @@ Refer to User-defined table 0396 Coding Systems for valid values. When an HL7 ta
                             Description = @"Degree of precision",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        };
-            }
+                        }
         }
 
-        public HL7V24SegmentDG1(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V24Field setIDDG1;
-
-public HL7V24Field SetIDDG1
-{
-    get
-    {
-        if (setIDDG1 != null)
-        {
-            return setIDDG1;
-        }
-
-        setIDDG1 = new HL7V24Field
-        {
-            field = message[@"DG1"][1],
-            Id = @"DG1.1",
-            Type = @"Field",
-            Position = @"DG1.1",
-            Name = @"Set ID - DG1",
-            Length = 4,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"SI",
-            DataTypeName = @"Sequence ID",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the number that identifies this transaction.  For the first occurrence of the segment the sequence number shall be 1, for the second occurrence it shall be 2, etc.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (setIDDG1.field.FieldRepetitions != null && setIDDG1.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(setIDDG1.Id));
-            setIDDG1.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(setIDDG1, fieldData);
-        }
-
-        return setIDDG1;
-    } 
-}
-
-internal HL7V24Field diagnosisCodingMethod;
-
-public HL7V24Field DiagnosisCodingMethod
-{
-    get
-    {
-        if (diagnosisCodingMethod != null)
-        {
-            return diagnosisCodingMethod;
-        }
-
-        diagnosisCodingMethod = new HL7V24Field
-        {
-            field = message[@"DG1"][2],
-            Id = @"DG1.2",
-            Type = @"Field",
-            Position = @"DG1.2",
-            Name = @"Diagnosis Coding Method",
-            Length = 2,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0053",
-            TableName = @"Diagnosis coding method",
-            Description = @"This field has been retained for backward compatibility only.  Use the components of DG1-3 diagnosis code-DG1 instead of this field.  When used for backward compatibility, ICD9 is the recommended coding methodology.  Refer to User-defined Table 0053 - Diagnosis coding method for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (diagnosisCodingMethod.field.FieldRepetitions != null && diagnosisCodingMethod.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosisCodingMethod.Id));
-            diagnosisCodingMethod.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(diagnosisCodingMethod, fieldData);
-        }
-
-        return diagnosisCodingMethod;
-    } 
-}
-
-internal HL7V24Field diagnosisCodeDG1;
-
-public HL7V24Field DiagnosisCodeDG1
-{
-    get
-    {
-        if (diagnosisCodeDG1 != null)
-        {
-            return diagnosisCodeDG1;
-        }
-
-        diagnosisCodeDG1 = new HL7V24Field
-        {
-            field = message[@"DG1"][3],
-            Id = @"DG1.3",
-            Type = @"Field",
-            Position = @"DG1.3",
-            Name = @"Diagnosis Code - DG1",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0051",
-            TableName = @"Diagnosis code",
-            Description = @" Use this field instead of DG1-2 - diagnosis coding method and DG1-4 - diagnosis description. (Those two fields have been retained for backward compatibility only.)  DG1-3 - diagnosis code DG1 contains the diagnosis code assigned to this diagnosis.  Refer to User-defined Table 0051 - Diagnosis code for suggested values. This field is a CE data type for compatibility with clinical and ancillary systems.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (diagnosisCodeDG1.field.FieldRepetitions != null && diagnosisCodeDG1.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosisCodeDG1.Id));
-            diagnosisCodeDG1.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(diagnosisCodeDG1, fieldData);
-        }
-
-        return diagnosisCodeDG1;
-    } 
-}
-
-internal HL7V24Field diagnosisDescription;
-
-public HL7V24Field DiagnosisDescription
-{
-    get
-    {
-        if (diagnosisDescription != null)
-        {
-            return diagnosisDescription;
-        }
-
-        diagnosisDescription = new HL7V24Field
-        {
-            field = message[@"DG1"][4],
-            Id = @"DG1.4",
-            Type = @"Field",
-            Position = @"DG1.4",
-            Name = @"Diagnosis Description",
-            Length = 40,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has been retained for backward compatibility only.  Use the components of DG1-3 diagnosis code-DG1 field instead of this field.  When used for backward compatibility, DG1-4 - diagnosis description contains a description that best describes the diagnosis.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (diagnosisDescription.field.FieldRepetitions != null && diagnosisDescription.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosisDescription.Id));
-            diagnosisDescription.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(diagnosisDescription, fieldData);
-        }
-
-        return diagnosisDescription;
-    } 
-}
-
-internal HL7V24Field diagnosisDateTime;
-
-public HL7V24Field DiagnosisDateTime
-{
-    get
-    {
-        if (diagnosisDateTime != null)
-        {
-            return diagnosisDateTime;
-        }
-
-        diagnosisDateTime = new HL7V24Field
-        {
-            field = message[@"DG1"][5],
-            Id = @"DG1.5",
-            Type = @"Field",
-            Position = @"DG1.5",
-            Name = @"Diagnosis Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the date/time that the diagnosis was determined.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (diagnosisDateTime.field.FieldRepetitions != null && diagnosisDateTime.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosisDateTime.Id));
-            diagnosisDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(diagnosisDateTime, fieldData);
-        }
-
-        return diagnosisDateTime;
-    } 
-}
-
-internal HL7V24Field diagnosisType;
-
-public HL7V24Field DiagnosisType
-{
-    get
-    {
-        if (diagnosisType != null)
-        {
-            return diagnosisType;
-        }
-
-        diagnosisType = new HL7V24Field
-        {
-            field = message[@"DG1"][6],
-            Id = @"DG1.6",
-            Type = @"Field",
-            Position = @"DG1.6",
-            Name = @"Diagnosis Type",
-            Length = 2,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0052",
-            TableName = @"Diagnosis type",
-            Description = @"This field contains a code that identifies the type of diagnosis being sent.  Refer to Userdefined Table 0052 - Diagnosis type for suggested values.  This field should no longer be used to indicate “DRG” because the DRG fields have moved to the new DRG segment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (diagnosisType.field.FieldRepetitions != null && diagnosisType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosisType.Id));
-            diagnosisType.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(diagnosisType, fieldData);
-        }
-
-        return diagnosisType;
-    } 
-}
-
-internal HL7V24Field majorDiagnosticCategory;
-
-public HL7V24Field MajorDiagnosticCategory
-{
-    get
-    {
-        if (majorDiagnosticCategory != null)
-        {
-            return majorDiagnosticCategory;
-        }
-
-        majorDiagnosticCategory = new HL7V24Field
-        {
-            field = message[@"DG1"][7],
-            Id = @"DG1.7",
-            Type = @"Field",
-            Position = @"DG1.7",
-            Name = @"Major Diagnostic Category",
-            Length = 250,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0118",
-            TableName = @"Major diagnostic category",
-            Description = @"This field has been retained for backward compatibility only.  This field should only be used in a master file transaction.  Refer to User-defined Table 0118 - Major diagnostic category for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (majorDiagnosticCategory.field.FieldRepetitions != null && majorDiagnosticCategory.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(majorDiagnosticCategory.Id));
-            majorDiagnosticCategory.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(majorDiagnosticCategory, fieldData);
-        }
-
-        return majorDiagnosticCategory;
-    } 
-}
-
-internal HL7V24Field diagnosticRelatedGroup;
-
-public HL7V24Field DiagnosticRelatedGroup
-{
-    get
-    {
-        if (diagnosticRelatedGroup != null)
-        {
-            return diagnosticRelatedGroup;
-        }
-
-        diagnosticRelatedGroup = new HL7V24Field
-        {
-            field = message[@"DG1"][8],
-            Id = @"DG1.8",
-            Type = @"Field",
-            Position = @"DG1.8",
-            Name = @"Diagnostic Related Group",
-            Length = 250,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0055",
-            TableName = @"Diagnosis related group",
-            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  It contains the DRG for the transaction.  Interim DRGs could be determined for an encounter.  Refer to User-defined Table 0055 - Diagnosis Related Group for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (diagnosticRelatedGroup.field.FieldRepetitions != null && diagnosticRelatedGroup.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosticRelatedGroup.Id));
-            diagnosticRelatedGroup.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(diagnosticRelatedGroup, fieldData);
-        }
-
-        return diagnosticRelatedGroup;
-    } 
-}
-
-internal HL7V24Field dRGApprovalIndicator;
-
-public HL7V24Field DRGApprovalIndicator
-{
-    get
-    {
-        if (dRGApprovalIndicator != null)
-        {
-            return dRGApprovalIndicator;
-        }
-
-        dRGApprovalIndicator = new HL7V24Field
-        {
-            field = message[@"DG1"][9],
-            Id = @"DG1.9",
-            Type = @"Field",
-            Position = @"DG1.9",
-            Name = @"DRG Approval Indicator",
-            Length = 1,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  This field indicates if the DRG has been approved by a reviewing entity.  Refer to HL7 table 0136 - Yes/no indicator for valid values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dRGApprovalIndicator.field.FieldRepetitions != null && dRGApprovalIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dRGApprovalIndicator.Id));
-            dRGApprovalIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(dRGApprovalIndicator, fieldData);
-        }
-
-        return dRGApprovalIndicator;
-    } 
-}
-
-internal HL7V24Field dRGGrouperReviewCode;
-
-public HL7V24Field DRGGrouperReviewCode
-{
-    get
-    {
-        if (dRGGrouperReviewCode != null)
-        {
-            return dRGGrouperReviewCode;
-        }
-
-        dRGGrouperReviewCode = new HL7V24Field
-        {
-            field = message[@"DG1"][10],
-            Id = @"DG1.10",
-            Type = @"Field",
-            Position = @"DG1.10",
-            Name = @"DRG Grouper Review Code",
-            Length = 2,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0056",
-            TableName = @"DRG grouper review code",
-            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  Refer to User-defined Table 0056 - DRG grouper review code for suggested values.  This code indicates that the grouper results have been reviewed and approved.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (dRGGrouperReviewCode.field.FieldRepetitions != null && dRGGrouperReviewCode.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(dRGGrouperReviewCode.Id));
-            dRGGrouperReviewCode.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(dRGGrouperReviewCode, fieldData);
-        }
-
-        return dRGGrouperReviewCode;
-    } 
-}
-
-internal HL7V24Field outlierType;
-
-public HL7V24Field OutlierType
-{
-    get
-    {
-        if (outlierType != null)
-        {
-            return outlierType;
-        }
-
-        outlierType = new HL7V24Field
-        {
-            field = message[@"DG1"][11],
-            Id = @"DG1.11",
-            Type = @"Field",
-            Position = @"DG1.11",
-            Name = @"Outlier Type",
-            Length = 250,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"CE",
-            DataTypeName = @"Coded Element",
-            TableId = @"0083",
-            TableName = @"Outlier type",
-            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  When used for backward compatibility, this field contains the type of outlier (i.e. period of care beyond DRG-standard stay in facility) that has been paid.  Refer to User-defined Table 0083 - Outlier type for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (outlierType.field.FieldRepetitions != null && outlierType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(outlierType.Id));
-            outlierType.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(outlierType, fieldData);
-        }
-
-        return outlierType;
-    } 
-}
-
-internal HL7V24Field outlierDays;
-
-public HL7V24Field OutlierDays
-{
-    get
-    {
-        if (outlierDays != null)
-        {
-            return outlierDays;
-        }
-
-        outlierDays = new HL7V24Field
-        {
-            field = message[@"DG1"][12],
-            Id = @"DG1.12",
-            Type = @"Field",
-            Position = @"DG1.12",
-            Name = @"Outlier Days",
-            Length = 3,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"NM",
-            DataTypeName = @"Numeric",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  When used for backward compatibility, this field contains the number of days that have been approved for an outlier payment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (outlierDays.field.FieldRepetitions != null && outlierDays.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(outlierDays.Id));
-            outlierDays.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(outlierDays, fieldData);
-        }
-
-        return outlierDays;
-    } 
-}
-
-internal HL7V24Field outlierCost;
-
-public HL7V24Field OutlierCost
-{
-    get
-    {
-        if (outlierCost != null)
-        {
-            return outlierCost;
-        }
-
-        outlierCost = new HL7V24Field
-        {
-            field = message[@"DG1"][13],
-            Id = @"DG1.13",
-            Type = @"Field",
-            Position = @"DG1.13",
-            Name = @"Outlier Cost",
-            Length = 12,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"CP",
-            DataTypeName = @"Composite Price",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment.  When used for backward compatibility, this field contains the amount of money that has been approved for an outlier payment.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (outlierCost.field.FieldRepetitions != null && outlierCost.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(outlierCost.Id));
-            outlierCost.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(outlierCost, fieldData);
-        }
-
-        return outlierCost;
-    } 
-}
-
-internal HL7V24Field grouperVersionAndType;
-
-public HL7V24Field GrouperVersionAndType
-{
-    get
-    {
-        if (grouperVersionAndType != null)
-        {
-            return grouperVersionAndType;
-        }
-
-        grouperVersionAndType = new HL7V24Field
-        {
-            field = message[@"DG1"][14],
-            Id = @"DG1.14",
-            Type = @"Field",
-            Position = @"DG1.14",
-            Name = @"Grouper Version And Type",
-            Length = 4,
-            Usage = @"B",
-            Rpt = @"1",
-            DataType = @"ST",
-            DataTypeName = @"String Data",
-            TableId = null,
-            TableName = null,
-            Description = @"This field has been retained for backward compatibility only.  This field has moved to the new DRG segment; refer to the field definition in Section 6.5.3.1.  When used for backward compatibility, this field contains the grouper version and type.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (grouperVersionAndType.field.FieldRepetitions != null && grouperVersionAndType.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(grouperVersionAndType.Id));
-            grouperVersionAndType.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(grouperVersionAndType, fieldData);
-        }
-
-        return grouperVersionAndType;
-    } 
-}
-
-internal HL7V24Field diagnosisPriority;
-
-public HL7V24Field DiagnosisPriority
-{
-    get
-    {
-        if (diagnosisPriority != null)
-        {
-            return diagnosisPriority;
-        }
-
-        diagnosisPriority = new HL7V24Field
-        {
-            field = message[@"DG1"][15],
-            Id = @"DG1.15",
-            Type = @"Field",
-            Position = @"DG1.15",
-            Name = @"Diagnosis Priority",
-            Length = 2,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0359",
-            TableName = @"Diagnosis priority",
-            Description = @"This field contains the number that identifies the significance or priority of the diagnosis code. Refer to User-defined Table 0359 - Diagnosis priority for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (diagnosisPriority.field.FieldRepetitions != null && diagnosisPriority.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosisPriority.Id));
-            diagnosisPriority.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(diagnosisPriority, fieldData);
-        }
-
-        return diagnosisPriority;
-    } 
-}
-
-internal HL7V24Field diagnosingClinician;
-
-public HL7V24Field DiagnosingClinician
-{
-    get
-    {
-        if (diagnosingClinician != null)
-        {
-            return diagnosingClinician;
-        }
-
-        diagnosingClinician = new HL7V24Field
-        {
-            field = message[@"DG1"][16],
-            Id = @"DG1.16",
-            Type = @"Field",
-            Position = @"DG1.16",
-            Name = @"Diagnosing Clinician",
-            Length = 250,
-            Usage = @"O",
-            Rpt = @"*",
-            DataType = @"XCN",
-            DataTypeName = @"Extended Composite ID Number And Name For Persons",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the individual responsible for generating the diagnosis information. Multiple names and identifiers for the same person may be sent in this field, not multiple diagnosing clinicians. The legal name is assumed to be in the first repetition.  When the legal name is not sent, a repeat delimiter must be sent first for the first repetition.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (diagnosingClinician.field.FieldRepetitions != null && diagnosingClinician.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosingClinician.Id));
-            diagnosingClinician.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(diagnosingClinician, fieldData);
-        }
-
-        return diagnosingClinician;
-    } 
-}
-
-internal HL7V24Field diagnosisClassification;
-
-public HL7V24Field DiagnosisClassification
-{
-    get
-    {
-        if (diagnosisClassification != null)
-        {
-            return diagnosisClassification;
-        }
-
-        diagnosisClassification = new HL7V24Field
-        {
-            field = message[@"DG1"][17],
-            Id = @"DG1.17",
-            Type = @"Field",
-            Position = @"DG1.17",
-            Name = @"Diagnosis Classification",
-            Length = 3,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"IS",
-            DataTypeName = @"Coded value for user-defined tables",
-            TableId = @"0228",
-            TableName = @"Diagnosis classification",
-            Description = @"This field indicates if the patient information is for a diagnosis or a non-diagnosis code.  Refer to User-defined Table 0228 - Diagnosis classification for suggested values.",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (diagnosisClassification.field.FieldRepetitions != null && diagnosisClassification.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(diagnosisClassification.Id));
-            diagnosisClassification.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(diagnosisClassification, fieldData);
-        }
-
-        return diagnosisClassification;
-    } 
-}
-
-internal HL7V24Field confidentialIndicator;
-
-public HL7V24Field ConfidentialIndicator
-{
-    get
-    {
-        if (confidentialIndicator != null)
-        {
-            return confidentialIndicator;
-        }
-
-        confidentialIndicator = new HL7V24Field
-        {
-            field = message[@"DG1"][18],
-            Id = @"DG1.18",
-            Type = @"Field",
-            Position = @"DG1.18",
-            Name = @"Confidential Indicator",
-            Length = 1,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"ID",
-            DataTypeName = @"Coded values for HL7 tables",
-            TableId = @"0136",
-            TableName = @"Yes/no indicator",
-            Description = @"This field indicates whether the diagnosis is confidential.  Refer to HL7 table 0136 - Yes/no indicator for valid values
-
-- Y the diagnosis is a confidential diagnosis
-- N the diagnosis does not contain a confidential diagnosis",
-            Sample = @"",
-        };
-
-        // check for repetitions
-        if (confidentialIndicator.field.FieldRepetitions != null && confidentialIndicator.field.FieldRepetitions.Count > 0)
-        {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(confidentialIndicator.Id));
-            confidentialIndicator.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(confidentialIndicator, fieldData);
-        }
-
-        return confidentialIndicator;
-    } 
-}
-
-internal HL7V24Field attestationDateTime;
-
-public HL7V24Field AttestationDateTime
-{
-    get
-    {
-        if (attestationDateTime != null)
-        {
-            return attestationDateTime;
-        }
-
-        attestationDateTime = new HL7V24Field
+        _attestationDateTime = new HL7V24Field
         {
             field = message[@"DG1"][19],
-            Id = @"DG1.19",
-            Type = @"Field",
-            Position = @"DG1.19",
-            Name = @"Attestation Date/Time",
-            Length = 26,
-            Usage = @"O",
-            Rpt = @"1",
-            DataType = @"TS",
-            DataTypeName = @"Time Stamp",
-            TableId = null,
-            TableName = null,
-            Description = @"This field contains the time stamp that indicates the date and time that the attestation was signed.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (attestationDateTime.field.FieldRepetitions != null && attestationDateTime.field.FieldRepetitions.Count > 0)
+        if (_attestationDateTime.field.FieldRepetitions != null && _attestationDateTime.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(attestationDateTime.Id));
-            attestationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(attestationDateTime, fieldData);
+            _attestationDateTime.fieldRepetitions = HL7V2FieldGenerator.GenerateV24FieldRepetitions(_attestationDateTime, fieldData);
         }
 
-        return attestationDateTime;
+        return _attestationDateTime;
     } 
 }
     }

@@ -29,28 +29,40 @@ namespace ExpressionEvaluatorForDotNet
             }
         }
 
-        public IList<HL7V2FieldData> Fields 
-        { 
-            get 
-            {
-                return new[]
+        public HL7V28SegmentQPD(HL7V2Message message)
+        {
+            this.message = message;
+        }
+
+        internal HL7V28Field _messageQueryName;
+
+public HL7V28Field MessageQueryName
+{
+    get
+    {
+        if (_messageQueryName != null)
+        {
+            return _messageQueryName;
+        }
+
+        var fieldData = new HL7V28FieldData
+        {
+            Id = @"QPD.1",
+            Type = @"Field",
+            Position = @"QPD.1",
+            Name = @"Message Query Name",
+            Length = 0,
+            Usage = @"R",
+            Rpt = @"1",
+            DataType = @"CWE",
+            DataTypeName = @"Coded With Exceptions",
+            TableId = @"0471",
+            TableName = @"Query Name",
+            Description = @"This field contains the name of the query.  These names are assigned by the function-specific chapters of this specification.  It is one to one with the Query Profile for this query name, and it is in fact an identifier for that Query Profile. Site-specific query names begin with the letter ""Z."" Refer to User defined table 0471 - Query name in Chapter 2C, Code Tables, for suggested values.",
+            Sample = @"",
+            Fields = new[]
                         {
                             new HL7V2FieldData
-                        {
-                            Id = @"QPD.1",
-                            Type = @"Field",
-                            Position = @"QPD.1",
-                            Name = @"Message Query Name",
-                            Length = 0,
-                            Usage = @"R",
-                            Rpt = @"1",
-                            DataType = @"CWE",
-                            DataTypeName = @"Coded With Exceptions",
-                            TableId = @"0471",
-                            TableName = @"Query Name",
-                            Description = @"This field contains the name of the query.  These names are assigned by the function-specific chapters of this specification.  It is one to one with the Query Profile for this query name, and it is in fact an identifier for that Query Profile. Site-specific query names begin with the letter ""Z."" Refer to User defined table 0471 - Query name in Chapter 2C, Code Tables, for suggested values.",
-                            Sample = @"",
-                            FieldDatas = new []{new HL7V2FieldData
                         {
                             Id = @"QPD.1.1",
                             Type = @"Component",
@@ -478,116 +490,39 @@ A value set may or need not be present irrespective of other fields. Note that i
 Value set version ID is required if CWE.21 is populated.",
                             Sample = @"",
                             FieldDatas = null
-                        },}
                         },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QPD.2",
-                            Type = @"Field",
-                            Position = @"QPD.2",
-                            Name = @"Query Tag",
-                            Length = 0,
-                            Usage = @"C",
-                            Rpt = @"1",
-                            DataType = @"ST",
-                            DataTypeName = @"String Data",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"This field may be valued by the initiating system to identify the query, and may be used to match response messages to the originating query.  If this field is valued, the responding system is required to echo it back as the first field in the query acknowledgement segment (QAK).  
-
-This field differs from MSA-2-Message control ID in that its value remains constant for each message (i.e., all continuation messages) associated with the query, whereas MSA-2-Message control ID may vary with each continuation message, since it is associated with each individual message, not the query as a whole.",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        
-                        new HL7V2FieldData
-                        {
-                            Id = @"QPD.3",
-                            Type = @"Field",
-                            Position = @"QPD.3",
-                            Name = @"User Parameters (in Successive Fields)",
-                            Length = 0,
-                            Usage = @"O",
-                            Rpt = @"1",
-                            DataType = @"varies",
-                            DataTypeName = @"Varies",
-                            TableId = null,
-                            TableName = null,
-                            Description = @"These successive parameter fields hold the values that the Client passes to the Server. 
-
-The client data is presented as a sequence of HL7 fields. Beginning at QPD-3-User parameters, the remaining fields of the QPD segment carry user parameter data.  Each QPD user parameter field corresponds to one parameter defined in the Query Profile, where each name, type, optionality, and repetition of each parameter has been specified. While these parameters are understood to be usually ""anded"" together, the user SHALL inspect the required Query Profile to properly understand each. Except in the QSC variant, the parameter names do not need to be stated in the query; they are understood to be positional based on the Query Profile.
-
-Each parameter field may be specified in the Query Profile to be of any single data type, including the complex QIP and QSC types.  Parameter fields may also contain the sort control (SRT) field or the segment group (ID) field defined in Sections 5.5.6.6, ""RCP-6   Sort-by Field   (SRT)   01624,"" and 5.5.6.7, ""RCP-7   Segment Group Inclusion   (ID)   01594,""
-
-Parameter fields in the QPD segment appear in the same order as in the Query Profile",
-                            Sample = @"",
-                            FieldDatas = null
-                        },
-                        };
-            }
+                        }
         }
 
-        public HL7V28SegmentQPD(HL7V2Message message)
-        {
-            this.message = message;
-        }
-
-        internal HL7V28Field messageQueryName;
-
-public HL7V28Field MessageQueryName
-{
-    get
-    {
-        if (messageQueryName != null)
-        {
-            return messageQueryName;
-        }
-
-        messageQueryName = new HL7V28Field
+        _messageQueryName = new HL7V28Field
         {
             field = message[@"QPD"][1],
-            Id = @"QPD.1",
-            Type = @"Field",
-            Position = @"QPD.1",
-            Name = @"Message Query Name",
-            Length = 0,
-            Usage = @"R",
-            Rpt = @"1",
-            DataType = @"CWE",
-            DataTypeName = @"Coded With Exceptions",
-            TableId = @"0471",
-            TableName = @"Query Name",
-            Description = @"This field contains the name of the query.  These names are assigned by the function-specific chapters of this specification.  It is one to one with the Query Profile for this query name, and it is in fact an identifier for that Query Profile. Site-specific query names begin with the letter ""Z."" Refer to User defined table 0471 - Query name in Chapter 2C, Code Tables, for suggested values.",
-            Sample = @"",
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (messageQueryName.field.FieldRepetitions != null && messageQueryName.field.FieldRepetitions.Count > 0)
+        if (_messageQueryName.field.FieldRepetitions != null && _messageQueryName.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(messageQueryName.Id));
-            messageQueryName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(messageQueryName, fieldData);
+            _messageQueryName.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_messageQueryName, fieldData);
         }
 
-        return messageQueryName;
+        return _messageQueryName;
     } 
 }
 
-internal HL7V28Field queryTag;
+internal HL7V28Field _queryTag;
 
 public HL7V28Field QueryTag
 {
     get
     {
-        if (queryTag != null)
+        if (_queryTag != null)
         {
-            return queryTag;
+            return _queryTag;
         }
 
-        queryTag = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"QPD"][2],
             Id = @"QPD.2",
             Type = @"Field",
             Position = @"QPD.2",
@@ -603,34 +538,38 @@ public HL7V28Field QueryTag
 
 This field differs from MSA-2-Message control ID in that its value remains constant for each message (i.e., all continuation messages) associated with the query, whereas MSA-2-Message control ID may vary with each continuation message, since it is associated with each individual message, not the query as a whole.",
             Sample = @"",
+            Fields = null
+        }
+
+        _queryTag = new HL7V28Field
+        {
+            field = message[@"QPD"][2],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (queryTag.field.FieldRepetitions != null && queryTag.field.FieldRepetitions.Count > 0)
+        if (_queryTag.field.FieldRepetitions != null && _queryTag.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(queryTag.Id));
-            queryTag.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(queryTag, fieldData);
+            _queryTag.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_queryTag, fieldData);
         }
 
-        return queryTag;
+        return _queryTag;
     } 
 }
 
-internal HL7V28Field userParametersinSuccessiveFields;
+internal HL7V28Field _userParametersinSuccessiveFields;
 
 public HL7V28Field UserParametersinSuccessiveFields
 {
     get
     {
-        if (userParametersinSuccessiveFields != null)
+        if (_userParametersinSuccessiveFields != null)
         {
-            return userParametersinSuccessiveFields;
+            return _userParametersinSuccessiveFields;
         }
 
-        userParametersinSuccessiveFields = new HL7V28Field
+        var fieldData = new HL7V28FieldData
         {
-            field = message[@"QPD"][3],
             Id = @"QPD.3",
             Type = @"Field",
             Position = @"QPD.3",
@@ -650,17 +589,22 @@ Each parameter field may be specified in the Query Profile to be of any single d
 
 Parameter fields in the QPD segment appear in the same order as in the Query Profile",
             Sample = @"",
+            Fields = null
+        }
+
+        _userParametersinSuccessiveFields = new HL7V28Field
+        {
+            field = message[@"QPD"][3],
+            fieldData = fieldData
         };
 
         // check for repetitions
-        if (userParametersinSuccessiveFields.field.FieldRepetitions != null && userParametersinSuccessiveFields.field.FieldRepetitions.Count > 0)
+        if (_userParametersinSuccessiveFields.field.FieldRepetitions != null && _userParametersinSuccessiveFields.field.FieldRepetitions.Count > 0)
         {
-            // get this fields data
-            var fieldData = Fields.First(fd => fd.Id.Equals(userParametersinSuccessiveFields.Id));
-            userParametersinSuccessiveFields.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(userParametersinSuccessiveFields, fieldData);
+            _userParametersinSuccessiveFields.fieldRepetitions = HL7V2FieldGenerator.GenerateV28FieldRepetitions(_userParametersinSuccessiveFields, fieldData);
         }
 
-        return userParametersinSuccessiveFields;
+        return _userParametersinSuccessiveFields;
     } 
 }
     }
