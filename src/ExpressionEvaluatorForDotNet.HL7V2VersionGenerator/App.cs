@@ -26,29 +26,29 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
             {
                 //CreateTestData(version);
 
-                // tables
-                CreateTables(version);
+                //// tables
+                //CreateTables(version);
 
-                // data types
-                CreateDataTypes(version);
+                //// data types
+                //CreateDataTypes(version);
 
-                // field datas
-                CreateFieldDatas(version);
+                //// field datas
+                //CreateFieldDatas(version);
 
-                // fields
-                CreateFields(version);
+                //// fields
+                //CreateFields(version);
 
-                // field repetitions
-                CreateFieldRepetitions(version);
+                //// field repetitions
+                //CreateFieldRepetitions(version);
 
-                // components
-                CreateComponents(version);
+                //// components
+                //CreateComponents(version);
 
-                // sub components
-                CreateSubComponents(version);
+                //// sub components
+                //CreateSubComponents(version);
 
-                // segments
-                CreateSegments(version);
+                //// segments
+                //CreateSegments(version);
 
                 // trigger events
                 CreateTriggerEvents(version);
@@ -204,8 +204,17 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
 
                         for (var i = 0; i < triggerEvent.Segments.Count; i++)
                         {
-                            var id = triggerEvent.Segments[i].Id;
-                            var template = $"public HL7V{version}Segment{id} {id.ToLower()}{{ get; init; }}{Environment.NewLine}";
+                            var segment = triggerEvent.Segments[i];
+                            var id = segment.Id;
+                            var template = $"public HL7V{version}Segment{id} {id.ToLower()} {{ get; init; }}{Environment.NewLine}";
+                            result.Append(template);
+                        }
+
+                        for (var i = 0; i < triggerEvent.SegmentGroups.Count; i++)
+                        {
+                            var segmentGroup = triggerEvent.SegmentGroups[i];
+
+                            var template = $"public HL7V{version}SegmentGroup{segmentGroup.Name}[] {segmentGroup.Name} {{ get; init; }}{Environment.NewLine}";
                             result.Append(template);
                         }
 
@@ -220,6 +229,13 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                         {
                             var id = triggerEvent.Segments[i].Id;
                             var template = $"this.{id.ToLower()} = new HL7V{version}Segment{id}(this.message);{Environment.NewLine}";
+                            result.Append(template);
+                        }
+
+                        for (var i = 0; i < triggerEvent.SegmentGroups.Count; i++)
+                        {
+                            var segmentGroup = triggerEvent.SegmentGroups[i];
+                            var template = $@"this.{segmentGroup.Name} = new HL7V{version}SegmentGroup();";
                             result.Append(template);
                         }
 

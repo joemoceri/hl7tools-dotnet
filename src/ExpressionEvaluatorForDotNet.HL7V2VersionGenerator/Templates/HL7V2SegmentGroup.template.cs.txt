@@ -3,29 +3,25 @@ using System.Collections.Generic;
 
 namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V[{-VERSION-}]Segment[{-SEGMENT_ID_CLASS_NAME-}]
+    public class HL7V[{-VERSION-}]TriggerEvent[{-TRIGGER_EVENT_ID_CLASS_NAME-}]SegmentGroup[{-SEGMENT_GROUP_ID_CLASS_NAME-}]
     {
         public HL7V2Message message { get; init; }
 
-        public string Id { get { return [{-ID-}]; } }
+        [{-SEGMENT_PROPERTIES-}]
 
-        public string SegmentId { get { return [{-SEGMENT_ID-}]; } }
+        public string Name { get { return [{-NAME-}]; } }
         
         public string LongName { get { return [{-LONG_NAME-}]; } }
         
-        public string Description { get { return [{-DESCRIPTION-}]; } }
+        public string Sequence { get { return [{-SEQUENCE-}]; } }
         
-        public string Sample { get { return [{-SAMPLE-}]; } }
+        public string Usage { get { return [{-USAGE-}]; } }
 
-        public IList<string> Chapters 
-        { 
-            get 
-            {
-                return [{-CHAPTERS-}];
-            }
-        }
+        public string Rpt { get { return [{-RPT-}]; } }
 
-        public HL7V[{-VERSION-}]Segment[{-SEGMENT_ID_CLASS_NAME-}](HL7V2Message message)
+        public bool IsGroup { get { return [{-IS_GROUP-}]; } }
+
+        public HL7V[{-VERSION-}]TriggerEvent[{-TRIGGER_EVENT_ID_CLASS_NAME-}]SegmentGroup[{-SEGMENT_GROUP_ID_CLASS_NAME-}](HL7V2Message message)
         {
             this.message = message;
         }

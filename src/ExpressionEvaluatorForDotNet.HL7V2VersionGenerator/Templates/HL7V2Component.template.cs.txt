@@ -11,5 +11,26 @@ namespace ExpressionEvaluatorForDotNet
         public HL7V[{-VERSION-}]FieldData fieldData { get; init; }
 
         public string Value { get { return component?.Value; } }
+
+        public HL7V2ValidationResult Validate()
+        {
+            var issues = new Dictionary<string, string>();
+            Exception error = null;
+
+            try
+            {
+
+            }
+            catch (Exception e)
+            {
+                error = e;
+            }
+
+            return new HL7V2ValidationResult
+            {
+                Issues = issues,
+                Error = error
+            };
+        }
     }
 }

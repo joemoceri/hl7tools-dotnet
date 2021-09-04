@@ -26,5 +26,26 @@ namespace ExpressionEvaluatorForDotNet
             this.message = message;
             [{-SEGMENT_INITIALIZERS-}]
         }
+
+        public HL7V2ValidationResult Validate()
+        {
+            var issues = new Dictionary<string, string>();
+            Exception error = null;
+
+            try
+            {
+
+            }
+            catch (Exception e)
+            {
+                error = e;
+            }
+
+            return new HL7V2ValidationResult
+            {
+                Issues = issues,
+                Error = error
+            };
+        }
     }
 }
