@@ -43,6 +43,7 @@
     <Compile Include="Output\V24\HL7V24FieldData.cs" />
     <Compile Include="Output\V24\HL7V24FieldRepetition.cs" />
     <Compile Include="Output\V24\HL7V24SubComponent.cs" />
+    <Compile Include="Output\V24\HL7V24Segment.cs" />
     <Compile Include="Output\V24\HL7V24TriggerEvent.cs" />
     <Compile Include="Output\V251\HL7V251Component.cs" />
     <Compile Include="Output\V251\HL7V251Field.cs" />

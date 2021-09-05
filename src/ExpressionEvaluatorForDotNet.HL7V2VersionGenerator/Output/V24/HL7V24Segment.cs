@@ -3,22 +3,22 @@ using System.Collections.Generic;
 
 namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V24TriggerEvent
+    public class HL7V24Segment
     {
         public HL7V2Message message { get; init; }
 
-        public IList<HL7V24SegmentData> segmentData { get; init; }
+        public IList<HL7V24FieldData> fieldData { get; init; }
 
         public string Id { get; init; }
 
-        public string MessageStructureId { get; init; }
+        public string SegmentId { get; init; }
 
-        public HL7V24TriggerEvent(HL7V2Message message, string id, string messageStructureId, IList<HL7V24SegmentData> segmentData)
+        public HL7V24Segment(HL7V2Message message, string id, string segmentId, IList<HL7V24FieldData> fieldData)
         {
             this.message = message;
             this.Id = id;
-            this.MessageStructureId = messageStructureId;
-            this.segmentData = segmentData;
+            this.SegmentId = segmentId;
+            this.fieldData = fieldData;
         }
 
         public HL7V2ValidationResult Validate()
