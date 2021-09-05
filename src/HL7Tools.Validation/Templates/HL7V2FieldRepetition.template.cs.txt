@@ -1,0 +1,22 @@
+﻿using System.Collections.Generic;
+
+namespace HL7Tools
+{
+    public class HL7V[{-VERSION-}]FieldRepetition
+    {
+        public HL7V2FieldRepetition fieldRepetition { get; init; }
+
+        public IList<HL7V[{-VERSION-}]Component> components { get; internal set; }
+
+        public HL7V[{-VERSION-}]FieldData fieldData { get; init; }
+
+        public string Value { get { return fieldRepetition?.Value; } }
+
+        public HL7V2ValidationResult Validate()
+        {
+            var result = HL7V[{-VERSION-}]FieldRepetitionValidator.ValidateV[{-VERSION-}]FieldRepetition(this);
+
+            return result;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+﻿using System.Collections.Generic;
+
+namespace HL7Tools
+{
+    public class HL7V[{-VERSION-}]Component
+    {
+        public HL7V2Component component { get; init; }
+
+        public IList<HL7V[{-VERSION-}]SubComponent> subComponents { get; internal set; }
+
+        public HL7V[{-VERSION-}]FieldData fieldData { get; init; }
+
+        public string Value { get { return component?.Value; } }
+
+        public HL7V2ValidationResult Validate()
+        {
+            var result = HL7V[{-VERSION-}]ComponentValidator.ValidateV[{-VERSION-}]Component(this);
+
+            return result;
+        }
+    }
+}

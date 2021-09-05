@@ -1,10 +1,10 @@
 before_build:
- - nuget restore ExpressionEvaluatorForDotNet.sln
+ - nuget restore HL7Tools.sln
  - choco install opencover.portable
  - choco install codecov
 
 test_script:
- - cmd: OpenCover.Console.exe -register:user -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test --test-adapter-path:. --logger:Appveyor" -filter:"+[ExpressionEvaluatorForDotNet*]* -[ExpressionEvaluatorForDotNet.Tests*]*" -output:".\coverage.xml" -oldstyle
+ - cmd: OpenCover.Console.exe -register:user -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test --test-adapter-path:. --logger:Appveyor" -filter:"+[HL7Tools*]* -[HL7Tools.Tests*]*" -output:".\coverage.xml" -oldstyle
 
 after_test:
   - ps: |

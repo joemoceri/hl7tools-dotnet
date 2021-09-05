@@ -1,0 +1,25 @@
+﻿using System.Collections.Generic;
+
+namespace HL7Tools
+{
+    public class HL7V[{-VERSION-}]_[{-TRIGGER_EVENT_CLASS_NAME-}]
+    {
+        public HL7V2Message message { get; init; }
+        [{-SEGMENT_PROPERTIES-}]
+
+        public string Id { get { return [{-ID-}]; } }
+
+        public HL7V[{-VERSION-}]_[{-TRIGGER_EVENT_CLASS_NAME-}](HL7V2Message message)
+        {
+            this.message = message;
+            [{-SEGMENT_INITIALIZERS-}]
+        }
+
+        public HL7V2ValidationResult Validate()
+        {
+            var result = HL7V[{-VERSION-}]TriggerEventValidator.ValidateV[{-VERSION-}]TriggerEvent(this);
+
+            return result;
+        }
+    }
+}

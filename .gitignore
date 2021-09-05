@@ -338,7 +338,7 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
-/src/ExpressionEvaluatorForDotNet/log.txt
+/src/HL7Tools/log.txt
 /src/MyProject_coverage.xml
 /src/coverage.xml
 /coverage.xml
