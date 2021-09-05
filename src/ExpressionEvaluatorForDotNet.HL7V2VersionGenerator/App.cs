@@ -202,21 +202,25 @@ namespace ExpressionEvaluatorForDotNet.HL7V2VersionGenerator
                     {
                         var result = new StringBuilder();
 
-                        for (var i = 0; i < triggerEvent.Segments.Count; i++)
-                        {
-                            var segment = triggerEvent.Segments[i];
-                            var id = segment.Id;
-                            var template = $"public HL7V{version}Segment{id} {id.ToLower()} {{ get; init; }}{Environment.NewLine}";
-                            result.Append(template);
-                        }
+                        var template = $"public IList<HL7V{version}TriggerEventSegmentData> segmentData;";
 
-                        for (var i = 0; i < triggerEvent.SegmentGroups.Count; i++)
-                        {
-                            var segmentGroup = triggerEvent.SegmentGroups[i];
+                        result.Append(template);
 
-                            var template = $"public HL7V{version}SegmentGroup{segmentGroup.Name}[] {segmentGroup.Name} {{ get; init; }}{Environment.NewLine}";
-                            result.Append(template);
-                        }
+                        //for (var i = 0; i < triggerEvent.Segments.Count; i++)
+                        //{
+                        //    var segment = triggerEvent.Segments[i];
+                        //    var id = segment.Id;
+                        //    var template = $"public HL7V{version}Segment{id} {id.ToLower()} {{ get; init; }}{Environment.NewLine}";
+                        //    result.Append(template);
+                        //}
+
+                        //for (var i = 0; i < triggerEvent.SegmentGroups.Count; i++)
+                        //{
+                        //    var segmentGroup = triggerEvent.SegmentGroups[i];
+
+                        //    var template = $"public HL7V{version}SegmentGroup{segmentGroup.Name} {segmentGroup.Name} {{ get; init; }}{Environment.NewLine}";
+                        //    result.Append(template);
+                        //}
 
                         return result.ToString();
                     }

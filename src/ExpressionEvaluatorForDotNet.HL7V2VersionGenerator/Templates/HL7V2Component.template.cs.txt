@@ -14,23 +14,9 @@ namespace ExpressionEvaluatorForDotNet
 
         public HL7V2ValidationResult Validate()
         {
-            var issues = new Dictionary<string, string>();
-            Exception error = null;
+            var result = HL7V[{-VERSION-}]ComponentValidator.ValidateV[{-VERSION-}]Component(this);
 
-            try
-            {
-
-            }
-            catch (Exception e)
-            {
-                error = e;
-            }
-
-            return new HL7V2ValidationResult
-            {
-                Issues = issues,
-                Error = error
-            };
+            return result;
         }
     }
 }

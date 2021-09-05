@@ -2,26 +2,14 @@
 
 namespace ExpressionEvaluatorForDotNet
 {
-    public class HL7V[{-VERSION-}]TriggerEvent[{-TRIGGER_EVENT_CLASS_NAME-}]
+    public class HL7V[{-VERSION-}]_[{-TRIGGER_EVENT_CLASS_NAME-}]
     {
         public HL7V2Message message { get; init; }
         [{-SEGMENT_PROPERTIES-}]
 
         public string Id { get { return [{-ID-}]; } }
-        public string MessageStructureId { get { return [{-MESSAGE_STRUCTURE_ID-}]; } }
-        public string EventDescription { get { return [{-EVENT_DESCRIPTION-}]; } }
 
-        public string Sample { get { return [{-SAMPLE-}]; } }
-
-        public IList<string> Chapters 
-        { 
-            get 
-            {
-                return [{-CHAPTERS-}];
-            }
-        }
-
-        public HL7V[{-VERSION-}]TriggerEvent[{-TRIGGER_EVENT_CLASS_NAME-}](HL7V2Message message)
+        public HL7V[{-VERSION-}]_[{-TRIGGER_EVENT_CLASS_NAME-}](HL7V2Message message)
         {
             this.message = message;
             [{-SEGMENT_INITIALIZERS-}]
@@ -29,23 +17,9 @@ namespace ExpressionEvaluatorForDotNet
 
         public HL7V2ValidationResult Validate()
         {
-            var issues = new Dictionary<string, string>();
-            Exception error = null;
+            var result = HL7V[{-VERSION-}]TriggerEventValidator.ValidateV[{-VERSION-}]TriggerEvent(this);
 
-            try
-            {
-
-            }
-            catch (Exception e)
-            {
-                error = e;
-            }
-
-            return new HL7V2ValidationResult
-            {
-                Issues = issues,
-                Error = error
-            };
+            return result;
         }
     }
 }

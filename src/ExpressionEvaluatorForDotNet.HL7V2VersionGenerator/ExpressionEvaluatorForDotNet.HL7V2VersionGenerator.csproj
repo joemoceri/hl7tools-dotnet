@@ -12,6 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="HL7V2SegmentValidator.cs" />
+    <Compile Remove="HL7V2TriggerEventValidator.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="Output\V21\HL7V21Component.cs" />
     <Compile Include="Output\V21\HL7V21Field.cs" />
     <Compile Include="Output\V21\HL7V21FieldData.cs" />
@@ -34,9 +39,11 @@
     <Compile Include="Output\V23\HL7V23SubComponent.cs" />
     <Compile Include="Output\V24\HL7V24Component.cs" />
     <Compile Include="Output\V24\HL7V24Field.cs" />
+    <Compile Include="Output\V24\HL7V24SegmentData.cs" />
     <Compile Include="Output\V24\HL7V24FieldData.cs" />
     <Compile Include="Output\V24\HL7V24FieldRepetition.cs" />
     <Compile Include="Output\V24\HL7V24SubComponent.cs" />
+    <Compile Include="Output\V24\HL7V24TriggerEvent.cs" />
     <Compile Include="Output\V251\HL7V251Component.cs" />
     <Compile Include="Output\V251\HL7V251Field.cs" />
     <Compile Include="Output\V251\HL7V251FieldData.cs" />
@@ -70,12 +77,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="HL7V2SegmentValidator.cs" />
+    <Content Include="HL7V2TriggerEventValidator.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="106.12.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Caristix\LocalData\" />
+    <Folder Include="Output\V24\TriggerEvents\" />
   </ItemGroup>
 
   <ItemGroup>
