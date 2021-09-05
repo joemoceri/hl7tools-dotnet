@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HL7Tools.Validation.Caristix;
+using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -9,62 +10,6 @@ using System.Threading.Tasks;
 
 namespace HL7Tools.HL7V2VersionGenerator
 {
-    // TODO: Generate these
-    public enum HL7V21TriggerEvent
-    {
-
-    }
-
-    public enum HL7V22TriggerEvent
-    {
-
-    }
-
-    public enum HL7V23TriggerEvent
-    {
-
-    }
-
-    public enum HL7V231TriggerEvent
-    {
-
-    }
-
-    public enum HL7V24TriggerEvent
-    {
-
-    }
-
-    public enum HL7V25TriggerEvent
-    {
-
-    }
-
-    public enum HL7V251TriggerEvent
-    {
-
-    }
-
-    public enum HL7V26TriggerEvent
-    {
-
-    }
-
-    public enum HL7V27TriggerEvent
-    {
-
-    }
-
-    public enum HL7V271TriggerEvent
-    {
-
-    }
-
-    public enum HL7V28TriggerEvent
-    {
-
-    }
-
     public interface ICaristixService
     {
         HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V21TriggerEvent triggerEvent);

@@ -6,7 +6,9 @@ namespace HL7Tools.HL7V2VersionGenerator
     {
         static void Main(string[] args)
         {
+            var app = new App();
 
+            app.Run();
         }
     }
 }

@@ -6,6 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Caristix\TriggerEvents\HL7V2TriggerEvent.template.cs.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Caristix\TriggerEvents\HL7V2TriggerEvent.template.cs.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="106.12.0" />
   </ItemGroup>

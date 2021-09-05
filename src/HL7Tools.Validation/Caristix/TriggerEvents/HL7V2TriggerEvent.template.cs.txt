@@ -1,0 +1,7 @@
+﻿namespace HL7Tools.Validation.Caristix
+{
+    public enum HL7V[{-VERSION-}]TriggerEvent
+    {
+        [{-ENUM_VALUES-}]
+    }
+}
