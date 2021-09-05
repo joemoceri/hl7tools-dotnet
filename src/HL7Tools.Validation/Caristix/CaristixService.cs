@@ -9,12 +9,78 @@ using System.Threading.Tasks;
 
 namespace HL7Tools.HL7V2VersionGenerator
 {
-    public interface ICaristixService
+    // TODO: Generate these
+    public enum HL7V21TriggerEvent
     {
 
     }
 
-    public class CaristixService
+    public enum HL7V22TriggerEvent
+    {
+
+    }
+
+    public enum HL7V23TriggerEvent
+    {
+
+    }
+
+    public enum HL7V231TriggerEvent
+    {
+
+    }
+
+    public enum HL7V24TriggerEvent
+    {
+
+    }
+
+    public enum HL7V25TriggerEvent
+    {
+
+    }
+
+    public enum HL7V251TriggerEvent
+    {
+
+    }
+
+    public enum HL7V26TriggerEvent
+    {
+
+    }
+
+    public enum HL7V27TriggerEvent
+    {
+
+    }
+
+    public enum HL7V271TriggerEvent
+    {
+
+    }
+
+    public enum HL7V28TriggerEvent
+    {
+
+    }
+
+    public interface ICaristixService
+    {
+        HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V21TriggerEvent triggerEvent);
+        HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V22TriggerEvent triggerEvent);
+        HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V23TriggerEvent triggerEvent);
+        HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V231TriggerEvent triggerEvent);
+        HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V24TriggerEvent triggerEvent);
+        HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V25TriggerEvent triggerEvent);
+        HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V251TriggerEvent triggerEvent);
+        HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V26TriggerEvent triggerEvent);
+        HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V27TriggerEvent triggerEvent);
+        HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V271TriggerEvent triggerEvent);
+        HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V28TriggerEvent triggerEvent);
+    }
+
+    public class CaristixService : ICaristixService
     {
         private readonly IRestClient restClient;
         private readonly string baseUrl;
@@ -113,7 +179,7 @@ namespace HL7Tools.HL7V2VersionGenerator
             return result;
         }
 
-        private IList<TriggerEventResponse> GetAllTriggerEvents(string version, IList<string> ids)
+        public IList<TriggerEventResponse> GetAllTriggerEvents(string version, IList<string> ids)
         {
             var result = new List<TriggerEventResponse>();
             for (var i = 0; i < ids.Count(); i++)
@@ -409,6 +475,61 @@ namespace HL7Tools.HL7V2VersionGenerator
             }
 
             return result;
+        }
+
+        public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V21TriggerEvent triggerEvent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V22TriggerEvent triggerEvent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V23TriggerEvent triggerEvent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V231TriggerEvent triggerEvent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V24TriggerEvent triggerEvent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V25TriggerEvent triggerEvent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V251TriggerEvent triggerEvent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V26TriggerEvent triggerEvent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V27TriggerEvent triggerEvent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V271TriggerEvent triggerEvent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V28TriggerEvent triggerEvent)
+        {
+            throw new NotImplementedException();
         }
     }
 }
