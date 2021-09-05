@@ -26,4 +26,10 @@
     <ProjectReference Include="..\HL7Tools\HL7Tools.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="DFT-P03 Charge.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

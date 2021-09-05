@@ -89,111 +89,111 @@ namespace HL7Tools.Validation
             return result;
         }
 
-        public IList<TriggerEventResponse> GetTriggerEvents(string version)
-        {
-            var result = new List<TriggerEventResponse>();
+        //public IList<TriggerEventResponse> GetTriggerEvents(string version)
+        //{
+        //    var result = new List<TriggerEventResponse>();
 
-            if (useLocalData)
-            {
-                var path = Path.Combine(basePath, "Caristix", "LocalData", version, "TriggerEvents");
-                foreach (var file in Directory.GetFiles(path))
-                {
-                    var triggerEvent = JsonConvert.DeserializeObject<TriggerEventResponse>(File.ReadAllText(file));
-                    result.Add(triggerEvent);
-                }
+        //    if (useLocalData)
+        //    {
+        //        var path = Path.Combine(basePath, "Caristix", "LocalData", version, "TriggerEvents");
+        //        foreach (var file in Directory.GetFiles(path))
+        //        {
+        //            var triggerEvent = JsonConvert.DeserializeObject<TriggerEventResponse>(File.ReadAllText(file));
+        //            result.Add(triggerEvent);
+        //        }
 
-                return result;
-            }
+        //        return result;
+        //    }
 
-            var request = new RestRequest($"{baseUrl}{version}/TriggerEvents", Method.GET);
+        //    var request = new RestRequest($"{baseUrl}{version}/TriggerEvents", Method.GET);
 
-            var response = restClient.Execute<string>(request);
+        //    var response = restClient.Execute<string>(request);
 
-            if (response.StatusCode == 0)
-            {
-                response = Retry<string>(request);
-            }
+        //    if (response.StatusCode == 0)
+        //    {
+        //        response = Retry<string>(request);
+        //    }
 
-            // get every trigger event id
-            var triggerEvents = JsonConvert.DeserializeObject<IList<TriggerEventResponse>>(response.Data.Trim('"'));
+        //    // get every trigger event id
+        //    var triggerEvents = JsonConvert.DeserializeObject<IList<TriggerEventResponse>>(response.Data.Trim('"'));
             
-            var ids = triggerEvents.Select(te => te.Id).ToList();
+        //    var ids = triggerEvents.Select(te => te.Id).ToList();
 
-            result.AddRange(GetAllTriggerEvents(version, ids));
+        //    result.AddRange(GetAllTriggerEvents(version, ids));
 
-            return result;
-        }
+        //    return result;
+        //}
 
-        public IList<TriggerEventResponse> GetAllTriggerEvents(string version, IList<string> ids)
-        {
-            var result = new List<TriggerEventResponse>();
-            for (var i = 0; i < ids.Count(); i++)
-            {
-                // get the trigger event
-                var triggerEvent = GetTriggerEvent(version, ids[i]);
+        //private IList<TriggerEventResponse> GetAllTriggerEvents(string version, IList<string> ids)
+        //{
+        //    var result = new List<TriggerEventResponse>();
+        //    for (var i = 0; i < ids.Count(); i++)
+        //    {
+        //        // get the trigger event
+        //        var triggerEvent = GetTriggerEvent(version, ids[i]);
 
-                triggerEvent.Segments = new List<SegmentResponse>();
-                triggerEvent.SegmentGroups = new List<HL7V2SegmentGroupResponse>();
+        //        triggerEvent.Segments = new List<SegmentResponse>();
+        //        triggerEvent.SegmentGroups = new List<HL7V2SegmentGroupResponse>();
 
-                for (var j = 0; j < triggerEvent.TriggerEventSegments.Count(); j++)
-                {
-                    var tes = triggerEvent.TriggerEventSegments[j];
+        //        for (var j = 0; j < triggerEvent.TriggerEventSegments.Count(); j++)
+        //        {
+        //            var tes = triggerEvent.TriggerEventSegments[j];
 
-                    if (tes.IsGroup)
-                    {
-                        var segmentGroup = new HL7V2SegmentGroupResponse
-                        {
-                            Name = tes.Name,
-                            Segments = new List<SegmentResponse>(),
-                            SegmentGroups = new List<HL7V2SegmentGroupResponse>()
-                        };
+        //            if (tes.IsGroup)
+        //            {
+        //                var segmentGroup = new HL7V2SegmentGroupResponse
+        //                {
+        //                    Name = tes.Name,
+        //                    Segments = new List<SegmentResponse>(),
+        //                    SegmentGroups = new List<HL7V2SegmentGroupResponse>()
+        //                };
 
-                        segmentGroup.Segments.AddRange(GetSegments(version, triggerEvent, segmentGroup, tes));
+        //                segmentGroup.Segments.AddRange(GetSegments(version, triggerEvent, segmentGroup, tes));
 
-                        triggerEvent.SegmentGroups.Add(segmentGroup);
-                    }
-                    else
-                    {
-                        triggerEvent.Segments.Add(GetSegment(version, tes.Id, true));
-                    }
+        //                triggerEvent.SegmentGroups.Add(segmentGroup);
+        //            }
+        //            else
+        //            {
+        //                triggerEvent.Segments.Add(GetSegment(version, tes.Id, true));
+        //            }
 
-                }
+        //        }
 
-                result.Add(triggerEvent);
-            }
+        //        result.Add(triggerEvent);
+        //    }
 
-            return result;
+        //    return result;
 
-            IList<SegmentResponse> GetSegments(string version, TriggerEventResponse triggerEvent, HL7V2SegmentGroupResponse segmentGroup, TriggerEventSegmentResponse tes)
-            {
-                var result = new List<SegmentResponse>();
+        //    IList<SegmentResponse> GetSegments(string version, TriggerEventResponse triggerEvent, HL7V2SegmentGroupResponse segmentGroup, TriggerEventSegmentResponse tes)
+        //    {
+        //        var result = new List<SegmentResponse>();
                 
-                // go over each segment of the group
-                for (var i = 0; i < tes.Segments.Count; i++)
-                {
-                    var newTes = tes.Segments[i];
-                    if (newTes.IsGroup)
-                    {
-                        var sg = new HL7V2SegmentGroupResponse
-                        {
-                            Name = newTes.Name,
-                            Segments = new List<SegmentResponse>(),
-                            SegmentGroups = new List<HL7V2SegmentGroupResponse>()
-                        };
+        //        // go over each segment of the group
+        //        for (var i = 0; i < tes.Segments.Count; i++)
+        //        {
+        //            var newTes = tes.Segments[i];
+        //            if (newTes.IsGroup)
+        //            {
+        //                var sg = new HL7V2SegmentGroupResponse
+        //                {
+        //                    Name = newTes.Name,
+        //                    Segments = new List<SegmentResponse>(),
+        //                    SegmentGroups = new List<HL7V2SegmentGroupResponse>()
+        //                };
 
-                        sg.Segments.AddRange(GetSegments(version, triggerEvent, sg, newTes));
+        //                sg.Segments.AddRange(GetSegments(version, triggerEvent, sg, newTes));
 
-                        segmentGroup.SegmentGroups.Add(sg);
-                    }
-                    else
-                    {
-                        segmentGroup.Segments.Add(GetSegment(version, newTes.Id, true));
-                    }
-                }
+        //                segmentGroup.SegmentGroups.Add(sg);
+        //            }
+        //            else
+        //            {
+        //                segmentGroup.Segments.Add(GetSegment(version, newTes.Id, true));
+        //            }
+        //        }
 
-                return result;
-            }
-        }
+        //        return result;
+        //    }
+        //}
 
         public IList<SegmentResponse> GetSegments(string version)
         {
@@ -431,7 +431,7 @@ namespace HL7Tools.Validation
 
             try
             {
-                var te = GetTriggerEvent("21", triggerEvent.ToString());
+                var te = GetTriggerEvent("2.1", triggerEvent.ToString());
 
                 var tes = te.TriggerEventSegments;
 
@@ -487,7 +487,27 @@ namespace HL7Tools.Validation
 
             try
             {
+                var te = GetTriggerEvent("2.3", triggerEvent.ToString());
 
+                var tes = te.TriggerEventSegments;
+
+                // TODO: Validate by each property
+                for (var i = 0; i < tes.Count; i++)
+                {
+                    var t = tes[i];
+
+                    var rpt = t.Rpt;
+
+                    var usage = t.Usage;
+
+                    var id = t.Id;
+
+                    var sequence = t.Sequence;
+
+                    var segments = t.Segments;
+
+                    var isGroup = t.IsGroup;
+                }
             }
             catch (Exception ex)
             {

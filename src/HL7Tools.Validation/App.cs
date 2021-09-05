@@ -8,101 +8,120 @@ namespace HL7Tools.Validation
 {
     public class App
     {
-        public void Run()
+        public void ValidateV23DFTP03TriggerEvent()
         {
+            var expressionConfiguration = new HL7V2ExpressionConfiguration();
+
+            var evaluator = new Evaluator(expressionConfiguration);
+
+            var message = evaluator.EvaluateHL7V2File("DFT-P03 Charge.txt");
+
             var caristixService = new CaristixService(true);
 
-            var basePath = Directory.GetParent(Environment.NewLine).Parent.Parent.Parent.FullName;
-            var triggerEventsBasePath = Path.Combine(basePath, "Caristix", "TriggerEvents");
-            var versions = caristixService.GetVersions();
+            var validationResult = caristixService.ValidateTriggerEvent(message, Caristix.HL7V23TriggerEvent.DFT_P03);
 
-            foreach (var version in versions)
-            {
-                var triggerEvents = caristixService.GetTriggerEvents(version);
+            Console.Write($"Valid: {validationResult.Valid}");
 
-                CreateTriggerEvents(version);
+            return;
+        }
 
-            }
+        public void Run()
+        {
+            ValidateV23DFTP03TriggerEvent();
+            //return;
 
-            void CreateTriggerEvents(string version)
-            {
-                var v = version.Replace(".", string.Empty);
-                var path = Path.Combine(triggerEventsBasePath, $"HL7V2TriggerEvent.template.cs.txt");
-                var triggerEventTemplate = File.ReadAllText(path);
+            //var caristixService = new CaristixService(true);
 
-                triggerEventTemplate = triggerEventTemplate.Replace("[{-VERSION-}]", v);
-                triggerEventTemplate = triggerEventTemplate.Replace("[{-ENUM_VALUES-}]", GetEnumValues(version));
+            //var basePath = Directory.GetParent(Environment.NewLine).Parent.Parent.Parent.FullName;
+            //var triggerEventsBasePath = Path.Combine(basePath, "Caristix", "TriggerEvents");
+            //var versions = caristixService.GetVersions();
 
-                File.WriteAllText(Path.Combine(triggerEventsBasePath, $"HL7V{v}TriggerEvent.cs"), triggerEventTemplate);
+            //foreach (var version in versions)
+            //{
+            //    var triggerEvents = caristixService.GetTriggerEvents(version);
 
-                string GetEnumValues(string version)
-                {
-                    var result = new StringBuilder();
+            //    CreateTriggerEvents(version);
 
-                    var triggerEvents = caristixService.GetTriggerEvents(version);
+            //}
 
-                    for (var i = 0; i < triggerEvents.Count; i++)
-                    {
-                        result.Append($"{triggerEvents[i].Id},{Environment.NewLine}");
-                    }
+            //void CreateTriggerEvents(string version)
+            //{
+            //    var v = version.Replace(".", string.Empty);
+            //    var path = Path.Combine(triggerEventsBasePath, $"HL7V2TriggerEvent.template.cs.txt");
+            //    var triggerEventTemplate = File.ReadAllText(path);
+
+            //    triggerEventTemplate = triggerEventTemplate.Replace("[{-VERSION-}]", v);
+            //    triggerEventTemplate = triggerEventTemplate.Replace("[{-ENUM_VALUES-}]", GetEnumValues(version));
+
+            //    File.WriteAllText(Path.Combine(triggerEventsBasePath, $"HL7V{v}TriggerEvent.cs"), triggerEventTemplate);
+
+            //    string GetEnumValues(string version)
+            //    {
+            //        var result = new StringBuilder();
+
+            //        var triggerEvents = caristixService.GetTriggerEvents(version);
+
+            //        for (var i = 0; i < triggerEvents.Count; i++)
+            //        {
+            //            result.Append($"{triggerEvents[i].Id},{Environment.NewLine}");
+            //        }
 
 
-                    return result.ToString();
-                }
-            }
+            //        return result.ToString();
+            //    }
 
-            void CreateTestData(string version)
-            {
-                var localDataPath = Path.Combine(basePath, "Caristix", "LocalData");
+            //void CreateTestData(string version)
+            //{
+            //    var localDataPath = Path.Combine(basePath, "Caristix", "LocalData");
 
-                // Tables
-                var tables = caristixService.GetTables(version);
+            //    // Tables
+            //    var tables = caristixService.GetTables(version);
 
-                foreach (var table in tables)
-                {
-                    Directory.CreateDirectory(Path.Combine(localDataPath, version, "Tables"));
+            //    foreach (var table in tables)
+            //    {
+            //        Directory.CreateDirectory(Path.Combine(localDataPath, version, "Tables"));
 
-                    var path = Path.Combine(localDataPath, version, "Tables", $"V{version.Replace(".", string.Empty)}Table{table.Id}.json");
+            //        var path = Path.Combine(localDataPath, version, "Tables", $"V{version.Replace(".", string.Empty)}Table{table.Id}.json");
 
-                    File.WriteAllText(path, JsonConvert.SerializeObject(table));
-                }
+            //        File.WriteAllText(path, JsonConvert.SerializeObject(table));
+            //    }
 
-                // Data Types
-                var dataTypes = caristixService.GetDataTypes(version);
+            //    // Data Types
+            //    var dataTypes = caristixService.GetDataTypes(version);
 
-                foreach (var dataType in dataTypes)
-                {
-                    Directory.CreateDirectory(Path.Combine(localDataPath, version, "DataTypes"));
+            //    foreach (var dataType in dataTypes)
+            //    {
+            //        Directory.CreateDirectory(Path.Combine(localDataPath, version, "DataTypes"));
 
-                    var path = Path.Combine(localDataPath, version, "DataTypes", $"V{version.Replace(".", string.Empty)}DataType{dataType.Id}.json");
+            //        var path = Path.Combine(localDataPath, version, "DataTypes", $"V{version.Replace(".", string.Empty)}DataType{dataType.Id}.json");
 
-                    File.WriteAllText(path, JsonConvert.SerializeObject(dataType));
-                }
+            //        File.WriteAllText(path, JsonConvert.SerializeObject(dataType));
+            //    }
 
-                // Segments
-                var segments = caristixService.GetSegments(version);
+            //    // Segments
+            //    var segments = caristixService.GetSegments(version);
 
-                foreach (var segment in segments)
-                {
-                    Directory.CreateDirectory(Path.Combine(localDataPath, version, "Segments"));
+            //    foreach (var segment in segments)
+            //    {
+            //        Directory.CreateDirectory(Path.Combine(localDataPath, version, "Segments"));
 
-                    var path = Path.Combine(localDataPath, version, "Segments", $"V{version.Replace(".", string.Empty)}Segment{segment.Id}.json");
+            //        var path = Path.Combine(localDataPath, version, "Segments", $"V{version.Replace(".", string.Empty)}Segment{segment.Id}.json");
 
-                    File.WriteAllText(path, JsonConvert.SerializeObject(segment));
-                }
+            //        File.WriteAllText(path, JsonConvert.SerializeObject(segment));
+            //    }
 
-                // Trigger Events
-                var triggerEvents = caristixService.GetTriggerEvents(version);
+            //    // Trigger Events
+            //    var triggerEvents = caristixService.GetTriggerEvents(version);
 
-                foreach (var triggerEvent in triggerEvents)
-                {
-                    Directory.CreateDirectory(Path.Combine(localDataPath, version, "TriggerEvents"));
+            //    foreach (var triggerEvent in triggerEvents)
+            //    {
+            //        Directory.CreateDirectory(Path.Combine(localDataPath, version, "TriggerEvents"));
 
-                    var path = Path.Combine(localDataPath, version, "TriggerEvents", $"V{version.Replace(".", string.Empty)}TriggerEvent{triggerEvent.Id}.json");
+            //        var path = Path.Combine(localDataPath, version, "TriggerEvents", $"V{version.Replace(".", string.Empty)}TriggerEvent{triggerEvent.Id}.json");
 
-                    File.WriteAllText(path, JsonConvert.SerializeObject(triggerEvent));
-                }
-            }
+            //        File.WriteAllText(path, JsonConvert.SerializeObject(triggerEvent));
+            //    }
+            //}
 
             //void CreateFields(string version)
             //{

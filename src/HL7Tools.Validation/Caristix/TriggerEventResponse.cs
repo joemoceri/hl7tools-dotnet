@@ -27,12 +27,7 @@ namespace HL7Tools.Validation
         [JsonProperty("chapters")]
         public IList<string> Chapters { get; set; }
 
-
         [JsonProperty("segments")]
         public IList<TriggerEventSegmentResponse> TriggerEventSegments { get; set; }
-
-        public List<HL7V2SegmentGroupResponse> SegmentGroups { get; set; }
-
-        public List<SegmentResponse> Segments { get; set; }
     }
 }
