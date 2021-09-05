@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace HL7Tools.HL7V2VersionGenerator
+namespace HL7Tools.Validation
 {
     public class TriggerEventResponse
     {

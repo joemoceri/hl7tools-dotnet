@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HL7Tools.HL7V2VersionGenerator
+namespace HL7Tools.Validation
 {
     public interface ICaristixService
     {
@@ -431,7 +431,25 @@ namespace HL7Tools.HL7V2VersionGenerator
 
             try
             {
+                var te = GetTriggerEvent("21", triggerEvent.ToString());
 
+                var tes = te.TriggerEventSegments;
+
+                // TODO: Validate by each property
+                for (var i = 0; i < tes.Count; i++)
+                {
+                    var t = tes[i];
+
+                    var rpt = t.Rpt;
+
+                    var usage = t.Usage;
+
+                    var id = t.Id;
+
+                    var sequence = t.Sequence;
+
+                    var segments = t.Segments;
+                }
             }
             catch (Exception ex)
             {

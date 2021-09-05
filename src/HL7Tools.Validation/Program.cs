@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HL7Tools.HL7V2VersionGenerator
+namespace HL7Tools.Validation
 {
     static class Program
     {
