@@ -9,7 +9,7 @@ namespace HL7Tools
         {
             get
             {
-                return Issues == null ? false : Issues.Count == 0;
+                return Issues == null ? false : Issues.Count == 0 && Error == null;
             }
         }
 

@@ -29,7 +29,7 @@ namespace HL7Tools.HL7V2VersionGenerator
     {
         private readonly IRestClient restClient;
         private readonly string baseUrl;
-        private readonly bool testMode;
+        private readonly bool useLocalData;
         private readonly string basePath;
 
         public CaristixService() : this(false)
@@ -37,10 +37,10 @@ namespace HL7Tools.HL7V2VersionGenerator
 
         }
 
-        public CaristixService(bool testMode)
+        public CaristixService(bool useLocalData)
         {
             basePath = Directory.GetParent(Environment.NewLine).Parent.Parent.Parent.FullName;
-            this.testMode = testMode;
+            this.useLocalData = useLocalData;
             baseUrl = "https://hl7-definition.caristix.com/v2-api/1/HL7v";
             restClient = new RestClient();
         }
@@ -93,7 +93,7 @@ namespace HL7Tools.HL7V2VersionGenerator
         {
             var result = new List<TriggerEventResponse>();
 
-            if (testMode)
+            if (useLocalData)
             {
                 var path = Path.Combine(basePath, "Caristix", "LocalData", version, "TriggerEvents");
                 foreach (var file in Directory.GetFiles(path))
@@ -199,7 +199,7 @@ namespace HL7Tools.HL7V2VersionGenerator
         {
             var result = new List<SegmentResponse>();
 
-            if (testMode)
+            if (useLocalData)
             {
                 var path = Path.Combine(basePath, "Caristix", "LocalData", version, "Segments");
                 foreach (var file in Directory.GetFiles(path))
@@ -235,7 +235,7 @@ namespace HL7Tools.HL7V2VersionGenerator
         {
             var result = new List<DataTypeResponse>();
 
-            if (testMode)
+            if (useLocalData)
             {
                 var path = Path.Combine(basePath, "Caristix", "LocalData", version, "DataTypes");
                 foreach (var file in Directory.GetFiles(path))
@@ -271,7 +271,7 @@ namespace HL7Tools.HL7V2VersionGenerator
         {
             var result = new List<TableResponse>();
 
-            if (testMode)
+            if (useLocalData)
             {
                 var path = Path.Combine(basePath, "Caristix", "LocalData", version, "Tables");
                 foreach (var file in Directory.GetFiles(path))
@@ -424,57 +424,211 @@ namespace HL7Tools.HL7V2VersionGenerator
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V21TriggerEvent triggerEvent)
         {
-            throw new NotImplementedException();
+            var result = new HL7V2ValidationResult 
+            { 
+                Issues = new Dictionary<string, string>() 
+            };
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                result.Error = ex;
+            }
+
+            return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V22TriggerEvent triggerEvent)
         {
-            throw new NotImplementedException();
+            var result = new HL7V2ValidationResult
+            {
+                Issues = new Dictionary<string, string>()
+            };
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                result.Error = ex;
+            }
+
+            return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V23TriggerEvent triggerEvent)
         {
-            throw new NotImplementedException();
+            var result = new HL7V2ValidationResult
+            {
+                Issues = new Dictionary<string, string>()
+            };
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                result.Error = ex;
+            }
+
+            return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V231TriggerEvent triggerEvent)
         {
-            throw new NotImplementedException();
+            var result = new HL7V2ValidationResult
+            {
+                Issues = new Dictionary<string, string>()
+            };
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                result.Error = ex;
+            }
+
+            return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V24TriggerEvent triggerEvent)
         {
-            throw new NotImplementedException();
+            var result = new HL7V2ValidationResult
+            {
+                Issues = new Dictionary<string, string>()
+            };
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                result.Error = ex;
+            }
+
+            return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V25TriggerEvent triggerEvent)
         {
-            throw new NotImplementedException();
+            var result = new HL7V2ValidationResult
+            {
+                Issues = new Dictionary<string, string>()
+            };
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                result.Error = ex;
+            }
+
+            return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V251TriggerEvent triggerEvent)
         {
-            throw new NotImplementedException();
+            var result = new HL7V2ValidationResult
+            {
+                Issues = new Dictionary<string, string>()
+            };
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                result.Error = ex;
+            }
+
+            return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V26TriggerEvent triggerEvent)
         {
-            throw new NotImplementedException();
+            var result = new HL7V2ValidationResult
+            {
+                Issues = new Dictionary<string, string>()
+            };
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                result.Error = ex;
+            }
+
+            return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V27TriggerEvent triggerEvent)
         {
-            throw new NotImplementedException();
+            var result = new HL7V2ValidationResult
+            {
+                Issues = new Dictionary<string, string>()
+            };
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                result.Error = ex;
+            }
+
+            return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V271TriggerEvent triggerEvent)
         {
-            throw new NotImplementedException();
+            var result = new HL7V2ValidationResult
+            {
+                Issues = new Dictionary<string, string>()
+            };
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                result.Error = ex;
+            }
+
+            return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V28TriggerEvent triggerEvent)
         {
-            throw new NotImplementedException();
+            var result = new HL7V2ValidationResult
+            {
+                Issues = new Dictionary<string, string>()
+            };
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                result.Error = ex;
+            }
+
+            return result;
         }
     }
 }
