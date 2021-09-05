@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Caristix\TriggerEvents\HL7V2TriggerEvent.template.cs.txt" />
+    <None Remove="Caristix\TriggerEvents\HL7V2TriggerEventId.template.cs.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Caristix\TriggerEvents\HL7V2TriggerEvent.template.cs.txt" />
+    <Content Include="Caristix\TriggerEvents\HL7V2TriggerEventId.template.cs.txt" />
   </ItemGroup>
 
   <ItemGroup>

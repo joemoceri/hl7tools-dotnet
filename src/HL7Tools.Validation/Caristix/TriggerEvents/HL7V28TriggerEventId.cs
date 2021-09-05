@@ -1,6 +1,6 @@
-namespace HL7Tools.Validation.Caristix
+namespace HL7Tools.Validation
 {
-    public enum HL7V28TriggerEvent
+    public enum HL7V28TriggerEventId
     {
         ACK,
         ADT_A01,

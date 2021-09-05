@@ -194,8 +194,12 @@ namespace HL7Tools
         {
             get
             {
-                var result = messageSegments.Where(s => s.SegmentName.Equals(segmentName)).ToList()[index];
-                return result;
+                var result = messageSegments.Where(s => s.SegmentName.Equals(segmentName)).ToList();
+                if (result.Count == 0)
+                {
+                    return null;
+                }
+                return result[index];
             }
         }
 

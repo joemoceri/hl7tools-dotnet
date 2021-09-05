@@ -18,7 +18,7 @@ namespace HL7Tools.Validation
 
             var caristixService = new CaristixService(true);
 
-            var validationResult = caristixService.ValidateTriggerEvent(message, Caristix.HL7V23TriggerEvent.DFT_P03);
+            var validationResult = caristixService.ValidateTriggerEvent(message, HL7V23TriggerEventId.DFT_P03);
 
             Console.Write($"Valid: {validationResult.Valid}");
 
@@ -47,7 +47,7 @@ namespace HL7Tools.Validation
             //void CreateTriggerEvents(string version)
             //{
             //    var v = version.Replace(".", string.Empty);
-            //    var path = Path.Combine(triggerEventsBasePath, $"HL7V2TriggerEvent.template.cs.txt");
+            //    var path = Path.Combine(triggerEventsBasePath, $"HL7V2TriggerEventId.template.cs.txt");
             //    var triggerEventTemplate = File.ReadAllText(path);
 
             //    triggerEventTemplate = triggerEventTemplate.Replace("[{-VERSION-}]", v);

@@ -29,5 +29,9 @@ namespace HL7Tools.Validation
 
         [JsonProperty("segments")]
         public IList<TriggerEventSegmentResponse> TriggerEventSegments { get; set; }
+
+        public List<SegmentResponse> Segments { get; internal set; }
+        
+        public List<SegmentGroupResponse> SegmentGroups { get; internal set; }
     }
 }
