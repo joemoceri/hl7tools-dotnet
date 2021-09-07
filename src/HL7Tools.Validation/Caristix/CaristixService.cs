@@ -394,6 +394,7 @@ namespace HL7Tools.Validation
         private HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, TriggerEventResponse triggerEvent)
         {
             var result = new HL7V2ValidationResult();
+
             try
             {
                 throw new NotImplementedException();
