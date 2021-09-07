@@ -1,5 +1,5 @@
 ## Installation
-[NuGet Expression Evaluator for .NET package](https://www.nuget.org/packages/HL7Tools/).
+[NuGet HL7Tools for .NET package](https://www.nuget.org/packages/HL7Tools/).
 
 You can install using the following methods.
 
