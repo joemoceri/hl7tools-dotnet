@@ -18,11 +18,11 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore ExpressionEvaluatorForDotNet
+      run: dotnet restore HL7Tools
       working-directory: src
     - name: Build
-      run: dotnet build ExpressionEvaluatorForDotNet --no-restore
+      run: dotnet build HL7Tools --no-restore
       working-directory: src      
     - name: Test
-      run: dotnet test ExpressionEvaluatorForDotNet.Tests --verbosity normal
+      run: dotnet test HL7Tools.Tests --verbosity normal
       working-directory: src   

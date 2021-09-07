@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Caristix\TriggerEvents\HL7V2TriggerEventId.template.cs.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Caristix\TriggerEvents\HL7V2TriggerEventId.template.cs.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RestSharp" Version="106.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Caristix\LocalData\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HL7Tools\HL7Tools.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DFT-P03 Charge.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,7 @@
+﻿namespace HL7Tools.Validation
+{
+    public enum HL7V[{-VERSION-}]TriggerEventId
+    {
+        [{-ENUM_VALUES-}]
+    }
+}
