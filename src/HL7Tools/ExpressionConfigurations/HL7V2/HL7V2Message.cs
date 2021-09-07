@@ -184,6 +184,20 @@ namespace HL7Tools
             return result;
         }
 
+        public HL7V2MessageSegment this[int index]
+        {
+            get
+            {
+                if (messageSegments.Count >= index)
+                {
+                    return null;
+                }
+
+                var result = messageSegments[index];
+                return result;
+            }
+        }
+
         /// <summary>
         /// Get a <see cref="HL7V2MessageSegment"/> by it's <see cref="HL7V2MessageSegment.SegmentName"/> and index, if multiple. Default index is 0.
         /// </summary>

@@ -25,6 +25,12 @@ You can also use this to evaluate segments of an hl7v2 pipe delimited message. U
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ExpressionConfigurations\HL7V2\Extensions\**" />
+    <EmbeddedResource Remove="ExpressionConfigurations\HL7V2\Extensions\**" />
+    <None Remove="ExpressionConfigurations\HL7V2\Extensions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="log.txt" />
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
@@ -44,10 +50,6 @@ You can also use this to evaluate segments of an hl7v2 pipe delimited message. U
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ExpressionConfigurations\HL7V2\Extensions\" />
   </ItemGroup>
 
 </Project>

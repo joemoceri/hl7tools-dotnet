@@ -5,6 +5,11 @@ namespace HL7Tools
 {
     public class HL7V2ValidationResult
     {
+        public HL7V2ValidationResult()
+        {
+            Issues = new Dictionary<string, string>();
+        }
+
         public bool Valid 
         {
             get

@@ -391,34 +391,12 @@ namespace HL7Tools.Validation
             return result;
         }
 
-        public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V21TriggerEventId triggerEventId)
+        private HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, TriggerEventResponse triggerEvent)
         {
-            var result = new HL7V2ValidationResult 
-            { 
-                Issues = new Dictionary<string, string>() 
-            };
-
+            var result = new HL7V2ValidationResult();
             try
             {
-                var te = GetTriggerEvent("2.1", triggerEventId.ToString());
-
-                var tes = te.TriggerEventSegments;
-
-                // TODO: Validate by each property
-                for (var i = 0; i < tes.Count; i++)
-                {
-                    var t = tes[i];
-
-                    var rpt = t.Rpt;
-
-                    var usage = t.Usage;
-
-                    var id = t.Id;
-
-                    var sequence = t.Sequence;
-
-                    var segments = t.Segments;
-                }
+                throw new NotImplementedException();
             }
             catch (Exception ex)
             {
@@ -428,21 +406,22 @@ namespace HL7Tools.Validation
             return result;
         }
 
+        public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V21TriggerEventId triggerEventId)
+        {
+            var version = "2.1";
+            var triggerEvent = GetTriggerEventResponse(version, triggerEventId.ToString());
+
+            var result = ValidateTriggerEvent(message, triggerEvent);
+
+            return result;
+        }
+
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V22TriggerEventId triggerEventId)
         {
-            var result = new HL7V2ValidationResult
-            {
-                Issues = new Dictionary<string, string>()
-            };
+            var version = "2.2";
+            var triggerEvent = GetTriggerEventResponse(version, triggerEventId.ToString());
 
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                result.Error = ex;
-            }
+            var result = ValidateTriggerEvent(message, triggerEvent);
 
             return result;
         }
@@ -450,100 +429,14 @@ namespace HL7Tools.Validation
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V23TriggerEventId triggerEventId)
         {
             var version = "2.3";
-            var result = new HL7V2ValidationResult
-            {
-                Issues = new Dictionary<string, string>()
-            };
+            var triggerEvent = GetTriggerEventResponse(version, triggerEventId.ToString());
 
-            try
-            {
-                var triggerEvent = GetTriggerEventResponse(version, triggerEventId.ToString());
-
-                // TODO: Validate the trigger event segments
-                for (var i = 0; i < triggerEvent.TriggerEventSegments.Count; i++)
-                {
-                    var triggerEventSegment = triggerEvent.TriggerEventSegments[i];
-
-                    if (triggerEventSegment.IsGroup)
-                    {
-                        // handle if it's a group
-                        ValidateMessageSegmentIsGroup(triggerEventSegment);
-                    }
-
-                    // check message segment repetitions
-                    ValidateMessageSegmentRepetitions(triggerEventSegment);
-
-                    // check message whether current segment is required or optional
-                    ValidateMessageSegmentUsage(triggerEventSegment);
-
-                    // check message whether the Id matches the name
-                    ValidateMessageSegmentId(triggerEventSegment);
-
-                    // check message whether the sequence matches
-                    ValidateMessageSegmentSequence(triggerEventSegment);
-                }
-
-                // TODO: Validate the segment fields, components, and sub components
-                for (var i = 0; i < triggerEvent.Segments.Count; i++)
-                {
-                    var segment = triggerEvent.Segments[i];
-                }
-
-            }
-            catch (Exception ex)
-            {
-                result.Error = ex;
-            }
+            var result = ValidateTriggerEvent(message, triggerEvent);
 
             return result;
+        }
 
-            void ValidateMessageSegmentIsGroup(TriggerEventSegmentResponse triggerEventSegment)
-            {
-                if (!triggerEventSegment.IsGroup)
-                {
-                    return;
-                }
-
-                var segments = triggerEventSegment.Segments;
-            }
-
-            void ValidateMessageSegmentSequence(TriggerEventSegmentResponse triggerEventSegment)
-            {
-                var sequence = !string.IsNullOrWhiteSpace(triggerEventSegment.Sequence) ? int.Parse(triggerEventSegment.Sequence) : 1;
-
-                var segment = message[triggerEventSegment.Id, sequence];
-            }
-
-            void ValidateMessageSegmentId(TriggerEventSegmentResponse triggerEventSegment)
-            {
-                var id = triggerEventSegment.Id;
-            }
-
-            void ValidateMessageSegmentUsage(TriggerEventSegmentResponse triggerEventSegment)
-            {
-                var usage = triggerEventSegment.Usage;
-
-                if (usage.Equals("R"))
-                {
-
-                }
-            }
-
-            void ValidateMessageSegmentRepetitions(TriggerEventSegmentResponse triggerEventSegment)
-            {
-                var rpt = triggerEventSegment.Rpt;
-
-                if (int.TryParse(rpt, out int rptInt))
-                {
-                    var s = message.Segments(triggerEventSegment.Id);
-                    if (s.Count > rptInt)
-                    {
-                        result.Issues.Add("Too many segments found", "Too many segments found");
-                    }
-                }
-            }
-
-            TriggerEventResponse GetTriggerEventResponse(string version, string triggerEventId)
+        private TriggerEventResponse GetTriggerEventResponse(string version, string triggerEventId)
             {
                 var result = GetTriggerEvent(version, triggerEventId.ToString());
 
@@ -575,156 +468,83 @@ namespace HL7Tools.Validation
 
                 return result;
             }
-        }
-
+        
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V231TriggerEventId triggerEventId)
         {
-            var result = new HL7V2ValidationResult
-            {
-                Issues = new Dictionary<string, string>()
-            };
+            var version = "2.3.1";
+            var triggerEvent = GetTriggerEventResponse(version, triggerEventId.ToString());
 
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                result.Error = ex;
-            }
+            var result = ValidateTriggerEvent(message, triggerEvent);
 
             return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V24TriggerEventId triggerEventId)
         {
-            var result = new HL7V2ValidationResult
-            {
-                Issues = new Dictionary<string, string>()
-            };
+            var version = "2.4";
+            var triggerEvent = GetTriggerEventResponse(version, triggerEventId.ToString());
 
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                result.Error = ex;
-            }
+            var result = ValidateTriggerEvent(message, triggerEvent);
 
             return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V25TriggerEventId triggerEventId)
         {
-            var result = new HL7V2ValidationResult
-            {
-                Issues = new Dictionary<string, string>()
-            };
+            var version = "2.5";
+            var triggerEvent = GetTriggerEventResponse(version, triggerEventId.ToString());
 
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                result.Error = ex;
-            }
+            var result = ValidateTriggerEvent(message, triggerEvent);
 
             return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V251TriggerEventId triggerEventId)
         {
-            var result = new HL7V2ValidationResult
-            {
-                Issues = new Dictionary<string, string>()
-            };
+            var version = "2.5.1";
+            var triggerEvent = GetTriggerEventResponse(version, triggerEventId.ToString());
 
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                result.Error = ex;
-            }
+            var result = ValidateTriggerEvent(message, triggerEvent);
 
             return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V26TriggerEventId triggerEventId)
         {
-            var result = new HL7V2ValidationResult
-            {
-                Issues = new Dictionary<string, string>()
-            };
+            var version = "2.6";
+            var triggerEvent = GetTriggerEventResponse(version, triggerEventId.ToString());
 
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                result.Error = ex;
-            }
+            var result = ValidateTriggerEvent(message, triggerEvent);
 
             return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V27TriggerEventId triggerEventId)
         {
-            var result = new HL7V2ValidationResult
-            {
-                Issues = new Dictionary<string, string>()
-            };
+            var version = "2.7";
+            var triggerEvent = GetTriggerEventResponse(version, triggerEventId.ToString());
 
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                result.Error = ex;
-            }
+            var result = ValidateTriggerEvent(message, triggerEvent);
 
             return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V271TriggerEventId triggerEventId)
         {
-            var result = new HL7V2ValidationResult
-            {
-                Issues = new Dictionary<string, string>()
-            };
+            var version = "2.7.1";
+            var triggerEvent = GetTriggerEventResponse(version, triggerEventId.ToString());
 
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                result.Error = ex;
-            }
+            var result = ValidateTriggerEvent(message, triggerEvent);
 
             return result;
         }
 
         public HL7V2ValidationResult ValidateTriggerEvent(HL7V2Message message, HL7V28TriggerEventId triggerEventId)
         {
-            var result = new HL7V2ValidationResult
-            {
-                Issues = new Dictionary<string, string>()
-            };
+            var version = "2.8";
+            var triggerEvent = GetTriggerEventResponse(version, triggerEventId.ToString());
 
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                result.Error = ex;
-            }
+            var result = ValidateTriggerEvent(message, triggerEvent);
 
             return result;
         }
@@ -752,7 +572,7 @@ namespace HL7Tools.Validation
                 }
                 else
                 {
-                    // keep track on both to make it easier
+                    // keep track on both
                     triggerEvent.Segments.Add(GetSegment(version, newTes.Id, true));
                     segmentGroup.Segments.Add(GetSegment(version, newTes.Id, true));
                 }
