@@ -16,6 +16,8 @@ namespace HL7Tools
             FieldRepetitions = new List<HL7V2FieldRepetition>();
         }
 
+        public HL7V2MessageDelimiters MessageDelimiters { get; init; }
+
         /// <summary>
         /// The Id of the field. 1-based.
         /// </summary>
@@ -138,7 +140,7 @@ namespace HL7Tools
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component AddComponent(string value)
         {
-            return AddComponent(value, 1, "^", "&");
+            return AddComponent(value, 1, MessageDelimiters.componentDelimiter, MessageDelimiters.subComponentDelimiter);
         }
 
         /// <summary>
@@ -148,7 +150,7 @@ namespace HL7Tools
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component AddComponent(string value, int repetitionId)
         {
-            return AddComponent(value, repetitionId, "^", "&");
+            return AddComponent(value, repetitionId, MessageDelimiters.componentDelimiter, MessageDelimiters.subComponentDelimiter);
         }
 
         /// <summary>
@@ -170,7 +172,8 @@ namespace HL7Tools
             {
                 Delimiter = componentDelimiter,
                 Id = fieldRepetition.Components.Count > 0 ? fieldRepetition.Components.Last().Id + 1 : 1,
-                Value = value
+                Value = value,
+                MessageDelimiters = MessageDelimiters,
             };
 
             if (!string.IsNullOrWhiteSpace(result.Value))
@@ -234,7 +237,7 @@ namespace HL7Tools
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component InsertComponent(int id, string value)
         {
-            return InsertComponent(id, value, 1, "^");
+            return InsertComponent(id, value, 1, MessageDelimiters.componentDelimiter);
         }
 
         /// <summary>
@@ -245,7 +248,7 @@ namespace HL7Tools
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component InsertComponent(int id, string value, int repetition)
         {
-            return InsertComponent(id, value, repetition, "^");
+            return InsertComponent(id, value, repetition, MessageDelimiters.componentDelimiter);
         }
 
         /// <summary>
@@ -283,7 +286,8 @@ namespace HL7Tools
             {
                 Delimiter = componentDelimiter,
                 Id = id,
-                Value = value
+                Value = value,
+                MessageDelimiters = MessageDelimiters,
             };
 
             var currentComponent = fieldRepetition.Components.FirstOrDefault(c => c.Id.Equals(id));
@@ -365,7 +369,7 @@ namespace HL7Tools
         /// <returns><see cref="HL7V2FieldRepetition"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2FieldRepetition AddFieldRepetition(string value)
         {
-            return AddFieldRepetition(value, "~", "^");
+            return AddFieldRepetition(value, MessageDelimiters.fieldRepetitionDelimiter, MessageDelimiters.componentDelimiter);
         }
 
         /// <summary>
@@ -380,6 +384,7 @@ namespace HL7Tools
                 Delimiter = fieldRepetitionDelimiter,
                 Id = FieldRepetitions.Count > 0 ? FieldRepetitions.Last().Id + 1 : 1,
                 Value = value,
+                MessageDelimiters = MessageDelimiters,
             };
 
             if (value.Contains(componentDelimiter))
@@ -425,7 +430,7 @@ namespace HL7Tools
         /// <returns><see cref="HL7V2FieldRepetition"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2FieldRepetition InsertFieldRepetition(int id, string value)
         {
-            return InsertFieldRepetition(id, value, "~");
+            return InsertFieldRepetition(id, value, MessageDelimiters.fieldRepetitionDelimiter);
         }
 
         /// <summary>
@@ -450,7 +455,8 @@ namespace HL7Tools
             {
                 Delimiter = fieldRepetitionDelimiter,
                 Id = id,
-                Value = value
+                Value = value,
+                MessageDelimiters = MessageDelimiters,
             };
 
             var pFr = FieldRepetitions.FirstOrDefault(fr => fr.Id.Equals(id));

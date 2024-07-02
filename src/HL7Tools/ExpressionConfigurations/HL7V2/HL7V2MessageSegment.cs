@@ -122,6 +122,7 @@ namespace HL7Tools
                 Delimiter = messageDelimiters.fieldDelimiter,
                 Id = Fields.Count > 0 ? Fields.Last().Id + 1 : 1,
                 Value = value,
+                MessageDelimiters = messageDelimiters,
             };
 
             Fields.Add(field);
@@ -188,7 +189,8 @@ namespace HL7Tools
             {
                 Delimiter = messageDelimiters.fieldDelimiter,
                 Id = id,
-                Value = value
+                Value = value,
+                MessageDelimiters = messageDelimiters
             };
 
             var f = Fields.FirstOrDefault(f => f.Id.Equals(id));

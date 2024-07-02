@@ -16,6 +16,8 @@ namespace HL7Tools
             Components = new List<HL7V2Component>();
         }
 
+        public HL7V2MessageDelimiters MessageDelimiters { get; init; }
+
         /// <summary>
         /// The Id of the Field Repetition.
         /// </summary>
@@ -84,7 +86,7 @@ namespace HL7Tools
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component AddComponent(string value)
         {
-            return AddComponent(value, "^", "&");
+            return AddComponent(value, MessageDelimiters.componentDelimiter, MessageDelimiters.subComponentDelimiter);
         }
 
         /// <summary>
@@ -98,7 +100,8 @@ namespace HL7Tools
             {
                 Delimiter = componentDelimiter,
                 Id = Components.Count > 0 ? Components.Last().Id + 1 : 1,
-                Value = value
+                Value = value,
+                MessageDelimiters = MessageDelimiters,
             };
 
             if (value.Contains(subComponentDelimiter))
@@ -144,7 +147,7 @@ namespace HL7Tools
         /// <returns><see cref="HL7V2Component"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2Component InsertComponent(int id, string value)
         {
-            return InsertComponent(id, value, "^");
+            return InsertComponent(id, value, MessageDelimiters.componentDelimiter);
         }
 
         /// <summary>
@@ -169,7 +172,8 @@ namespace HL7Tools
             {
                 Delimiter = componentDelimiter,
                 Id = id,
-                Value = value
+                Value = value,
+                MessageDelimiters = MessageDelimiters
             };
 
             var currentComponent = Components.FirstOrDefault(c => c.Id.Equals(id));

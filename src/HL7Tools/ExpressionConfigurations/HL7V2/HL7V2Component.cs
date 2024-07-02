@@ -16,6 +16,8 @@ namespace HL7Tools
             SubComponents = new List<HL7V2SubComponent>();
         }
 
+        public HL7V2MessageDelimiters MessageDelimiters { get; init; }
+
         /// <summary>
         /// The Id of the component is the position. 1-based.
         /// </summary>
@@ -83,7 +85,7 @@ namespace HL7Tools
         /// <returns><see cref="HL7V2SubComponent"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2SubComponent AddSubComponent(string value)
         {
-            return AddSubComponent(value, "&");
+            return AddSubComponent(value, MessageDelimiters.subComponentDelimiter);
         }
         /// <summary>
         /// Add's a <see cref="HL7V2SubComponent"/> to <see cref="SubComponents"/>. 
@@ -133,7 +135,7 @@ namespace HL7Tools
         /// <returns><see cref="HL7V2SubComponent"/> if successful, otherwise <see cref="null"/>.</returns>
         public HL7V2SubComponent InsertSubComponent(int id, string value)
         {
-            return InsertSubComponent(id, value, "&");
+            return InsertSubComponent(id, value, MessageDelimiters.subComponentDelimiter);
         }
 
         /// <summary>

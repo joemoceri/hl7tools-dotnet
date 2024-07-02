@@ -129,7 +129,7 @@ namespace HL7Tools
 
             operators = new List<ExpressionConfigurationOperator>
             {
-                CreateExpressionConfigurationOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, messageDelimiters.fieldDelimiter, null, null, null)
+                CreateExpressionConfigurationOperator(Operator.Addition, OperatorPrecedence.Lower, OperatorType.MathString, messageDelimiters.fieldDelimiter, FieldSolveOperatorExpression, null, null)
             };
 
             options = new ExpressionConfigurationOptions
@@ -139,12 +139,8 @@ namespace HL7Tools
                 IgnoreQuotesValidation = true
             };
 
-            Setup();
 
-            var additionOperator = MathStringOperators.First(o => o.ExpressionOperator == Operator.Addition);
-
-            additionOperator.SolveOperatorExpression = FieldSolveOperatorExpression;
-
+            // this gets called on every operator expression group
             ExpressionResult FieldSolveOperatorExpression(ExpressionGroup expGroup)
             {
                 bool? endCharacterFound = false;

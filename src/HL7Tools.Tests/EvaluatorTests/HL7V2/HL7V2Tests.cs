@@ -1193,7 +1193,7 @@ namespace HL7Tools.Tests
 
 			Assert.AreNotEqual(expConfig.Operators[0].SolveOperatorExpression, null);
 
-			Assert.AreNotEqual(expConfig.GetHL7V2MessageSegment(), null);
+			Assert.AreEqual(expConfig.GetHL7V2MessageSegment(), null);
 		}
 
 		[TestMethod]
